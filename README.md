@@ -1,6 +1,6 @@
-# redblue81.github.io
+# RedBlue's Blog Github Repository
 
-<h1>Redblue's Blog</h1>
+<h1>Coming soon</h1>
 
 New version using Jekyll
 
