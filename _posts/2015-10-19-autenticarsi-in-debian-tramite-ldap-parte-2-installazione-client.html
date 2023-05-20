@@ -1,0 +1,156 @@
+---
+layout: post
+status: publish
+published: true
+title: Autenticarsi in Debian tramite LDAP - Parte 2 - Installazione client
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3795
+wordpress_url: http://www.red-blue.it/?p=3795
+date: '2015-10-19 14:37:00 +0100'
+date_gmt: '2015-10-19 12:37:00 +0100'
+categories:
+- guide
+- linux
+- debian
+- in evidenza
+tags:
+- guida
+- debian
+- client
+- openldap
+- autenticazione
+comments: []
+---
+<p>Ed eccoci alla <strong>seconda parte</strong> di questa guida all'installazione e alla configurazione di <strong>LDAP</strong> per gestire l'autenticazione centralizzata degli utenti in una rete locale.</p>
+<p>Nella <a href="http://localhost:4000/guide/autenticarsi-in-debian-tramite-ldap-parte-1-installazione-server.html" target="_blank">prima parte</a> avevamo installato e configurato la parte <strong>server</strong>, assolutamente necessaria per metter su l'archivio di utenti. In questa seconda parte, vedremo come configurare la parte <strong>client</strong>. Ovviamente, il presupposto di base &egrave; quello di avere una rete locale gi&agrave; <strong>funzionante</strong>, in cui il client sia in grado di "vedere" il server e viceversa.</p>
+<p><a href="/assets/images/LDAPworm.gif"><img class="aligncenter size-medium wp-image-3791" src="/assets/images/LDAPworm-300x118.gif" alt="LDAPworm" width="300" height="118" /></a><br />
+<!--moreContinua a leggere...--><br />
+Ricordo che nel nostro esempio per il server avevamo impostato i seguenti dati:</p>
+<ul>
+<li>IP: 192.168.10.100</li>
+<li>Hostname: server.red-blue.local</li>
+</ul>
+<p>Detto ci&ograve;, iniziamo con l'<strong>installazione</strong> dei componenti necessari sul client (ovviamente tutti i comandi vanno dati come root):</p>
+<pre class="brush: bash; gutter: false">apt-get install libnss-ldap libpam-ldap nscd</pre>
+<p>Anche in questo caso, durante l'installazione dovremo rispondere a varie domande, tra le quali ovviamente ci saranno anche l'indirizzo del server e il nostro dominio. Le risposte che ho dato io per il pacchetto <code>libnss-ldap</code>:</p>
+<ul>
+<li>LDAP Server URI: <strong>ldap://192.168.10.100</strong></li>
+<li>Nome della base: <strong>dc=red-blue,dc=local</strong></li>
+<li>Versione di LDAP:<strong> 3</strong></li>
+<li>Account di amministrazione: <strong>cn=admin,dc=red-blue,cn=local</strong></li>
+<li>Password di amministrazione:<strong> fornire una password</strong></li>
+</ul>
+<p>Per il pacchetto <code>libpam-ldap</code> le risposte sono praticamente le stesse, da notare che verr&agrave; richiesto anche se usare l'utente root locale come admin per LDAP, non serve, quindi a tale domanda si pu&ograve; rispondere <strong>no</strong>; allo stesso modo, non &egrave; necessario che il database di LDAP necessiti di login, si pu&ograve; rispondere no anche a questa domanda.</p>
+<p>Riconfiguriamo <code>libnss-ldap</code>, come root diamo:</p>
+<pre class="brush: bash; gutter: false">dpkg-reconfigure libnss-ldap</pre>
+<p>Successivamente:</p>
+<ul>
+<li>indichiamo nuovamente l'indirizzo del server:<strong> ldap://192.168.10.100</strong></li>
+<li>indichiamo nuovamente la base di LDAP: <strong>dc=red-blue,dc=local</strong></li>
+<li>confermiamo la versione <strong>3</strong> di LDAP</li>
+<li>il database richiede login: <strong>No</strong></li>
+<li>privilegi speciale per&nbsp;root: <strong>No</strong></li>
+<li>file di configurazione leggibile/scrivibile solo dal proprietario: <strong>No</strong></li>
+</ul>
+<p>Ok, a questo punto editiamo <code>/etc/ldap/ldap.conf</code>, nel quale occorre indicare nelle righe <strong>BASE</strong> e <strong>URI</strong> rispettivamente la base inserita prima e l'indirizzo del server.</p>
+<p>La configurazione di LDAP lato client &egrave;&nbsp; fatta, ma ancora non abbiamo raggiunto il nostro scopo, infatti non abbiamo ancora <strong>istruito</strong> il sistema ad andare a cercare gli utenti nel database LDAP, oltre che nei file locali. Per fare ci&ograve;, &egrave; necessario editare il file <code>/etc/nssswitch.conf</code>. Cerchiamo le seguenti righe e vi aggiungiamo la chiave <strong>ldap</strong>:</p>
+<pre class="brush: bash; gutter: true">[...]
+
+ passwd: compat ldap
+
+ group: compat ldap
+
+ shadow: compat ldap
+
+ [...]
+
+ netgroup: ldap
+
+ [...]</pre>
+<p>Dobbiamo ora riavviare il servizio:</p>
+<pre class="brush: bash; gutter: false">service nscd restart</pre>
+<p>Benissimo, non resta che configurare <strong>Pam</strong>, necessario anch'esso per gestire l'autenticazione. Dobbiamo editare i seguenti files, per ognuno dei quali indicher&ograve; solo le linee di interesse e come dovrebbero apparire dopo la modifica:</p>
+<pre class="brush: bash; gutter: false">/etc/pam.d/common-auth
+
+ [...]
+
+ auth [success=2 default=ignore] pam_unix.so nullok_secure try_first_pass
+
+ auth [success=1 default=ignore] pam_ldap.so use_first_pass
+
+ [...]
+
+ auth requisite pam_deny.so
+
+ [...]
+
+ auth required pam_permit.so
+
+ [...]</pre>
+<pre class="brush: bash; gutter: false">/etc/pam.d/common-account
+
+ [...]
+
+ account [success=2 new_authtok_reqd=done default=ignore] pam_unix.so
+
+ account [success=1 default=ignore] pam_ldap.so
+
+ [...]
+
+ account requisite pam_deny.so
+
+ [...]
+
+ account required pam_permit.so
+
+ [...]</pre>
+<pre class="brush: bash; gutter: false">/etc/pam.d/common-password
+
+ [...]&egrave;
+
+ password [success=2 default=ignore] pam_unix.so obscure sha512
+
+ password [success=1 user_unknown=ignore default=die] pam_ldap.so use_authtok try_first_pass
+
+ [...]
+
+ password requisite pam_deny.so
+
+ [...]
+
+ password required pam_permit.so
+
+ [...]</pre>
+<pre class="brush: bash; gutter: false">/etc/pam.d/common-session
+
+ [...]
+
+ session required pam_mkhomedir.so</pre>
+<pre class="brush: bash; gutter: false">/etc/pam.d/common-session-noninteractive
+
+ [...]
+
+ session [default=1] pam_permit.so
+
+ [...]
+
+ session requisite pam_deny.so
+
+ [...]
+
+ session required pam_permit.so
+
+ [...]
+
+ session required pam_unix.so
+
+ session optional pam_ldap.so</pre>
+<p>Non ci resta che riavviare nuovamente il servizio:</p>
+<pre class="brush: bash; gutter: false">service nscd restart</pre>
+<p>Finito! <strong>Riavviamo</strong> il sistema e proviamo ad autenticarci con l'utente che avevamo creato nella <a href="http://localhost:4000/guide/autenticarsi-in-debian-tramite-ldap-parte-1-installazione-server.html">guida precedente</a>. Se tutto &egrave; andato a buon fine, riusciremo ad accedere, e avremo anche la nostra <strong>home directory</strong> gi&agrave;&nbsp;configurata!</p>
+<p>Nella terza e ultima parte vedremo un <strong>tool</strong> capace di semplificarci la vita..</p>
+<p>Alla prossima..</p>

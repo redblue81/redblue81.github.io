@@ -1,0 +1,61 @@
+---
+layout: post
+status: publish
+published: true
+title: Schedulare un'operazione modificando Crontab
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3308
+wordpress_url: http://www.red-blue.it/?p=3308
+date: '2012-07-25 11:02:22 +0100'
+date_gmt: '2012-07-25 09:02:22 +0100'
+categories:
+- guide
+- linux
+- server
+tags:
+- guida
+- server
+- cron
+- crontab
+- scheduling
+- operazioni pianificate
+comments: []
+---
+<p>Per gestire correttamente un server, &egrave; fondamentale saper <strong>schedulare un'operazione nel tempo</strong>, e per questo &egrave; indispensabile conoscere <strong>Cron</strong> e il <strong>crontab</strong>.</p>
+<p>Uno scenario classico &egrave; quello, ad esempio, del <strong>backup</strong> automatico di alcuni dati, backup che magari deve essere eseguito pi&ugrave; volte durante la giornata, ad intervalli regolari. E' proprio questo il concetto di Crontab, tramite il quale possiamo appunto programmare un'operazione ciclica in modo del tutto automatico.</p>
+<p><strong>Cron</strong> &egrave; un demone che viene caricato in memoria all'avvio, e che ciclicamente va a leggere i propri files di configurazione alla ricerca di operazioni schedulate. In altre parole, basta aggiungere il proprio <strong>job</strong> (la propria azione) ad uno di questi files, e automaticamente questo verr&agrave; eseguito nel giorno e all'ora stabiliti.</p>
+<p>Il comando da lanciare &egrave; semplicemente crontab:</p>
+<pre class="brush: bash; gutter: false">crontab&nbsp; [-u Utente] -l -e -r file</pre>
+<p>Iniziamo col vedere le <strong>opzioni principali</strong>:</p>
+<blockquote>
+<ul>
+<li><strong>-u</strong> Specifica a quale utente ci riferiamo</li>
+<li><strong>-l</strong> Visualizza tutti i crontab impostati</li>
+<li><strong>-e</strong> Edita il crontab dell'utente</li>
+<li><strong>-r</strong> Cancella il crontab dell'utente</li>
+<li><strong>file</strong> Inserisce il contenuto del file specificato nel crontab dell'utente specificato</li>
+</ul>
+</blockquote>
+<p>Se non si specifica un utente, allora verr&agrave; considerato il crontab relativo all'utente che lancia il comando; l'editing avviene, come detto, tramite il comando:</p>
+<pre class="brush: bash; gutter: false">crontab -e</pre>
+<p>Che aprir&agrave; il relativo file con l'editor predefinito. A questo punto, l'uso &egrave; piuttosto semplice, ad esempio si pu&ograve; inserire una riga del tipo:</p>
+<pre class="brush: bash; gutter: false">00 15 * * * utente /percorso/comando_da_eseguire</pre>
+<p>Questo significa che il comando verr&agrave; eseguito ogni giorno alle ore 15:00 dall'utente utente. Spieghiamo meglio i sette campi che compongono questa riga:</p>
+<ol>
+<li><strong>mm</strong> Indica il minuto al quale eseguire l'operazione (da 00 a 59);</li>
+<li><strong>hh</strong> Indica l'ora alla quale eseguire l'operazione (da 0 a 23);</li>
+<li><strong>gg</strong> Indica il giorno in cui eseguire l'operazione all'ora specificata (inteso come giorno del mese, quindi da 0 a 31);</li>
+<li><strong>MM</strong> Indica il mese dell'anno (da 1 a 12);</li>
+<li><strong>GG</strong> Indica il giorno della settimana (da 0=domenica a 6=sabato);</li>
+<li><strong>Utente</strong> Indica l'utente che deve eseguire l'operazione, pu&ograve; essere omesso;</li>
+<li><strong>Operazione</strong> da eseguire.</li>
+</ol>
+<p>Altro esempio:</p>
+<pre class="brush: bash; gutter: false">00 */3 * * * /percorso/comando_da_eseguire</pre>
+<p>Questa riga non fa altro che schedulare un'operazione ogni giorno dell'anno, ogni tre ore.</p>
+<p>Semplice no? Ovviamente un maggior dettaglio di informazioni &egrave; ottenibile dalla <strong>man page</strong> di crontab.</p>
+<p>Alla prossima..</p>

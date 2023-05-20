@@ -1,0 +1,82 @@
+---
+layout: post
+status: publish
+published: true
+title: Proteggere il blog dallo spam con Akismet
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 274
+wordpress_url: http://redblue.netsons.org/?p=274
+date: '2009-02-24 18:30:11 +0100'
+date_gmt: '2009-02-24 17:30:11 +0100'
+categories:
+- blog
+- tips & tricks
+- wordpress
+tags:
+- blog
+- wordpress
+- plugin
+- akismet
+- spam
+- widget
+comments:
+- id: 1809
+  author: Ailinen
+  author_email: ailinen@email.it
+  author_url: http://www.ailinen.com/wordpress
+  date: '2009-06-07 15:43:19 +0100'
+  date_gmt: '2009-06-07 14:43:19 +0100'
+  content: "Ciao.. Utile questa cosa. Io sono sommersa da commenti spam dalla Russia,
+    sorpattutto, e per fortuna devo autorizzarli io i commenti.\r\n\r\nUna domanda:
+    ma c'&egrave; modo di segnalare gl indirizzi ip delle persone che mandano commenti
+    spam sul blog?\r\n\r\nAily"
+- id: 1814
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-06-08 09:41:58 +0100'
+  date_gmt: '2009-06-08 08:41:58 +0100'
+  content: Certo, semplicemente quando vengono segnalati da Akismet, e poi cancellati,
+    finiscono nel database internazionale degli spammers.. E' in questo modo che il
+    programma si "autoistruisce" per conoscere gli indirizzi email da cui provengono
+    commenti di spam.. ;)
+- id: 1815
+  author: Ailinen
+  author_email: ailinen@email.it
+  author_url: http://www.ailinen.com/wordpress
+  date: '2009-06-08 13:14:39 +0100'
+  date_gmt: '2009-06-08 12:14:39 +0100'
+  content: "^_^\r\n\r\nQuindi non segnala solo gli indirizzi email... Avevo capito
+    male io allora :-p"
+- id: 1817
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-06-08 15:21:57 +0100'
+  date_gmt: '2009-06-08 14:21:57 +0100'
+  content: No no segnala gli indirizzi email, ma implicitamente anche tutti i dati
+    reperibili riferiti ad essi.. Per quanto riguarda gli IP in particolare, una mail
+    di spam potrebbe tranquillamente essere inviata da un indirizzo abitualmente usato
+    in modo lecito, per questo ci&ograve; che conta &egrave; soprattutto la mail del
+    mittente, che una volta segnalata come spam da qualcuno viene ritenuta tale per
+    tutti gli utenti che utilizzano Akismet..
+- id: 1837
+  author: Ailinen
+  author_email: ailinen@email.it
+  author_url: http://www.ailinen.com/wordpress
+  date: '2009-06-13 12:40:12 +0100'
+  date_gmt: '2009-06-13 11:40:12 +0100'
+  content: Grazie mille per la spiegazione... Gentilissimo...
+---
+<p>Negli ultimi giorni il numero di commenti spam su questo blog &egrave; aumentato in maniera vertiginosa. Se per i primi 4 mesi buoni ne avevo avuto ricevuti si e no 5/6, ora in meno di 2 settimane sono a quasi 30. Sembrer&ograve; pazzo, ma mi sembra un buon dato, vuol dire che il mio piccolo blog sta raggiungendo un minimo di "fama" in rete tale da interessare gli spammers..</p>
+<p>Proprio in questi giorni ho potuto perci&ograve; apprezzare appieno le qualit&agrave; di <a href="http://akismet.com/" target="_blank">Akismet</a>, un plugin che conoscevo pi&ugrave; che altro perch&egrave; era indicato tra i "must have" di un buon blogger che utilizzi Wordpress, tanto da essere installato di default. Vediamo un p&ograve; in dettaglio come funziona.</p>
+<p style="text-align: center;"><a href="http://akismet.com/download/" target="_blank"><img class="aligncenter" src="/assets/images/akismet.PNG" alt="" width="450" height="214" /></a></p>
+<p>Quando arriva un commento, viene controllato da Akismet, che se lo riconosce come spam, lo sposta in una apposita cartella, in attesa di controllo da parte dell'utente, che pu&ograve; semplicemente cancellarlo oppure approvarlo e pubblicarlo (in caso di errato riconoscimento).</p>
+<p>Bene, ho gi&agrave; detto che &egrave; installato di default in Wordpress, allora basta abilitarlo e configurarlo. Attenzione per&ograve;, per usarlo serve una <strong>chiave API</strong>, ovvero un'identificativo dell'utente che utilizza il plugin. Niente di pi&ugrave; facile, registrazione gratuita a <a href="http://wordpress.com/" target="_blank">Wordpress.com</a>, e in pochi minuti avremo un'email con la nostra chiave API (non serve creare un blog, basta registrarsi) da inserire nella pagina di configurazione di Akismet. A questo punto &egrave; tutto a posto, Akismet sta gi&agrave; proteggendo il vostro blog dallo spam. Una raccomandazione, qualora un commento venisse inserito per errore nello spam, provvedete a segnalarlo come attendibile e a toglierlo dalla cartella spam, in quanto Akismet si basa su un <strong>database di indirizzi email</strong> ricavato dai commenti di spam ricevuti dagli utenti stessi, e quindi la mancata rimozione di un indirizzo buono lo renderebbe automaticamente spam per tutti.</p>
+<p>Akismet &egrave; gratuito per i blog personali, mentre per quelli commerciali occorre acquistare una licenza, inoltre, se il blog supera i 500 dollari mensili di guadagno, &egrave; richiesta una donazione (facoltativa) di 5 dollari al mese per contribuire allo sviluppo.</p>
+<p>Ultima cosa: Akismet aggiunge alla vostra lista di widget un simpatico contatore animato, giusto per far rendere conto ai vostri lettori del volume di spam attratto dal vostro blog, lo potete notare in basso a destra nella sidebar..</p>
+<p>Per qualsiasi chiarimento sono a vostra disposizione!</p>

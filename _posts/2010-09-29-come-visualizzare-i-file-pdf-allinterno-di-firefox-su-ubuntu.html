@@ -1,0 +1,59 @@
+---
+layout: post
+status: publish
+published: true
+title: Come visualizzare i file PDF all'interno di Firefox su Ubuntu
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1562
+wordpress_url: http://www.red-blue.it/?p=1562
+date: '2010-09-29 10:06:05 +0100'
+date_gmt: '2010-09-29 08:06:05 +0100'
+categories:
+- guide
+- linux
+- browser
+- firefox
+tags:
+- guida
+- plugin
+- linux
+- ubuntu
+- firefox
+- mozilla
+- evince
+- lucid
+- mozplugger
+- pdf
+comments:
+- id: 7985
+  author: ANTONIO
+  author_email: trecento9@yahoo.it
+  author_url: http://www.affiliazioneita.com/
+  date: '2011-10-10 19:43:53 +0100'
+  date_gmt: '2011-10-10 17:43:53 +0100'
+  content: grazie per lo script !:)
+---
+<p>Avete presente il plugin di <strong>Adobe Reader</strong> per Firefox su Windows? Quello che permette di "integrare" il lettore di file <strong>PDF</strong> nel browser.. Al contrario di default Ubuntu prevede la presentazione di una finestra in cui scegliere se aprire il documento nel visualizzatore predefinto (<strong>Evince</strong>), oppure se scaricarlo..</p>
+<p>E' possibile per&ograve; <strong>simulare</strong> il comportamento del plugin di Adobe, semplicemente installando <a href="http://mozplugger.mozdev.org/" target="_blank">MozPlugger</a>.. Questo utilissimo plugin permette di visualizzare all'interno del browser numerosi file multimediali, ovviamente sfruttando programmi esterni.. Grazie al <a href="http://forum.ubuntu-it.org/index.php/topic,408245.0.html" target="_blank">forum italiano di Ubuntu</a>, vediamo come usarlo con i PDF..</p>
+<p>Per prima cosa <strong>installiamo MozPlugger</strong>:</p>
+<blockquote><p><code>sudo apt-get install mozplugger</code></p></blockquote>
+<p>A questo punto dobbiamo <strong>creare il file di configurazione</strong>: nella directory relativa al nostro utente scriviamo</p>
+<blockquote><p><code>gedit .mozilla/mozpluggerrc</code></p></blockquote>
+<p><strong>All'interno del documento appena creato</strong> scriviamo:</p>
+<blockquote><p><code>application/pdf:pdf:PDF file<br />
+application/x-pdf:pdf:PDF file<br />
+text/pdf:pdf:PDF file<br />
+text/x-pdf:pdf:PDF file<br />
+application/x-postscript:ps:PostScript file<br />
+application/postscript:ps:PostScript file<br />
+repeat swallow(evince) fill: evince "$file"<br />
+repeat swallow(documentShell) fill: acroread5 -geometry +9000$<br />
+repeat swallow(acroread) fill: acroread7 -openInNewWindow "$f$<br />
+repeat noisy swallow(kpdf) fill: kpdf "$file"<br />
+repeat noisy swallow(Xpdf) fill: xpdf -g +9000+9000 "$file"</code></p></blockquote>
+<p>Se non avevate altri plugin per i PDF allora avete finito, altrimenti cercate il file <code>pluginreg.dat</code> e cancellatelo. Ora riavviate Firefox e nella scheda <strong>Modifica -> Preferenze -> Applicazioni</strong> verificate che sia presente l'associazione con i file PDF.. Se esiste tale associazione, avete finito..</p>
+<p>Alla prossima..</p>

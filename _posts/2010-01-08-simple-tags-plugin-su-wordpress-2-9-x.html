@@ -1,0 +1,41 @@
+---
+layout: post
+status: publish
+published: true
+title: Simple Tags Plugin su Wordpress 2.9.x
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 913
+wordpress_url: http://redblue.netsons.org/?p=913
+date: '2010-01-08 19:53:41 +0100'
+date_gmt: '2010-01-08 18:53:41 +0100'
+categories:
+- blog
+- tips & tricks
+- wordpress
+tags:
+- wordpress
+- plugin
+- tips
+- tricks
+- '2.9'
+- simple tags
+comments: []
+---
+<p>Recentemente ho aggiornato Wordpress alla versione <strong>2.9</strong>.. Tutto ok, ma mi sono presto reso conto che il plugin <a href="http://wordpress.org/extend/plugins/simple-tags/" target="_blank">Simple Tags</a> aveva smesso di funzionare.. Situazione assolutamente risolvibile, poich&egrave; il problema &egrave; dovuto semplicemente al controllo di versione, che ancora non &egrave; stato aggiornato alla 2.9.. Allora per risolvere:</p>
+<ul>
+<li>dalla dashboard di WP andate in <strong>Plugin -></strong> <strong>Editor</strong>;</li>
+<li>selezionate in alto a destra <strong>Simple Tags</strong> e cliccate su <strong>Seleziona</strong>;</li>
+<li>cercate la riga<br />
+<blockquote><p><code>if ( strpos($wp_version, '2.7') !== false || strpos($wp_version, '2.8') !== false ) {</code></p></blockquote>
+</li>
+<li>e sostituitela con<br />
+<blockquote><p><code>if ( strpos($wp_version, '2.7') !== false || strpos($wp_version, '2.8') !== false || strpos($wp_version, '2.9') !== false ) {</code></p></blockquote>
+</li>
+<li>salvate cliccando su <strong>Aggiorna File</strong>.</li>
+</ul>
+<p>Fatto.. ;)</p>
+<p>Alla prossima..</p>

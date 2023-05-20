@@ -1,0 +1,42 @@
+---
+layout: post
+status: publish
+published: true
+title: Aggiornare Firefox su LMDE
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1620
+wordpress_url: http://www.red-blue.it/?p=1620
+date: '2010-10-08 13:51:53 +0100'
+date_gmt: '2010-10-08 11:51:53 +0100'
+categories:
+- guide
+- tips & tricks
+- linux
+- browser
+- firefox
+- lmde
+tags:
+- guida
+- linux
+- firefox
+- aggiornamento
+- lmde
+- terminale
+comments: []
+---
+<p>In <strong>LMDE</strong> (per chi non sapesse di che si tratta, leggere <a href="http://localhost:4000/linux/lmde-linux-mint-debian-edition.html" target="_blank">qui</a>) &egrave; installata di default la versione <strong>3.6.8</strong> di <strong>Firefox</strong>, e a quanto pare il gestore degli aggiornamenti non contempla l'aggiornamento automatico di tale browser.</p>
+<p>Poco male, l'aggiornamento si pu&ograve; fare manualmente, attraverso il browser stesso. Infatti basta semplicemente chiuderlo e riavviarlo da <strong>terminale</strong>, come <code>root</code>, oppure usando <code>sudo</code>:</p>
+<blockquote><p><code>sudo firefox</code></p></blockquote>
+<p>A questo punto non preoccupatevi di eventuali segnalazioni e andate su <strong>Aiuto -> Controlla gli aggiornamenti</strong>. Da qui potrete eseguire l'aggiornamento (attualmente alla versione <strong>3.6.10</strong>).</p>
+<p>Finita la procedura automatica, che comprende anche il riavvio del browser, riavviate ancora Firefox, ma come <strong>utente normale</strong> ed avrete la vostra versione aggiornata.. ;)</p>
+<p><strong>PS.</strong> Se la nuova versione dovesse essere in inglese, basta installare il <strong>language pack</strong> da <a href="http://www.mozillaitalia.it/home/download/#firefox" target="_blank">qui</a>.</p>
+<p><strong>PPS.</strong> Se la lingua restasse ancora l'inglese, allora dovrete modificare a manina la seguente chiave di configurazione. Scrivete nella <strong>barra degli indirizzi</strong>:</p>
+<blockquote><p><code>about:config</code></p></blockquote>
+<p>Superate l'avviso di sicurezza e cercate la seguente <strong>chiave</strong>:</p>
+<blockquote><p><code>general.useragent.locale</code></p></blockquote>
+<p>che dovrebbe avere valore <code>en-US</code>; cambiate tale valore in <code>it-IT</code> e riavviate Firefox, ora la lingua quasi certamente sar&agrave; l'italiano..</p>
+<p>Alla prossima..</p>

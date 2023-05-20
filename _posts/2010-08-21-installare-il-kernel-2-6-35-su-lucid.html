@@ -1,0 +1,94 @@
+---
+layout: post
+status: publish
+published: true
+title: Installare il kernel 2.6.35 su Lucid..
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1448
+wordpress_url: http://www.red-blue.it/?p=1448
+date: '2010-08-21 10:01:11 +0100'
+date_gmt: '2010-08-21 09:01:11 +0100'
+categories:
+- guide
+- linux
+- ubuntu
+- notebook
+- hp dv6
+- in evidenza
+tags:
+- guida
+- linux
+- ubuntu
+- repository
+- kernel
+- lucid
+- maverick
+comments:
+- id: 6427
+  author: Giacinto
+  author_email: brung82@hotmail.com
+  author_url: ''
+  date: '2010-08-24 17:57:08 +0100'
+  date_gmt: '2010-08-24 16:57:08 +0100'
+  content: "Ciao, ho aggiornato il kernel, ma ho un problemino con la scheda video,
+    il driver sembra non funzionare, si tratta di una ATI. Su \"driver hardware\"
+    risulta non abilitato, e se tento di abilitarlo questo &egrave; l'errore che mi
+    restituisce: \r\n\r\nL'installazione di questo driver non &egrave; riuscita\r\n\r\nConsultare
+    i file di registro per maggiori informazioni: /var/log/jockey.log\r\n\r\ncome
+    posso risolvere?"
+- id: 6428
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2010-08-24 23:08:53 +0100'
+  date_gmt: '2010-08-24 22:08:53 +0100'
+  content: "Usi i driver open source o quelli proprietari?? Mi sembra di capire i
+    secondi, in tal caso come li installi??\r\n\r\nIl problema cmq potrebbe essere
+    semplicemente che i driver proprietari non supportano il kernel che hai installato,
+    succede spesso con le ATI purtroppo.. In rete per&ograve; leggo che il kernel
+    2.6.35-17-generic dovrebbe funzionare perfettamente con i driver ATI 10.7.."
+- id: 6794
+  author: Ricca
+  author_email: drunkbutterfly@katamail.com
+  author_url: ''
+  date: '2011-01-13 11:35:14 +0100'
+  date_gmt: '2011-01-13 10:35:14 +0100'
+  content: "Ciao, ho provato a seguire le tue istruzioni ma il terminale mi restituisce
+    questo messaggio:\r\n\r\n[i]Lettura elenco dei pacchetti... Fatto\r\nGenerazione
+    albero delle dipendenze       \r\nLettura informazioni sullo stato... Fatto\r\nE:
+    Impossibile trovare il pacchetto linux-maverick-source-2.6.35[/i]"
+- id: 6795
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-01-13 12:14:08 +0100'
+  date_gmt: '2011-01-13 11:14:08 +0100'
+  content: |-
+    Ciao..
+
+    Ti restituisce quell'errore perch&egrave; in effetti in quel PPA non &egrave; pi&ugrave; presente quel kernel..
+
+    Puoi scaricare il kernel di tuo interesse da altre fonti ed installarlo a mano, seguendo quest'altra <a href="http://localhost:4000/guide/installare-un-nuovo-kernel-su-ubuntu-in-pochi-minuti.html" rel="nofollow">guida</a>.. Per un'installazione da PPA ora vedo se &egrave; ancora possibile da qualche altra sorgente e poi nel caso lo pubblico.. ;)
+- id: 6796
+  author: Ricca
+  author_email: drunkbutterfly@katamail.com
+  author_url: ''
+  date: '2011-01-13 12:26:01 +0100'
+  date_gmt: '2011-01-13 11:26:01 +0100'
+  content: Grazie 1000!!!!
+---
+<p>Recentemente su pi&ugrave; fonti ho letto che il kernel di Lucid "ucciderebbe" la batteria del notebook, nel senso che farebbe lavorare troppo sotto stress la CPU, con conseguente aumento di temperatura e maggiore consumo, ed usura, della batteria..</p>
+<p>Personalmente non ho riscontrato problemi di questo genere, e anzi da qualche parte ho letto che dovrebbe interessare solo le CPU <strong>Intel Centrino</strong> a clock medio-basso (e io addirittura ho una CPU <strong>AMD</strong>), ma la prudenza non &egrave; mai troppa, e inoltre un kernel di nuova generazione mi permette di risolvere alcuni problemini propri del mio notebook, quale ad esempio la compilazione a manina del driver dei <strong>sensori di temperatura</strong>..</p>
+<p>Ecco perci&ograve; che ho installato il kernel <strong>2.6.35-17</strong>, versione (la .35) entrata ormai nel ramo <strong>stabile</strong>, e poich&egrave; l'ho fatto addirittura da <strong>repository</strong>, vi vado a spiegare la semplicissima procedura necessaria all'installazione, dall'aggiunta del repository all'installazione dei pacchetti necessari..</p>
+<blockquote><p><code>sudo add-apt-repository ppa:kernel-ppa/ppa<br />
+sudo apt-get update<br />
+sudo apt-get install linux-maverick-source-2.6.35 linux-headers-2.6.35-17 linux-headers-2.6.35-17-generic linux-image-2.6.35-17-generic</code></p></blockquote>
+<p>Ebbene si, si tratta del kernel della prossima versione di Ubuntu.. ;)</p>
+<p>Dopo l'installazione, basta riavviare e selezionare il nuovo kernel. Come sempre, <span style="text-decoration: underline;">prima di rimuovere le vecchie versioni del kernel aspettate di essere certi che la versione installata funzioni correttamente, e che tutte le vostre periferiche (e relativi drivers) siano perfettamente compatibili</span>..</p>
+<p style="text-align: center;">
+<p style="text-align: center;"><a href="/assets/images/tux.jpg"><img class="aligncenter size-medium wp-image-1781" title="tux" src="/assets/images/tux-252x300.jpg" alt="" width="252" height="300" /></a></p>
+<p>Alla prossima..</p>

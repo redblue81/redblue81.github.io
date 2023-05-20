@@ -1,0 +1,93 @@
+---
+layout: post
+status: publish
+published: true
+title: Ripristinare Google come motore di ricerca predefinito di Firefox
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2922
+wordpress_url: http://www.red-blue.it/?p=2922
+date: '2012-02-23 12:16:06 +0100'
+date_gmt: '2012-02-23 11:16:06 +0100'
+categories:
+- tips & tricks
+- browser
+- firefox
+tags:
+- firefox
+- google
+- tip
+- motore di ricerca
+comments:
+- id: 8985
+  author: Marco
+  author_email: nonnoelogu@gmail.com
+  author_url: ''
+  date: '2012-02-23 15:01:20 +0100'
+  date_gmt: '2012-02-23 14:01:20 +0100'
+  content: funziona perfettamente, grazie! Ero due giorni che ci provavo!
+- id: 11675
+  author: Cano
+  author_email: Thecanox@gmail.com
+  author_url: ''
+  date: '2012-07-09 07:17:14 +0100'
+  date_gmt: '2012-07-09 05:17:14 +0100'
+  content: "Grazie era 1 settimana k nn sapevo dove andare a sbattere la testa....
+    babylon ma rotto :(\r\nEheheheh le vecchie abitudini sn dure a morire :D"
+- id: 13533
+  author: Cambiare il motore di ricerca predefinito di Firefox - RedBlue&#039;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/internet/cambiare-il-motore-di-ricerca-predefinito-di-firefox.html
+  date: '2012-08-18 15:10:45 +0100'
+  date_gmt: '2012-08-18 13:10:45 +0100'
+  content: "[...] se quanto descritto non funziona, basta seguire quest&#8217;altra
+    procedura.         Ti &egrave; piaciuto questo articolo?Condividilo su Facebook!!
+    \  Categorie: browser, firefox, [...]"
+- id: 23350
+  author: Sassa
+  author_email: sassatellim@libero.it
+  author_url: ''
+  date: '2012-11-01 09:54:43 +0100'
+  date_gmt: '2012-11-01 08:54:43 +0100'
+  content: No, non funziona. Le modifiche non vengono salvate per cui mi ritrovo sempre
+    con lo stesso motore di ricerca di default, la stessa pagina iniziale e lo stesso
+    ordine di motori di ricerca che avrei voluto cambiare. Il motore che si &egrave;
+    insinuato nel mio sistema si chiama Claro Search.
+- id: 24325
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2012-11-05 00:29:53 +0100'
+  date_gmt: '2012-11-04 23:29:53 +0100'
+  content: |-
+    Ciao e scusa per il ritardo nella risposta.
+
+    Hai provato a verificare che non sia qualcosa che hai installato nel tuo sistema ad impostare ogni volta il motore di ricerca nel browser? Capita a volte che il prodotto che effettua la modifica la continui ad applicare ogni volta che viene avviato.
+
+    Fammi sapere!
+- id: 38326
+  author: Gian Lorenzo
+  author_email: gianlorenzomolinari1@tin.it
+  author_url: ''
+  date: '2013-02-06 22:28:42 +0100'
+  date_gmt: '2013-02-06 21:28:42 +0100'
+  content: Il metodo funziona, ma al sucessivi riavvio Firefox ha nuovamente Yahoo
+    come motore, c&rsquo;&egrave; qualcosa che lo cambia non risco a capire cosa!!
+- id: 38396
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2013-02-07 18:45:38 +0100'
+  date_gmt: '2013-02-07 17:45:38 +0100'
+  content: Concordo.. Se ad ogni riavvio di Firefox si reimposta Yahoo, c'&egrave;
+    qualcosa nel sistema che controlla il motore di ricerca predefinito e lo cambia..
+---
+<p>Tempo fa, descrissi come <a href="http://localhost:4000/internet/cambiare-il-motore-di-ricerca-predefinito-di-firefox.html" target="_blank">cambiare il motore di ricerca predefinito di Firefox</a>, ma oggi ho scoperto che questo <strong>potrebbe non essere sufficiente</strong>.</p>
+<p><a href="/assets/images/firefox.jpg"><img class="aligncenter size-thumbnail wp-image-1814" title="firefox" src="/assets/images/firefox-150x150.jpg" alt="" width="150" height="150" /></a>In effetti, in seguito all'installazione di non so cosa, il motore predefinito era diventato <strong>Yahoo</strong>, ottimo motore per carit&agrave;, ma le abitudini sono dure a morire!! Bene, seguendo l'articolo precedente, mi sono reso conto che in effetti non cambiava nulla, le ricerche venivano effettuate comunque tramite Yahoo.</p>
+<p>Dopo un po' di tentativi, ho capito dov'era il problema residuo; <strong>entriamo prima nella configurazione di Firefox</strong>, digitando <code>about:config</code>, promettiamo di stare attenti e poi nella barra di ricerca cerchiamo <code>keyword.URL</code>. A questo punto, <strong>modifichiamo il valore</strong> in:</p>
+<pre>http://www.google.it/search?ie=utf-8&oe=utf-8&aq=t&rls=org.mozilla:it:official&client=firefox-a&q=</pre>
+<p>A questo punto, <strong>BigG</strong> &egrave; di nuovo il nostro motore di ricerca predefinito.. ;)</p>
+<p>Alla prossima..</p>

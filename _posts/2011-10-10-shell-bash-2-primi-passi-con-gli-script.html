@@ -1,0 +1,110 @@
+---
+layout: post
+status: publish
+published: true
+title: Shell Bash - 2 - Primi passi con gli script
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2400
+wordpress_url: http://www.red-blue.it/?p=2400
+date: '2011-10-10 17:49:05 +0100'
+date_gmt: '2011-10-10 15:49:05 +0100'
+categories:
+- guide
+- linux
+- in evidenza
+tags:
+- guida
+- linux
+- script
+- shell
+- bash
+- primi passi
+comments:
+- id: 8126
+  author: marco
+  author_email: salin.sal29@yahoo.it
+  author_url: ''
+  date: '2011-11-05 14:44:22 +0100'
+  date_gmt: '2011-11-05 13:44:22 +0100'
+  content: questo corso e' quello di cui ho bisogno. Breve e conciso ma soprattutto
+    chiaro per io novellino. Vorrei chiederti un favore, io cio' ubuntu server 11.10,
+    come si fa a cambiare il prompt con un'altro paio di parole? Daqualche parte ho
+    letto di usare il comando PS1 ma la risposta e' "not found" . grazie
+- id: 8129
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-11-05 15:28:55 +0100'
+  date_gmt: '2011-11-05 14:28:55 +0100'
+  content: |-
+    Ciao..
+
+    Allora, ti dice not found perch&egrave; PS1 &egrave; una variabile di ambiente, non un comando, quindi non pu&ograve; essere usato da solo (dai uno sguardo alla <a href="http://localhost:4000/guide/shell-bash-1-fondamenti.html" rel="nofollow">prima parte</a> di questa guida per un piccolo chiarimento). Per vederne il valore devi digitare
+
+    <code>echo $PS1</code>
+
+    Ovviamente modificando il valore di questa variabile, cambia il prompt. Prova ad esempio a digitare qualcosa del genere:
+
+    <code>PS1="Prompt della shell > "</code>
+
+    Vedrai che il prompt si modifica diventando esattamente uguale alla stringa che ho fornito. Ovviamente una modifica di questo tipo scompare appena chiudi la shell o riavvii il sistema. Per renderla permanente devi modificare un file che si trova di solito nella directory dell'utente attivo e su Ubuntu generalmente si chiama <code>.bashrc</code>. Usando i giusti caratteri di escape otterrai il prompt personalizzato che meglio credi.
+
+    Ti lascio un link che spero potr&agrave; esserti utile: http://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html
+
+    Alla prossima..
+---
+<p>Ed eccoci alla seconda "lezione" sulla <strong>shell Bash</strong> (per chi fosse interessato, <a href="http://localhost:4000/guide/shell-bash-1-fondamenti.html" target="_blank">questa</a> &egrave; la prima parte)..</p>
+<p>Uno script &egrave; una sequenza di comandi che verr&agrave; eseguita <strong>su richiesta</strong> oppure&nbsp;<strong>automaticamente</strong>, per crearne uno avete bisogno semplicemente di un editor di testo, che sia <strong>nano</strong> o <strong>vi</strong> o <strong>vim</strong> o <strong>gedit</strong>&nbsp;(o qualsiasi altro) non importa. Uno script pu&ograve; essere richiamato semplicemente inserendo il suo "nome" nella shell, o pu&ograve; essere eseguito automaticamente dal sistema secondo le nostre impostazioni (molte operazioni all'avvio sono infatti degli script eseguiti in automatico).</p>
+<p>Vediamo un piccolo esempio:</p>
+<pre class="brush: bash; gutter: true">#!/bin/bash
+
+clear&egrave;
+
+echo "Questo &egrave; il tuo primo script"
+
+echo "Benvenuto $USER"</pre>&egrave;
+<p>Provate questo piccolo script e vedrete il risultato. ;)</p>
+<p><!--moreContinua a leggere.. --></p>
+<p>Molto semplicemente, questo script visualizza le due stringhe indicate da <code>echo</code>, dopo aver ripulito la console (con il comando <code>clear</code>). <code>$USER</code> &egrave; la variabile di ambiente che contiene il nome utente con cui siamo loggati al momento. Focalizziamo la nostra attenzione sulla prima riga: <code>#!/bin/bash</code>.</p>
+<p>Questo serve a "dire" al sistema quale shell stiamo usando, ovviamente a patto che questa sia localizzata in <code>/bin</code>. E' chiaro quindi che <span style="text-decoration: underline;">ogni script <strong>deve</strong> iniziare con questa riga</span>!!</p>
+<p>Pu&ograve; essere poi utile inserire dei commenti nel nostro script, i quali non saranno visualizzati, ma potrebbero sempre tornare utili nel caso in cui riprendiamo il codice dopo mesi dalla sua creazione. Lo script visto prima diventa semplicemente:</p>
+<pre class="brush: bash; gutter: true">#!/bin/bash
+&egrave;
+# Pulisco lo schermo
+
+clear
+
+# Stampo le seguenti due righe
+
+echo "Questo &egrave; il tuo primo script"
+&egrave;
+echo "Benvenuto $USER" # $USER contiene il nome utente
+&egrave;&egrave;
+                       # con cui siamo loggati</pre>
+<p>Abbiamo parlato di variabili, dobbiamo dire che queste sono <strong>sempre</strong> indicate da lettere tutte maiuscole, e sono di due tipi:</p>
+<ul>
+<li><strong>globali</strong>, ovvero disponibili per tutte le shell, visualizzabili col comando <code>printenv</code>;</li>
+<li><strong>locali</strong>, ovvero disponibili solo per la shell al momento utilizzata, visualizzabili col comando <code>set</code> (che attenzione visualizza anche le funzioni attualmente in memoria).</li>
+</ul>
+<p>Ovviamente, locali o globali che siano, le variabili hanno anche un tipo, ovvero possono essere stringhe, numeri, array, e ovviamente possono anche essere dichiarate come costanti. In genere, la convenzione usata nella dichiarazione di una variabile &egrave; semplice:</p>
+<pre class="brush: bash; gutter: true">NOMEVARIABILE="valore"</pre>
+<p>Attenzione perch&egrave; una variabile cos&igrave; dichiarata &egrave; disponibile solo nella shell corrente.</p>
+<p><strong><span style="color: #ff0000;">Caratteri speciali</span></strong></p>&egrave;
+<ul>
+<li><span style="text-decoration: underline;">carattere di escape</span>: si tratta semplicemente del carattere \, serve ad indicare di non considerare altri simboli speciali. Ad esempio: <code>echo \$USER</code> non stamper&agrave; il valore della variabile di ambiente <code>$USER</code>, ma esattamente la stringa $USER;</li>
+<li><span style="text-decoration: underline;">apici doppi</span>: le famore virgolette (" "), servono a mantenere il valore letterale di un carattere, ad eccezione del $. Ad esempio <code>echo "$USER"</code> stamper&agrave; il nome dell'utente connesso;</li>
+<li><span style="text-decoration: underline;">apici singoli</span>: ovvero 'VARIABILE'. In questo caso si conserva il valore letterale dei caratteri, riprendendo l'esempio precedente&nbsp;<code>echo '$USER'</code> stamper&agrave; a video proprio la stringa $USER</li>
+</ul>
+<p>Attenzione alla combinazione di questi caratteri speciali, si potrebbero ottenere effetti del tutto imprevisti!!</p>
+<p>In uno script di shell possono ovviamente essere usati operatori <strong>aritmetici</strong> e <strong>logici</strong>, si tratta di quelli classici, comuni a molti linguaggi di programmazione. Ne trovate una esauriente lista a questo <a href="http://www.fis.uniroma3.it/CALCOLO_DOC/unix/appuntilinux/al44.htm" target="_blank">link</a>.</p>
+<p><span style="color: #ff0000;"><strong>Alias</strong></span></p>
+<p>Concludiamo questo articolo con due comandi molto importanti e molto usati per semplificare la vita del programmatore: <strong>alias</strong> e <strong>unalias</strong>. A cosa servono?? Semplice, un alias &egrave; una parola che "sostituisce" altre, ad esempio, il comando <code>ls -al</code> riporta l'elenco di tutti i file presenti nella directory corrente, compresi i file nascosti, in una visualizzazione verticale con molte informazioni aggiuntive.</p>
+<p>Ora, il comando:</p>
+<pre class="brush: bash; gutter: true">alias lsa='ls -al'</pre>
+<p>Non fa altro che consentirci di usare il comando <code>lsa</code> invece di <code>ls -al</code>. Scrivendo semplicemente <code>alias</code> nella console, verr&agrave; restituita la lista degli alias correnti. Possiamo infine eliminare un alias col comando <code>unalias</code>, nell'esempio precedente:</p>
+<pre class="brush: bash; gutter: true">unalias lsa</pre>
+<p>Alla prossima..</p>

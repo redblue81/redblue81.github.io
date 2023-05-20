@@ -1,0 +1,708 @@
+---
+layout: post
+status: publish
+published: true
+title: WP Featured Content Gallery Plugin - Installazione e configurazione
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1634
+wordpress_url: http://www.red-blue.it/?p=1634
+date: '2010-10-09 18:00:47 +0100'
+date_gmt: '2010-10-09 16:00:47 +0100'
+categories:
+- blog
+- guide
+- wordpress
+- in evidenza
+tags:
+- wordpress
+- guida
+- plugin
+- featured content gallery
+- slideshow
+- header
+comments:
+- id: 6634
+  author: riclos
+  author_email: loskiavo@gmail.com
+  author_url: http://arcipelagomilano.org
+  date: '2010-12-04 22:13:45 +0100'
+  date_gmt: '2010-12-04 21:13:45 +0100'
+  content: scusa ma funziona su wp 3.0.2 ? perch&egrave; le opinioni sono discordanti
+- id: 6639
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2010-12-05 18:43:31 +0100'
+  date_gmt: '2010-12-05 17:43:31 +0100'
+  content: |-
+    Non ho ancora aggiornato sinceramente, ma credo di si.. Cmq appena aggiorno sar&ograve; pi&ugrave; preciso..
+
+    <strong>EDIT</strong>: ho aggiornato WP alla versione <strong>3.0.2</strong> e non c'&egrave; nessun problema.. Il plugin continua regolarmente a funzionare.. ;)
+- id: 6763
+  author: Webbisto
+  author_email: pincosfericonospam@yahoo.it
+  author_url: ''
+  date: '2011-01-06 23:42:05 +0100'
+  date_gmt: '2011-01-06 22:42:05 +0100'
+  content: "Ciao, complimenti per l'articolo. Il plugin &egrave; ottimo e il tuo tutorial
+    ineccepibile.\r\nL'ho testato su un sito di prova e funziona ottimamente. Ho solo
+    questo problema: quando apro un articolo non visualizzo la foto dello stesso.
+    Probabilmente devo aggiungere una stringa di codice che richiami la foto. Non
+    so come fare, tu hai qualche suggerimento? grazie"
+- id: 6764
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-01-07 00:27:35 +0100'
+  date_gmt: '2011-01-06 23:27:35 +0100'
+  content: |-
+    Ciao e grazie per i complimenti..
+
+    Non ho ben capito cosa vuoi fare.. Richiamare la foto dove? Nella gallery?
+- id: 6765
+  author: Webbisto
+  author_email: pincosfericonospam@yahoo.it
+  author_url: ''
+  date: '2011-01-07 00:56:47 +0100'
+  date_gmt: '2011-01-06 23:56:47 +0100'
+  content: "no, adesso mi sono spiegato da cani:) Mettiamo il caso che mi trovo nella
+    home del mio blog, ossia la pagina dinamica con tutti gli articoli. Quando clicco
+    sul titolo di un articolo o su commenti in pratica non visualizzo pi&ugrave; la
+    foto dell'articolo. \r\nPer fare un esempio pratico mettiamo che sono in www.pippo.it
+    e clicco sul titolo di un articolo e quindi vado in www.pippo.it/tizioecaio/ e
+    visualizzo l'articolo + i commenti ma non vedo la foto. Ecco a me piacerebbe visualizzare
+    anche la foto. Ciao e grazie per l'interessamento :)"
+- id: 6767
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-01-07 08:45:32 +0100'
+  date_gmt: '2011-01-07 07:45:32 +0100'
+  content: Mmm.. Vedi la gallery ma non le foto? In tal caso potrebbe dipendere da
+    dove hai messo il codice che richiama la gallery.. Io l'ho posizionato nell'header
+    del template, che viene visualizzato sempre e comunque, a prescindere dalla pagina..
+- id: 6768
+  author: Webbisto
+  author_email: pincosfericonospam@yahoo.it
+  author_url: ''
+  date: '2011-01-07 14:36:10 +0100'
+  date_gmt: '2011-01-07 13:36:10 +0100'
+  content: "dunque alla fine ho rimediato facendo una cosa semplice: oltre ad aggiungere
+    il campo personalizzato non faccio altro che aggiungere una miniatura dal pannello
+    di controllo. Il codice che richiama la gallery l'ho messo in index.php\r\nAdesso
+    provo a rimuoverlo da index.php e metterlo in header.php e vediamo cosa succede"
+- id: 6769
+  author: Webbisto
+  author_email: pincosfericonospam@yahoo.it
+  author_url: ''
+  date: '2011-01-07 15:02:20 +0100'
+  date_gmt: '2011-01-07 14:02:20 +0100'
+  content: scusa ma tu in quale punto preciso del codice header.php hai messo il richiamo
+    alla gallery?
+- id: 6770
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-01-07 15:13:19 +0100'
+  date_gmt: '2011-01-07 14:13:19 +0100'
+  content: Nel file header.php del template, subito dopo il titolo, per il relativo
+    tag dipende dal tuo template, cmq in generale &egrave; facile da individuare..
+- id: 6771
+  author: Webbisto
+  author_email: pincosfericonospam@yahoo.it
+  author_url: ''
+  date: '2011-01-07 17:44:56 +0100'
+  date_gmt: '2011-01-07 16:44:56 +0100'
+  content: ci ho provato ma niente da fare, visualizzo la gallery in modo errato,
+    invece inserendola in index.php &egrave; perfetta. In effetti il mio intento non
+    &egrave; quello di visualizzare la gallery in tutte le pagine come nel caso di
+    questo blog, ma mi basta di visualizzarla in homepage. Il problema riguardava
+    esclusivamente gli articoli ai quali veniva applicata la gallery perch&egrave;
+    le foto si visualizzavano nell'anteprima degli articoli in home-page ma quando
+    si entrava nell'articolo si visualizzava solo il testo ma non la foto associata.
+    Poi alla fine ho rimediato in un altro modo anche se mi sarebbe piaciuto che ci&ograve;
+    avvenisse in modo automatico.
+- id: 6775
+  author: Kodemondo
+  author_email: maswal7@infinito.it
+  author_url: ''
+  date: '2011-01-08 10:31:18 +0100'
+  date_gmt: '2011-01-08 09:31:18 +0100'
+  content: "Ciao Red ;-)\r\n@Webbisto: prova con i tag condizionali per visualizzare
+    la gallery solo in home."
+- id: 6778
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-01-08 11:44:55 +0100'
+  date_gmt: '2011-01-08 10:44:55 +0100'
+  content: |-
+    Ehil&agrave; Kode!! :)
+
+    @Webbisto: non sai cosa sono i tag condizionali vedi qui:
+
+    <a href="http://codex.wordpress.org/Conditional_Tags" rel="nofollow">Conditional Tags</a>
+    <a href="http://www.wordpress-it.it/wiki/Main/TagCondizionali" rel="nofollow">Tag condizionali</a>
+- id: 6779
+  author: Webbisto
+  author_email: pincosfericonospam@yahoo.it
+  author_url: ''
+  date: '2011-01-08 16:17:16 +0100'
+  date_gmt: '2011-01-08 15:17:16 +0100'
+  content: ciao Kodemondo, grazie per l'interessamento. Se vai qui http://dimagrire.hellospace.net/
+    trovi il mio esperimento per testare l'ottimo plugin proposto da RedBlue. Come
+    puoi ben vedere in home c'&egrave; la gallery che gira alla grande e sotto ci
+    sono tre articoli con tanto di foto. Tutto perfetto. Se per esempio clicchi su
+    "continua a leggere" del primo articolo "musica" trovi la foto del medesimo articolo
+    perfettamente visibile perch&egrave; l'ho messa io in un secondo momento tramite
+    il pannello di controllo di wp :) per&ograve; mi piacerebbe che l'inserimento
+    della foto avvenisse in modo automatico. In realt&agrave; non voglio visualizzare
+    la gallery in tutte le pagine ma solo la singola foto associata a quell'articolo.
+    Chi lo sa se sono riuscito a spiegarmi bene :) I tag condizionali? Grazie per
+    la segnalazione. Diciamo che mi &egrave; capitato di leggere qualcosa nel dorum
+    di wp ma non posso dire di conoscerli cos&igrave; bene.
+- id: 6780
+  author: Webbisto
+  author_email: pincosfericonospam@yahoo.it
+  author_url: ''
+  date: '2011-01-08 16:17:56 +0100'
+  date_gmt: '2011-01-08 15:17:56 +0100'
+  content: RedBlue grazie per i link sui tag condizionali
+- id: 6781
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-01-08 16:20:19 +0100'
+  date_gmt: '2011-01-08 15:20:19 +0100'
+  content: |-
+    Mmm.. Ora ho capito che cosa vuoi dire!! ;)
+
+    Sinceramente io una cosa del genere qui la faccio a mano.. In fondo quando scrivo un articolo mettere il link per la gallery e metterlo anche nell'articolo stesso non &egrave; un gran peso..
+
+    Per&ograve; &egrave; interessante anche la tua idea di metterlo in automatico.. Mmm..
+- id: 6782
+  author: Webbisto
+  author_email: pincosfericonospam@yahoo.it
+  author_url: ''
+  date: '2011-01-08 17:22:58 +0100'
+  date_gmt: '2011-01-08 16:22:58 +0100'
+  content: "RedBlue mi sa che hai ragione infatti anch'io ho risolto il \"problema\"
+    inserendo la foto nell'articolo a mano, poi se si trova anche un automatismo tanto
+    meglio.\r\nDico questo perch&eacute; tempo fa avevo trovato un template con una
+    gallery molto simile a quella proposta da te che mi piaceva molto e appunto inseriva
+    la foto nell'articolo in modo automatico. Purtroppo quel template era si molto
+    bello ma aveva un problema di codici criptati e link indigesti nel footer. QUindi
+    mi chiedevo se esistesse un plugin per inserire una bella gallery in un template
+    \"pulito\". Dopo molte ricerche svanite nel nulla finalmente ho trovato il tuo
+    articolo che mi ha dato una svolta nella vita! :) (forse ho esagerato ...). Adesso
+    se riusciamo a trovare anche un metodo per automatizzare l'inserimento della foto
+    nell'articolo facciamo bingo!"
+- id: 6881
+  author: Roby81
+  author_email: ''
+  author_url: ''
+  date: '2011-02-08 13:14:12 +0100'
+  date_gmt: '2011-02-08 12:14:12 +0100'
+  content: A me non funziona la gallery, si vede solo il riquadro ma non le foto e
+    testi.
+- id: 6883
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-02-08 22:12:02 +0100'
+  date_gmt: '2011-02-08 21:12:02 +0100'
+  content: Hai collegato alla gallery almeno due articoli??
+- id: 6909
+  author: webbondo
+  author_email: kawaxz750@yahoo.it
+  author_url: ''
+  date: '2011-02-20 13:11:54 +0100'
+  date_gmt: '2011-02-20 12:11:54 +0100'
+  content: "Scusate, ma se vogli agganciare le gallery alle categorie (non ai post),
+    devo comunque aggiungere il campo personalizzato e modificare a manina il file
+    gallery.php del plugin?\r\n\r\nciao"
+- id: 6913
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-02-22 08:20:13 +0100'
+  date_gmt: '2011-02-22 07:20:13 +0100'
+  content: |-
+    Ciao, per prima cosa scusa per il ritardo nella risposta.. Periodo incasinatissimo..
+
+    Allora, riguardo la modifica di gallery.php, &egrave; necessaria solo se il codice di richiamo del plugin &egrave; nel file header.php (come nel caso di questo blog ad esempio), altrimenti funziona subito il file originale.
+
+    Per la prima domanda non ho capito, vuoi direttamente mettere in gallery tutti i post di una determinata categoria??
+- id: 6925
+  author: Lina
+  author_email: russo.pasqualina@gmail.com
+  author_url: http://www.nutrizione.tv/
+  date: '2011-02-24 09:24:17 +0100'
+  date_gmt: '2011-02-24 08:24:17 +0100'
+  content: "Ragazzi anche a  me non funziona la gallery, si vede solo iun immagine
+    fissa e senza testo. Mi dite in che punto della home.php devo inserire questo
+    codice \r\n\r\nds premettere che sono alle prime armi con word press. Aiutatemi
+    sto impazzendo"
+- id: 6986
+  author: webbondo
+  author_email: kawaxz750@yahoo.it
+  author_url: ''
+  date: '2011-02-28 19:31:34 +0100'
+  date_gmt: '2011-02-28 18:31:34 +0100'
+  content: "ciao, si scusa non mi sono espresso al meglio...\r\nIo dovrei creare degli
+    slideshow di immagini (quindi non legate ad articoli) da poter inserire all'interno
+    delle categorie.\r\n\r\nEs. nella categoria scarpe, a destra degli articoli, si
+    deve vedere la gallery con delle immagini dei prodotti scarpe.\r\nIdem per le
+    altre categorie di prodotti.\r\n\r\nE' possibile?\r\n\r\ngrazie, ciao"
+- id: 6988
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-03-01 13:02:21 +0100'
+  date_gmt: '2011-03-01 12:02:21 +0100'
+  content: Mmm.. Si credo di aver capito.. L'unica cosa che ancora non mi &egrave;
+    chiara &egrave; se le immagini che vuoi inserire sono legate agli articoli, per
+    cui ad ogni nuovo articolo vai ad aggiungere una relativa foto, oppure se sono
+    tutte gi&agrave; presenti (tipo catalogo diciamo).. Nel secondo caso forse ti
+    conviene usare un altro plugin, tipo NextGen Gallery..
+- id: 7033
+  author: Webbisto
+  author_email: mariomailmario@yahoo.it
+  author_url: http://www.tifosidelnapoli.eu/
+  date: '2011-03-18 04:21:28 +0100'
+  date_gmt: '2011-03-18 03:21:28 +0100'
+  content: ciao, hai provato a visualizzare il tuo sito con la nuova versione del
+    famigerato Internet Explorer? La versione &egrave; la 9 e ho notato che il tuo
+    sito si vede bene con tutti i browser tranne che appunto con IE9. In effetti anch'io
+    ho riscontrato dei problemi con IE9. Nel tuo caso specifico non si visualizzano
+    le sidebar. A me invece non funzionano i featured posts.
+- id: 7038
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-03-18 15:06:47 +0100'
+  date_gmt: '2011-03-18 14:06:47 +0100'
+  content: |-
+    Ciao a te..
+
+    Devo dirti la verit&agrave;?? No.. Non sapevo di questo problema con IE.. Sinceramente non mi sono mai interessato pi&ugrave; di tanto alla resa di questo blog su IE, in quanto per via delle tematiche che tratto, la stragrande maggioranza del traffico proviene da Firefox, Chrome e altri browser alternativi a quello di Microsoft.. Appena ho un po' di tempo magari do uno sguardo anche a questo aspetto..
+
+    Grazie mille della segnalazione!! ;)
+- id: 7040
+  author: Webbisto
+  author_email: mariomailmario@yahoo.it
+  author_url: http://sparatutto.net/
+  date: '2011-03-19 00:12:06 +0100'
+  date_gmt: '2011-03-18 23:12:06 +0100'
+  content: "Gi&agrave; che parliamo di IE9 devo dire che anche altri miei amici che
+    gestiscono siti web hanno riscontrato dei problemi in merito.\r\nNon dico cosa
+    penso di IE perch&egrave; si potrebbero offendere quelli che lo usano con ingiustificata
+    soddisfazione :)"
+- id: 7041
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-03-19 08:38:36 +0100'
+  date_gmt: '2011-03-19 07:38:36 +0100'
+  content: Guarda con me sfondi una porta aperta.. Non ho nulla contro Windows, che
+    uso giornalmente (non su tutti i pc &egrave; installato Linux ;) ), ma usando
+    costantemente Linux da anni ormai non posso proprio non notare le enormi differenze
+    con i browser concorrenti..
+- id: 7057
+  author: Webbisto
+  author_email: mariomailmario@yahoo.it
+  author_url: http://www.tifosidelnapoli.eu/
+  date: '2011-03-27 06:52:59 +0100'
+  date_gmt: '2011-03-27 04:52:59 +0100'
+  content: stavo pensando, in questo bellissimo plugin che ha proposto e che sto utilizzando
+    con grande soddisfazione purtroppo secondo me manca una piccola cosa che potrebbe
+    essere molto utile, ossia una piccola gif di precaricamento dello slide. Certo,
+    parte dopo 2 secondi ma a me quella cornice vuota non piace granch&eacute; e pensavo
+    che se l'utente visualizzasse il classico cerchietto di loading sarebbe pi&ugrave;
+    carino. chiss&agrave; che non si possa implementarlo in qualche modo. Hai qualche
+    idea? Oppure forse c'&egrave; un plugin da integrare? grazie.
+- id: 7062
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-03-28 17:43:45 +0100'
+  date_gmt: '2011-03-28 15:43:45 +0100'
+  content: Mmm.. Non so se &egrave; possibile, perch&egrave; per come &egrave; realizzato
+    il plugin prima del caricamento delle immagini, semplicemente non viene visualizzato
+    nulla.. Diverso sarebbe se venisse subito visualizzata la finestra nera.. Cmq
+    vedr&ograve; di informarmi, la tua idea non &egrave; niente male..
+- id: 7067
+  author: Webbisto
+  author_email: mariomailmario@yahoo.it
+  author_url: http://www.tifosidelnapoli.eu/
+  date: '2011-03-30 11:51:48 +0100'
+  date_gmt: '2011-03-30 09:51:48 +0100'
+  content: anche una finestra nera sarebbe meglio di niente. Comunque ho notato che
+    ... udite udite ... l'unico browser che forse ci mette un secondo di pi&ugrave;
+    a far partire lo slide-show degli articoli in evidenza &egrave; Chrome ... Incredibilmente
+    InternetExplorer 9 lo visualizza immediatamente!!! FF (dopo che &egrave; stato
+    inizializzato) risulta altrettanto veloce con questo plugin. Altri browser non
+    ne ho testati. In tutti i modi se dovessimo escogitare un metodo per il loading
+    sarebbe il massimo.
+- id: 7089
+  author: Davie
+  author_email: daviderossitto@virgilio.it
+  author_url: ''
+  date: '2011-04-07 00:57:39 +0100'
+  date_gmt: '2011-04-06 22:57:39 +0100'
+  content: Ciao ho installato questo plugin, mi visualizza l'immagine, se ci clicco
+    mi si apre l'articolo, per&ograve; non mi visualizza la didascalia (quella in
+    basso per intenderci)... fammi sapere... grazie tante...
+- id: 7090
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-04-07 08:51:20 +0100'
+  date_gmt: '2011-04-07 06:51:20 +0100'
+  content: |-
+    Ciao!
+
+    Prova a controllare le impostazioni del plugin, specie le voci <strong>Text Overlay Height in Pixels</strong> e <strong>Gallery Text Color</strong>: il primo valore si riferisce all'altezza del box in cui appare la didascalia, il secondo al colore del testo.. Potrebbe essere semplicemente che hai, ad esempio, un testo nero su sfondo nero e quindi non vedi nulla..
+- id: 7200
+  author: urahara
+  author_email: fabbyz.1994@libero.it
+  author_url: http://www.planetofmanga.com
+  date: '2011-04-25 15:24:59 +0100'
+  date_gmt: '2011-04-25 13:24:59 +0100'
+  content: "Ciao, io ho messo il codice per la gallery nel file index.php del mio
+    template e funziona, per&ograve; c'&egrave; un problema che &egrave; questo:\r\n\r\nLa
+    galleria rimane attaccata al margine sinistro del mio template e in basso &egrave;
+    attaccata al primo articolo e al widget search. Volevo sapere se c'&egrave; un
+    modo per spostarla un poco (tipo tot. pixel dal marg. sinistro e tot dal basso)\r\n\r\ngrz
+    1000 in anticipo\r\n\r\nP.S: ora la sto tenendo nel file header.php e funziona
+    tutto ed &egrave; collegata alla categoria \"news\" e i nuovi quattro post (perch&eacute;
+    ho messo il campo personalizzato), ma la galleria continua a mostrare la barra
+    di caricamento e non le immagini, come mai??? mi puoi aiutare???"
+- id: 7208
+  author: urahara
+  author_email: fabbyz.1994@libero.it
+  author_url: http://http//www.planetofmanga.com
+  date: '2011-04-26 10:08:22 +0100'
+  date_gmt: '2011-04-26 08:08:22 +0100'
+  content: "Ciao, il plugin funziona, il codice l'ho messo nel file header.php, solo
+    che prima l' ho collegato alla categoria \"news\" dopo ai singoli post (4 post),
+    solo che in entrambi i casi visualizzo la galleria con la barra di caricamento
+    senza che appaiono le immagini e il testo, come mai??? (ed ho messo anche il campo
+    personalizzato nei post interessati). \r\nP.S.: Utilizzo chrome per&ograve; anche
+    dopo un ora che lo lasciavo caricare non appariva niente.\r\n\r\nGrz 1000 in anticipo"
+- id: 7210
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-04-26 22:31:13 +0100'
+  date_gmt: '2011-04-26 20:31:13 +0100'
+  content: |-
+    Ciao.. Questo plugin da qualche problemino quando viene richiamato da header.php.. Hai seguito bene tutta la guida, sostituendo anche il codice come suggerito??
+
+    E le immagini sono online??
+- id: 7212
+  author: urahara&deg;
+  author_email: fabbyz.1994@libero.it
+  author_url: http://www.planetofmanga.com
+  date: '2011-04-27 17:12:06 +0100'
+  date_gmt: '2011-04-27 15:12:06 +0100'
+  content: "si si, ho seguito la guida passo x passo, e le immagini sono nella libreria
+    media del sito (di wordpress). Cmq se mi puoi dire un modo per spostarla nel template,
+    intendo nei pixel (tot pixel a sinistra e tot pixel bassi), cos&igrave; lo metto
+    nel file index.php e almeno la galleria non rimane attaccata al margine sinistro
+    e attaccata al primo articolo e al widget di ricerca.\r\n\r\ngrz 1000"
+- id: 7213
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-04-27 17:28:46 +0100'
+  date_gmt: '2011-04-27 15:28:46 +0100'
+  content: Ovviamente devi metter mano al CSS, ma dipende dal tuo tema in che modo..
+    Le propriet&agrave; che dovresti cercare sono quelle relativi ai margini e/o al
+    padding..
+- id: 7214
+  author: urahara&deg;
+  author_email: fabbyz.1994@libero.it
+  author_url: http://www.planetofmanga.com
+  date: '2011-04-27 18:54:57 +0100'
+  date_gmt: '2011-04-27 16:54:57 +0100'
+  content: ma non al file css del plugin???, cmq non c'&egrave; un modo per far funzionare
+    la gallery nel file header.php, se non c'&egrave; provo a rifare tutto da capo
+    :(
+- id: 7232
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-04-30 09:52:07 +0100'
+  date_gmt: '2011-04-30 07:52:07 +0100'
+  content: Guarda il metodo &egrave; quello che ho descritto, modificando il plugin
+    come descritto.. Mi sembra molto strano che non ti funzioni, in quanto conosco
+    molti che lo utilizzano senza alcun problema..
+- id: 7236
+  author: urahara&deg;
+  author_email: fabbyz.1994@libero.it
+  author_url: http://www.planetofmanga.com
+  date: '2011-04-30 21:30:24 +0100'
+  date_gmt: '2011-04-30 19:30:24 +0100'
+  content: ok adesso funziona grz
+- id: 7240
+  author: urahara&deg;
+  author_email: fabbyz.1994@libero.it
+  author_url: http://www.planetofmanga.com
+  date: '2011-05-01 17:26:29 +0100'
+  date_gmt: '2011-05-01 15:26:29 +0100'
+  content: "adesso ho notato perch&eacute; non funziona (visto che ho ancora lo stesso
+    problema)... : non funziona perch&eacute; modifico il file (inattivo) gallery.php,
+    perch&eacute; ho solo 5 articoli nella home.\r\n\r\nCome posso risolvere il problema????"
+- id: 7241
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-05-01 17:56:30 +0100'
+  date_gmt: '2011-05-01 15:56:30 +0100'
+  content: Non ho capito io cosa vuoi dire sinceramente.. Puoi spiegarti meglio??
+- id: 7242
+  author: urahara&deg;
+  author_email: fabbyz.1994@libero.it
+  author_url: http://www.planetofmanga.com
+  date: '2011-05-01 18:56:53 +0100'
+  date_gmt: '2011-05-01 16:56:53 +0100'
+  content: "allora ieri ho ri-installato il plugin &egrave; ho collocato il codice
+    nel file header.php (per far vedere la gallery). Oggi ho visto che avevo solo
+    5 articoli nella home, come dici tu, e ho sostituito il codice che dai nel file
+    gallery.php del plugin (che a me da come inattivo)... Ho aggiornato la home del
+    mio sito e il plugin non funzionava, nel senso che la gallery mostrava la barra
+    di caricamento e non gli articoli... e mi sono accorto che questo succede solo
+    quando ho sostituito il codice nel file del plugin....\r\n\r\ncome risolvo???"
+- id: 7354
+  author: Newbimbo
+  author_email: rickystrano@yahoo.it
+  author_url: ''
+  date: '2011-05-24 12:41:50 +0100'
+  date_gmt: '2011-05-24 10:41:50 +0100'
+  content: "Ciao la tua guida &egrave; ottima. Ma ho un problema...vorrei ottenere
+    lo stess effetto che ritrovo nella demo del mio tema qui: \r\nhttp://wp.digitalnature.eu/mystique/\r\ncercando
+    di leggere l'html noto che &egrave; proprio la featured gallery che f&agrave;
+    scorrere le immagini. Nel mio wp ho installato come dici tu il plugin ma quando
+    inserisco le immagini le visualizza una sotto l'altra cosi http://www.onarts.net\r\ncome
+    devo fare? devo mettere qualche plugin aggiuntivo?"
+- id: 7356
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-05-24 15:09:13 +0100'
+  date_gmt: '2011-05-24 13:09:13 +0100'
+  content: Ciao.. Scusa ma nel tuo sito non vedo la gallery, hai installato correttamente
+    il plugin?? Infatti non vedo il codice per richiamarlo nel sorgente della pagina..
+- id: 7357
+  author: Newbimbo
+  author_email: rickystrano@yahoo.it
+  author_url: ''
+  date: '2011-05-24 20:28:28 +0100'
+  date_gmt: '2011-05-24 18:28:28 +0100'
+  content: scusa l'avevo tolta perch&egrave; creava troppa confusione...adesso ho
+    provato a reinstallare tutto seguendo tutta la procedura ma continua a farmi apparire
+    gli articoli all'interno della gallery uno sotto l'altro e non a cambio...inoltre
+    qualsiasi immagine la mette fuori bordo
+- id: 7361
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-05-25 15:44:14 +0100'
+  date_gmt: '2011-05-25 13:44:14 +0100'
+  content: Ehm.. Scusa ma continuo a non vedere i problemi di cui parli.. Mi sembra
+    che nel blog ci sia un solo articolo, in tal caso &egrave; normale che il plugin
+    non funzioni, ne occorrono almeno due, come specificato nella mia guida..
+- id: 7473
+  author: Fabio
+  author_email: fabio.dibuo@gmail.com
+  author_url: ''
+  date: '2011-06-22 23:49:16 +0100'
+  date_gmt: '2011-06-22 21:49:16 +0100'
+  content: "Ciao, scusami se ti disturbo, ho eseguito l'installazione di questo plugin...inserito
+    i tag negli articoli (>2, per l'esattezza sono 3) solo che non mi visualizzava
+    le immagini.\r\nAllora ho sovrascritto il codice dentro alla gallery.php e praticamente
+    cosa succede!?\r\nQuando aggiorno la pagina sembra visualizzare le immagini ma
+    poi sparisce tutto...\r\nidee!?"
+- id: 7505
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-06-27 23:00:57 +0100'
+  date_gmt: '2011-06-27 21:00:57 +0100'
+  content: Ciao e scusa per il ritardo nella risposta.. Allora, in realt&agrave; modificare
+    il file gallery.php serve solo nel caso in cui il plugin venga richiamato all'interno
+    di header.php, e non ho ben capito se si tratta del tuo caso..
+- id: 8356
+  author: lorenzo
+  author_email: lorenzofranchi83@gmail.com
+  author_url: ''
+  date: '2011-12-15 13:32:30 +0100'
+  date_gmt: '2011-12-15 12:32:30 +0100'
+  content: "Ciao, grazie per la guida, mi ha aiutato!\r\nVolevo chiedere come &egrave;
+    possibile adattarla per i video.. \r\nAvere la slide con i post dei video (piccoli
+    visto che ho impostato la slide con altezza di 150) e quindi cliccare su uno di
+    questi video e far si di averlo  che esce fuori a pop up con dimensioni maggiori...
+    \r\n\r\nGrazie ancora e scusate se riesumo il post."
+- id: 8358
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-12-15 17:01:36 +0100'
+  date_gmt: '2011-12-15 16:01:36 +0100'
+  content: Mmm.. Quello che chiedi non &egrave; semplice come pu&ograve; sembrare..
+    Direi che potresti fare uno screenshot del video da mettere in gallery e collegato
+    al relativo post.. Lavorare con un popup mi sembra abbastanza complicato..
+- id: 9149
+  author: niko
+  author_email: info@fremondoweb.com
+  author_url: http://www.fremondoweb.com
+  date: '2012-03-13 14:48:44 +0100'
+  date_gmt: '2012-03-13 13:48:44 +0100'
+  content: "Ciao, \r\ncome faccio a inserire [leggi tutto] come hai fatto te?"
+- id: 9150
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2012-03-13 16:30:16 +0100'
+  date_gmt: '2012-03-13 15:30:16 +0100'
+  content: Non mi sembra si possa.. Adesso per motivi di compatibilit&agrave; col
+    framework jQuery non uso pi&ugrave; questo plugin, per questo il layout &egrave;
+    leggermente diverso.
+- id: 475889
+  author: Andrea Re
+  author_email: reandrea@gmail.com
+  author_url: ''
+  date: '2016-06-21 15:16:00 +0100'
+  date_gmt: '2016-06-21 13:16:00 +0100'
+  content: Non trovo i campi personalizzati nell'editor
+- id: 475890
+  author: redbluesblog
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2016-06-21 21:50:00 +0100'
+  date_gmt: '2016-06-21 19:50:00 +0100'
+  content: |-
+    Ciao,
+
+    forse nel tuo editor il box relativo ai campi personalizzati non &egrave; visualizzato. In alto, trovi la linguetta "Impostazioni schermata", e all'interno della tendina che si apre ci dovrebbe essere anche "Campi personalizzati", che nel tuo caso potrebbe non essere selezionato.
+
+    Fammi sapere..
+- id: 475891
+  author: Andrea Re
+  author_email: reandrea@gmail.com
+  author_url: ''
+  date: '2016-06-22 09:10:00 +0100'
+  date_gmt: '2016-06-22 07:10:00 +0100'
+  content: Risolto ma non scorre rimane fisso un articolo (tra l'altro non &egrave;
+    linkato ovvero se ci cliko sopra non succede nulla)e una barra nera al centro
+    dell'immagine
+- id: 475892
+  author: redbluesblog
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2016-06-23 15:13:00 +0100'
+  date_gmt: '2016-06-23 13:13:00 +0100'
+  content: Penso tu abbia un problema con jQuery. Prova a vedere nelle impostazioni
+    del plugin se &egrave; possibile usare un'altra libreria, oppure controlla il
+    caricamento di jQuery nel tuo tema.
+---
+<p>Penso che lo <strong>slideshow</strong> dei post "in evidenza" di questo blog sia ben visibile.. Bene, oggi voglio spiegare come &egrave; stato realizzato..</p>
+<p>Tutto ruota intorno al plugin <a href="http://wordpress.org/extend/plugins/featured-content-gallery/" target="_blank">Featured Content Gallery</a>, il quale non fa altro che creare uno slideshow con alcuni post che noi gli andiamo ad indicare. L'installazione &egrave; semplicissima, basta scaricare l'archivio compresso e decomprimerlo, per poi uppare la directory <code>featured-content-gallery</code> nella directory <code>/wp-content/plugins</code> del server; oppure, pi&ugrave; semplicemente, installarlo <strong>automaticamente</strong> online con l'apposita funzione dal pannello di controllo di WP.. ;)</p>
+<p><!--more Continua a leggere..--></p>
+<p>Veniamo alla configurazione, per prima cosa ovviamente il plugin va <strong>attivato</strong>, poi va inserita la seguente linea di codice nel punto in cui vogliamo piazzare il nostro slideshow, quindi da <strong>Aspetto -> Editor</strong> andate nel file del vostro template pi&ugrave; appropriato ed inserite:</p>
+<blockquote><p><code><?php include (ABSPATH . '/wp-content/plugins/featured-content-gallery/gallery.php'); ?></code></p></blockquote>
+<p>A questo punto andiamo nel <strong>Setup</strong> del plugin (dal menu <strong>Impostazioni -> Featured Content Gallery</strong>), questo &egrave; ci&ograve; che vedremo:</p>
+<p style="text-align: center;"><a href="http://www.featuredcontentgallery.com/wp-content/uploads/2009/01/optionsss.jpg"><img class="aligncenter" src="http://www.featuredcontentgallery.com/wp-content/uploads/2009/01/optionsss.jpg" alt="" width="394" height="372" /></a></p>
+<p>Come vedete, le opzioni sono estremamente intuitive, si tratta semplicemente di dichiarare quale <strong>categoria</strong> deve essere collegata alla gallery (o quali <strong>post</strong>), le <strong>dimensioni</strong> della gallery stessa, il <strong>colore</strong> di bordo e sfondo, il <strong>numero di parole</strong> visualizzate nella descrizione e cos&igrave; via..</p>
+<p>Molto importante, la vostra gallery ancora <strong><span style="text-decoration: underline;">non funziona</span></strong>!! Per includere effettivamente gli articoli (attenzione, devono essere <strong>almeno due</strong> perch&egrave; tutto funzioni correttamente), dovete includere un <strong>campo personalizzato</strong> ai post. Come??</p>
+<p>Semplice, <strong>nell'editor</strong> che avete sempre usato per scrivere i vostri post, proprio sotto la finestra di inserimento, esiste una finestra "<strong>Campi personalizzati</strong>"; bene, in questa finestra cliccate su <strong>Aggiungere nuovo</strong> e poi come <strong>nome</strong> usate <code>articleimg</code> e come <strong>valore</strong> l'URL dell'immagine che dovr&agrave; apparire nella gallery, poi cliccate su <strong>Aggiungi campo personalizzato</strong>. Ovviamente questo va fatto per <strong><span style="text-decoration: underline;">ogni</span></strong> post da includere in gallery (nel mio caso, ogni articolo della categoria in evidenza, compreso questo)..</p>
+<p>A questo punto &egrave; tutto a posto, la gallery funziona!!</p>
+<p>O no?!?!?!?</p>
+<p>Dopo aver configurato il tutto, mi sono reso conto che il mio blog <span style="text-decoration: underline;">si era ridotto ai soli 5 articoli compresi nella gallery</span>!!</p>
+<p>Questo problema non si presenta sempre, come descritto nel <a href="http://www.featuredcontentgallery.com/forum/fcg-in-header-php-causing-pages-to-only-show-featured-conten-1401-10.html" target="_blank">forum ufficiale del plugin</a>, &egrave; un problema dovuto all'inserimento della linea di codice relativa al plugin nel file <code>header.php</code> del template (cosa che ovviamente avviene per questo blog); in tal caso (e solo in tal caso, altrimenti il plugin funziona subito!!) la soluzione consiste nel modificare il file <code>gallery.php</code> del plugin.</p>
+<p>Andate allora in <strong>Plugin -> Editor</strong> e nel box <strong>in alto a destra</strong> selezionate il plugin Featured Content Gallery, cliccate su Seleziona e poi cliccate sul file <code>featured-content-gallery/gallery.php</code>, nel box accanto semplicemente sovrascrivete l'intero contenuto con il seguente:</p>
+<blockquote>
+<pre>
+  <div id="featured">
+ <script type="text/javascript">
+  function startGallery() {
+   var myGallery = new gallery($('myGallery'), {
+    timed: true
+   });
+  }
+  window.addEvent('domready',startGallery);
+ </script>
+ <style type="text/css">
+  .jdGallery .slideInfoZone
+  {
+    height: <?php echo get_option('gallery-info'); ?>px;
+  }
+ </style>
+ <div id="myGallery">
+ <?php
+  $imgthumb = get_option('gallery-use-thumb-image') ? "thumbnailimg" : "articleimg";
+  $wordquantity = get_option('gallery-rss-word-quantity') ?&nbsp; get_option('gallery-rss-word-quantity') : 100;
+  if (get_option('gallery-way') == 'new')&nbsp; &nbsp;{//new way
+   $arr = split(",",get_option('gallery-items-pages'));
+  if (get_option('gallery-randomize-pages'))
+   {
+    shuffle($arr);
+   }&
+  foreach ($arr as $post_or_page_id)
+   {
+    get_a_post($post_or_page_id); ?>
+    <div>
+     <h2><?php the_title() ?></h2>
+      <?php
+       if(get_option('gallery-use-featured-content')) {?>
+        <p><?php $key="featuredtext"; echo get_post_meta($post->ID, $key, true); ?></p>
+        <?php
+       } else {
+        ?>
+        <p><?php the_content_rss('', 0, '', $wordquantity); ?></p>
+        <?php
+       }
+      ?>
+      <a href="<?php the_permalink() ?>" title="Read More"></a>
+      <img src="<?php $key="articleimg"; echo get_post_meta($post->ID, $key, true); ?>" alt="<?php $key="alttext"; echo get_post_meta($post->ID, $key, true); ?>" />
+      <img src="<?php $key=$imgthumb; echo get_post_meta($post->ID, $key, true); ?>" alt="<?php $key="alttext"; echo get_post_meta($post->ID, $key, true); ?>" />
+      </div>
+      <?php
+     } ?>
+     </div>
+     <?php
+    }
+   else { ?>
+    <?php $my_query = new WP_Query('category_name=' . get_option('gallery-category') . '&amp;showposts=' . get_option('gallery-items'));&nbsp; &nbsp;?>
+    <?php while ($my_query->have_posts())
+   {
+   $my_query->the_post();&nbsp; ?>
+   <div>
+   <h2><?php the_title() ?></h2>
+   <?php
+   if(get_option('gallery-use-featured-content')) {?>
+    <p><?php $key="featuredtext"; echo get_post_meta($post->ID, $key, true); ?></p>
+    <?php
+   } else {
+    ?>
+    <p><?php the_content_rss('', 0, '', $wordquantity); ?></p>
+    <?php
+   }
+   ?>
+   <a href="<?php the_permalink() ?>" title="Read More"></a>
+   <img src="<?php $key="articleimg"; echo get_post_meta($post->ID, $key, true); ?>" alt="<?php $key="alttext"; echo get_post_meta($post->ID, $key, true); ?>" />
+   <img src="<?php $key=$imgthumb; echo get_post_meta($post->ID, $key, true); ?>" alt="<?php $key="alttext"; echo get_post_meta($post->ID, $key, true); ?>" />
+   </div>
+   <?php } ?>
+   </div>
+   <?php
+  }?>
+</div></pre>
+</blockquote>
+<p>A questo punto avete finito.. Cliccate su <strong>Aggiorna file</strong>, selezionate gli articoli da evidenziare e godetevi la vostra gallery!! ;)</p>
+<p>Alla prossima..</p>

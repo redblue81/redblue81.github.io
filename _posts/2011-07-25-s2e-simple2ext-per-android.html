@@ -1,0 +1,62 @@
+---
+layout: post
+status: publish
+published: true
+title: S2E (simple2ext) per Android
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2238
+wordpress_url: http://www.red-blue.it/?p=2238
+date: '2011-07-25 09:42:47 +0100'
+date_gmt: '2011-07-25 07:42:47 +0100'
+categories:
+- tips & tricks
+- hi-tech
+- software
+- android
+tags:
+- android
+- htc
+- desire
+- rom custom
+- simple2ext
+- s2e
+- memorizzazione
+comments:
+- id: 12896
+  author: mattia
+  author_email: mercu80@gmail.com
+  author_url: ''
+  date: '2012-08-07 11:43:45 +0100'
+  date_gmt: '2012-08-07 09:43:45 +0100'
+  content: "Ciao! grazie per l'utilissima guida..\r\nho eseguito l'installazione e
+    pare funzionare tutto.. la cosa che non capisco &egrave; come capire se effettivamente
+    le app vengono installate sulla sd.. da CWM cosa devo cliccare sotto Luogo di
+    installazione? interna o esterna?\r\ngrazie mille!!"
+- id: 12919
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2012-08-07 21:26:46 +0100'
+  date_gmt: '2012-08-07 19:26:46 +0100'
+  content: |-
+    Ciao!
+
+    Basta semplicemente vedere lo spazio disponibile per le applicazioni.. Lo script automaticamente installa nella partizione ext sulla SD, come se questa fosse memoria interna, per cui se lo spazio di memorizzazione per le app ti resta invariato (o cala di pochissimo) dopo l'installazione di un'app tutto funziona bene.
+- id: 36191
+  author: RedBlue&#039;s Blog Top 10 2012 - RedBlue&#039;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/blog/redblue-s-blog-top-10-2012.html
+  date: '2013-01-06 11:09:34 +0100'
+  date_gmt: '2013-01-06 10:09:34 +0100'
+  content: "[...] S2E (simple2ext) per Android [...]"
+---
+<p>Come anticipato nel <a href="http://localhost:4000/guide/installare-una-nuova-rom-custom-sullhtc-desire.html" target="_blank">post</a> di ieri, ho deciso di passare ad una ROM custom per il mio Desire anche perch&egrave; lo <strong>spazio di memorizzazione</strong> per le app era decisamente <strong>insufficiente</strong>..</p>
+<p>Anche in questo caso, esistono varie soluzioni, e quella che vi vado a proporre non &egrave; la migliore in assoluto, ma &egrave; sicuramente una delle pi&ugrave; semplici, e soprattutto &egrave; quella che mi &egrave; apparsa pi&ugrave; adatta ai miei scopi. Mi sono rivolto allo <a href="https://market.android.com/details?id=ru.krikun.s2e" target="_blank">script S2E</a>, disponibile nell'<strong>Android Market</strong>. Ma andiamo con ordine.</p>
+<p>Requisito <span style="text-decoration: underline;"><strong>fondamentale</strong></span> &egrave; aver seguito l'altra guida, quindi occorre avere i permessi di <strong>root</strong> e una rom <strong>custom</strong> (nel mio caso si tratta della Cyanogenmod); a questo punto, dovete <strong>partizionare</strong> la vostra SD e crearci su una partizione <strong>ext3/4</strong>..</p>
+<p>Potete usare qualsiasi software per farlo (su Linux GParted, in Windows MiniTool e cos&igrave; via), oppure direttamente la <strong>ClockworkMod Recovery</strong>, che ha tale possibilit&agrave; nelle proprie opzioni. In quest'ultimo caso, il consiglio &egrave; quello di creare una partizione da <strong>512 MB</strong> e selezionare <strong>0 MB</strong> per lo swap.</p>
+<p>Installate S2E dal Market, poi avviate S2E e mettete la spunta su <strong>tutti</strong> i campi possibili (normalmente dovrebbe essere disabilitato solo Application Data), riavviate il terminale e al riavvio (attenzione, il primo riavvio sar&agrave; <strong>molto lento</strong> perch&egrave; dovr&agrave; spostare le applicazioni) lo ritroverete gi&agrave; funzionante. A questo punto, ogni volta che installerete qualcosa, questa sar&agrave; messa automaticamente nella partizione creata, a parte ovviamente alcuni casi di app che necessitano comunque di restare nella memoria interna..</p>
+<p>Alla prossima..</p>

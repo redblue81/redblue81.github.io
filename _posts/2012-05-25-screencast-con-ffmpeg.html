@@ -1,0 +1,35 @@
+---
+layout: post
+status: publish
+published: true
+title: Screencast con FFMPEG
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3156
+wordpress_url: http://www.red-blue.it/?p=3156
+date: '2012-05-25 10:33:05 +0100'
+date_gmt: '2012-05-25 08:33:05 +0100'
+categories:
+- tips & tricks
+- linux
+- screencast
+tags:
+- linux
+- screencast
+- terminale
+- ffmpeg
+- x264
+comments: []
+---
+<p>Realizzare uno <strong>screencast</strong>, ovvero registrare il desktop del proprio PC, con Linux &egrave; piuttosto semplice. Esistono programmi appositi, ma ultimamente ho scoperto il modo di fare screencast di ottima qualit&agrave; direttamente da <strong>terminale</strong>, mediante <strong>FFMPEG</strong>.</p>
+<p>Per prima cosa, installiamo FFMPEG e il codec <strong>x264</strong>, dando il seguente come <strong>root</strong>:</p>
+<pre class="brush: bash; gutter: true">apt-get install ffmpeg x264</pre>
+<p>Poi, consiglio di installare i files <strong>.ffpreset</strong> che potete scaricare dall'<a href="http://localhost:4000/download/" target="_blank">area download</a>. Questi files consentono di "velocizzare" la scrittura del comando necessario ad avviare la registrazione (<span style="text-decoration: underline;"><strong>ATTENZIONE!!</strong></span> Il comando cos&igrave; com'&egrave; senza il file&nbsp;<code>libx264-lossless_fast.ffpreset</code> non funziona!) . Baster&agrave; <strong>estrarre</strong> l'archivio e <strong>copiare</strong> tutti i files in <code>/usr/share/ffmpeg</code> (operazione da eseguire come root).</p>
+<p>A questo punto, il <strong>comando</strong> che uso per creare lo screencast &egrave; il seguente (come utente normale):</p>
+<pre class="brush: bash; gutter: true">ffmpeg -r 15 -s 1280x800 -f x11grab -i :0.0 -vcodec libx264 -vpre lossless_fast -crf 30 -threads 2 /destinazione.avi</pre>
+<p>In questo comando, dovete settare la <strong>risoluzione</strong> (nel mio caso <strong>1280x800</strong>) in base al vostro schermo, e ovviamente la <strong>destinazione</strong> e il nome del vostro file finale.</p>
+<p>Da notare che con questo comando <span style="text-decoration: underline;">non viene registrato alcun audio</span>, &egrave; possibile migliorarlo integrando questa funzionalit&agrave;, ma al momento non mi sono ancora cimentato, prometto di ritornare sull'argomento in futuro.. ;)</p>
+<p>Alla prossima..</p>

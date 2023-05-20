@@ -1,0 +1,74 @@
+---
+layout: post
+status: publish
+published: true
+title: Shell Bash - 1 - Fondamenti
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2329
+wordpress_url: http://www.red-blue.it/?p=2329
+date: '2011-10-03 11:21:22 +0100'
+date_gmt: '2011-10-03 09:21:22 +0100'
+categories:
+- guide
+- linux
+- in evidenza
+tags:
+- guida
+- linux
+- shell
+- bash
+- introduzione
+comments:
+- id: 7984
+  author: Shell Bash - 2 - Primi passi con gli script - RedBlue&#039;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/guide/shell-bash-2-primi-passi-con-gli-script.html
+  date: '2011-10-10 17:49:12 +0100'
+  date_gmt: '2011-10-10 15:49:12 +0100'
+  content: "[...] Con questo articolo, inizia una specie di guida a puntate sulla
+    shell Bash, ovvero la famosa, o famigerata,&hellip; [Leggi tutto] [...]"
+---
+<p>Con questo articolo, inizia una specie di guida a puntate sulla shell <strong>Bash</strong>, ovvero la famosa, o famigerata, <strong>linea di comando</strong>, autentica croce e delizia di ogni utente Linux.</p>
+<p>Iniziamo citando da Wikipedia la <strong>definizione</strong> di shell:</p>
+<blockquote><p><em>In un sistema operativo, una shell (o terminale) &egrave; un programma che permette agli utenti di comunicare con il sistema e di avviare altri programmi. &egrave; una delle componenti principali di un sistema operativo, insieme al kernel.</em><br />
+<em> La shell &egrave; l'ambiente di lavoro attraverso il quale &egrave; possibile impartire al computer comandi, richiedendo l'esecuzione di programmi. Una classe specifica di tali programmi sono gli Shell script.</em></p></blockquote>
+<p>Appare chiaro, gi&agrave; con queste poche righe, che un uso consapevole di tale strumento pu&ograve; rivelarsi oltremodo soddisfacente, dando la possibilit&agrave; di manipolare al meglio il sistema.</p>
+<p><!--moreContinua a leggere.. --></p>
+<p>Ecco il perch&egrave; di questa guida, spesso un utente usa per mesi Linux senza avere la minima idea del fatto che molte operazioni possono essere portate a termine in pochi semplicissimi passi. Ovviamente non pretendo di essere esaustivo (un manuale completo comprende centinaia di pagine), ma spero di fornire qualche dritta che permetta di iniziare ad usare il sistema operativo in maniera pi&ugrave; interattiva.</p>
+<p>La shell presente in Ubuntu &egrave; Bash (Bourne Again SHell), non &egrave; l'unica esistente, ma &egrave; tra le pi&ugrave; usate, per cui ci concentreremo su questa. Allora, andiamo ad aprire il nostro <strong>terminale</strong> (o <strong>console</strong>), per farlo basta andare a cercare la relativa voce nel menu di sistema, oppure aprire una delle <strong>6 console virtuali</strong> presenti in ogni distribuzione Linux (denominate <strong>tty</strong>, da 1 a 6). Per accedervi si usa la combinazione di tasti <code>CTRL+ALT+Fn</code>, dove la <code>n</code> finale va sostituita con uno dei numeri da 1 a 6 appunto (per capirci, si entra nell <strong>tty1</strong> con la combinazione <code>CTRL+ALT+F1</code>). In questo caso sar&agrave; richiesto il login, ovvero l'inserimento di nome utente e password (li stessi che usate all'avvio). Si ritorna alla modalit&agrave; grafica poi con la combinazione <code>ALT+F7</code>.</p>
+<p>In un modo o nell'altro, a questo punto ci troveremo di fronte al prompt:</p>
+<blockquote><p><code>nomeutente@nomecomputer ~ $</code></p></blockquote>
+<p>Conoscete il significato di questa espressione?</p>
+<ul>
+<li><strong>nomeutente</strong> &egrave; chiaramente il vostro nome utente, quello che utilizzate per il login;</li>
+<li><strong>nomecomputer</strong> &egrave; invece il nome che avete impostato in fase di installazione per la macchina che state usando;</li>
+<li><strong>~</strong> indica che vi trovate nella directory home dell'utente (/home/nomeutente);</li>
+<li><strong>$</strong> indica che siete loggati come utente normale, il superutente &egrave; invece indicato da <strong>#</strong> (anche se questo comportamento pu&ograve; essere modificato successivamente).</li>
+</ul>
+<p>La shell &egrave; a tutti gli effetti un <strong>ambiente di scripting</strong>, e come tale possiede alcune variabili di ambiente la cui conoscenza pu&ograve; tornare utile, ad esempio, la scrittura <code>echo $USER</code> (dove <code>USER</code> &egrave; la variabile di ambiente) restituisce il nome utente con il quale si &egrave; al momento connessi.</p>
+<p>I comandi che possono essere eseguiti in Bash sono <strong>file eseguibili</strong> (un esempio, il conosciutissimo <strong>ls</strong>), oppure <strong>script</strong>, ovvero sequenze di comandi che vengono interpretate ed eseguite sequenzialmente. Per una panoramica sui comandi di base, vi rimando alla documentazione della comunit&agrave; italiana di Ubuntu, <a href="http://wiki.ubuntu-it.org/AmministrazioneSistema/ComandiBase?action=show&redirect=ComandiBase" target="_blank">qui</a>. I comandi possono essere eseguiti semplicemente digitando il loro nome (a patto che la directory in cui sono contenuti faccia parte della variabile d'ambiente <strong>PATH</strong>), oppure invocati digitando il loro <strong>percorso</strong> all'interno del OS (es. /usr/bin/nomecomando), sia in senso <strong>assoluto</strong> che <strong>relativo</strong>.</p>
+<h4><strong>Cenni sulla struttura delle directory in un sistema Unix-Like</strong></h4>
+<p>Prima di proseguire, occorre chiarire quanto appena detto: il nostro sistema ha una directory <strong>radice</strong>, indicata da <code>/</code>, che rappresenta appunto la "base" dell'intero albero di directory presente sul nostro disco fisso. Allora, per <strong>percorso assoluto</strong> si intende partendo da <code>/</code>, per <strong>percorso relativo</strong> invece intendiamo a partire dalla directory corrente.</p>
+<p>Un semplice esempio: il comando <strong>cd</strong> serve a cambiare directory, supponendo di trovarsi in <strong>~</strong> (ovvero <code>/home/utente/</code>), il comando</p>
+<blockquote><p><code>cd Immagini</code></p></blockquote>
+<p>far&agrave; si che ci si sposti in <code>/home/utente/Immagini</code>, ma il comando</p>
+<blockquote><p><code>cd /Immagini</code></p></blockquote>
+<p>far&agrave; si che ci si sposti in <code>/Immagini</code>, e se questa directory non esiste, restituir&agrave; un <strong>errore</strong>. Occhio quindi a digitare correttamente il percorso!!</p>
+<p>Inoltre, sono presenti due particolari directory, <code>.</code> e <code>..</code>, rispettivamente indicanti la directory <strong>corrente</strong> e la directory <strong>superiore</strong> (<strong>parent</strong> directory), quindi</p>
+<blockquote><p><code>cd ./Documenti/docs</code></p></blockquote>
+<p>far&agrave; in modo di spostasi in <code>/home/utente/Documenti/docs</code> (a partire dalla directory corrente, si sposta in quella richiesta); il comando</p>
+<blockquote><p><code>cd ../Immagini</code></p></blockquote>
+<p>invece si sposter&agrave; prima nella directory superiore, poi in <code>Immagini</code>. Ovviamente, tenete d'occhio anche le maiuscole, in quanto Bash &egrave; <strong>case sensitive</strong>, quindi Immagini e immagini sono due directory distinte!!</p>
+<p>A questo punto, prima di chiudere questa lunga introduzione, &egrave; d'obbligo mettervi in guardia sull'uso della shell. Questa &egrave; uno strumento potentissimo, che usata correttamente &egrave; in grado di <strong>automatizzare</strong> completamente un'operazione anche complessa (vedremo che in uno script &egrave; possibile inserire test condizionali e cicli), ma usata in modo scorretto, o distrattamente, pu&ograve; causare <strong>disastri</strong>.</p>
+<p>Un esempio classico che troverete descritto in tantissimi casi?? Il comando <strong>rm</strong> serve a rimuovere files, e l'opzione <strong>-fR</strong> rimuove tali files ricorsivamente (entrando nelle sottodirectory) e forzatamente. Bene, il comando</p>
+<blockquote><p><code>sudo rm -fR /home/utente/dir1</code></p></blockquote>
+<p>cancella la directory <code>dir1</code>, ed &egrave; quello che si intendeva fare, ma attenzione, il comando</p>
+<blockquote><p><code>sudo rm -fR / home/utente/dir1</code></p></blockquote>
+<p>in cui sbadatamente si &egrave; introdotto uno <strong>spazio</strong>, cancella prima la <code>/</code> e poi la directory indicata.. In altre parole, avreste cancellato l'intero contenuto del disco fisso!!</p>
+<p>Ci si pu&ograve; aiutare con l'<strong>autocompletamento</strong>, ovvero, provate a scrivere semplicemente <strong>cd</strong> e poi a premere il tasto <strong>TAB</strong> due volte, vedrete che la shell vi suggerir&agrave; i percorsi disponibili. Questo comportamento vale per gran parte delle situazioni.</p>
+<p>Nel prossimo articolo cominceremo a parlare di script veri e propri..</p>
+<p>Alla prossima..</p>

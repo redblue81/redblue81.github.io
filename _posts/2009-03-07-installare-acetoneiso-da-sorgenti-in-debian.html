@@ -1,0 +1,50 @@
+---
+layout: post
+status: publish
+published: true
+title: Installare AcetoneISO da sorgenti (in Debian)
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 343
+wordpress_url: http://redblue.netsons.org/?p=343
+date: '2009-03-07 11:41:39 +0100'
+date_gmt: '2009-03-07 10:41:39 +0100'
+categories:
+- guide
+- linux
+- debian
+tags:
+- guida
+- debian
+- installazione
+- sorgenti
+- acetoneiso
+- fuse
+comments: []
+---
+<p><a href="http://www.acetoneteam.org/" target="_blank">AcetoneISO</a>&nbsp;&egrave; un software per la gestione di immagini di CD/DVD&nbsp;in Linux; possiamo leggere immagini in vari formati, crearle, montarle. Sul sito ufficiale troviamo i pacchetti precompilati per varie distribuzioni, tra cui il .deb per Ubuntu. Ovviamente questo pacchetto va bene anche per Debian, ma pu&ograve; essere utile compilarlo a partire dai sorgenti, anche perch&egrave; il pacchetto per Ubuntu, come suggerito dagli stessi autori, non &egrave; relativo all'ultima versione rilasciata (in questo momento la 2.0.3 RC1). Vediamo come fare..</p>
+<p><u><strong>ATTENZIONE</strong></u>:&nbsp;quella che segue &egrave; la semplice procedura indicata anche nel file README&nbsp;all'interno dei sorgenti, cos&igrave; come &egrave; stata eseguita dal sottoscritto; non spaventatevi &egrave; estremamente semplice.</p>
+<p>Per prima cosa scarichiamo i sorgenti <a href="http://www.acetoneteam.org/download/acetoneiso_2.0.3RC1.tar.gz" target="_blank">qui</a>.</p>
+<p>Poi assicuriamoci di avere i <strong>compilatori</strong> installati:</p>
+<blockquote><p> <code>apt-get install gcc g++ make libqt4-dev</code> </p></blockquote>
+<p>Ora installiamo le <strong>dipendenze</strong>:</p>
+<blockquote><p> <code>apt-get install fuseiso fuse-utils libqt4-gui genisoimage cdrdao p7zip-full gnupg-agent gnupg2 pinentry-qt ffmpeg mencoder cdparanoia</code> </p></blockquote>
+<p>Ovviamente installate anche altre eventuali dipendenze segnalate in automatico.</p>
+<p>Bene, a questo punto entriamo nella directory dove abbiamo salvato i sorgenti e diamo:</p>
+<blockquote><p> <code>tar zxvf acetoneiso_2.0.3RC1.tar.gz</code><br />
+cd acetoneiso_2.0.3RC1<br />
+qmake-qt4<br />
+make<br />
+make install</p></blockquote>
+<p>L'ultimo comando va dato come <strong>root</strong>. Fatto, avete installato AcetoneISO! Ora cambiamo un p&ograve; di permessi e aggiungiamo il nostro utente al gruppo <code>fuse</code> (va fatto tutto come root).</p>
+<blockquote><p> <code>modprobe fuse<br />
+chmod 4755 /usr/bin/fusermount<br />
+chmod o+rw /dev/fuse<br />
+addgroup {nome-utente} fuse </code> </p></blockquote>
+<p>Dove al posto di <code>{nome-utente}</code> dovete inserire il vostro utente (es. <code>addgroup redblue fuse</code>).</p>
+<p>Nel caso doveste disinstallare AcetoneISO, basta entrare nella directory dei sorgenti e, come root, dare:</p>
+<blockquote><p> <code>make uninstall</code> </p></blockquote>
+<p>EDIT: al sottoscritto alla fine della procedura di installazione si &egrave; presentato un errore riguardante il file <strong>AcentoneISO.Desktop</strong>; se succede anche a voi non preoccupatevi, si tratta solo del collegamento sul desktop, l'installazione &egrave; comunque andata a buon fine, semplicemente dovrete creare a mano il collegamento sul desktop (sempre che ne abbiate bisogno), per il collegamento all'interno del menu invece non c'&egrave; problema, a me &egrave; stato creato normalmente.</p>

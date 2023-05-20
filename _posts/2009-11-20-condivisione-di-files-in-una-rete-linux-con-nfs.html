@@ -1,0 +1,88 @@
+---
+layout: post
+status: publish
+published: true
+title: Condivisione di files in una rete Linux con NFS
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 786
+wordpress_url: http://redblue.netsons.org/?p=786
+date: '2009-11-20 18:04:54 +0100'
+date_gmt: '2009-11-20 17:04:54 +0100'
+categories:
+- guide
+- linux
+- ubuntu
+tags:
+- guida
+- linux
+- ubuntu
+- nfs
+- condivisione
+comments:
+- id: 7027
+  author: Zio Sat
+  author_email: ''
+  author_url: http://www.ziosat.it
+  date: '2011-03-15 19:55:01 +0100'
+  date_gmt: '2011-03-15 18:55:01 +0100'
+  content: Grazie. Veramente un'ottima guida. Funziona tutto a meraviglia. Grazie
+    ancora per la chiarezza.
+---
+<p><span style="text-decoration: underline;"><strong>PREMESSA</strong></span>: questa guida &egrave; rivolta a coloro che hanno bisogno di condividere files tra due o pi&ugrave; pc <span style="text-decoration: underline;">sui quali sia installato Linux</span> (su <span style="text-decoration: underline;">tutti</span>, non solo su uno).</p>
+<p>Useremo <strong>NFS</strong> (acronimo di Network FileSystem), che, pur avendo ormai la sua et&agrave;, &egrave; sempre semplice, funzionale e sicuro, oltre che rapido (che non guasta mai). Dobbiamo configurare prima il server e poi il/i client..</p>
+<p>Cominciamo dal <strong>server</strong>, installando ovviamente il necessario:</p>
+<blockquote><p><code>sudo apt-get install portmap nfs-kernel-server</code></p></blockquote>
+<p>Poi specifichiamo quali directory sul server vogliamo condividere:</p>
+<blockquote><p><code>sudo gedit /etc/exports</code></p></blockquote>
+<p>Aggiungiamo <span style="text-decoration: underline;">una riga per ogni directory da condividere</span> con la seguente sintassi:</p>
+<blockquote><p><code>/percorso_completo_dir indirizzo_IP_del_client(rw,sync)</code></p></blockquote>
+<p>Per abilitare la lettura/scrittura, oppure</p>
+<blockquote><p><code>/percorso_completo_dir indirizzo_IP_client(ro,sync)</code></p></blockquote>
+<p>Per accedere in sola lettura. Potenzialmente avremmo gi&agrave; finito, ma &egrave; meglio rendere pi&ugrave; sicura questa condivisione, specificando chi pu&ograve; accedervi; per fare ci&ograve; digitiamo</p>
+<blockquote><p><code>sudo gedit /etc/hosts.allow</code></p></blockquote>
+<p>Ed inseriamo le seguenti righe:</p>
+<blockquote><p><code>portmap: indirizzi_IP_client_autorizzati<br />
+mountd: indirizzi_IP_client_autorizzati<br />
+nfsd: indirizzi_IP_client_autorizzati<br />
+statd: indirizzi_IP_client_autorizzati<br />
+lockd: indirizzi_IP_client_autorizzati<br />
+rquotad: indirizzi_IP_client_autorizzati</code></p></blockquote>
+<p>Se abbiamo pi&ugrave; client, i loro indirizzi vanno separati da virgole. Specifichiamo anche quali client non sono autorizzati ad accedere alla condivisione:</p>
+<blockquote><p><code>sudo gedit /etc/hosts.deny</code></p></blockquote>
+<p>Ed inseriamo la riga:</p>
+<blockquote><p><code>portmap: ALL<br />
+mountd: ALL<br />
+nfsd: ALL<br />
+statd: ALL<br />
+lockd: ALL<br />
+rquotad: ALL</code></p></blockquote>
+<p>In questo modo ogni client non compreso tra quelli specificati in precedenza non avr&agrave; accesso alla nostra condivisione. Si pu&ograve; anche precludere l'accesso ad un client preciso, specificandone l'IP al posto di ALL, oppure negare l'accesso a tutti tranne uno, in questo caso si usa la sintassi:</p>
+<blockquote><p><code>ALL EXCEPT indirizzi_IP_client_autorizzati</code></p></blockquote>
+<p>Con il server abbiamo finito. Riavviamo i servizi per rendere effettive le modifiche:</p>
+<blockquote><p><code>sudo portmap restart<br />
+sudo /etc/init.d/nfs-kernel-server restart</code></p></blockquote>
+<p>Andiamo a configurare il <strong>client</strong>. Prima di tutto installiamo anche qui il necessario:</p>
+<blockquote><p><code>sudo apt-get install portmap nfs-common</code></p></blockquote>
+<p>Avremmo gi&agrave; finito, ma anche in questo caso &egrave; meglio rendere la condivisione pi&ugrave; sicura.</p>
+<blockquote><p><code>sudo gedit /etc/hosts.deny</code></p></blockquote>
+<p>Inseriamo la riga:</p>
+<blockquote><p><code>portmap: ALL</code></p></blockquote>
+<p>Poi:</p>
+<blockquote><p>sudo gedit /etc/hosts.allow</p></blockquote>
+<p>Inseriamo:</p>
+<blockquote><p><code>portmap: indirizzo_IP_server</code></p></blockquote>
+<p>A questo punto abbiamo davvero finito, possiamo montare la condivisione: per farlo occorre creare una directory apposita, ad esempio</p>
+<blockquote><p><code>sudo mkdir /media/condivisione</code></p></blockquote>
+<p>Poi montiamo la condivisione con il comando:</p>
+<blockquote><p><code>sudo mount -t nfs indirizzo_IP_server:/percorso_completo_dir_condivisa /media/condivisione</code></p></blockquote>
+<p>Se tutto va bene, vedrete apparire un nuovo dispositivo montato tra le risorse del computer (es. con Gnome). Quest'ultimo comando va dato chiaramente <span style="text-decoration: underline;">ogni volta che si spegne e riaccende il client</span>. Volendo per&ograve; lo si pu&ograve; rendere permanente, editando <code>fstab</code>:</p>
+<blockquote><p><code>sudo gedit /etc/fstab</code></p></blockquote>
+<p>Inseriamo la riga:</p>
+<blockquote><p><code># Condivisione NFS<br />
+indirizzo_IP_server:/percorso_completo_dir_condivisa /media/condivisione nfs rw,hard,intr 0 0</code></p></blockquote>
+<p>Chiaramente <code>rw,hard,intr</code> sono solo alcune opzioni possibili, come ogni altro filesystem ne esistono altre, ad esempio potremmo scrivere semplicemente <code>defaults</code> per montare la condivisione con le opzioni standard.</p>
+<p>Alla prossima..</p>

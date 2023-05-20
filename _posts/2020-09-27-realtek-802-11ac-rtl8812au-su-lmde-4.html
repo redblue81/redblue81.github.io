@@ -1,0 +1,51 @@
+---
+layout: post
+status: publish
+published: true
+title: Realtek 802.11ac (rtl8812au) su LMDE 4
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 4030
+wordpress_url: https://www.red-blue.it/?p=4030
+date: '2020-09-27 10:53:23 +0100'
+date_gmt: '2020-09-27 08:53:23 +0100'
+categories:
+- tips & tricks
+- linux
+- lmde
+tags: []
+comments: []
+---
+<p><!-- wp:paragraph --></p>
+<p>Ho provato a collegare l'adattatore wifi <strong>Realtek 802.11ac (rtl8812au)</strong> alla mia LMDE 4, esso viene correttamente riconosciuto, ma comunque non funziona.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Il comando <strong>lsusb</strong> restituisce correttamente:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code --></p>
+<pre class="wp-block-syntaxhighlighter-code">ID 0bda:8812 Realtek Semiconductor Corp. RTL8812AU 802.11a/b/g/n/ac 2T2R DB WLAN Adapter</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:tadv/classic-paragraph --></p>
+<p>Il problema &egrave; quindi relativo al <strong>driver</strong>. Con un rapido giro in rete, cercando l'ID restituito (<strong>0bda:8812</strong>) ho scoperto che risolvere &egrave; estremamente semplice, basta dare i seguenti comandi:</p>
+<p><!-- /wp:tadv/classic-paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code --></p>
+<pre class="wp-block-syntaxhighlighter-code">sudo apt update
+sudo apt install git
+git clone https://github.com/gnab/rtl8812au.git
+sudo cp -r rtl8812au  /usr/src/rtl8812au-4.2.2
+sudo dkms add -m rtl8812au -v 4.2.2
+sudo dkms build -m rtl8812au -v 4.2.2
+sudo dkms install -m rtl8812au -v 4.2.2</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>In pratica, andiamo ad <strong>installare manualmente</strong> una versione modificata del driver Realtek 802.11ac (rtl8812au), che lo rende funzionante su Kernel con versione >= 3.10.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Dopo l'installazione, baster&agrave; riavviare e vedrete il vostro adattatore prendere vita.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prosssima..</p>
+<p><!-- /wp:paragraph --></p>

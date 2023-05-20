@@ -1,0 +1,40 @@
+---
+layout: post
+status: publish
+published: true
+title: GDM2Setup, tool di configurazione per il nuovo GDM
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 996
+wordpress_url: http://redblue.netsons.org/?p=996
+date: '2010-02-18 10:11:17 +0100'
+date_gmt: '2010-02-18 09:11:17 +0100'
+categories:
+- guide
+- tips & tricks
+- linux
+- ubuntu
+tags:
+- ubuntu
+- tips
+- repository
+- gnome
+- karmic
+- gdm
+- tool
+- gdm2setup
+comments: []
+---
+<p>L'ultima versione di <strong>GDM</strong> (Gnome Desktop Manager, ovvero la schermata di benvenuto di Gnome) &egrave; stata completamente riscritta, e per questa ragione al momento non &egrave; ancora stato integrato un tool per la sua gestione. Come forse molti ricordano, nella versione precedente era addirittura possibile cambiarne interamente il tema...</p>
+<p>Oggi purtoppo questo non &egrave; (ancora) possibile.. La modifica del nuovo GDM, limitata comunque all'immagine di background e poco altro (sempre meglio di niente no?), si pu&ograve; effettuare tramite riga di comando, oppure attraverso una piccola utility, <a href="https://launchpad.net/gdm2setup/" target="_blank">GDM2Setup</a>..</p>
+<p><!--moreContinua a leggere questo articolo.. --></p>
+<p style="text-align: center;"><a rel="lightbox" href="/assets/images/gdm2setup.gif"><img class="aligncenter" src="/assets/images/gdm2setup.gif" alt="" width="403" height="266" /></a></p>
+<p>Il suo utilizzo &egrave; estremamente intuitivo, come si capisce dall'immagine, e la sua installazione avviene tramite un apposito repository.. Vediamo come fare:</p>
+<blockquote><p><code>sudo add-apt-repository ppa:gdm2setup/gdm2setup<br />
+sudo apt-get update<br />
+sudo apt-get install python-gdm2setup</code></p></blockquote>
+<p>Alla fine dell'installazione lo troverete in <strong>Sistema -> Amministrazione -> Login Screen (GDM2Setup)</strong>..</p>
+<p>Alla prossima..</p>

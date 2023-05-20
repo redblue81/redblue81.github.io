@@ -1,0 +1,81 @@
+---
+layout: post
+status: publish
+published: true
+title: Sito web in locale su Linux senza XAMPP - Parte 1
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3618
+wordpress_url: http://www.red-blue.it/?p=3618
+date: '2014-01-22 10:32:41 +0100'
+date_gmt: '2014-01-22 09:32:41 +0100'
+categories:
+- guide
+- linux
+- debian
+- internet
+- in evidenza
+tags:
+- debian
+- server
+- linux
+- lamp
+- apache
+- mysql
+- php
+- phpmyadmin
+- localhost
+comments:
+- id: 146490
+  author: Massimiliano
+  author_email: lam.max@tiscali.it
+  author_url: ''
+  date: '2014-03-08 19:15:41 +0100'
+  date_gmt: '2014-03-08 18:15:41 +0100'
+  content: proprio quello che cercavo! Xampp &egrave; un po' troppo macchinoso...
+    Ottimo lavoro, grazie!!
+- id: 146953
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2014-03-09 11:00:03 +0100'
+  date_gmt: '2014-03-09 10:00:03 +0100'
+  content: Di nulla, felice di esserti stato d'aiuto! ;)
+---
+<p>Quando si realizza un sito web, sarebbe buona regola <strong>non</strong> mettere tutto subito online, ma sviluppare e testare tutto in <strong>locale</strong>, sul proprio pc, per poi passare online quando si &egrave; ragionevolmente certi che il sito sia abbastanza (per non dire del tutto) completo. Anche in termini di prestazioni, sicuramente il sito web in locale permette tempi di attesa e caricamento estremamente pi&ugrave; brevi.</p>
+<p>Basta fare un giro in rete per rendersi conto che esiste un modo semplicissimo per avere un sito web in locale, ovvero installare un software che si chiama <strong>Xampp</strong>, esistente sia per Windows che per Linux. Personalmente, usando <strong>Linux</strong>, &egrave; una soluzione che <strong>non</strong> condivido, in quanto il sistema operativo del pinguino possiede tutti gli strumenti per mettere su il nostro piccolo server locale su cui caricare il nostro sito web in locale (detto anche <strong>LAMP</strong>, ovvero <strong>L</strong>inux <strong>A</strong>pache <strong>M</strong>ySQL <strong>P</strong>HP), pi&ugrave; qualche piccolo accorgimento che, soprattutto nel caso di un sito sviluppato con Wordpress, possono tornare utili (di questo per&ograve; parler&ograve; nella <strong>seconda parte</strong> di questa guida).</p>
+<p><!--moreContinua a leggere..--></p>
+<p>Cominciamo!</p>
+<p>Per prima cosa installiamo <strong>Apache</strong> (il <strong>webserver</strong> che ci servir&agrave; per far "girare" il nostro sito):</p>
+<pre class="brush: bash; gutter: false">sudo apt-get install apache2</pre>
+<p>A questo punto, apriamo un browser e andiamo all'indirizzo:</p>
+<pre class="brush: bash; gutter: false">http://localhost</pre>
+<p>E se tutto &egrave; andato bene, visualizzeremo una pagina del genere:</p>
+<p><a href="/assets/images/apache.png"><img class="aligncenter size-medium wp-image-3621" src="/assets/images/apache-300x96.png" alt="apache" width="300" height="96" /></a>Bene, passiamo ad installare tutto il resto:</p>
+<pre class="brush: bash; gutter: false">sudo apt-get install php5 libapache2-mod-php5 mysql-server</pre>
+<p>E al termine <strong>riavviamo</strong> Apache:</p>
+<pre class="brush: bash; gutter: false">sudo service apache2 restart</pre>
+<p>Per testare il <strong>PHP</strong>, basta creare un file con estensione <strong>.php</strong>, ad esempio <code>test.php</code>, con all'interno le semplici righe di codice:</p>
+<pre class="brush: php; gutter: true"><?php
+
+   phpinfo();
+
+?></pre>
+<p>Poi creiamo una directory (come <strong>root</strong>) all'interno di <code>/var/www/</code> (la directory predefinita di Apache per i nostri contenuti web), le assegnamo i <strong>permessi</strong> giusti, ad esempio, supponendo di aver creato la directory <code>myfiles</code>, con il comando:</p>
+<pre class="brush: bash; gutter: false">sudo chmod 777 /var/www/myfiles</pre>
+<p>Copiamo al suo interno (ora potremo farlo anche da utente <strong>normale</strong>) il file che abbiamo creato prima e puntiamo il browser su di esso, ovvero andiamo all'indirizzo:</p>
+<pre class="brush: bash; gutter: false">http://localhost/myfiles/test.php</pre>
+<p>Avremo come risposta una pagina che riassume la <strong>configurazione</strong> di PHP, tipo questa:</p>
+<p><a href="/assets/images/php.png"><img class="aligncenter size-medium wp-image-3624" src="/assets/images/php-268x300.png" alt="php" width="268" height="300" /></a>Infine, per testare <strong>MySQL</strong>, proporrei di installare <strong>phpMyAdmin</strong>, comodissa utility per la gestione dei database:</p>
+<pre class="brush: bash; gutter: false">sudo apt-get install phpmyadmin</pre>
+<p>Al termine dell'installazione, testiamo andando col browser all'indirizzo:</p>
+<pre class="brush: bash; gutter: false">http://localhost/phpmyadmin</pre>
+<p>Avremo una maschera di <strong>lo&egrave;ong> come questa:</p>
+<p><a href="ht&egrave;.red-blue.it/wp-content/uploads/php2.png"><img class="aligncenter size-medium wp-image-3629" src="/assets/images/php2-290x300.png" alt="php2" width="290" height="300" /></a>Il nome utente e la password saranno ovviamente quelli che avete <strong>definito</strong> in fase di installazione (personalmente, anche se non si dovrebbe fare, spesso uso l'utente root senza password).</p>
+<p>Abbiamo finito, il nostro server &egrave; completo, basta inserire i nostri contenuti web da testare in <code>/var/www/directory</code>_personale e andarli a visualizzare nel browser tramite <code>localhost</code>. Stessa storia ovviamente vale per <strong>Wordpress</strong>, baster&agrave; copiare i files di installazione in quella directory e avviare l'installazione esattamente come faremmo online e potremo iniziale a sviluppare il sito web in locale, con la possibilit&agrave; di testare tutti i suoi componenti.</p>
+<p>E il bello &egrave; che lo avremo sempre a disposizione! Senza dover avviare un apposito programma!! ;)</p>
+<p>Appuntamento alla <strong>seconda</strong> e ultima parte di questa guida per continuare a parlare di Wordpress..</p>
+<p>Alla prossima..</p>

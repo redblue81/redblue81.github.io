@@ -1,0 +1,61 @@
+---
+layout: post
+status: publish
+published: true
+title: Realizzare il proprio sistema domotico - Introduzione
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 4047
+wordpress_url: https://www.red-blue.it/?p=4047
+date: '2021-05-26 12:48:46 +0100'
+date_gmt: '2021-05-26 10:48:46 +0100'
+categories:
+- guide
+- linux
+- in evidenza
+- raspberry pi
+- domotica
+tags:
+- guida
+- linux
+- domotica
+- home assistant
+- raspberrypi
+comments: []
+---
+<p><!-- wp:image {"id":4053,"sizeSlug":"large","linkDestination":"none"} --></p>
+<figure class="wp-block-image size-large"><img src="/assets/images/smart-home-3096219_1920-1024x683.jpg" alt="" class="wp-image-4053"/></figure>
+<p><!-- /wp:image --></p>
+<p><!-- wp:tadv/classic-paragraph --></p>
+<p>Era da un sacco di tempo che non scrivevo, il tempo diminuisce e gli impegni aumentano <strong>purtroppo</strong>. Ma voglio riprendere alla grande, inaugurando questa serie su come <strong>realizzare il proprio sistema domotico in casa</strong>.</p>
+<p>Oggi &egrave; possibile automatizzare ("domotizzare") quasi tutto in casa, esistono sistemi gi&agrave; pronti per farlo, ma &egrave; possibile anche realizzarlo "in proprio", con pochi strumenti e senza nemmeno spendere grandissime cifre.</p>
+<p><!-- /wp:tadv/classic-paragraph --></p>
+<p><!-- wp:more --><br />
+<!--more--><br />
+<!-- /wp:more --></p>
+<p><!-- wp:tadv/classic-paragraph --></p>
+<p>Ci sto lavorando gi&agrave; da un po', per cui ho deciso di mettere nero su bianco quanto fatto e quanto da fare ancora, un po' come mio "diario personale", un po' per la voglia di tornare a condividere le mie esperienze tech su questo spazio.</p>
+<p>Questo primo post mi serve come <strong>introduzione</strong> e come promemoria di quello che serve, a livello hardware soprattutto, ma anche a livello software.</p>
+<p>Per realizzare il proprio sistema domotico, non si pu&ograve; non partire dal <strong>server</strong>: va bene qualsiasi PC in realt&agrave;, ma per ragioni di spazio e consumi, consiglio un mini PC, che sia un <strong>RaspberryPi</strong> (come nel mio caso, sto usando un Pi 4 con 4GB di RAM), piuttosto che altre single board, o (forse anche meglio) un mini PC con disco SSD montato.</p>
+<p>Sul server installeremo il software di gestione: non nascondo che sono stato molto tentato dal provare a scrivere qualcosa da zero, ma poi ho optato per usare il celeberrimo <strong>Home Assistant</strong>, che gi&agrave; appena installato tenta di interfacciarsi con un numero inaspettato di dispositivi sparsi per casa (ne parleremo).</p>
+<p>Lo trovo comodissimo, essendo disponibile anche un'app per smartphone che permette la gestione da remoto (ovviamente dopo averlo reso raggiungibile dall'esterno, parleremo anche di questo).</p>
+<p>A questo punto, avevo gi&agrave; in casa <strong>webcam</strong> e <strong>lampadine smart</strong>, quindi ho integrato tali dispositivi, e ho affiancato alle webcam dei sensori di movimento per mettere in piedi un sistema di videosorveglianza, usando <strong>Telegram</strong> come piattaforma per le notifiche di eventuali "anomalie".</p>
+<p>Devo dire che con questo progetto ho scoperto le reali potenzialit&agrave; del protocollo di comunicazione <strong>ZigBee</strong>, che mi sento di consigliare.</p>
+<p>Per quanto riguarda le lampadine, la loro integrazione &egrave; banale, per cui ho intenzione di aggiungere nelle altre stanze degli <strong>interruttori smart</strong> (Sonoff o Shelly, non l'ho ancora deciso).</p>
+<p>Uno dei prossimi passi, che far&ograve; sicuramente a breve (e che documenter&ograve; ovviamente), sar&agrave; collegare un disco SSD al sistema, in quanto la micro SD usata normalmente dal RaspberryPi &egrave; un punto debole (anche se ho configurato un <strong>sistema di backup automatico</strong> che mi mette al riparo da eventuali crash).</p>
+<p>Le evoluzioni sono pressoch&eacute; infinite (ad esempio si possono tranquillamente domotizzare le tapparelle, ma nel mio caso l'installazione dei motori richiederebbe dei lavori di muratura che al momento non sono in programma).</p>
+<p>Ovviamente, non potr&agrave; mancare l'integrazione con un assistente vocale, nel mio caso <strong>Alexa </strong>(credo che al mio Echo Dot, ne affiancher&ograve; un secondo di ultima generazione).</p>
+<p>Direi che un elenco di evoluzioni sicure che implementer&ograve; &egrave; il seguente:</p>
+<ul>
+<li>sensori di temperatura/umidit&agrave;/qualit&agrave; dell'aria&nbsp;</li>
+<li>sensori su finestre e/o porte</li>
+<li>Tag NFC (gli usi che mi vengono in mente sono infiniti)</li>
+<li>Almeno una striscia LED</li>
+<li>sto valutando di introdurre nel sistema un database, sfruttando la capacit&agrave; di molti dispositivi di comunicare col protocollo MQTT</li>
+</ul>
+<p>Se l'argomento realizzare il proprio sistema domotico vi interessa, stay tuned..</p>
+<p>Alla prossima..</p>
+<p><!-- /wp:tadv/classic-paragraph --></p>

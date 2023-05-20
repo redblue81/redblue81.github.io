@@ -1,0 +1,50 @@
+---
+layout: post
+status: publish
+published: true
+title: Skype 2.1 su Debian Squeeze x64
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1054
+wordpress_url: http://redblue.netsons.org/?p=1054
+date: '2010-03-16 22:27:33 +0100'
+date_gmt: '2010-03-16 21:27:33 +0100'
+categories:
+- guide
+- linux
+- debian
+- software
+tags:
+- guida
+- debian
+- linux
+- i386
+- amd64
+- 64 bit
+- squeeze
+- testing
+- skype
+- x86_64
+- 32 bit
+comments: []
+---
+<p>Purtroppo una versione nativamente a <strong>64 bit</strong> di Skype non &egrave; ancora stata rilasciata (e tralascio il fatto che su Linux siamo ancora alla versione <strong>2.1</strong>, mentre su Windows abbiamo superato la <strong>4</strong>), ma nulla vieta di installare la versione a <strong>32 bit</strong>..</p>
+<p>In Debian, precisamente in <strong>Squeeze</strong>, ovvero il ramo <strong>testing</strong>, l'installazione &egrave; un filo pi&ugrave; complessa, ma nulla di impossibile.. Cominciamo!</p>
+<li>Per prima cosa scarichiamo il pacchetto <strong><span style="text-decoration: underline;">per Debian</span></strong> da <a href="http://www.skype.com/intl/it/download/skype/linux/choose/" target="_blank">qui</a>;</li>
+<li>poi scarichiamo da <a href="http://security.debian.org/debian-security/pool/updates/main/p/pulseaudio/libpulse0_0.9.10-3+lenny2_i386.deb" target="_blank">qui</a> il pacchetto <code>libpulse0</code> per l'architettura <strong>i386</strong>;</li>
+<li>installiamo le <strong>dipendenze</strong> (a 32 bit):</li>
+<blockquote><p><code>sudo aptitude install ia32-libs ia32-libs-gtk libc6-i386 lib32asound2 lib32gcc1 lib32z1 gsfonts-X11</code></p></blockquote>
+<li>a questo punto possiamo installare il pacchetto scaricato, <span style="text-decoration: underline;">forzando il controllo sull'architettura</span>:</li>
+<blockquote><p><code>sudo dpkg -i --force-architecture skype-debian_2.1.0.81-1_i386.deb</code></p></blockquote>
+<li><strong><span style="text-decoration: underline;">non</span></strong> avviate ancora Skype, prima serve estrarre i file dalla libreria scaricata in precedenza, in una directory creata apposta, e copiarli in <code>/usr/lib32/</code>:</li>
+<blockquote><p><code>mkdir
+<percorso>/libpulse<br />
+sudo dpkg -x libpulse0_0.9.10-3+lenny2_i386.deb
+<percorso>/libpulse/<br />
+sudo cp
+<percorso>/libpulse/usr/lib/* /usr/lib32/</code></p></blockquote>
+<p>Adesso abbiamo finito, possiamo avviare Skype anche su Debian Squeeze a 64 bit.. ;)</p>
+<p>Alla prossima..</p>

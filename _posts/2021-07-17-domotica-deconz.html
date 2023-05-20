@@ -1,0 +1,97 @@
+---
+layout: post
+status: publish
+published: true
+title: Domotica - Deconz
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 4135
+wordpress_url: https://www.red-blue.it/?p=4135
+date: '2021-07-17 10:18:54 +0100'
+date_gmt: '2021-07-17 08:18:54 +0100'
+categories:
+- guide
+- in evidenza
+- raspberry pi
+- domotica
+tags:
+- domotica
+- home assistant
+- deconz
+- raspebrry pi
+- zigbee
+comments: []
+---
+<p><!-- wp:paragraph --></p>
+<p>Vediamo oggi come usare <strong>Deconz</strong> per gestire dispositivi <strong>ZigBee</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><a href="http://localhost:4000/domotica" data-type="page" data-id="4071">Finora abbiamo soprattutto configurato ed ottimizzato Home Assistant</a>, &egrave; il momento di iniziare a collegare (ed usare) dispositivi al nostro sistema domotico.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>I dispositivi che possono essere riconosciuti, e quindi gestiti, da Home Assistant possono sfruttare la rete WIFI di casa, oppure usare la tecnologia ZigBee.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>ZigBee &egrave; un protocollo che consente la connessione di dispositivi in modalit&agrave; wireless, e che normalmente ha bisogno di un gateway per funzionare: in parole povere, colleghiamo il gateway ZigBee alla nostra rete WIFI, e tutti i dispositivi che vogliamo controllare al gateway.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Tra l'altro, alcuni dispositivi ZigBee fanno anche da ripetitoti di segnale, in modo da estendere la portata della vostra rete senza aggiungere altro in casa.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ovviamente, produttori diversi prevedono ognuno il proprio gateway, e questo, al crescere del numero di dispositivi domotici in casa, potrebbe significare numerosi gateway, ognuno con la propria app di gestione (seppur tutti connessi ad Home Assistant).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:more --><br />
+<!--more--><br />
+<!-- /wp:more --></p>
+<p><!-- wp:paragraph --></p>
+<p>Poco comodo.. A meno di usare un <strong>gateway universale</strong>, ovvero un gateway capace di &ldquo;colloquiare&rdquo; con dispositivi ZigBee di produttori diversi.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ne esistono diversi in commercio, io ho scelto il <strong>ConBee 2</strong> della Phoscon, questo aggeggino qui:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:html --><br />
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-eu.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=redblue03-21&language=it_IT&o=29&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B07PZ7ZHG5&linkId=67c00c29bfe5a2deb8d1d3a2f030ca29"></iframe><br />
+<!-- /wp:html --></p>
+<p><!-- wp:paragraph --></p>
+<p>Esiste in due versioni, chiavetta USB (quello che ho acquistato io), oppure scheda da collegare direttamente al Raspberry Pi. Io ho scelto la chiavetta USB in modo da poter avere il Raspberry in un punto, e la chiavetta (mediante una prolunga) in una posizione comoda per "raggiungere" i vari dispositivi che ho in casa.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Una volta collegato ad una porta USB, basta semplicemente installare il componente aggiuntivo Deconz.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Quindi andiamo su <strong>Supervisor</strong> e installiamo il plugin Deconz, non avviamolo per&ograve; perch&egrave; dobbiamo effettuare alcuni passaggi di configurazione. </p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Dobbiamo andare su <strong>Supervisor -> Sistema -> Host -> Hardware</strong> (che raggiungete cliccando i tre puntini in basso a destra nella scheda Host), poi <strong>CTRL+F</strong> e cerchiamo <strong>ConBee</strong>, poi nel lungo listato relativo alla periferica, cerchiamo la stringa che inizia per <strong>/dev/serial/by-id</strong>. Copiamolo perch&egrave; potrebbe servire tra poco.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Andiamo nel componente Deconz che abbiamo installato precedentemente e clicchiamo in alto su Configurazione, poi scegliamo l'id del dispositivo nel primo campo (oppure se non propone nulla, incolliamo l'id copiato prima).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Non resta che avviare il componente, poi apriamo l'interfaccia web, scegliamo <strong>Phoscon</strong>, e clicchiamo sulla nostra chiavetta; ci chieder&agrave; di creare una password, facciamolo. Non connettiamo luci, n&eacute; creiamo gruppi (lo faremo da Home Assistant). Finito.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto iniziamo ad aggiungere dispositivi, basta semplicemente cliccare sul menu in alto (l<strong>e tre linee</strong>) e cliccare sul tipo di dispositivo da aggiungere (luci, sensori o interruttori). Ad esempio, supponendo di voler aggiungere una lampadina, occorre metterla in modalit&agrave; <strong>pairing</strong> (qui purtroppo non posso aiutarvi molto, ogni dispositivo ha le sue modalit&agrave;, in genere un dispositivo nuovo appena acceso si mette in modalit&agrave; pairing, altrimenti generalmente occorre fare un reset) e il gioco &egrave; fatto, in pochissimi secondi verr&agrave; riconosciuta!</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto, in Home Assistant possiamo cominciare a divertirci.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Per prima cosa, in Deconz dobbiamo andare su <strong>Settings -> Gateway</strong> e cliccare su <strong>Authenticate App</strong>, poi in <strong>Impostazioni -> Integrazioni</strong> su Home Assistant cliccate su aggiungi integrazione e cercate Deconz, poi cliccate su Invia e il gioco &egrave; fatto, vi importer&agrave; la chiavetta con tutti i dispositivi ad essa agganciati.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto, vanno direttamente gestiti i dispositivi su Home Assistant. Ad esempio, potremmo decidere di <strong>raggruppare</strong> delle lampadine, e gestirle come gruppo, oppure impostare delle routine semi automatiche. Successivamente potremmo anche gestirle con Alexa.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Potremmo anche definire una o pi&ugrave; scene: supponiamo di voler creare una luca ambientale per vedere film, o una per avere una luce comunque pi&ugrave; rilassante dopo cena.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Nel prossimo post vedremo proprio alcuni esempio di uso di dispositivi configurati su Home Assistant.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:tadv/classic-paragraph /--></p>

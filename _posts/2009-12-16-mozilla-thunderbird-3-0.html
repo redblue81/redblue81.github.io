@@ -1,0 +1,46 @@
+---
+layout: post
+status: publish
+published: true
+title: Mozilla Thunderbird 3.0
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 872
+wordpress_url: http://redblue.netsons.org/?p=872
+date: '2009-12-16 15:43:43 +0100'
+date_gmt: '2009-12-16 14:43:43 +0100'
+categories:
+- guide
+- linux
+- ubuntu
+- software
+tags:
+- ubuntu
+- mozilla
+- repository
+- ppa
+- ubuntuzilla
+- karmic
+- thunderbird 3
+comments: []
+---
+<p><a rel="lightbox" href="/assets/images/thunderbird.jpg "><img src="/assets/images/thunderbird.jpg " alt="" width="120" height="119" align="left" /></a>Recentemente &egrave; stato rilasciato (finalmente direi) <strong>Mozilla Thunderbird 3.0</strong>, notissimo client di posta elettronica e news reader gratuito e assolutamente open source..</p>
+<p>Installarlo in <strong>Karmic</strong> &egrave; piuttosto semplice.. Volendo tralasciare la pur sempre valida installazione dai sorgenti, abbiamo due strade: il <strong>repository</strong> e <strong>Ubuntuzilla</strong>.</p>
+<p><!--more Continua a leggere questo articolo.. -->Nel primo caso dobbiamo aggiungere il seguente repository al nostro <code>/etc/apt/sources.list</code>:</p>
+<blockquote><p><code>deb http://ppa.launchpad.net/ubuntu-mozilla-daily/ppa/ubuntu karmic main<br />
+deb-src http://ppa.launchpad.net/ubuntu-mozilla-daily/ppa/ubuntu karmic main</code></p></blockquote>
+<p>Ovviamente se non usate Karmic, ma <strong>Jaunty</strong>, <strong>Intrepid</strong>, <strong>Hardy</strong> (o <strong>Lucid</strong>, la versione attualmente in sviluppo), basta cambiare il nome della distribuzione nelle righe scritte sopra.. Poi importate la <strong>chiave GPG</strong>:</p>
+<blockquote><p><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 247510BE</code></p></blockquote>
+<p>A questo punto basta un:</p>
+<blockquote><p><code>sudo apt-get update && sudo apt-get install thunderbird-3.0</code></p></blockquote>
+<p>E avremo il nostro client installato..</p>
+<p>Ma attenzione perch&egrave; con questo metodo avrete periodicamente tutti gli aggiornamenti anche per Firefox..</p>
+<p>Il secondo metodo lo considero migliore; di Ubuntuzilla ne avevo gi&agrave; parlato tempo fa ("<a href="http://localhost:4000/tips-tricks/aggiornare-firefox-con-ubuntuzilla.html" target="_blank">Aggiornare Firefox con Ubuntuzilla</a>"), dopo aver scaricato il <strong>.deb</strong> ed averlo installato con <strong>GDebi</strong>, basta dare il comando:</p>
+<blockquote><p><code>ubuntuzilla.py -a install -p thunderbird</code></p></blockquote>
+<p>Per installare da zero, oppure:</p>
+<blockquote><p><code>ubuntuzilla.py -a installupdater -p thunderbird</code></p></blockquote>
+<p>Per aggiornare la vecchia versione gi&agrave; installata..</p>
+<p>Alla prossima..</p>

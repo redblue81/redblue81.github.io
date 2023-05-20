@@ -1,0 +1,52 @@
+---
+layout: post
+status: publish
+published: true
+title: Raspberry Pi overclockato fino a 1 GHz senza danni
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3416
+wordpress_url: http://www.red-blue.it/?p=3416
+date: '2012-09-29 12:22:31 +0100'
+date_gmt: '2012-09-29 10:22:31 +0100'
+categories:
+- linux
+- hi-tech
+- in evidenza
+- raspberry pi
+tags:
+- raspberry pi
+- overclock
+- raspbian
+- turbo mode
+comments:
+- id: 31048
+  author: cricolo
+  author_email: crissimon@alice.it
+  author_url: ''
+  date: '2012-11-29 20:44:29 +0100'
+  date_gmt: '2012-11-29 19:44:29 +0100'
+  content: ciao che alimentatore consigli??..io ho visto quello della belkin su amazon
+    http://www.amazon.it/Belkin-Alimentatore-Universale-miniUSB-inclusi/dp/B003DN3APS/ref=sr_1_11?ie=UTF8&qid=1354217956&sr=8-11
+    .. sai dirmi se va bene?
+- id: 31086
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2012-11-30 00:07:49 +0100'
+  date_gmt: '2012-11-29 23:07:49 +0100'
+  content: |-
+    Ciao!
+
+    Allora guarda sul sito non ho trovato specifiche, dall'immagine ingrandita sembra essere da 1 A in out, il che mi sembra un po' pochino (non che non funzioni, ma per l'overclock servirebbe a mio parere qsa di meglio, almeno 1.5 A o anche 2)..
+---
+<p>Torno a scrivere dopo qualche tempo (causa impegni di lavoro), e torno a parlare del <strong>Raspberry Pi</strong>, il mini pc ARM che ha aperto la strada a tutta una (lunga) serie di dispositivi simili.</p>
+<p><a href="/assets/images/raspberry-pi.jpg"><img class="aligncenter size-medium wp-image-2954" title="raspberry-pi" src="/assets/images/raspberry-pi-300x191.jpg" alt="" width="300" height="191" /></a></p>
+<p>L'overclock (del quale avevo gi&agrave; parlato <a href="http://localhost:4000/guide/overclock-del-raspberry-pi.html" target="_blank">qui</a>) eccessivo &egrave; ovviamente sconsigliato, ma sembra che alcuni sviluppatori siano riusciti a realizzare un "<strong>turbo mode</strong>" che consente di spingere il processore (di default a <strong>700 Mhz</strong>) del nostro mostriciattolo fino alla soglia di <strong>1 GHz</strong>, con un significativo aumento di prestazioni.</p>
+<p>L'ottima notizia &egrave; che tale modifica &egrave; stata approvata in <strong>via ufficiale</strong> (<a href="http://www.raspberrypi.org/archives/2008" target="_blank">questo</a> il comunicato a riguardo) ed &egrave; stata introdotta in <strong>Raspbian</strong>, la distro nata apposta per il Raspberry Pi, che consentir&agrave; quindi di settare tale velocit&agrave; semplicemente attraverso l'utility <strong>raspi-config</strong>, quindi non c'&egrave; nemmeno da smanettare pi&ugrave; di tanto.. E ovviamente non si andr&agrave; ad invalidare la garanzia.. ;)</p>
+<p>Da dire che ovviamente un aumento simile di prestazioni (stiamo parlando di <strong>pi&ugrave; del 50%</strong>) si ottiene non solo variando la velocit&agrave; del clock, ma anche attraverso un <strong>overvolt</strong>, ovvero un sovravoltaggio della CPU, quindi &egrave; consigliabile installare delle utility di monitoraggio della situazione, in modo da accorgersi di eventuali problemi. Gli sviluppatori garantiscono un overclock <strong>dinamico</strong> (quindi il massimo della velocit&agrave; &egrave; raggiunto solo con la CPU sotto stress), ed &egrave; inoltre previsto un "<strong>salvagente</strong>" che disabilita ogni overclock automaticamente se si raggiunge la temperatura critica di <strong>85&deg;</strong>, in modo da non rischiare di fondere il tutto.</p>
+<p>Inoltre, &egrave; bene anche usare un alimentatore adeguato, che sia cio&egrave; capace di erogare in maniera "pulita" la tensione che serve al Raspberry Pi per lavorare in turbo mode.</p>
+<p>Alla prossima..</p>

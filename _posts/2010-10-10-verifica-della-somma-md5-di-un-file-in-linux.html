@@ -1,0 +1,38 @@
+---
+layout: post
+status: publish
+published: true
+title: Verifica della somma MD5 di un file in Linux
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1665
+wordpress_url: http://www.red-blue.it/?p=1665
+date: '2010-10-10 13:47:19 +0100'
+date_gmt: '2010-10-10 11:47:19 +0100'
+categories:
+- tips & tricks
+- linux
+tags:
+- linux
+- ubuntu
+- tips
+- '10.10'
+- maverick meekat
+- checksum
+- md5sum
+comments: []
+---
+<p>Gente, &egrave; stata rilasciata <strong>Maverick Meerkat</strong>, ovvero la nuova <strong><a href="http://www.ubuntu.com" target="_blank">Ubuntu 10.10</a></strong>!!</p>
+<p>Forse complice il rilascio un p&ograve; <strong>anticipato</strong> rispetto alle normali tempistiche di Ubuntu (che in Italia "arriva" di sera), ho trovato i server sgombri &egrave; ho gi&agrave; scaricato l'immagine della versione desktop a <strong>64 bit</strong>..</p>
+<p>Normalmente preferisco il download via <strong>torrent</strong> (al momento non ancora disponibile, almeno apparentemente), dato che nelle prime ore dal rilascio ci possono essere errori che portano l'immagine a non funzionare bene, o non funzionare affatto, ma non ho saputo resistere alla tentazione. Per verificare per&ograve; la correttezza dei dati scaricati esiste un metodo semplicissimo: <strong>verificare la somma MD5 del file scaricato</strong>.</p>
+<p>Se provate, dopo aver scaricato l'immagine, a dare il comando:</p>
+<blockquote><p><code>md5sum nomefile</code></p></blockquote>
+<p>Riceverete in risposta la somma MD5 relativa a quel file. Se ora andate su un qualsiasi <strong>mirror</strong> di Ubuntu, ad esempio su <a href="http://na.mirror.garr.it/mirrors/ubuntu-releases//10.10/" target="_blank">questo</a>, troverete il file <code>MD5SUMS</code>; scaricatelo (sar&agrave; in formato <code>.htm</code>) <strong>nella stessa directory dove avete salvato l'immagine</strong> e poi date il comando:</p>
+<blockquote><p><code>md5sum -c MD5SUMS.htm</code></p></blockquote>
+<p>Riceverete in output l'elenco di tutte le immagini memorizzate nel file, e in corrispondenza di quella che vi interessa dovreste avere:</p>
+<blockquote><p><code>ubuntu-10.10-desktop-amd64.iso: OK</code></p></blockquote>
+<p>Questo indica che l'immagine &egrave; stata scaricata correttamente. Facile no?? ;)</p>
+<p>Alla prossima..</p>

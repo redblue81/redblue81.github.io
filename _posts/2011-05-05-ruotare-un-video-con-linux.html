@@ -1,0 +1,62 @@
+---
+layout: post
+status: publish
+published: true
+title: Ruotare un video con Linux
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2107
+wordpress_url: http://www.red-blue.it/?p=2107
+date: '2011-05-05 15:49:53 +0100'
+date_gmt: '2011-05-05 13:49:53 +0100'
+categories:
+- guide
+- linux
+- ubuntu
+- software
+tags:
+- linux
+- ubuntu
+- video
+- avi
+- '10.10'
+- mencoder
+- rotazione
+- mp4
+comments:
+- id: 7261
+  author: Red/
+  author_email: slowlife@mailtemp.net
+  author_url: ''
+  date: '2011-05-06 11:20:41 +0100'
+  date_gmt: '2011-05-06 09:20:41 +0100'
+  content: "Non sapevo che si potessero ruotare i filmati... Utile dritta!\r\n\r\nAggiornaci
+    se verr&agrave; fatta una gui per tale programma.\r\n\r\nSai se &egrave; possibile
+    fare qualcosa del genere dal programma Pitivi o simili (magari richiedono l' installazione
+    di plugin...)?"
+- id: 7270
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-05-08 23:20:40 +0100'
+  date_gmt: '2011-05-08 21:20:40 +0100'
+  content: Sinceramente quando ci sono riuscito al primo colpo e con ottimi risultati
+    con mencoder non sono andato oltre, per&ograve; &egrave; interessante come quesito,
+    magari faccio qualche prova e pubblico i risultati.. ;)
+---
+<p>Recentemente mi &egrave; stata regalata una <strong>videocamera digitale</strong> (grazie amore!! ;) ).. Un vero gioiellino, assolutamente pratica e funzionale.. Nulla di professionale, ma per le mie esigenze &egrave; praticamente perfetta!!</p>
+<p>Alla prima occasione in cui &egrave; stata utilizzata, per&ograve;, la mia sorellina ha commesso un piccolo <strong>errore</strong>: ha ripreso la situazione con la videocamera in <strong>orizzontale</strong>.. Il che significa che anche il video &egrave; venuto fuori irrimediabilmente <strong>ruotato</strong>..</p>
+<p>Si &egrave; resa quindi necessaria un'elaborazione del video, e in questo Linux si &egrave; rivelato eccezionale.. Il programma in questione si chiama <strong>mencoder</strong> e funziona da riga di comando. Se non &egrave; gi&agrave; presente nella vostra Ubuntu, installatelo per prima cosa:</p>
+<blockquote><p><code>sudo apt-get install mencoder</code></p></blockquote>
+<p>Poi &egrave; sufficiente dare il seguente comando:</p>
+<blockquote><p><code>mencoder -oac copy -ovc lavc -lavcopts vcodec=mjpeg -vf rotate=2 input.avi -o output.avi</code></p></blockquote>
+<p>L'opzione di interesse &egrave; ovviamente rotate, ed accetta i seguenti parametri:</p>
+<blockquote><p>0 = rotazione oraria di 90&deg; con ribaltamento<br />
+1 = rotazione oraria di 90&deg;<br />
+2 = rotazione antioraria di 90&deg;<br />
+3 = rotazione antioraria di 90&deg; con ribaltamento</p></blockquote>
+<p>Ovviamente al posto di input.avi e output.avi usate il nome del vostro filmato. Inoltre il mio video originale non era in formati <strong>AVI</strong>, ma <strong>MP4</strong>, per questo motivo nel precedente comando al posto dell'opzione <strong><code>-oac copy</code></strong> ho dovuto usare <strong><code>-oac pcm</code></strong>, che mi ha restituito un AVI in output..</p>
+<p>Alla prossima..</p>

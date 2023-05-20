@@ -1,0 +1,73 @@
+---
+layout: post
+status: publish
+published: true
+title: Adobe AIR su Karmic 64 bit
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 953
+wordpress_url: http://redblue.netsons.org/?p=953
+date: '2010-02-05 15:26:58 +0100'
+date_gmt: '2010-02-05 14:26:58 +0100'
+categories:
+- guide
+- linux
+- ubuntu
+- internet
+- software
+tags:
+- linux
+- ubuntu
+- desktop
+- web
+- flash
+- karmic
+- x64
+- adobe air
+- air
+- flex
+- html
+- ajax
+- x86
+comments: []
+---
+<p><a href="/assets/images/air_20080225162906.jpg"><img src="/assets/images/air_20080225162906.jpg" alt="" width="130" height="130" align="left" /></a>Per chi non lo sapesse (ancora) <strong>Adobe AIR</strong> &egrave; un &ldquo;cross-platform runtime  environment&rdquo;.. Ovvero un software (disponibile per Windows,  Linux e Mac) che serve a far girare applicazioni sviluppate in <strong>Flash</strong>, <strong>Flex</strong>, <strong>HTML</strong> e <strong> AJAX</strong>, linguaggi solitamente usati per creare applicazioni web, sul nostro desktop.</p>
+<p>Purtroppo una versione a <strong>64 bit</strong> ancora non &egrave; stata sviluppata, ma &egrave; possibile installare la versione a <strong>32 bit</strong>, con le opportune librerie affinch&egrave; funzioni correttamente, come spiegato <a href="http://kb2.adobe.com/cps/408/kb408084.html#Installing_AIR_1.5_on_64-bit_Ubuntu_7.10__8.04_and_9.04" target="_blank">qui</a>. Vediamo come fare:</p>
+<p><!--moreContinua a leggere questo articolo.. --></p>
+<li>scaricate AIR da <a href="http://get.adobe.com/it/air/" target="_blank">qui</a>;</li>
+<li>scaricate l'utility <a href="http://frozenfox.freehostia.com/cappy/getlibs-all.deb" target="_blank">getlibs</a> per avere le corrette librerie a a 32 bit, poi date i comandi:</li>
+<blockquote><p><code>sudo getlibs ./AdobeAIRInstaller.bin<br />
+sudo getlibs -l libgnome-keyring.so<br />
+sudo getlibs -l libgnome-keyring.so.0<br />
+sudo getlibs -l libgnome-keyring.so.0.1.1</code></p></blockquote>
+<li>ora avete bisogno di <a href="http://mirrors.kernel.org/ubuntu/pool/main/n/nss/libnss3-1d_3.12.0%7Ebeta3-0ubuntu1_i386.deb" target="_blank">libnss3</a> e <a href="http://mirrors.kernel.org/ubuntu/pool/main/n/nspr/libnspr4-0d_4.7.1%7Ebeta2-0ubuntu1_i386.deb" target="_blank">libnspr4</a>;</li>
+<li>bisogna a questo punto estrarre <strong>solo</strong> i file che ci servono:</li>
+<blockquote><p><code>sudo file-roller ./libnss3*.deb</code></p></blockquote>
+<li>Nella finestra che si apre doppio clic sul file <code>data.tar.gz</code> e selezionate poi la directory <code>/usr/lib</code>, nella quale selezionate i files:</li>
+<blockquote><p><code>libnss3.so.1d<br />
+libnssutil3.so.1d<br />
+libsmime3.so.1d<br />
+libssl3.so.1d</code></p></blockquote>
+<li>Estraete questi files nella directory <code>/usr/lib32/;</code></li>
+<li>ripetete lo stesso procedimento per <code>libnspr4</code>, scegliendo i files:</li>
+<blockquote><p><code>libnspr4.so.0d<br />
+libplc4.so.0d<br />
+libplds4.so.0d</code></p></blockquote>
+<li>che vanno sempre estratti in <code>/usr/lib32/;</code></li>
+<li>a questo punto avete quasi finito, basta creare i seguenti link simbolici (se in <code>/usr/lib32/</code> sono presenti i file con lo stesso nome <span style="text-decoration: underline;">eliminateli</span> prima di creare i link):<br />
+<blockquote><p><code>sudo ln -s /usr/lib32/libnss3.so.1d /usr/lib32/libnss3.so<br />
+sudo ln -s /usr/lib32/libssl3.so.1d /usr/lib32/libssl3.so<br />
+sudo ln -s /usr/lib32/libnspr4.so.0d /usr/lib32/libnspr4.so</code></p></blockquote>
+</li>
+<li>Fatto!! Ora potete tranquillamente installare AIR:</li>
+<blockquote><p><code>./AdobeAIRIntaller.bin</code></p></blockquote>
+<li>e <span style="text-decoration: underline;">prima</span> di avviare AIR, l'ultima cosa:</li>
+<blockquote><p><code>sudo cp /usr/lib/libadobecertstore.so /usr/lib32</code></p></blockquote>
+<p>Finito finalmente.. ;)</p>
+<p><strong>NB</strong>. Se non &egrave; gi&agrave; installato, installate anche il seguente pacchetto:</p>
+<blockquote><p><code>sudo apt-get install lib32nss-mdns</code></p></blockquote>
+<p>Ora &egrave; veramente tutto..</p>
+<p>Alla prossima..</p>

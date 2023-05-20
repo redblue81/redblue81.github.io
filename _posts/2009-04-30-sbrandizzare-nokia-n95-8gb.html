@@ -1,0 +1,108 @@
+---
+layout: post
+status: publish
+published: true
+title: Sbrandizzare il Nokia N95/N95 8GB
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 456
+wordpress_url: http://redblue.netsons.org/?p=456
+date: '2009-04-30 10:44:00 +0100'
+date_gmt: '2009-04-30 09:44:00 +0100'
+categories:
+- guide
+- hi-tech
+- telefonia
+tags:
+- guida
+- nokia
+- nokia n95 8b
+- sdrandizzare
+- debrand
+- nsu
+- nss
+- firmware
+- howto
+- no brand
+- nokia n95
+comments:
+- id: 6542
+  author: evi
+  author_email: evalt@live.it
+  author_url: ''
+  date: '2010-10-21 23:51:41 +0100'
+  date_gmt: '2010-10-21 21:51:41 +0100'
+  content: "ciao, ho seguito la guida, hi il nokia n95 8gb della TIM.\r\ncredo di
+    aver seguito la guida corretamente pero...\r\nsu ovi suit ce scrito: Software
+    del dispositivo versione V 30.0.018 installato. nessun aggiornamento disponibile,
+    \ \r\nho controllato in giro  e trovato l'aggiornamento  v35.XXX... ultimo per
+    la versione no brand.\r\nda cosa pu&ograve; dipendere?"
+- id: 6544
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2010-10-22 08:37:28 +0100'
+  date_gmt: '2010-10-22 06:37:28 +0100'
+  content: Mmm.. La guida si riferiva a Nokia PC Suite e Nokia Software Update.. Mi
+    sembra difficile ma potrebbe essere che con l'introduzione di OVI Suite le cose
+    siano cambiate..
+---
+<p>Ieri il mio <strong>Nokia N95 8GB</strong> si &egrave; impallato.. Non dovrebbe succedere lo so, ma se ti ostini a smanettarci sopra come se fosse una distribuzione Linux prima o poi anche il Symbian pi&ugrave; robusto cede! ;)</p>
+<p>Era ora di resettarlo, e magari anche di cercare un bell'aggiornamento del software: in breve&nbsp; ho scoperto che mentre per il mio brand TIM si era ancora al firmware <strong>30.0.018</strong>, per i nobrand &egrave; stato rilasciato il firmware <strong>31.0.015</strong>, allora, visto e considerato che il mio gioiellino <span style="text-decoration: underline;">non &egrave; pi&ugrave; in garanzia</span>, ho deciso di optare per il nobrand. Come fare? Semplice, basta cambiare il <strong>product code</strong>.</p>
+<p>Prima di procedere per&ograve; qualche doverosa precisazione:</p>
+<ul>
+<li>se lo fate <span style="text-decoration: underline;">perdete la garanzia</span>;</li>
+<li>non mi assumo responsabilit&agrave; riguardo eventuali danni che possiate procurare al cellulare (<span style="text-decoration: underline;">ognuno &egrave; responsabile delle proprie azioni</span>);</li>
+<li>la procedura non &egrave; per niente difficile, non bisogna essere professionisti, ma solo un p&ograve; attenti;</li>
+<li>la procedura &egrave; <span style="text-decoration: underline;">reversibile</span> (vi spiegher&ograve; pi&ugrave; in l&agrave; come fare), ma <span style="text-decoration: underline;">non si pu&ograve; effettuare il downgrade del firmware</span> (ad esempio non si pu&ograve; passare da un firmware v30 nobrand ad un v20 brandizzato).</li>
+<li><span style="text-decoration: underline;">questa guida &egrave; un p&ograve; lunga, ma conviene leggerla fino in fondo!!</span></li>
+</ul>
+<p>Cominciamo a procurarci il materiale:</p>
+<ol>
+<li><strong>Nokia PC Suite</strong>, il software di gestione di Nokia: <a href="http://www.nokia.it/A4191026" target="_blank">http://www.nokia.it/A4191026</a></li>
+<li><strong>NSU</strong> (Nokia Software Updater), il software di aggiornamento di Nokia: <a href="http://www.nokia.it/A4321020" target="_blank">http://www.nokia.it/A4321020</a></li>
+<li><strong>NSS</strong> (Nemesis Service Suite), il software che cambia il product code: <a href="http://www.b-phreaks.co.uk/index.php?main_page=page_2" target="_blank">http://www.b-phreaks.co.uk/index.php?main_page=page_2</a></li>
+<li><strong>gsm-magic</strong>, per abilitare la modifica del product code: <a href="http://rapidshare.com/files/13478456/Copie_de_gsm-magic.zip.html" target="_blank">http://rapidshare.com/files/13478456/Copie_de_gsm-magic.zip.html</a></li>
+</ol>
+<p>Dopo aver installato i primi 3 (l'ultimo non ha bisogno di installazione), procediamo:</p>
+<ul>
+<li>lanciare PC Suite;</li>
+<li>collegare il cellulare al PC in <span style="text-decoration: underline;">modalit&agrave; PC Suite</span> e verificare che venga riconosciuto correttamente;</li>
+<li>chiudere PC Suite;</li>
+<li>disabilitare antivirus e firewall;</li>
+<li>lanciare NSS;</li>
+<li>in alto a destra cliccare su <strong>"Scan for new devices"</strong>;</li>
+<li>cliccare su <strong>"Phone info"</strong> e poi su <strong>"Scan"</strong>;</li>
+<li>senza chiudere NSS, lanciare gsm-magic e cliccare su <strong>"enable"</strong>;</li>
+<li>a questo punto nella finestra sulla destra, dove c'&egrave; scritto <strong>"Product code"</strong>, inserire:
+<ul>
+<li><strong>0549487</strong> per la versione 8GB;</li>
+<li><strong>0534841</strong> per la versione standard;</li>
+</ul>
+</li>
+<li>mettere la spunta su <strong>"enable"</strong> e cliccare poi su <strong>"write"</strong>;</li>
+<li>chiudere NSS e gsm-magic e installare NSU (o reinstallare, se era gi&agrave; installato, questo <span style="text-decoration: underline;">&egrave; necessario altrimenti non funzioner&agrave;!</span>);</li>
+<li>eseguire il normale aggiornamento del software.</li>
+</ul>
+<p>A questo punto avrete un cellulare <strong>nobrand</strong>!! :D</p>
+<p>Prima di concludere alcune dritte che potrebbero risultare utili:</p>
+<ul>
+<li>Se avete la versione con Spiderman 3 installato, dopo il cambio del product code perderete la chiave per vederlo!!</li>
+<li>Se volete tornare al firmware brandizzato la procedura &egrave; la stessa, con la differenza che il product code che andrete ad inserire sar&agrave; quello riportato sul retro del cellulare, sotto la batteria, sull'etichetta che &egrave; presente all'interno e che riporta, ad esempio, anche l'IMEI del terminale.</li>
+<li>Attenzione!! Se avete fatto un backup del cellulare prima dell'aggiornamento (con la versione brandizzata quindi), <span style="text-decoration: underline;">non ripristinatelo</span>, altrimenti il cellulare si bloccher&agrave; e avrete la scritta "Contattare assistenza". Nel caso si commetta questo errore, serve un <strong>hard reset</strong>, procedete cos&igrave;:
+<ul>
+<li>
+<ul>
+<li>spegnete il cellulare;</li>
+<li>tenete premuti i tasti 3, asterisco e chiamata (quello verde);</li>
+<li>accendete il cellulare mantenendo premuti i 3 tasti;</li>
+<li>continuate a mantenere i 3 tasti per un p&ograve;. Se &egrave; andato tutto bene il cellulare ripartir&agrave; e vi chieder&agrave; di inserire il paese..</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Ho letto da qualche parte che le ultime versioni di NSS hanno gsm-magic integrato, quindi quest'ultimo <span style="text-decoration: underline;">non dovrebbe pi&ugrave; servire</span>. Non ho avuto modo di testarlo, quindi ho deciso di includerlo comunque nella guida.</li>
+</ul>

@@ -1,0 +1,45 @@
+---
+layout: post
+status: publish
+published: true
+title: Installare Python 3.8 su RaspberryPi
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 4043
+wordpress_url: https://www.red-blue.it/?p=4043
+date: '2021-03-28 16:54:15 +0100'
+date_gmt: '2021-03-28 14:54:15 +0100'
+categories:
+- tips & tricks
+- linux
+- raspberry pi
+tags: []
+comments: []
+---
+<p><!-- wp:paragraph --></p>
+<p>Per installare <strong>HomeAssistant</strong> sul mio <strong>RaspberryPi 4</strong>, &egrave; necessario prima installare <strong>Python 3.8</strong>. Ecco quindi i pochi passaggi necessari ad installare Python 3.8 su RaspberryPi.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code --></p>
+<pre class="wp-block-syntaxhighlighter-code">sudo apt-get install build-essential tk-dev libncurses5-dev libncursesw5-dev libreadline6-dev libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev libopenjp2-7 libtiff5 libffi-dev libjpeg-dev bluetooth libbluetooth-dev -y
+
+sudo pip3 install pybluez
+
+wget https://www.python.org/ftp/python/3.8.6/Python-3.8.8.tgz
+
+tar xzvf Python-3.8.8.tgz
+
+cd Python-3.8.8/
+
+./configure --enable-optimizations
+
+make -j 8
+
+sudo make install</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:tadv/classic-paragraph --></p>
+<p>Al termine (ci vorr&agrave; un po' di tempo), avrete installato Python 3.8 sul RaspberryPi.</p>
+<p>Alla prossima..</p>
+<p><!-- /wp:tadv/classic-paragraph --></p>

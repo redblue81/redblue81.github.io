@@ -1,0 +1,154 @@
+---
+layout: post
+status: publish
+published: true
+title: Domotica - Configurare Home Assistant
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 4102
+wordpress_url: https://www.red-blue.it/?p=4102
+date: '2021-06-23 13:18:00 +0100'
+date_gmt: '2021-06-23 11:18:00 +0100'
+categories:
+- guide
+- linux
+- in evidenza
+- domotica
+tags:
+- guida
+- add-on
+- configurazione
+- home assistant
+- supervisor
+comments: []
+---
+<p><!-- wp:paragraph --></p>
+<p>Nuovo articolo dedicato alla <a href="http://localhost:4000/domotica" data-type="page" data-id="4071" target="_blank" rel="noreferrer noopener">domotica</a>, oggi vediamo come <strong>configurare</strong> Home Assistant.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>In realt&agrave;, a questo punto dovremmo gi&agrave; disporre di un sistema che si &egrave; autoconfigurato, dopo <a href="http://localhost:4000/domotica/domotica-installare-home-assistant.html" data-type="post" data-id="4056">l'installazione</a> infatti abbiamo creato un utente (figura sotto) e indicato la nostra posizione sulla mappa, quindi Home Assistant ci avr&agrave; chiesto se vogliamo configurare delle <strong>integrazioni</strong> (in base ai dispositivi che pu&ograve; aver rilevato in casa).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4106,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/hassio_1.png" alt="" class="wp-image-4106"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:more --><br />
+<!--more--><br />
+<!-- /wp:more --></p>
+<p><!-- wp:paragraph --></p>
+<p>Consiglio sia di indicare la posizione di casa sulla mappa (ci torner&agrave; utile per automazioni future, ad esempio "fai qualcosa se siamo tutti fuori casa"), sia di lasciargli configurare eventuali dispositivi (se ci sono, tanto vale iniziare a riconoscerli).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4107,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/hassio_2.png" alt="" class="wp-image-4107"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>La schermata successiva serve a installare Integrazioni, provate a cercare i dispositivi smart che avete in casa, &egrave; abbastanza probabile che l'integrazione relativa esista gi&agrave;. Ad, esempio, provate a cercare ed installare <strong>Meteorologisk institutt (Met.no)</strong>, una semplice integrazione con un servizio meteo gratuito.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4108,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/hassio_3.png" alt="" class="wp-image-4108"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Benissimo, saremo catapultati sulla <strong>plancia</strong> generale, che conterr&agrave; un certo numero di schede (dipende da quello che ha trovato la configurazione iniziale). A questo punto dobbiamo <strong>prendere il controllo</strong>, clicchiamo in alto a destra sui tre puntini e selezioniamo Modifica plancia:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4109,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/hassio_4.png" alt="" class="wp-image-4109"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto ci viene ricordato che la plancia pu&ograve; essere gestita in automatico, ma il nostro scopo &egrave; configurare Home Assistant, quindi prendiamo il controllo.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4110,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/hassio_5.png" alt="" class="wp-image-4110"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>La plancia a questo punto sar&agrave; diversa nell'aspetto rispetto a prima, ma prima di passarla in esame, clicchiamo in basso a sinistra sul nostro nome utente e a destra selezioniamo <strong>Impostazioni avanzate</strong>, cos&igrave; da prendere completamente il controllo.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4111,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/hassio_7.png" alt="" class="wp-image-4111"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto, torniamo sulla plancia, e vedremo che adesso abbiamo un tasto <strong>Aggiungi scheda</strong>, proviamo a cliccare:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"id":4112,"sizeSlug":"large","linkDestination":"none"} --></p>
+<figure class="wp-block-image size-large"><img src="/assets/images/hassio_6-1024x963.png" alt="" class="wp-image-4112"/></figure>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Avremo un elenco di possibili schede da aggiungere, ad esempio ricordate l'integrazione con Meteorologisk institutt? Tra le schede possibili c'&egrave; anche quella relativa a questo servizio, quindi basta cercarla e attivarla:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4113,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/hassio_8-1024x434.png" alt="" class="wp-image-4113"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Fondamentale prendere confidenza con <strong>Supervisor</strong>, lo trovate nella colonna a sinistra. Da questa dashboard potete installare, configurare ed avviare <strong>add-on</strong> per Home Assistant, ne installeremo diverse, ma cominciamo con un paio di base, che conviene sempre tenere attive: <strong>File Editor</strong> e <strong>SSH Terminal</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4114,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/hassio_9-1024x520.png" alt="" class="wp-image-4114"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Il primo lo trovate tra gli add-on ufficiali, in alto, per quanto riguarda il secondo, personalmente preferisco qul'installazioneello della <strong>community</strong>. Per installare un add-on, basta semplicemente selezionarlo e, nella schermata successiva, cliccare su <strong>Installa</strong>. A questo punto avremo questa situazione:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4115,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/hassio_10-1024x560.png" alt="" class="wp-image-4115"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Prima di cliccare su Avvia, possiamo decidere di far avviare il plugin assieme ad Home Assistant, di farlo ripartire automaticamente in caso di errori, di aggiornarsi automaticamente, e possiamo visualizzarlo nella colonna di sinistra.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Inoltre, cosa importantissima, in alto vedremo apparire delle voci tramite le quali accedere alla documentazione, alla configurazione, e al registro (il log). Nel caso di File Editor, possiamo avviare il plugin.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Nel caso di SSH Terminal invece, dovremo andare in <strong>Configurazione</strong> ed inserire una password sufficientemente complessa (altrimenti il plugin, pur avviandosi correttamente, andr&agrave; in errore):</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4116,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/Hassio_11-1024x526.png" alt="" class="wp-image-4116"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>In linea generale, trovate eventuali configurazioni da fare nella scheda <strong>Documentazione</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Prima di concludere, vale la pena dare uno sguardo alla scheda Sistema raggiungibile dalla dashboard di Supervisor:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"id":4117,"sizeSlug":"large","linkDestination":"none"} --></p>
+<figure class="wp-block-image size-large"><img src="/assets/images/hassio_12-1024x598.png" alt="" class="wp-image-4117"/></figure>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Da questa scheda possiamo gestire eventuali aggiornamenti dei componenti del sistema, riavviare Supervisor o direttamente il Raspberry Pi, e abbiamo accesso al log di sistema (la parte in basso), utilissimo in caso di errori strani e/o poco comprensibili.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>L'ultima cosa, che per&ograve; approfondiremo in seguito, da sapere per configurare Home Assistant riguarda la parte relativa ad <strong>Automazioni</strong> e <strong>Scene</strong>, che raggiungiamo da Impostazioni.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>In queste sezioni possiamo decidere di far interagire tra loro dispositivi e/o entit&agrave;, e assegnare comportamenti (azioni) da eseguire in seguito a determinati trigger (eventi).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4118,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/hassio_13.png" alt="" class="wp-image-4118"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto, non c'&egrave; molto altro, direi che dalla prossima volta possiamo iniziare a configurare dispositivi.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>

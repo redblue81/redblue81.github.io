@@ -1,0 +1,114 @@
+---
+layout: post
+status: publish
+published: true
+title: Domotica - Automazioni e scene su Home Assistant
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 4140
+wordpress_url: https://www.red-blue.it/?p=4140
+date: '2021-08-01 13:54:00 +0100'
+date_gmt: '2021-08-01 11:54:00 +0100'
+categories:
+- guide
+- in evidenza
+- raspberry pi
+- domotica
+tags:
+- raspberry pi
+- domotica
+- home assistant
+- automazioni
+- scene
+comments: []
+---
+<p><!-- wp:paragraph --></p>
+<p>Poter accendere e spegnere una lampadina dall'app di Home Assistant &egrave; bello, ma usare <strong>automazioni e scene</strong> rende il tutto veramente fantastico!</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><a href="http://localhost:4000/domotica" data-type="page" data-id="4071" target="_blank" rel="noreferrer noopener">In questa pagina</a> c'&egrave; il riepilogo di tutto ci&ograve; che abbiamo fatto finora, oggi invece ci concentriamo su come iniziare ad automatizzare davvero il funzionamento dei nostri dispositivi.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Immaginiamo di voler gestire l'illuminazione di una stanza, con automazioni e scene diventa semplicissimo.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:more --><br />
+<!--more--><br />
+<!-- /wp:more --></p>
+<p><!-- wp:paragraph --></p>
+<p>Supponiamo di avere, in un salone ad esempio, due lampadari separati, uno con un'unica lampadina, l'altro con tre lampadine, tutte smart ovviamente.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Per prima cosa, <strong>le raggruppiamo tutte insieme</strong>, chiamandole genericamente "Salone" (in modo da poterle spegnere ed accendere tutte insieme), poi <strong>raggruppiamo anche le tre</strong> del secondo lampadario, chiamandole ad esempio "LuciTV", come fare? Basta editare il file <strong>configuration.yaml</strong> (<a rel="noreferrer noopener" href="http://localhost:4000/domotica/domotica-configurare-home-assistant.html" data-type="URL" data-id="https://www.red-blue.it/domotica/domotica-configurare-home-assistant.html" target="_blank">avete installato l'add on File Editor vero?</a>) ed inserire il seguente codice:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"yaml"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">light:
+  - platform: group
+    name: LuciTV
+    entities:
+      - light.tv_1
+      - light.tv_2
+      - light.tv_3
+  - platform: group
+    name: Salone
+    entities:
+      - light.tv_1
+      - light.tv_2
+      - light.tv_3
+      - light.tavolo_salone</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ovviamente, diamo per scontato che tutte le lampadine siano state aggiunte a <a rel="noreferrer noopener" href="http://localhost:4000/domotica/domotica-deconz.html" data-type="post" data-id="4135" target="_blank">Deconz</a>. A questo punto, dopo un riavvio di Home Assistant, possiamo procedere con <strong>automazioni e scene</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>In primo luogo, baster&agrave; aggiungere alla <strong>plancia principale</strong> una nuova scheda <strong>Pulsante </strong>relativa all'entit&agrave; Salone che abbiamo appena creato, ed ecco che saremo in grado di accendere e spegnere tutte le lampadine in un colpo solo.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ma potremo anche decidere di creare un pulsante per il gruppo LuciTV, e vari pulsanti per le singole lampadine, in modo da gestirle una alla volta.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Potremmo decidere arbitrariamente di accendere tutte le luci al tramonto (magari in salone non &egrave; il massimo, ma immaginate una lampadina sul terrazzo ad esempio), o spegnere tutto ad una certa ora (stile caserma).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Andiamo in <strong>Impostazioni -> Automazioni</strong>, poi <strong>Crea automazione</strong> e scegliamo di creare un'automazione <strong>vuota</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Le diamo un nome, come attivazione mettiamo ad esempio <strong>Sole -> Tramonto</strong>, sotto, nelle <strong>Azioni </strong>scegliamo tra i Dispositivi una lampadina, e clicchiamo su Accendi, salviamo e il gioco &egrave; fatto! Tutto estremamente semplice ed intuitivo!</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>E se volessimo impostare uno stato particolare per il nostro salone? Ad esempio, vogliamo vedere un film, quindi spegniamo la lampadina del tavolo, e settiamo un colore per il gruppo LuciTV, magari con luminosit&agrave; al 30%.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Settiamo le nostre lampadine come descritto, poi andiamo in <strong>Impostazioni -> Scene</strong>, poi <strong>Nuova scena</strong>, diamole un nome e semplicemente scegliamo tutti i dispositivi che vogliamo includere, uno alla volta, poi salviamo. Salveremo cos&igrave; anche lo stato in cui si trovano.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Successivamente, baster&agrave; attivare la scena appena creata e tutti i dispositivi assumeranno lo stato desiderato.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>E se avessimo un sensore di movimento in casa?</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Potremmo impostare un'automazione che ad esempio accende le luci se rileva un movimento, o ancora sfruttare una webcam (alle quali dedicher&ograve; un articolo a parte) per inviare sul nostro smartphone una foto in caso venga rilevato un movimento mentre non siamo in casa.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<!--
+<p>Per chi potesse essere interessato, io su Amazon ho trovato questo kit di lampadine smart ZigBee, spesso vengono proposte in offerta, ma in generale moltissime lampadine WiFi/ZigBee sono compatibili con Home Assistant. Vi lascio anche il link di un paio di sensori di movimento dal prezzo davvero irrisorio.</p>
+-->
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:html --><br />
+<!--
+  <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-eu.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=redblue03-21&language=it_IT&o=29&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B07VHRP4PS&linkId=808cba61e068b05e2d328ce41ee426cd"></iframe><br />
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-eu.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=redblue03-21&language=it_IT&o=29&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B07VD9LR3T&linkId=bf1f1ec7ea116570e48ed2eafc3380fd"></iframe><br />
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-eu.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=redblue03-21&language=it_IT&o=29&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B0817QP9NJ&linkId=1d26aed7dc1e01313fe13eef3e22c67c"></iframe><br />
+-->
+<!-- /wp:html --></p>
+<p><!-- wp:paragraph --></p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>E se volessimo controllare tutto con <strong>Alexa</strong>?</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>

@@ -1,0 +1,73 @@
+---
+layout: post
+status: publish
+published: true
+title: Installare Gnome 3 su Natty tramite repository PPA
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2119
+wordpress_url: http://www.red-blue.it/?p=2119
+date: '2011-05-07 10:53:56 +0100'
+date_gmt: '2011-05-07 08:53:56 +0100'
+categories:
+- guide
+- linux
+- ubuntu
+- in evidenza
+tags:
+- guida
+- linux
+- ubuntu
+- howto
+- gnome 3
+- '11.04'
+comments:
+- id: 7264
+  author: pinco78
+  author_email: ''
+  author_url: ''
+  date: '2011-05-07 22:34:28 +0100'
+  date_gmt: '2011-05-07 20:34:28 +0100'
+  content: ma se installo gnome 3 come dici tu poi unity funziona ancora?
+- id: 7265
+  author: Pinco78
+  author_email: ihg654-tesla@yahoo.it
+  author_url: ''
+  date: '2011-05-08 02:51:46 +0100'
+  date_gmt: '2011-05-08 00:51:46 +0100'
+  content: Ho seguito le tue indicazioni, ma non mi ha installato l'ultimo pacchetto
+    gnome-shell. Cos&igrave; ho riavviato ma il sistema non &egrave; ripartito. Ho
+    dovuto reinstallare Ubuntu.
+- id: 7268
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-05-08 22:38:35 +0100'
+  date_gmt: '2011-05-08 20:38:35 +0100'
+  content: Ovviamente no.. Unity e Gnome 3 non sono compatibili..
+- id: 7269
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-05-08 22:43:25 +0100'
+  date_gmt: '2011-05-08 20:43:25 +0100'
+  content: |-
+    Mi spiace che sia andata cos&igrave;, ma come ti ho scritto nel precedente commento, Gnome 3 e Unity sono incompatibili, per cui ci&ograve; che &egrave; successo &egrave; che hai riavviato il sistema senza un'interfaccia grafica..
+
+    Riprova, tranquillo che il repository funziona.. ;)
+---
+<p>Dopo un bel po' di giorni di prove varie, direi che &egrave; il momento di spiegare come <strong>installare</strong> Gnome 3 sull'ultima release di Ubuntu, la 11.04 Natty Narwhal..</p>
+<p>Semplicemente, basta aggiungere il seguente repository <strong>PPA</strong>:</p>
+<blockquote><p><code>sudo add-apt-repository ppa:gnome3-team/gnome3</code></p></blockquote>
+<p>Poi, come al solito, <strong>aggiornare</strong> la lista dei pacchetti:</p>
+<blockquote><p><code>sudo apt-get update</code></p></blockquote>
+<p>E infine <strong>aggiornare</strong> la nostra distribuzione:</p>
+<blockquote><p><code>sudo apt-get dist-upgrade</code></p></blockquote>
+<p><span style="text-decoration: underline;"><strong>ATTENZIONE!!</strong></span> Non riavviate ora il sistema, poich&egrave; in questo momento <strong>Unity</strong> non funziona pi&ugrave;, in quanto &egrave; incompatibile con Gnome 3; prima di proseguire installate <strong>gnome-shell</strong>:</p>
+<blockquote><p><code>sudo apt-get install gnome-shell</code></p></blockquote>
+<p>A questo punto effettuate il <strong>logout</strong>, selezionate la sessione Gnome-shell, eseguite il login e avrete la vostra Ubuntu con Gnome 3.. ;)</p>
+<p>Da dire che al sottoscritto si &egrave; presentato tutto in <strong>inglese</strong>, risolvere per&ograve; &egrave; semplice, basta andare nelle impostazioni di sistema cliccando in alto a destra sul proprio nome, e poi selezione <strong>Region and Language</strong>, selezionando nella finestra successiva <strong>Italian</strong> ovviamente. Poi un nuovo logout e login e avrete tutta l'interfaccia in italiano.</p>
+<p>Alla prossima..</p>

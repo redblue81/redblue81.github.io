@@ -1,0 +1,34 @@
+---
+layout: post
+status: publish
+published: true
+title: Formattare davvero un hard disk con DD
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3047
+wordpress_url: http://www.red-blue.it/?p=3047
+date: '2012-04-15 11:47:24 +0100'
+date_gmt: '2012-04-15 09:47:24 +0100'
+categories:
+- tips & tricks
+- linux
+- software
+tags:
+- tips
+- dd
+- formattazione
+- reale
+- hard
+- disk
+comments: []
+---
+<p>Ho gi&agrave; <a href="http://localhost:4000/tips-tricks/ottenere-segnalazioni-sullavanzamento-di-dd.html" target="_blank">parlato</a> del comando <strong>DD</strong>, che serve a "<strong>specchiare</strong>" un disco fisso.</p>
+<p>Bene, tramite questo potente comando &egrave; possibile anche ottenere una formattazione <strong>reale</strong> del nostro hard disk. Per chi non lo sapesse, anche formattando, ci sono <strong>tool</strong> appositi per il <strong>recupero</strong> dei dati (a volte recupero parziale, dipende dai mezzi che si hanno a disposizione), quindi possiamo pensare di rendere pi&ugrave; "<strong>pulito</strong>" il nostro disco in un modo molto semplice:</p>
+<pre class="brush: bash; gutter: true">sudo dd if=/dev/zero of=/dev/sdx</pre>
+<p>Dove al posto della x andr&agrave; la lettera <strong>corrispondente</strong> al disco che volete formattare in questo modo e che potete ricavare col comando:</p>
+<pre class="brush: bash; gutter: true">sudo fdisk -l</pre>
+<p>In parole povere, in questo modo DD non fa altro che scrivere "<strong>zero</strong>" (cio&egrave; "<strong>nulla</strong>") in ogni <strong>settore</strong> dell'hard disk, ripulendolo di fatto, molto pi&ugrave; a fondo di una normale formattazione.</p>
+<p>Alla prossima..</p>

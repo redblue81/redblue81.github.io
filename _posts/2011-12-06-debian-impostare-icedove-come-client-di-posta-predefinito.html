@@ -1,0 +1,41 @@
+---
+layout: post
+status: publish
+published: true
+title: "[Debian] Impostare Icedove come client di posta predefinito"
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2754
+wordpress_url: http://www.red-blue.it/?p=2754
+date: '2011-12-06 19:09:24 +0100'
+date_gmt: '2011-12-06 18:09:24 +0100'
+categories:
+- tips & tricks
+- linux
+- debian
+tags:
+- debian
+- gnome 3
+- sid
+- icedove
+- client email
+comments: []
+---
+<p>Mi sono reso conto che sulla mia <strong>Debian Sid</strong> non &egrave; possibile selezionare <strong>Icedove</strong> come client di posta <strong>predefinito</strong> nelle <strong>impostazioni di sistema</strong>.</p>
+<p><a href="/assets/images/icedoveom22.jpg"><img class="aligncenter size-medium wp-image-2761" title="icedoveom22" src="/assets/images/icedoveom22-300x237.jpg" alt="" width="300" height="237" /></a>Per chi non lo sapesse, Icedove altri non &egrave; che il <strong>fork</strong> di <strong>Thunderbird</strong> sviluppato per Debian al fine di avere piena coerenza con la politica <strong>GNU</strong> (la stessa cosa vale per <strong>Iceweasel</strong>, fork di <strong>Firefox</strong>).</p>
+<p>Bene, per rendere Icedove client di posta elettronica predefinito, occorre modificare leggermente il file <code>/usr/share/applications/icedove.desktop</code>.</p>
+<p>Prima di tutto apritelo col vostro editor preferito, ad esempio <code>nano</code>:</p>
+<pre class="brush: bash; gutter: true">su
+
+nano /usr/share/applications/icedove.desktop</pre>
+<p>A questo punto cercate la linea:</p>
+<pre class="brush: bash; gutter: true">MimeType=message/rfc822;</pre>
+<p>E modificatela in:</p>
+<pre class="brush: bash; gutter: true">MimeType=message/rfc822;x-scheme-handler/mailto;</pre>
+<p>Infine, digitate:</p>
+<pre class="brush: bash; gutter: true">update-desktop-database</pre>
+<p>Aprite le impostazioni di sistema, selezionate <strong>Informazioni sistema</strong> ed impostate Icedove come client predefinito per le email. ;)</p>
+<p>Alla prossima..</p>

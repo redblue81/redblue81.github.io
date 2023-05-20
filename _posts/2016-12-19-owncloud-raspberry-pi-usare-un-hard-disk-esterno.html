@@ -1,0 +1,70 @@
+---
+layout: post
+status: publish
+published: true
+title: 'ownCloud su Raspberry Pi: usare un hard disk esterno'
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3895
+wordpress_url: http://www.red-blue.it/?p=3895
+date: '2016-12-19 17:34:49 +0100'
+date_gmt: '2016-12-19 16:34:49 +0100'
+categories:
+- guide
+- linux
+- raspberry pi
+- raspbian
+tags:
+- guida
+- usb
+- hard disk
+- raspberry pi
+- owncloud
+comments: []
+---
+<p>ownCloud installato sul nostro Raspberry Pi utilizza di default la scheda di memoria sulla quale &egrave; installato l'OS. Difficilmente tale scheda sar&agrave; eccessivamente <strong>capiente</strong>, quindi perch&egrave; non collegare un <strong>hard disk esterno</strong>, o una semplice <strong>pendrive USB</strong> di capienza adeguata?</p>
+<p>Subito per&ograve; una <span style="text-decoration: underline;"><strong>precisazione</strong></span>: se scegliete un hard disk esterno, conviene reperirne uno con alimentazione <strong>esterna</strong>. La stragrande maggioranza dei dispositivi in commercio prende l'alimentazione direttamente dalla porta USB a cui &egrave; collegata, ma nel caso del Raspberry Pi questa da sola potrebbe non bastare. Diverso invece &egrave; il caso di una pendrive, che non necessit&agrave; di ulteriore alimentazione.</p>
+<p><a href="/assets/images/ownCloud2.jpg"><img class="aligncenter wp-image-3886 size-medium" src="/assets/images/ownCloud2-300x120.png" alt="" width="300" height="120" /></a></p>
+<p><!--moreContinua a leggere...--></p>
+<p>Cominciamo; per prima cosa, dopo aver collegato il dispositivo scelto, digitiamo:</p>
+<pre class="brush: bash; gutter: false">sudo blkid</pre>
+<p>Otterremo una lista di dispositivi, quello che ci interessa dovrebbe essere <strong>/dev/sdX</strong> (dove al posto della X ci sar&agrave; presumibilmente un numero); avremo una riga simile alla seguente:</p>
+<pre class="brush: bash; gutter: false">/dev/sda1: UUID="994fabd3-efa2-4a09-8911-f59ece692d82" TYPE="ext4" PARTUUID="b21f2994-01"</pre>
+<p>Appuntiamo l'<strong>UUID</strong>, servir&agrave; successivamente, mentre andiamo a creare una directory dove andremo a montare il dispositivo:</p>
+<pre class="brush: bash; gutter: false">sudo mkdir /media/owncloud</pre>
+<p>Ovviamente owncloud &egrave; il nome che ho scelto io, non &egrave; obbligatorio.</p>
+<p>A questo punto editiamo <strong>/etc/fstab</strong>:</p>
+<pre class="brush: bash; gutter: false">sudo nano /etc/fstab</pre>
+<p>Rendendolo simile al seguente:</p>
+<pre class="brush: bash; gutter: true">proc /proc proc defaults 0 0
+
+/dev/mmcblk0p1 /boot vfat defaults 0 2
+
+/dev/mmcblk0p2 / ext4 defaults,noatime 0 1
+
+UUID="994fabd3-efa2-4a09-8911-f59ece692d82" /media/owncloud ext4 default 0 2
+
+# a swapfile is not a swap partition, no line here
+
+# use dphys-swapfile swap[on|off] for that</pre>
+<p>Riavviamo il Raspberry e il nostro dispositivo dovrebbe essere <strong>montato automaticamente</strong>.</p>
+<p>A questo punto dobbiamo <strong>riconfigurare</strong> ownCloud. Per prima cosa stoppiamo Apache:</p>
+<pre class="brush: bash; gutter: false">sudo systemctl stop apache2.service</pre>
+<p>Spostiamo ora le directory <stron&egrave;/strong> e <strong>/config</strong> e creiamo i relativi <strong>link simbolici</strong>:</p>
+<pre class="brush: bash; gutter: false">sudo mv /var/www/owncloud/data /media/owncloud/data
+
+sudo mv /var/www/owncloud/config /media/owncloud/config
+
+sudo ln -s /&egrave;ncloud/data /var/www/owncloud/data
+
+sudo ln -s /media/owncloud/config /var/www/owncloud/config</pre>
+<p><strong>Attenzione</strong> perch&egrave; queste sono le directory che il sottoscritto ha scelto di utilizzare, ovviamente prima di procedere verificate quale sia la vostra configurazione.</p>
+<p>Settiamo il corretto proprietario (e gruppo) per la nuova directory:</p>
+<pre class="brush: bash; gutter: false">sudo chown -R www-data:www-data /media/owncloud</pre>
+<p>Infine possiamo avviare Apache:</p>
+<pre class="brush: bash; gutter: false">sudo systemctl start apache2.service</pre>
+<p>Se tutto &egrave; andato bene, non ci accorgeremo della differenza, ma adesso avremo molto pi&ugrave; spazio a disposizione per i nostri files.</p>
+<p>Alla prossima..</p>

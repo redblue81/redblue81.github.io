@@ -1,0 +1,234 @@
+---
+layout: post
+status: publish
+published: true
+title: Installare Gimp 2.7.1 su Lucid
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1406
+wordpress_url: http://www.red-blue.it/?p=1406
+date: '2010-07-17 12:11:00 +0100'
+date_gmt: '2010-07-17 11:11:00 +0100'
+categories:
+- guide
+- linux
+- ubuntu
+- software
+- in evidenza
+tags:
+- guida
+- linux
+- lucid lynx
+- 10.04 LTS
+- gimp 2.7.1
+- singola finestra
+- compilazione
+comments:
+- id: 6397
+  author: Andrea
+  author_email: andrea.bruzzesi@gmail.com
+  author_url: ''
+  date: '2010-07-17 14:37:23 +0100'
+  date_gmt: '2010-07-17 13:37:23 +0100'
+  content: "Il repository in realt&agrave; esiste, comunque grazie delle istruzioni
+    per compilare un programma, credo che le user&ograve; per provare a compilare
+    GIMP 2.7.1 su OpenSuse 11.3 che sto per provare.\r\n\r\ndeb http://ppa.launchpad.net/matthaeus123/mrw-gimp-svn/ubuntu
+    \ lucid main"
+- id: 6398
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2010-07-17 15:08:41 +0100'
+  date_gmt: '2010-07-17 14:08:41 +0100'
+  content: Grazie a te per il repository.. Non ne ero assolutamente a conoscenza,
+    e non l'avevo nemmeno trovato cercando in rete.. Mi sembra che ci siano versioni
+    compilate a 32 bit cmq, mentre io l'ho compilato su un sistema a 64 bit.. Molto
+    interessante cmq, grazie mille della segnalazione!!
+- id: 6407
+  author: Leo
+  author_email: l.ciampini@gmail.com
+  author_url: ''
+  date: '2010-07-26 13:05:54 +0100'
+  date_gmt: '2010-07-26 12:05:54 +0100'
+  content: Grazie mille, ottima guida sintetica e precisa
+- id: 6519
+  author: RiKI
+  author_email: riccardo@technodin.org
+  author_url: ''
+  date: '2010-10-14 07:36:10 +0100'
+  date_gmt: '2010-10-14 05:36:10 +0100'
+  content: "&egrave; sbagliato questo comando:\r\nsudo add-apt-repository ppa:matthaeus123/mrw-gimp-svn
+    && sudo apt-get update && sudo apt-get gimp\r\n\r\nDovrebbe essere
+    cos&igrave;:\r\nsudo add-apt-repository ppa:matthaeus123/mrw-gimp-svn &&
+    sudo apt-get update && sudo apt-get install gimp"
+- id: 6520
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2010-10-14 12:06:20 +0100'
+  date_gmt: '2010-10-14 10:06:20 +0100'
+  content: Azz hai ragione!! Provvedo subito a correggere.. Grazie della segnalazione..
+    ;)
+- id: 6521
+  author: RiKI
+  author_email: riccardo@technodin.org
+  author_url: ''
+  date: '2010-10-14 15:52:16 +0100'
+  date_gmt: '2010-10-14 13:52:16 +0100'
+  content: "Prego, figurati ;)\r\nComunque bella guida, grazie! Io ho Ubuntu a 64
+    bit, con un po' di smanettamento funzionano anche i binari del respository, ma
+    ricompilarlo &egrave; molto meglio..."
+- id: 6522
+  author: RiKI
+  author_email: riccardo@technodin.org
+  author_url: ''
+  date: '2010-10-14 16:25:30 +0100'
+  date_gmt: '2010-10-14 14:25:30 +0100'
+  content: 'Ciao, mi &egrave; venuta un''idea: creare un respository con i binari
+    sia a 32 sia a 64 bit... Per&ograve; ho bisogno un''informazione: babl e gegl
+    servono per la compilazione o per l''esecuzione di Gimp? Nel secondo caso metto
+    anche le due librerie nel respository...'
+- id: 6523
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2010-10-14 17:00:55 +0100'
+  date_gmt: '2010-10-14 15:00:55 +0100'
+  content: |-
+    Bella idea..
+
+    Si tratta di due librerie che servono per alcune funzioni grafiche all'interno di Gimp, quindi direi proprio che servono per l'esecuzione del programma.. Hai gi&agrave; provato a vedere se nei repos di Maverick sono gi&agrave; incluse le versioni adeguate di entrambe??
+- id: 6524
+  author: RiKI
+  author_email: riccardo@technodin.org
+  author_url: ''
+  date: '2010-10-14 18:26:35 +0100'
+  date_gmt: '2010-10-14 16:26:35 +0100'
+  content: No, non ci ho pensato. Ora guardo!
+- id: 6525
+  author: RiKI
+  author_email: riccardo@technodin.org
+  author_url: ''
+  date: '2010-10-14 18:27:36 +0100'
+  date_gmt: '2010-10-14 16:27:36 +0100'
+  content: 'EDIT: ho guardato, c''&egrave; la solita versione 0.0-0 :('
+- id: 6526
+  author: RiKI
+  author_email: riccardo@technodin.org
+  author_url: ''
+  date: '2010-10-14 18:39:23 +0100'
+  date_gmt: '2010-10-14 16:39:23 +0100'
+  content: Ciao, scusa se ti rompo ancora le scatole... Ho provato ad installare gegl
+    e babl in /opt ma mentre installo babl dice di non trovare gegl... Come faccio
+    a fargli cercare gegl in /opt e poi come faccio a farli cercare entrambi in /opt
+    da Gimp?
+- id: 6527
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2010-10-14 19:20:32 +0100'
+  date_gmt: '2010-10-14 17:20:32 +0100'
+  content: Mmm.. Non ho capito, stai semplicemente installando Gimp sul tuo pc seguendo
+    la guida oppure stai provando l'installazione dei pacchetti prima di metterli
+    nel repo??
+- id: 6528
+  author: RiKI
+  author_email: riccardo@technodin.org
+  author_url: ''
+  date: '2010-10-14 20:44:03 +0100'
+  date_gmt: '2010-10-14 18:44:03 +0100'
+  content: "Sto provando (o meglio ho gi&agrave; eseguito) l'installazione sul mio
+    PC, ho installato in /usr alla fine, ma non capisco perch&eacute; non me lo fa
+    installare in /opt... Vab&egrave;...\r\nPer i respository, quando do debuild binary
+    mi da errore: http://pastebin.org/177499"
+- id: 6529
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2010-10-14 22:05:24 +0100'
+  date_gmt: '2010-10-14 20:05:24 +0100'
+  content: Stesso tuo test, stesso identico problema.. Mmm..
+- id: 6531
+  author: RiKI
+  author_email: riccardo@technodin.org
+  author_url: ''
+  date: '2010-10-16 12:13:37 +0100'
+  date_gmt: '2010-10-16 10:13:37 +0100'
+  content: ":( come posso fare? Raccogliere tutti i file e metterli in un deb manualmente
+    non se ne parla xD"
+- id: 6538
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2010-10-19 12:02:11 +0100'
+  date_gmt: '2010-10-19 10:02:11 +0100'
+  content: Sono tornato ora da una piccola vacanza.. Nel pomeriggio vedo di rimettermi
+    sul problema.. ;)
+- id: 6565
+  author: RiKI
+  author_email: riccardo@technodin.org
+  author_url: ''
+  date: '2010-11-02 16:03:18 +0100'
+  date_gmt: '2010-11-02 15:03:18 +0100'
+  content: Novit&agrave;?
+- id: 6566
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2010-11-02 16:36:57 +0100'
+  date_gmt: '2010-11-02 15:36:57 +0100'
+  content: Nada.. Purtroppo il problema &egrave; che non riesco proprio a capire cosa
+    voglia, quindi non ho una soluzione.. Cmq, la RC della 2.8 &egrave; prevista nella
+    seconda met&agrave; di dicembre, a questo punto forse &egrave; meglio aspettare
+    quella..
+- id: 6567
+  author: RiKI
+  author_email: riccardo@technodin.org
+  author_url: ''
+  date: '2010-11-02 16:51:12 +0100'
+  date_gmt: '2010-11-02 15:51:12 +0100'
+  content: "Ah cos&igrave; presto? Bene bene :P\r\nGrazie di tutto, ciao!"
+---
+<p>Recentemente ho reinstallato Lucid, e quindi mi sono trovato, stamattina, a dover reinstallare anche <strong>Gimp</strong>..</p>
+<p>B&egrave;, visto che c'ero, ho deciso di provare la versione <strong>2.7.1</strong>, versione di sviluppo in attesa della <strong>2.8</strong>.. Il motivo? Semplice, avevo proprio voglia di provare la <strong>modalit&agrave; a finestra singola</strong>, svolta epocale nella storia di Gimp.. Ovviamente le novit&agrave; introdotte in questa versione sono molte di pi&ugrave; e vanno ben oltre la modalit&agrave; di presentazione grafica (una lista completa <a href="http://www.gimp.org/release-notes/gimp-2.7.html" target="_blank">qui</a>).. Ad esempio, ho gi&agrave; potuto apprezzare la nuova funzionalit&agrave; di esportazione delle immagini in diversi formati..</p>
+<p><a href="/assets/images/gimp.jpg"><img class="aligncenter size-full wp-image-1793" title="gimp" src="/assets/images/gimp.jpg" alt="" width="304" height="424" /></a></p>
+<p style="text-align: center;">
+<p>Se volete cimentarvi nell'installazione di questa versione, dovrete smanettare un pochino, in quanto non &egrave; disponibile (o forse non lo conosco io) un repository, quindi bisogna <strong>compilare i sorgenti</strong>.. Niente di impossibile comunque, vediamo come fare.</p>
+<p><span style="text-decoration: underline;"><strong>EDIT</strong>: come segnalato nei commenti, esiste un repository da cui &egrave; possibile installare le versioni di sviluppo di Gimp, eccolo <a href="http://ppa.launchpad.net/matthaeus123/mrw-gimp-svn/ubuntu" target="_blank">qua</a>.. Mi sembra siano versioni a 32 bit.. La guida resta valida nel caso vogliate compilare da voi i sorgenti, ma volendo potete anche usare il repository, basta dare:</span></p>
+<blockquote><p><code>sudo add-apt-repository ppa:matthaeus123/mrw-gimp-svn && sudo apt-get update && sudo apt-get install gimp</code></p></blockquote>
+<p>Personalmente <strong><span style="text-decoration: underline;">non</span></strong> ho provato i files di tale repository..</p>
+<p>Prima di tutto considerate che, essendo una versione di sviluppo, <span style="text-decoration: underline;">potrebbe non essere ancora perfetta</span>.</p>
+<p>Per prima cosa <strong>disinstallate</strong>, se &egrave; necessario, la vecchia versione di Gimp:</p>
+<blockquote><p><code>sudo apt-get remove gimp gimp-data libgimp2.0</code></p></blockquote>
+<p>Poi &egrave; necessario installare tutte le <strong>dipendenze</strong>:</p>
+<blockquote><p><code>sudo apt-get build-dep gimp gcc g++ ruby wget checkinstall</code></p></blockquote>
+<p>Ovviamente si suppone che abbiate installato precedentemente almeno i pacchetti <code>build-essential</code> e <code>checkinstall</code>..<br />
+A questo punto vi servono due librerie che Lucid ha nei repository, ma non nella versione giusta per Gimp 2.7, <code>Babl</code> e <code>Gegl</code>, che quindi andranno compilate a parte:</p>
+<blockquote><p><code>wget ftp://ftp.gimp.org/pub/babl/0.1/babl-0.1.2.tar.bz2<br />
+tar jxvf babl-0.1.2.tar.bz2<br />
+cd babl-0.1.2<br />
+./configure --prefix=/usr<br />
+make<br />
+sudo make install</code></p>
+<p><code> </code><code>wget ftp://ftp.gimp.org/pub/gegl/0.1/gegl-0.1.2.tar.bz2<br />
+tar jxvf gegl-0.1.2.tar.bz2<br />
+cd gegl-0.1.2<br />
+./configure --prefix=/usr<br />
+make<br />
+sudo make install</code></p></blockquote>
+<p>Ok, a questo punto potete passare alla <strong>compilazione</strong> (e successivamente all'installazione) di Gimp..</p>
+<blockquote><p><code>wget ftp://ftp.gimp.org/pub/gimp/v2.7/gimp-2.7.1.tar.bz2<br />
+tar jxvf gimp-2.7.1.tar.bz2<br />
+cd gimp-2.7.1<br />
+./configure --prefix=/usr<br />
+make<br />
+sudo checkinstall</code></p></blockquote>
+<p>A questo punto potete modificare le opzioni di creazione del pacchetto come meglio preferite, ma anche lasciando tutto come di default non modificher&agrave; il risultato finale (il mio consiglio &egrave; anzi quello di lasciare le impostazioni di <strong>default</strong>). Alla fine del processo, nella directory in cui vi trovate troverete il <strong>pacchetto .deb</strong> pronto per essere installato, con il comando</p>
+<blockquote><p><code>sudo dpkg -i nome_pacchetto</code></p></blockquote>
+<p>Trovere a questo punto Gimp in <strong>Applicazioni -> Grafica</strong>; per abilitare la modalit&agrave; a singola finestra, semplicemente cliccate su <strong>Finestre -> Modalit&agrave; a singola finestra</strong>, ed ecco il risultato..</p>
+<p><a href="/assets/images/gimp_2.jpg"><img class="aligncenter size-medium wp-image-1794" title="gimp_2" src="/assets/images/gimp_2-300x158.jpg" alt="" width="300" height="158" /></a></p>
+<p style="text-align: center;">
+<p>Alla prossima..</p>

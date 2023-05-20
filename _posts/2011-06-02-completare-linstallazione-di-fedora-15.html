@@ -1,0 +1,70 @@
+---
+layout: post
+status: publish
+published: true
+title: Completare l'installazione di Fedora 15
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2185
+wordpress_url: http://www.red-blue.it/?p=2185
+date: '2011-06-02 08:32:44 +0100'
+date_gmt: '2011-06-02 06:32:44 +0100'
+categories:
+- guide
+- tips & tricks
+- linux
+- in evidenza
+- fedora
+tags:
+- guida
+- linux
+- installazione
+- flash
+- fedora
+- libreoffice
+- lovelock
+- codec
+- java
+comments: []
+---
+<p>L'ultima release di <strong>Fedora</strong>, oltre ad avere Gnome 3 installato di default, &egrave; una distribuzione estremamente veloce e funzionale, ma purtroppo bisogna ammettere che la sua installazione <strong>non &egrave; del tutto completa</strong>, per cui dopo la fine del processo &egrave; necessario installare alcuni pacchetti piuttosto importanti, a partire da <strong>Flash</strong> e <strong>Java</strong>, per finire a <strong>LibreOffice</strong> (o qualsiasi altra suite per ufficio).</p>
+<p>Vediamo un po' come "completare" un'installazione standard di Fedora.</p>
+<p><a href="/assets/images/fedora-logo.png"><img class="aligncenter size-thumbnail wp-image-2200" title="fedora-logo" src="/assets/images/fedora-logo-150x150.png" alt="" width="150" height="150" /></a></p>
+<p>La prima cosa da fare, consigliata praticamente da ogni community specializzata, &egrave; abilitare il repository <strong>Rpm-Fusion</strong>, una sorta di mega archivio di software (libero e non) che non &egrave; incluso nell'installazione della distro. Da terminale date i seguenti comandi:</p>
+<blockquote><p><code>su -c 'yum localinstall --nogpgcheck http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-stable.noarch.rpm'<br />
+su -c 'yum update'</code></p></blockquote>
+<p>A questo punto si pu&ograve; passare ad installare <strong>Flash</strong> e <strong>Java</strong>.</p>
+<p>Per prima cosa scarichiamo il pacchetto <strong>YUM per Linux</strong> da <a href="http://get.adobe.com/it/flashplayer/" target="_blank">qui</a>. Poi, dalla directory in cui &egrave; stato scaricato il file, diamo:</p>
+<blockquote><p><code>su -c 'rpm -ivh adobe-release-i386-1.0-1.noarch.rpm'<br />
+su -c 'rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux'</code></p></blockquote>
+<p>Questo abiliter&agrave; il <strong>repository</strong> di Adobe sulla nostra distro e importer&agrave; la relativa <strong>chiave GPG</strong>, a questo punto passiamo all'installazione vera e propria del plugin:</p>
+<blockquote><p><code>su -c 'yum install flash-plugin'</code></p></blockquote>
+<p>Riavviate il browser e avrete il vostro plugin attivo e funzionante.</p>
+<p>Ora, per quanto riguardo <strong>Java</strong>, per prima cosa scaricate il pacchetto <strong>Linux RPM</strong> da <a href="http://java.com/it/download/manual.jsp?locale=it" target="_blank">qui</a>, poi copiamo il file scaricato in <code>/opt:</code></p>
+<blockquote><p><code>cd /Scaricati<br />
+su<br />
+cp jre-6u25-linux-i586-rpm.bin /opt</code></p></blockquote>
+<p>A questo punto passiamo all'installazione vera e propria:</p>
+<blockquote><p><code>cd /opt<br />
+sh jre-6u25-linux-i586-rpm.bin</code></p></blockquote>
+<p>Al termine della procedura digitate i seguenti comandi:</p>
+<blockquote><p><code>/usr/sbin/alternatives --install /usr/bin/java java /usr/java/default/bin/java 20000</code></p>
+<p><code><br />
+/usr/sbin/alternatives --install /usr/lib/mozilla/plugins/libjavaplugin.so libjavaplugin.so /usr/java/default/lib/i386/libnpjp2.so 20000</code></p>
+<p><code><br />
+/usr/sbin/alternatives --config libjavaplugin.so</code></p></blockquote>
+<p>Scegliete 1 (oppure premete semplicemente Invio) e avrete finito.. In questa guida ho preso ad esempio il file relativo alla versione <strong>32 bit</strong>, ovviamente valgono gli stessi comandi anche per la <strong>64 bit</strong>, scaricando il file adatto.</p>
+<p>Purtroppo Fedora di default non ha nemmeno i <strong>codec audio/video</strong>, quindi per vedere i nostri filmati ed ascoltare i nostri MP3 preferiti abbiamo bisogno di dare un comando del tipo:</p>
+<blockquote><p><code>su -c 'yum install totem-nautilus totem-mozplugin totem-pl-parser totem-youtube xine-lib-extras xine-lib-extras-freeworld gstreamer-ffmpeg ffmpeg ffmpeg-libs gstreamer-plugins-good gstreamer-plugins-bad gstreamer-plugins-ugly compat-libstdc++-33 compat-libstdc++-296 libdvdread libdvdnav lsdvd libdvbpsi'</code></p></blockquote>
+<p>Consiglio vivamente di installare anche un piccolo <strong>tool</strong> che consente di gestire meglio alcune features di Gnome 3:</p>
+<blockquote><p><code>su -c 'yum install gnome-tweak-tool'</code></p></blockquote>
+<p>Con questo piccolo tool &egrave; possibile ad esempio ripristinare i pulsanti <strong>minimizza</strong> e <strong>massimizza</strong> nelle finestre, che di default in Gnome 3 sono disabilitati.</p>
+<p>E' il momento di parlare delle <strong>estensioni</strong> di Gnome-shell, piccole "aggiunte" all'interfaccia grafica utili a migliorare l'esperienza dell'utente. <a href="http://live.gnome.org/GnomeShell/Extensions" target="_blank">Qui</a> una lista delle estensioni attualmente disponibili. Fortunatamente Fedora prevede tali estensioni gi&agrave; <strong>pacchettizzate</strong>, quindi la loro installazione &egrave; praticamente immediata:</p>
+<blockquote><p><code>su -c 'yum install gnome-shell-extensions-*'</code></p></blockquote>
+<p>Infine, &egrave; sicuramente necessaria l'installazione di una <strong>suite per ufficio</strong>: io uso <strong>LibreOffice</strong>, la cui installazione &egrave; altrettanto semplice, basta un solo unico comando..</p>
+<blockquote><p><code>su -c 'yum groupinstall "Office/Productivity"'</code></p></blockquote>
+<p>Per oggi direi che pu&ograve; bastare cos&igrave;. La vostra Fedora 15 sicuramente avr&agrave; fatto un bel passo in avanti!! ;)</p>
+<p>Alla prossima..</p>

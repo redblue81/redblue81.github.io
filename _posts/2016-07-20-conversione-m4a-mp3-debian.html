@@ -1,0 +1,89 @@
+---
+layout: post
+status: publish
+published: true
+title: Conversione M4A-MP3 in Debian
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3842
+wordpress_url: http://www.red-blue.it/?p=3842
+date: '2016-07-20 21:18:09 +0100'
+date_gmt: '2016-07-20 19:18:09 +0100'
+categories:
+- tips & tricks
+- debian
+tags:
+- debian
+- linux
+- script
+- conversione
+- bash
+- libav
+- m4a
+- mp3
+comments: []
+---
+<p>Mi &egrave; capitato di avere a che fare con files audio in formato <strong>M4A</strong>, ovvero un file MP4 contenente solo <strong>audio</strong>.</p>
+<p>Bene, ovviamente la mia Debian li legge senza alcun problema, ma quando gli stessi files finiscono in un lettore multimediale, non &egrave; detto che valga la stessa cosa. In altre parole, il buon vecchio formato <strong>MP3</strong> &egrave; quello che serve in questi casi.</p>
+<p>Non volendo installare alcun software ad hoc, ho cercato un po' in rete e ho trovato qualche dritta utile per buttar gi&ugrave; un semplicissimo script di conversione batch.</p>
+<p>Per prima cosa, installiamo i "ferri del mestiere":</p>
+<pre class="brush: bash; gutter: true">sudo apt-get install libav-tools</pre>
+<p>Poi, creiamo lo script (ad esempio, lo chiamiamo <em><strong>m4aToMp3.sh</strong></em>) con un qualsiasi editor di testo:</p>
+<pre class="brush: bash; gutter: true">#!/bin/bash
+
+files=*.m4a
+
+#creo una directory dove memorizzare gli mp3
+
+if [ ! -d output ]; then
+
+ mkdir output
+
+fi
+
+
+
+for file in $files; do
+
+ mp3File=${file/%m4a/mp3}
+
+ avconv -y -i "${file}" -ab 320k "output/${mp3File}"
+
+done
+
+</pre>
+<p>Gli assegnamo i permessi di <strong>esecuzione</strong>:</p>
+<pre class="brush: bash; gutter: true">chmod +x m4aToMp3.sh</pre>
+<p>Infine, lo copiamo nella stessa directory dove si trovano i files da convertire e lo lanciamo:</p>
+<pre class="brush: bash; gutter: true">./m4aToMp3.sh</pre>
+<p>Al termine del processo (decisamente rapido), i nostri M4A saranno stati convertiti e avremo i nostri MP3 nella sottodirectory <strong>output</strong> (ovviamente potete cambiare nome a piacimento).</p>
+<p>Un'interessante evoluzione di questo script pu&ograve; essere quella di usare un paio di files di appoggio per leggere quanti pi&ugrave; <strong>tag</strong> possibili dagli M4A di partenza, e ovviamente andare a scriverli poi nei rispettivi MP3. Basta aggiungere un paio di righe:</p>
+<pre class="brush: bash; gutter: true">#!/bin/bash
+
+files=*.m4a
+
+#creo una directory dove memorizzare gli mp3
+
+if [ ! -d output ]; then
+
+ mkdir output
+
+fi
+
+
+
+for file in $files; do
+
+ mp3File=${file/%m4a/mp3}
+
+ avconv -y -i "${file}" -f ffmetadata tagsIn.txt
+
+ sed -e &#039;s/^date=\(.*\)$/TYER=\1/&#039; -e &#039;s/^major_brand=.*$//&#039; -e &#039;s/^minor_version=.*$//&#039; -e &#039;s/^creation.*$//&#039; -e &#039;s/^compatible.*$//&#039; -e &#039;s/^encoder=.*$//&#039; < tagsIn.txt > tagsOut.txt
+
+ avconv -y -i "${file}" -i tagsOut.txt -ab 320k -map_metadata 1 -id3v2_version 3 "output/${mp3File}"
+
+done</pre>
+<p>Alla prossima..</p>

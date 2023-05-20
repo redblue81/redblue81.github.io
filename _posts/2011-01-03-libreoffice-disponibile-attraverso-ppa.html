@@ -1,0 +1,90 @@
+---
+layout: post
+status: publish
+published: true
+title: LibreOffice disponibile attraverso PPA
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1947
+wordpress_url: http://www.red-blue.it/?p=1947
+date: '2011-01-03 10:15:24 +0100'
+date_gmt: '2011-01-03 09:15:24 +0100'
+categories:
+- guide
+- linux
+- ubuntu
+- software
+- in evidenza
+- mint
+tags:
+- guida
+- linux
+- ubuntu
+- installazione
+- repository
+- ppa
+- '10.10'
+- maverick
+- libreoffice
+comments:
+- id: 6753
+  author: LibreOffice ya tiene su propio PPA - Siskatec Siskatec
+  author_email: ''
+  author_url: http://www.siskatec.com/libreoffice-ya-tiene-su-propio-ppa/
+  date: '2011-01-04 05:14:06 +0100'
+  date_gmt: '2011-01-04 04:14:06 +0100'
+  content: "[...] |&nbsp;Web Upd8,&nbsp;RedBlue&rsquo;s Blog y&nbsp;No sin mi Ubuntu
+    \   Share this:                        Tags: instalarlo, language support, [...]"
+- id: 6756
+  author: LibreOffice ya tiene su propio PPA &laquo; IlDrko
+  author_email: ''
+  author_url: http://ildrko.wordpress.com/2011/01/04/libreoffice-ya-tiene-su-propio-ppa/
+  date: '2011-01-04 11:40:03 +0100'
+  date_gmt: '2011-01-04 10:40:03 +0100'
+  content: "[...] |&nbsp;Web Upd8,&nbsp;RedBlue&rsquo;s Blog y&nbsp;No sin mi [...]"
+- id: 6757
+  author: LibreOffice ya tiene su propio PPA &laquo; ElRinconDeUnGeek
+  author_email: ''
+  author_url: http://elrincondeungeek.wordpress.com/2011/01/04/libreoffice-ya-tiene-su-propio-ppa/
+  date: '2011-01-04 14:06:05 +0100'
+  date_gmt: '2011-01-04 13:06:05 +0100'
+  content: "[...] Source: Web Upd8, RedBlue&rsquo;s Blog y No sin mi [...]"
+- id: 6889
+  author: Rilasciato LibreOffice 3.3 Stable - RedBlue&#039;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/linux/rilasciato-libreoffice-3-3-stable.html
+  date: '2011-02-10 15:27:19 +0100'
+  date_gmt: '2011-02-10 14:27:19 +0100'
+  content: "[...] installare da PPA basta seguire questa guida, anche se al momento
+    sinceramente non so se sia gi&agrave; presente la versione stabile, ma anche in
+    caso [...]"
+- id: 8944
+  author: LibreOffice ya tiene su propio PPA | TecnoApps.net
+  author_email: ''
+  author_url: http://tecnoapps.net/libreoffice-ya-tiene-su-propio-ppa.html
+  date: '2012-02-12 10:36:32 +0100'
+  date_gmt: '2012-02-12 09:36:32 +0100'
+  content: "[...] | Web Upd8, RedBlue&#8217;s Blog y No sin mi Ubuntu Comparte esto:ShareFacebookDiggRedditEmailPrintStumbleUponRelated
+    [...]"
+---
+<p>Qualche giorno fa ho pubblicato una <a href="http://localhost:4000/guide/installare-libreoffice-su-maverick.html">guida</a> per l'installazione di <strong>LibreOffice</strong>, suite per ufficio nata da una scissione interna al team di <strong>OpenOffice</strong>. Oggi voglio invece semplificarci la vita: &egrave; stato reso disponibile un comodo <strong>repository PPA</strong> che rende l'installazione semplicissima.</p>
+<p>Per prima cosa occorre sempre <strong>disinstallare OpenOffice</strong>:</p>
+<blockquote><p><code>sudo apt-get remove --purge openoffice*.*</code></p></blockquote>
+<p>Poi, in Maverick, <strong>aggiungiamo il PPA</strong>:</p>
+<blockquote><p><code>sudo add-apt-repository ppa:libreoffice/ppa</code></p></blockquote>
+<p>A questo <strong>aggiorniamo</strong> la lista dei pacchetti:</p>
+<blockquote><p><code>sudo apt-get update</code></p></blockquote>
+<p>Ed <strong>installiamo LibreOffice</strong>:</p>
+<blockquote><p><code>sudo apt-get install libreoffice</code></p></blockquote>
+<p>Non resta che installare l'<strong>integrazione</strong> col nostro ambiente desktop:</p>
+<blockquote><p><code>sudo apt-get install libreoffice-gnome<br />
+sudo apt-get install libreoffice-kde</code></p></blockquote>
+<p>Ovviamente eseguite <strong>solo</strong> il comando relativo al vostro DE. Ora potete installare la localizzazione in italiano:</p>
+<blockquote><p><code>sudo apt-get install libreoffice-l10n-it</code></p></blockquote>
+<p>Infine, come indicato nella guida precedente, occorre <strong>reinstallare</strong> il seguente pacchetto:</p>
+<blockquote><p><code>sudo apt-get install language-support-writing-it</code></p></blockquote>
+<p>Pacchetto usato dai moduli di traduzione che viene disinstallato insieme ad OpenOffice.</p>
+<p>Finito, alla prossima..</p>

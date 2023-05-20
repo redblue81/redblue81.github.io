@@ -1,0 +1,55 @@
+---
+layout: post
+status: publish
+published: true
+title: Usare Android Universal Image Loading
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3721
+wordpress_url: http://www.red-blue.it/?p=3721
+date: '2015-03-26 19:12:38 +0100'
+date_gmt: '2015-03-26 18:12:38 +0100'
+categories:
+- in evidenza
+- android
+- programmazione
+tags:
+- android
+- sviluppo
+- android universal image loader
+- caricamento immagini
+comments: []
+---
+<p>Recentemente ho avuto necessit&agrave; di caricare dinamicamente dal web delle immagini in una <strong>ListView</strong> all'interno di un'app <strong>Android</strong>. Operazione non complicatissima, ma ci&ograve; che non mi soddisfaceva del codice che avevo scritto erano le <strong>prestazioni</strong> che ero riuscito ad ottenere.</p>
+<p>Con un rapido giro in rete, ho trovato la libreria <a title="Android Universal Image Loading" href="https://github.com/nostra13/Android-Universal-Image-Loader" target="_blank">Android Universal Image Loading</a>, con la quale ho risolto praticamente ogni problema.</p>
+<p>Si tratta di uno strumento pratico e veloce per il caricamento e la visualizzazione di immagini nelle nostre app, con moltissime opzioni di configurazione che aiutano proprio nella gestione delle prestazioni (un occhio di riguardo va sempre tenuto per quanto riguarda velocit&agrave; e consumo di dati).</p>
+<p>L'uso di base &egrave; davvero semplice, dopo aver <strong>importato</strong> la libreria nel progetto, basta dichiarare la <strong>configurazione</strong> di base:</p>
+<pre class="brush: java; gutter: true">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
+
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;.cacheInMemory(true).imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2)
+
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;.displayer(new FadeInBitmapDisplayer(300)).build();
+
+
+
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
+
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;context).defaultDisplayImageOptions(defaultOptions)
+
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;.memoryCache(new WeakMemoryCache()).build();
+
+
+
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;ImageLoader.getInstance().init(config);</pre>
+<p>Ovviamente, quelli che vedete sono i settaggi che ho scelto di utilizzare io, per una mappa completa delle possibilit&agrave; offerte vi rimando alla pagina ufficiale del progetto su GitHub: <a title="Android Universal Image Loading" href="https://github.com/nostra13/Android-Universal-Image-Loader" target="_blank">Android Universal Image Loading</a>.</p>
+<p>Dopo la configurazione iniziale (io ad esempio l'ho inserita nel costruttore dell'Adapter relativo alla mia ListView), basta richiamare nel codice giusto due istruzioni:</p>
+<pre class="brush: java; gutter: true">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; imageLoader = ImageLoader.getInstance();
+
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;imageLoader.displayImage(obj.getImage(), image);</pre>
+<p>Avendo cura di dichiarare nel nostro codice un <strong>oggetto</strong> appartenente alla classe <strong>ImageLoader</strong> (che il sottoscritto con molta fantasia ha chiamato proprio imageLoader). Ovviamente nel mio esempio i due parametri passati al metodo <strong>displayImage</strong> altro non sono che l'URL dell'immagine e la ImageView in cui l'immagine stessa sar&agrave; poi visualizzata.</p>
+<p>Ovviamente Android Universal Image Loader permette il caricamento di immagini anche da fonti diverse rispetto al web, sempre tenendo d'occhio lo sfruttamento delle risorse del dispositivo.</p>
+<p>Semplice no?</p>
+<p>Alla prossima..</p>

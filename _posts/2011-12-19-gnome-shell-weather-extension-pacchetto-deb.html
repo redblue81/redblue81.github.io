@@ -1,0 +1,61 @@
+---
+layout: post
+status: publish
+published: true
+title: Gnome-shell Weather Extension, pacchetto DEB
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2796
+wordpress_url: http://www.red-blue.it/?p=2796
+date: '2011-12-19 15:51:34 +0100'
+date_gmt: '2011-12-19 14:51:34 +0100'
+categories:
+- guide
+- linux
+- debian
+- in evidenza
+- download
+tags:
+- debian
+- gnome-shell
+- gnome 3
+- estensione weather
+- deb
+- download
+comments:
+- id: 10682
+  author: Nuova Gnome-shell Weather Extension + pacchetto DEB - RedBlue&#039;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/guide/nuova-gnome-shell-weather-extension-pacchetto-deb.html
+  date: '2012-06-11 11:14:07 +0100'
+  date_gmt: '2012-06-11 09:14:07 +0100'
+  content: "[...] passato ho parlato della Gnome-shell Weather Extension (qui), ma
+    ho trovato un fork di questo progetto che mi sembra decisamente interessante.
+    E&#8217; [...]"
+---
+<p>Oggi vi parlo di un'estensione per Gnome-shell non fondamentale, ma che ritengo utile..</p>
+<p>Ormai sono abituato ad avere sul mio desktop un'indicazione relativa alle <strong>condizioni metereologiche</strong> della mia citt&agrave;, <strong>Taranto</strong>. Per questa ragione ho deciso di installare un'<strong>estensione</strong> di Gnome-shell adatta allo scopo.</p>
+<p>La scelta &egrave; ricaduta sull'estensione realizzata da <strong>simon04</strong> e disponibile <a href="https://github.com/simon04/gnome-shell-extension-weather" target="_blank">qui</a>, che una volta installata e configurata si presenta come segue:</p>
+<p><a href="/assets/images/weather-extension.jpg"><img class="aligncenter size-medium wp-image-2797" title="weather-extension" src="/assets/images/weather-extension-300x111.jpg" alt="" width="300" height="111" /></a><!--moreContinua a leggere.. -->Per chi non vuole troppo sbattimento, vi riporto il <strong>pacchetto .deb</strong> gi&agrave; pronto realizzato da me per un'istallazione diretta, lo trova nell'<a href="http://localhost:4000/download/" target="_blank">area download</a>.</p>
+<p>[download id="3935"]</p>
+<p>Faccio presente che &egrave; stato realizzato con <strong>checkinstall</strong>, quindi non rispetta in pieno le <strong>policy</strong> Debian riguardo i file .deb, ma per un'istallazione rapida sul proprio PC pu&ograve; andar bene, per installarlo si pu&ograve; usare <strong>GDebi</strong> (se l'avete installato) oppure <strong>dpkg</strong>:</p>
+<pre class="brush: bash; gutter: true">sudo dpkg -i simon04-gnome-shell-extension-weather_9de1987-1_i386.deb</pre>
+<p>Si tratta di un pacchetto compilato su <strong>Debian Sid</strong> per <strong>architetture a 32 bit</strong>. Invece, per chi volesse compilarsi direttamente i <strong>sorgenti</strong>, basta scaricare l'archivio da <a href="https://github.com/simon04/gnome-shell-extension-weather/zipball/master" target="_blank">qui</a>, <strong>decomprimerlo</strong> e infine dare i seguenti comandi:</p>
+<pre class="brush: bash; gutter: true">./autogen.sh --prefix=/usr
+
+make
+
+sudo make install</pre>
+<p>Ovviamente, se dovesse presentarsi qualche <strong>errore</strong> dopo il primo comando, molto probabilmente manca nel vostro sistema una o pi&ugrave; <strong>dipendenze</strong>, nel qual caso installate i pacchetti indicati, ricordando per&ograve; di scegliere il pacchetto con suffisso <strong>-dev</strong>.</p>
+<p>Dopo l'installazione, l'estensione va configurata per indicare la citt&agrave; di nostro interesse. Andate su questo sito http://sigizmund.info/woeidinfo/?woeid e indicate la vostra citt&agrave;. Vi sar&agrave; restituito un codice di 6 cifre, il <strong>WOEID</strong> relativo alla localit&agrave; indicata, dovrete usarlo nel seguente comando:</p>
+<pre class="brush: bash; gutter: true">gsettings set org.gnome.shell.extensions.weather woeid vostro_woeid</pre>
+<p>A questo punto, riavviate la shell e attivate l'estensione da <strong>gnome-tweak-tool</strong> e dovrebbe funzionare tutto.. ;)</p>
+<p>E' anche possibile cambiare la <strong>posizione</strong> dell'estensione nel pannello superiore, per farlo basta dare il seguente comando:</p>
+<pre class="brush: bash; gutter: true">gsettings set org.gnome.shell.extensions.weather position-in-panel left/center/right</pre>
+<p>Scegliete ovviamente la posizione che preferite.</p>
+<p>Chiudo segnalando un'<strong>anomalia</strong> che ho riscontrato sul mio notebook, ovvero che potrebbe accadere che il WOEID prima ricavato non funzioni, nel senso che l'estensione non riesce a caricare i dati della localit&agrave; indicata. In tal caso, andate su http://www.weather.com e indicate l&igrave; la vostra localit&agrave;; prenderete il codice relativo alla citt&agrave; dall'indirizzo della pagina che sar&agrave; visualizzata, come in figura:</p>
+<p><a href="/assets/images/codice_meteo.jpg"><img class="aligncenter size-medium wp-image-2799" title="codice_meteo" src="/assets/images/codice_meteo-300x57.jpg" alt="" width="300" height="57" /></a>Basta semplicemente indicare quel codice al posto del WOEID nell'istruzione precedente.</p>
+<p>Alla prossima..</p>

@@ -1,0 +1,78 @@
+---
+layout: post
+status: publish
+published: true
+title: Spostare Wordpress da una directory dedicata alla root del sito
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3433
+wordpress_url: http://www.red-blue.it/?p=3433
+date: '2012-11-20 13:14:06 +0100'
+date_gmt: '2012-11-20 12:14:06 +0100'
+categories:
+- blog
+- guide
+- wordpress
+- in evidenza
+tags:
+- wordpress
+- guida
+- root
+- sposamento
+- directory
+comments:
+- id: 36434
+  author: frasi d'amore
+  author_email: directory@frasiper.it
+  author_url: http://www.frasiper.it
+  date: '2013-01-09 11:08:41 +0100'
+  date_gmt: '2013-01-09 10:08:41 +0100'
+  content: grazie e complimenti per la guida.. sono riuscito in pochi minuti a risolvere
+    il mio problema leggendo il tuo articolo
+- id: 36443
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2013-01-09 12:38:29 +0100'
+  date_gmt: '2013-01-09 11:38:29 +0100'
+  content: Ciao e grazie per i complimenti, lieto di esserti stato d'aiuto.. ;)
+---
+<p>Quando si crea un sito, capita di installare <strong>Wordpress</strong> in una <strong>directory</strong>, ad esempio <strong>/blog</strong>, e successivamente di volerlo <strong>spostare</strong> nella <strong>root</strong>, in modo da poter richiamare il blog direttamente con la <strong>home</strong> del sito (es. www. tuosito.ext).</p>
+<p>Questa operazione non &egrave; mai banale, e anzi va valutata con molta <strong>attenzione</strong>, specie riguardo all'<strong>indicizzazione</strong> del sito, in quanto ovviamente per i motori di ricerca &egrave; praticamente cambiato tutto.</p>
+<p><!--moreContinua a leggere.. --></p>
+<p>Prima di tutto per&ograve;, consiglio un bel <strong>backup generale di tutto</strong>, in modo da avere la possibilit&agrave; di recuperare eventuali situazioni critiche: per backup generale intendo <strong>database</strong> e intero sito, magari tramite <strong>FTP</strong> (ovvero copiarsi <strong>TUTTO</strong> il sito in locale, non si sa mai!).</p>
+<p><a href="/assets/images/wordpress.png"><img class="aligncenter size-full wp-image-1761" title="wordpress" src="/assets/images/wordpress.png" alt="" width="300" height="300" /></a>Fatto questo passo fondamentale, passiamo allo spostamento vero e proprio. Andiamo in <strong>Impostazioni -> Generale</strong> e alle voci <strong>Indirizzo Wordpress (URL)</strong> e <strong>Sito web (URL)</strong> impostiamo la nuova home del blog (quella che sar&agrave; definitiva dopo il trasferimento); nel caso i campi non siano direttamente modificabili, allora dovrete procedere via database, aprendo <strong>phpmyadmin</strong> (presente nel pannello di amministrazione del vostro hosting) e modificare questi dati nella tabella <strong>wp_options</strong> (campi <strong>siteurl</strong> e <strong>home</strong>). <strong>ATTENZIONE!! Non provate a visualizzare il blog adesso perch&egrave; non risulterebbe pi&ugrave; raggiungibile!!</strong></p>
+<p>Adesso si possono spostare file e directory del blog dalla directory in cui si trovano attualmente alla root del sito (via <strong>FTP</strong>).</p>
+<p>Bisogna ora sistemare i permalink, in <strong>Impostazioni -> Permalink</strong>, salvando i dati anche se non si &egrave; modificato nulla, in modo che le impostazioni finiscano comunque nel database, e la directory in cui si trovano i files multimediali (<strong>Impostazioni -> Media</strong>), assicurandosi che sia indicato il nuovo percorso, e non sia ancora presente il precedente indirizzo della directory (quello relativo alla sottodirectory), altrimenti i files continuerebbero ad essere caricati nel vecchio percorso.</p>
+<p>Adesso il blog dovrebbe essere perfettamente raggiungibile, ma avremo probabilmente ancora qualche problema con i <strong>link interni</strong>, sicuramente con tutti quelli relativi alle immagini. Ecco due <strong>query</strong> SQL che dovrebbero risolvere il problema:</p>
+<pre class="brush: sql; gutter: false">UPDATE wp_posts SET guid = REPLACE (
+
+ guid,
+
+ &#039;http ://indirizzosito/blog&#039;,
+
+ &#039;http ://indirizzosito&#039;);
+
+
+
+UPDATE wp_posts SET post_content = REPLACE (
+
+ post_content,
+
+ &#039;http ://indirizzosito/blog&#039;,
+
+ &#039;http ://indirizzosito&#039;);</pre>
+<p>Il primo serve a modificare i permalink, il secondo aggiorna gli URL negli articoli. Ovviamente sostituite nel codice l'indirizzo del vostro sito (<strong>ATTENZIONE</strong>! Non ci sono spazi tra http e ://, l'ho inserito solo per problemi di formattazione del mio blog che risolver&ograve; quanto prima!!) e attenzione ai <strong>prefissi</strong> delle tabelle, io ho usato le impostazioni predefinite di Wordpress, ma se li avete modificati allora dovrete usare quelli che avete scelto. Il codice va infine lanciato (uno alla volta) all'interno di phpmyadmin.</p>
+<p>Resta da fare un <strong>redirect</strong> dal vecchio al nuovo indirizzo, altrimenti perderete sicuramente l'indicizzazione, e si pu&ograve; procedere tramite un plugin apposito: <a href="http://wordpress.org/extend/plugins/redirection/" target="_blank">Wordpress Redirection</a>.</p>
+<p>Dopo averlo installato, da <strong>Strumenti -> Redirection</strong>, sostituite la riga <strong>Url di partenza</strong>:</p>
+<pre class="brush: php; gutter: false">/directory/(.*) => /$1</pre>
+<p>Con la <strong>Url di arrivo</strong>:</p>
+<pre class="brush: php; gutter: false">/$1</pre>
+<p>Dove directory nella prima riga va sostituito con la vecchia directory in cui si trovava il blog. A questo punto clicchiamo su <strong>Crea reindirizzamento</strong> e abbiamo finito.</p>
+<p>Vi consiglio di dare anche uno sguardo all'URL dei <strong>feed</strong>, specie se usate servizi esterni, dato che probabilmente dovrete aggiornare anche l&igrave;.</p>
+<p>Abbiamo finito, ovviamente per i primi tempi <strong>tenete d'occhio</strong> tutta la situazione, potrebbe sempre venire a galla qualche problemino residuo, e portate pazienza per quando riguarda i dati relativi alle visite, dato che ci vorr&agrave; un po' per tornare ai soliti livelli.</p>
+<p>Alla prossima..</p>
+<p>&nbsp;</p>

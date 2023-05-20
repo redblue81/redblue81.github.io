@@ -1,0 +1,35 @@
+---
+layout: post
+status: publish
+published: true
+title: Riattivare il Synaptics Touchpad in Debian
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3834
+wordpress_url: http://www.red-blue.it/?p=3834
+date: '2016-05-20 20:35:00 +0100'
+date_gmt: '2016-05-20 18:35:00 +0100'
+categories:
+- tips & tricks
+- linux
+- debian
+tags:
+- debian
+- tips
+- touchpad
+- synaptics
+- mate desktop
+comments: []
+---
+<p>Mi &egrave; capitato, in seguito ad un aggiornamento, di non avere pi&ugrave; alcune funzionalit&agrave; del touchpad del mio notebook, un <strong>Synaptics Touchpad</strong>.</p>
+<p>Nello specifico, non riuscivo pi&ugrave; ad ottenere il click al tap sul touchpad n&eacute; lo scorrimento con le dita. Provando a dare il comando <code>synclient -l</code>, ricevevo in output un messaggio di errore relativo al driver.</p>
+<p>Dopo una rapida ricerca in rete, credo che il problema sia dovuto al passaggio dal "solito" driver <code>xserver-xorg-input-synaptics</code>, al nuovo <code>xserver-xorg-input-libinput</code>: ho trovato infatti installati <strong>entrambi</strong>, e a quanto pare questo genera <strong>conflitti</strong>. Addirittura, anche nelle propriet&agrave; del mouse (da <strong>Sistema -> Hardware</strong> in MATE Desktop), non avevo pi&ugrave; la scheda relativa al touchpad.</p>
+<p>Ho tentato ad usare il nuovo <code>libinput</code>, ma sinceramente al momento non ho trovato nulla di risolutivo, per cui ho risolto dando due semplicissimi comandi (entrambi come <strong>root</strong>):</p>
+<pre class="brush: bash; gutter: true">apt-get remove xserver-xorg-input-libinput
+
+cp /usr/share/X11/xorg.conf.d/50-synaptics.conf /etc/X11/xorg.conf.d/</pre>
+<p>Nel caso la directory <code>/etc/X11/xorg.conf.d</code> non dovesse esistere, basta crearla. Al riavvio il nostro Synaptics Touchpad sar&agrave; tornato in piena efficienza, e avremo nuovamente la relativa scheda nelle impostazioni di sistema.</p>
+<p>Alla prossima..</p>

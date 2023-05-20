@@ -1,0 +1,72 @@
+---
+layout: post
+status: publish
+published: true
+title: Sito web in locale su Linux senza XAMPP - Parte 2
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3635
+wordpress_url: http://www.red-blue.it/?p=3635
+date: '2014-01-26 09:24:23 +0100'
+date_gmt: '2014-01-26 08:24:23 +0100'
+categories:
+- guide
+- linux
+- debian
+- internet
+- wordpress
+- in evidenza
+tags:
+- wordpress
+- guida
+- debian
+- server
+- linux
+- tips
+- tricks
+- immagini
+- localhost
+- ftp
+comments:
+- id: 475886
+  author: Marco Cipolloni
+  author_email: pescatoretrota@yahoo.it
+  author_url: ''
+  date: '2016-02-04 23:09:00 +0100'
+  date_gmt: '2016-02-04 22:09:00 +0100'
+  content: |-
+    Salve ho seguito tutti i passaggi(provando con una nuova installazione di wordpress) ma al momento di installare un qualsiasi nuovo tema da wordpress mi riporta "impossibile creare la directory" utilizzo linux mind 17.03
+    Grazie e buona serata
+- id: 475887
+  author: redbluesblog
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2016-02-05 19:45:00 +0100'
+  date_gmt: '2016-02-05 18:45:00 +0100'
+  content: Ciao, hai dato i permessi corretti alle directory della tua installazione
+    di WP?
+---
+<p>Eccoci alla <strong>seconda</strong> ed ultima parte di questa piccola guida su come <strong>configurare il nostro PC per ospitare un sito web in locale</strong>, sul quale sviluppare e testare tutte le funzionalit&agrave; che ci occorrono.</p>
+<p>Nella <a title="Sito web in locale su Linux senza XAMPP &ndash; Parte 1" href="http://localhost:4000/internet/sito-web-in-locale-su-linux-senza-xampp-parte-1.html" target="_blank">prima parte</a> abbiamo visto come metter su il nostro server <strong>LAMP</strong>, ora vediamo un paio di piccoli accorgimenti che ci faciliteranno nello sviluppo di un sito con <strong>Wordpress</strong>. I problemi che affronteremo sono essenzialmente due: l'impossibilit&agrave; di caricare <strong>immagini</strong> e l'impossibilit&agrave; di effettuare <strong>upload</strong> di contenuti.</p>
+<p>Il primo &egrave; un semplicissimo problema di <strong>permessi</strong>, risolvibile modificando i permessi della directory <code>wp-content/uploads</code> in locale. Supponendo che abbiamo installato WP in una directory <code>wp</code> all'interno di una directory madre <code>myfiles</code> (vedi prima parte), allora daremo:</p>
+<pre class="brush: bash; gutter: false">sudo chmod 777 /var/www/myfiles/wp/wp-content/uploads</pre>
+<p>Attenzione perch&egrave; uploads potrebbe <strong>non esistere</strong>, nel qual caso <strong>createla</strong> voi. Adesso potrete effettuare anche il caricamento di immagini all'interno dei vostri articoli.</p>
+<p>Bene, ora veniamo al secondo (e pi&ugrave; importante) problema. Cos&igrave; com'&egrave;, il vostro sito web in locale <strong>non</strong> &egrave; in grado usare l'uploader di WP, ovvero per installare un plugin ad esempio, dovrete scaricare l'archivio corrispondente e decomprimerlo "a manina" (vi verrebbero sempre richieste le <strong>credenziali FTP</strong>, che ovviamente non avete). Questo perch&egrave; WP usa appunto l'<strong>FTP</strong> per caricare plugin, aggiornamenti, temi e via dicendo, e al momento il vostro server LAMP <strong>non</strong> prevede alcun server FTP.</p>
+<p>Provvediamo ad installarne uno molto semplice:</p>
+<pre class="brush: bash; gutter: false">sudo apt-get install vsftpd</pre>
+<p>Al termine dell'installazione puntiamo il browser su:</p>
+<pre class="brush: bash; gutter: false">ftp://localhost</pre>
+<p>E se tutto va bene avremo come risposta un pagina di <strong>indice</strong> dei contenuti (al momento dovrebbe essere vuota). Ora configuriamo il server FTP, passa tutto dal file <code>/etc/vsftpd.conf</code>.</p>
+<p>Poich&egrave; ci serve per WP, vediamo di abilitare l'<strong>accesso con autenticazione</strong>, quindi apriamo il file precedente e impostiamo a NO la direttiva:</p>
+<pre class="brush: bash; gutter: false">anonymous_enable=NO</pre>
+<p>E viceversa <strong>attiviamo</strong> (cio&egrave; decommentiamo) la direttiva:</p>
+<pre class="brush: bash; gutter: false"> local_enable=YES</pre>
+<p>Ovviamente, nel caso fosse <strong>disattivata</strong> (cio&egrave; commentata) la direttiva:</p>
+<pre class="brush: bash; gutter: false">write_enable=YES</pre>
+<p>Occorrer&agrave; attivarla, altrimenti il nostro server FTP consentir&agrave; un accesso in <strong>sola lettura</strong>, cosa inutile per il nostro sito web in locale con Wordpress.</p>
+<p>Finito, l'accesso al server FTP avverr&agrave; usando le c<strong>redenziali di accesso al sistema</strong> degli utenti locali (ovvero username e password con le quali accedete normalmente all'avvio del PC ad esempio), e tali credenziali andranno anche inserite (una volta sola) in Wordpress.</p>
+<p>Adesso il nostro sito web in locale &egrave; capace anche di scaricare plugin dalla rete, aggiornarsi e via dicendo, praticamente, <strong>funziona esattamente come se fosse online</strong>, ma con tutti i vantaggi di essere in locale sul nostro pc di casa.</p>
+<p>Alla prossima..</p>

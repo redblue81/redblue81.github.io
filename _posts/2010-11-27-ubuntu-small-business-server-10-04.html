@@ -1,0 +1,71 @@
+---
+layout: post
+status: publish
+published: true
+title: Ubuntu Small Business Server 10.04
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1874
+wordpress_url: http://www.red-blue.it/?p=1874
+date: '2010-11-27 08:31:37 +0100'
+date_gmt: '2010-11-27 07:31:37 +0100'
+categories:
+- guide
+- linux
+- ubuntu
+- internet
+- in evidenza
+- recensioni
+- server
+tags:
+- server
+- linux
+- ubuntu
+- 10.04 LTS
+- libro
+- ebook
+comments: []
+---
+<p>Avete mai configurato un <strong>server</strong>??</p>
+<p><a href="https://www.e-junkie.com/ecom/gb.php?ii=841801&c=ib&aff=146008&cl=144414" target="_blank"><img class="alignleft size-full wp-image-1883" title="Ubuntu Small Business Server 10.04" src="/assets/images/linuxsbs-2.jpg" alt="" width="175" height="250" /></a>Il sottoscritto, devo ammetterlo, no.. Sebbene abbia studiato a livello "<strong>teorico</strong>" tutto ci&ograve; che c'&egrave; da sapere riguardo ad un piccolo server "casalingo", non mi sono mai cimentato nella pratica, un po' per pigrizia, un po' per mancanza di una reale necessit&agrave; pratica, un po' perch&egrave; andare in giro a cercare le varie guide per installare e configurare correttamente tutto il software necessario &egrave; sinceramente un compito lungo e noiosetto..</p>
+<p><!--more Continua a leggere..--></p>
+<p>Pochi giorni fa mi &egrave; stata data l'opportunit&agrave; di avere una copia omaggio di <a href="https://www.e-junkie.com/ecom/gb.php?ii=841801&c=ib&aff=146008&cl=144414" target="ejejcsingle">Ubuntu Small Business Server 10.04</a>, testo scritto da <strong>Stefano Giro</strong> (<a href="https://www.e-junkie.com/ecom/gb.php?ii=841801&c=ib&aff=146008&cl=144414" target="ejejcsingle">Steno</a> sul web), che tratta appunto l'argomento server, usando per la sua analisi <strong>Ubuntu 10.04 LTS</strong> (l'ultima versione con supporto a lungo termine). Devo dire che sono rimasto piacevolmente colpito dalla semplicit&agrave; e dall'immediatezza del linguaggio, poco "accademico" e molto colloquiale, ideale perci&ograve; per chi &egrave; alle prime armi, ma gradevole anche per utenti pi&ugrave; avanzati che potrebbero comunque trovare noiosa una "lezione universitaria". Inoltre, l'uso di tale linguaggio non pregiudica i contenuti, per ogni operazione da compiere &egrave; chiaramente spiegato anche il <strong>motivo</strong>, affinch&egrave; non si eseguano semplicemente dei comandi come automi, ma si prenda coscienza di ci&ograve; che si sta facendo e a cosa questo porti.. Questo pu&ograve; risultare molto utile in caso si combini qualche casino!! ;)</p>
+<p>Altro punto a favore, uno dei primi concetti espressi nel libro &egrave; che l'intera opera &egrave; basata sulla <strong>shell</strong>: ebbene si, pu&ograve; sembrare noioso e scomodo, ma da che mondo &egrave; mondo chi vuole gestire un server in maniera semi-professionale (per un professionista vero questo &egrave; scontato) deve saper gestire tutto da riga di comando, usando quindi il <strong>terminale</strong> (che purtroppo per molti utenti desktop di Linux spesso &egrave; un perfetto sconosciuto)..</p>
+<p>A questo punto, prima di lasciarvi con il link diretti al libro, voglio riportare una piccola sintesi dei contenuti, redatta direttamente dall'autore:</p>
+<blockquote><p><strong><em>Capitolo 1 &ndash; Operazioni Preliminari</em></strong><br />
+Prima di iniziare &egrave; necessario predisporre la macchina e capire le convenzioni usate nella guida. In questo libro non viene spiegato come installare Ubuntu Server e leggendo questo capitolo si comprendono i prerequisiti necessari per poter usare questa guida.</p>
+<p><strong><em>Capitolo 2 &ndash; Il comando sudo</em></strong><br />
+Cenni sul funzionamento e sullo scopo del comando sudo, il motivo per cui &egrave; stato adottato e pregi e difetti rispetto al modello tradizionale con&nbsp;<em>root</em> e&nbsp;<em>su</em>.</p>
+<p><strong><em>Capitolo 3 &ndash; SSH Server</em></strong><br />
+Installare il servizio Secure Shell &egrave; necessario per le operazioni di installazione e gestione non solo del server ma anche delle workstation da remoto attraverso un tunnel sicuro.</p>
+<p><strong><em>Capitolo 4 &ndash; LDAP Server</em></strong><br />
+Il server LDAP &egrave; il fulcro attorno a cui orbitano tutti i servizi proposti su questa guida. Sar&agrave; depositario degli account utente, e tutti i servizi si appoggeranno ad esso per l'autenticazione. Indispensabile per realizzare un&nbsp;<em>Single Signon</em>, ed avere un' unica base dati per utenti e password. In questo capitolo verr&agrave; mostrato sia come dotarsi di un server LDAP autonomo utilizzando OpenLDAP, sia come fare per appoggiarci ad un servizio esterno e diffusissimo come Active Directory di Microsoft.</p>
+<p><strong><em>Capitolo 5 &ndash; DNS & DHCP Server</em></strong><br />
+Un semplice servizio di Caching DNS e DHCP per fornire in modo trasparente ai PC della nostra rete sia gli indirizzi IP che la risoluzione degli stessi. Indispensabile. Verranno mostrate due soluzioni alternative, la pi&ugrave; semplice dnsmasq e la pi&ugrave; completa accoppiata Bind & DHCPD.</p>
+<p><strong><em>Capitolo 6 &ndash; Firewall Server</em></strong><br />
+La sicurezza &egrave; importante. Qui impareremo a configurare in nostro server perch&eacute; controlli il traffico tra la nostra rete privata e internet. Indispensabile a molti servizi e assolutamente impossibile da ignorare.</p>
+<p><strong><em>Capitolo 7 &ndash; LAMP Server</em></strong><br />
+Per poter fornire servizi particolari (ad esempio Webmail) &egrave; necessario avere a disposizione un Webserver con database e supporto PHP (LAMP). In questo capitolo impareremo ad installarne uno semplice ma funzionale ai nostri scopi.</p>
+<p><strong><em>Capitolo 8 &ndash; File Server</em></strong><br />
+Questa &egrave; una delle parti pi&ugrave; importanti e uno dei motivi &ldquo;principi&rdquo; per cui viene installato un server in azienda. Qui ne realizzeremo uno completo di autenticazione sia verso OpenLDAP che verso Active Directory. Vedremo anche come risolvere alcuni problemi e casi particolari che possono presentarsi quando si realizzano soluzioni di questo tipo.</p>
+<p><strong><em>Capitolo 9 &ndash; Mail Server</em></strong><br />
+Qui impareremo a realizzare un servizio completo SMTP, POP3, IMAP e Webmail sia ufficiale che in configurazione relay, per dotare la nostra rete di un moderno servizio di posta elettronica completo di filtri antispam e antivirus.</p>
+<p><strong><em>Capitolo 10 &ndash; Proxy Server</em></strong><br />
+Il controllo della navigazione su internet &egrave; importante. Seguendo questo capitolo realizzeremo un servizio di&nbsp;<em>Proxy caching</em> per velocizzare la navigazione, completo di autenticazione utente integrata con Samba/LDAP e Active Directory, controllo sui siti visitati e configurazione automatica dei browser con WPAD.</p>
+<p><strong><em>Capitolo 11 &ndash; Time Server</em></strong><br />
+Un semplice servizio per sincronizzare data e ora su tutta la rete prelevandole da internet.</p>
+<p><strong><em>Capitolo 12 &ndash; Snapshot Backup</em></strong><br />
+Il salvataggio dei dati &egrave; importante. Qui vedremo e capiremo come realizzare una soluzione moderna, veloce ed efficiente di Backup usando solo strumenti software gi&agrave; inclusi nel sistema operativo e supporti economici come dischi esterni USB.</p>
+<p><strong><em>Capitolo 13 &ndash; Instant Messaging Server</em></strong><br />
+I servizi chat dilagano nella rete, e stanno pure diventando utili in certi casi. In questo capitolo vedremo un paio di soluzioni su come realizzare un server privato ma all' occorrenza facilmente integrabile con quelli esistenti su Internet. Il tutto sempre sfruttando la nostra base utenti aziendale su OpenLDAP o Active Directory.</p>
+<p><strong><em>Capitolo 14 &ndash; Fax Server</em></strong><br />
+Nonostante molti pensino che il fax sia uno strumento di comunicazione antiquato, alla prova dei fatti questo non risulta vero. In ambito aziendale un servizio di questo tipo &egrave; ancora usato moltissimo e noi non possiamo ignorarlo.</p>
+<p><strong><em>Capitolo 15 &ndash; VPN Server</em></strong><br />
+In questo capitolo impareremo a configurare un servizio VPN in modo basilare per permettere a collaboratori esterni di accedere in modo sicuro attraverso una connessione protetta ai nostri servizi. Il tutto da remoto attraverso Internet come fossero seduti accanto a noi.</p>
+<p><strong><em>Capitolo 16 &ndash; Conclusioni</em></strong><br />
+Riflessioni, ringraziamenti e links ai siti ufficiali dei software utilizzati.</p></blockquote>
+<p>Link: <a href="https://www.e-junkie.com/ecom/gb.php?ii=841801&c=ib&aff=146008&cl=144414" target="ejejcsingle">Ubuntu Small Business Server 10.04</a></p>
+<p>Grazie a Stefano e alla prossima..</p>

@@ -1,0 +1,357 @@
+---
+layout: post
+status: publish
+published: true
+title: Effetti 3D su Karmic con driver Ati Open Source.. Addio fglrx!!
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 805
+wordpress_url: http://redblue.netsons.org/?p=805
+date: '2009-11-27 16:12:09 +0100'
+date_gmt: '2009-11-27 15:12:09 +0100'
+categories:
+- guide
+- linux
+- ubuntu
+- notebook
+- hp dv6
+tags:
+- compiz
+- ati
+- driver
+- radeon hd 4530
+- radeon
+- fglrx
+- open souce
+- free
+- effetti 3d
+comments:
+- id: 2398
+  author: V
+  author_email: vittorio.re@gmail.com
+  author_url: ''
+  date: '2009-11-28 17:53:00 +0100'
+  date_gmt: '2009-11-28 16:53:00 +0100'
+  content: "effettivamente anche io avevo avuto gli stessi problemi dopo un aggiornamento
+    e avevo dovuto ripristinare una vecchia configurazione.\r\n\r\ntra l'altro, io
+    avevo gi&agrave; disabilitato gli effetti perch&eacute; altrimenti avevo problemi
+    con alcuni video flash."
+- id: 2399
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-11-28 19:15:10 +0100'
+  date_gmt: '2009-11-28 18:15:10 +0100'
+  content: |-
+    Ti dir&ograve;.. Sono veramente soddisfatto.. Tutto il comparto video gira in modo decisamente pi&ugrave; fluido, e mentre con i driver proprietari avevo da sempre notato, usando ad esempio VLC, che i filmati a schermo intero tendevano a restare "bloccati" qualche secondo prima di scorrere via fluidi, ora va veramente alla grande, per non parlare dei colori decisamente pi&ugrave; vivi!!
+
+    Non ho ancora effettuato un test con un bel gioco 3D per verificare anche quell'aspetto.. Ma per il momento sono davvero entusiasta di questa soluzione!!
+- id: 2412
+  author: Hispa
+  author_email: dsads@gmail.com
+  author_url: ''
+  date: '2009-12-01 22:08:50 +0100'
+  date_gmt: '2009-12-01 21:08:50 +0100'
+  content: Ciao, sai per caso se stai usando i driver radeon o i radeonhd?
+- id: 2415
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-12-02 10:25:47 +0100'
+  date_gmt: '2009-12-02 09:25:47 +0100'
+  content: |-
+    Ciao!!
+
+    Sono installati i radeon, niente radeonhd.. ;)
+- id: 2416
+  author: V
+  author_email: vittorio.re@gmail.com
+  author_url: ''
+  date: '2009-12-02 12:02:49 +0100'
+  date_gmt: '2009-12-02 11:02:49 +0100'
+  content: "lasciando il repository ppa.launchpad nella sources list continuo a ricevere
+    proposte di aggiornamento... e dopo uno di questi il pc ha iniziato a dirmi che
+    andava in low graphic mode e in pratica riuscivo a lavorare solo da console. insomma
+    ho avuto un po' di problemi e non sono sicuro di essere riuscito a superarli del
+    tutto (lo sapr&ograve; al prossimo riavvio)\r\nmi sembra un po' precaria la cfg
+    di X per questa scheda. suggeriresti di trovare una cfg stabile e poi disabilitare
+    gli aggiornamenti?"
+- id: 2417
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-12-02 12:07:00 +0100'
+  date_gmt: '2009-12-02 11:07:00 +0100'
+  content: "Si ho notato anch'io molti aggiornamenti.. Direi quasi giornalieri (l'ultimo
+    proprio stamattina).. Ma finora non ho avuto problemi di sorta.. Anche dopo l'aggiornamento
+    di stamattina va tutto bene.. Tu hai modificato qsa nella configurazione di X??\r\n\r\nCmq,
+    in risposta alla tua domanda, nel caso si, credo che se questo aggiornamento provoca
+    instabilit&agrave;, &egrave; meglio disabilitare il repo per un p&ograve;.. In
+    fondo una volta trovata una configurazione stabile, un aggiornamento quasi giornaliero
+    mi sembra superfluo.. ;)"
+- id: 2418
+  author: V
+  author_email: vittorio.re@gmail.com
+  author_url: ''
+  date: '2009-12-02 14:09:46 +0100'
+  date_gmt: '2009-12-02 13:09:46 +0100'
+  content: "ero partito con l'installazione dei driver proprietari, che avevo poi
+    aggiornato ad una versione pi&ugrave; recente. poi ho seguito quello che hai scritto
+    in questo post e da allora non ho modificato nulla a parte gli aggiornamenti di
+    cui ti dicevo.\r\n\r\ndopo gli aggiornamenti di ieri sera, quando ho acceso il
+    pc ha iniziato a darmi il msg sul low graphic mode.\r\ninoltre si vede il logo
+    di ubuntu al boot che ad un certo punto diventa sfuocato e quando sparisce prima
+    del lancio di gdm c'&egrave; una pausa piuttosto lunga (circa 30 sec, mentre prima
+    gdm appariva quasi istantaneamente).\r\nora la situazione &egrave; piuttosto instabile
+    perch&eacute; una volta su cinque x non parte proprio e non riesco nemmeno ad
+    accedere alla console. e le altre volte su cinque non fila proprio tutto perfettamente
+    liscio.\r\n\r\ncome posso verificare i driver che sono in uso attualmente?\r\n\r\nvorrei
+    ripulire tutto in modo da poter controllare pi&ugrave; facilmente il sistema.\r\n\r\nsenn&ograve;
+    hai qualche idea/suggerimento?"
+- id: 2419
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-12-02 14:15:37 +0100'
+  date_gmt: '2009-12-02 13:15:37 +0100'
+  content: |-
+    Avvia in recovery mode (dovresti avere l'opzione nel menu di Grub) e controlla l'xorg.conf..
+
+    Ricorda che a partire da karmic la configurazione di questo file &egrave; assolutamente inutile (il mio ad esempio &egrave; completamente vuoto)..
+- id: 2420
+  author: V
+  author_email: vittorio.re@gmail.com
+  author_url: ''
+  date: '2009-12-02 14:44:48 +0100'
+  date_gmt: '2009-12-02 13:44:48 +0100'
+  content: "una cosa che mi ero scordato di scrivere era infatti che quando stamattina
+    ho visto che x non partiva, andando in recovery mode ho notato che il file xorg.conf
+    era vuoto.\r\nper far partire x ho messo un vecchio file di backup che per&ograve;
+    era un .fglrx-N...\r\n\r\nora ho notato che &egrave; nuovamente vuoto.\r\n\r\nma
+    se non usa pi&ugrave; il file xorg.conf, dove salva la configurazione? sempre
+    che la salvi... :)"
+- id: 2421
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-12-02 14:55:54 +0100'
+  date_gmt: '2009-12-02 13:55:54 +0100'
+  content: |-
+    Semplice.. Di default in Karmic non esiste il file xorg.conf.. Noi ce lo ritroviamo per aver installato i driver proprietari. Il sistema di configurazione di X &egrave; stato demandato ad HAL (Hardware Abstraction Layer) che quindi libera (??) l'utente dal maneggiare tale file.. Ovviamente nessuno vieta di creare xorg.conf per inserire delle proprie opzioni personalizzate..
+
+    Ma quindi non ho capito, ora il sistema va??
+- id: 2422
+  author: V
+  author_email: vittorio.re@gmail.com
+  author_url: ''
+  date: '2009-12-02 17:47:10 +0100'
+  date_gmt: '2009-12-02 16:47:10 +0100'
+  content: "quando ho avviato ora &egrave; andato tutto liscio.\r\nla volta precedente,
+    senza che nel frattempo avessi modificato nulla, era stato lento all'avvio e aveva
+    dato il msg sul low graphic mode.\r\n\r\nquello che mi perplime un po' &egrave;
+    questo comportamento randomico... mah, speriamo bene..."
+- id: 2423
+  author: V
+  author_email: vittorio.re@gmail.com
+  author_url: ''
+  date: '2009-12-02 22:28:07 +0100'
+  date_gmt: '2009-12-02 21:28:07 +0100'
+  content: "come volevasi dimostrare.\r\nstasera si &egrave; ripresentato il problema
+    e per 4 boot consecutivi x non &egrave; partito correttamente.\r\n\r\nho provato
+    a rimettere i driver proprietari ati,  ma il problema persiste.\r\n\r\npu&ograve;
+    essere un problema il fatto che ho provato ad installare i driver proprietari
+    sia dallo strumento di amministrazione (jockey) che eseguendo il file scaricato
+    dal sito ati?\r\n\r\ncome faccio ad arrivare ad una situazione pulita? perch&eacute;
+    faccio fatica a capire che driver stia usando in questo momento..."
+- id: 2430
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-12-03 10:31:42 +0100'
+  date_gmt: '2009-12-03 09:31:42 +0100'
+  content: |-
+    Mmm.. Allora.. Direi di procedere per gradi..
+
+    Quindi prima di tutto disinstalla i driver proprietari.. Poi <strong>in recovery mode</strong> direi di disinstallare direttamente X (credo che un <code>sudo apt-get --purge remove xserver-xorg</code> basti).. A questo punto edita sources.list eliminando il repository che hai aggiunto per X, aggiorna la lista dei pacchetti e infine reinstalla X (che a questo punto dovrebbe venir preso dai repository ufficiali di Karmic).. Nel caso per verificare fino in fondo il corretto funzionamento avvia con il vecchio kernel..
+
+    A questo punto dovresti aver riottenuto una configurazione pulita..
+- id: 2434
+  author: V
+  author_email: vittorio.re@gmail.com
+  author_url: ''
+  date: '2009-12-03 14:50:17 +0100'
+  date_gmt: '2009-12-03 13:50:17 +0100'
+  content: "per disinstallare i driver proprietari:\r\n- dal menu gnome seleziono
+    \"remove\"\r\n- eseguo fglrx_uninstall in /usr/share/ati\r\n\r\nmi pare di averlo
+    gi&agrave; fatto in passato, ma mi era rimasta comunque la voce nel menu gnome
+    (marcata come disattiva). Con menu gnome intendo administration->hw driver\r\n\r\nvado
+    a memoria perch&eacute; sto usando un altro pc, stasera ci provo.\r\ngrazie."
+- id: 2435
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-12-03 15:18:04 +0100'
+  date_gmt: '2009-12-03 14:18:04 +0100'
+  content: Entrambi i metodi che hai citato sono corretti, dipende da come li hai
+    installati.. Rileggi il mio post per il comando esatto da dare in <code>/usr/share/ati</code>..
+- id: 2437
+  author: V
+  author_email: vittorio.re@gmail.com
+  author_url: ''
+  date: '2009-12-04 01:58:22 +0100'
+  date_gmt: '2009-12-04 00:58:22 +0100'
+  content: "ho reinstallato x e il primo riavvio &egrave; andato liscio come l'olio
+    ;)\r\nsperiamo bene..."
+- id: 2439
+  author: V
+  author_email: vittorio.re@gmail.com
+  author_url: ''
+  date: '2009-12-04 09:40:37 +0100'
+  date_gmt: '2009-12-04 08:40:37 +0100'
+  content: "ho cantato vittoria troppo presto. mi ha appena chiamato mia moglie spaventatissima
+    per il solito msg: \"cannot detect configuration; ubuntu will run in low graphic
+    mode\" o qualcosa di simile.\r\n\r\nstasera riprovo ad indagare"
+- id: 2445
+  author: stratodream
+  author_email: stratodream@gmail.com
+  author_url: ''
+  date: '2009-12-05 21:32:13 +0100'
+  date_gmt: '2009-12-05 20:32:13 +0100'
+  content: "Ciao, ho seguito la tua guida ma dopo aver riavviato se provo ad abilitare
+    gli effetti 3D mi termina la sessione e mi riporta al login.\r\nUso Ubuntu 9.10
+    ed ho una ati hd3650."
+- id: 2452
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-12-06 10:17:34 +0100'
+  date_gmt: '2009-12-06 09:17:34 +0100'
+  content: |-
+    Ciao!!
+
+    Allora, credo che il problema sia la tua scheda.. Nel senso che i pacchetti in quel repository non hanno un utilizzo "esclusivo", ma va letto il wiki per capire come regolarsi.. Cmq hai installato il nuovo kernel prima?? Quello &egrave; un passo fondamentale, consigliato fin dalla home del repo..
+- id: 2453
+  author: stratodream
+  author_email: stratodream@gmail.com
+  author_url: ''
+  date: '2009-12-06 12:09:51 +0100'
+  date_gmt: '2009-12-06 11:09:51 +0100'
+  content: Il kernel che ho installato &egrave; l'ultimo rilasciato ovvero il 2.6.31-16
+    e non l'ho compilato.
+- id: 2454
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-12-06 12:21:45 +0100'
+  date_gmt: '2009-12-06 11:21:45 +0100'
+  content: Ecco.. Allora se leggi gi&agrave; nella home del ppa indicato nella guida,
+    c'&egrave; scritto chiaramente di installare il kernel 2.6.32-rc6, come del resto
+    ho indicato nella guida.. ;)
+- id: 2455
+  author: stratodream
+  author_email: stratodream@gmail.com
+  author_url: ''
+  date: '2009-12-06 12:25:21 +0100'
+  date_gmt: '2009-12-06 11:25:21 +0100'
+  content: Infatti ho fatto cos&igrave; ed &egrave; andata a buon fine...quando ho
+    letto recente non pensavo recente fino a questo punto, sorry!!!
+- id: 2456
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-12-06 12:40:19 +0100'
+  date_gmt: '2009-12-06 11:40:19 +0100'
+  content: Figurati!! Se tutti i problemi fossero di cos&igrave; semplice soluzione
+    useremmo tutti Linux!! ;)
+- id: 2457
+  author: stratodream
+  author_email: stratodream@gmail.com
+  author_url: ''
+  date: '2009-12-06 12:55:24 +0100'
+  date_gmt: '2009-12-06 11:55:24 +0100'
+  content: Ho linkato questa guida e questo blog nel mio blog in un post che ho appena
+    scritto, spero non ti dispiaccia.
+- id: 2458
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-12-06 13:09:57 +0100'
+  date_gmt: '2009-12-06 12:09:57 +0100'
+  content: Ma assolutamente no!! Anzi ti ringrazio!! :D
+- id: 2460
+  author: Driver ATI Open per HD con effetti 3D su karmik Koala &laquo; STrAToDrEaM
+  author_email: ''
+  author_url: http://stratodream.wordpress.com/2009/12/06/driver-ati-open-per-hd-con-effetti-3d-su-karmik-koala/
+  date: '2009-12-06 15:37:22 +0100'
+  date_gmt: '2009-12-06 14:37:22 +0100'
+  content: "[...] ci sono riuscito ma non per merito mio, ma grazie alla GUIDA che
+    ho trovato su questo [...]"
+- id: 2490
+  author: canopus0003
+  author_email: giusdiaferia@libero.it
+  author_url: ''
+  date: '2009-12-09 13:47:51 +0100'
+  date_gmt: '2009-12-09 12:47:51 +0100'
+  content: "testati su Karmic (64bit) i driver open source per ATI radeon: al contrario
+    di quelli proprietari...funziano! Tuttavia il kernel 2.6.32 sul mio Toshiba satellite
+    A300 non riconosce a perfezione tutto l'hardware, facendo perdere secondi \"preziosi\"
+    in fase di boot. :(\r\nDomanda: ma il 2.6.32 &egrave; ancora in fase di sviluppo?
+    posso sperare in una correzione del bug?\r\nNel frattempo rinuncio al compiz,
+    in fondo non mi manca poi tanto...;-)\r\nGrazie"
+- id: 2492
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-12-09 15:30:08 +0100'
+  date_gmt: '2009-12-09 14:30:08 +0100'
+  content: |-
+    Il 2.6.32 &egrave; stabile da poco, &egrave; probabile che una parte del tuo hardware non sia ancora del tutto compatibile, &egrave; una cosa abbastanza normale.. Infatti Karmic dai repository solo qualche giorno fa ha installato il kernel 2.6.31-16..
+
+    Il 2.6.32 che scarichi dal sito presente nella guida, cmq, &egrave; una rc, <a href="http://guiodic.wordpress.com/2009/12/05/linux-2-6-32-per-ubuntu-karmic-koala-nel-guiodic-repository/" rel="nofollow">qui </a>invece puoi trovarlo in versione stabile gi&agrave; precompilato.. Magari questo ti &egrave; pi&ugrave; utile!! ;)
+- id: 6278
+  author: 'Problemi di temperatura di Ubuntu 10.04 Lucid Lynx - Soluzione - Parte
+    1: riconfigurare l''ambiente grafico - RedBlue&#39;s Blog'
+  author_email: ''
+  author_url: http://redblue.netsons.org/guide/problemi-di-temperatura-di-ubuntu-10-04-lucid-lynx-soluzione-parte-1-riconfigurare-lambiente-grafico.html
+  date: '2010-05-27 13:16:39 +0100'
+  date_gmt: '2010-05-27 12:16:39 +0100'
+  content: "[...] open (altrimenti &egrave; fondamentale disinstallare prima i vecchi
+    driver proprietari, come ho spiegato qui), consiglio di riavviare e di selezionare
+    la modalit&agrave; di ripristino del kernel da Grub, per poi [...]"
+---
+<p style="text-align: center;"><a rel="lightbox" href="/assets/images/tux-world.jpg"><img class="aligncenter" src="/assets/images/tux-world.jpg" alt="" width="331" height="208" /></a></p>
+<p>Ieri, dopo un aggiornamento del sistema, il sistema grafico X della mia Karmic ha smesso di funzionare.. Dopo aver ripristinato un vecchio <code>xorg.conf</code>, mi sono reso conto che il problema erano, ancora una volta, i driver proprietari della scheda video (ATI Radeon HD 4530), i famigerati <strong>fglrx</strong>..</p>
+<p>Ho deciso allora di rinunciare agli effetti desktop di <strong>Compiz</strong> (in fondo si tratta di inutili fronzoli) e di adottare i <strong>driver open source</strong> compresi nei repository. Ma cercando in rete mi sono imbattuto in <a href="http://ubuntuforums.org/showthread.php?t=1313828#td_post_8238823" target="_blank">questo post</a>, che spiega come sia possibile abilitare tali effetti, e quindi sfruttare come si deve la scheda video, anche con i driver open!! Vediamo come procedere..</p>
+<p><!--more Continua a leggere questo articolo..--></p>
+<p><strong>Primo passo</strong>, disinstallare completamente i driver proprietari (ovviamente se erano usati in precedenza).. Bisogna procedere a seconda di come li avete installati:</p>
+<ul>
+<li>se li avete abilitati da <strong>Sistema -> Amministrazione -> Driver Hardware</strong>, allora sempre da quella scheda disabilitateli;</li>
+<li>se li avete installati <a href="http://localhost:4000/guide/driver-ati-catalyst-su-pavilion-dv6-1205sl.html" target="_blank">come avevo consigliato io</a>, allora da terminale digitate</li>
+<blockquote><p><code>cd /usr/share/ati<br />
+sudo sh fglrx-uninstall.sh</code></p></blockquote>
+<li> se invece li avete installati compilando i vari pacchetti (col comando <code>bash ati-driver-installer*.run --buildpkg Ubuntu/distro</code>) dovete rimuovere i singoli pacchetti, da terminale digitate:</li>
+<blockquote><p><code>sudo apt-get --purge remove fglrx-amdcccle fglrx-kernel-$(uname -r) fglrx-kernel-source xorg-driver-fglrx-dev xorg-driver-fglrx xserver-xgl<br />
+sudo rm /usr/src/fglrx-kernel*.deb<br />
+sudo rm /usr/src/fglrx.tar.bz2<br />
+sudo rm -R /usr/src/modules</code></p></blockquote>
+<li>In ogni caso, reinstallare (o aggiornare se sono gi&agrave; presenti) i seguenti pacchetti:<code> libgl1-mesa-glx libgl1-mesa-dri xserver-xorg-video-ati</code></li>
+</ul>
+<p><strong>Secondo passo</strong>, installare un kernel recente. Potete prendere i pacchetti precompilati da <a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/v2.6.32-rc6/" target="_blank">qui</a>, mentre per l'installazione potere leggere <a href="http://localhost:4000/guide/installare-un-nuovo-kernel-su-ubuntu-in-pochi-minuti.html" target="_blank">questo mio precedente articolo</a>.. Dopo l'installazione riavviate il computer e selezionate il nuovo kernel..</p>
+<p><strong>Terzo passo</strong>, dopo il riavvio aggiungere <a href="https://launchpad.net/~xorg-edgers/+archive/ppa" target="_blank">questo repository</a> al proprio <code>sources.list</code>..</p>
+<ul>
+<li>editate il file sources.list:</li>
+<blockquote><p><code>sudo gedit /etc/apt/sources.list</code></p></blockquote>
+<li>ed aggiungete le righe:</li>
+<blockquote><p><code>deb http://ppa.launchpad.net/xorg-edgers/ppa/ubuntu karmic main<br />
+deb-src http://ppa.launchpad.net/xorg-edgers/ppa/ubuntu karmic main </code></p></blockquote>
+<li>salvate ed uscite, poi aggiungete la chiave GPG con il comando:</li>
+<blockquote><p><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8844C542</code></p></blockquote>
+<li>e infine digitate:</li>
+<blockquote><p><code>sudo apt-get update</code></p></blockquote>
+<li>quasi certamente vi si attiver&agrave; il gestore degli aggiornamenti, altrimenti avviatelo voi manualmente..</li>
+</ul>
+<p>Finito, riavviare e provare ad abilitare gli effetti del desktop, se &egrave; andato tutto bene non ci dovrebbero essere problemi..</p>
+<p>Alla prossima..</p>

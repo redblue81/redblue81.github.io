@@ -1,0 +1,44 @@
+---
+layout: post
+status: publish
+published: true
+title: 'SMS via web: MoioSMS'
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 507
+wordpress_url: http://redblue.netsons.org/?p=507
+date: '2009-05-14 09:47:10 +0100'
+date_gmt: '2009-05-14 08:47:10 +0100'
+categories:
+- tips & tricks
+- linux
+- debian
+- ubuntu
+- windows
+- software
+- telefonia
+tags:
+- linux
+- ubuntu
+- sms
+- web
+- captcha
+- moiosms
+comments:
+- id: 4178
+  author: Informatica gratis
+  author_email: info@bloghissimo.com
+  author_url: http://www.bloghissimo.com/
+  date: '2010-04-10 15:44:53 +0100'
+  date_gmt: '2010-04-10 14:44:53 +0100'
+  content: Ottimo servizio!! ;) Grazie.
+---
+<p>Capita a tutti di dover mandare un <strong>SMS dal web</strong>. Esistono siti appositi che consentono ai propri utenti, in maniera pi&ugrave; o meno gratuita, di farlo, ma in ognuno di questi sono presenti pagine pubblicitarie e righe <strong>Captcha</strong>, ovvero quei codici, pi&ugrave; o meno chiari, ma inserire prima di mandare un SMS, oltre ovviamente alle classiche pagine dalle quali inserire nome utente e password per accedere al sito stesso..</p>
+<p>Bene, per velocizzare queste operazioni esiste <a href="http://www.moioli.net/sms/" target="_blank">MoioSMS</a>, un piccolo software che permette di inviare SMS da web semplicemente digitando il testo del messaggio, il numero del destinatario, e inserendo le informazioni di accesso al servizio che si vuole usare, risparmiando cos&igrave; tempo.</p>
+<p>Il programma &egrave; assolutamente <strong>open source</strong> e <strong>multipiattaforma</strong>, l'elenco dei siti che utilizza lo trovate sulla home page del progetto. Per installarlo su <strong>Ubuntu</strong> esiste addirittura un comodo repository..</p>
+<p><span style="text-decoration: underline;"><strong>TRICK</strong></span>: quando l'ho installato, non funzionava a causa della versione di Python installata di default su Ubuntu 9.04 (Jaunty Jackalope), per ovviare a questo inconveniente basta semplicemente modificare il file <code>/usr/bin/sms</code> come segue:</p>
+<blockquote><p><code>gksu gedit /usr/bin/sms</code></p></blockquote>
+<p>Modificare la prima riga da <code>python2.4</code> a <code>python</code>. Il gioco &egrave; fatto..</p>

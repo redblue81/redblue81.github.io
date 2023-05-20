@@ -1,0 +1,100 @@
+---
+layout: post
+status: publish
+published: true
+title: Conoscere il comando Top di Linux
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 4024
+wordpress_url: https://www.red-blue.it/?p=4024
+date: '2020-06-12 01:36:02 +0100'
+date_gmt: '2020-06-11 23:36:02 +0100'
+categories:
+- guide
+- linux
+tags:
+- guida
+- linux
+- bash
+- top
+- monitor di sistema
+comments: []
+---
+<p><!-- wp:paragraph --></p>
+<p>Il comando <strong>Top</strong> di Linux serve a monitorare in tempo reale lo <strong>stato</strong> dei processi di sistema.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Pu&ograve; essere utile a scoprire cosa sta impegnando severamente la <strong>CPU</strong> oppure cosa c'&egrave; nella <strong>RAM</strong> (magari un processo "cresciuto" troppo). Si tratta di un comando estremamente comodo e di semplice interpretazione, installato di default in gran parte delle distribuzioni Linux pi&ugrave; comuni.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Per lanciarlo, semplicemente scriviamo:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">top</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:more {"customText":"Continua a leggere..."} --><br />
+<!--more Continua a leggere...--><br />
+<!-- /wp:more --></p>
+<p><!-- wp:paragraph --></p>
+<p>Otterremo una schermata come questa:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4025,"sizeSlug":"large"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/top_linux.png" alt="comando-top-linux" class="wp-image-4025"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:tadv/classic-paragraph --></p>
+<p>Cerchiamo ora di capire cosa ci racconta il comando Top.</p>
+<p>Nella <strong>prima</strong> riga, che inizia con <strong>top</strong>, troviamo:</p>
+<ul>
+<li>ora attuale</li>
+<li>uptime della macchina, cio&egrave; il tempo trascorso dall'avvio del sistema</li>
+<li>utenti connessi</li>
+<li>load average, ovvero il carico medio del sistema rispettivamente nell&rsquo;ultimo minuto, negli ultimi 5 minuti, nelll&rsquo;ultimo quarto d&rsquo;ora. Valori intorno a 1 non sono preoccupanti, valori maggiori di 1 indicano che un processo per essere eseguito deve attendere. L'attesa sar&agrave; maggiore tanto pi&ugrave; risulta maggiore questo valore.</li>
+</ul>
+<p>Nella <strong>seconda</strong> riga, che inizia con <strong>Tasks</strong>, troviamo:</p>
+<ul>
+<li>processi in esecuzione</li>
+<li>processi attivi</li>
+<li>processi in sleeping</li>
+<li>processi stoppati</li>
+<li>processi zombie, cio&egrave; processi avviati da un processo padre che attendono di essere fermati da quest'ultimo</li>
+</ul>
+<p>Nella <strong>terza</strong> riga, che inizia con <strong>CPU</strong>, troviamo:</p>
+<ul>
+<li>carico dei processi utente</li>
+<li>carico dei processi di sistema</li>
+<li>carico dei processi con priorit&agrave; di aggiornamento <em>nice</em></li>
+<li>percentuale di inattivit&agrave; della cpu</li>
+<li>percentuale dei processi in attesa di operazioni I/O</li>
+<li>percentuale della CPU per interrupt hardware</li>
+<li>percentuale della CPU per interrupt software</li>
+<li>"quantit&agrave;" di CPU usata da (eventuali) macchine virtuali</li>
+</ul>
+<p>Ad esempio nel mio caso vediamo che i processi utente occupano l'1,8% della CPU, mentre i processi di sistema lo 0,5%.</p>
+<p>Nella <strong>quarta</strong> e <strong>quinta</strong> riga troviamo le informazioni relative alla memoria <strong>RAM</strong> e all'area di <strong>SWAP</strong>.</p>
+<p>Infine, abbiamo <strong>l'elenco</strong> di tutti i processi in esecuzione, ognuno corredato da una serie di informazioni utili a capire lo stato del processo stesso e il suo impatto sul sistema:</p>
+<ul>
+<li><strong>PID</strong> &ndash; ID del processo</li>
+<li><strong>USER</strong> &ndash; utente proprietario del processo</li>
+<li><strong>PR</strong> &ndash; priorit&agrave; in cui il processo &egrave; stato lanciato</li>
+<li><strong>NI</strong> &ndash; valore rappresentante il valore &ldquo;NICE&rdquo;</li>
+<li><strong>VIRT</strong> &ndash; memoria virtuale utilizzata dal processo</li>
+<li><strong>RES</strong> &ndash; memoria fisica utilizzata dal processo</li>
+<li><strong>SHR</strong> &ndash; memoria condivisa dal processo&nbsp;</li>
+<li><strong>S</strong> &ndash; stato del processo:&nbsp;<strong>S</strong>=sleep&nbsp;<strong>R</strong>=esecuzione&nbsp;<strong>Z</strong>=zombie</li>
+<li><strong>%CPU</strong> &ndash; percentuale del processo sul carico sulla cpu</li>
+<li><strong>%MEM</strong> &ndash; percentuale del processo sul carico della RAM</li>
+<li><strong>TIME+</strong> &ndash; tempo di attivit&agrave; del processo</li>
+<li><strong>COMMAND</strong> &ndash; nome del processo</li>
+</ul>
+<p>Possiamo anche manipolare le informazioni visualizzate dal comando Top, usando le seguenti opzioni:</p>
+<p>M &ndash; ordina sulla base della memoria in uso<br />P &ndash; ordina sulla base della CPU in uso<br />T &ndash; ordina sulla base del tempo complessivo<br />z &ndash; cambia colore<br />k &ndash; chiude un processo<br />q &ndash; esce dal comando Top</p>
+<p>Ad esempio per killare un processo con ad esempio PID 1234, basta premere la lettera k e inserire 1234 come PID.</p>
+<p>Attenzione perch&egrave; le opzioni appena viste rispettano maiuscole e minuscole.</p>
+<p>Esiste anche una versione pi&ugrave; evoluta del comando Top, il comando HTop, che spesso per&ograve; non &egrave; presente di default. Mi riservo di parlarne in futuro in un post apposito.</p>
+<p>Alla prossima..</p>
+<p><!-- /wp:tadv/classic-paragraph --></p>

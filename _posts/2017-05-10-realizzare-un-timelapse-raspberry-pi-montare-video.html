@@ -1,0 +1,34 @@
+---
+layout: post
+status: publish
+published: true
+title: Timelapse con Raspberry Pi - Montare il video con Avidemux
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3924
+wordpress_url: https://www.red-blue.it/?p=3924
+date: '2017-05-10 09:17:10 +0100'
+date_gmt: '2017-05-10 07:17:10 +0100'
+categories:
+- tips & tricks
+- raspberry pi
+tags:
+- tips
+- guide
+- raspberry pi
+- picamera
+- timelapse
+comments: []
+---
+<p>Nel <a href="http://localhost:4000/guide/realizzare-un-timelapse-raspberry-pi.html">precedente articolo</a> abbiamo visto come ottenere la serie di immagini necessarie a realizzare un video in <strong>timelapse</strong>, ora non resta che trasformarle nel nostro video.</p>
+<p><a href="/assets/images/Raspberry_Pi_Logo.jpg"><img class="aligncenter size-medium wp-image-3911" src="/assets/images/Raspberry_Pi_Logo-237x300.jpg" alt="" width="237" height="300" /></a></p>
+<p>Per prima cosa, occorre un software in grado di montare le varie immagini, io consiglio <strong>Avidemux</strong>, free e multipiattaforma, scaricabile da <a href="http://fixounet.free.fr/avidemux/download.html">qui</a>. Dopo aver effettuato il download, non dimentichiamo di rendere <strong>eseguibile</strong> il file <strong>.appImage</strong> ottenuto:</p>
+<pre class="brush: bash; gutter: false">chmod +x avidemux_2.6.20.appImage</pre>
+<p>In modo da poterlo eseguire semplicemente con</p>
+<pre class="brush: bash; gutter: false">./avidemux_2.6.20.appImage</pre>
+<p>A questo punto, aprite Avidemux, aprite la prima immagine della sequenza e automaticamente dovrebbero essere importate anche tutte le altre. In caso contrario, sar&agrave; necessario aprire le immagini una alla volta, aggiungendole man mano alla timeline del video.</p>
+<p>Al termine, potrete visionare <strong>l'anteprima</strong> del video cliccando su Play in basso a sinistra, e salvare infine il vostro video cliccando <strong>File -> Save -> Save Video</strong>.</p>
+<p>Alla prossima..</p>

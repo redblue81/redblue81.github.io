@@ -1,0 +1,48 @@
+---
+layout: post
+status: publish
+published: true
+title: Sfruttare tutta la potenza di WordPress JSON API
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3848
+wordpress_url: http://www.red-blue.it/?p=3848
+date: '2016-09-03 11:51:22 +0100'
+date_gmt: '2016-09-03 09:51:22 +0100'
+categories:
+- wordpress
+- in evidenza
+tags:
+- wordpress
+- json api
+- rest
+comments: []
+---
+<p>WordPress <strong>JSON API</strong> (lo trovate <a href="https://it.wordpress.org/plugins/json-api/" target="_blank">qui</a>) &egrave; un plugin per WP estremamente interessante. Come suggerisce il nome, si tratta di un plugin per WP in grado di mettere a disposizione il contenuto di un sito WordPress semplicemente mediante chiamate <strong>HTTP</strong>.</p>
+<p><strong>Come &egrave; possibile ci&ograve;?</strong></p>
+<p>Semplice, sfruttando <strong>REST</strong> e <strong>JSON</strong>! In parole povere, si tratta della creazione di <strong>webservices</strong>, ovvero servizi in grado di processare e scambiare informazioni tra server ed altre applicazioni mediante chiamate HTTP opportunamente costruite, e della rappresentazione dei dati mediante il celeberrimo formato JSON, facilmente comprensibile per noi umani e altrettanto facilmente elaborabile per le macchine. Un esempio di dati in formato JSON &egrave; il seguente, che rappresenta una lista di utenti:</p>
+<pre class="brush: bash; gutter: false">{"utenti":[
+
+&nbsp; &nbsp; &nbsp; {"username":"utente1", "nome":"Fabio"},
+
+&nbsp; &nbsp; &nbsp; {"username":"utente2", "nome":"Nicola"},
+&egrave;
+&nbsp; &nbsp; &nbsp; {"username":"utente3", "nome":"Giovanni"}
+&egrave;
+]}</pre>
+<p>E' facile intuire che la struttura base &egrave; la coppia <strong>attributo-valore</strong>.</p>
+<p><strong>Quali sono le possibili applicazioni?</strong></p>
+<p>B&egrave;, tutti quegli ambiti in cui abbiamo necessit&agrave; di fornire i contenuti del nostro sito ad alt&egrave;cazioni senza dover necessariamente andare a consultare l'intera pagina web. Oggi moltissime applicazioni di uso comune si basano su questo concetto, le informazioni presenti sul web vengono reperite in formato JSON e successivamente elaborate oppure visualizzate nell'applicazione stessa.</p>
+<p><strong>Come procedere?</strong></p>
+<p>Dopo l'insta&egrave; del plugin WP JSON API, che trovate nel repository ufficiale, e la sua relativa attivazione, basta raggiungere le impostazioni del plugin stesso da <strong>Impostazioni ></strong> JSON API, ed attivare il/i <strong>controller</strong> di vostro interesse. Per controller si intende un modulo che abilita determinate funzionalit&agrave;, ad esempio post recenti, elenco delle categorie, singolo post e cos&igrave; via.</p>
+<p><a href="/assets/images/wp_json_api.png"><img class="aligncenter wp-image-3852 size-medium" title="WP JSON API" src="/assets/images/wp_json_api-300x90.png" alt="wp json api" width="300" height="90" /></a></p>
+<p>Nell'immagine vediamo i controller standard, in realt&agrave; il solo controller&nbsp;<strong>core</strong> &egrave; gi&agrave; sufficiente ad ottenere una gran mole di dati. Ad esempio, per ricevere la lista degli ultimi post in formato json sar&agrave; sufficiente andare all'indirizzo:</p>
+<pre class="brush: shell; gutter: false">http://nome-sito/json/get_recent_posts</pre>
+<p>Ovviamente, &egrave; possibile definire anche controller <strong>personalizzati</strong>.</p>
+<p><strong>Sicurezza</strong></p>
+<p>Ovviamente, se volessimo anche pubblicare oppure modificare le informazioni sul nostro sito, sarebbe necessario avere la possibilit&agrave; di effettuare tali operazioni in sicurezza, per far ci&ograve; ci viene in aiuto un altro plugin: <strong>JSON API Auth</strong> (<a href="https://it.wordpress.org/plugins/json-api-auth/" target="_blank">qui</a>), che andremo ad approfondire in futuro.</p>
+<p>La <strong>documentazione</strong> completa di JSON API la trovate a <a href="https://it.wordpress.org/plugins/json-api/other_notes/" target="_blank">questo indirizzo</a>.</p>
+<p>Alla prossima..</p>

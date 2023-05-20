@@ -1,0 +1,43 @@
+---
+layout: post
+status: publish
+published: true
+title: Ricevere il DVB-T su Debian Sid con VLC
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3171
+wordpress_url: http://www.red-blue.it/?p=3171
+date: '2012-06-01 18:17:35 +0100'
+date_gmt: '2012-06-01 16:17:35 +0100'
+categories:
+- guide
+- linux
+- debian
+- ubuntu
+- piccole soddisfazioni
+- in evidenza
+tags:
+- debian
+- linux
+- ubuntu
+- vlc
+- dvb-t
+- pinnacle 330e
+- w-scan
+comments: []
+---
+<p>Sapete che potete usare semplicemente <strong>VLC</strong> per vedere il <strong>digitale terrestre</strong> sul PC?</p>
+<p>Nella mia zona (<strong>Taranto</strong>) c'&egrave; appena stato lo <strong>switch-off</strong>, ovvero il vecchio, glorioso segnale analogico &egrave; stato definitivamente spento a vantaggio del moderno segnale digitale terrestre. Quale miglior scusa per rimettere mano al mio sintonizzatore <strong>DVB-T USB</strong>?</p>
+<p><a href="/assets/images/dvb_t.jpg"><img class="aligncenter size-medium wp-image-3190" title="dvb_t" src="/assets/images/dvb_t-296x300.jpg" alt="" width="296" height="300" /></a></p>
+<p><!--moreContinua a leggere.. --></p>
+<p>Per chi non lo sapesse, si tratta della <strong>Pinnacle 330e</strong>, di cui in passato ho diffusamente parlato in questo blog (<a href="http://localhost:4000/guide/pinnacle-330e-su-debian-ubuntu-senza-problemi.html" target="_blank">questa</a> la guida per utilizzarla con <strong>Debian/Ubuntu</strong>), che il sottoscritto ha sempre usato in accoppiata con <strong>Kaffeine</strong>. Ma sinceramente non mi &egrave; mai andato molto a genio il dover installare molte librerie proprie di KDE per un solo ed unico utilizzo: questo il motivo che mi ha spinto a cercare un'alternativa che funzionasse come si deve con <strong>Gnome</strong>. La <strong>soluzione</strong>, con mia grande sorpresa, &egrave; rappresentata proprio da VLC.</p>
+<p>Per prima cosa, installiamo il necessario, ovvero VLC, e un software essenziale che si chiama <strong>w_scan</strong>:</p>
+<pre class="brush: bash; gutter: false">apt-get install vlc w-scan</pre>
+<p>A questo punto, colleghiamo il sintonizzatore, come descritto nella guida che ho linkato, e procediamo con una <strong>ricerca</strong> dei canali:</p>
+<pre class="brush: bash; gutter: false">w_scan -X -P -t 2 -E 0 -c IT > canali-dvb.conf</pre>
+<p>Ci vorr&agrave; un po' (circa un quarto d'ora dalle mie parti), ma alla fine avremo un file <strong>canali-dvb.conf</strong> che potremo semplicemente aprire con VLC (selezionando <strong>Media->Apri file</strong> e, se necessario, <strong>Tutti i files multimediali</strong>). Magicamente ecco che vedremo la nostra tv digitale senza aver installato alcun programma! Per una visuale pi&ugrave; "comoda" baster&agrave; poi scegliere <strong>Visualizza->Scaletta</strong>. Infine, per registrare baster&agrave; visualizzare il relativo tasto, attraverso <strong>Visualizza->Controlli avanzati</strong>.</p>
+<p>Semplice no? ;)</p>
+<p>Alla prossima..</p>

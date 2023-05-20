@@ -1,0 +1,45 @@
+---
+layout: post
+status: publish
+published: true
+title: PHPMyAdmin su LMDE 4 (o Debian 10)
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 4037
+wordpress_url: https://www.red-blue.it/?p=4037
+date: '2020-11-10 09:54:31 +0100'
+date_gmt: '2020-11-10 08:54:31 +0100'
+categories:
+- tips & tricks
+- linux
+- debian
+- lmde
+tags: []
+comments: []
+---
+<p><!-- wp:paragraph --></p>
+<p>Recentemente mi &egrave; capitato di reinstallare PHPMyAdmin su LMDE 4 (ma la stessa cosa vale su Debian 10), ricevendo questo errore:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code --></p>
+<pre class="wp-block-syntaxhighlighter-code">The following packages have unmet dependencies:
+ phpmyadmin : Depends: php-twig (>= 2.9) but 2.6.2-2 is to be installed
+E: Unable to correct problems, you have held broken packages.</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>La soluzione &egrave; estremamente semplice:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code --></p>
+<pre class="wp-block-syntaxhighlighter-code">aptitude -t buster-backports install php-twig</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Poi si pu&ograve; installare PHPMyAdmin su LMDE 4:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code --></p>
+<pre class="wp-block-syntaxhighlighter-code">apt install phpmyadmin</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>

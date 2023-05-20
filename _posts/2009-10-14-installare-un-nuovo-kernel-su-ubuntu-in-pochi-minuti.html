@@ -1,0 +1,79 @@
+---
+layout: post
+status: publish
+published: true
+title: Installare un nuovo kernel su Ubuntu in pochi minuti
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 740
+wordpress_url: http://redblue.netsons.org/?p=740
+date: '2009-10-14 08:59:55 +0100'
+date_gmt: '2009-10-14 07:59:55 +0100'
+categories:
+- guide
+- linux
+- ubuntu
+tags:
+- linux
+- ubuntu
+- repository
+- kernel
+- aggiornamento
+- pacchetti precompilati
+- i386
+- amd64
+comments:
+- id: 6803
+  author: Ricca
+  author_email: drunkbutterfly@katamail.com
+  author_url: ''
+  date: '2011-01-13 21:05:46 +0100'
+  date_gmt: '2011-01-13 20:05:46 +0100'
+  content: Ho provato a seguire le istruzioni del tuo articolo ma, non mi viene chiesto
+    di aggiornare il GRUB tant&egrave; che al riavvio del sistema non mi viene data
+    la possibilit&agrave; di scegliere il nuovo kernel installato. Ho visto che nei
+    files da scaricare non &egrave; presente il file source, pu&ograve; entrarci qualcosa??
+- id: 6805
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-01-13 23:05:57 +0100'
+  date_gmt: '2011-01-13 22:05:57 +0100'
+  content: Prova con il comando <code>sudo update-grub</code>..
+- id: 6809
+  author: Ricca
+  author_email: drunkbutterfly@katamail.com
+  author_url: ''
+  date: '2011-01-14 11:00:38 +0100'
+  date_gmt: '2011-01-14 10:00:38 +0100'
+  content: Provato ma niente.....
+- id: 6810
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-01-14 11:26:47 +0100'
+  date_gmt: '2011-01-14 10:26:47 +0100'
+  content: |-
+    Mmm.. C'&egrave; qsa che non torna.. I comandi sono sicuramente quelli, &egrave; molto strano che non venga richiamato in automatico lo script di update di Grub, cos&igrave; come &egrave; ancora pi&ugrave; strano che anche richiamandolo a mano non cambi nulla..
+
+    Quale kernel stai cercando di installare??
+- id: 6811
+  author: Ricca
+  author_email: drunkbutterfly@katamail.com
+  author_url: ''
+  date: '2011-01-14 16:54:25 +0100'
+  date_gmt: '2011-01-14 15:54:25 +0100'
+  content: "Ho scaricato ed installato questi pacchetti:\r\n\r\nlinux-headers-2.6.35-020635rc1
+    generic_2.6.35-020635rc1_amd64.deb   \r\n\r\nlinux-headers-2.6.35-020635rc1_2.6.35-020635rc1_all.deb\r\n\r\nlinux-image-2.6.35-020635rc1-generic_2.6.35-020635rc1_amd64.deb"
+---
+<p>C'&egrave; un modo per poter installare sulla propria Ubuntu un <strong>kernel</strong> nuovo di zecca praticamente senza fatica, usando comodi pacchetti deb precompilati. Chiaramente compilare un kernel a partire dai sorgenti resta il metodo per eccellenza, che consente di modellare il kernel stesso sulla macchina sottostante, e spingerne quindi le prestazioni al massimo, ma &egrave; altrettanto vero che il metodo che vado a descrivere va bene per la maggior parte degli utenti, i quali necessitano di una macchina performante e che supporti (possibilmente) l'hardware pi&ugrave; recente.</p>
+<p>C'&egrave; da dire anche che <span style="text-decoration: underline;">un nuovo kernel non &egrave; la panacea di tutti i mali</span>, quindi non &egrave; detto che il vostro problema magicamente si risolva, e comunque non bisogna mai dimenticare che alcuni moduli relativi a nostre installazioni (ad esempio VirtualBox e le schede video in generale) vanno <strong>ricompilati</strong> perch&egrave; possano funzionare col nuovo kernel. A volte poi alcuni drivers non offrono il supporto ai kernel pi&ugrave; recenti (&egrave; il caso ad esempio dei Catalyst di ATI, l'attuale versione 9.9 non supporta il kernel 2.6.31, tanto per fare un esempio).</p>
+<p><span style="text-decoration: underline;">M</span><span style="text-decoration: underline;">orale: non siate precipitosi e valutate bene ci&ograve; che fate, inoltre non cancellate mai i vecchi kernel funzionanti finch&egrave; non siete sicuri che il nuovo funzioni esattamente allo stesso modo (e possibilmente meglio).</span></p>
+<p>Fatta questa lunga ma doverosa premessa, <a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/" target="_blank">qui</a> c'&egrave; il repository dei pacchetti precompilati del kernel: scegliete la versione che volete installare, entrate nella relativa directory e scaricate <strong>solo</strong> il file <strong><code>linux-image</code> relativo alla vostra architettura</strong> (i386 = 32 bit, amd64 = 64 bit), pi&ugrave; il file <strong><code>linux-headers</code> che presenta il suffisso all</strong>, pi&ugrave; il file <strong><code>linux-headers</code> che presenta il suffisso relativo alla vostra architettura</strong>.</p>
+<p>A questo punto installate tutto, basta il comando:</p>
+<blockquote><p><code>sudo dpkg -i linux*.deb</code></p></blockquote>
+<p>Verr&agrave; fatto tutto in automatico, compreso l'<strong>aggiornamento</strong> di GRUB (che vi verr&agrave; comunque richiesto)..</p>
+<p>A questo punto baster&agrave; riavviare per utilizzare il nuovo kernel..</p>

@@ -1,0 +1,41 @@
+---
+layout: post
+status: publish
+published: true
+title: 'Errore SSH "WARNING: remote host identification has changed" - Soluzione'
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2306
+wordpress_url: http://www.red-blue.it/?p=2306
+date: '2011-09-12 08:52:40 +0100'
+date_gmt: '2011-09-12 06:52:40 +0100'
+categories:
+- tips & tricks
+- linux
+- server
+tags:
+- server
+- linux
+- tips
+- errore
+- ssh
+- soluzione
+comments:
+- id: 88852
+  author: 'Appunti della settimana #12 | Il nido del Picchio'
+  author_email: ''
+  author_url: http://picchiopc.wordpress.com/2013/11/12/appunti-della-settimana-12/
+  date: '2013-11-12 19:19:00 +0100'
+  date_gmt: '2013-11-12 18:19:00 +0100'
+  content: "[&#8230;] Fonte [&#8230;]"
+---
+<p>Utilizzando <strong>SSH</strong> per l'accesso in remoto ad un host (ad esempio un <strong>server</strong>), pu&ograve; succedere di incappare nell'errore esposto nel titolo di questo articolo. Iniziamo col capire di cosa stiamo parlando:&nbsp;il server (o comunque il computer destinatario della vostra richiesta) non &egrave; stato in grado di <strong>autenticare correttamente</strong> l'utente impostato.</p>
+<p><strong>Perch&egrave;</strong>?? Perch&egrave; o c'&egrave; stata una <strong>manomissione</strong> sul server (e questo &egrave; il caso pi&ugrave; sfavorevole e potenzialmente problematico), oppure pu&ograve; essere dovuto ad un semplice <strong>aggiornamento</strong>, o ad una <strong>formattazione</strong> (ovviamente in questo caso non &egrave; un gran problema)..</p>
+<p><!--moreContinua a leggere.. --></p>
+<p>La soluzione?? Semplice, se non ci sono altri sistemi che si collegano in remoto usando SSH, allora potete direttamente cancellare il file <code>/home/NomeUtente/.ssh/known_hosts</code> e al successivo tentativo di connessione verr&agrave; generata una nuova <strong>fingerprint</strong> che render&agrave; di nuovo funzionante il tutto, altrimenti, in caso di accesso da pi&ugrave; host, occorre andare a cercare la seguente riga nella segnalazione dell'errore:</p>
+<blockquote><p><code>Offending key in /home/dom/.ssh/known_hosts:1</code></p></blockquote>
+<p>Il <strong>numero</strong> alla fine di tale riga, nell'esempio 1, rappresenta il numero della riga che dovete <strong>cancellare</strong> nel file prima citato. Di nuovo, al successivo tentativo di connessione da quella macchina tutto torner&agrave; a funzionare.</p>
+<p>Alla prossima..</p>

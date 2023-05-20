@@ -1,0 +1,132 @@
+---
+layout: post
+status: publish
+published: true
+title: ownCloud su Raspberry Pi con Raspbian
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3884
+wordpress_url: http://www.red-blue.it/?p=3884
+date: '2016-12-14 17:48:40 +0100'
+date_gmt: '2016-12-14 16:48:40 +0100'
+categories:
+- guide
+- linux
+- in evidenza
+- raspberry pi
+- raspbian
+tags:
+- guida
+- raspberry pi
+- raspbian
+- owncloud
+comments:
+- id: 475896
+  author: 'ownCloud su Raspberry: usare SSL - RedBlue&#039;s Blog'
+  author_email: ''
+  author_url: http://www.red-blue.it/guide/owncloud-su-raspberry-usare-ssl.html
+  date: '2016-12-17 16:51:56 +0100'
+  date_gmt: '2016-12-17 15:51:56 +0100'
+  content: "[&#8230;] aver installato ownCloud sul nostro Raspberry Pi, e magari aver
+    configurato un servizio di DNS dinamico come No-IP [&#8230;]"
+- id: 475900
+  author: Lillo Ficili
+  author_email: lillo.ficili@gmail.com
+  author_url: ''
+  date: '2017-01-30 22:57:00 +0100'
+  date_gmt: '2017-01-30 21:57:00 +0100'
+  content: |-
+    Salve devo purtroppo segnalare che al tentativo di raggiungere la home di owncloud ottengo un messaggio Not Found
+    The requested URL /owncloud was not found on this server.
+    Apache/2.4.10 (Raspbian) Server at 192.168.1.3 Port 80
+    Ha qualche suggerimento nel mentre che continuo a cercare sul web? grazie
+- id: 475901
+  author: redbluesblog
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2017-01-30 23:43:00 +0100'
+  date_gmt: '2017-01-30 22:43:00 +0100'
+  content: Ciao, direi che &egrave; chiaro che non trova il sito.. Configurato bene
+    Apache e attivato il sito stesso? Hai provato a riavviare Apache?
+- id: 475902
+  author: Lillo Ficili
+  author_email: lillo.ficili@gmail.com
+  author_url: ''
+  date: '2017-01-30 23:50:00 +0100'
+  date_gmt: '2017-01-30 22:50:00 +0100'
+  content: Grazie per la risposta. Ritengo di si per Apache non ho modificato file
+    di configurazione e ti confermo che ho fatto il restart. Vedo in rete ci sono
+    diverse segnalazioni analoghe alla mia che sembrano assegnare il problema alla
+    configurazione del virtual server, ma sto ancora leggendo
+- id: 475903
+  author: redbluesblog
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2017-01-31 22:01:00 +0100'
+  date_gmt: '2017-01-31 21:01:00 +0100'
+  content: 'Ok ma anche senza usare il virtual server devi configurare Apache affinch&eacute;
+    riconosca il nuovo sito.. Per lo meno devi specificare nel file di configurazione
+    generale la posizione del sito stesso.. '
+- id: 475905
+  author: Alessandro Filincieri
+  author_email: alessandrofilincieri@gmail.com
+  author_url: ''
+  date: '2018-02-02 13:54:00 +0100'
+  date_gmt: '2018-02-02 12:54:00 +0100'
+  content: Buongiorno, ho installato raspbian su pi3 ma provando a installare php5
+    mi da errore. Non &egrave; pi&ugrave; compatibile con questa versione di raspbian?
+---
+<p><strong>ownCloud</strong> &egrave; un servizio gratuito che permette di creare il proprio <strong>cloud</strong> personale, che ci permetter&agrave; di avere i nostri files pi&ugrave; importanti sempre a disposizione (baster&agrave; avere una connessione ad internet).</p>
+<p><a href="/assets/images/ownCloud2.jpg"><img class="aligncenter wp-image-3886 size-medium" src="/assets/images/ownCloud2-300x120.png" alt="" width="300" height="120" /></a></p>
+<p>Perch&egrave; non metter su un servizio del genere sfruttando il <strong>Raspberry Pi</strong>?</p>
+<p><!--moreContinua a leggere...--></p>
+<p>Premetto che per utilizzare tale servizio anche al di fuori della rete di casa, sar&agrave; necessario usare anche un servizio di <strong>DNS dinamico</strong> (tipo No-ip, <a href="http://localhost:4000/internet/accedere-da-internet-al-proprio-server-di-casa-con-no-ip.html" target="_blank">ne ho gi&agrave; parlato in passato</a>, l'articolo &egrave; vecchiotto, ma il servizio &egrave; rimasto pressoch&egrave; identico).</p>
+<p>Supponendo di aver installato <strong>Raspbian</strong> come OS, il primo passo &egrave; installare il web server e il database:</p>
+<pre class="brush: bash; gutter: false">sudo apt-get install apache2 php5 php5-gd php-xml-parser php5-intl php5-sqlite php5-mysql smbclient curl libcurl3 php5-curl mysql-server mysql-client php-apc</pre>
+<p>Attenzione perch&egrave; durante l'installazione vi verr&agrave; richiesta una <strong>password</strong> per il database, appuntatela perch&egrave; servir&agrave; pi&ugrave; tardi.</p>
+<p>Poi scarichiamo <strong>ownCloud</strong> (esiste anche un repository, ma al momento ho preferito non usarlo):</p>
+<pre class="brush: bash; gutter: false">wget http://download.owncloud.org/community/owncloud-9.1.2.tar.bz2</pre>
+<p>Decomprimiamo il tutto:</p>
+<pre class="brush: bash; gutter: false">tar -xjf owncloud-9.1.2.tar.bz2</pre>
+<p>E copiamo i files in <strong>/var/www/</strong>:</p>
+<pre class="brush: bash; gutter: false">sudo cp -r owncloud /var/www</pre>
+<p>Assegnamo la propriet&agrave; dei files all'utente (e al gruppo) giusto:</p>
+<pre class="brush: bash; gutter: false">sudo chown -R www-data:www-data /var/www</pre>
+<p>A questo punto, configuriamo il sito. Per comodit&agrave;, io ho creato un file <strong>owncloud.conf</strong>:</p>
+<pre class="brush: bash; gutter: false">sudo nano /etc/apache2/sites-available/owncloud.conf</pre>
+<p>Con all'interno:</p>
+<pre class="brush: bash; gutter: false"><VirtualHost *:80>
+
+   ServerAdmin webmaster@sito.com
+
+   ServerName localhost/owncloud
+
+   ServerAlias localhost/owncloud
+
+   DocumentRoot /var/www/owncloud
+&egrave;
+   LogLevel warn
+
+   ErrorLog /var/log/apache2/owncloud-error.log
+
+   CustomLog /var/log/apache2/owncloud-access.log combined
+
+</VirtualHost></pre>
+<p>Attenzione perch&egrave; alle direttive <strong>ServerAdmin</strong>, <strong>ServerName</strong> e <strong>ServerAlias</strong> andranno assegnati i valori corrispondenti alla vostra installazione e alla vostra email.</p>
+<p>A questo punto, abilitiamo alcuni <strong>moduli</strong> di Apache che ci serviranno per il corretto funzionamento del sito:</p>
+<pre class="brush: bash; gutter: false">sudo a2enmod rewrite&egrave;&egrave;
+&egrave;
+sudo a2enmod headers</pre>
+<p>E infine <strong>abilitiamo il sito</strong> appena creato:</p>
+<pre class="brush: bash; gutter: false">sudo a2ensite owncloud</pre>
+<p>E facciamo ripartire Apache:</p>
+<pre class="brush: bash; gutter: false">sudo systemctl reload apache2.service</pre>
+<p>Fatto, apriamo il browser e andiamo all'indirizzo <strong>localhost/owncloud</strong> e avremo questa schermata:</p>
+<p><a href="/assets/images/owncloud_install.png"><img class="aligncenter size-medium wp-image-3885" src="/assets/images/owncloud_install-300x157.png" alt="" width="300" height="157" /></a></p>
+<p>Baster&agrave; compilare tutti i campi (la password del database &egrave; quella impostata in fase di installazione, l'utente &egrave; root) e verranno creati utente e database.</p>
+<p>A questo punto, se tutto &egrave; andato bene, sarete gi&agrave; in grado di usare il servizio all'interno della vostra rete locale.</p>
+<p>Come dicevo sopra, se volete usarlo anche dall'esterno, baster&agrave; configurare un host che punta al vostro Raspberry su un servizio come <strong>No-ip</strong>.</p>
+<p>Alla prossima..</p>

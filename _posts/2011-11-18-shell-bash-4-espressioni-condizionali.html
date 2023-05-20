@@ -1,0 +1,267 @@
+---
+layout: post
+status: publish
+published: true
+title: Shell Bash - 4 - Espressioni condizionali
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2690
+wordpress_url: http://www.red-blue.it/?p=2690
+date: '2011-11-18 07:17:40 +0100'
+date_gmt: '2011-11-18 06:17:40 +0100'
+categories:
+- guide
+- linux
+- in evidenza
+tags:
+- guida
+- linux
+- shell
+- bash
+- espressioni condizionali
+comments:
+- id: 17229
+  author: Filippo
+  author_email: fval@libero.it
+  author_url: ''
+  date: '2012-09-17 10:08:44 +0100'
+  date_gmt: '2012-09-17 08:08:44 +0100'
+  content: "Tanto per capire, come faccio a \"tornare indietro\" ad un determinato
+    punto dello script in caso di errore (tipo variabile vuota)? Faccio un esempio:
+    \r\n\r\nread VAR\r\nif [[ -z \"$VAR\" ]]; then\r\necho \" valore non inserito!
+    Riprova\"\r\nsleep 2\r\n?TORNA A READ?\r\nelse\r\necho \"Variabile inserita correttamente!\"\r\nsleep
+    2\r\nfi"
+- id: 18291
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2012-09-28 09:54:57 +0100'
+  date_gmt: '2012-09-28 07:54:57 +0100'
+  content: |-
+    Ciao e scusa per il ritardo nella risposta, purtroppo in questo periodo il lavoro mi sta assorbendo parecchio..
+
+    Forse a questo punto avrai gi&agrave; risolto, ma ti posto ugualmente un suggerimento..
+
+    Circa la tua domanda, potresti usare un while invece di un if, cio&egrave; un ciclo del tipo "finch&egrave; la stringa immessa ha lunghezza zero segnala l'errore e chiedi nuovamente l'input". Ovviamente all'uscita del while, in seguito ad un'immissione corretta, puoi segnalarlo all'utente.
+---
+<p>Oggi affronteremo un altro argomento fondamentale nello scripting con la Shell Bash: le espressioni condizionali, ovvero i costrutti <strong>if</strong> - <strong>if/then/elif/else</strong> - <strong>case</strong>.</p>
+<p>Cominciamo col chiarire a cosa servono questi costrutti: pu&ograve; accadere in uno script di avere la necessit&agrave; di operare in modi diversi a seconda del <strong>risultato</strong> di una certa operazione e/o di un comando. La sintassi pi&ugrave; elementare &egrave; la seguente:</p>
+<pre class="brush: bash; gutter: true">if (CONDIZIONE); then
+
+    (ISTRUZIONI);
+
+fi</pre>&egrave;&egrave;&egrave;
+<p>Che letteralmente significa "<span style="text-decoration: underline;">se si verifica CONDIZIONE allora esegui ISTRUZIONI</span>". La condizione di controllo pu&ograve; essere un <strong>confronto tra numeri o stringhe</strong>, ma anche semplicemente l'<strong>esito di un comando</strong> (ovvero, se il comando va a buon fine = restituisce valore zero, allora esegui le istruzioni successive).<br />
+<!--moreContinua a leggere.. -->Due importanti precisazioni: 1) ad ogni if <span style="text-decoration: underline;"><strong>deve</strong></span> corrispondere un fi, che sta ad indicare all'interprete che il costrutto &egrave; terminato, e 2) ogni condizione restituisce <span style="text-decoration: underline;"><strong>sempre</strong></span> un valore numerico, pari a <strong>zero</strong> se il risultato &egrave; <strong>vero</strong> (true), altrimenti diverso da zero (che viene ovviamente interpretato come falso). Questo significa che anche un intero comando pu&ograve; essere impiegato in un costrutto condizionale, ovviamente perch&egrave; se tale comando va a buon fine verr&agrave; restituito zero e sar&agrave; interpretato come true, altrimenti come false.</p>
+<p>Vediamo un piccolissimo script di esempio:</p>
+<pre class="brush: bash; gutter: true">#!/bin/bash
+
+clear
+
+echo -e "Inizio script\n";
+
+if [[ -e /etc/passwd ]]; then
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo "File /etc/passwd esistente";
+
+fi
+
+if grep -q root /etc/passwd; then
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo "Utente root verificato";
+
+fi
+
+echo -e "\nFine script";</pre>
+<p>Questo script non fa altro che <strong>verificare</strong> l'esistenza del file <code>/etc/passwd</code> (<strong>riga 4</strong>), per poi verificare l'esistenza dell'utente <code>root</code> (<strong>riga 7</strong>). Completano lo script il comando <code>clear</code> che non fa altro che pulire la shell, e due semplici comandi <code>echo</code>, che scrivono a video la stringa indicata (l'opzione <code>-e</code> invece abilita le sequenze di <strong>escape</strong>, il <code>\n</code> nell'esempio, che viene interpretato come "vai a capo").</p>
+<p>Soffermiamoci sulla condizione nell'istruzione alla riga 4:</p>
+<pre class="brush: bash; gutter: true">  [[ -e /etc/passwd ]];</pre>
+<p>Il <code>-e</code> indica all'interprete di verificare l'esistenza del file indicato, di seguito un elenco di tali espressioni:</p>
+<table border="1">
+<thead>
+<tr>
+<th>Operatore</th>
+<th>Descrizione</th>
+</tr>
+</thead>
+<tbody>&egrave;
+<tr>
+<td><tt>-a</tt>, <tt>-e</tt></td>
+<td>Restituisce true se il file esiste</td>
+</tr>
+<tr>
+<td><tt>-s</tt></td>
+<td>Restituisce true se il file esiste ed ha dimensione maggiore di zero byte</td>
+</tr>&egrave;&egrave;
+<tr>
+<td><tt>-d</tt>, <tt>-f</tt>, <tt>-h</tt></td>
+<td>Restituisce true se il file esiste ed &egrave; una directory, o un file regolare, o un link</td>
+</tr>
+<tr>
+<td><tt>-r</tt>, <tt>-w</tt>, <tt>-x</tt></td>
+<td>Restituisce true se lo script ha i privilegi di lettura, o di scrittura, o di esecuzione sul file</td>
+</tr>
+<tr>
+<td><tt>-nt</tt>, <tt>-ot</tt></td>
+<td>Restituisce true se il primo file &egrave; pi&ugrave; recente del secondo (nt) o se il secondo &egrave; pi&ugrave; recente del primo (ot)</td>
+</tr>
+<tr>
+<td><tt>-eq</tt>, <tt>-ne</tt></td>
+<td>Restituisce true se tra due stringhe queste hanno lo stesso valore intero o due valori interi differenti</td>
+</tr>&egrave;&egrave;
+<tr>
+<td><tt>-lt</tt>, <tt>-le</tt></td>
+<td>Restituisce true se la prima stringa ha un valore minore o minore o uguale al valore della seconda</td>
+</tr>
+<tr>
+<td><tt>-gt</tt>, <tt>-ge</tt></td>
+<td>Restituisce true&nbsp;se la prima stringa ha un valore maggiore o maggiore o uguale al valore della seconda</td>
+</tr>
+</tbody>
+</table>
+<p>E' importante anche chiarire il modo corretto di utilizzo della sintassi <code>[[ ... ]]</code>: <span style="text-decoration: underline;"><strong>attenzione</strong></span>!! Tra le doppie parentesi (sia di apertura che di chiusura) e l'espressione al loro interno &egrave; <strong>obbligatorio</strong> inserire gli spazi, altrimenti non verr&agrave; interpretato correttamente. Un'ultima cosa, si pu&ograve; anche trovare ancora la stessa espressione indicata con <code>[ ... ]</code>, ovvero con una sola parentesi quadra, &egrave; una scrittura vecchiotta, meglio usare quella che ho indicato prima.</p>
+<p>Lo script precedente pu&ograve; essere <strong>migliorato</strong>: supponiamo di trovarci nella situazione in cui se un comando ha un esito devono essere eseguite delle istruzioni, <strong>altrimenti</strong> devono esserne eseguite altre. Bene, in questa situazione ci viene in aiuto l'istruzione <code>else</code>, quindi il costrutto assume la forma:</p>
+<pre class="brush: bash; gutter: true">if (CONDIZIONE); then
+
+    (BLOCCO1);
+
+else
+
+    (BLOCCO2);
+
+fi</pre>
+<p>Lo script precedente pu&ograve; essere cos&igrave; modificato:</p>
+<pre class="brush: bash; gutter: true">#!/bin/bash
+&egrave;
+clear
+
+utente="qwerty";
+
+echo -e "Inizio script\n";
+
+if [[ -e /etc/passwd ]]; then
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo "File /etc/passwd esistente";
+
+else
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo "Il file /etc/passwd non esiste!!";
+
+fi
+
+if grep -q $utente&nbsp; /etc/passwd; then
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo "Utente $utente verificato";
+
+else
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo "L'utente $utente non esiste!!";
+
+fi
+
+echo -e "\nFine script";</pre>
+<p>In questo caso, se uno dei comandi d&agrave; esito <strong>negativo</strong>, questo viene segnalato. Ho aggiunto una variabile che contiene il nome dell'utente in modo da evidenziare proprio questo comportamento, a meno che nel vostro sistema non abbiate davvero l'utente <strong>qwerty</strong>, lo script eseguir&agrave; il secondo ramo <code>else</code>.</p>
+<p>Ultima cosa da dire sull'istruzione if, &egrave; possibile <strong>annidare</strong> pi&ugrave; if, in modo da creare costrutti pi&ugrave; <strong>complessi</strong>, in questo caso si introduce l'istruzione <code>elif</code>, arrivando alla seguente sintassi:</p>
+<pre class="brush: bash; gutter: true">if (CONDIZIONE1); then
+
+    (BLOCCO1);
+
+elif (CONDIZIONE2); then
+
+    (BLOCCO2);
+
+elif (CONDIZIONE3); then
+
+    (BLOCCO3);
+
+else
+
+    (BLOCCO4);
+
+fi</pre>
+<p>Ovviamente la complessit&agrave; pu&ograve; essere anche maggiore. Giusto per fare un esempio, ecco uno script con un costrutto if complesso:</p>
+<pre class="brush: bash; gutter: true">#!/bin/bash
+
+clear
+
+numero=$1;
+
+echo -e "Inizio script\n";&egrave;
+
+if [[ $numero == uno ]]; then
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo "Hai digitato uno";
+
+elif [[ $numero == due ]]; then
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo "Hai digitato due";
+
+elif [[ $numero == tre ]]; then
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo "Hai digitato tre";
+
+else
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo "Altro numero diverso da uno, due e tre";
+
+fi
+
+echo -e "\nFine script";</pre>
+<p>Provate a lanciare lo script, chiamato ad esempio <code>num.sh</code>, con <code>./num.sh due</code>, e vedrete il funzionamento del costrutto messo in piedi.</p>
+<p>Ovviamente, un costrutto di questo tipo pu&ograve; diventare estremamente complesso al crescere dell'annidamento. Per ovviare a questo, esiste l'istruzione case, che ha la seguente sintassi:</p>
+<pre class="brush: bash; gutter: true">case (VARIABILE) in
+
+    ( CONDIZIONE1 )
+
+        (BLOCCO1);;
+
+    ( CONDIZIONE2 )
+
+        (BLOCCO2);;
+
+    ( CONDIZIONE3 )
+
+        (BLOCCO3)
+
+    ...
+
+    ( * )
+
+        ( BLOCCO4)
+
+esac</pre>
+<p>Lo script precedente, il cui funzionamento resta immutato, diventa:</p>
+<pre class="brush: bash; gutter: true">!/bin/bash
+
+clear
+
+numero=$1;
+
+echo -e "Inizio script\n";
+
+case $numero in
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( uno )
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo "Hai digitato uno";;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( due )
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo "Hai digitato due";;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( tre )
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo "Hai digitato tre";;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( * )
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo "Altro numero diverso da uno, due e tre"
+
+esac
+
+echo -e "\nFine script";</pre>
+<p>Da notare l'ultima voce, contrassegnata da <code>( * )</code>, indica il <code>default</code>, ovvero ci&ograve; che deve essere eseguito se non si ricade in alcuno dei casi precedentemente indicati. Attenzione perch&egrave; anche in questo caso gli spazi sono <strong>obbligatori</strong>!!</p>
+<p>Alla prossima..</p>

@@ -1,0 +1,31 @@
+---
+layout: post
+status: publish
+published: true
+title: Lubuntu - Ripristinare "Preferenze del desktop"
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2900
+wordpress_url: http://www.red-blue.it/?p=2900
+date: '2012-02-05 11:21:16 +0100'
+date_gmt: '2012-02-05 10:21:16 +0100'
+categories:
+- tips & tricks
+- linux
+tags:
+- desktop
+- lubuntu
+- tip
+- '11.10'
+- openbox
+comments: []
+---
+<p>Installando una <strong>Lubuntu 11.10</strong>, mi &egrave; capitato per sbaglio di disabilitare il <strong>men&ugrave; contestuale</strong> (quello che si apre col <strong>tasto destr</strong>o del mouse per capirci) relativo al desktop. In pratica, di default la pressione del tasto destro sul desktop invoca il seguente men&ugrave;:</p>
+<p><a href="/assets/images/lub_desk.jpg"><img class="aligncenter size-full wp-image-2902" title="lub_desk" src="/assets/images/lub_desk.jpg" alt="" width="254" height="222" /></a>Selezionando <strong>Preferenze del Desktop</strong> e poi la scheda <strong>Avanzate</strong>, avremo la possibilit&agrave; di scegliere se visualizzare il men&ugrave; di default (quello in figura), o quello di default di <strong>OpenBox</strong>, il DE di Lubuntu (attraverso il check dell'opzione <strong>Mostra il men&ugrave; fornito dal window manager quando clicchi sul desktop</strong>). Quest'ultimo men&ugrave; consente di arrivare direttamente alle impostazioni del DE, ma &egrave; (secondo me) meno "comodo" di quello di default (oltre che anche visivamente meno gradevole). Purtroppo di default <strong>non esiste</strong> la possibilit&agrave; di tornare indietro, quindi sembrerebbe che, una volta scelto il secondo tipo di men&ugrave;, sia necessario tenerlo.</p>
+<p>Invece no! Basta dare il seguente comando:</p>
+<pre class="brush: bash; gutter: true">pcmanfm --desktop-pref</pre>
+<p>Per avere nuovamente la possibilit&agrave; si scegliere (andiamo sulla scheda <strong>Avanzate</strong> nella finestra che si aprir&agrave; e <strong>deselezioniamo</strong> l'opzione attivata in precedenza). &nbsp;A questo punto, se il men&ugrave; non torna subito a posto, basta <strong>riavviare</strong>.</p>
+<p>Alla prossima..</p>

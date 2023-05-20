@@ -1,0 +1,96 @@
+---
+layout: post
+status: publish
+published: true
+title: Creare una "social box" per Wordpress
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2245
+wordpress_url: http://www.red-blue.it/?p=2245
+date: '2011-07-27 09:09:02 +0100'
+date_gmt: '2011-07-27 07:09:02 +0100'
+categories:
+- blog
+- guide
+- wordpress
+- social network
+tags:
+- blog
+- wordpress
+- css
+- social network
+- temi
+- grafica
+- pulsanti
+- social box
+comments: []
+---
+<p>Forse non tutti avranno notato che ho eliminato i <strong>pulsanti di collegamento</strong> ai vari social network in fondo ad ogni articolo, per sostituirli con una <strong>"social box"</strong> fissa rispetto alla pagina accanto ad ogni articolo (preso singolarmente)..</p>
+<p>L'idea originale non &egrave; mia, devo ammetterlo, e devo anche dare tutti i <strong>meriti</strong> del caso agli amici di <a href="http://www.wpstyle.it/" target="_blank">WPStyle</a>, che mi hanno anche fornito le dritte per implementarla..</p>
+<p><!--moreContinua a leggere..--></p>
+<p>Per realizzarla, occorre per prima cosa creare un file che chiamiamo <code>social-button.php</code> e che, una volta completo, andremo a caricare nella stessa directory del nostro tema. Tale file conterr&agrave; il seguente codice:</p>
+<pre lang="html4strict" line="1" escaped="true"><div class="buttons">
+
+<div class="buttons" id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like href="" send="true" layout="box_count" width="450" show_faces="true" font=""></fb:like>
+
+<div class="buttons"><a class="twitter-share-button" href="http://twitter.com/share" data-count="vertical" data-via="RedBlue81" data-lang="it">Tweet</a>
+
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>
+
+<div class="buttons"><script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+
+{lang: 'it'}</script>&egrave;
+
+<g:plusone size="tall"></g:plusone></div>
+
+</div></pre>
+<p>Ovviamente <strong>ricordatevi</strong> di mettere il nome del vostro account su Twitter al posto di <code>vostroAccount</code>. Potete gi&agrave; effettuare <strong>l'upload</strong> di questo file sul server, ricordando di metterlo nella directory del vostro tema.</p>
+<p>A questo punto, conviene creare lo <strong>stile CSS</strong> che si dovr&agrave; integrare col vostro tema. Purtroppo qui non posso aiutarvi pi&ugrave; di tanto, nel senso che la scelta del colore di sfondo, le distanze dagli altri elementi del tema, il bordo e qualsiasi altro elemento grafico in genere sono strettamente legati al tema che utilizzate e ai vostri <strong>gusti personali</strong>.</p>
+<p>Quello che posso fare &egrave; riportare quello che ho usato io, per darvi almeno una traccia di quello che serve:</p>
+<pre lang="html4strict" line="1" escaped="true">#social-buttons{
+
+ position:fixed;
+
+ width:90px;
+
+ margin:-10px 0px 0px -97px;
+
+ background:#fff;
+
+ border: 0;
+
+ -moz-border-radius-topleft: 6px;
+
+ -khtml-border-top-left-radius: 6px;
+
+ -webkit-border-top-left-radius: 6px;
+
+ -moz-border-radius-bottomleft: 6px;
+
+ -khtml-border-bottom-left-radius: 6px;
+
+ -webkit-border-bottom-left-radius: 6px;
+
+ border-top-left-radius: 6px;
+
+ border-bottom-left-radius: 6px;
+
+ text-align:center;
+
+}
+
+.buttons{
+
+ margin:7px 7px 7px 7px;
+
+ text-align:center;
+
+}</pre>
+<p>Dovete inserire questo codice, opportunamente adattato ai vostri scopi, all'interno del file <code>style.css</code> che si trova nella directory del tema stesso.</p>
+<p>Non resta che richiamare il file creato all'inizio inserendo questa riga di codice nel file <strong>single.php</strong>, generalmente va bene subito dopo il tag <code>content</code>, ma anche in questo caso dipende da vostro tema, quindi potrebbe essere necessaria qualche prova:</p>
+<pre lang="html4strict" line="1" escaped="true"><code><div id=</code><code>"social-buttons"</code><code>><?php&nbsp;</code><code>include</code>&nbsp;<code>(TEMPLATEPATH .&nbsp;</code><code>'/social-button.php'</code><code>); ?></div></code></pre>
+<p>Ovviamente, non esistono solo i pulsanti di <a href="https://developers.facebook.com/docs/reference/plugins/like/" target="_blank">Facebook</a>, <a href="http://twitter.com/about/resources/tweetbutton" target="_blank">Twitter</a> e <a href="http://www.google.com/webmasters/+1/button/" target="_blank">Google+1</a>, potete inserirne altri, semplicemente aggiungendo il relativo codice nel file <code>social-button.php</code>. ;)</p>
+<p>Alla prossima..</p>

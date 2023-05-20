@@ -1,0 +1,58 @@
+---
+layout: post
+status: publish
+published: true
+title: Creare un certificato SSL in locale
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3998
+wordpress_url: https://www.red-blue.it/?p=3998
+date: '2020-04-05 17:18:48 +0100'
+date_gmt: '2020-04-05 15:18:48 +0100'
+categories:
+- guide
+- linux
+tags: []
+comments: []
+---
+<p><!-- wp:paragraph --></p>
+<p>A volte pu&ograve; essere utile avere la possibilit&agrave; di utilizzare localmente un <strong>certificato SSL</strong>. </p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Un tempo reperirne uno era abbastanza complicato e costoso, oggi non &egrave; pi&ugrave; cos&igrave;, ma soprattutto in fase di sviluppo, &egrave; pi&ugrave; semplice generarne direttamente uno sulla propria macchina (oltre che pi&ugrave; veloce ed economico).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Attenzione, un certificato del genere non &egrave; utilizzabile in <strong>produzione</strong>, i client lo rifiuterebbero in quanto non emesso da una cosiddetta <strong>Certification Authority</strong> (a meno di installarlo manualmente sui client stessi).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Per la generazione di un certificato SSL, bastano pochi comandi, da dare tutti come <strong>root</strong>:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">openssl genrsa -aes256 -out private.key 4096 
+openssl x509 -in request.csr -out cert.crt -req -signkey private.key -days 365 
+openssl req -new -days 365 -key private.key -out request.csr</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Molto, semplicemente, il primo genera la <strong>chiave privata</strong> necessaria alla firma del certificato (potrebbe volerci un po', dipende dalla vostra macchina), il secondo genera la <strong>richiesta di firma</strong>, l'ultimo genera il <strong>certificato SSL </strong>vero e proprio.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>La richiesta di firma andr&agrave; corredata di alcune informazioni che verranno richieste all'utente, ad esempio il server ed il suo proprietario, il nome e la posizione dell&rsquo;azienda proprietaria del server, il nome di dominio FQDN associato al server, l&rsquo;indirizzo e-mail dell&rsquo;amministratore, etc.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Si avr&agrave; un qualcosa del genere:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">Country Name (2 letter code) [AU]: IT
+State or Province Name (full name) [Some-State]: Italy
+Locality Name (eg, city) []:Italy
+Organization Name (eg, company) [Internet Widgits Pty Ltd]: NOMEAZIENDA
+Organizational Unit Name (eg, section) []: 
+Common Name (e.g. server FQDN or YOUR name) []: nomeazienda.com
+Email Address []: admin@nomeazienda.it</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>

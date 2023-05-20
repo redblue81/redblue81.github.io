@@ -1,0 +1,71 @@
+---
+layout: post
+status: publish
+published: true
+title: Creare l'immagine di ripristino di un HD con CloneZilla (parte 2)
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1036
+wordpress_url: http://redblue.netsons.org/?p=1036
+date: '2010-03-02 23:23:21 +0100'
+date_gmt: '2010-03-02 22:23:21 +0100'
+categories:
+- guide
+- linux
+- software
+tags:
+- guida
+- linux
+- usb
+- clonezilla
+- backup
+- disco
+- disco fisso
+comments:
+- id: 3476
+  author: Creare l&#8217;immagine di ripristino di un HD con CloneZilla (parte 1)
+  author_email: ''
+  author_url: http://redblue.netsons.org/guide/creare-limmagine-di-ripristino-di-un-hd-con-clonezilla-parte-1.html
+  date: '2010-03-11 08:29:30 +0100'
+  date_gmt: '2010-03-11 07:29:30 +0100'
+  content: "[...] &egrave; estramamente intuitivo a questo punto, ma vi do comunque
+    appuntamento alla prossima per il seguito di questa guida, dove spiegher&ograve;
+    come effettuare il [...]"
+- id: 7097
+  author: 3mendo
+  author_email: laudens@libero.it
+  author_url: ''
+  date: '2011-04-10 13:02:06 +0100'
+  date_gmt: '2011-04-10 11:02:06 +0100'
+  content: Sembra facile. Prova con un disco source che ha i cluster guasti e poi
+    vedi cosa succede...
+- id: 7098
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-04-11 09:04:14 +0100'
+  date_gmt: '2011-04-11 07:04:14 +0100'
+  content: B&egrave; ovviamente questa guida non &egrave; rivolta a chi ha problemi
+    su un HD.. In quel caso tra l'altro &egrave; molto probabile che parte dei dati
+    siano gi&agrave; andati persi..
+---
+<p>Ed eccoci alla seconda parte della guida alla creazione di un backup completo di un HD con CloneZilla.. Ormai <a href="http://localhost:4000/guide/creare-limmagine-di-ripristino-di-un-hd-con-clonezilla-parte-1.html" target="_blank">abbiamo preparato la nostra chiavetta USB</a> e abbiamo riavviato il sistema.. Consiglio di scegliere di avviare CloneZilla con una risoluzione tipo <strong>800x600</strong> (o meglio ancora <strong>640x480</strong>).. A questo punto ci ritroveremo davanti a questa videata:</p>
+<p style="text-align: center;"><a rel="lightbox" href="/assets/images/clonezilla_01.gif"><img class="aligncenter" src="/assets/images/clonezilla_01.gif" alt="" width="290" height="212" /></a></p>
+<p>Scegliamo ovviamente <strong>italiano</strong> e ci ritroveremo con quest'altra schermata:</p>
+<p style="text-align: center;"><a rel="lightbox" href="/assets/images/clonezilla_02.gif"><img class="aligncenter" src="/assets/images/clonezilla_02.gif" alt="" width="289" height="212" /></a></p>
+<p>Scegliamo Selezionare la mappatura della tastiera e dalle schermate successive <strong>qwerty</strong>, <strong>Italian</strong>, <strong>Standard</strong>. A questo punto avviamo davvero CloneZilla, scegliendo la relativa voce:</p>
+<p style="text-align: center;"><a rel="lightbox" href="/assets/images/clonezilla_03.gif"><img class="aligncenter" src="/assets/images/clonezilla_03.gif" alt="" width="289" height="212" /></a></p>
+<p>Cominciamo ora il backup!! Scegliamo <strong>device-image</strong> per copiare l'immagine, ad esempio, su un'altra chiavetta USB o su un HD esterno (<span style="text-decoration: underline;">da NON collegare per il momento!!</span>); l'altra opzione serve invece per clonare il disco su un altro disco direttamente..</p>
+<p style="text-align: center;"><a rel="lightbox" href="/assets/images/clonezilla_04.gif"><img class="aligncenter" src="/assets/images/clonezilla_04.gif" alt="" width="288" height="212" /></a></p>
+<p>Nella schermata successiva scegliamo <strong>local-dev</strong> (come ci spiega anche CloneZilla stesso), e solo a questo punto dobbiamo inserire il dispositivo USB dove andremo a copiare l'imamgine di backup..</p>
+<p style="text-align: center;"><a rel="lightbox" href="/assets/images/clonezilla_05.gif"><img class="aligncenter" src="/assets/images/clonezilla_05.gif" alt="" width="288" height="215" /></a></p>
+<p>Nella schermata successiva ci verr&agrave; indicato il disco su cui eseguire il backup, e la posizione sullo stesso in cui salvare il backup (di solito si sceglie /)..</p>
+<p style="text-align: center;"><a rel="lightbox" href="/assets/images/clonezilla_06.gif"><img class="aligncenter" src="/assets/images/clonezilla_06.gif" alt="" width="287" height="212" /></a></p>
+<p>Scegliamo <strong>Beginner</strong> per le opzioni del backup (vanno benissimo quelle di base per la stragrande maggioranza dei casi), poi nella schermata successiva selezioniamo <strong>savedisk</strong>..</p>
+<p style="text-align: center;"><a rel="lightbox" href="/assets/images/clonezilla_07.gif"><img class="aligncenter" src="/assets/images/clonezilla_07.gif" alt="" width="288" height="212" /></a></p>
+<p>Date un nome al vostro backup, selezionate il disco da clonare (se non ne siete certi aiutatevi con la dimensione), poi nelle schermate successive non toccate nulla, alla fine vi verr&agrave; proposta un schermata di riepilogo e poi comincer&agrave; la copia vera e propria, durante la quale vedrete numerose statistiche..</p>
+<p>Finito..</p>
+<p>Alla prossima..</p>

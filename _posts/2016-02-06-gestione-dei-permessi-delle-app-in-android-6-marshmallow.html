@@ -1,0 +1,110 @@
+---
+layout: post
+status: publish
+published: true
+title: Gestione dei permessi delle app in Android 6 Marshmallow
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3816
+wordpress_url: http://www.red-blue.it/?p=3816
+date: '2016-02-06 12:56:23 +0100'
+date_gmt: '2016-02-06 11:56:23 +0100'
+categories:
+- tips & tricks
+- in evidenza
+- android
+- programmazione
+tags:
+- android
+- sviluppo
+- programmazione
+- permessi
+- marshmallow
+comments: []
+---
+<p>In <strong>Android 6</strong> una delle innovazioni pi&ugrave; rilevanti (anche a livello di <strong>sviluppo</strong>) &egrave; la <strong>gestione dei permessi delle app</strong>. Avete presente? Parliamo di quella <strong>lista di autorizzazioni</strong> (accesso ai contatti, alla fotocamera, alla rete, allo storage, etc) che quasi ogni app presentava in fase di installazione, e che bisognava accettare per proseguire l'installazione stessa (a dire il vero, tale lista nella maggior parte dei casi veniva completamente ignorata).</p>
+<p><a href="/assets/images/Android.jpg" rel="attachment wp-att-3723"><img class="aligncenter wp-image-3723 size-medium" title="android" src="/assets/images/Android-300x225.jpg" alt="Android" width="300" height="225" /></a></p>
+<p>Adesso la musica &egrave; cambiata, non c'&egrave; pi&ugrave; il listone di permessi in fase di installazione, ma l'app dovr&agrave; presentare all'utente la richiesta di accedere ad una determinata funzionalit&agrave; solo quando questa si render&agrave; necessaria (ovvero a <strong>runtime</strong>). L'utente pu&ograve; decidere se concedere l'autorizzazione (in tal caso non ci sar&agrave; pi&ugrave; alcuna richiesta per quella caratteristica) oppure no. Inoltre, nelle impostazioni dell'app, c'&egrave; la lista dei permessi concessi, con la possibilit&agrave; di <strong>revocarli</strong>.</p>
+<p><!--moreContinua a leggere...--></p>
+<p>Dal punto di vista dello <strong>sviluppatore</strong>, questo comporta un'aggiunta di codice, necessaria ad implementare questa nuova gestione. Ovviamente, i permessi necessari vanno sempre dichiarati nell'<strong>AndroidManifest.xml</strong>, ad esempio, considerando i servizi di <strong>localizzazione</strong>, dovremo aggiungere la riga:</p>
+<pre class="brush: xml; gutter: false"><uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/></pre>
+<p>A questo punto, nell'activity che stiamo realizzando, sar&agrave; necessario gestire la richiesta, potremmo ad esempio usare del codice simile a questo:</p>
+<pre class="brush: java; gutter: true">if (Build.VERSION.SDK_INT >= 23 &&
+
+                    ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED {
+
+                Log.i(TAG, "Verifica permessi per la localizzazione");
+
+                requestLocationPermission();
+
+            } else {
+
+                Log.i(TAG, "Permessi di accesso alla localizzazione gi&agrave; concessi");
+
+                accessMap();
+
+            }
+
+</pre>
+<p>Come si vede, in caso di versione delle <strong>API</strong> a partire dalla <strong>23</strong> (Android M), verr&agrave; chiamato il metodo <strong>checkSelfPermission(context, permission)</strong> sul permesso in questione. I due metodi requestLocationPermission() e accessMap() sono semplicemente due implementazioni che ho realizzato per gestire la richiesta e per visualizzare la mappa (rispettivamente). Vediamo il primo:</p>
+<pre class="brush: java; gutter: true">private void requestLocationPermission() {
+
+        Log.i(TAG, "Richiesta permessi per la LOCALIZZAZIONE");
+
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+            Snackbar.make(mLayout, R.string.permission_location, Snackbar.LENGTH_INDEFINITE).setAction(R.string.permission_location_go, new View.OnClickListener() {
+
+                @Override
+
+                public void onClick(View v) {
+&&
+                    ActivityCompat.requestPermissions(MapTorneiActivity.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+
+                }
+
+            }).show();
+
+        } else {
+
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+
+        }
+
+    }</pre>
+<p>Questo metodo serve appunto a presentare all'utente la <strong>richiesta</strong> di accesso al sistema di localizzazione del terminale, permesso che l'utente potr&agrave; concedere o meno (ovviamente in quest'ultimo caso, la parte della nostra app che richiede l'uso della localizzazione non funzioner&agrave;).</p>
+<p>Infine, &egrave; possibile anche sfruttare un metodo di <strong>callback</strong>, che eseguir&agrave; determinate operazioni in base alla risposta dell'utente:</p>
+<pre class="brush: java; gutter: true">@Override
+
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        Log.i(TAG, "Risposta dell\&#039;utente alla richiesta di accesso alla localizzazione");
+
+        if (requestCode == REQUEST_LOCATION) {
+
+            if (grantResults.length == 1 &amp;&amp; grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                Snackbar.make(mLayout, R.string.permission_location_ok, Snackbar.LENGTH_SHORT).show();
+
+                accessMap();
+
+            } else {
+
+                Snackbar.make(mLayout, R.string.permission_location_no, Snackbar.LENGTH_SHORT).show();
+
+            }
+
+        } else {
+
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        }
+
+    }</pre>
+<p>Con questo metodo, se l'utente concede l'autorizzazione, viene richiamato accessMap() che imposta e visualizza la mappa, altrimenti un messaggio avvisa che l'autorizzazione non &egrave; stata concessa (la mappa verr&agrave; ugualmente visualizzata, ma ovviamente non sar&agrave; visibile nulla di ci&ograve; che la nostra app dovrebbe fare.</p>
+<p>L'implementazione del metodo accessMap() esula dall'argomento trattato in questo post, ma si tratta fondamentalmente di un metodo che gestisce le impostazioni di visualizzazione della mappa e attiva la ricerca della posizione del terminale.</p>
+<p>In ultimo, se nell'app si trovano altre chiamate che potrebbero necessitare di permessi, per ognuna di essere va implementata una gestione simile a quella vista, o in alternativa si pu&ograve; scegliere di gestire per intero la chiamata "principale", andando a racchiudere in un blocco <strong>try.. catch</strong> le altre chiamate, in modo da poter almeno sollevare una <strong>SecurityException</strong> in caso di mancanza del relativo permesso. Resta inteso che se l'app mantiene una retrocompatibilit&agrave; con versioni precedenti di Android, la gestione dei permessi resta quella a cui eravamo abituati.</p>
+<p>Alla prossima..</p>

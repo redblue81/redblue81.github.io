@@ -1,0 +1,566 @@
+---
+layout: post
+status: publish
+published: true
+title: Pinnacle PCTV Hybrid Pro Stick e330 (ID 2304:0226) su Linux, finalmente!!
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 480
+wordpress_url: http://redblue.netsons.org/?p=480
+date: '2009-05-06 12:19:14 +0100'
+date_gmt: '2009-05-06 11:19:14 +0100'
+categories:
+- guide
+- linux
+- debian
+- ubuntu
+- hi-tech
+tags:
+- guida
+- debian
+- linux
+- ubuntu
+- tv
+- pinnacle pctv hybrid pro stick
+- em28xx
+comments:
+- id: 1245
+  author: Salvo
+  author_email: salv
+  author_url: ''
+  date: '2009-05-09 02:04:04 +0100'
+  date_gmt: '2009-05-09 01:04:04 +0100'
+  content: "Ciao,\r\n\r\nIo ho seguito tutto alle lettera ad eccezione del passo:\r\n\r\nsudo
+    tar &ndash;bzip2 -xf linux-source-2.6.*.tar.bz2\r\n\r\ntar: opzione non valida
+    -- \r\nUsare \"tar --help\" o \"tar --usage\" per ulteriori informazioni.\r\n\r\nMi
+    restituisce questo messaggio, non saperndo che fare vado avanti, riavvio, carico
+    i moduli, lancio Me TV, e mi dice che non ci sono Device utilizzabili.\r\n\r\nCosa
+    posso fare??\r\nGrazie"
+- id: 1267
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-05-09 19:38:14 +0100'
+  date_gmt: '2009-05-09 18:38:14 +0100'
+  content: "Ciao Salvo,\r\nnon funziona perch&egrave; il procedimento va seguito alla
+    lettera, nello specifico ti restituisce quell'errore perch&egrave; il comando
+    non &egrave; digitato correttamente, non mi ero accorto che mi &egrave; sfuggito
+    un \"-\".. Il comando corretto &egrave; il seguente, come &egrave; indicato anche
+    nella guida ufficiale che ho linkato all'inizio del post:\r\n<blockquote><code>sudo
+    tar --bzip2 -xf linux-source-2.6.*.tar.bz2</code></blockquote>\r\nIn generale
+    qualsiasi opzione di un comando Linux deve essere preceduta da due segni meno.
+    Grazie del tuo commento che mi ha permesso di accorgermi dell'errore, a presto!!\r\n\r\nRedBlue\r\n\r\nPS.
+    Ti consiglio vivamente Kaffeine, semplifica di molto le cose una volta installato
+    il driver.. ;)"
+- id: 1304
+  author: Salvo
+  author_email: salvatoreravi@gmail.com
+  author_url: ''
+  date: '2009-05-11 00:52:42 +0100'
+  date_gmt: '2009-05-10 23:52:42 +0100'
+  content: "Grazie 1000, comunque ora il pacchetto lo decomprime ma continua a non
+    trovare la scheda.\r\n\r\nHo fatto tutto alla lettera, ma non va ne con Me TV
+    e ne con Kaffeine.\r\n\r\nIn effetti c'&egrave; qualcosa che mi lascia perplesso,
+    ma non so, cio&egrave;:\r\n\r\n\r\n sudo rm -r /usr/src/*\r\n rm: impossibile
+    rimuovere \"/usr/src/*\":\r\n\r\n sudo rm --verbose /usr/src/linux\r\n rm: impossibile
+    rimuovere \"/usr/src/linux\": Nessun file o directory\r\n\r\n sudo rm --verbose
+    /lib/modules/$(uname -r)/source\r\n rm: impossibile rimuovere \"/lib/modules/2.6.28-11-generic/source\":
+    Nessun file o directory\r\n\r\n rm --recursive em28xx-new\r\n rm: impossibile
+    rimuovere \"em28xx-new\": Nessun file o directory"
+- id: 1305
+  author: Salvo
+  author_email: salvatoreravi@gmail.com
+  author_url: ''
+  date: '2009-05-11 00:55:57 +0100'
+  date_gmt: '2009-05-10 23:55:57 +0100'
+  content: "Scusami, anche gli altri erano errori di sintassi, rimane solo qulache
+    dubbio qui: \r\n\r\nsudo rm -r /usr/src/*\r\nrm: impossibile rimuovere \"/usr/src/*\":
+    Nessun file o directory\r\n\r\nPer il resto ho fatto tutto alla lettera ma niente"
+- id: 1306
+  author: Salvo
+  author_email: salvatoreravi@gmail.com
+  author_url: ''
+  date: '2009-05-11 01:16:54 +0100'
+  date_gmt: '2009-05-11 00:16:54 +0100'
+  content: 'ah.. non va neanche: sudo cp --verbose /boot/config-$(uname -r) /usr/src/linux/.config'
+- id: 1315
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-05-11 07:00:26 +0100'
+  date_gmt: '2009-05-11 06:00:26 +0100'
+  content: |-
+    Azz.. Hai ragione su tutto.. Porca miseria non mi ero proprio accorto che il Css del template mi aveva creato tutti sti casini.. Ok ti ringrazio di tutte le correzioni, nel pom provveder&ograve; a revisionare l'intero articolo. Per quanto riguarda gli errori che mi hai segnalato, ti dice "Nessun file o directory" perch&egrave; evidentemente non trova nulla da cancellare. Riprova l'intero procedimento dall'inizio, &egrave; un p&ograve; lungo e complicato, ma va seguito ogni singolo passo, io personalmente prima di vedere la tv ho sbattuto la testa per mesi interi!! ;)
+
+    Fammi sapere,
+
+    RedBlue
+- id: 1326
+  author: Salvo
+  author_email: salvatoreravi@gmail.com
+  author_url: ''
+  date: '2009-05-11 16:23:26 +0100'
+  date_gmt: '2009-05-11 15:23:26 +0100'
+  content: Grazie di tutto, comunque ho riprovato a rieseguire il procedimento ma
+    niente, ho anche provato a scanso di equivoci (aver combinato qualche casino tra
+    tante guide e installazioni) a formattare e rieseguire tutto dall'inizio, ma niente,
+    errori non me ne da, a parte qualche cartella da eliminare che non trova, ma comunque
+    non funziona
+- id: 1328
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-05-11 17:53:59 +0100'
+  date_gmt: '2009-05-11 16:53:59 +0100'
+  content: Mmm.. Posso sapere che distribuzione usi?? E quale versione del kernel??
+- id: 1335
+  author: Salvo
+  author_email: salvatoreravi@gmail.com
+  author_url: ''
+  date: '2009-05-11 22:50:03 +0100'
+  date_gmt: '2009-05-11 21:50:03 +0100'
+  content: "Ubuntu 9.04 32Bit Desktop Version\r\nKernel: 2.6.28-11-generic"
+- id: 1337
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-05-11 23:55:22 +0100'
+  date_gmt: '2009-05-11 22:55:22 +0100'
+  content: Lo stesso kernel su cui ho testato la guida.. E funziona perfettamente..
+    Sinceramente non capisco, pensavo fosse dovuto solo alle imprecisioni che c'erano
+    nella guida e che ora ho corretto..
+- id: 1339
+  author: Salvo
+  author_email: salvatoreravi@gmail.com
+  author_url: ''
+  date: '2009-05-12 00:32:42 +0100'
+  date_gmt: '2009-05-11 23:32:42 +0100'
+  content: Ho provato anche a dare a  scanzo di equivoci "sudo modprobe em28xx
+- id: 1800
+  author: Jun
+  author_email: jun.shindo@gmail.com
+  author_url: ''
+  date: '2009-06-03 20:48:20 +0100'
+  date_gmt: '2009-06-03 19:48:20 +0100'
+  content: "Ok, sono arrivato al comando\r\nbash build.sh build\r\nma il tutto si
+    blocca con:\r\n\r\nrm -rf Module.symvers; \r\nmake -C /lib/modules/`if [ -d /lib/modules/2.6.21.4-eeepc
+    ]; then echo 2.6.21.4-eeepc; else uname -r; fi`/build SUBDIRS=`pwd` modules\r\nmake[1]:
+    ingresso nella directory &laquo;/usr/src/linux-headers-2.6.28-12-generic&raquo;\r\nmake[1]:
+    Makefile: Nessun file o directory\r\nmake[1]: *** Nessuna regola per creare l'obiettivo
+    &laquo;Makefile&raquo;.  Arresto.\r\nmake[1]: uscita dalla directory &laquo;/usr/src/linux-headers-2.6.28-12-generic&raquo;\r\nmake:
+    *** [default] Errore 2\r\n\r\navevo gi&agrave; installato questa scheda su debian,
+    non mi pare di aver avuto problemi... Che vaccata ho fatto/dimenticato? ^__^"
+- id: 1801
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-06-04 08:19:20 +0100'
+  date_gmt: '2009-06-04 07:19:20 +0100'
+  content: |-
+    Ciao Jun,
+
+    mmm.. Da quel che vedo sembrerebbe che manca il linux-headers, hai seguito alla lettera i passi precedenti?? Dovrebbe risolversi tutto installando il pacchetto linux-headers relativo al kernel che usi..
+- id: 1802
+  author: Jun
+  author_email: jun.shindo@gmail.com
+  author_url: ''
+  date: '2009-06-04 22:44:26 +0100'
+  date_gmt: '2009-06-04 21:44:26 +0100'
+  content: Ok, era una scemata... l'untar dei sorgenti del kernel si era bloccato
+    a met&agrave;, quindi la cartella c'era, ma non tutto era stato scompattato...
+    poi durante la compilazione giustamente mancavano  dei files... ^__^
+- id: 1803
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-06-05 07:17:25 +0100'
+  date_gmt: '2009-06-05 06:17:25 +0100'
+  content: Ok meglio cos&igrave;! ;)
+- id: 1896
+  author: Alfred
+  author_email: ''
+  author_url: ''
+  date: '2009-06-19 22:48:54 +0100'
+  date_gmt: '2009-06-19 21:48:54 +0100'
+  content: Troppo complicato, non sono un mago del pc... mi sarebbe piaciuto usare
+    la mia pinnacle 330 usb su un piccolo acer aspire one... Ma non c'&egrave; un
+    sistema pi&ugrave; semplice?? Dei driver semplicemente da scaricare e basta?
+- id: 1900
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-06-20 06:54:54 +0100'
+  date_gmt: '2009-06-20 05:54:54 +0100'
+  content: |-
+    B&egrave;, se sul tuo Aspire One c'&egrave; Linux purtroppo no.. I driver da scaricare ci sono e funzionano, ma come accade spesso in Linux &egrave; necessario compilarli.. L'alternativa &egrave; installare Windows Xp e usare il cd fornito dalla Pinnacle, nemmeno quella &egrave; una procedura troppo complessa (basta "adattare" Windows all'installazione da una penna USB, e poi &egrave; ovviamente necessario installare i driver della Acer), ma cmq &egrave; lunga e articolata..
+
+    Se non hai dimestichezza per&ograve; ti sconsiglio di cambiare OS, l'installazione di Windows potrebbe diventare un'autentica Odissea..
+- id: 2066
+  author: klamath
+  author_email: r.trev@fastwebmail.it
+  author_url: ''
+  date: '2009-07-10 21:11:34 +0100'
+  date_gmt: '2009-07-10 20:11:34 +0100'
+  content: "non va. La configurazione va tutta a buon fine ma kaffeine non vede il
+    dvb. I log quando inserisco la scheda sono :\r\n\r\nJul 10 21:45:07 Elive-fisso
+    kernel: [  105.945013] usb 4-6: new high speed USB device using ehci_hcd and address
+    3\r\nJul 10 21:45:07 Elive-fisso kernel: [  106.067434] usb 4-6: configuration
+    #1 chosen from 1 choice\r\nJul 10 21:45:07 Elive-fisso kernel: [  106.068261]
+    usb 4-6: New USB device found, idVendor=2304, idProduct=0226\r\nJul 10 21:45:07
+    Elive-fisso kernel: [  106.068264] usb 4-6: New USB device strings: Mfr=3, Product=1,
+    SerialNumber=2\r\nJul 10 21:45:07 Elive-fisso kernel: [  106.068267] usb 4-6:
+    Product: PCTV 330e\r\nJul 10 21:45:07 Elive-fisso kernel: [  106.068268] usb 4-6:
+    Manufacturer: Pinnacle Systems\r\nJul 10 21:45:07 Elive-fisso kernel: [  106.068270]
+    usb 4-6: SerialNumber: 070201024175\r\nJul 10 21:45:07 Elive-fisso kernel: [  106.158503]
+    Linux video capture interface: v2.00\r\nJul 10 21:45:07 Elive-fisso kernel: [
+    \ 106.185254] em28xx v4l2 driver version 0.0.1 loaded\r\nJul 10 21:45:07 Elive-fisso
+    kernel: [  106.185299] em28xx: new video device (2304:0226): interface 0, class
+    255\r\nJul 10 21:45:07 Elive-fisso kernel: [  106.185301] em28xx: device is attached
+    to a USB 2.0 bus\r\nJul 10 21:45:07 Elive-fisso kernel: [  106.185303] em28xx
+    #0: Alternate settings: 8\r\nJul 10 21:45:07 Elive-fisso kernel: [  106.185305]
+    em28xx #0: Alternate setting 0, max size= 0\r\nJul 10 21:45:07 Elive-fisso kernel:
+    [  106.185306] em28xx #0: Alternate setting 1, max size= 0\r\nJul 10 21:45:07
+    Elive-fisso kernel: [  106.185307] em28xx #0: Alternate setting 2, max size= 1448\r\nJul
+    10 21:45:07 Elive-fisso kernel: [  106.185309] em28xx #0: Alternate setting 3,
+    max size= 2048\r\nJul 10 21:45:07 Elive-fisso kernel: [  106.185310] em28xx #0:
+    Alternate setting 4, max size= 2304\r\nJul 10 21:45:07 Elive-fisso kernel: [  106.185312]
+    em28xx #0: Alternate setting 5, max size= 2580\r\nJul 10 21:45:07 Elive-fisso
+    kernel: [  106.185313] em28xx #0: Alternate setting 6, max size= 2892\r\nJul 10
+    21:45:07 Elive-fisso kernel: [  106.185314] em28xx #0: Alternate setting 7, max
+    size= 3072\r\nJul 10 21:45:07 Elive-fisso kernel: [  106.784731] tvp5150 4-005c:
+    tvp5150am1 detected.\r\nJul 10 21:45:09 Elive-fisso kernel: [  108.348287] successfully
+    attached tuner\r\nJul 10 21:45:09 Elive-fisso kernel: [  108.352737] em28xx #0:
+    V4L2 VBI device registered as /dev/vbi0\r\nJul 10 21:45:09 Elive-fisso kernel:
+    [  108.366291] em28xx #0: V4L2 device registered as /dev/video0\r\nJul 10 21:45:09
+    Elive-fisso kernel: [  108.366344] input: em2880/em2870 remote control as /class/input/input5\r\nJul
+    10 21:45:09 Elive-fisso kernel: [  108.369333] em28xx-input.c: remote control
+    handler attached\r\nJul 10 21:45:09 Elive-fisso kernel: [  108.369342] em28xx
+    #0: Found Pinnacle Hybrid Pro (em2882)\r\nJul 10 21:45:09 Elive-fisso kernel:
+    [  108.369356] usbcore: registered new interface driver em28xx\r\nJul 10 21:45:09
+    Elive-fisso kernel: [  108.431173] em28xx-audio.c: probing for em28x1 non standard
+    usbaudio\r\nJul 10 21:45:09 Elive-fisso kernel: [  108.431177] em28xx-audio.c:
+    Copyright (C) 2006 Markus Rechberger\r\nJul 10 21:45:09 Elive-fisso kernel: [
+    \ 108.432733] Em28xx: Initialized (Em28xx Audio Extension) extension\r\nJul 10
+    21:45:09 Elive-fisso kernel: [  108.466549] em2880-dvb.c: DVB Init\r\nJul 10 21:45:09
+    Elive-fisso kernel: [  108.567551] Em28xx: Initialized (Em2880 DVB Extension)
+    extension\r\nJul 10 21:45:38 Elive-fisso kernel: [  137.158467] tvp5150 4-005c:
+    tvp5150am1 detected.\r\n\r\nma kaffeine non la vede.\r\ndistribuzione elive (
+    basata su debian lenny ) kernel 2.6.27.10-elive-686"
+- id: 2067
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-07-10 22:06:51 +0100'
+  date_gmt: '2009-07-10 21:06:51 +0100'
+  content: Temo sia un problema di versione del kernel.. Io ho sudato per mesi prima
+    di veder la tv.. E mai prima del kernel 2.6.28-11 di Jaunty ero riuscito ad ottenere
+    risultati.. Anche se mi sembra strano nel tuo caso, in quanto l'installazione
+    sembra perfetta..
+- id: 2073
+  author: klamath
+  author_email: r.trev@fastwebmail.it
+  author_url: ''
+  date: '2009-07-11 22:07:11 +0100'
+  date_gmt: '2009-07-11 21:07:11 +0100'
+  content: non &egrave; il kernel, ho installato il 2.6.29 adesso
+- id: 2077
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-07-12 15:14:47 +0100'
+  date_gmt: '2009-07-12 14:14:47 +0100'
+  content: Mmm.. Il tuo commento mi ha messo in allarme, ho provato anch'io un kernel
+    pi&ugrave; recente, e con rammarico devo dire che hai ragione.. Gi&agrave; dal
+    2.6.28-12 la scheda non va pi&ugrave;.. Sinceramente a questo punto voglio approfondire
+    la cosa, non capisco come mai tutto sembra funzionare solo con quel particolare
+    kernel..
+- id: 2080
+  author: klamath
+  author_email: r.trev@fastwebmail.it
+  author_url: ''
+  date: '2009-07-12 18:01:01 +0100'
+  date_gmt: '2009-07-12 17:01:01 +0100'
+  content: "sembra che non crei i device sotto\r\n/dev/\r\nguardando sul sito di opensuse
+    ( che usavo prima e funzionava ) http://en.opensuse.org/Pinnacle_USB_PCTV\r\ndovrebbe
+    creare dei dispositivi\r\ninvece non esiste la directory /dev/dvb"
+- id: 2184
+  author: Chimico Pazzo
+  author_email: antoniop74@libero.it
+  author_url: ''
+  date: '2009-08-13 16:45:36 +0100'
+  date_gmt: '2009-08-13 15:45:36 +0100'
+  content: "ciao, premetto che ho la 9.04 con il tuo stesso kernel.\r\nmi impunto
+    quando do' il comando \"bash build.sh build\"; mi dice \"nessun file o directory\"...
+    non ho idea di cosa sbaglio...\r\nnel frattempo ringrazio tutti per l'attenzione!"
+- id: 2185
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-08-17 11:24:13 +0100'
+  date_gmt: '2009-08-17 10:24:13 +0100'
+  content: Hai seguito le istruzioni alla lettera? Hai controllato che ogni istruzione
+    sia scritta correttamente? In questo procedimento un solo errore invalida tutto..
+- id: 2186
+  author: Chimico Pazzo
+  author_email: antoniop74@libero.it
+  author_url: ''
+  date: '2009-08-17 11:38:50 +0100'
+  date_gmt: '2009-08-17 10:38:50 +0100'
+  content: certo, copiato ed incollato. non sono assolutamente esperto di linux, anzi...
+    tutt'altro! e' normale che nella cartella del em28xx-new ci sia un solo file nominato
+    Makefile?
+- id: 2189
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-08-18 09:35:22 +0100'
+  date_gmt: '2009-08-18 08:35:22 +0100'
+  content: |-
+    Assolutamente no.. Ho controllato e fa anche a me la stessa cosa.. Credo sia un problema loro, spero non definitivo..
+
+    Se trovo qsa di pi&ugrave; in merito lo pubblicher&ograve; sul blog..
+- id: 2190
+  author: Chimico Pazzo
+  author_email: antoniop74@libero.it
+  author_url: ''
+  date: '2009-08-18 13:57:44 +0100'
+  date_gmt: '2009-08-18 12:57:44 +0100'
+  content: grazie mille! almeno ora so che non ho un problema io... non e' possibile
+    recuperare i file che servono da un altro link?
+- id: 2230
+  author: Chimico Pazzo
+  author_email: antoniop74@libero.it
+  author_url: ''
+  date: '2009-09-06 06:19:16 +0100'
+  date_gmt: '2009-09-06 05:19:16 +0100'
+  content: hai poi saputo qualcosa? oggi ho riprovato ma da' sempre il medesimo problema...
+- id: 2241
+  author: kRel
+  author_email: krel@tiscali.it
+  author_url: ''
+  date: '2009-09-13 18:30:01 +0100'
+  date_gmt: '2009-09-13 17:30:01 +0100'
+  content: "Caro RedBlue . . .\r\n\r\nPurtroppo dopo aver fatto la maggior parte del
+    lavoro, mi accorgo che la directory em28xx-new contiene il solo file makefile,
+    che tra l'altro (ma di questo me ne ero gi&agrave; accorto in un precedente tentativo)
+    contiene solo il seg. testo molto esplicativo: \"@echo the em28xx-new driver project
+    has been discontinued, in order to provide\". \r\n\r\n1 suggerimento per evitare
+    tanto lavoro inutile: mettere un avviso evidente all'inizio del post che c'&egrave;
+    qualche problema e che l'installazione non andr&agrave; a buon fine.\r\n\r\nPer
+    favore, ma non ti offendere . . . hai fatto un gran lavoro (anche se attualmente
+    non funziona) ma credo sia doveroso commentare i comandi che hai inserito per
+    spiegarne gli effetti sopratutto ai neofiti come me. Io ho seguito le tue istruzioni
+    con un brivido, perch&eacute; non sapevo cosa stavo facendo. E non so se il sistema
+    si riavvier&agrave; tra poco . . .Come ben sai ogni comado pu&ograve; essere distruttivo.
+    \r\n\r\n1 richiesta: se a te funziona, perch&eacute; non metti a disposizione
+    i file completi e funzionanti che dovresti avere?\r\n\r\nGrazie in ogni caso per
+    il lavoro svolto."
+- id: 2242
+  author: kRel
+  author_email: krel@tiscali.it
+  author_url: ''
+  date: '2009-09-13 19:25:47 +0100'
+  date_gmt: '2009-09-13 18:25:47 +0100'
+  content: "Caro RedBlue\r\nCome temevo - pur avendo copiato ed incollato le tue istruzioni,
+    ed avendole eseguite nella corretta sequenza, ho tre errori in avvio che riguardano
+    rispettivamente kernel, nvidia180 e vboxdrv.\r\n\r\nOra dovr&ograve; darmi da
+    fare per risolverli e non so da che parte cominciare.\r\n\r\nCiao"
+- id: 2245
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-09-15 10:14:21 +0100'
+  date_gmt: '2009-09-15 09:14:21 +0100'
+  content: |-
+    Ciao kRel..
+
+    Per prima cosa lasciami dire che mi dispiace per i problemi che hai riscontrato sul tuo pc, dovuti, lo ammetto ad una mia mancanza nel non aver segnalato tempestivamente la (spero) temporanea indisponibilit&agrave; dei driver em28xx. Appena finisco di risponderti provvedo ad aggiornare l'articolo.
+
+    Detto questo, i tuoi errori riguardano kernel e scheda video, e possono anche starci, ma il terzo &egrave; il modulo del kernel di VirtualBox, che non dovrebbe c'entrare nulla con la Pinnacle, sicuro che la soluzione non sia pi&ugrave; semplice, ad esempio hai aggiornato il kernel?? Nel qual caso potrebbe essere semplicemente necessario ricompilare i moduli relativi a scheda video e Vbox..
+
+    Per quanto riguarda i files che mi hai chiesto, se li avessi non esiterei a renderli disponibili credimi, ma purtroppo in seguito ad un crash hardware (la scheda video &egrave; andata), ho dovuto acquistare un nuovo notebook, per cui mi ritrovo nelle tue stesse condizioni..
+
+    In conclusione mi permetto anch'io un consiglio per il futuro, quando leggi un articolo che &egrave; stato commentato numerose volte, dai un'occhiata anche ai commenti, nei quali spesso sono evidenziati problemi e/o relative soluzioni. Fermo restando il mio errore, nei commenti era stato affrontato il problema dell'indisponibilit&agrave; dei files..
+
+    Spero di averti ancora sul questo blog, a presto!!
+- id: 2280
+  author: Roberto
+  author_email: no_spam@nospam.it
+  author_url: ''
+  date: '2009-10-05 16:18:01 +0100'
+  date_gmt: '2009-10-05 15:18:01 +0100'
+  content: io i files em28xx li ho ma non funziona comunque. Se vuoi provare ....
+    dammi la tua email.
+- id: 2281
+  author: Roberto
+  author_email: no_spam@nospam.it
+  author_url: ''
+  date: '2009-10-05 16:24:25 +0100'
+  date_gmt: '2009-10-05 15:24:25 +0100'
+  content: te li ho inviati via email
+- id: 2284
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-10-06 06:55:50 +0100'
+  date_gmt: '2009-10-06 05:55:50 +0100'
+  content: |-
+    Grazie mille!! :)
+
+    In questi giorni purtroppo sono un p&ograve; impegnato, ma al max entro fine settimana conto di effettuare un tentativo di installazione..
+
+    Vi terr&ograve; aggiornati..
+- id: 2285
+  author: Chimico Pazzo
+  author_email: antoniop74@libero.it
+  author_url: ''
+  date: '2009-10-06 12:14:16 +0100'
+  date_gmt: '2009-10-06 11:14:16 +0100'
+  content: "Ottimo!!\r\nfortuna che qualcuno ha i file!\r\nnon vedo l'ora di far funzionare
+    quella benedetta chiavetta sotto ubuntu!\r\n\r\nps (domanda da profano) la chiavetta
+    in questione funzionera' sia in digitale terrestre che in \"tradizionale\"?"
+- id: 2286
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-10-06 13:38:32 +0100'
+  date_gmt: '2009-10-06 12:38:32 +0100'
+  content: |-
+    In teoria si.. In pratica ci&ograve; che sono sempre riuscito ad ottenere &egrave; stato al max il video senza l'audio in analogico, e un'ottima ricezione in DVB-T..
+
+    Poi sinceramente una volta provato Kaffeine, con la sua gestione totalmente automatica, non mi sono pi&ugrave; incasinato a smanettare per ottenere qsa dalla parte analogica..
+- id: 2287
+  author: Chimico Pazzo
+  author_email: antoniop74@libero.it
+  author_url: ''
+  date: '2009-10-06 14:29:28 +0100'
+  date_gmt: '2009-10-06 13:29:28 +0100'
+  content: capisco... spero di essere piu' fortunato di te! in ogni caso grazie mille
+    per l'impegno che ci metti ad aiutare noi troppo figli di MS...
+- id: 2290
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-10-09 15:09:56 +0100'
+  date_gmt: '2009-10-09 14:09:56 +0100'
+  content: |-
+    Allora ragazzi.. Il test di installazione &egrave; andato a buon fine, ma per ora preferisco non mettervi a disposizione i files che mi ha inviato Roberto perch&egrave; non ho con me la Pinnacle, quindi non ho modo per ora di testarne l'effettivo funzionamento..
+
+    Sappiate cmq che un primo tentativo col kernel 2.6.28.15 non &egrave; riuscito, si &egrave; bloccato tutto praticamente subito, e non c'&egrave; stato modo di andare avanti.. Un successivo tentativo col kernel 2.6.28.11 invece &egrave; filato liscio come l'olio.. A questo punto devo pensare giocoforza che quei files siano realizzati espressamente per quel kernel..
+
+    Nei prossimi giorni vi aggiorner&ograve; ancora..
+- id: 2292
+  author: Chimico Pazzo
+  author_email: antoniop74@libero.it
+  author_url: ''
+  date: '2009-10-10 19:48:40 +0100'
+  date_gmt: '2009-10-10 18:48:40 +0100'
+  content: beh, e' gia' qualcosa.. che sia questo il motivo del perche' li hanno rimossi
+    dalla rete? in ogni caso se dovessero funzionare anche solo con il kernel 2.6.28.11
+    ti chiedo se puoi postarli ugualmente...
+- id: 2297
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-10-13 08:54:29 +0100'
+  date_gmt: '2009-10-13 07:54:29 +0100'
+  content: Test effettuato e guida aggiornata con il link ai drivers.. ;)
+- id: 2305
+  author: Gilbert Colin
+  author_email: gilbert.colin@sfr.fr
+  author_url: ''
+  date: '2009-10-24 17:31:13 +0100'
+  date_gmt: '2009-10-24 16:31:13 +0100'
+  content: "Tnaks a lot !\r\n\r\nAfter many many hours/days/weeks  spend on this problem
+    ! That's Work !\r\n\r\nGreat!"
+- id: 5611
+  author: Pinnacle PCTV Hybrid Pro Stick e330 su Lucid
+  author_email: ''
+  author_url: http://redblue.netsons.org/guide/pinnacle-pctv-hybrid-pro-stick-e330-su-lucid.html
+  date: '2010-05-08 08:48:09 +0100'
+  date_gmt: '2010-05-08 07:48:09 +0100'
+  content: "[...] segue questo blog, sa quanto in passato ho parlato di questo gioiellino
+    e delle sue problematiche nei confronti del sistema operativo del [...]"
+- id: 6355
+  author: Pinnacle PCTV Hybrid Pro Stick e330 su Lucid - RedBlue&#39;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/guide/pinnacle-pctv-hybrid-pro-stick-e330-su-lucid.html
+  date: '2010-06-01 09:37:02 +0100'
+  date_gmt: '2010-06-01 08:37:02 +0100'
+  content: "[...] segue questo blog, sa quanto in passato ho parlato di questo gioiellino
+    e delle sue problematiche nei confronti del sistema operativo del [...]"
+- id: 6568
+  author: Pinnacle PCTV 330e su Maverick - RedBlue&#039;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/guide/pinnacle-pctv-330e-su-maverick.html
+  date: '2010-11-02 19:33:38 +0100'
+  date_gmt: '2010-11-02 18:33:38 +0100'
+  content: "[...] la parte DVB-T (digitale terrestre).. Per chi non ricordasse, ne
+    ho gi&agrave; abbondantemente parlato qui e [...]"
+---
+<p><strong><span style="text-decoration: underline;">AGGIORNAMENTO</span>: la nuova Ubuntu 10.04 porta in dote un driver per questo TV Tuner!! <a href="http://localhost:4000/guide/pinnacle-pctv-hybrid-pro-stick-e330-su-lucid.html" target="_blank">Qui c'&egrave; &egrave; la guida</a>..</strong></p>
+<p><strong><span style="text-decoration: underline;">AGGIORNAMENTO</span>: nel kernel 2.6.31 &egrave; compreso il supporto <span style="text-decoration: underline;">solo</span> alla parte analogica di em28xx, quindi &egrave; inutile tentare di far funzionare il DVB-T!! C'&egrave; chi &egrave; impegnato a trascrivere la parte DVB-T dai vecchi drivers, ma sar&agrave; una cosa complessa, per il momento quindi si pu&ograve; affermare che con Karmic questa scheda &egrave; quasi inutilizzabile purtroppo..</strong></p>
+<p><strong><span style="text-decoration: underline;">AGGIORNAMENTO</span>: grazie a Roberto, ho un backup dei drivers em28xx che trovate <a href="/assets/images/em28xx-new.tar.gz" target="_blank">qui</a>. Confermo quanto scritto nella guida, tali drivers funzionano, a patto che usiate <span style="color: #ff0000;"><span style="text-decoration: underline;">esclusivamente il kernel 2.6.28-11</span></span>, ovvero quello presente di default in Jaunty. Provando a compilarli con altri kernel si ottiene un errore praticamente subito!! In rete circola voce che i drivers dei dispositivi "televisivi" saranno inclusi nativamente nel kernel a partire dal 2.6.31 (quello di Karmic), ma per ora non posso assicurare nulla. Dal test che ho effettuato con tale kernel, &egrave; risultato che effettivamente il dispositivo viene riconosciuto (anche se inizialmente mi veniva richiesto un non meglio precisato firmware), ma la non compatibilit&agrave; dei driver della mia scheda video con quel kernel (accidenti alla ATI) mi ha impedito di poter testare l'effettivo funzionamento.. Inoltre in rete circolano poi alcune patch che dovrebbero consentire l'utilizzo con i kernel 2.6.29 e 2.6.30, ma al momento di scrivere questo aggiornamento, ogni mio tentativo di utilizzarle &egrave; fallito.. Come sempre, chiunque fosse in possesso di notizie pi&ugrave; aggiornate pu&ograve; farsi avanti e condividerle..</strong></p>
+<p><strong></strong><span style="text-decoration: underline;"><strong>ATTENZIONE!! Come segnalato nei commenti, il progetto em28xx su cui si basa questa guida &egrave; stato (momentaneamente??) dismesso, per cui i driver non sono pi&ugrave; disponibili!! NON usate questo metodo, poich&egrave; non potrete portare a termine l'intera procedura. Purtroppo non sono in possesso dei files utilizzati durante la stesura della guida, per cui sono alla ricerca di una soluzione alternativa, nel frattempo se qualcuno fosse in possesso di tali files, farebbe cosa gradita a molti (me compreso) se li rendesse disponibili..</strong></span></p>
+<p>L'oggettino in questione &egrave; questo:</p>
+<p style="text-align: center;"><img class="aligncenter" src="/assets/images/pctv_hybrid_pro_stick_330e_komplet.jpg" alt="" width="384" height="288" /></p>
+<p>Fino a ieri il sottoscritto ha provato in tutti i modi a farlo andare sotto Linux (purtroppo i software proprietari forniti sono esclusivamente per Windows), ma senza esito, poi ho trovato <a href="http://forum.ubuntu-it.org/index.php/topic,285442.0.html" target="_blank">questo</a>, e magicamente tutto &egrave; andato a posto!! Allora vediamo come fare ad installare e far funzionare questa scheda TV esterna. La guida si riferisce alla nuova <strong>Ubuntu 9.04</strong>, ma il procedimento per <strong>Debian</strong> &egrave; analogo..</p>
+<p>Il punto di partenza &egrave; il <a href="http://mcentral.de/wiki/index.php5/Main_Page" target="_blank">sito ufficiale</a> del progetto <strong>Mcentral</strong>, nel quale troviamo le due guide seguenti:</p>
+<ul>
+<li><a href="http://mcentral.de/wiki/index.php5/Installation_Guide" target="_blank">Installation Guide</a></li>
+<li><a href="http://mcentral.de/wiki/index.php5/Using_Guide" target="_blank">Using Guide</a></li>
+</ul>
+<p>Prima di iniziare un consiglio: <span style="text-decoration: underline;">non collegare la scheda alla porta USB per ora!!</span> Pare che ci sia qualche problema se Linux si avvia con la scheda inserita.. Detto questo, per prima cosa <strong>"ripuliamo"</strong> la nostra distribuzione (Debian o Ubuntu che sia):</p>
+<blockquote><p><code>sudo apt-get clean<br />
+sudo apt-get update<br />
+sudo apt-get upgrade<br />
+sudo apt-get autoremove<br />
+sudo apt-get remove linux-headers linux-source linux-headers-$(uname -r)<br />
+sudo apt-get autoremove<br />
+sudo ls -hal /usr/src/<br />
+sudo rm -r /usr/src/*</code></p></blockquote>
+<p>A questo punto possiamo installare tutto il necessario per <strong>compilare i moduli</strong>:</p>
+<blockquote><p><code>sudo apt-get install linux-headers-$(uname -r) build-essential mercurial<br />
+sudo apt-get install linux-source<br />
+cd /usr/src<br />
+sudo tar </code><code>--</code><code>bzip2 -xf linux-source-2.6.*.tar.bz2<br />
+cd ~</code></p></blockquote>
+<p>Prima di proseguire cancelliamo (se sono gi&agrave; presenti) e ricreiamo i seguenti <strong>link simbolici</strong>:</p>
+<blockquote><p><code>sudo rm --verbose /usr/src/linux<br />
+sudo rm </code><code>--</code><code>verbose /lib/modules/$(uname -r)/source<br />
+sudo ln </code><code>--</code><code>symbolic </code><code>--</code><code>verbose /usr/src/linux-source-2.6.28 /usr/src/linux<br />
+sudo ln </code><code>--</code><code>symbolic </code><code>--</code><code>verbose /usr/src/linux-source-2.6.28 /lib/modules/$(uname -r)/source</code></p></blockquote>
+<p>Andiamo a copiare il file di <strong>configurazione</strong> originale nella cartella contenente i sorgenti del kernel:</p>
+<blockquote><p><code>sudo cp --verbose /boot/config-$(uname -r) /usr/src/linux/.config</code></p></blockquote>
+<p>Possiamo finalmente<strong> scaricare e compilare il driver</strong>:</p>
+<blockquote><p><code>cd ~<br />
+rm </code><code>--</code><code>recursive em28xx-new<br />
+hg clone http://mcentral.de/hg/~mrec/em28xx-new<br />
+cd em28xx-new<br />
+bash build.sh build<br />
+sudo bash build.sh install<br />
+sudo depmod -a<br />
+cd ~</code></p></blockquote>
+<p>Non resta che aggiungere il nostro utente al gruppo <code>video</code> e riavviare ($USER va sostituito col vostro nome utente):</p>
+<blockquote><p><code>sudo adduser $USER video<br />
+sudo shutdown -r now</code></p></blockquote>
+<p>Al riavvio potete finalmente collegare la vostra scheda e tutto dovrebbe funzionare.. Almeno cos&igrave; c'&egrave; scritto nella guida ufficiale, in realt&agrave;, almeno al sottoscritto, <span style="text-decoration: underline;">non funzionava nulla!!</span> Ed ecco a cosa serve il post che ho citato inizialmente e che praticamente vado a riportare (<span style="text-decoration: underline;">ATTENZIONE!</span> Si sta parlando specificamente di Ubuntu 9.04, nel caso dovete adattare alla vostra distribuzione):</p>
+<ul>
+<li>reinstallare <code>linux-restricted-modules-2.6.28-11-generic</code> tramite <strong>Synaptic</strong>;</li>
+<li>installare, a seconda delle necessit&agrave;, <strong>uno</strong> di questi 2 pacchetti:
+<ul>
+<li><a href="http://jiemeb.free.fr/pinnacle/em28xx_28-11_i386.deb" target="_blank">http://jiemeb.free.fr/pinnacle/em28xx_28-11_i386.deb</a> (per processori a 32 bit)<a href="http://jiemeb.free.fr/pinnacle/em28xx_28-11_i386.deb" target="_blank"><br />
+</a></li>
+<li><a href="http://jiemeb.free.fr/pinnacle/em28xx_28-11_amd64.deb" target="_blank">http://jiemeb.free.fr/pinnacle/em28xx_28-11_amd64.deb</a> (per processori a 64 bit)</li>
+</ul>
+</li>
+<li>scaricare <a href="http://jiemeb.free.fr/pinnacle/cleanEm28xx.sh" target="_blank">http://jiemeb.free.fr/pinnacle/cleanEm28xx.sh</a>;</li>
+<li>da terminale eseguire:</li>
+</ul>
+<blockquote><p><code>chmod +x cleanEm28xx.sh<br />
+sudo sh cleanEm28xx.sh</code></p></blockquote>
+<p>A questo punto potete riavviare. Dovrebbe finalmente essere tutto installato e funzionante. Io vi consiglio comunque di connettere la scheda sempre <strong>dopo</strong> l'avvio di Linux, onde evitare ogni possibile problema. Potete controllare l'effettivo caricamento del driver con un <code>dmesg</code> dopo aver inserito la scheda..</p>
+<p>Ora bisogna farla funzionare: basta rifarsi alla <span style="text-decoration: underline;">Using Guide</span> che ho linkato sopra, ma se posso darvi un consiglio evitatela, &egrave; mostruosamente complicata (o forse sono io a non averla compresa bene, comunque il massimo che sono riuscito a tirarne fuori &egrave; stata una lista di canali analogici visibile tramite Mplayer da riga di comando); molto meglio installare <strong>Kaffeine</strong> (che si porter&agrave; appresso il runtime di KDE), il quale riconosce in automatico la scheda (se l'installazione &egrave; andata a buon fine), poi basta effettuale una scansione dei canali <strong>DVB-T</strong> (avete capito bene), e il gioco &egrave; fatto.. E funziona anche il <strong>telecomando</strong>!!</p>

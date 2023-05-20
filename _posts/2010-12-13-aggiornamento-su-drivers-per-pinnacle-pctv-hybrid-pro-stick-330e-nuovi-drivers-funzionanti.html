@@ -1,0 +1,113 @@
+---
+layout: post
+status: publish
+published: true
+title: Aggiornamento su drivers per Pinnacle PCTV Hybrid Pro Stick 330e - Nuovi
+  drivers funzionanti
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1895
+wordpress_url: http://www.red-blue.it/?p=1895
+date: '2010-12-13 12:34:29 +0100'
+date_gmt: '2010-12-13 11:34:29 +0100'
+categories:
+- guide
+- linux
+- ubuntu
+- in evidenza
+tags:
+- guida
+- linux
+- ubuntu
+- driver
+- pinnacle pctv hybrid pro stick
+- 330e
+- '10.10'
+- maverick
+- dvb-t
+comments:
+- id: 6677
+  author: Voland_IT
+  author_email: volandit@domain.net
+  author_url: ''
+  date: '2010-12-18 02:58:13 +0100'
+  date_gmt: '2010-12-18 01:58:13 +0100'
+  content: http://www.kernellabs.com/blog/?p=1397#comment-1938
+- id: 7624
+  author: ludo
+  author_email: ludovicobarral@libero.it
+  author_url: ''
+  date: '2011-07-17 15:13:37 +0100'
+  date_gmt: '2011-07-17 13:13:37 +0100'
+  content: "Grazie per la guida, quando faccio il secondo make dopo il riavvia mi
+    da i seguenti errori:\r\nludovico@PC-Ludo:~/v4l-dvb-drxd$ make\r\nmake -C /home/ludovico/v4l-dvb-drxd/v4l
+    \r\nmake[1]: ingresso nella directory \"/home/ludovico/v4l-dvb-drxd/v4l\"\r\n./scripts/make_myconfig.pl\r\nmake[1]:
+    uscita dalla directory \"/home/ludovico/v4l-dvb-drxd/v4l\"\r\nmake[1]: ingresso
+    nella directory \"/home/ludovico/v4l-dvb-drxd/v4l\"\r\nperl scripts/make_config_compat.pl
+    /lib/modules/2.6.38-10-generic/build ./.myconfig ./config-compat.h\r\ncreating
+    symbolic links...\r\nmake -C firmware prep\r\nmake[2]: Entering directory `/home/ludovico/v4l-dvb-drxd/v4l/firmware'\r\nmake[2]:
+    Leaving directory `/home/ludovico/v4l-dvb-drxd/v4l/firmware'\r\nmake -C firmware\r\nmake[2]:
+    Entering directory `/home/ludovico/v4l-dvb-drxd/v4l/firmware'\r\nmake[2]: Nothing
+    to be done for `default'.\r\nmake[2]: Leaving directory `/home/ludovico/v4l-dvb-drxd/v4l/firmware'\r\nKernel
+    build directory is /lib/modules/2.6.38-10-generic/build\r\nmake -C /lib/modules/2.6.38-10-generic/build
+    SUBDIRS=/home/ludovico/v4l-dvb-drxd/v4l  modules\r\nmake[2]: Entering directory
+    `/usr/src/linux-headers-2.6.38-10-generic'\r\n  CC [M]  /home/ludovico/v4l-dvb-drxd/v4l/tuner-xc2028.o\r\n
+    \ CC [M]  /home/ludovico/v4l-dvb-drxd/v4l/tuner-simple.o\r\n  CC [M]  /home/ludovico/v4l-dvb-drxd/v4l/tuner-types.o\r\n
+    \ CC [M]  /home/ludovico/v4l-dvb-drxd/v4l/mt20xx.o\r\n  CC [M]  /home/ludovico/v4l-dvb-drxd/v4l/tda8290.o\r\n
+    \ CC [M]  /home/ludovico/v4l-dvb-drxd/v4l/tea5767.o\r\n  CC [M]  /home/ludovico/v4l-dvb-drxd/v4l/tea5761.o\r\n
+    \ CC [M]  /home/ludovico/v4l-dvb-drxd/v4l/tda9887.o\r\n  CC [M]  /home/ludovico/v4l-dvb-drxd/v4l/tda827x.o\r\n
+    \ CC [M]  /home/ludovico/v4l-dvb-drxd/v4l/au0828-core.o\r\n  CC [M]  /home/ludovico/v4l-dvb-drxd/v4l/au0828-i2c.o\r\n
+    \ CC [M]  /home/ludovico/v4l-dvb-drxd/v4l/au0828-cards.o\r\n  CC [M]  /home/ludovico/v4l-dvb-drxd/v4l/au0828-dvb.o\r\n
+    \ CC [M]  /home/ludovico/v4l-dvb-drxd/v4l/au0828-video.o\r\n  CC [M]  /home/ludovico/v4l-dvb-drxd/v4l/au8522_dig.o\r\n
+    \ CC [M]  /home/ludovico/v4l-dvb-drxd/v4l/au8522_decoder.o\r\n  CC [M]  /home/ludovico/v4l-dvb-drxd/v4l/flexcop-pci.o\r\n
+    \ CC [M]  /home/ludovico/v4l-dvb-drxd/v4l/flexcop-usb.o\r\n  CC [M]  /home/ludovico/v4l-dvb-drxd/v4l/flexcop.o\r\n
+    \ CC [M]  /home/ludovico/v4l-dvb-drxd/v4l/flexcop-fe-tuner.o\r\n  CC [M]  /home/ludovico/v4l-dvb-drxd/v4l/flexcop-i2c.o\r\n/home/ludovico/v4l-dvb-drxd/v4l/flexcop-i2c.c:
+    In function 'flexcop_i2c_init':\r\n/home/ludovico/v4l-dvb-drxd/v4l/flexcop-i2c.c:253:39:
+    error: 'I2C_CLASS_TV_DIGITAL' undeclared (first use in this function)\r\n/home/ludovico/v4l-dvb-drxd/v4l/flexcop-i2c.c:253:39:
+    note: each undeclared identifier is reported only once for each function it appears
+    in\r\nmake[3]: *** [/home/ludovico/v4l-dvb-drxd/v4l/flexcop-i2c.o] Errore 1\r\nmake[2]:
+    *** [_module_/home/ludovico/v4l-dvb-drxd/v4l] Error 2\r\nmake[2]: Leaving directory
+    `/usr/src/linux-headers-2.6.38-10-generic'\r\nmake[1]: *** [default] Errore 2\r\nmake[1]:
+    uscita dalla directory \"/home/ludovico/v4l-dvb-drxd/v4l\"\r\nmake: *** [all]
+    Errore 2\r\nCosa posso fare?\r\nGrazie"
+- id: 7685
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-07-23 22:06:32 +0100'
+  date_gmt: '2011-07-23 20:06:32 +0100'
+  content: |-
+    Ciao e scusa per il ritardo.. Ormai &egrave; un'abitudine, ma fortunatamente tra pochi giorni torner&ograve; operativo al 100%..
+
+    Per quanto riguarda il tuo problema, Dovresti innanzi tutto dirmi che distribuzione e che versione del kernel usi..
+---
+<p>Dopo la guida all'installazione del <strong>TV Tuner Pinnacle</strong> in oggetto (croce e delizia mia e dei lettori di questo blog da ormai non so pi&ugrave; quanto tempo), ho ricevuto commenti riguardo il fatto che <strong>aggiornando</strong> il kernel i driver <strong>non funzionavano pi&ugrave;</strong>, e non c'era verso di tornare indietro.. Devo dire che qualcuno c'&egrave; anche riuscito a farli andare comunque, ma si trattava di mosche bianche..</p>
+<p>Oggi, grazie al grande <a href="http://forum.ubuntu-it.org/index.php/topic,375207.140.html" target="_blank">Xgaz</a> del forum italiano di Ubuntu, la situazione potrebbe essersi finalmente sbloccata. Infatti, l'utente in questione ha <strong>patchato</strong> i vecchi drivers di <strong>Kernellabs.com</strong> (da cui si era partiti quasi un anno fa), per adattarli al kernel di <strong>Maverick</strong>!!</p>
+<p>Che dire, un lavoro veramente egregio, per cui lo ringrazio davvero tantissimo, ecco la procedura dettagliata di installazione..</p>
+<p>Ovviamente potete cancellare i vecchi sorgenti, per quanto riguarda i vecchi drivers, al sottoscritto la nuova installazione ha sovrascritto tutto senza particolari problemi, quindi niente paura..</p>
+<p>Installate (se non li avete gi&agrave;) gli <strong>headers</strong> del vostro kernel:</p>
+<blockquote><p><code>sudo apt-get install linux-headers-`uname -r`</code></p></blockquote>
+<p>Poi <strong>scaricate i sorgenti da Kernellabs</strong> (per le operazione da compiere eventualmente prima di questo passo, date uno sguardo <a href="http://localhost:4000/guide/pinnacle-pctv-hybrid-pro-stick-e330-su-lucid.html" target="_blank">qui</a>):</p>
+<p><code></p>
+<blockquote><p>hg clone http://kernellabs.com/hg/~dheitmueller/v4l-dvb-drxd</p></blockquote>
+<p></code></p>
+<p>A questo punto entrate nella directory creata, per poi <strong>scaricare ed applicare la patch</strong> di cui sopra:</p>
+<blockquote><p><code>cd v4l-dvb-drxd<br />
+wget http://xgazza.altervista.org/Linux/DVB/Drivers/drxd_2_6_35.diff<br />
+patch -p1 < drxd_2_6_35.diff</code></p></blockquote>
+<p>A questo punto scatta la <strong>compilazione</strong>:</p>
+<blockquote><p><code>make</code></p></blockquote>
+<p>C'&egrave; da dire che molto probabilmente vi si pianter&agrave;, <strong>restituendo un errore</strong>. Potete aspettare tale errore, oppure bloccare manualmente la compilazione premendo <strong>CTRL+C</strong> dopo circa <strong>10 secondi</strong> dall'inizio del processo, poi date il seguente comando (modifica una riga di codice nel file <code>.config</code>):</p>
+<blockquote><p><code>sed -i 's/CONFIG_DVB_FIREDTV=m/CONFIG_DVB_FIREDTV=n/' ./v4l/.config</code></p></blockquote>
+<p>Ora <strong>riavviate</strong> la compilazione che dovrebbe andare finalmente a buon fine (ci vorr&agrave; un po', non preoccupatevi &egrave; normale):</p>
+<blockquote><p><code>make<br />
+sudo make install<br />
+</code></p></blockquote>
+<p><strong>Riavviate</strong>, inserite la chiavetta e controllate l'esito del comando <code>dmesg</code>, se trovate la seguente riga:</p>
+<blockquote><p><code>DVB: registering adapter 0 frontend 0 (Micronas DRXD DVB-T)...</code></p></blockquote>
+<p>Avrete la conferma che la vostra pendrive sar&agrave; tornata a funzionare!! ;)</p>
+<p>Personalmente, ho testato il corretto funzionamento con il kernel <strong>2.6.35-24</strong> usando come al solito <strong>Kaffeine</strong>..</p>
+<p>Alla prossima..</p>

@@ -1,0 +1,52 @@
+---
+layout: post
+status: publish
+published: true
+title: Rimuovere la notifica di batteria vecchia o danneggiata da Gnome
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2313
+wordpress_url: http://www.red-blue.it/?p=2313
+date: '2011-09-14 16:56:15 +0100'
+date_gmt: '2011-09-14 14:56:15 +0100'
+categories:
+- tips & tricks
+- linux
+- ubuntu
+- notebook
+tags:
+- ubuntu
+- tips
+- gnome
+- notebook
+- batteria
+- notifica
+comments:
+- id: 7914
+  author: gigitux
+  author_email: gigitux@gmail.com
+  author_url: http://linuxaroforever.wordpress.com/
+  date: '2011-09-14 16:59:13 +0100'
+  date_gmt: '2011-09-14 14:59:13 +0100'
+  content: "Io mi sono comprato il laptop nuovo e per paura di questo ancora devo
+    caricare la batteria.\r\nHai consigli su come far durare la batteria pi&ugrave;
+    tempo ?"
+- id: 7915
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-09-14 19:12:07 +0100'
+  date_gmt: '2011-09-14 17:12:07 +0100'
+  content: I soliti.. Staccarla quando non la usi, ricaricarla quando &egrave; scarica
+    e non quando capita, ricaricarla completamente ogni volta, evitare il "troppo
+    caldo" e il "troppo freddo".. Ad esempio sul mio vecchio notebook la batteria
+    ha ceduto nettamente solo 3 anni e mezzo dopo l'acquisto..
+---
+<p>Signori, la <strong>batteria</strong> del mio notebook sta per lasciarmi..</p>
+<p>Purtroppo, si sa, l'uso massiccio non fa altro che deteriorarla, e in generale comunque se la si tiene sempre collegata (caso capitato al sottoscritto, in un periodo in cui non potevo permettermi che il notebook si spegnesse) si tratta di un componente non di lunghissima durata.</p>
+<p>Il problema &egrave; che <strong>Gnome</strong> segnala il fatto che la capacit&agrave; &egrave; ridotta, molto ridotta, ad ogni accesso, con una bella <strong>notifica</strong> delle sue. "Basta staccare la batteria" direte voi, vero, ma in caso di necessit&agrave; mi piace avere la possibilit&agrave; di poter almeno salvare e spegnere il computer (tanto la batteria ormai &egrave; andata, non mi interessa pi&ugrave; preservarla). Allora, ecco come rimuovere quella notifica..</p>
+<p>Per prima cosa, da terminale digitate <strong><code>gconf-editor</code></strong>, poi cercate la voce <strong><code>apps -> gnome-power-manager -> notify</code></strong>, e infine <strong>deselezionate</strong> la voce <strong><code>low_capacity</code></strong>.. Ecco fatto, niente pi&ugrave; notifica.. ;)</p>
+<p>Alla prossima..</p>

@@ -1,0 +1,33 @@
+---
+layout: post
+status: publish
+published: true
+title: Ancora sull'iPod Touch..
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1099
+wordpress_url: http://redblue.netsons.org/?p=1099
+date: '2010-05-10 11:34:11 +0100'
+date_gmt: '2010-05-10 10:34:11 +0100'
+categories:
+- tips & tricks
+- linux
+- ubuntu
+- piccole soddisfazioni
+tags:
+- ubuntu
+- sorgenti
+- libimobiledevice
+- lucid
+- compilare
+comments: []
+---
+<p>Ho gi&agrave; <a href="http://localhost:4000/guide/sincronizzare-lipod-touch-su-karmic-finalmente.html" target="_blank">parlato</a> del progetto <a href="http://www.libimobiledevice.org/" target="_blank">libimobiledevice</a> per sincronizzare l'<strong>iPod Touch</strong> su Ubuntu.. Il supporto &egrave; incluso nativamente in <strong>Lucid</strong>, mentre avevo descritto la procedura per installare il supporto su <strong>Karmic</strong>..</p>
+<p>Bene, ho per&ograve; notato che mentre nella versione a <strong>32 bit</strong> la versione <strong>0.9.7</strong> inclusa nei repository funziona, nella mia a <strong>64 bit</strong> no, serve l'ultima versione (la <strong>1.0.0</strong>). Non so dire se fosse un problema isolato relativo al mio caso, ma nel caso potesse interessare qualcuno, ho semplicemente scaricato e compilato i sorgenti prelevati dal sito e ora tutto funziona alla perfezione.. Dopo aver installato il necessario per compilare (praticamente i pacchetti <code>build-essential</code> e <code>linux-headers</code> relativi al vostro kernel, pi&ugrave; le dipendenze di questi), basta semplicemente dare i comani:</p>
+<blockquote><p><code>./configure<br />
+make<br />
+sudo make install</code></p></blockquote>
+<p>Alla prossima.. ;)</p>

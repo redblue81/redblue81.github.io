@@ -1,0 +1,75 @@
+---
+layout: post
+status: publish
+published: true
+title: Driver ATI Catalyst su Pavilion DV6-1205sl
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 715
+wordpress_url: http://redblue.netsons.org/?p=715
+date: '2009-10-04 10:17:20 +0100'
+date_gmt: '2009-10-04 09:17:20 +0100'
+categories:
+- guide
+- linux
+- ubuntu
+- notebook
+- hp dv6
+tags:
+- guida
+- installazione
+- ati
+- driver
+- jaunty
+- radeon hd 4530
+comments:
+- id: 6367
+  author: Effetti 3D su Karmic con driver Ati Open Source.. Addio fglrx!! - RedBlue&#39;s
+    Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/guide/effetti-3d-su-karmic-con-driver-ati-open-source-addio-fglrx.html
+  date: '2010-06-15 07:25:50 +0100'
+  date_gmt: '2010-06-15 06:25:50 +0100'
+  content: "[...] li avete installati come avevo consigliato io, allora da terminale
+    digitate cd /usr/share/ati sudo sh [...]"
+---
+<p>In relazione a quanto dicevo <a href="http://localhost:4000/guide/hp-pavilion-dv6-1205sl-e-jaunty.html" target="_blank">ieri</a> sulla scheda video del mio nuovo notebook, la <strong>ATI Mobility Radeon HD 4530</strong>, ho notato che abilitando semplicemente i driver proprietari ATI come avevo consigliato, si ottenevano alcuni rallentamenti nello scrolling delle pagine, nella riproduzione di contenuti Flash (ad esempio i filmati di Youtube) e alcuni colori non corretti su alcune immagini (al limite del bianco e nero). Ho deciso perci&ograve; di scaricare ed installare l'ultimissima versione dei <strong>Catalyst</strong> di ATI (la <strong>9.9</strong>), presi direttamente dal <a href="http://support.amd.com/us/gpudownload/linux/Pages/radeon_linux.aspx?type=2.4.1&product=2.4.1.3.39&lang=English" target="_blank">sito ufficiale</a>.</p>
+<p><span style="text-decoration: underline;">Attenzione!! Ci tengo a precisare che questa &egrave; una procedura che ho voluto eseguire io, ma non &egrave; strettamente necessaria!! Prima verificate il funzionamento dei driver nel vostro caso!!<br />
+</span></p>
+<p>Procediamo..</p>
+<p><strong>Per prima cosa disinstalliamo il vecchio driver</strong>: andiamo in Sistema -> Amministrazione -> Driver hardware e togliamo la spunta (se presente) ai driver proprietari..</p>
+<p><strong>Installiamo ora le dipendenze necessarie all'installazione del nuovo driver</strong>:</p>
+<blockquote><p><code>sudo apt-get install&nbsp; build-essential fakeroot dh-make libstdc++6 gcc-4.3-base dkms module-assistant linux-headers-$(uname -r)</code></p></blockquote>
+<p><strong>Rimuoviamo ora (se presente) XGL</strong>:</p>
+<blockquote><p><code>sudo apt-get --purge remove xserver-xgl</code></p></blockquote>
+<p><strong>Ora esistono due strade per installare il driver; personalmente, ho scelto la pi&ugrave; semplice</strong>.. Portiamoci nella directory dove &egrave; stato scaricato il file e digitiamo:</p>
+<blockquote><p><code>sudo chmod a+x ati-driver-installer-9-9-x86.x86_64.run<br />
+sudo sh ./ati-driver-installer-9-9-x86.x86_64.run</code></p></blockquote>
+<p>A questo punto partir&agrave; l'installazione automatica, alla fine della quale avrete installato il driver. Ora vediamo come effettuare le <strong>ultime configurazioni necessarie</strong>. Da terminale digitiamo:</p>
+<blockquote><p><code>sudo depmod -ae<br />
+cd  /etc/X11<br />
+sudo aticonfig --initial<br />
+sudo aticonfig --overlay-type=Xv</code></p></blockquote>
+<p>Questa &egrave; la procedura standard, che al sottoscritto <strong><span style="text-decoration: underline;">non</span></strong> ha funzionato. Ho sostituito perci&ograve; l'ultimo comando (quello relativo all'overlay) con:</p>
+<blockquote><p><code>sudo aticonfig --overlay-type=opengl</code></p></blockquote>
+<p>Ora si pu&ograve; riavviare. Per verificare la corretta installazione dopo il riavvio digitiamo:</p>
+<blockquote><p><code>fglrxinfo</code></p></blockquote>
+<p>L'output dovrebbe essere questo:</p>
+<blockquote><p><code>display: :0.0  screen: 0<br />
+OpenGL vendor string: ATI Technologies Inc.<br />
+OpenGL renderer string: ATI Mobility Radeon HD 4500 Series<br />
+OpenGL version string: 2.1.8918</code></p></blockquote>
+<p>Possiamo poi verificare anche con:</p>
+<blockquote><p><code>glxinfo | grep "direct rendering"</code></p></blockquote>
+<p>Il cui output dovrebbe essere:</p>
+<blockquote><p><code>direct rendering: Yes</code></p></blockquote>
+<p>Infine suggerisco di <strong>editare il file xorg.conf</strong>:</p>
+<blockquote><p><code>sudo gedit /etc/X11/xorg.conf</code></p></blockquote>
+<p>Aggiungendo alla fine la seguente sezione:</p>
+<blockquote><p><code>Section "Extensions"<br />
+Option		"Composite"	"Enable"<br />
+EndSection</code></p></blockquote>
+<p>Finito.. Ora la parte video funziona come dico io!! ;)</p>

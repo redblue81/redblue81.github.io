@@ -1,0 +1,58 @@
+---
+layout: post
+status: publish
+published: true
+title: Compilare il kernel col metodo Debian (Debian-way)
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3243
+wordpress_url: http://www.red-blue.it/?p=3243
+date: '2012-06-20 18:41:43 +0100'
+date_gmt: '2012-06-20 16:41:43 +0100'
+categories:
+- guide
+- linux
+- debian
+- in evidenza
+tags:
+- kernel
+- compilazione
+- debian-way
+comments: []
+---
+<p>Compilare il <strong>kernel</strong> &egrave; un'operazione piuttosto lunga e complessa, ma Debian ci viene in aiuto con un metodo tutto suo (utilizzabile anche sulle derivate da Debian ovviamente), il cosiddetto <strong>Debian-way</strong>.</p>
+<p><a href="/assets/images/tux.jpg"><img class="aligncenter size-medium wp-image-1781" title="tux" src="/assets/images/tux-252x300.jpg" alt="" width="252" height="300" /></a>In questo articolo cercher&ograve; di spiegare come ottenere, a partire da un kernel "<strong>Vanilla</strong>" (cio&egrave; i sorgenti rilasciati direttamente dal gruppo di "pap&agrave;" <strong>Linus Torvalds</strong>), i comodi <strong>pacchetti deb</strong> pronti per essere installati nel proprio sistema e, in caso di necessit&agrave;, semplici da rimuovere.</p>
+<p><!--moreContinua a leggere.. --></p>
+<p>Prima di iniziare, cerchiamo di installare tutto il <strong>necessario</strong> per non imbatterci in errori dovuti alla mancanza di qualche pacchetto fondamentale:</p>
+<pre class="brush: bash; gutter: false">sudo apt-get install git-core kernel-package fakeroot build-essential libncurses5-dev</pre>
+<p>Fatto questo, il primo, ovvio passo, &egrave; quello di <strong>scaricare</strong> i sorgenti dal sito ufficiale: http://www.kernel.org</p>
+<p>In questa guida user&ograve; l'ultimo rilascio stabile, il <strong>3.4.3</strong>, che ho installato proprio oggi sulla mia <strong>sid</strong>. Per <strong>policy</strong> Debian, questi files vanno nella directory <code>/usr/src</code>, e quindi andiamo a scaricare i sorgenti proprio in tale directory, poi ci portiamo nella directory ottenuta:</p>
+<blockquote><p>cd /usr/src<br />
+sudo wget --continue http://www.kernel.org/pub/linux/kernel/v3.0/linux-3.4.3.tar.bz2<br />
+sudo tar jxvf linux-3.4.3.tar.bz2<br />
+cd linux-3.4.3</p></blockquote>
+<p>Ora, recuperiamo l'attuale <strong>configurazione</strong> del kernel (non &egrave; il massimo dell'ottimizzazione, ma se non ci sono esigenze particolari va benissimo):</p>
+<pre class="brush: bash; gutter: false">cp /boot/config-`uname -r` ./.config</pre>
+<p>E successivamente diamo:</p>
+<pre class="brush: bash; gutter: false">sudo make menuconfig</pre>
+<p>A questo punto, per evitare un errore che ci impedirebbe di proseguire, portatevi nella schermata che viene visualizzata, in <strong>Processor type and features -> Paravirtualized guest support</strong> e togliete la spunta a <strong>Xen guest support</strong>, selezionate poi <strong>Exit</strong> fino ad uscire da quell'interfaccia e <strong>salvate</strong>.</p>
+<p>Bene, siete pronti al passo pi&ugrave; importante! Date in sequenza:</p>
+<pre class="brush: bash; gutter: false">sudo make-kpkg clean
+
+sudo fakeroot make-kpkg --initrd kernel_image kernel_headers kernel_source</pre>&egrave;&egrave;
+<p>E mettetevi comodi. Stiamo parlando di <strong>ore</strong> (a seconda del PC a disposizione ovviamente), questa &egrave; una compilazione davvero lunga, e richiede anche abbastanza spazio su hard disk (nel mio caso la directory dei sorgenti &egrave; arrivata a pesare pi&ugrave; di <strong>6 GB</strong>).</p>
+<p>Prima di continuare, ci sono un paio di <strong>opzioni</strong> che potrebbero far comodo per l'ultimo comando visto:</p>
+<ul>
+<li><strong>--append-to-version=<em>nomeversione</em></strong>, aggiunge al nome dei pacchetti creati la stringa nomeversione (utile ad esempio per ricordarsi una qualche caratteristica del kernel che stiamo compilando);</li>
+<li><strong>--revision</strong>, permette di impostare il numero di revisione del pacchetto (utile in caso di ricompilazione successiva con qualche modifica).</li>
+</ul>
+<p>Conclusa la compilazione, se non avete ricevuto errori, potrete passare all'<strong>installazione</strong> dei tre pacchetti che avete creato:</p>
+<pre class="brush: bash; gutter: false">cd ..
+
+sudo dpkg -i linux-*.deb</pre>&egrave;
+<p>Riavviate e godetevi il vostro nuovo kernel!! ;)</p>
+<p>Attenzione per&ograve;, potrebbe essere necessario ricompilare alcuni <strong>moduli</strong> esterni del kernel (ad esempio a me &egrave; capitato con <strong>VirtualBox</strong>, motivo per cui ho creato anche il pacchetto linux-source) dopo l'installazione, cos&igrave; come vi consiglio di <span style="text-decoration: underline;"><strong>non</strong></span> disinstallare alcun vecchio kernel prima di essere assolutamente certi del corretto funzionamento di quello nuovo.</p>
+<p>Alla prossima..</p>

@@ -1,0 +1,15 @@
+---
+layout: post
+title:  "Primo post di prova!"
+date:   2023-01-15 00:35:00 +0100
+categories: test
+---
+Questo &egrave; un post di prova!!!
+
+Test test test test!
+
+Link al [blog attuale][Test link]{:target="_blank"}{:rel="noopener noreferrer"}
+
+Test immagine ![Penguin](/assets/penguin.png)
+
+[Test link]: https://www.red-blue.it

@@ -1,0 +1,111 @@
+---
+layout: post
+status: publish
+published: true
+title: Shell Bash - 5 - Cicli
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2792
+wordpress_url: http://www.red-blue.it/?p=2792
+date: '2012-01-03 14:38:53 +0100'
+date_gmt: '2012-01-03 13:38:53 +0100'
+categories:
+- guide
+- linux
+- in evidenza
+tags:
+- guida
+- linux
+- shell
+- bash
+- cicli
+comments: []
+---
+<p>Ritorna, dopo qualche settimana di pausa, il mio "<strong>prontuario</strong>" alla <strong>Shell Bash</strong>. Tema di oggi saranno quelle operazioni ripetute pi&ugrave; volte, <strong>ciclicamente</strong>. Un esempio, supponete semplicemente di dover stampare a video un messaggio n volte, potete o scrivere n volte la stessa istruzione, oppure usare un <strong>ciclo</strong>.</p>
+<p>Le istruzioni che andremo a vedere sono essenzialmente tre: <strong>for</strong>, <strong>while</strong> e <strong>until</strong>.<br />
+<!--moreContinua a leggere.. --><br />
+Cominiciamo dalla prima, il <strong>ciclo for</strong>: questa istruzione consente di eseguire una o una serie di istruzioni successive per un numero specificato numero di volte, con la seguente sintassi:</p>
+<pre class="brush: bash; gutter: true">for variabile [in lista]
+
+do istruzioni;
+&egrave;&egrave;
+done</pre>
+<p>Spieghiamo questa sintassi all'apparenza complessa: <strong>variabile</strong> pu&ograve; essere un nome qualsiasi, il pi&ugrave; classico &egrave; semplicemente <strong>i</strong>, <strong>in lista</strong> non &egrave; fondamentale, ma pu&ograve; indicare, ad esempio, in quale ambito applicare le istruzioni successive, che vanno inserite dopo il <strong>do</strong>, senza punto e virgola alla fine di ogni riga meno che nell'ultima istruzione. Vediamo un piccolo esempio:</p>
+<pre class="brush: bash; gutter: true">#!/bin/bash
+
+for ((i=1;i<11;i++));&egrave;&egrave;
+
+do echo $i;
+
+done</pre>
+<p>Questo script stupidissimo scrive i numeri da 1 a 10 a video, uno per ogni riga. Come si vede per&ograve;, il nome della variabile &egrave; semplicemente i, che varia da 1 a 10, e l'istruzione eseguita &egrave; una semplice stampa a video della variabile stessa.</p>
+<p>Un esempio pi&ugrave; concreto? Supponiamo di voler estrarre da un file una serie di informazioni. Per semplicit&agrave;, supponiamo di avere un file chiamato <code>listafile</code>, con all'interno una lista di utenti, chiamati semplicemente utente1, utente2, e cos&igrave; via. Lo script precedente, da lanciare nella stessa directory del file <code>listafile</code>, diventa:</p>
+<pre class="brush: bash; gutter: true&egrave;/bash
+&egrave;
+for i in `cat listafile`;
+
+do UTENTE="$i"
+
+echo $UTENTE;
+
+done</pre>
+<p>La seconda istruzione che vediamo &egrave; il <strong>while</strong>.</p>
+<p>In questo caso si parla di <span style="text-decoration: underline;">controllo in testa</span>, ovvero viene controllata la condizione di uscita, e se questo test non fallisce, allora si eseguono le istruzioni successive (nel caso precedente invece avevamo una ripetizione per un certo numero stabilito di volte). La sintassi &egrave; la seguente:</p>
+<pre class="brush: bash; gutter: true">while CONDIZIONE;
+
+do ISTRUZIONI;&egrave;
+
+done</pre>
+<p>Lo stesso script di esempio visto per il for (quello che stampa a video i numeri da 1 a 10) pu&ograve; essere riscritto usando il while:</p>
+<pre class="brush: bash; gutter: true">#!/bin/bash
+
+i="1"
+&egrave;
+LIM="11"&egrave;&egrave;
+
+while [ $i -lt $LIM ];
+
+do echo $i
+
+i=$[$i+1];
+
+done</pre>
+<p>Nell'esempio, l'opzione del while <code>-lt</code> sta per "lower than", cio&egrave; "minore di", si pu&ograve; usare anche il simbolo matematico "<", ma occorre in questo caso usare le doppie parentesi tonde (( )) (come nel primo esempio). Il ciclo while pu&ograve; essere <strong>annidato</strong>, ovvero assumere la sintassi:</p>
+<pre class="brush: bash; gutter: true">while CONDIZIONE1;
+&egrave;&egrave;
+do BLOCCO-ISTRUZIONI1
+&egrave;&egrave;&egrave;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while CONDIZIONE2;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; do BLOCCO-ISTRUZIONI2;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; done
+
+done</pre>
+<p>Infine, &egrave; il momento di dare un'occhiata al ciclo <strong>until</strong>.</p>
+<p>Questo costrutto ha una sintassi praticamente identica al while, ma c'&egrave; la differenza fondamentale che le istruzioni all'interno del ciclo vengono eseguite finch&egrave; il test non da' risultato positivo:</p>
+<pre class="brush: bash; gutter: true">until CONDIZIONE;
+
+do ISTRUZIONI;
+
+done</pre>
+<p>Di nuovo un piccolo (inutile) script di esempio:</p>
+<pre class="brush: bash; gutter: true">#!/bin/bash 
+
+COUNTER=20
+
+until [&nbsp; $COUNTER -lt 0 ]; do
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo "-" $COUNTER
+
+&nbsp; &nbsp; &nbsp; &nbsp; let COUNTER-=1
+
+done</pre>
+<p>In questo caso viene effettuato un conto alla rovescia da 20 a 0. Come si vede, finch&egrave; COUNTER resta maggiore di zero (ovvero la condizione -lt, minore di, &egrave; falsa), il ciclo si ripete.</p>
+<p>Until, proprio come while, pu&ograve; essere annidato, e anche annidare ad esempio un while all'interno di un until non costituisce un errore, dipende semplicemente dalle esigenze.</p>
+<p>Infine, non possiamo non parlare di <strong>continue</strong> e <strong>break</strong>. Si tratta di due istruzioni usate per "forzare" un ciclo. Supponiamo di <strong>non conoscere a priori</strong> quante volte un ciclo dovr&agrave; essere ripetuto, ad esempio supponiamo che un'operazione va ripetuta finch&egrave; l'utente non preme un tasto, bene questo &egrave; un tipoco caso in cui si usa il <strong>break</strong>. Non ci sar&agrave; una condizione di uscita dal ciclo ma se l'utente preme un tasto allora verr&agrave; invocato il break (basta un <strong>if</strong> nel ciclo!!). <strong>Continue</strong> invece ha l'effetto opposto, ovvero forza il ritorno al controllo della condizione del ciclo; ad esempio, supponiamo di avere un for all'interno del quale dobbiamo eseguire una certa operazione <span style="text-decoration: underline;">solo</span> in determinati casi. Bene, basta un controllo (cio&egrave; un if) interno al for in cui specifichiamo l'operazione da eseguire e in caso contrario la clausola continue, che altro non fa che tornare alla condizione di controllo in testa.</p>
+<p>Alla prossima..</p>
+<p>&nbsp;</p>

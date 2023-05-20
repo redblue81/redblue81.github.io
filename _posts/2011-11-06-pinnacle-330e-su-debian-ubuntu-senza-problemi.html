@@ -1,0 +1,71 @@
+---
+layout: post
+status: publish
+published: true
+title: Pinnacle 330e su Debian/Ubuntu senza problemi
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2656
+wordpress_url: http://www.red-blue.it/?p=2656
+date: '2011-11-06 08:03:15 +0100'
+date_gmt: '2011-11-06 07:03:15 +0100'
+categories:
+- guide
+- linux
+- debian
+- ubuntu
+- in evidenza
+tags:
+- debian
+- linux
+- ubuntu
+- driver
+- pinnacle pctv hybrid pro stick
+- 330e
+- kernel 3
+- pinnacle 330e
+comments:
+- id: 12240
+  author: Ricevere il DVB-T su Debian Sid con VLC - RedBlue&#039;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/guide/ricevere-il-dvb-t-su-debian-sid-con-vlc.html
+  date: '2012-07-24 15:45:55 +0100'
+  date_gmt: '2012-07-24 13:45:55 +0100'
+  content: "[...] sapesse, si tratta della Pinnacle 330e, di cui in passato ho diffusamente
+    parlato in questo blog (questa la guida per utilizzarla con Debian/Ubuntu), che
+    il sottoscritto ha sempre usato in accoppiata con [...]"
+---
+<p>E' da un bel po' di tempo che non dedico tempo alla mia <strong>Pinnacle 330e</strong>, il mio sintonizzatore tv analogico/DVB-T di cui in passato ho abbondantemente parlato nele pagine di questo blog.</p>
+<p><a href="/assets/images/pctv330e.jpg"><img class="aligncenter size-medium wp-image-1821" title="pctv330e" src="/assets/images/pctv330e-300x155.jpg" alt="" width="300" height="155" /></a><br />
+<!--moreContinua a leggere.. --><br />
+Bisogna dire che la situazione &egrave; decisamente migliorata rispetto al passato, e questo grazie al nuovo <strong>kernel 3.0</strong> che integra il driver <strong>nativamente</strong>, risolvendo la quasi totalit&agrave; dei problemi.</p>
+<p>Iniziamo con inserire la nostra chiavetta e verichiamo il riconoscimento dando uno alla volta i seguenti comandi:</p>
+<pre class="brush: shell; gutter: true">dmesg|grep em28xx
+
+dmesg|grep DVB</pre>
+<p>Otterremo numerose informazioni, ma in generale se compaiono, tra le altre, le seguenti linee (o qualcosa di simile), siamo a posto per quanto riguarda il driver:</p>
+<pre class="brush: shell; gutter: true">em28xx: New device Pinnacle Systems PCTV 330e @ 480 Mbps (2304:0226, interface 0, class 0)
+
+em28xx #0: chip ID is em2882/em2883
+
+em28xx #0: v4l2 driver version 0.1.2
+
+em28xx #0: V4L2 video device registered as video1
+&egrave;&egrave;
+em28xx #0: V4L2 VBI device registered as vbi0
+
+DVB: registering new adapter (em28xx #0)&egrave;
+
+DVB: registering adapter 0 frontend 0 (Micronas DRXD DVB-T)...
+
+em28xx #0: Successfully loaded em28xx-dvb</pre>
+<p>A questo punto per&ograve; ancora <strong>non funziona <strong>(ancora) </strong> nulla</strong>, infatti richiamando ad esempio Kaffeine da riga di comando, vedremo che mancano ancora i vari <strong>firmware</strong>. Qui ci sono alcune teorie discordanti, c'&egrave; chi dice che basta installare il pacchetto <code>firmware-linux-nonfree</code> per concludere il tutto, c'&egrave; invece chi dice che i firmware vanno caricati a mano. Personalmente, ho dovuto <strong>installarli a mano</strong>, quindi taglio la testa al toro e ve li rendo disponibili in fondo a questo articolo.</p>
+<p>Basta <strong>scaricarli</strong>, <strong>scompattarli</strong> e <strong>copiarli</strong> in <code>/lib/firmware</code> col seguente comando (da dare all'interno della directory in cui li avete scompattati ovviamente):</p>
+<pre class="brush: shell; gutter: true">sudo cp *.fw /lib/firmware</pre>
+<p>A questo punto, meglio <strong>scollegare</strong> la penna e <strong>riavviare</strong> il sistema. A riavvio completo, inserire nuovamente la penna ed effettuare una <strong>scansione</strong> dei canali, ad esempio con <strong>Kaffeine</strong> (usando KDE, &egrave; decisamente il software con cui mi trovo meglio), e godersi la tv.. ;)</p>
+<p>A giudicare da quello che leggo in rete, le medesime considerazioni valgono anche per <strong>Ubuntu</strong>/<strong>Kubuntu</strong>..</p>
+<p>Alla prossima..</p>
+<p><strong>Link ai firmware</strong>: http://dl.dropbox.com/u/8000292/firmware_pinnacle_330e.tar.gz</p>

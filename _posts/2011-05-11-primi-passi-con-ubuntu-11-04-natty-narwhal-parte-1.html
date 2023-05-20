@@ -1,0 +1,43 @@
+---
+layout: post
+status: publish
+published: true
+title: Primi passi con Ubuntu 11.04 Natty Narwhal - Parte 1
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2126
+wordpress_url: http://www.red-blue.it/?p=2126
+date: '2011-05-11 16:31:12 +0100'
+date_gmt: '2011-05-11 14:31:12 +0100'
+categories:
+- guide
+- linux
+- ubuntu
+- software
+tags:
+- ubuntu
+- installazione
+- '11.04'
+- natty
+comments: []
+---
+<p>Come con ogni rilascio, eccomi a scrivere una breve guida su cosa fare per <strong>completare</strong> la nuova Ubuntu..</p>
+<p>Stavolta per&ograve; inizio con un problema: sul mio notebook, un <strong>HP DV6</strong> con scheda video <strong>ATI Radeon HD 4530</strong>, i driver open non funzionano a dovere, visualizzando sullo schermo dei difetti assolutamente fastidiosi e causando spesso un <strong>black screen</strong> (schermo nero) in avvio.. Ho cercato una soluzione per due giorni, ma per il momento l'unica cosa che ha funzionato &egrave; stato ricorrere ai driver <strong>proprietari</strong> ATI. Se siete nelle stesse condizioni, cercate Driver aggiuntivi e da l&igrave; attivate i driver proprietari. <strong>ATTENZIONE!!</strong> Potreste non vedere pi&ugrave; Plymouth, il bootscreen di Ubuntu!! Niente paura, per sistemare le cose potete seguire <a href="http://localhost:4000/guide/problemi-di-temperatura-di-lucid-lynx-soluzione-parte-2-powernowd-lm-sensors-e-plymouth.html" target="_blank">questa</a> mia vecchia guida (solo la parte riguardante Plymouth), oppure pi&ugrave; semplicemente installare <strong>Plymouth Manager</strong>:</p>
+<blockquote><p><code>sudo add-apt-repository ppa:mefrio-g/plymouthmanager<br />
+sudo apt-get update<br />
+sudo apt-get install plymouth-manager</code></p></blockquote>
+<p>A questo punto, io di solito preferisco scegliere un <strong>mirror</strong> per APT (Germania o Svizzera) ed abilitare un po' di <strong>repository</strong> aggiuntivi. Dal <strong>Software Center</strong> cliccate <strong>Modifica</strong> (con Unity si trova nella barra in alto!!) e poi su <strong>Sorgenti sofware</strong>: qui selezionate un mirror (non &egrave; obbligtorio!!), abilitate i repository <strong>Partner</strong> di Canonical, <strong>restricted</strong>, <strong>proposed</strong> e relativi <strong>aggiornamenti</strong>. Chiudete ed aspettate il <strong>refresh</strong> della lista dei pacchetti, poi avviate un <strong>aggiornamento</strong> del sistema.</p>
+<p>Bene, &egrave; il momento di <strong>rimuovere</strong> ci&ograve; che non uso: <strong>Empathy</strong> (preferisco Skype e non uso MSN), <strong>Evolution</strong> (preferisco Thunderbird), la parte riguardante la gestione dei desktop remoti, <strong>Gwibber</strong> (uso Hotot), <strong>Pitivi</strong> (preferisco Mencoder e/o Openshot):</p>
+<blockquote><p><code>sudo apt-get purge empathy evolution tsclient vinagre gwibber pitivi</code></p></blockquote>
+<p>Ora direi che &egrave; il momento di installare qualche software che ritengo assolutamente necessario, a partire da <strong>VLC</strong>, pi&ugrave; i plugin relativi a <strong>Java</strong> e <strong>Silverlight</strong>, e ovviamente <strong>Thunderbird</strong>:</p>
+<blockquote><p><code>sudo apt-get install vlc mozilla-plugin-vlc sun-java6-jre sun-java6-plugin sun-java6-fonts moonlight-plugin-mozilla p7zip-full p7zip-rar thunderbird</code></p></blockquote>
+<p>Per quanto riguarda il <strong>Flash Player</strong>, per gli utenti della versione a <strong>64 bit</strong>, come il sottoscritto, &egrave; disponibile un repository PPA contenente una versione nativamente a 64 bit.</p>
+<blockquote><p><code>sudo add-apt-repository ppa:sevenmachines/flash<br />
+sudo apt-get update<br />
+sudo apt-get install flashplugin64-installer</code></p></blockquote>
+<p>Ovviamente questo rimuover&agrave; automaticamente l'analogo pacchetto installato di default, che &egrave; una versione a 32 bit modificata.</p>
+<p>A questo punto, il sistema dovrebbe essere gi&agrave; in grado di funzionare senza problemi.. Tuttavia, nella seconda parte di questa guida indicher&ograve; altro software che pu&ograve; risultare molto comodo..</p>
+<p>Alla prossima..</p>

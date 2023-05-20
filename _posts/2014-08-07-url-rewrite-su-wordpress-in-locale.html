@@ -1,0 +1,70 @@
+---
+layout: post
+status: publish
+published: true
+title: Url rewrite su Wordpress in locale
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3687
+wordpress_url: http://www.red-blue.it/?p=3687
+date: '2014-08-07 10:05:31 +0100'
+date_gmt: '2014-08-07 08:05:31 +0100'
+categories:
+- tips & tricks
+- wordpress
+tags:
+- wordpress
+- linux
+- tips
+- tricks
+- apache2
+- url rewrite
+comments: []
+---
+<p>Su un sito Wordpress in locale, possiamo scegliere di abilitare i cosiddetti permalink personalizzati (<strong>Impostazioni -> Permalink</strong>), ovvero presentare le url delle nostre pagine web in maniera pi&ugrave; elegante, esattamente come avviene in un sito online.</p>
+<p>Normalmente per&ograve; Apache non ha abilitato di default il modulo di rewrite, per cui potremmo ottenere un errore <strong>404</strong> (Not found). Poco male, per ovviare basta abilitare l'url rewrite su Wordpress in locale, andando nel file di configurazione (<code>/etc/apache2/apache2.conf</code> in <strong>Debian</strong>) e cercando le seguenti sezioni:</p>
+<pre class="brush: bash; gutter: true"><Directory />
+
+ Options Indexes FollowSymLinks
+
+ AllowOverride None
+
+</Directory>
+
+
+
+<Directory /var/www/>
+
+ Options Indexes FollowSymLinks
+
+ AllowOverride None
+
+ Require all granted
+
+</Directory></pre>
+<p>E modificarle come segue:</p>
+<pre class="brush: bash; gutter: true"><Directory />
+
+ Options Indexes FollowSymLinks
+
+ AllowOverride None
+
+</Directory></pre>
+<pre class="brush: bash; gutter: true"><Directory /var/www/>
+
+ Options Indexes FollowSymLinks
+
+ AllowOverride All
+
+ Require all granted
+
+</Directory></pre>
+<p>A questo punto potrebbe essere necessario attivare il modulo di rewrite delle URL di Apache, come root diamo:</p>
+<pre class="brush: bash; gutter: false">a2enmod rewrite</pre>
+<p>Infine, riavviamo Apache, dando sempre come <strong>root</strong>:</p>
+<pre class="brush: bash; gutter: false">service apache2 restart</pre>
+<p>Ed ecco fatto, adesso abbiamo l'url rewrite su Wordpress in locale e quindi ora il nostro Wordpress sar&agrave; perfettamente in grado di trattare correttamente qualsiasi tipo di permalink ci venga in mente!</p>
+<p>Alla prossima..</p>

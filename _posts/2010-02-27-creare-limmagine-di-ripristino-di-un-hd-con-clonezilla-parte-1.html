@@ -1,0 +1,53 @@
+---
+layout: post
+status: publish
+published: true
+title: Creare l'immagine di ripristino di un HD con CloneZilla (parte 1)
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1010
+wordpress_url: http://redblue.netsons.org/?p=1010
+date: '2010-02-27 12:10:41 +0100'
+date_gmt: '2010-02-27 11:10:41 +0100'
+categories:
+- guide
+- linux
+- software
+tags:
+- guida
+- linux
+- ripristino
+- usb
+- clonezilla
+- backup
+- hard disk
+- clonare
+- immagine
+- zip
+comments:
+- id: 6356
+  author: Creare l&rsquo;immagine di ripristino di un HD con CloneZilla (parte 2)
+    - RedBlue&#39;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/guide/creare-l%e2%80%99immagine-di-ripristino-di-un-hd-con-clonezilla-parte-2.html
+  date: '2010-06-01 09:38:07 +0100'
+  date_gmt: '2010-06-01 08:38:07 +0100'
+  content: "[...] alla seconda parte della guida alla creazione di un backup completo
+    di un HD con CloneZilla.. Ormai abbiamo preparato la nostra chiavetta USB e abbiamo
+    riavviato il sistema.. Consiglio di scegliere di avviare CloneZilla con una risoluzione
+    [...]"
+---
+<p>Avete presente la situazione in cui vi trovate a dover reinstallare l'OS del vostro PC, in seguito magari a qualche casino che avete combinato?? Oppure semplicemente avete cambiato HD e avete quindi la necessit&agrave; di clonare quello vecchio?? Bene, in Windows esistono programmi come <strong>Norton Ghost</strong> o <strong>Acronis TrueImage</strong>, ma in Linux??</p>
+<p>In Linux possiamo far ricorso a <a href="http://clonezilla.org" target="_blank">CloneZilla</a>, un CD di boot capace di clonare un intero HD in pochi minuti, basato su Linux (una Debian se non vado errato).. Una caratteristica importante &egrave; quella di <span style="text-decoration: underline;">clonare solo lo spazio effettivamente utilizzato</span>, in modo da velocizzare i tempi di backup/ripristino e minimizzare lo spazio necessario per l'immagine..</p>
+<p>Vediamo come procedere..</p>
+<p>Per prima cosa ovviamente dovete scaricare l'immagine che vi interessa.. Sono disponibili la ISO da masterizzare su un CD oppure l'archivio ZIP da copiare su un pendrive USB; io ho usato la seconda, e quindi la prima cosa da fare &egrave; preparare la nostra chiavetta..</p>
+<li>Per prima cosa bisogna formattare il pendrive (usando un formato <strong>FAT</strong>);</li>
+<li>dopodich&egrave; basta estrarre l'archivio ZIP scaricato in precedenza sul pendrive;</li>
+<li>a questo punto entrare nella directory <code>/utils/linux</code> e lanciare lo script <code>makeboot.sh</code> con il comando <code>sudo bash makeboot.sh /dev/sdb1</code> (supponendo che la vostra chiavetta sia riconosciuta come sdb1, altrimenti modificate il comando!!).</li>
+<p>A questo punto riavviate con la chiavetta inserita (ma <span style="text-decoration: underline;"><strong>NON</strong></span> inserite ora l'HD esterno o la chiavetta su cui andrete a copiare l'immagine di backup!!), selezionate il boot da USB e vi ritroverete questa videata davanti agli occhi..</p>
+<p style="text-align: center;"><a rel="lightbox" href="/assets/images/clonezilla.jpg"><img class="aligncenter" src="/assets/images/clonezilla.jpg" alt="" width="270" height="203" /></a></p>
+<p>Il funzionamento &egrave; estramamente intuitivo a questo punto, ma vi do comunque appuntamento alla prossima per <a href="http://localhost:4000/guide/creare-l%E2%80%99immagine-di-ripristino-di-un-hd-con-clonezilla-parte-2.html" target="_blank">il seguito di questa guida</a>, dove spiegher&ograve; come effettuare il backup..</p>
+<p>Stay tuned.. ;)</p>

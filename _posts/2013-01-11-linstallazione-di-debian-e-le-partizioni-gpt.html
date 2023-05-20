@@ -1,0 +1,42 @@
+---
+layout: post
+status: publish
+published: true
+title: L'installazione di Debian e le partizioni GPT
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3471
+wordpress_url: http://www.red-blue.it/?p=3471
+date: '2013-01-11 12:08:08 +0100'
+date_gmt: '2013-01-11 11:08:08 +0100'
+categories:
+- tips & tricks
+- linux
+- notebook
+- hp dv6
+- in evidenza
+tags:
+- debian
+- linux
+- tips
+- dual boot
+- tricks
+- gpt
+- fixparts
+comments: []
+---
+<p>Da anni uso sul mio notebook il <strong>dual boot</strong> Linux/Windows, e negli ultimi mesi, in cui per motivi di lavoro devo usare Windows, questa esigenza &egrave; ancora pi&ugrave; pressante.</p>
+<p><a href="/assets/images/dualboot-logo.png"><img class="aligncenter size-full wp-image-3477" alt="dualboot-logo" src="/assets/images/dualboot-logo.png" width="300" height="300" /></a>Fatta questa piccola premessa, recentemente ho rimesso in funzione il mio <strong>notebook HP</strong>, e quindi ho riformattato il disco fisso (<strong>500 GB</strong>), suddividendolo in due parti uguali e installando Windows 7 nella prima.</p>
+<p>Tutto ok, ma quando sono andato ad installare <strong>Debian 6.0.6</strong> (stable che poi diventer&agrave; unstable) &egrave; venuto fuori che l'installer non "<strong>vedeva</strong>" la partizione Windows (normalmente creo nello spazio non allocato una partizione di per il <strong>boot</strong>, una di <strong>swap</strong>, una per <strong>root</strong> e una per la <strong>home</strong>), semplicemente mi dava il disco non partizionato, con lo spazio totale completamente non allocato. Addirittura provando ad usare un <strong>LiveCD</strong>, la partizione Windows veniva correttamente riconosciuta, ma lanciando <strong>GParted</strong> il disco risultava poi non partizionato.</p>
+<p>A questo punto, ho provato a lanciare un <code>fdisk -l</code>, per capire se almeno tale comando riconoscesse la partizione Windows, e mi ha attratto la prima riga dell'output:</p>
+<blockquote><p>WARNING: GPT (GUID Partition Table) detected on '/dev/sda'! The util fdisk doesn't support GPT. Use GNU Parted.</p></blockquote>
+<p>Ecco il problema, il disco ha una tabella di partizioni di tipo <strong>GPT</strong> (GUID Partition Table - su <a href="http://it.wikipedia.org/wiki/GUID_Partition_Table" target="_blank">Wikipedia</a> trovate una veloce descrizione), che non va daccordo con molte distribuzioni Linux, le quali in fase di installazione appunto non riescono a "vedere" eventuali partizioni gi&agrave; presenti sul disco stesso.</p>
+<p>Allora, per risolvere basta usare alcune <strong>utility</strong> presenti ad esempio in <a href="http://www.sysresccd.org/SystemRescueCd_Homepage" target="_blank">SystemRescueCd</a>, un LiveCd Linux utilizzabile proprio per effettuare operazioni di ripristino sul sistema, tra cui ovviamente anche operazioni sui dischi. Una volta avviata, ci troveremo nel prompt dei comandi, e la prima cosa da fare sar&agrave; un backup (non si sa mai), ad esempio con <strong>gdisk</strong> (tool che riconosce la partizioni GPT, si indica il vostro HD, che sar&agrave; probabilmente <code>/dev/sda</code>, comunque meglio ottenere questa informazione con <code>fdisk</code>, e poi usare il comando <strong>b</strong> per il backup).</p>
+<p>Poi, usiamo <strong>fixparts</strong>:</p>
+<pre class="brush: bash; gutter: false">fixparts /dev/sda</pre>
+<p>Diamo<strong> Y</strong> (yes), poi<strong> p</strong> per visualizzare la tabella delle partizioni e se tutto va bene <strong>w</strong> per scriverla su disco. Al riavvio la nostra Debian (ma pi&ugrave; in generale la nostra distribuzione Linux) si installer&agrave; tranquillamente, riconoscendo finalmente la partizione Windows.</p>
+<p>Ovviamente prima di procedere assicuratevi che <code>/dev/sda</code> sia effettivamente il vostro disco, quello su cui state lavorando per capirci!!</p>
+<p>Alla prossima..</p>

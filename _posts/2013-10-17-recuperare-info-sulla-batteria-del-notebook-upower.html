@@ -1,0 +1,77 @@
+---
+layout: post
+status: publish
+published: true
+title: Recuperare info sulla batteria del notebook - UPower
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3572
+wordpress_url: http://www.red-blue.it/?p=3572
+date: '2013-10-17 19:17:40 +0100'
+date_gmt: '2013-10-17 17:17:40 +0100'
+categories:
+- tips & tricks
+- linux
+- notebook
+tags:
+- linux
+- batteria
+- tips & tricks
+- informazioni
+- upower
+comments: []
+---
+<p>Nella nostra Debian c'&egrave; (o almeno dovrebbe esserci) il tool <strong>UPower</strong>, lo usiamo in questo modo; per prima cosa, andiamo a stampare a video la lista di tutte le sorgenti di alimentazione collegate (ovviamente, fate in modo che sia collegata anche la batteria):</p>
+<pre class="brush: bash; gutter: false">upower -e</pre>
+<p>Questo &egrave; il mio output:</p>
+<pre class="brush: bash; gutter: false">/org/freedesktop/UPower/devices/line_power_ACAD
+
+/org/freedesktop/UPower/devices/battery_BAT1</pre>
+<p>Ok, l'oggetto che ci interessa &egrave; il <strong>secondo</strong> (il primo riguarda l'alimentazione da rete). Ora chiediamo a UPower di recuperare le informazioni che ci interessano:</p>
+<pre class="brush: bash; gutter: false">upower -i /org/freedesktop/UPower/devices/battery_BAT1</pre>
+<p>La risposta sar&agrave; simile a questa:</p>
+<pre class="brush: bash; gutter: false">native-path:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /sys/devices/LNXSYSTM:00/device:00/PNP0A08:00/device:01/PNP0C0A:00/power_supply/BAT1
+
+ vendor:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; COMPAL
+
+ model:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PABAS0241231
+
+ serial:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 41167
+
+ power supply:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; yes
+
+ updated:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thu Oct 17 19:12:09 2013 (258 seconds ago)
+
+ has history:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; yes
+
+ has statistics:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; yes
+
+ battery
+
+ present:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; yes
+
+ rechargeable:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; yes
+
+ state:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fully-charged
+
+ energy:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 45.7542 Wh
+
+ energy-empty:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 Wh
+
+ energy-full:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 45.7542 Wh
+
+ energy-full-design:&nbsp; 48.84 Wh
+
+ energy-rate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.0111 W
+
+ voltage:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 12.416 V
+
+ percentage:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 100%
+
+ capacity:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 93.6818%
+
+ technology:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lithium-ion</pre>
+<p>Semplice no? Alla prossima..</p>

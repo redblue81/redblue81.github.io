@@ -1,0 +1,62 @@
+---
+layout: post
+status: publish
+published: true
+title: Reinstallare GRUB su partizione Efi
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 4151
+wordpress_url: https://www.red-blue.it/?p=4151
+date: '2021-10-17 15:50:03 +0100'
+date_gmt: '2021-10-17 13:50:03 +0100'
+categories:
+- tips & tricks
+- linux
+tags: []
+comments: []
+---
+<p><!-- wp:paragraph --></p>
+<p>Mi &egrave; capitato di trovarmi nella condizione di dover reinstallare GRUB su partizione Efi, in quanto di fatto il sistema <strong>non era pi&ugrave; in grado di avviarsi</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ho dovuto faticare pi&ugrave; del previsto, in quanto di fatto l'uso di Efi rende leggermente diverse le consuete operazioni di <strong>ripristino</strong>, ma alla fine sono riuscito a reinstallare Grub su partizione Efi. Esistono dei tool che promettono di riparare in maniera quasi del tutto automatica queste situazioni, ma ho preferito procedere via codice.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Premetto che io uso <a href="https://linuxmint.com/download_lmde.php" target="_blank" rel="noreferrer noopener">LMDE 4</a> (<strong>Linux Mint Debian Edition</strong>), ma i passi fondamentalmente sono gli stessi per qualsiasi distribuzione.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Per prima cosa, procuriamoci una live di LMDE e la portiamo su USB (ad esempio) con un software tipo <a href="https://www.balena.io/etcher/" target="_blank" rel="noreferrer noopener">Balena Etcher</a>. Una volta avviato il sistema in versione live, apriamo un terminale e digitiamo:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code --></p>
+<pre class="wp-block-syntaxhighlighter-code">sudo mount /dev/sda2 /mnt
+sudo mount /dev/sda1 /mnt/boot/efi
+for i in /dev /dev/pts /proc /sys /run; do sudo mount -B $i /mnt$i; done
+sudo chroot /mnt
+grub-install /dev/sda
+update-grub  </pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>In questo esempio sda &egrave; il disco sul quale va reinstallato il GRUB, che nel mio caso contiene varie partizioni, compresa una dedicata per il boot, sda2 &egrave; la partizione dov'&egrave; installato LMDE (in generale il sistema operativo da avviare), e sda1 &egrave; la partizione di boot Efi.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto, dovremmo aver gi&agrave; terminato (al termine dovremmo vedere la lista delle immagini di avvio rilevate), ma in realt&agrave; al sottoscritto si &egrave; presentato questo ulteriore errore:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code --></p>
+<pre class="wp-block-syntaxhighlighter-code">/usr/sbin/grub-probe: error: failed to get canonical path of `/boot/grub/fonts/UbuntuMono16.pf2'.</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Dopo un'ulteriore ricerca in rete, mi sono reso conto che la soluzione &egrave; pi&ugrave; semplice di quanto possa sembrare. Si tratta semplicemente di editare il file <strong>/etc/default/grub.d/60_mint-theme.cfg</strong>, andando a sostituire il carattere indicato nell'errore (UbuntuMono16.pf2), con un semplicissimo <strong>unicode.pf2</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Rilanciato <strong>grub-update</strong>, tutto va a buon fine e riesce a reinstallare GRUB su partizione Efi.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Riavviare il PC e il boot dovrebbe adesso riuscire.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:tadv/classic-paragraph /--></p>

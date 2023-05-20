@@ -1,0 +1,41 @@
+---
+layout: post
+status: publish
+published: true
+title: Primi tips su Lucid..
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1079
+wordpress_url: http://redblue.netsons.org/?p=1079
+date: '2010-05-03 08:01:55 +0100'
+date_gmt: '2010-05-03 07:01:55 +0100'
+categories:
+- tips & tricks
+- linux
+- ubuntu
+tags:
+- ubuntu
+- tips
+- bug
+- tricks
+- lucid lynx
+- '10.04'
+- evince
+- icone menu sistema
+- gconf
+comments: []
+---
+<p>Per abilitare le icone nel menu <strong>Sistema</strong>, fino a Karmic c'era un comodo tasto da cui selezionale le relative opzioni. In <strong>Lucid</strong> &egrave; stato rimosso, ma &egrave; possibile ugualmente abilitare le icone con <code>gconf-editor</code>..</p>
+<p>Da terminale, come utente normale, digitate</p>
+<blockquote><p><code>gconf-editor</code></p></blockquote>
+<p>Poi cercate la voce <code>desktop/gnome/interface</code> e selezionate le voci <code>buttons_have_icons</code> e <code>menus_have_icons</code>.</p>
+<p>Ho riscontrato poi un piccolo <strong>bug</strong> in <strong>Evince</strong>, il visualizzatore di file <strong>PDF</strong> di <strong>Gnome</strong>. Semplicemente non apriva i file PDF, e lanciandolo da terminale restituiva l'errore:</p>
+<blockquote><p><code>** (evince:2420): WARNING **: Error creating last_settings file: Errore nell'aprire il file &laquo;/home/redblue/.gnome2/evince/last_settings&raquo;: Nessun file o directory</code></p>
+<p><code>Segmentation fault</code></p></blockquote>
+<p>La soluzione &egrave; semplicemente quella di creare <strong>manualmente</strong> la directory <code>evince..</code></p>
+<blockquote><p><code>mkdir /home/nomeutente/.gnome2/evince</code></p></blockquote>
+<p>Ovviamente sostituendo il vostro nome utente a <code>nomeutente</code>..</p>
+<p>Alla prossima.. ;)</p>

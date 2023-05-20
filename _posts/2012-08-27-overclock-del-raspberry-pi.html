@@ -1,0 +1,61 @@
+---
+layout: post
+status: publish
+published: true
+title: Overclock del Raspberry Pi
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3393
+wordpress_url: http://www.red-blue.it/?p=3393
+date: '2012-08-27 13:00:08 +0100'
+date_gmt: '2012-08-27 11:00:08 +0100'
+categories:
+- guide
+- tips & tricks
+- linux
+- debian
+- raspberry pi
+tags:
+- guida
+- linux
+- tips
+- tricks
+- raspberry pi
+- overclock
+comments:
+- id: 18507
+  author: Raspberry Pi overclockato fino a 1 GHz (??) - RedBlue&#039;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/linux/raspberry-pi-overclockato-fino-a-1-ghz.html
+  date: '2012-09-29 12:23:46 +0100'
+  date_gmt: '2012-09-29 10:23:46 +0100'
+  content: "[...] (del quale avevo gi&agrave; parlato qui) eccessivo &egrave; ovviamente
+    sconsigliato, ma sembra che alcuni sviluppatori siano riusciti a [...]"
+---
+<p>Dopo un breve periodo di pausa, torno a parlare del mio <a href="http://localhost:4000/guide/primi-passi-col-raspberry-pi.html" target="_blank">Raspberry Pi</a>.</p>
+<p>L'argomento di oggi &egrave; decisamente interessante, dato che si tratta di <strong>overclocking</strong>, ovvero della possibilit&agrave; di spingere il nostro gioiellino "<strong>oltre il limite</strong>", aumentando la velocit&agrave; dei componenti.</p>
+<p>Iniziamo col mettere in evidenza alcune cosette: primo, ovviamente <strong>va sempre usato il buonsenso</strong>, spingere troppo in su pu&ograve; arrecare danni al Raspberry Pi, fino anche a renderlo inutilizzabile, quindi non esagerate!!</p>
+<p>Secondo, altrettanto ovviamente <strong>non potete pretendere che un dispositivo con un processore che di default viaggia a 700 MHz per incanto schizzi a 2 GHz</strong>!! L'aumento di prestazioni sar&agrave; contenuto, ma comunque palpabile.</p>
+<p><!--moreContinua a leggere.. --></p>
+<p>Fatte queste due premesse, inziamo con un po' di dati: di <strong>default</strong> il Raspberry Pi &egrave; settato per "andare" come segue..</p>
+<blockquote><p><strong>CPU: 700 MHz</strong><br />
+<strong> RAM: 400 MHz</strong><br />
+<strong> GPU: 250 MHz</strong></p></blockquote>
+<p>Con tali valori, un <strong>benchmark</strong> del sistema (con <strong>Raspbian</strong> installata) mi ha restituito i seguenti valori:</p>
+<blockquote><p><strong>Real: 1m 20,741s</strong><br />
+<strong> User: 1m 18,080s</strong><br />
+<strong> Sys: 0m 0,150s</strong></p></blockquote>
+<p>A questo punto, l'overclock risulta semplice, in quanto basta modificare (con i privilegi di <strong>root</strong>) il file <code>/boot/config.txt</code> e modificare le righe <strong>arm_freq</strong>, <strong>sdram_freq</strong>, <strong>gpu_freq</strong> (di default impostati rispettivamente a <strong>700</strong>, <strong>400</strong> e <strong>250</strong>) come segue (e come specificato consigliato in <a href="http://elinux.org/RPi_config.txt#Overclocking_options" target="_blank">questa pagina</a>):</p>
+<blockquote><p><strong>arm_freq=900</strong><br />
+<strong> sdram_freq=500</strong><br />
+<strong> gpu_freq=275</strong></p></blockquote>
+<p>E riavviamo. Eseguendo nuovamente un benchmark, ho ottenuto i seguenti valori:</p>
+<blockquote><p><strong>Real: 1m 1,550s</strong><br />
+<strong> User: 1m 0,200s</strong><br />
+<strong> Sys: 0m 0,110s</strong></p></blockquote>
+<p>Un incremento percentuale di prestazioni di ben il <strong>30%</strong>, e senza modificare il voltaggio di alimentazione (pratica che invalida la garanzia, come specificato nella pagina che ho linkato sopra)!! Niente male vero? ;)</p>
+<p>Alla prossima..</p>
+<p>&nbsp;</p>

@@ -1,0 +1,36 @@
+---
+layout: post
+status: publish
+published: true
+title: Rimuovere i vecchi kernel
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 495
+wordpress_url: http://redblue.netsons.org/?p=495
+date: '2009-05-12 08:42:01 +0100'
+date_gmt: '2009-05-12 07:42:01 +0100'
+categories:
+- tips & tricks
+- linux
+- debian
+- ubuntu
+tags:
+- debian
+- linux
+- ubuntu
+- tips
+- kernel
+comments: []
+---
+<p>Chi usa Ubuntu, ma pi&ugrave; in generale Linux, pu&ograve; trovarsi nella situazione di avere sul proprio sistema pi&ugrave; di una versione del kernel. Bene, arriva il momento prima o poi di fare un p&ograve; di pulizia!!</p>
+<p>Prima di cominciare permettetemi un consiglio, <span style="text-decoration: underline;">non cancellate il vecchio kernel immediatamente dopo un aggiornamento</span>, ma usate il nuovo kernel per almeno un paio di settimane, poi, una volta sicuri che tutto funzioni a dovere, potete fare pulizia!!</p>
+<p>Fatta questa premessa, &egrave; piuttosto semplice, prima di tutto verificate la versione del kernel attualmente in uso:</p>
+<blockquote><p><code>uname -r</code></p></blockquote>
+<p>Poi un buon metodo &egrave; quello di visualizzare il file <code>/boot/grub/menu.lst</code>:</p>
+<blockquote><p><code>cat /boot/grub/menu.lst</code></p></blockquote>
+<p>Identificate la versione pi&ugrave; vecchia (supponiamo ad esempio che sia la <code>2.6.18-12</code>) e date il comando:</p>
+<blockquote><p><code>sudo apt-get remove linux-image-2.6.18-12-generic</code></p></blockquote>
+<p>In automatico rimuover&agrave; anche altri file collegati a questo kernel e aggiorner&agrave; il menu di Grub!! ;)</p>

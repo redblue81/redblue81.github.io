@@ -1,0 +1,58 @@
+---
+layout: post
+status: publish
+published: true
+title: Accesso a PhpMyAdmin con MySQL 5.7
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3904
+wordpress_url: http://www.red-blue.it/?p=3904
+date: '2017-01-27 20:22:06 +0100'
+date_gmt: '2017-01-27 19:22:06 +0100'
+categories:
+- tips & tricks
+- linux
+tags:
+- root
+- accesso
+- mysql
+- phpmyadmin
+- password
+comments: []
+---
+<p>Con <strong>MySQL 5.7</strong> l'accesso a <strong>PhpMyAdmin</strong> con lo "storico" utente <strong>root</strong> sprovvisto di password non funziona, pur modificando&nbsp;opportunamente&nbsp;il relativo file di configurazione. Questo avviene perch&eacute; in questa versione c'&egrave; stata una modifica della politica di sicurezza, per cui l'accesso come root senza password&nbsp;va effettuato come <strong>amministratore</strong> del sistema. Per intenderci, se da riga di comando, supponendo ovviamente di avere il nostro utente root senza password, diamo:</p>
+<pre class="brush: shell; gutter: true">sudo mysql --user=root mysql</pre>
+<p>Otterremo senza problemi l'accesso alla console di MySQL. Come risolvere il problema dell'accesso a PhpMyAdmin via browser?</p>
+<p><a href="/assets/images/php2.png"><img class="aligncenter size-medium wp-image-3629" src="/assets/images/php2-290x300.png" alt="" width="290" height="300" /></a></p>
+<p>Il sottoscritto ha deciso di crearsi un <strong>nuovo</strong> utente con i dovuti privilegi e dotato di <strong>password</strong>, non tornando al metodo di accesso precedente (per semplice rapidit&agrave;).</p>
+<p>Quindi, all'interno della <strong>console</strong> MySQL, alla quale abbiamo avuto accesso col precedente comando, digitiamo:</p>
+<pre class="brush: sql; gutter: true">CREATE USER &#039;admin&#039;@&#039;localhost&#039; IDENTIFIED BY &#039;password&#039;;
+
+GRANT ALL PRIVILEGES ON *.* TO &#039;phpmyadmin&#039;@&#039;%&#039; WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;
+
+EXIT</pre>
+<p>A questo punto, editiamo il file:</p>
+<pre class="brush: bash; gutter: true">sudo nano /etc/dbconfig-common/phpmyadmin.conf</pre>
+<p>Cerchiamo:</p>
+<pre class="brush: bash; gutter: true"># dbc_dbuser: database user
+
+# the name of the user who we will use to connect to the database.
+
+dbc_dbuser=&#039;nome_utente&#039;
+
+# dbc_dbpass: database user password
+
+# the password to use with the above username when connecting
+
+# to a database, if one is required
+
+dbc_dbpass=&#039;password&#039;</pre>
+<p>E aggiungiamo le informazioni dell'utente appena creato. Riavviamo Apache:</p>
+<pre class="brush: bash; gutter: true">sudo service apache2 restart</pre>
+<p>E al prossimo accesso a PhpMyAdmin usiamo il nuovo utente creato, con relativa password. Ovviamente potremmo anche decidere di dotare l'utente root di una password, tenendo presente che a quel punto anche l'accesso alla console da riga di comando richieder&agrave; l'inserimento di tale password.</p>
+<p>Alla prossima..</p>

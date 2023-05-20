@@ -1,0 +1,71 @@
+---
+layout: post
+status: publish
+published: true
+title: Spostare i pulsanti della barra del titolo di Ubuntu a destra..
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1967
+wordpress_url: http://www.red-blue.it/?p=1967
+date: '2011-01-13 15:02:01 +0100'
+date_gmt: '2011-01-13 14:02:01 +0100'
+categories:
+- tips & tricks
+- linux
+- ubuntu
+tags:
+- ubuntu
+- tips
+- '10.04'
+- lucid
+- '10.10'
+- maverick
+- destra
+- pulsanti
+- titolo
+- finestre
+comments:
+- id: 6798
+  author: gigitux
+  author_email: teschioluigi@gmail.com
+  author_url: http://linuxaroforever.wordpress.com/
+  date: '2011-01-13 15:27:31 +0100'
+  date_gmt: '2011-01-13 14:27:31 +0100'
+  content: 'Per chi vorrebbe velocizzare i tempi consiglio questo programma: http://ubuntudiscovery.blogspot.com/2010/04/inversion-test-finale-per-il-mio.html'
+- id: 6799
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-01-13 15:36:08 +0100'
+  date_gmt: '2011-01-13 14:36:08 +0100'
+  content: Grazie della segnalazione!! ;)
+- id: 6800
+  author: Giuseppe
+  author_email: giuseppe@gpeppe.com
+  author_url: ''
+  date: '2011-01-13 15:57:31 +0100'
+  date_gmt: '2011-01-13 14:57:31 +0100'
+  content: il titolo &egrave; fuorviante, si chiamano pulsanti della barra del titolo,
+    non icone. Dal titolo pensavo all'allineamento delle icone del desktop a destra
+- id: 6801
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-01-13 16:01:16 +0100'
+  date_gmt: '2011-01-13 15:01:16 +0100'
+  content: Chiedo venia.. Io le ho sempre chiamate icone.. Provvedo a correggere..
+    ;)
+---
+<p>Voglio rivelare un piccolo <strong>tip</strong> che serve semplicemente a <strong>spostare</strong> i pulsanti della barra del titolo delle finestre di Ubuntu (massimizza, minimizza e chiudi, tanto per intenderci) a <strong>destra</strong>, dato che ormai si trovano di default a <strong>sinistra</strong>, ma molti continuano a preferire la vecchia disposizione.</p>
+<p>In realt&agrave; di tratta di un trucchetto banalissimo che potete trovare ovunque in rete, ma dato che un amico me l'ha chiesto e mi sono reso conto di non averne mai parlato in passato, ecco che rimedio a questa mancanza.</p>
+<p>Premete <strong>ALT+F2</strong> e nella finestra che si apre scrivete <code>gconf-editor</code>.</p>
+<p>A questo punto, nella finestra che si aprir&agrave;, sulla sinistra scegliete <strong>Apps -> Metacity -> General</strong>, poi nella parte destra selezionate la voce <code>button_layout</code>, dovreste avere come valore una stringa del tipo:</p>
+<blockquote><p><code>close,minimize,maximize:menu</code></p></blockquote>
+<p>Semplicemente, cambiatela in:</p>
+<blockquote><p><code>menu:minimize,maximize,close</code></p></blockquote>
+<p>In pratica, i due punti rappresentano il <strong>titolo</strong> della finestra.. ;)</p>
+<p>Chiudete l'editor e avete gi&agrave; finito..</p>
+<p>Alla prossima..</p>

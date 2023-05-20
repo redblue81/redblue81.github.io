@@ -1,0 +1,74 @@
+---
+layout: post
+status: publish
+published: true
+title: Sincronizzare l'iPod Touch su Karmic (finalmente!!)
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1068
+wordpress_url: http://redblue.netsons.org/?p=1068
+date: '2010-04-02 17:26:40 +0100'
+date_gmt: '2010-04-02 16:26:40 +0100'
+categories:
+- guide
+- linux
+- ubuntu
+tags:
+- guida
+- linux
+- ubuntu
+- apple
+- ipod touch
+- karmic
+- ifuse
+- libimobiledevice
+- sincronizzazione
+comments:
+- id: 5345
+  author: Una Lince tra noi.. Ubuntu 10.04 LTS is here!!
+  author_email: ''
+  author_url: http://redblue.netsons.org/linux/una-lince-tra-noi-ubuntu-10-04-lts-is-here.html
+  date: '2010-04-30 00:33:09 +0100'
+  date_gmt: '2010-04-29 23:33:09 +0100'
+  content: "[...] Il rilascio &egrave; di oggi, e scrivo questo articolo subito dopo
+    l&#8217;installazione sul mio notebook.. Le novit&agrave; sono parecchie in questa
+    nuova release, a partire dal nuovo tema grafico, completamente rivisitato (e molto
+    discusso per via di alcune scelte discutibili, che per&ograve; sinceramente non
+    ritengo cos&igrave; scomode); &egrave; stato poi rimosso HAL (Hardware Abstraction
+    Layer) per velocizzare l&#8217;avvio e l&#8217;arresto del sistema (e si nota
+    davvero!!), non &egrave; pi&ugrave; installato di default Gimp (ma ovviamente
+    &egrave; sempre presente nei repository), c&#8217;&egrave; molto spazio per i
+    social network (vengono installati di default Empathy e Gwibber), mentre il motore
+    di ricerca predefinito &egrave; rimasto Google (per molto tempo in fase di beta
+    era invece stato scelto Yahoo).. Dovrebbe essere stato anche integrato il supporto
+    agli iPod Touch, problema che mi interessa particolarmente (vedi l&#8217;articolo
+    precedente).. [...]"
+- id: 6354
+  author: Ancora sull'iPod Touch.. - RedBlue&#39;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/tips-tricks/ancora-sull-ipod-touch.html
+  date: '2010-06-01 09:36:02 +0100'
+  date_gmt: '2010-06-01 08:36:02 +0100'
+  content: "[...] gi&agrave; parlato del progetto libimobiledevice per sincronizzare
+    l&#8217;iPod Touch su Ubuntu.. Il supporto &egrave; [...]"
+---
+<p>Da mesi cercavo un modo qualsiasi per poter sincronizzare la musica sul mio <strong>iPod Touch</strong> (firmware versione 3.1.2) su Karmic, senza dover ricorrere a macchine virtuali e quant'altro.. Finalmente ho trovato il progetto <a href="http://www.libimobiledevice.org/" target="_blank">libimobiledevice</a>!!</p>
+<p>Allora, fermo restando che potete scaricare e compilare tutto ci&ograve; che vi serve (ed &egrave; una cosa estremamente semplice, l'ho fatto per installare il supporto anche su una <strong>Debian Squeeze</strong>, che per&ograve; al momento <span style="text-decoration: underline;">non sono ancora riuscito a configurare</span>, e mi ha portato via meno di un quarto d'ora), &egrave; possibile installare tutto l'occorrente da un comodo <strong>repository PPA</strong>..</p>
+<p>Per prima cosa quindi aggiungiamo tale repository..</p>
+<blockquote><p><code>sudo add-apt-repository ppa:pmcenery/ppa<br />
+sudo apt-get update<br />
+sudo apt-get dist-upgrade</code></p></blockquote>
+<p>A questo punto possiamo passare all'installazione dei pacchetti necessari:</p>
+<blockquote><p><code>sudo apt-get install gvfs gvfs-backends gvfs-bin gvfs-fuse libgvfscommon0 ifuse libgpod-dev libgpod-common libimobiledevice-utils libimobiledevice0 libimobiledevice-dev python-libimobiledevice libplist++1 libplist-utils python-plist libusb-1.0-0 libusb-1.0-0-dev libusbmuxd1 usbmuxd</code></p></blockquote>
+<p>Bene, il pi&ugrave; &egrave; gi&agrave; fatto.. In aggiunta ai pacchetti precedenti, potete decidere di installare ad esempio <strong>GTKPod</strong> (ma non lo consiglio, vedi sotto il motivo), una comoda utility fatta apposta per i dispositivi della mela, ma sappiate che va benissimo anche il solo <strong>Rhythmbox</strong>.. Detto questo, manca solo di aggiungere il vostro utente al gruppo "fuse":</p>
+<blockquote><p><code>sudo adduser nomeutente fuse</code></p></blockquote>
+<p>Sostituendo ovviamente il vostro utente a nomeutente, e infine modificare il file <code>/etc/fuse.conf</code> decommentando la riga (che dovrebbe trovarsi alla fine) <code>#user_allow_other</code> (basta cancellare il # ad inizio riga)..</p>
+<p>Un paio di <strong>tips</strong> prima di concludere.. Se decidete di usare GTKPod, avrete bisogno di montare <span style="text-decoration: underline;">manualmente</span> il dispositivo tramite iFuse, in una directory che creerete apposta a cui darete i permessi adeguati:</p>
+<blockquote><p><code>sudo mkdir /mnt/ipod<br />
+sudo chmod 777 /mnt/ipod</code></p></blockquote>
+<p>Dopodich&egrave;, per montare l'iPod, darete il seguente comando:</p>
+<blockquote><p><code>ifuse /mnt/ipod</code></p></blockquote>
+<p>Alla prossima.. ;)</p>

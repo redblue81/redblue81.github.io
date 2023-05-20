@@ -1,0 +1,44 @@
+---
+layout: post
+status: publish
+published: true
+title: Guida all'aggiornamento di Wordpress
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 66
+wordpress_url: http://redblue.netsons.org/?p=66
+date: '2008-10-30 13:35:40 +0100'
+date_gmt: '2008-10-30 11:35:40 +0100'
+categories:
+- blog
+- guide
+tags:
+- aggiornamenti
+- wordpress
+- guida
+comments: []
+---
+<p><span style="text-decoration: underline;"><strong>ATTENZIONE!! Dalla versione 2.7 &egrave; stata implementata la procedura di aggiornamento automatico di Wordpress!! Questa guida resta comunque valida, ma di fatto &egrave; molto pi&ugrave; complessa..</strong></span></p>
+<p>La scorsa settimana ho aggiornato <strong>Wordpress</strong>, la celeberrima piattaforma per la gestione del blog usata in tutto il mondo e giunta alla versione <strong>2.6.3</strong>. Perch&egrave; allora non rendervi partecipi della procedura di aggiornamento con un bella guida sull'argomento??</p>
+<p>In realt&agrave; &egrave; un'operazione semplice, anche se all'inizio pu&ograve; spaventare un p&ograve;, ma con qualche accorgimento si pu&ograve; stare relativamente sicuri di non perdere il proprio blog.. Cominciamo!!</p>
+<p><strong><em>1) BACKUP DEL DATABASE</em></strong></p>
+<p>Operazione assolutamente fondamentale per essere certi di non perdere i propri contenuti. Io uso un plugin apposito, che consente di effettuare automaticamente tale backup (il <a title="Wordpress Database Backup" href="http://www.ilfilosofo.com/blog/wp-db-backup" target="_blank">Wordpress Database Backup</a>).</p>
+<p><em><strong>2) DISATTIVARE I PLUGIN ED IMPOSTARE IL TEMA DI DEFAULT</strong></em></p>
+<p>Questo serve per evitare che i plugin attivi possano andare in conflitto con la nuova versione di Wordpress che andrete ad installare. Quindi dal menu <strong>Plugins</strong> selezionate <strong>Disattiva</strong> per ogni plugin che utilizzate.</p>
+<p>Poi dal menu <strong>Design</strong> selezionate il tema <strong>Wordpress Default</strong>.</p>
+<p><em><strong>3) SCARICARE LA NUOVA VERSIONE DI WORDPRESS</strong></em></p>
+<p>Da dove? O dal <a title="Wordpress" href="http://wordpress.org/" target="_blank">sito ufficiale</a>, oppure da <a title="Wordpress Italia" href="http://www.wordpress-it.it/wordpress-in-italiano/" target="_blank">qui</a> la versione italiana (che cmq esce qualche giorno dopo quella inglese).</p>
+<p>Dopodich&egrave; basta scompattare il file scaricato sul desktop..</p>
+<p><em><strong>4) CANCELLARE LA VECCHIA VERSIONE DI WORDPRESS</strong></em></p>
+<p>Ebbene si, avete capito bene.. Andiamo sul server dov'&egrave; installato Wordpress con un client FTP (io uso <a title="Filezilla" href="http://filezilla-project.org/" target="_blank">Filezilla</a>) e cancelliamo le directory <strong>wp-admin</strong> e <strong>wp-include</strong>, e solo quelle!! Tutto il resto va conservato!!</p>
+<p><em><strong>5) CARICARE LA NUOVA VERSIONE DI WORDPRESS</strong></em></p>
+<p>Attraverso il client FTP carichiamo sul server il contenuto della cartella che avete creato sul desktop al punto 3. Ovviamente accettate di sovrascrivere i files quando richiesto. Non preoccupatevi per la cartella <strong>wp-content</strong> (quella che contiene temi e plugin), l'aggiornamento non toccher&agrave; i vostri files.</p>
+<p><em><strong>6) INSTALLARE LA NUOVA VERSIONE DI WORDPRESS</strong></em></p>
+<p>E' necessario richiamare il file: <span style="text-decoration: underline;">http://nome-blog/wp-admin/upgrade.php</span>, dove ovviamente nome-blog sta per l'indirizzo del vostro blog.</p>
+<p>A questo punto si avvier&agrave; una rapidissima procedura di installazione, baster&agrave; semplicemente cliccare su <strong>Continua</strong> quando richiesto.. Et voil&agrave;.. L'aggiornamento &egrave; completo!!</p>
+<p>A questo punto potete riattivare i plugin e ripristinare il vostro solito tema.</p>
+<p>Per dubbi e/o consigli contattatemi..</p>
+<p><span style="text-decoration: underline;"><strong>EDIT: con la nuova versione di Wordpress, la 2.7, &egrave; stata introdotta la funzione di aggiornamento automatico, che di fatto rende inutile questa guida (cmq valida, la procedura di aggiornamento manuale &egrave; sempre la stessa).</strong></span></p>

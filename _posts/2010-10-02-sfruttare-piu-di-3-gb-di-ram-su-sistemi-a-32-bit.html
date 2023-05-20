@@ -1,0 +1,41 @@
+---
+layout: post
+status: publish
+published: true
+title: Sfruttare più di 3 GB di Ram su sistemi a 32 bit
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1594
+wordpress_url: http://www.red-blue.it/?p=1594
+date: '2010-10-02 13:24:40 +0100'
+date_gmt: '2010-10-02 11:24:40 +0100'
+categories:
+- guide
+- tips & tricks
+- linux
+- debian
+- ubuntu
+tags:
+- debian
+- ubuntu
+- tips
+- howto
+- kernel
+- 32 bit
+- pae
+- bigmem
+comments: []
+---
+<p>Un mio amico &egrave; stato contagiato da <a href="http://localhost:4000/linux/linux-mint-debian-edition-il-mio-nuovo-giocattolo.html" target="_blank">LMDE</a>, anzi onestamente sarebbe pi&ugrave; giusto dire che l'ho contagiato io.. :P</p>
+<p>Il problema &egrave; che installandola, non pu&ograve; pi&ugrave; sfruttare tutti i <strong>4 GB</strong> di Ram del suo PC (com'&egrave; noto, LMDE &egrave; per ora un sistema esclusivamente a <strong>32 bit</strong>, e tali sistemi riconoscono un massimo di <strong>3 GB</strong> di memoria Ram). Risolvere un problemino di questo tipo &egrave; decisamente semplice, ma prima di spiegare come si fa, mi sento in dovere di fare una precisazione: &egrave; mia opinione che se si possiede un sistema a <strong>64 bit</strong>, vada installato un OS a 64 bit, la tecnologia a 32 bit &egrave; ormai superata, e sebbene sia ancora forte ed utilizzatissima, andr&agrave; comunque verso l'abbandono. Inoltre, personalmente sono sempre per l'innovazione in un campo come l'informatica, in cui un ritardo di pochi mesi pu&ograve; essere eccessivo. Non nascondo che io stesso ho installato LMDE sul secondo notebook perch&egrave; quest'ultimo &egrave; effettivamente a 32 bit (quello principale, a 64 bit, torner&agrave; a Debian solo se verr&agrave; rilasciata una versione adatta)..</p>
+<p>Detto questo, esiste un semplicissimo wordaround che consente anche ad un sistema 32 bit di gestire 4 GB di Ram: <strong>ricorrere ad un kernel PAE</strong>. Di che si tratta? PAE sta per <strong>Physical Address Extension</strong>, ovvero &egrave; una tecnica che sfruttando il cosiddetto <strong>page mapping</strong>, consente di "estendere" la quantit&agrave; di memoria visibile dalla CPU..</p>
+<p>Finita la lezione, ecco come fare..</p>
+<p>Semplicemente, su <strong>Debian</strong>, come <strong>root</strong>:</p>
+<blockquote><p><code>apt-get install linux-image-686-bigmem</code></p></blockquote>
+<p>Su <strong>Ubuntu</strong>:</p>
+<blockquote><p><code>sudo apt-get install linux-server</code></p></blockquote>
+<p>E <strong>riavviate</strong> il PC col nuovo kernel.. Eventualmente, potete installare anche i sorgenti e gli headers.. ;)</p>
+<p>Alla prossima..</p>

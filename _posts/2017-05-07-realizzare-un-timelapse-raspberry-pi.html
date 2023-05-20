@@ -1,0 +1,52 @@
+---
+layout: post
+status: publish
+published: true
+title: Realizzare un timelapse con Raspberry Pi
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3921
+wordpress_url: https://www.red-blue.it/?p=3921
+date: '2017-05-07 15:42:43 +0100'
+date_gmt: '2017-05-07 13:42:43 +0100'
+categories:
+- guide
+- linux
+- raspberry pi
+tags:
+- guida
+- raspberry pi
+- picamera
+- timelapse
+comments: []
+---
+<p>Realizzare un video in <strong>timelapse</strong> con Raspberry Pi e PiCamera &egrave; davvero semplice e alla portata di tutti. Supponendo di aver gi&agrave; <a href="http://localhost:4000/guide/videosorveglianza-rasperry-pi-picamera.html">installato ed attivato il modulo PiCamera</a>, si procede con pochi semplici passi.</p>
+<p><a href="/assets/images/Raspberry_Pi_Logo.jpg"><img class="aligncenter size-medium wp-image-3911" src="/assets/images/Raspberry_Pi_Logo-237x300.jpg" alt="" width="237" height="300" /></a></p>
+<p>Il comando necessario per scattare una foto &egrave; il seguente:</p>
+<pre class="brush: bash; gutter: false">raspistill -o nomefile.jpg</pre>
+<p>Dopo aver scattato, dovremmo essere in grado di visualizzare l'immagine nella directory nella quale abbiamo lanciato il comando. Se dovesse risultare <strong>capovolta</strong> (dipende da come &egrave; posizionato il modulo PiCamera), baster&agrave; modificare il comando precedente:</p>
+<pre class="brush: bash; gutter: false">raspistill -hf -vf -o nomefile.jpg</pre>
+<p>A questo punto abbiamo gi&agrave; tutto il necessario per realizzare le nostre immagini.. Baster&agrave; creare un piccolo <strong>script</strong> che scatta una foto e la salva in una specifica directory (ad esempio potremmo creare una directory timelapse nella home dell'utente del nostro Raspberry Pi):</p>
+<pre class="brush: bash; gutter: true">cd timelapse
+
+sudo nano timelapse.sh
+
+
+
+#!/bin/bash
+
+DATE=$(date +"%d-%m-%Y_%H%M")
+
+raspistill -hf -vf -o /home/nomeutente/$DATE.jps</pre>
+<p>Testiamo lo script con un semplice:</p>&
+<pre class="brush: bash; gutter: false">./timelapse.sh</pre>
+<p>E se tutto funziona, <strong>scheduliamolo</strong> in modo che scatti, ad esempio, una foto ogni 10 minuti:</p>
+<pre class="brush: bash; gutter: false">sudo crontab -e</pre>
+<p>Ci verr&agrave; chiesto di scegliere un editor, io di solito scelgo <strong>nano</strong>. Poi alla fine del file visualizzato aggiungiamo:</p>
+<pre class="brush: bash; gutter: false">*/10 * * * * sh /home/nomeutente/timelapse/timelapse.sh 2>&amp;1</pre>
+<p>Chiudiamo l'editor salvando il file e, fin da subito, potremo iniziare a vedere le immagini che vengono create ogni 10 minuti nella directory che abbiamo indicato in precedenza.</p>
+<p>Ovviamente possiamo variare a piacere l'intervallo di scatto delle foto, e altrettanto ovviamente occorre stare attenti alla capacit&agrave; della SD che usiamo col nostro Raspberry Pi. Potrebbe essere utile tenere collegata una pendrive USB a riguardo.</p>
+<p>Alla prossima con la realizzazione del nostro video..</p>

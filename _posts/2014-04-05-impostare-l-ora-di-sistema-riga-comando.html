@@ -1,0 +1,33 @@
+---
+layout: post
+status: publish
+published: true
+title: Impostare l'ora di sistema da riga di comando
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3674
+wordpress_url: http://www.red-blue.it/?p=3674
+date: '2014-04-05 16:24:41 +0100'
+date_gmt: '2014-04-05 14:24:41 +0100'
+categories:
+- tips & tricks
+- linux
+tags:
+- applet
+- xfce
+- ora di sistema
+- ntpdate
+comments: []
+---
+<p>So che sembra strano, ma mi sono reso conto che <strong>Xfce</strong> non ha un settaggio automatico dell'<strong>ora di sistema</strong>. O perlomeno, non nella configurazione che ho io..</p>
+<p>Semplicemente, l'<strong>applet</strong> di default inserita nel pannello superiore mostra l'ora di sistema, fine, non permette alcun intervento su tale ora, al massimo si pu&ograve; scegliere come mostrare l'ora di sistema, ma assolutamente non modificarla.</p>
+<p>Sembrer&agrave; una sciocchezza, ma oggi ho acceso il mio PC dopo un po' di tempo, e mi sono reso conto che ancora non aveva adottato l'<strong>ora legale</strong> (a proposito, esister&agrave; un modo per rendere il cambio di orario automatico??), per cui ecco come ho risolto.</p>
+<p>Serve il comando <strong>ntpdate</strong>, in grado di recuperare online l'ora esatta. Ovviamente, va indicato anche un <strong>server</strong> da cui scaricare i dati. Benissimo, semplicemente dobbiamo lanciare il comando dopo averlo installato, quindi:</p>
+<pre class="brush: bash; gutter: true">sudo apt-get install ntpdate
+
+sudo ntpdate ntp1.ien.it</pre>
+<p>Gi&agrave; finito, a questo punto l'ora di sistema sar&agrave; sincronizzata con quella del server, e l'applet di Xfce si aggiorner&agrave; di conseguenza.</p>
+<p>Alla prossima..</p>

@@ -1,0 +1,50 @@
+---
+layout: post
+status: publish
+published: true
+title: Debian-alternatives, cosa sono e come gestirle
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3609
+wordpress_url: http://www.red-blue.it/?p=3609
+date: '2014-01-02 16:56:37 +0100'
+date_gmt: '2014-01-02 15:56:37 +0100'
+categories:
+- guide
+- linux
+- debian
+tags:
+- guida
+- debian
+- linux
+- alternative
+- debian.alternatives
+comments: []
+---
+<p>La nostra distribuzione Debian ha un sistema molto <strong>efficiente</strong> per la gestione "automatica" di applicazioni dello stesso tipo: <strong><code>debian-alternatives</code></strong>.</p>
+<p>Cerchiamo per prima cosa di capire di cosa stiamo parlando: diciamo che sulla nostra distro abbiamo installato i browser Chrome, Iceweasel e Opera, e che una qualsiasi applicazione (l'esempio classico &egrave; uno script) debba aprire il browser, quale dei tre sar&agrave; scelto? Oppure (caso pratico grazie al quale ho deciso poi di scrivere questo articolo) in caso di pi&ugrave; versioni del compilatore Java installate, quale sar&agrave; quella usata di default? Ovviamente, in ogni caso basta far richiamare il giusto comando e non ci saranno mai dubbi, ma la nostra Debian &egrave; capace di invocare, ad esempio, nel primo caso il comando generico <code>x-www-browser</code>, e nel secondo il comando <code>javac</code>.</p>
+<p><!--moreContinua a leggere..--></p>
+<p>Il loro "significato", ovvero il comando di riferimento, possiamo gestirlo tramite il comando <code>debian-alternatives</code>: in parole povere, <span style="text-decoration: underline;">il sistema usa questi comandi generici che noi utenti possiamo far riferire ad uno specifico programma installato</span>.</p>
+<p>Come usarlo? Digitando, come <strong>root</strong>,<code> update-alternatives</code>, seguito da una delle seguenti opzioni:</p>
+<ul>
+<li><code>--display</code>: mostra le impostazioni attuali;</li>
+<li><code>--list</code>: mostra le alternative;</li>
+<li><code>--config</code>: configura un&rsquo;alternativa;</li>
+<li><code>--auto</code>: reimposta lo stato automatico per un&rsquo;alternativa, viene cio&egrave; scelta quella a priorit&agrave; maggiore;</li>
+<li><code>--install</code>: una nuova alternativa entra a far parte di un gruppo, se questo esiste. Se il gruppo non esiste, lo crea;</li>
+<li><code>--remove</code>: rimuove un&rsquo;alternativa all&rsquo;interno di un gruppo, con tutti i suoi slave, cio&egrave; link subordinati a quello principale per l'alternativa;</li>
+<li><code>--remove-all</code>: rimuove un intero gruppo di alternative.</li>
+</ul>
+<p>Ad esempio, il comando</p>
+<pre class="brush: bash; gutter: false">sudo update-alternatives --list x-ww-browser</pre>
+<p>Restituir&agrave; la lista delle alternative disponibili per il browser, ma pi&ugrave; interessante &egrave; l'opzione <strong>display</strong>, che restituisce anche la priorit&agrave; assegnata a ciascuno, in base alla quale avviene la scelta <strong>automatica</strong> (nel caso in cui non sia stata presa una decisione dall'utente ovviamente).</p>
+<p>Ovviamente per configurare un'alternativa si usa:</p>
+<pre class="brush: bash; gutter: false">sudo update-alternatives --config x-www-browser</pre>
+<p>Fermo restando che il sottoscritto sta usando il browser come esempio, ma le opzioni valgono per tutti i comandi generici disponibili nel sistema.</p>
+<p>Ovviamente le opzioni <strong>remove</strong> e <strong>remove-all</strong> servono a rimuovere una o un intero gruppo di alternative.</p>
+<p>Attenzione perch&egrave; se si disinstalla un programma incluso in un gruppo di alternative, queste potrebbero essere <strong>riconfigurate</strong> automaticamente.</p>
+<p>Esistono anche dei tool di configurazione grafica per debian-alternatives, ma sono essenzialmente per <strong>Gnome</strong> e <strong>KDE</strong>, quindi il sottoscritto usando <strong>Xfce</strong> si &egrave; risparmiato la loro installazione.</p>
+<p>Alla prossima..</p>

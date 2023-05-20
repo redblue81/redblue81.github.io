@@ -1,0 +1,58 @@
+---
+layout: post
+status: publish
+published: true
+title: Ascoltare Pandora dall'Italia
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 726
+wordpress_url: http://redblue.netsons.org/?p=726
+date: '2009-10-11 10:30:14 +0100'
+date_gmt: '2009-10-11 09:30:14 +0100'
+categories:
+- tips & tricks
+- linux
+- debian
+- ubuntu
+- internet
+- software
+tags:
+- italia
+- debian
+- ubuntu
+- last.fm
+- jaunty
+- pandora
+- tor
+- proxy
+- navigazione anonima
+comments: []
+---
+<p>Cos'&egrave; <a href="http://www.pandora.com" target="_blank">Pandora</a>?? Avete presente <strong>Last.fm</strong>?? Bene, stesso servizio (una radio online personalizzabile in base ai propri gusti), ma statunitense, e riservato ai soli residenti negli USA..</p>
+<p>Come possiamo ascoltare questo servizio noi poveri italiani? Semplice, usando <a href="http://www.torproject.org/" target="_blank">Tor</a>!! Cos'&egrave; Tor? Un semplice tool per la <strong>navigazione anonima</strong>..</p>
+<p>Cominciamo aggiungendo il relativo <strong>repository</strong> al file <code>/etc/apt/sources.list</code> (come spiegato anche <a href="http://www.torproject.org/docs/debian.html" target="_blank">qui</a>):</p>
+<blockquote><p><code>deb http://deb.torproject.org/torproject.org nome-distro main</code></p></blockquote>
+<p>Ovviamente invece di nome-distro va inserita la vostra distribuzione (es. hardy, jaunty, lenny ecc.). Ora importiamo la <strong>chiave GPG</strong> di questo repository ed installiamo il tutto:</p>
+<blockquote><p><code>gpg --keyserver keys.gnupg.net --recv 886DDD89<br />
+gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -<br />
+sudo apt-get update<br />
+sudo apt-get install tor tor-geoipdb</code></p></blockquote>
+<p>Ora dobbiamo istruire Tor ad usare <strong>relay</strong> (server remoti che "consegnano" i nostri pacchetti a nome proprio) statunitensi. Per farlo andiamo ad editare il file <code>/etc/tor/torrc</code> (con il comando <code>sudo gedit /etc/tor/torrc</code>) aggiungendo alla fine le seguenti righe:</p>
+<blockquote><p><code>StrictExitNodes 1<br />
+exitnodes desync, lefkada, bettyboop, croeso, TorLuwakOrg, nixnix, inap1, redpineapple, cronic, sasquatch, slowturtle2, whistlersmother</code></p></blockquote>
+<p>Riavviamo poi Tor con il seguente comando in modo che utilizzi la nuova configurazione:</p>
+<blockquote><p><code>sudo /etc/init.d/tor restart</code></p></blockquote>
+<p>Ora non ci resta che istruire il <strong>browser</strong> ad usare Tor; per prima cosa creiamo un semplice file di testo che chiameremo <code>tor.pac</code> inserendo al suo interno le seguenti righe:</p>
+<blockquote><p><code>function FindProxyForURL(url, host)<br />
+{<br />
+if (shExpMatch(host, "www.pandora.com")) return "SOCKS 127.0.0.1:9050";<br />
+return "DIRECT";<br />
+}</code></p></blockquote>
+<p>Supponendo di usare Firefox, consiglio l'estensione <a href="https://addons.mozilla.org/it/firefox/addon/2464" target="_blank">FoxyProxy</a>, che permette di creare un <strong>filtro</strong> che usa Tor solo per i siti che noi gli indichiamo. Dopo averla installata, andiamo in <strong>Strumenti -> FoxyProxy -> Generali</strong> e nella scheda che si apre clicchiamo su <strong>Nuovo Proxy</strong>. Ora nella scheda <strong>Generali</strong> diamo un nome al nuovo filtro, poi nella scheda <strong>Dettagli dei proxy</strong> selezioniamo <strong>Configurazione automatica dei proxy (URL)</strong> e nell'apposito spazio scriviamo:</p>
+<blockquote><p><code>file:///percorso-del-file-tor.pac/tor.pac</code></p></blockquote>
+<p>Nella scheda <strong>URL o modelli URL</strong> infine clicchiamo su <strong>Nuovo modello</strong>, diamo come nome Pandora e come <strong>URL o modello URL</strong> l'espressione:</p>
+<blockquote><p><code>*www.pandora.com/*</code></p></blockquote>
+<p>Diamo <strong>Ok</strong> due volte e poi clicchiamo su <strong>Chiudi</strong> e abbiamo finito. Ora siamo in grado di collegarci a Pandora!! ;)</p>

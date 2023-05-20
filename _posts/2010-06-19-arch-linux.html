@@ -1,0 +1,62 @@
+---
+layout: post
+status: publish
+published: true
+title: Arch Linux
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1332
+wordpress_url: http://www.red-blue.it/?p=1332
+date: '2010-06-19 11:31:19 +0100'
+date_gmt: '2010-06-19 10:31:19 +0100'
+categories:
+- linux
+- riflessioni
+- in evidenza
+- arch
+tags:
+- linux
+- arch
+- consigli
+- rolling release
+- aur
+- pacman
+- riflessioni
+comments:
+- id: 6379
+  author: Piccolo howto sull'uso di pacman, il gestore dei pacchetti di Arch - RedBlue&#39;s
+    Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/tips-tricks/piccolo-howto-sulluso-di-pacman-il-gestore-dei-pacchetti-di-arch.html
+  date: '2010-06-23 11:57:13 +0100'
+  date_gmt: '2010-06-23 10:57:13 +0100'
+  content: '[...] Molto tempo fa (cfr. "Ho deciso di cambiare distribuzione Linux..")
+    scrissi che avevo intenzione di cambiare&hellip; [more] [...]'
+- id: 6438
+  author: 'LMDE: Linux Mint Debian Edition - RedBlue&#039;s Blog'
+  author_email: ''
+  author_url: http://www.red-blue.it/linux/lmde-linux-mint-debian-edition.html
+  date: '2010-09-07 21:03:24 +0100'
+  date_gmt: '2010-09-07 20:03:24 +0100'
+  content: "[...] quest&#8217;ultima, repository compresi. Rolling Release.. Ne ho
+    parlato in passato (cfr. &#8220;Arch Linux&#8220;), significa semplicemente che
+    la distribuzione riceve aggiornamenti continui, non c&#8217;&egrave; [...]"
+---
+<p>Molto tempo fa (cfr. "<a href="http://localhost:4000/io/breaking-news-ho-deciso-di-cambiare-distribuzione-linux.html" target="_blank">Ho deciso di cambiare distribuzione Linux..</a>") scrissi che avevo intenzione di cambiare distribuzione.. B&egrave; penso che sia chiaro che non sia stato un cambiamento radicale.. In tutto questo tempo ho continuato ad usare Ubuntu, e nel frattempo ho testato varie distribuzioni (cosa che continuo a fare tutt'ora). A questo punto per&ograve;, direi che &egrave; il momento di buttar gi&ugrave; qualche riga sull'unica distribuzione che sto testando in maniera approfondita e continuativa: <strong>Arch</strong>.</p>
+<p>Cominciamo dall'abc, cos'&egrave; Arch? Cito direttamente dal <a href="http://www.archlinux.it/" target="_blank">sito</a> della community italiana di Arch:</p>
+<blockquote><p><em>Arch Linux &egrave; una distribuzione linux non specializzata che pu&ograve; essere  modellata per fare praticamente di tutto. E' veloce, leggera, flessibile  e molti dei suoi componenti "sotto il cofano" sono abbastanza semplici  da capire e mettere a punto: ci&ograve; rende Arch Linux una buona distro su  cui fare esperienza . . .</em></p>
+<p><em>. . . Arch Linux adopera un sistema a "rolling release" . . . </em></p>
+<p><em>. . . Arch Linux &egrave; una distribuzione adattabile, progettata per soddisfare le  necessit&agrave; dell'utente linux competente.</em></p></blockquote>
+<p>Chiaramente il documento originale &egrave; ben pi&ugrave; dettagliato, io qui ho voluto mettere in evidenza alcuni aspetti che mi hanno particolarmente colpito quando mi sono avvicinato a questa distro la prima volta.</p>
+<p><!--more Continua a leggere questo articolo..--></p>
+<p>Per prima cosa, &egrave; vero, <strong><span style="text-decoration: underline;">Arch &egrave; veloce, leggera e flessibile</span></strong>, e il motivo &egrave; semplicissimo: l'installazione di default installa solo lo stretto indispensabile ad avviare il sistema, non c'&egrave; null'altro, non c'&egrave; il server X, n&eacute; l'ambiente grafico, n&eacute; programmi vari per l'utilizzo del pc in generale, non c'&egrave; nemmeno un frontend grafico per il gestore dei paccheti, che si chiama pacman (e sappiate sin d'ora che pacman si usa praticamente solo da riga di comando). Questo porta ovviamente <strong>leggerezza</strong>, e di conseguenza <strong>velocit&agrave;</strong>, in quanto molto difficilmente nel sistema ci sar&agrave; software e/o moduli "aggiuntivi" rispetto a quello di cui si necessita. Per farvi un esempio, io spesso dopo la fresh install di una nuova release di Ubuntu come prima cosa (ammesso che l'installazione sia andata a buon fine) disinstallo un p&ograve; di software che non mi serve. Con Arch questo non succede, si installa solo ci&ograve; che serve, e questo spiega ampiamente anche l'ultimo aggettivo, <strong>flessibile</strong>. Flessibilit&agrave; data anche dal fatto, secondo me, che gran parte delle configurazioni di sistema si realizza modificando opportunamente un solo file, <code><strong>rc.conf</strong></code>.</p>
+<p><a href="/assets/images/arch-linux-logo.jpg"><img class="aligncenter size-full wp-image-1802" title="arch-linux-logo" src="/assets/images/arch-linux-logo.jpg" alt="" width="383" height="321" /></a></p>
+<p style="text-align: center;">
+<p>Ma soprattutto ritengo importante sottolineare che questo &egrave; ottimo per "<strong>fare esperienza</strong>".. Io stesso ammetto che mai prima di usare Arch mi ero interessato alla possibilit&agrave; di installare Gnome non completo, saltando direttamente ci&ograve; che non utilizzo. Ma non solo questo, con Arch il sistema va configurato punto per punto, non c'&egrave; nulla di "standardizzato", a partire dal driver video, passando per touchpad, tastiera e via dicendo, bisogna settare tutto secondo i propri gusti/le proprie esigenze. Proprio da questo prendo spunto per spiegare cos'&egrave; una "<span style="text-decoration: underline;"><strong>rolling release</strong></span>", semplicemente &egrave; una distro che non ha un rilascio definitivo (come Ubuntu, rilasciato ogni sei mesi), ovvero i vari pacchetti vengono semplicemente aggiornati man mano che i rispettivi autori li aggiornano (ovviamente per&ograve; vanno nei repository solo dopo essere stati approvati), proprio come avviene, ad esempio, con Debian <strong>sid</strong>. Addirittura esiste un sistema di "repository" degli utenti, chiamato <strong>AUR</strong>, al quale chiunque pu&ograve; partecipare creando degli script attraverso i quali il processo di download, installazione delle dipendenze, compilazione ed installazione di un pacchetto &egrave; del tutto automatizzato; &egrave; previsto anche un sistema di voto attraverso il quale il pacchetto compilato pu&ograve; poi essere inserito nei repository ufficiali. Questo la rende una distribuzione <strong>instabile</strong>??</p>
+<p><strong><span style="text-decoration: underline;">Assolutamente NO</span></strong>!! E qui mi permetto una riflessione del tutto personale: secondo me una distro "stabile" in tutti i sensi non esiste, semplicemente. Dipende dall'uso che se ne fa, punto. Prendete una Debian stable e cominciate a "giocare" con compilazione di pacchetti che volete avere pi&ugrave; aggiornati, installazione di un nuovo kernel, smanettamenti vari e vedrete che in men che non si dica diventer&agrave; "unstable", e anzi probabilmente se non siete abbastanza esperti finirete col formattare tutto.. Stesso discorso per Ubuntu, openSuse o qualsiasi altra distro..</p>
+<p>Infine l'ultima frase che ho citato, della quale mi sembrano importantissime soprattutto le ultime parole, <span style="text-decoration: underline;">utente Linux <strong>competente</strong></span>. Prendete l'attuale utente medio di un pc, parlategli di Linux e poi mettetegli davanti Arch e vi mander&agrave; a quel paese, scartando per sempre anche solo la possibilit&agrave; di provare una distribuzione Linux. Non solo, probabilmente diventer&agrave; un "nemico" di Linux!! Questo perch&egrave; ci sono utenti che hanno tempo, pazienza e (soprattutto) <span style="text-decoration: underline;"><strong>voglia di sperimentare, provare, imparare</strong></span>, e utenti che semplicemente vogliono usare il pc. A questi ultimi personalmente io consiglio assolutamente Ubuntu o Mint, di certo non una Slackware o Arch. Sono migliori i primi o i secondi?? Nessuno dei due secondo me, semplicemente sono utenti con diverse <strong>esigenze</strong>..</p>
+<p>In definitiva cosa penso di Arch?? E' una distribuzione completa, divertente, veloce e potente, che regala grandi soddisfazioni e che rende "un p&ograve; pi&ugrave; bravi", ma che pretende una certa dimestichezza con Linux. Se siete gi&agrave; "rodati" allora vi consiglio perlomeno di provarla (magari all'inzio su una macchina virtuale), dato che potrete sfruttare anche le guide del <a href="http://wiki.archlinux.org/index.php/Main_Page" target="_blank">Wiki</a> (complete e multilingua) e il <a href="http://www.archlinux.it/forum/" target="_blank">forum</a> della comunit&agrave; (devo dire particolarmente attiva), non ve ne pentirete, se invece siete tra quelli che installate Ubuntu e basta, aspettando poi il successivo rilascio, e non avete mai installato un pacchetto da riga di comando, b&egrave; <strong>non</strong> ve la consiglio sicuramente, potrei ritrovarmi con parecchi insulti sul groppone in caso contrario!! ;)</p>
+<p>Alla prossima..</p>

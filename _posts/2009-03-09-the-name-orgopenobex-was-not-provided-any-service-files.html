@@ -1,0 +1,32 @@
+---
+layout: post
+status: publish
+published: true
+title: The name org.openobex was not provided any .service files
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 347
+wordpress_url: http://redblue.netsons.org/?p=347
+date: '2009-03-09 12:40:02 +0100'
+date_gmt: '2009-03-09 11:40:02 +0100'
+categories:
+- tips & tricks
+- linux
+- debian
+tags:
+- trasferimento
+- debian
+- bluetooth
+- linux
+- tips
+- errore
+comments: []
+---
+<p>Forse a qualcuno &egrave; capitato, nel tentativo di trasmettere un file tramite bluetooth, di ricevere questo "simpatico" errore come risposta:</p>
+<p style="text-align: center;"><span style="color: rgb(255, 0, 0);">The name org.openobex was not provided any .service files</span></p>
+<p>Non si tratta certo di un problema eccessivamente grave, visto che, tra l'altro, la medesima funzione pu&ograve; essere svolta da riga di comando, ma &egrave; indiscutibile la comodit&agrave; di poter effettuare tutto tramite comode interfacce.. Quindi, soluzione rapida e indolore, come <strong>root</strong>, digitiamo:</p>
+<blockquote><p><code>apt-get install obex-data-server</code></p></blockquote>
+<p>Ovviamente il pacchetto in questione pu&ograve; essere anche comodamente installato da <strong>Synaptic</strong>..</p>

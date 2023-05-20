@@ -1,0 +1,60 @@
+---
+layout: post
+status: publish
+published: true
+title: Usare drivers x86 su Raspberry Pi
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3876
+wordpress_url: http://www.red-blue.it/?p=3876
+date: '2016-12-10 11:29:43 +0100'
+date_gmt: '2016-12-10 10:29:43 +0100'
+categories:
+- guide
+- linux
+- in evidenza
+- raspberry pi
+tags:
+- guida
+- i386
+- raspberry pi
+- arm
+comments:
+- id: 475898
+  author: Semplice server di stampa con Raspberry Pi - RedBlue&#039;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/in-evidenza/semplice-server-stampa-raspberry-pi.html
+  date: '2016-12-17 23:54:24 +0100'
+  date_gmt: '2016-12-17 22:54:24 +0100'
+  content: "[&#8230;] Usare drivers x86 su Raspberry Pi [&#8230;]"
+---
+<p>Problema: sul&nbsp;Raspberry Pi ho installato&nbsp;un <strong>driver</strong> specifico per architettura <strong>x86</strong> non funzionante su ARM.</p>
+<p><a href="/assets/images/Pi_3_Model_B.png"><img class="aligncenter size-medium wp-image-3873" src="/assets/images/Pi_3_Model_B-300x157.png" alt="" width="300" height="157" /></a></p>
+<p>Dopo una ricerca in rete, ho scoperto che &egrave; possibile usare pacchetti x86 su Raspberry Pi <strong>emulando</strong> l'ambiente x86, con un&nbsp;procedura nemmeno eccessivamente complessa!</p>
+<p><!--moreContinua a leggere...--></p>
+<p>Sul Raspberry &egrave; installata <strong>Raspbian Jessie</strong>, e occorre sfruttare il supporto <strong>multiarch</strong>.</p>
+<p>Quindi, diamo il seguente comando:</p>
+<pre class="brush: bash; gutter: false">sudo dpkg --add-architecture i386</pre>
+<p>Poi, &egrave; necessario modificare i files <strong>/etc/apt/sources.list</strong> e tutti i files presenti in <strong>/etc/apt/sources.list.d/</strong>&nbsp;(nel mio caso uno solo) aggiungendo <strong>[arch=armhf]</strong>.</p>
+<p>Ad esempio,&nbsp;/etc/apt/sources.list andr&agrave; modificato in modo da essere simile al seguente:</p>
+<pre class="brush: bash; gutter: false">deb [arch=armhf] http://archive.raspbian.org/raspbian jessie main contrib non-free</pre>
+<p>A questo punto, occorre inserire i repositories di Debian versione <strong>i386</strong>. Potremmo aggiungerli direttamente nel file precedente, oppure ad esempio creare un file ad hoc in /etc/apt/sources.list.d/, chiamandolo ad esempio <strong>repo386.list</strong>, e scrivendoci all'interno:</p>
+<pre class="brush: bash; gutter: false">deb [arch=i386] http://ftp.debian.org/debian/ jessie main contrib non-free
+
+deb [arch=i386] http://ftp.debian.org/debian/ jessie-updates main contrib non-free
+&egrave;
+deb [arch=i386] http://security.debian.org/ jessie/updates main contrib non-free</pre>
+<p>Ovviamente &egrave; possibile usare un <strong>mirror</strong>, trovate la lista completa <a href="https://www.debian.org/mirror/list" target="_blank">qui</a>.</p>
+<p>Poi, a installazione terminata, diamo in sequenza i seguenti comandi:</p>
+<pre class="brush: bash; gutter: false">sudo apt-get update
+
+sudo apt-get install binfmt-support qemu-user&egrave;
+
+sudo apt-get install libc6:i386</pre>
+<p>Nello specifico, il primo comando serve semplicemente ad aggiornare&nbsp;la cache dei pacchetti (chiunque usi una distribuzione Debian based probabilmente lo conosce alla perfezione), il secondo installa il necessario per l'emulazione di cui parlavo all'inizio di questa guida, l'ultimo installa una libreria nella versione i386.</p>
+<p>Attenzione ai messaggi che restituisce apt: potrebbe anche rendere instabile il sistema, se non siete sicuri &egrave; meglio fermarsi ed approfondire eventuali situazioni anomale.</p>
+<p>A questo punto, il driver "capriccioso" ha iniziato a funzionare a dovere.</p>
+<p>Alla prossima..</p>

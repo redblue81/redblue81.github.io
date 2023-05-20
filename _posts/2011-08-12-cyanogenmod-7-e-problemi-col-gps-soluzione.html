@@ -1,0 +1,43 @@
+---
+layout: post
+status: publish
+published: true
+title: Cyanogenmod 7 e problemi col GPS - SOLUZIONE
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2268
+wordpress_url: http://www.red-blue.it/?p=2268
+date: '2011-08-12 08:48:25 +0100'
+date_gmt: '2011-08-12 06:48:25 +0100'
+categories:
+- tips & tricks
+- telefonia
+- android
+tags:
+- tips
+- tricks
+- gps
+- terminale
+- htc
+- desire
+- fix
+- cyanogenmod 7
+- gps status
+comments: []
+---
+<p>Ieri ero in giro con la mia ragazza, in un ridente paesino dell'hinterland barese.. Svolta sbagliata ed ecco che ci siamo <strong>persi</strong> completamente!! Lo so sembra assurdo in un paesino di poche migliaia di abitanti, ma &egrave; cos&igrave;.. "Nessun problema" ho detto io, "tanto ho il <strong>navigatore</strong> sul cellulare!!"..</p>
+<p>Peccato che una volta acceso mi sono reso conto che non fixava un tubo, semplicemente perch&egrave; in realt&agrave; il <strong>GPS non era nemmeno attivo</strong>!! Cercando in rete (una volta tornato a casa), ho scoperto che &egrave; un <strong>bug</strong> piuttosto noto della <strong>Cyanogenmod</strong>; non si presenta sempre, ma comunque &egrave; decisamente documentato. Le soluzioni sono almeno due, una un tantino "grezza", l'altra pi&ugrave; "raffinata", ve le propongo entrambe..</p>
+<p><!--moreContinua a leggere.. --></p>
+<p><strong><span style="color: #ff0000;">Soluzione 1 - GPS Status</span></strong></p>
+<p>Semplicemente, installate questa app dal <a href="https://market.android.com/details?id=com.andreabaccega.simplegps&feature=search_result" target="_blank">Market</a>, avviatela prima del vostro software di navigazione e penser&agrave; lei ad avviare realmente il GPS.. ;)</p>
+<p><strong><span style="color: #ff0000;">Soluzione 2 - Tramite shell</span></strong> (grazie al sempre eccellente <a href="http://forum.xda-developers.com/" target="_blank">XDA Developers</a>)</p>
+<p>Aprite l'emulatore del terminale presente nel menu, digitate il comando <code>su</code> ed autorizzate l'app ad assumere i permessi di <strong>root</strong>, poi digitate i seguenti comandi:</p>
+<blockquote><p><code>stop rmt_storage<br />
+dd if=/dev/zero of=/dev/block/mmcblk0p13<br />
+dd if=/dev/zero of=/dev/block/mmcblk0p14<br />
+reboot</code></p></blockquote>
+<p>Al riavvio, magicamente il GPS torner&agrave; a funzionare come si deve!! Testato sul mio <strong>HTC Desire</strong>.</p>
+<p>Alla prossima..</p>

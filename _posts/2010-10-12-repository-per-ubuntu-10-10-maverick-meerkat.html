@@ -1,0 +1,84 @@
+---
+layout: post
+status: publish
+published: true
+title: Repository per Ubuntu 10.10 "Maverick Meerkat"
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1674
+wordpress_url: http://www.red-blue.it/?p=1674
+date: '2010-10-12 16:04:59 +0100'
+date_gmt: '2010-10-12 14:04:59 +0100'
+categories:
+- tips & tricks
+- linux
+- ubuntu
+- tweaks
+tags:
+- ubuntu
+- virtualbox
+- repository
+- bisigi
+- '10.10'
+- maverick
+- getdeb
+- medibuntu
+comments: []
+---
+<p>Dopo il rilascio della nuova Ubuntu, sono anche stati ufficializzati molti nuovi repository. Qui ne voglio citare alcuni che ritengo importanti e di uso quotidiano (sono comprese anche le procedure di autenticazione):</p>
+<p><strong>Medibuntu</strong> (software multimediale non incluso in Ubuntu per motivi di licenze):</p>
+<blockquote>
+<pre lang="bash" escaped="true">sudo wget --output-document=/etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list
+
+wget http://packages.medibuntu.org/pool/free/m/medibuntu-keyring/medibuntu-keyring_2008.04.20_all.deb
+
+sudo dpkg -i medibuntu-keyring_2008.04.20_all.deb
+
+sudo apt-get update</pre>
+</blockquote>
+<p><strong>Virtualbox</strong> (software per la creazione e l'utilizzo di macchine virtuali):</p>
+<blockquote>
+<pre lang="bash" escaped="true">echo "deb http://download.virtualbox.org/virtualbox/debian maverick non-free #VirtualBox" | sudo tee -a /etc/apt/sources.list
+
+wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
+
+sudo apt-get update
+
+sudo apt-get install virtualbox-3.2</pre>
+</blockquote>
+<p><strong>GetDeb</strong> (molto software utile compilato e pacchettizzato):</p>
+<blockquote>
+<pre lang="bash" escaped="true">wget -q -O- http://archive.getdeb.net/getdeb-archive.key | sudo apt-key add -
+
+echo "deb http://archive.getdeb.net/ubuntu maverick-getdeb apps #GetDeb" | sudo tee -a /etc/apt/sources.list
+
+sudo apt-get update</pre>
+</blockquote>
+<p><strong>Bisigi Themes</strong> (temi per Gnome):</p>
+<blockquote>
+<pre lang="bash" escaped="true">sudo add-apt-repository ppa:bisigi/dev
+
+sudo apt-get update
+
+sudo apt-get install bisigi-themes</pre>
+</blockquote>
+<p><strong>Hotot</strong> (client Twitter che supporta OAuth):</p>
+<blockquote>
+<pre lang="bash" escaped="true">sudo add-apt-repository ppa:hotot-team
+
+sudo apt-get update
+
+sudo apt-get install hotot</pre>
+</blockquote>
+<p><strong>Ubuntu Tweak</strong> (potente utility di personalizzazione):</p>
+<blockquote>
+<pre lang="bash" escaped="true">sudo add-apt-repository ppa:ubuntu-tweak-testing/ppa
+
+sudo apt-get update
+
+sudo apt-get install ubuntu-tweak</pre>
+</blockquote>
+<p>Alla prossima..</p>

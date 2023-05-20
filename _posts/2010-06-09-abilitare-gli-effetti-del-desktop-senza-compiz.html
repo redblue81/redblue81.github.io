@@ -1,0 +1,34 @@
+---
+layout: post
+status: publish
+published: true
+title: Abilitare gli effetti del desktop senza Compiz
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1266
+wordpress_url: http://www.red-blue.it/?p=1266
+date: '2010-06-09 07:40:57 +0100'
+date_gmt: '2010-06-09 06:40:57 +0100'
+categories:
+- tips & tricks
+- linux
+- ubuntu
+tags:
+- linux
+- ubuntu
+- gnome
+- compiz
+- effetti desktop
+- metacity
+comments: []
+---
+<p>Avete presenti gli <strong>effetti desktop</strong> di Ubuntu?? Bene, essi sono dovuti ad un programma chiamato <strong>composite manager</strong>.. Generalmente questo programma &egrave; <strong>Compiz</strong>..</p>
+<p>Per un motivo o per altro, si potrebbe anche volere tali effetti (magari non tutti), ma senza avere in memoria Compiz; bene, questo &egrave; possibile grazie semplicemente a <strong>Metacity</strong>, il window manager predefinito di Gnome!!</p>
+<p>Abilitare tali effetti &egrave; di una semplicit&agrave; assoluta: premiamo <strong>ALT+F2</strong> e nella finestra che si apre scriviamo <code>gconf-editor</code>, poi, all'interno della nuova finestra, cerchiamo la voce:</p>
+<blockquote><p><code>/apps/metacity/general</code></p></blockquote>
+<p>E spuntiamo la voce <code>compositing_manager</code>.</p>
+<p>Gi&agrave; finito.. Ovviamente per tornare indietro bisogna ripetere gli stessi passi spuntando alla fine tale voce..</p>
+<p>Alla prossima..</p>

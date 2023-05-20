@@ -1,0 +1,58 @@
+---
+layout: post
+status: publish
+published: true
+title: 'Errore durante la lettura di /home/nomeutente/.nano_history: Permesso negato
+  - SOLUZIONE'
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2264
+wordpress_url: http://www.red-blue.it/?p=2264
+date: '2011-08-09 15:45:16 +0100'
+date_gmt: '2011-08-09 13:45:16 +0100'
+categories:
+- tips & tricks
+- linux
+- ubuntu
+tags:
+- ubuntu
+- errore
+- shell
+- nano
+- bash
+- editor
+- tip
+- nano_history
+comments:
+- id: 7761
+  author: fraterneo
+  author_email: certad@gmail.com
+  author_url: http://fraterneo.blogspot.com
+  date: '2011-08-09 16:15:20 +0100'
+  date_gmt: '2011-08-09 14:15:20 +0100'
+  content: "Nice post.\r\n\r\nYou can solve that issue justo changing the owner of
+    the file .nano_history, because it belongs to root.\r\n\r\n$ chown username:groupname
+    .nano_history\r\n\r\nOptionally you can set permissions properly.\r\n\r\n$ chmod
+    766 .nano_history"
+- id: 7767
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-08-11 22:20:43 +0100'
+  date_gmt: '2011-08-11 20:20:43 +0100'
+  content: Hi!! And thank you very much for your tip!! ;)
+---
+<p>In questi giorni sto usando in modo massiccio la <strong>shell Bash</strong>.. Bene, oggi mi &egrave; capitato il seguente errore avviando <strong>nano</strong>, l'editor di testo predefinito di Ubuntu:</p>
+<blockquote><p>Errore durante la lettura di /home/redblue/.nano_history: Permesso negato<br />
+Premere Invio per continuare l'avvio di nano</p></blockquote>
+<p><!--moreContinua a leggere.. --></p>
+<p>Non so dire sinceramente da cosa sia dipeso l'errore in questione, e pi&ugrave; che di un errore si tratta di un <strong>fastidio</strong>, dato che ogni volta costringe a premere Invio per avviare l'editor. Rapido giro nella <strong>documentazione</strong> di Ubuntu, ed ecco la soluzione!!</p>
+<p>Primo, si deve editare il file <code>/etc/nanorc</code> e <strong>commentare</strong> (ovvero <strong>aggiungere il #</strong>) alla seguente linea:</p>
+<blockquote><p><code>set historylog</code></p></blockquote>
+<p>Secondo, cancellare il file in questione:</p>
+<blockquote><p><code>sudo rm .nano_history</code></p></blockquote>
+<p>Fatto, errore eliminato.. ;)</p>
+<p>Alla prossima..</p>

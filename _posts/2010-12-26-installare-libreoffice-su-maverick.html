@@ -1,0 +1,91 @@
+---
+layout: post
+status: publish
+published: true
+title: Installare LibreOffice su Maverick
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1931
+wordpress_url: http://www.red-blue.it/?p=1931
+date: '2010-12-26 10:31:24 +0100'
+date_gmt: '2010-12-26 09:31:24 +0100'
+categories:
+- guide
+- linux
+- debian
+- ubuntu
+- software
+- in evidenza
+- mint
+- lmde
+tags:
+- guida
+- linux
+- ubuntu
+- installazione
+- '10.10'
+- maverick
+- libreoffice
+comments:
+- id: 6689
+  author: Danilo Pisa
+  author_email: danilopisa@gmail.com
+  author_url: ''
+  date: '2010-12-26 11:33:18 +0100'
+  date_gmt: '2010-12-26 10:33:18 +0100'
+  content: a che serve il pacchetto language-support-writing-it?
+- id: 6690
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2010-12-26 12:04:51 +0100'
+  date_gmt: '2010-12-26 11:04:51 +0100'
+  content: E' semplicemente un metapacchetto per la traduzione delle applicazioni
+    in italiano.. <a href="http://packages.ubuntu.com/maverick/language-support-writing-it"
+    target="_blank" rel="nofollow">Leggi qui</a>..
+- id: 6691
+  author: Danilo Pisa
+  author_email: danilopisa@gmail.com
+  author_url: ''
+  date: '2010-12-26 14:39:47 +0100'
+  date_gmt: '2010-12-26 13:39:47 +0100'
+  content: "appunto a che serve installarlo, non c'entra niente con  LibreOffice,
+    e molto probabilmente &egrave; gi&agrave; installato a meno che non hai la distro
+    \ completamente in italiano.\r\naggiungere quel pacchetto &egrave; come dire per
+    installare vlc installo wine\r\nalla fine che serve installarlo se installi  LibreOffice?"
+- id: 6692
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2010-12-26 15:43:36 +0100'
+  date_gmt: '2010-12-26 14:43:36 +0100'
+  content: Il pacchetto in questione &egrave; installato effettivamente di default,
+    ma nel momento in cui disinstalli completamente OpenOffice, viene rimosso anch'esso,
+    da qui la necessit&agrave; di reinstallarlo.. ;)
+- id: 6722
+  author: LibreOffice disponibile attraverso PPA - RedBlue&#039;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/guide/libreoffice-disponibile-attraverso-ppa.html
+  date: '2011-01-03 10:15:30 +0100'
+  date_gmt: '2011-01-03 09:15:30 +0100'
+  content: "[...] giorno fa ho pubblicato una guida per l&#8217;installazione di LibreOffice,
+    suite per ufficio nata da una scissione interna al team [...]"
+---
+<p>Qualche tempo fa &egrave; nata <a href="http://www.libreoffice.org/" target="_blank">LibreOffice</a>, suite per ufficio open source dovuta alla <a href="http://www.documentfoundation.org/" target="_blank">Document Foundation</a>, ovvero ad una serie di sviluppatori di <strong>OpenOffice</strong> "secessionisti" rispetto ad <strong>Oracle</strong>, attuale proprietaria di <strong>OpenOffice</strong>, avendo acquisito in passato <strong>Sun Microsystems</strong> (che a sua volta era il principale sponsor di OpenOffice)..</p>
+<p><a href="/assets/images/libre_office.png"><img class="aligncenter size-medium wp-image-1935" title="libre_office" src="/assets/images/libre_office-300x76.png" alt="" width="300" height="76" /></a></p>
+<p>Tale "nuova" suite altro non &egrave; che proprio OpenOffice, con <strong>nome</strong> e <strong>marchio</strong> diversi per motivi di copyright. Tralascio i vari aspetti legali/etici della vicenda (la Document Foundation, dato il decennale impegno dei propri membri nel progetto OpenOffice, vorrebbe l'adesione di Oracle alla fondazione stessa, con annessa donazione del marchio originale, altrimenti proseguir&agrave; con questo nuovo brand), e vado a spiegare come installare questa suite in <strong>Ubuntu</strong> (ps. pare che LibreOffice, se sar&agrave; nel frattempo giunta alla release stabile, sar&agrave; presente di <strong>default</strong> nella prossima release di Ubuntu, la <strong>11.04</strong>).</p>
+<p>Per prima cosa occorre <strong>disinstallare</strong> OpenOffice:</p>
+<blockquote><p><code>sudo apt-get remove --purge openoffice*.*</code></p></blockquote>
+<p>Dovete poi scaricare LibreOffice, attualmente alla versione <strong>3.3 RC2</strong>, da <a href="http://www.libreoffice.org/download/" target="_blank">qui</a>, ovviamente scegliendo la versione adatta al vostro sistema; dalla stessa pagina scaricate anche il <strong>language pack</strong> (che verr&agrave; proposto in automatico).</p>
+<p>Decomprimete l'archivio che avete scaricato ed entrate nella directory <code>debs</code>, poi installate:</p>
+<blockquote><p><code>sudo dpkg -i *.deb</code></p></blockquote>
+<p>A questo punto entrate nella directory <code>desktop-integration</code> ed installate il pacchetto al suo interno con lo stesso comando appena visto.</p>
+<p>A questo punto <strong>estraete</strong> anche i files del language pack scaricato in precedenza (a meno che non vi vada bene in inglese) e installate anche tutti i pacchetti appena ottenuti col solito comando visto sopra.</p>
+<p>Non resta che <strong>installare</strong> il seguente pacchetto:</p>
+<blockquote><p><code>sudo apt-get install language-support-writing-it </code></p></blockquote>
+<p>A questo punto avete finito, sul vostro sistema ora avete la nuova suite LibreOffice..</p>
+<p>PS. Ovviamente il procedimetno visto vale per qualsiasi distribuzione derivata da Debian.. ;)</p>
+<p>Alla prossima..</p>

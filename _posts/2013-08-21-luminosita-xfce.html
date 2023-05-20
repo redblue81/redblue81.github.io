@@ -1,0 +1,34 @@
+---
+layout: post
+status: publish
+published: true
+title: Salvare il valore di luminosit&agrave; dello schermo su XFCE
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3530
+wordpress_url: http://www.red-blue.it/?p=3530
+date: '2013-08-21 09:44:03 +0100'
+date_gmt: '2013-08-21 07:44:03 +0100'
+categories:
+- tips & tricks
+- linux
+- debian
+tags:
+- debian
+- xfce
+- tips & tricks
+- luminosit&agrave;
+comments: []
+---
+<p>Sul mio notebook, un Samsung Serie 3, <strong>Debian testing con XFCE</strong> permette di usare le combinazioni del tasto <strong>Fn</strong>, tra cui quelle per il volume e per la <strong>luminosit&agrave;</strong> dello schermo, che sinceramente di default nel mio caso si imposta al minimo, ovvero al limite delle possibilit&agrave; umane..</p>
+<p>Cercando un po' in rete, ho trovato la soluzione che ha funzionato, almeno nel mio caso. Per prima cosa, <strong>verifichiamo</strong> il valore attuale di luminosit&agrave;:</p>
+<pre class="brush: bash; gutter: false">cat /sys/class/backlight/acpi_video0/brightness</pre>
+<p>Tenete presente che <code>acpi_video0</code> potrebbe non corrispondere alla vostra situazione; a me ad esempio &egrave; presente anche <code>acpi_video1</code>, ma usando l'altro funziona, quindi non vi resta che provare. Nel mio caso, &egrave; stato restituito un misero 7, ovvero una luminosit&agrave; di <strong>appena il 7%</strong> (vi avevo detto che era al limite delle possibilit&agrave; umane no?)..</p>
+<p>Bene, appurato il problema, occore porvi rimedio: il problema reale &egrave; che la combinazione <strong>Fn+F3</strong> (dipende dal notebook) funziona perfettamente, ma <strong>non salva</strong> il valore impostato. A questo punto, occorre forzarlo..</p>
+<p>In rete ho trovato chi consigliava di creare un paio di <strong>script</strong> per "bypassare" questo problema, ma lo trovo poco elegante, per cui meglio inserire il comando che setta la luminosit&agrave; direttamente nel file <code>/etc/rc.local</code>, da editare come <strong>root</strong> (inserite questa riga appena prima di <code>exit 0</code>):</p>
+<pre class="brush: bash; gutter: false">echo 80 > /sys/class/backlight/acpi_video0/brightness</pre>
+<p>Salviamo ed usciamo, al riavvio la luminosit&agrave; dello schermo sar&agrave; <strong>settata all'80%</strong>.</p>
+<p>Alla prossima..</p>

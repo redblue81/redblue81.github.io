@@ -1,0 +1,36 @@
+---
+layout: post
+status: publish
+published: true
+title: Iceweasel aggiornato su Debian Sid
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3131
+wordpress_url: http://www.red-blue.it/?p=3131
+date: '2012-05-19 18:26:04 +0100'
+date_gmt: '2012-05-19 16:26:04 +0100'
+categories:
+- tips & tricks
+- linux
+- debian
+- internet
+- browser
+tags:
+- debian
+- repository
+- aggiornamento
+- iceweasel
+- unstable
+comments: []
+---
+<p>Da qualche giorno <strong>WordPress</strong> mi segnalava che la mia versione di <strong>Iceweasel</strong> non era abbastanza aggiornata, in quanto nei repository di <strong>Sid</strong> (ramo unstable di Debian che utilizza il sottoscritto) c'&egrave; attualmente la versione <strong>10.0.2</strong>.</p>
+<p><a href="/assets/images/iceweasel.jpg"><img class="aligncenter  wp-image-3135" title="iceweasel" src="/assets/images/iceweasel.jpg" alt="" width="144" height="144" /></a>Non si tratta di un problema sia chiaro, ma sinceramente mi iniziava a dar fastidio, dato che la notifica di WP non &egrave; esattamente quello che si definisce "poco invasiva".</p>
+<p>Per chi non lo sapesse, <strong>Iceweasel</strong> &egrave; un <strong>fork</strong> di <strong>Firefox</strong>, o per meglio dire &egrave; il nome che Firefox assume all'interno di Debian. La soluzione, se cos&igrave; si pu&ograve; chiamare, &egrave; un <strong>pinning</strong> dai repository <strong>experimental</strong> di <strong>Debian</strong>, come root date:</p>
+<pre class="brush: bash; gutter: true">apt-get install -t experimental iceweasel</pre>
+<p>Ovviamente, dovete aver preventivamente aggiunto il repository in questione al vostro <code>/etc/apt/sources.list</code>, io uso il seguente <strong>mirror</strong>:</p>
+<blockquote><p><code>deb http://ftp.ch.debian.org/debian/ experimental main</code></p></blockquote>
+<p>Infine, chiudo segnalando http://mozilla.debian.net/, sito "specializzato" nel suggerire come avere la <strong>miglior versione possibile</strong> di Iceweasel sulla vostra <strong>Debian box</strong>.</p>
+<p>Alla prossima..</p>

@@ -1,0 +1,44 @@
+---
+layout: post
+status: publish
+published: true
+title: Comandi da NON dare mai in una shell di Linux
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 990
+wordpress_url: http://redblue.netsons.org/?p=990
+date: '2010-02-17 11:56:12 +0100'
+date_gmt: '2010-02-17 10:56:12 +0100'
+categories:
+- tips & tricks
+- linux
+tags:
+- linux
+- tips
+- shell
+- comandi
+- pericolo
+comments: []
+---
+<p>Qual &egrave; il senso di questo articolo??</p>
+<p>Semplice.. Mi &egrave; capitato (non ci crederete ma &egrave; cos&igrave;) di sentire storie di dati cancellati, intere partizioni perse, danni enormi causati semplicemente dalla non conoscenza di alcuni comandi da <strong><span style="text-decoration: underline;">NON</span></strong> dare mai in una shell di Linux.. Si tratta di comandi talmente banali da sembrare stupidi, eppure l'utente inesperto ci casca.. E allora meglio informarlo no??</p>
+<p>Quindi io faccio un breve elenco, ma per piacere <strong>che nessuno provi a testarne l'effettivo funzionamento</strong>!! Sia chiaro non mi assumo alcuna responsabilit&agrave; sui danni che potreste procurare..</p>
+<p><!--moreContinua a leggere questo articolo.. --></p>
+<p>Ecco l'elenco..</p>
+<blockquote><p><code>sudo rm -rf /</code></p></blockquote>
+<p>Cancella tutto!!</p>
+<blockquote><p><code>rm -rf .*</code></p></blockquote>
+<p>Come sopra..</p>
+<blockquote><p><code>dd if=/dev/zero of=/dev/sda</code></p></blockquote>
+<p>Semplicemente azzera le vostre partizioni..</p>
+<blockquote><p><code>mkfs.ext3 /dev/hda</code></p></blockquote>
+<p>Formatta il vostro HD!!</p>
+<blockquote><p><code>mv ~ /dev/null</code></p></blockquote>
+<p>Diciamo che "butta via" la vostra home!!</p>
+<blockquote><p><code>mv / /dev/null</code></p></blockquote>
+<p>Come sopra, ma con la directory pricipale del vostro HD!!</p>
+<p>Ce ne sarebbero anche altri, ma sono pi&ugrave; complessi e di solito l'utente inesperto non si fida da s&eacute;, quindi evito di riportarli.. Mi raccomando, ripeto di <strong>non testare i comandi che ho illustrato</strong>!! Memorizzateli in modo che, in futuro, dovesse capitarvi lo script creato da qualche spiritosone, sappiate riconoscerli..</p>
+<p>Alla prossima..</p>

@@ -1,0 +1,36 @@
+---
+layout: post
+status: publish
+published: true
+title: Disabilitare l'aggiornamento automatico di Wordpress
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3592
+wordpress_url: http://www.red-blue.it/?p=3592
+date: '2013-12-12 09:38:43 +0100'
+date_gmt: '2013-12-12 08:38:43 +0100'
+categories:
+- blog
+- tips & tricks
+- wordpress
+tags:
+- wordpress
+- tips
+- tricks
+- aggiornamento automatico
+- '3.7'
+comments: []
+---
+<p>Dopo l'aggiornamento alla versione <strong>3.7</strong> di <strong>Wordpress</strong>, molti si saranno accorti che l'aggiornamento &egrave; diventato <strong>automatico</strong>: semplicemente, collegandosi al backend del nostro blog, scopriamo che &egrave; avvenuto (si spera senza problemi) l'aggiornamento.</p>
+<p>Funzionalit&agrave; comoda, ma all'occorrenza anche problematica, nel senso che a volte ci si pu&ograve; trovare nella condizione di voler "<strong>pilotare</strong>" gli aggiornamenti a proprio piacimento. Bene, ecco quindi, direttamente dall'impareggiabile <a href="http://codex.wordpress.org/Configuring_Automatic_Background_Updates" target="_blank">Codex</a>, come andare a <strong>disattivare</strong> tale aggiornamento automatico di Wordpress.</p>
+<p>Basta aprire il file <code>wp-config.php</code> (lo trovate nella <strong>root</strong> di Wordpress sul <strong>server</strong>) e aggiungere la seguente riga:</p>
+<pre class="brush: php; gutter: false">define( &#039;WP_AUTO_UPDATE_CORE&#039;, false );</pre>
+<p>In tal modo Wordpress non si aggiorner&agrave; pi&ugrave; in automatico. Attenzione per&ograve;, sto parlando <strong>solo</strong> di Wordpress, non dei temi, dei plugin e cos&igrave; via che invece continueranno ad usare il nuovo sistema automatico di backup in background.</p>
+<p>Se vogliamo <strong>disabilitare del tutto</strong> l'aggiornamento automatico di Wordpress, allora la riga da aggiungere a <code>wp-config.php</code> &egrave; la seguente:</p>
+<pre class="brush: php; gutter: false">define( &#039;AUTOMATIC_UPDATER_DISABLED&#039;, true );</pre>
+<p>In tal modo l'intero sistema di aggiornamento automatico di Wordpress &egrave; disabilitato.</p>
+<p>Ci sono diverse possibilit&agrave; addizionali, quali ad esempio l'aggiornamento automatico solo in caso di <strong>minor updates</strong>, per cui consiglio vivamente di leggere la pagina che ho linkato sopra, fonte inesauribile di informazioni.</p>
+<p>Alla prossima..</p>

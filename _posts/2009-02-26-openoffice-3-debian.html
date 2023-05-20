@@ -1,0 +1,33 @@
+---
+layout: post
+status: publish
+published: true
+title: OpenOffice.org 3.0.1 su Debian
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 302
+wordpress_url: http://redblue.netsons.org/?p=302
+date: '2009-02-26 11:13:02 +0100'
+date_gmt: '2009-02-26 10:13:02 +0100'
+categories:
+- guide
+- linux
+- debian
+tags:
+- debian
+- linux
+- repository
+- dpkg
+- openoffice.org 3
+comments: []
+---
+<p>Recentemente <a target="_blank" href="http://www.openoffice.org">OpenOffice.org</a> &egrave; giunto alla versione 3 prima, e 3.0.1 poi.. Purtroppo i repository di Lenny contengono ancora la versione 2.4; se vogliamo passare alla nuova versione senza aspettare l'aggiornamento dei repository ecco la procedura.  E' necessario scaricare il pacchetto .tar.gz contenente i .deb dal sito ufficiale, questo &egrave; il <a href="http://openoffice.bouncer.osuosl.org/?product=OpenOffice.org&os=linuxinteldeb&lang=it&version=3.0.1">link</a>. A questo punto bisogna scompattare il pacchetto:</p>
+<blockquote><p><code>tar zxvf OOo_3.0.1_LinuxIntel_install_it_deb.tar.gz cd OOO300_m15_native_packed-1_it.9379/</code></p></blockquote>
+<p>Per quanto mi riguarda &egrave; stato necessario ripulire il sistema dalla vecchia versione di OpenOffice.org, ho fatto tutto tramite dpkg:</p>
+<blockquote><p><code>dpkg -l|grep openoffice|awk '{print $2}'|xargs sudo apt-get purge -y</code></p></blockquote>
+<p>Per poi installare la nuova versione (sempre con dpkg):</p>
+<blockquote><p><code>dpkg -i DEBS/*deb DEBS/desktop-integration/openoffice.org3.0-debian-menus_3.0-9376_all.deb</code></p></blockquote>
+<p>Un suggerimento, pu&ograve; essere utile cancellare anche la directory $HOME/.openoffice, sempre se non avete personalizzazioni, oppure potete sempre farne un backup prima..</p>

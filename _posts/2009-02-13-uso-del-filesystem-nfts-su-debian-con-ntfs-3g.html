@@ -1,0 +1,37 @@
+---
+layout: post
+status: publish
+published: true
+title: Uso del filesystem NFTS su Debian con NTFS-3g
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 264
+wordpress_url: http://redblue.netsons.org/?p=264
+date: '2009-02-13 13:42:30 +0100'
+date_gmt: '2009-02-13 12:42:30 +0100'
+categories:
+- guide
+- linux
+- debian
+tags:
+- guida
+- debian
+- linux
+- windows
+- ntfs
+- ntfs-3g
+- filesystem
+comments: []
+---
+<p>A volte, specie su macchine su cui &egrave; installato un doppio sistema operativo Linux - Windows, pu&ograve; essere necessario leggere dei dati presenti su una partizione formattata in <strong>NTFS</strong>; in questi casi ci viene in aiuto il driver<strong> NTFS-3g</strong>, presente in versione stabile nei repository di Debian (in quelli di Lenny, la versione 5 ormai prossima al rilascio stabile). Vediamo come installarlo in pochi semplici passi: Da <strong>root</strong> digitare (oppure si pu&ograve; usare <strong>Synaptic</strong>):</p>
+<blockquote><p><code>apt-get install ntfs-3g</code></p></blockquote>
+<p>Ora bisogna creare la cartella in cui verr&agrave; montata la partizione, modificare fstab e montare il nuovo disco; sempre come root digitare:</p>
+<blockquote><p><code>cd /media mkdir win</code></p></blockquote>
+<p>Ed aggiungere al file <strong>/etc/fstab</strong> la riga seguente:</p>
+<blockquote><p><code>/dev/hda1  /media/win  ntfs-3g defaults  0   0</code></p></blockquote>
+<p>Ovviamente il disco fisso si chiama hda1 nel mio caso, in altri casi potrebbe essere sda, in genere bisogna inserire il disco dove &egrave; installata la partizione Windows. A questo punto basta editare il file <strong>/etc/group</strong> ed aggiungere il vostro utente al gruppo <strong>users</strong>, infine (sempre come <strong>root</strong>):</p>
+<blockquote><p><code>mount -a</code></p></blockquote>
+<p>Oppure basta semplicemente riavviare il pc..  Et voil&agrave;! ;)</p>

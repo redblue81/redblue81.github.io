@@ -1,0 +1,55 @@
+---
+layout: post
+status: publish
+published: true
+title: "[Risolto] Problemi di installazione di Skype 64 bit su Debian Sid"
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3406
+wordpress_url: http://www.red-blue.it/?p=3406
+date: '2012-09-12 09:17:46 +0100'
+date_gmt: '2012-09-12 07:17:46 +0100'
+categories:
+- guide
+- linux
+- debian
+- in evidenza
+tags:
+- guida
+- debian
+- skype
+- 32 bit
+- sid
+- multiarch
+comments:
+- id: 27642
+  author: Rilasciato Skype 4.1 per Linux con supporto a WLM
+  author_email: ''
+  author_url: http://www.red-blue.it/internet/rilasciato-skype-4-1-per-linux-con-supporto-a-wlm.html
+  date: '2012-11-15 13:05:36 +0100'
+  date_gmt: '2012-11-15 12:05:36 +0100'
+  content: "[...] L&#039;ultima versione di Skype a 64 bit per Debian, la 4.0.0.8,
+    purtroppo non si installa sulla mia unstable&hellip; [Leggi tutto] [...]"
+---
+<p>L'ultima versione di <strong>Skype</strong> a <strong>64 bit</strong> per <strong>Debian</strong>, la <strong>4.0.0.8</strong>, purtroppo non si installa sulla mia <strong>unstable</strong> (<strong>Sid</strong>): per la precisione, un upgrade del sistema ha portato alla rimozione di due librerie essenziali per il funzionamento.</p>
+<p><a href="/assets/images/skype.jpeg"><img class="aligncenter size-medium wp-image-2066" title="skype" src="/assets/images/skype-300x132.jpg" alt="" width="300" height="132" /></a>Il problema &egrave; relativo alle librerie <strong>ia32-libs</strong> e <strong>ia32-libs-gtk</strong>, pacchetti a 32 bit da sempre necessari al funzionamento di Skype (in effetti, la versione 64 bit non &egrave; nativa, ma si "porta" sempre parecchie dipendenze). Semplicemente, in questo rilascio di Debian <strong>non</strong> sono compresi!</p>
+<p>La soluzione pi&ugrave; semplice per risolvere questo problema dovrebbe essere scaricare la versione <strong>static</strong> dal sito ufficiale, ovvero una versione che non ha bisogno di essere installata e che ha all'interno tutto il necessario per funzionare correttamente.</p>
+<p>In realt&agrave;, almeno al sottoscritto <strong>non va</strong> nemmeno questa versione, quindi mi sono andato a cercare la soluzione altrove, direttamente nel <a href="http://wiki.debian.org/skype" target="_blank">wiki</a> di Debian. Occorre rendere la propria distro <strong>Multiarch</strong> (maggiori informazioni sempre sul wiki, <a href="http://wiki.debian.org/Multiarch/" target="_blank">qui</a>), ovvero includere anche il <strong>supporto</strong> all'architettura a 32 bit.</p>
+<p>Per prima cosa, aggiungiamo tale architettura:</p>
+<pre class="brush: bash; gutter: false">sudo dpkg --add-architecture i386</pre>
+<p>Poi, modifichiamo in <code>/etc/apt/sources.list</code> le righe relative ai repository di Sid (nell'esempio ci sono i repo che uso io):</p>
+<p><code>deb [arch=amd64,i386] http://ftp-stud.hs-esslingen.de/debian/ sid main contrib non-free<br />
+deb-src [arch=amd64,i386] http://ftp-stud.hs-esslingen.de/debian/ sid main contrib non-free</code></p>
+<p>In pratica si tratta di aggiungere la parte <strong>[arch=amd64,i386]</strong>.</p>
+<p>A questo punto <strong>scarichiamo</strong> il pacchetto di Skype per Debian a <strong>32 bit</strong> dal <a href="http://www.skype.com/intl/it/get-skype/on-your-computer/linux/" target="_blank">sito ufficiale</a>, <strong>aggiorniamo</strong> la lista dei pacchetti, e lo <strong>installiamo</strong> tramite <strong>dpkg</strong>:</p>
+<pre class="brush: bash; gutter: true">sudo apt-get update
+
+sudo dpkg -i skype-debian_*.deb</pre>
+<p>Otterremo un <strong>errore</strong> relativo proprio alle dipendenze a 32 bit, che <strong>risolveremo</strong> dando:</p>
+<pre class="brush: bash; gutter: false">sudo apt-get -f install</pre>
+<p>Ci siamo, a questo punto, se tutto sar&agrave; andato bene (e a me ha funzionato perfettamente),&egrave;nuovamente Skype <strong>funzionante</strong>.</p>
+<p>Concludo dicendo che mi sembra una soluzione abbastanza poco elegante, ma il supporto multiarch &egrave; ormai saldo in Debian, e comunque la <strong>precedenza</strong> va sempre ai pacchetti relativi all'architettura a 64 bit.</p>
+<p>Alla prossima..</p>

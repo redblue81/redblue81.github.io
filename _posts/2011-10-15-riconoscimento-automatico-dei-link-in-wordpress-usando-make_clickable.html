@@ -1,0 +1,50 @@
+---
+layout: post
+status: publish
+published: true
+title: Riconoscimento automatico dei link in Wordpress usando make_clickable
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2573
+wordpress_url: http://www.red-blue.it/?p=2573
+date: '2011-10-15 07:52:03 +0100'
+date_gmt: '2011-10-15 05:52:03 +0100'
+categories:
+- tips & tricks
+- wordpress
+tags:
+- wordpress
+- plugin
+- tips
+- link
+- codice
+comments:
+- id: 8002
+  author: Walter
+  author_email: maswal7@infinito.it
+  author_url: http://www.wpstyle.it
+  date: '2011-10-15 10:11:06 +0100'
+  date_gmt: '2011-10-15 08:11:06 +0100'
+  content: Esempio lampante di come qualche riga di codice possa sostituire l'installazione
+    superflua di alcuni plugin ;)
+- id: 8008
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-10-16 11:07:48 +0100'
+  date_gmt: '2011-10-16 09:07:48 +0100'
+  content: Esatto.. Se poi il plugin in questione fa esattamente la stessa cosa che
+    ho descritto, tanto vale procedere via codice..
+---
+<p>In <strong>Wordpress</strong> inserire un link in un articolo &egrave; cosa piuttosto semplice, ma pu&ograve; accadere che in un solo articolo ci siano molti link, e quindi l'inserimento <strong>manuale</strong> uno ad uno pu&ograve; risultare scomodo e/o noioso..</p>
+<p>Ci viene allora in aiuto una funzione di WP: <strong>make_clickable</strong>. Utilizzandola, baster&agrave; semplicemente scrivere l'indirizzo, senza aggiungervi il link, e sar&agrave; la funzione a farlo per noi, oppure baster&agrave; copiare e incollare l'indirizzo, e sar&agrave; <strong>automaticamente</strong> reso cliccabile.</p>
+<p>Per integrare questa funzione nel nostro template la procedura &egrave; semplice, <span style="text-decoration: underline;">basta inserire le seguenti due righe</span> nel file <code>functions.php</code>:</p>
+<pre class="brush: php; gutter: true">add_filter('the_content', 'make_clickable');
+
+add_filter('the_excerpt', 'make_clickable');</pre>
+<p>Giusto per capire cosa stiamo facendo, <code>the_content</code> si riferisce all'intero contenuto dell'articolo, mentre <code>the_excerpt</code> generalmente si riferisce ad una sorta di "anteprima", non tutti i templete usano questa funzione.</p>
+<p>A dire il vero, c'&egrave; anche un <strong>plugin</strong> che fa la stessa cosa, vi lascio il link per chi non volesse mettere direttamente mano al codice:&nbsp;<a href="http://wordpress.org/extend/plugins/make-clickable/">http://wordpress.org/extend/plugins/make-clickable/</a></p>
+<p>Alla prossima..</p>

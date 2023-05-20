@@ -1,0 +1,76 @@
+---
+layout: post
+status: publish
+published: true
+title: Shell Bash - 3 - Espressioni regolari
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2638
+wordpress_url: http://www.red-blue.it/?p=2638
+date: '2011-11-05 07:20:28 +0100'
+date_gmt: '2011-11-05 06:20:28 +0100'
+categories:
+- guide
+- linux
+- in evidenza
+tags:
+- guida
+- linux
+- shell
+- bash
+- espressioni regolari
+comments: []
+---
+<p>Terzo capitolo della guida alla shell Bash: oggi parliamo di <strong>espressioni regolari</strong>.</p>
+<p>Prima di tutto, una <strong>definizione</strong>: si chiama espressione regolare una stringa che descrive un insieme di stringhe. Ovvero, un'espressione regolare &egrave; una sorta di schema (pattern) che descrive stringhe con caratteristiche simili.</p>
+<p>Qual &egrave; l'<strong>utilit&agrave;</strong>? B&egrave;, semplicemente usando un'espressione regolare possiamo, con un'unica stringa, selezionarne n, in modo che un singolo script possa funzionare in n casi diversi.</p>
+<p><!--moreContinua a leggere.. --><br />
+Per raggiungere questo scopo, si usano dei <strong>metacaratteri</strong>, ovvero caratteri speciali che la shell processa ed <strong>espande</strong>, a seconda del loro significato. Questi metacaratteri sono i seguenti:</p>
+<pre class="brush: bash; gutter: true">. $ ? * + - ^ \b \B \< \> { } [ ]</pre>
+<p>Questo il significato dei metacaratteri:</p>
+<ul>
+<li><strong>.</strong> ogni carattere;</li>
+<li><strong>$</strong> stringa vuota a fine riga;</li>
+<li><strong>?</strong> almeno una corrispondenza del carattere seguente;</li>
+<li><strong>*</strong> da zero a n corrispondenze del carattere che segue;</li>
+<li><strong>+</strong> da una a n corrispondenze del carattere che segue;</li>
+<li><strong>-</strong> indica un intervallo;</li>
+<li><strong>^</strong> stringa vuota ad inizio riga, oppure rappresenta i caratteri non compresi nella lista;</li>
+<li><strong>\b</strong> stringa vuota all'estremo di una parola</li>
+<li><strong>\B</strong> stringa vuota non all'estremo di una parola</li>
+<li><strong>\<</strong> stringa vuota all'inizio di una parola</li>
+<li><strong>\></strong> stringa vuota alla fine di una parola</li>
+<li><strong>{ }</strong> indicano una wildcard, le stringhe tra parentesi:</li>
+<ul>
+<li><strong>{N}</strong> esattamente N corrispondenze;</li>
+<li><strong>{N,}</strong> almeno N corrispondenze (ma anche di pi&ugrave;);</li>
+<li><strong>{N,M}</strong> da N a M corrispondenze</li>
+</ul>
+<li><strong>[ ]</strong> altra wildcard, almeno un carattere tra quelli tra parentesi.</li>
+</ul>
+<p>Vediamo alcuni esempi:</p>
+<pre class="brush: bash; gutter: true">[a-z] - indica un singolo carattere all'interno dell'intervallo a-z;
+
+[abcd] - indica un singolo carattere all'interno dell'insieme indicato;
+
+^ciao - la stringa "ciao" all'inizio della riga;
+
+\>giorno - la stringa "giorno" alla fine di una parola (es. buongiorno corrisponde a questo pattern);
+&egrave;
+ciao{N} - la stringa "ciao" appare esattamente N volte;
+
+a.*b - indica una sola "a" prima di una sola "b";&egrave;
+
+^a.*n$ - indica una riga che inizia con "a" e finisce con "b";</pre>
+<p>Attenzione perch&egrave; i metacaratteri <strong>?</strong>, <strong>+</strong>, <strong>(</strong>, <strong>)</strong>, <strong>{</strong>, <strong>}</strong>, <strong>|</strong> devono essere preceduti dal caratteri di escape <strong>\</strong> quando usiamo le espressioni regolari di base.</p>
+<p>Esiste un'ulteriore wildcard: <strong>[[:CLASS:]]</strong>, che indica un carattere nella classe CLASS, che a sua volta pu&ograve; assumere valori come <strong>alnum</strong> (carattere alfanumerico), <strong>alpha</strong> (carattere alfabetico), <strong>upper</strong> (maiuscola), <strong>lower</strong> (minuscola), <strong>digit</strong> (cifra), ad esempio:<strong></strong></p>
+<pre class="brush: bash; gutter: true">\<[[:upper:]] - indica una parola che inizia con una lettera maiuscola.</pre>
+<p>Le espressioni regolari possono essere <strong>concatenate</strong>, ovvero una stringa corrisponde ad una concatenazione di espressioni regolari se &egrave; composta da due sottostringhe che corrispondono rispettivamente alle due espressioni regolari. Si pu&ograve; usare anche l'operatore <strong>|</strong> (<strong>pipe</strong>), ad esempio <code>esp1|esp2</code> significa "esp1 <strong>oppure</strong> esp2".</p>
+<p>Nella valutazione di un'espressione regolare, l'<strong>ordine di precedenza</strong> riguarda prima la ripetizione, poi la concatenazione e infine l'operatore |, a meno ovviamente di usare le parentesi tonde per modificare tale ordine.</p>
+<p>Da dire infine che queste informazioni possono essere usate comunemente nella shell, non solo per uno script. Ad esempio, il comando <strong>grep</strong> serve a cercare una determinata stringa all'interno di un file. Bene, tramite questo comando ovviamente possono essere reperite moltissime informazioni (pensate di dover cercare le righe relative ad una certa periferica all'interno di un file di log estremamente lungo e complesso) e l'uso delle espressioni regolari pu&ograve; facilitare il compito. Un esempio:</p>
+<pre class="brush: bash; gutter: true">grep '\(501:\)\{2\}' /etc/passwd</pre>
+<p>Cerca e ritorna tutte le righe che contengono due occorrenze della stringa "501" all'interno del file indicato.</p>
+<p>Alla prossima..</p>

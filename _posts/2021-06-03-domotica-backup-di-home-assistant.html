@@ -1,0 +1,106 @@
+---
+layout: post
+status: publish
+published: true
+title: Domotica - Backup di Home Assistant
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 4062
+wordpress_url: https://www.red-blue.it/?p=4062
+date: '2021-06-03 14:30:00 +0100'
+date_gmt: '2021-06-03 12:30:00 +0100'
+categories:
+- guide
+- linux
+- in evidenza
+- domotica
+tags:
+- guida
+- backup
+- domotica
+- home assistant
+- google drive
+comments: []
+---
+<p><!-- wp:paragraph --></p>
+<p>Oggi vediamo come effettuare un <strong>backup di Home Assistant</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Da dove nasce tale necessit&agrave;? Semplice, fino a questo punto, abbiamo <a rel="noreferrer noopener" href="http://localhost:4000/domotica/domotica-installare-home-assistant.html" data-type="post" data-id="4056" target="_blank">installato Home Assistant</a> sulla micro SD del nostro Raspberry Pi; tale configurazione al momento potrebbe anche andare bene, su Home Assistant non gira praticamente <strong>nulla</strong>, quindi letture e scritture sulla scheda sono limitate.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>L'idea &egrave; per&ograve; quella di iniziare quanto prima a far lavorare seriamente il sistema, quindi l'uso del disco aumenter&agrave; esponenzialmente. In tali condizioni, <strong>la micro SD diventa un punto debole</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Dipende ovviamente dal tipo di micro SD che usate (maggiore &egrave; la qualit&agrave;, maggiore sar&agrave; verosimilmente la durata nel tempo), da quanto tempo la usate, e via dicendo.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>In linea di massima per&ograve;, usare una micro SD come disco non &egrave; il massimo, a lungo andare tender&agrave; a "friggersi" (poi magari qualcuno usa una micro SD da anni in un RPi, tutto pu&ograve; essere).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Pi&ugrave; avanti vedremo come usare un SSD al posto della micro SD, ma prima di questo, direi che &egrave; necessario impostare una <strong>politica di backup</strong> di Home Assistant.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:more --><br />
+<!--more--><br />
+<!-- /wp:more --></p>
+<p><!-- wp:paragraph --></p>
+<p>Intendiamoci, ho presentato il quadro pi&ugrave; tragico, ma in realt&agrave; una buona politica di backup vi permette ad esempio anche di "tornare indietro" in caso vi rendiate conto che una particolare configurazione apportata non &egrave; soddisfacente e non avete voglia di "smontare" tutto.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Home Assistant prevede di default la possibilit&agrave; di effettuare backup: basta andare su <strong>Supervisor -> Istantanee</strong> (<strong>snapshots </strong>per chi ha l'interfaccia in inglese).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Da questa schermata scegliete se effettuare un backup <strong>parziale </strong>o <strong>completo</strong>, e potete anche scaricarlo in locale (non &egrave; mai una scelta azzeccata conservare il backup di un sistema sul sistema stesso, ricordatelo).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Quindi siamo a posto? Si e no, nel senso che se avete la pazienza di effettuare un backup costantemente, e di scaricarlo da qualche parte con la stessa costanza, potete fermarvi qui.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Altrimenti, se cercate un modo per <strong>automatizzare </strong>il tutto, magari anche effettuando un upload automatico in cloud (es. Google Drive), continuiamo..</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Per il backup di Home Assistant su Google Drive, &egrave; necessario un <strong>plugin non ufficiale</strong>; per aggiungerlo, occorre aggiungere il seguente <a href="https://github.com/sabeechen/hassio-google-drive-backup" data-type="URL" data-id="https://github.com/sabeechen/hassio-google-drive-backup" target="_blank" rel="noreferrer noopener">repository</a>:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"xml","lineNumbers":false} --></p>
+<pre class="wp-block-syntaxhighlighter-code">https://github.com/sabeechen/hassio-google-drive-backup</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Nella seguente schermata:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"id":4063,"sizeSlug":"large","linkDestination":"none"} --></p>
+<figure class="wp-block-image size-large"><img src="/assets/images/hassio_backup_1-1024x399.jpg" alt="" class="wp-image-4063"/></figure>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Baster&agrave; cliccare su "<strong>Repository</strong>" in alto a destra, poi inserire il link sopra e cliccare su "<strong>Aggiungi</strong>". Infine, nella barra di ricerca baster&agrave; scrivere "<strong>google</strong>" come chiave di ricerca, e dovremmo vedere il nostro plugin pronto per l'installazione.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Dopo l'installazione, baster&agrave; <strong>avviare </strong>il plugin:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"id":4064,"sizeSlug":"large","linkDestination":"none"} --></p>
+<figure class="wp-block-image size-large"><img src="/assets/images/hassio_backup_2-1024x588.jpg" alt="" class="wp-image-4064"/></figure>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>E dalla barra laterale, cliccando su "<strong>Snapshots</strong>", visualizziamo una schermata tramite la quale dovremo collegare il plugin a Drive (autorizzando l'accesso).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Nulla di eccessivamente complesso, inseriamo le credenziali di Google, autorizziamo il tutto e alla fine verr&agrave; visualizzata la <strong>API KEY</strong>; in realt&agrave; al 90% baster&agrave; cliccare su "<strong>Send credentials</strong>" e verremo portati alla schermata di login di Home Assistant.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto arriveremo nella pagina di configurazione del plugin:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"id":4065,"sizeSlug":"large","linkDestination":"none"} --></p>
+<figure class="wp-block-image size-large"><img src="/assets/images/hassio_backup_3.jpg" alt="" class="wp-image-4065"/></figure>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>La configurazione &egrave; molto intuitiva, vanno inseriti il numero di backup da mantenere su Home Assistant, il numero di backup da caricare su Drive, e qualche altra opzione, come ad esempio la <strong>frequenza di backup di Home Assistant</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Finito, vedremo poi come usare un SSD al posto della micro SD.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:tadv/classic-paragraph /--></p>

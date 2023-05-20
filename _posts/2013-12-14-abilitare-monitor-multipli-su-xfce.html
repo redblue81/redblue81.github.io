@@ -1,0 +1,40 @@
+---
+layout: post
+status: publish
+published: true
+title: Abilitare monitor multipli su Xfce
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3595
+wordpress_url: http://www.red-blue.it/?p=3595
+date: '2013-12-14 14:28:17 +0100'
+date_gmt: '2013-12-14 13:28:17 +0100'
+categories:
+- tips & tricks
+- linux
+- debian
+tags:
+- debian
+- linux
+- tips
+- tricks
+- xfce
+- monitor multipli
+- arandr
+comments: []
+---
+<p>Mi sono reso conto che di default<strong> Xfce non gestisce l'estensione di un monitor su un altro</strong>; in altre parole, usare <strong>monitor multipli su Xfce</strong> significa semplicemente clonare uno schermo sull'altro.</p>
+<p>Poich&egrave; sono convinto che non serva a nulla un semplice clone, ecco come abilitare monitor multipli su Xfce.</p>
+<p>Per prima cosa, ovviamente, <strong>colleghiamo</strong> il secondo monitor e, se non viene abilitato in automatico, dobbiamo abilitarlo manualmente, da<strong> Impostazioni -> Schermo</strong>, spuntando l'apposita opzione come in figura:</p>
+<p><!--moreContinua a leggere..--></p>
+<p><a href="/assets/images/Schermo_003.png"><img class="aligncenter size-medium wp-image-3596" alt="Schermo_003" src="/assets/images/Schermo_003-300x195.png" width="300" height="195" /></a>Ora serve il modulo <strong>XrandR</strong>, che dovrebbe essere gi&agrave; installato, e la sua interfaccia grafica <strong>ArandR</strong>, che installiamo al volo:</p>
+<pre class="brush: bash; gutter: false">sudo apt-get install arandr</pre>
+<p>Lo avviamo da <strong>Impostazioni -> ArandR</strong> e ci troveremo davanti questa schermata:</p>
+<p><a href="/assets/images/Screen-Layout-Editor_001.png"><img class="aligncenter size-medium wp-image-3597" alt="arandr_001" src="/assets/images/Screen-Layout-Editor_001-245x300.png" width="245" height="300" /></a>Come vedete, i due schermi sono evidentemente <strong>sovrapposti</strong>: basta semplicemente spostare il secondo schermo (col mouse), quello che nel mio caso si chiama <strong>VGA1</strong>, accanto al primo, e cliccare su <strong>Layout -> Applica</strong>.</p>
+<p><a href="/assets/images/Screen-Layout-Editor_002.png"><img class="aligncenter size-medium wp-image-3599" alt="arandr_002" src="/assets/images/Screen-Layout-Editor_002-245x300.png" width="245" height="300" /></a>La situazione che dovreste ottenere &egrave; quella in figura sopra. Ecco fatto, adesso potete usare monitor multipli in Xfce in maniera decisamente pi&ugrave; efficace. <strong>Attenzione</strong> per&ograve; che al riavvio o comunque ad un successivo accesso, la situazione torner&agrave; allo stato originario. Per rendere il tutto <strong>permanente</strong> dobbiamo salvare un piccolo script e aggiungerlo all'avvio di Xfce.</p>
+<p>Per prima cosa, salviamo lo script, cliccando su <strong>Layout -> Salva come</strong>, come vedrete, salver&agrave; all'interno della directory <code>.screenlayout</code> all'interno della vostra home, poi basta andare in <strong>Impostazioni -> Sessione e avvio</strong>, e aggiungere lo script appena creato ai programmi in avvio (scheda <strong>Avvio automatico</strong>, poi <strong>Aggiungi</strong>, diamo un nome e scegliamo il file creato in precedenza).</p>
+<p>Finito, godetevi i monitor multipli su Xfce!!</p>
+<p>Alla prossima..</p>

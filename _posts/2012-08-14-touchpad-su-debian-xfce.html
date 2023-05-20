@@ -1,0 +1,61 @@
+---
+layout: post
+status: publish
+published: true
+title: Touchpad su Debian + XFCE
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3375
+wordpress_url: http://www.red-blue.it/?p=3375
+date: '2012-08-14 12:02:28 +0100'
+date_gmt: '2012-08-14 10:02:28 +0100'
+categories:
+- tips & tricks
+- linux
+- debian
+tags:
+- debian
+- linux
+- tips
+- tricks
+- xfce
+- touchpad
+comments: []
+---
+<p>Ultimamente sulla mia <strong>Debian Sid</strong> sto utilizzando <strong>Xfce</strong> come <strong>DE</strong>, con soddisfazione devo ammettere. Ho notato per&ograve; che di default il clic col tocco sul <strong>touchpad</strong> non &egrave; abilitato, certo si tratta di un problema non insormontabile, il dispositivo funziona comunque (basta usare i tasti fisici per il clic, e portare il cursore sulla barra di scorrimento del browser ad esempio), ma se pensiamo all'uso con la batteria, &egrave; evidente come sia pi&ugrave; comodo usare direttamente il tocco, per cui ecco come <strong>correggere</strong> questa situazione.</p>
+<p>Innanzi tutto, il dispositivo in questione &egrave; identificato come:</p>
+<pre class="brush: bash; gutter: false">N: Name="SynPS/2 Synaptics TouchPad"</pre>
+<p>Per verificare che anche il vostro notebook sia dotato dello stesso dispositivo (cosa peraltro probabile), usate questo comando:</p>
+<pre class="brush: bash; gutter: false">egrep -i &#039;synap|alps|etps&#039; /proc/bus/input/devices</pre>
+<p>Bene, per abilitare il <strong>clic col tocco</strong> e lo <strong>scorrimento verticale</strong>, bisogna editare il seguente file:</p>
+<pre class="brush: bash; gutter: false">sudo nano /usr/share/X11/xorg.conf.d/50-synaptics.conf</pre>
+<p>Trovate la sezione (dovrebbe trovarsi all'inizio del file):</p>
+<pre class="brush: bash; gutter: true">Section "InputClass"
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Identifier "touchpad catchall"
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Driver "synaptics"
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MatchIsTouchpad "on"
+
+EndSection</pre>
+<p>E modificatela in:</p>
+<pre class="brush: bash; gutter: true">Section "InputClass"
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Identifier "touchpad catchall"
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Driver "synaptics"
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MatchIsTouchpad "on"
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Option "TapButton1" "1"
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Option "VertEdgeScroll" "1"
+
+EndSection</pre>
+<p>Praticamente occorre <strong>inserire</strong> le due righe che iniziano per "<strong>Option</strong>". Riavviate il sistema e il touchpad sar&agrave; ora totalmente funzionante.. ;)</p>
+<p><strong>Buon Ferragosto!!</strong></p>
+<p>Alla prossima..</p>

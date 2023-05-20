@@ -1,0 +1,106 @@
+---
+layout: post
+status: publish
+published: true
+title: Webcam ALi Corp. M5602 (0402:5602) su Linux, finalmente funziona!!
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2626
+wordpress_url: http://www.red-blue.it/?p=2626
+date: '2011-10-21 15:51:04 +0100'
+date_gmt: '2011-10-21 13:51:04 +0100'
+categories:
+- tips & tricks
+- linux
+- debian
+- notebook
+- asus a6ja
+tags:
+- debian
+- linux
+- skype
+- asus a6ja
+- webcam
+- v4l
+comments:
+- id: 8119
+  author: felix
+  author_email: felix_g@hotmail.it
+  author_url: ''
+  date: '2011-11-04 20:21:53 +0100'
+  date_gmt: '2011-11-04 19:21:53 +0100'
+  content: purtroppo sull'ultima release ubuntu non funziona e non viene supportata
+- id: 8123
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-11-05 09:43:57 +0100'
+  date_gmt: '2011-11-05 08:43:57 +0100'
+  content: "Ciao, ma sei sicuro? Perch&egrave; il supporto non dipende dalla distribuzione,
+    ma dal kernel, e nell'ultima Ubuntu c'&egrave; appunto il kernel 3.0.0.0, quindi
+    il supporto dovrebbe essere garantito.\r\n\r\nAnche cercando sul forum della comunit&agrave;
+    italiana di Ubuntu molti utenti dicono che sono riusciti finalmente a farla andare
+    senza troppi problemi, almeno con Skype (per altri programmi sinceramente non
+    ho provato dato che non li uso, ma non escludo qualche test nel prossimo futuro).
+    Tu che difficolt&agrave; hai riscontrato?"
+- id: 8315
+  author: ubaldo51
+  author_email: u_aceti@virgilio.it
+  author_url: ''
+  date: '2011-12-08 17:43:24 +0100'
+  date_gmt: '2011-12-08 16:43:24 +0100'
+  content: "Buonasera a tutti.\r\nAl Sig.RedBlue,avrei una domanda da chiederLe:\r\nho
+    un Laptop della Asus con Ubuntu 11.10 Kernel 3.0.0.14, e con integrata proprio
+    quella webcam\"ALi Corp. M5602 \",funziona bene con Cheese ma non con Skype,fin
+    quando dopo aver inserito nel terminale \"LD_PRELOAD=/usr/lib/i386-linux-gnu/libv4l/v4l1compat.so
+    skype\",da Lei menzionato sopra, come per magia anche su skype ora funziona la
+    webcam.\r\nLa domanda &egrave;:Vorrebbe cortesemente spigare cosa intende con
+    modificare il lanciatore kickoff?,perch&egrave; rimane aperto il terminale,si
+    puo fare qualcosa?.\r\nLa ringrazio anticipatamente,un saluto affettuoso da Ubaldo"
+- id: 8321
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-12-09 17:40:20 +0100'
+  date_gmt: '2011-12-09 16:40:20 +0100'
+  content: |-
+    Si tratta dell'icona attraverso la quale lanci il programma da mene di sistema.. Il "collegamento nel menu Start", se hai familiarit&agrave; con Windows..
+
+    Si parla di Kickoff se usi KDE, altrimenti con Gnome esiste un'icona "Menu di sistema" attraverso la quale puoi andare a modificare il lanciatore di Skype.. Inserisci la stringa che hai gi&agrave; usato l&igrave; e quando avvierai Skype non aprir&agrave; pi&ugrave; il terminale.. ;)
+- id: 8323
+  author: ubaldo
+  author_email: u_aceti@virgilio.it
+  author_url: ''
+  date: '2011-12-10 07:53:40 +0100'
+  date_gmt: '2011-12-10 06:53:40 +0100'
+  content: "Buongiorno Sig.RedBlue\r\nLe rispondo ora,ringraziandoLa ho risolto come
+    da Lei spiegato nel post.\r\nMi scuso per la domanda sul Kickoff,uso Gnome Ubuntu
+    come DE,ho eseguito i passaggi da: Menu di sistema>Internet>Skype>modifica,ho
+    tolto dal \"tab comando skype\",ho copia/incollato questa riga\"LD_PRELOAD=/usr/lib/i386-linux-gnu/libv4l/v4l1compat.so
+    skype\",senza gli apici e come per magia ha funzionato la webcam su skype.\r\nNon
+    voglio annaiarLa oltre,ma La ringrazio del suo prezioso aiuto,grazie di esistere.\r\nUbaldo
+    in quel di Como"
+- id: 8326
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-12-10 09:10:57 +0100'
+  date_gmt: '2011-12-10 08:10:57 +0100'
+  content: Di niente, spero di rivederti su questo blog!! ;)
+---
+<p>Come sapete, il mio notebook &egrave; morto, e questo mi ha costretto a tornare al vecchio, glorioso <strong>Asus A6Ja</strong> di cui non mi sono mai voluto privare.</p>
+<p>Non solo, i tanti <a href="http://localhost:4000/linux/ubuntu-kubuntu-o-quale-de-scegliere.html" target="_blank">dubbi relativi a quale DE usare</a> mi hanno portato a prendere una decisione per certi versi storica: <strong>sono tornato alle origini</strong>, al punto da cui avevo iniziato, sono ritornato a <strong>Debian</strong>!</p>
+<p>Precisamente, sono partito da una <strong>NetInst</strong> dell'ultima <strong>Debian 6</strong>, per passare poi a <strong>Sid</strong> (ramo unstable quindi) ed installarci su <strong>KDE 4</strong> versione base (con solo Plasma installato praticamente), sul quale poi aggiungere pezzo per pezzo tutto ci&ograve; di cui ho bisogno.</p>
+<p><!--moreContinua a leggere.. --><br />
+Niente di speciale, si tratta di installare pacchetti abbastanza comuni (<strong>Network Manager</strong>, <strong>Alsa</strong>, <strong>PulseAudio</strong>, etc.), ma ho avuto la possibilit&agrave; di rimettere mano alla <strong>webcam</strong> di questo notebook, che praticamente non ero mai riuscito ad utilizzare su Linux, nemmeno per sbaglio, una specie di chimera praticamente. La webcam in questione &egrave; indicata dal comando <code>lsusb</code> nel seguente modo:</p>
+<pre class="brush: bash; gutter: true">ID 0402:5602 ALi Corp. M5602 Video Camera Controller</pre>
+<p>Bene, da una ricerca in rete &egrave; risultato che ancora parecchi di quelli che possiedono questo aggeggino hanno grossi problemi nel farlo funzionare, ma almeno, e gi&agrave; da un po' a dire il vero, oggi <strong>&egrave; supportata direttamente dal kernel</strong>.</p>
+<p>Bene, andando al succo della questione, per usare correttamente questa webcam con Skype (non ho testato con altri software dato che non li uso, ma in rete leggo che anche Kopete riesce ad usarla senza problemi) su una <strong>Debian Sid con kernel 3.0.0.2</strong> basta avviare il programma con questo comando:</p>
+<pre class="brush: bash; gutter: true">LD_PRELOAD=/usr/lib/i386-linux-gnu/libv4l/v4l1compat.so skype</pre>
+<p>Come per magia, riuscirete ad usare anche la webcam, e devo dire che funziona anche parecchio bene!!</p>
+<p>Ovviamente, poi conviene modificare direttamente il <strong>lanciatore</strong> in Kickoff in modo che ogni volta Skype venga avviato nel modo giusto.. ;)</p>
+<p>Alla prossima..</p>
+<p><strong>PS</strong>. Da quello che ho letto, lo stesso comando potrebbe risolvere tutti i problemi anche in <strong>Ubuntu</strong>/<strong>Kubuntu</strong>..</p>

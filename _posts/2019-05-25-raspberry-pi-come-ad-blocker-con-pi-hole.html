@@ -1,0 +1,87 @@
+---
+layout: post
+status: publish
+published: true
+title: Raspberry Pi come ad-blocker con Pi-Hole
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3985
+wordpress_url: https://www.red-blue.it/?p=3985
+date: '2019-05-25 16:35:20 +0100'
+date_gmt: '2019-05-25 14:35:20 +0100'
+categories:
+- guide
+- linux
+- in evidenza
+- raspberry pi
+tags:
+- guida
+- linux
+- raspberry pi
+- pi-hole
+- ad-blocker
+comments: []
+---
+<p><!-- wp:paragraph --></p>
+<p>Tra le sue molteplici possibilit&agrave;, <strong>Raspberry Pi</strong> ha anche quella di funzionare da <strong>ad-blocke</strong>r. </p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ogni moderno sito web contiene pubblicit&agrave;, in forma pi&ugrave; o meno invasiva. Esistono tantissime estensioni per i browser pi&ugrave; popolari che consentono di bloccare pubblicit&agrave; e sistemi di tracking in generale, ma ormai sono stati sviluppati script capaci di rilevare tali estensioni e bloccare la visibilit&agrave; dei contenuti finch&eacute; l'utente non disabilita l'ad-blocker.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"id":3873,"align":"center"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter"><img src="/assets/images/Pi_3_Model_B.png" alt="" class="wp-image-3873"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p><strong>Pi-Hole</strong> (<a rel="noreferrer noopener" aria-label="sito ufficiale (apre in una nuova scheda)" href="https://pi-hole.net/" target="_blank">sito ufficiale</a>) &egrave; un software che opera a livello <strong>DNS</strong>, il che significa che agisce prima che qualsiasi contenuto venga caricato, e soprattutto, basta un'unica installazione per bloccare tutta la pubblicit&agrave; sulla rete di casa.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:more {"customText":"Continua a leggere..."} --><br />
+<!--more Continua a leggere...--><br />
+<!-- /wp:more --></p>
+<p><!-- wp:paragraph --></p>
+<p>Questo meccanismo &egrave; molto pi&ugrave; difficile da rilevare, in quanto viene visto praticamente come un <strong>normale problema di rete</strong> che impedisce la visualizzazione di un certo contenuto.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Pi-Hole si basa su una serie di <strong>blacklist</strong> (aggiornate abbastanza di frequente), quindi una volta installato e configurato praticamente non necessit&agrave; pi&ugrave; di alcuna attenzione.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Vediamo come procedere: per prima cosa, occorre avere un Raspberry Pi (almeno la <strong>versione 2</strong>) con installato l'OS, va benissimo Raspbian (<a rel="noreferrer noopener" aria-label="qui (apre in una nuova scheda)" href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank">qui</a> tutte le informazioni e le iso da scaricare), e poi collegarlo via cavo al router di casa. Poi per <strong>installare</strong> Pi-Hole basta il comando seguente:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:preformatted {"className":"wp-block-code"} --></p>
+<pre class="wp-block-preformatted wp-block-code">sudo curl -sSL https://install.pi-hole.net | bash</pre>
+<p><!-- /wp:preformatted --></p>
+<p><!-- wp:paragraph --></p>
+<p>L'installazione &egrave; piuttosto semplice, fondamentalmente basta accettare quasi tutto ci&ograve; che ci viene proposto di default. L'unica vera impostazione da fare riguarda il <strong>provider DNS</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"id":3986,"align":"center"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter"><img src="/assets/images/es_pihole01.jpg" alt="" class="wp-image-3986"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Bisogna andare in fondo all'elenco e scegliere <strong>Custom</strong>, per poi inserire l'IP del router di casa (nel mio caso 192.168.1.1), seguito ad esempio dal DNS di Google (8.8.8.8), separati da una virgola. Ricordiamo che l'idea &egrave; quella di far funzionare Pi-Hole come DNS per la rete locale.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto proseguite l'installazione e personalmente consiglio di installare anche <strong>l'interfaccia web</strong>, tramite la quale sar&agrave; molto semplice gestire il tutto (oltre al fatto che &egrave; molto interessante controllare i grafici sul traffico di rete che vengono proposti).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Terminata l'installazione, vi sar&agrave; indicato l'indirizzo IP al quale potrete raggiungere l'interfaccia web, che apparir&agrave; molto simile alla seguente (la password per accedere vi verr&agrave; comunicata in fase di installazione):</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"id":3987,"align":"center"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter"><img src="/assets/images/pi-hole-dashboard-1024x473.png" alt="" class="wp-image-3987"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ovviamente per una installazione nuova di zecca non avrete grosse statistiche da visualizzare, ma prima di concludere &egrave; molto importante il menu Settings, attraverso il quale potremo decidere di usare Pi-Hole come <strong>DHCP</strong> server per la nostra rete (tenendo ben presente che in una rete pu&ograve; esserci un solo server DHCP, quindi nel caso occorre entrare nelle impostazioni del router e disabilitare questa funzionalit&agrave;), in modo che tutti i dispositivi che si connettono alla rete sfruttino in realt&agrave; Pi-Hole e godano quindi dell'ad-blocking.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Se invece decidete di continuare ad usare il router come DHCP, allora ricordate di impostare l'IP del Raspberry Pi con installato Pi-Hole come DNS locale.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>

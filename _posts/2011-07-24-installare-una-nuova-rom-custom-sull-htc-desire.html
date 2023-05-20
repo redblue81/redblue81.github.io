@@ -1,0 +1,116 @@
+---
+layout: post
+status: publish
+published: true
+title: Installare una nuova ROM (custom) sull'HTC Desire
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2231
+wordpress_url: http://www.red-blue.it/?p=2231
+date: '2011-07-24 10:42:05 +0100'
+date_gmt: '2011-07-24 08:42:05 +0100'
+categories:
+- guide
+- hi-tech
+- telefonia
+- in evidenza
+- android
+tags:
+- root
+- htc
+- desire
+- cyanogenmod
+- rom custom
+- unrevoked
+- clockwordmod
+- recovery
+- 7.0.3
+comments:
+- id: 7696
+  author: S2E (simple2ext) per Android - RedBlue&#039;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/tips-tricks/s2e-simple2ext-per-android.html
+  date: '2011-07-25 09:44:46 +0100'
+  date_gmt: '2011-07-25 07:44:46 +0100'
+  content: "[...] Segui RedBlue&#039;s Blog anche su..                &laquo; Installare
+    una nuova ROM (custom) sull&#8217;HTC Desire [...]"
+- id: 7752
+  author: Luca
+  author_email: joshuagame@gmail.com
+  author_url: ''
+  date: '2011-08-06 13:01:20 +0100'
+  date_gmt: '2011-08-06 11:01:20 +0100'
+  content: "Ciao, sto cercando anche io di installare la Cyanogen, ma la Unrevoked
+    sembra proprio non funzionare: non trova il mio Desire appena lo connetto con
+    l'USB.\r\nPremetto che sto lavorando con Windows XP e che non ho HTC Synch installato.\r\nDa
+    cosa pu&ograve; dipendere il problema.\r\nGrazie in anticipo,\r\nLuca"
+- id: 7753
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2011-08-07 10:16:51 +0100'
+  date_gmt: '2011-08-07 08:16:51 +0100'
+  content: |-
+    Ciao!!
+
+    Allora, per prima cosa ti consiglio di guardare questa <a href="http://wiki.cyanogenmod.com/index.php?title=HTC_Desire_%28GSM%29:_Full_Update_Guide" rel="nofollow">guida</a> (se non l'hai gi&agrave; fatto).. Hai installato i drivers consigliati??
+- id: 36190
+  author: RedBlue&#039;s Blog Top 10 2012 - RedBlue&#039;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/blog/redblue-s-blog-top-10-2012.html
+  date: '2013-01-06 11:09:16 +0100'
+  date_gmt: '2013-01-06 10:09:16 +0100'
+  content: "[...] Installare una nuova ROM (custom) sull&#8217;HTC Desire [...]"
+- id: 139399
+  author: ZioNick
+  author_email: peaceisthesolution@hotmail.it
+  author_url: ''
+  date: '2014-02-25 16:28:17 +0100'
+  date_gmt: '2014-02-25 15:28:17 +0100'
+  content: "Messa la cyanogenmod, il mio htc desire si avvia ma mi esce solo a palla
+    il logo cyanogen (mod7) senza mai cambiare nulla...\r\nDevo buttare il mio smartphone?"
+- id: 144482
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2014-03-05 21:20:10 +0100'
+  date_gmt: '2014-03-05 20:20:10 +0100'
+  content: Ma no.. Prova a riflashare.. A volte pu&ograve; succedere.. Fammi sapere..
+    ;)
+- id: 149880
+  author: Enne
+  author_email: ennei92@gmail.com
+  author_url: ''
+  date: '2014-03-14 13:57:34 +0100'
+  date_gmt: '2014-03-14 12:57:34 +0100'
+  content: Ciao, faccio partire Unrevoked e dopo un riavvio mi dice "waiting for bootloader;
+    make sure driver is instaled!" che devo fare? Ho provato ad andare su FASTBOOT
+    ma quando lo faccio Unrevoked mi dice "waiting for HBOOT to be ready..."
+- id: 150358
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2014-03-15 10:24:23 +0100'
+  date_gmt: '2014-03-15 09:24:23 +0100'
+  content: |-
+    Ciao, che versione di Android hai? Perch&egrave; questo software &egrave; ormai obosoleto..
+
+    Prova a vedere qui.. http://www.htcdev.com/bootloader/
+---
+<p><span style="text-decoration: underline;"><strong>PREMESSA 1</strong></span>: sebbene questa guida sia molto semplificata, l'operazione che vado a descrivere non &egrave; comunque esente da rischi e invalida la garanzia, quindi non mi assumo responsabilit&agrave; per eventuali problemi al terminale (brick)!!</p>
+<p><span style="text-decoration: underline;"><strong>PREMESSA 2</strong></span>: esiste un altro modo per giungere allo stesso risultato, che consente addirittura maggiore controllo del terminale; personalmente, ho scelto questa procedura semplificata e meno complessa che pi&ugrave; si addice alle mie esigenze.</p>
+<p>Detto questo, partiamo con la guida..</p>
+<p>Ieri ho capito che per il mio <strong>Desire</strong> era giunta l'ora di una nuova vita. Capiamoci, l'interfaccia <strong>Sense</strong> di HTC &egrave; strepitosa, ma anche piuttosto pesante, e lo spazio di memorizzazione sul terminale non &egrave; sufficiente per un numero di applicazioni che, anche senza giochi, &egrave; notevole. Per di pi&ugrave;, <strong>l'App2SD</strong> presente nell'Android Market, che sfrutta la capacit&agrave; nativa di Android (a partire dalla versione <strong>2.2</strong>) di spostare le app sulla memoria esterna, non &egrave; il massimo della vita.</p>
+<p>Allora, ho deciso di ricorrere ad una ROM custom senza l'interfaccia Sense e con la possibilit&agrave; di installare uno script per sfruttare una partizione in formato <strong>EXT3/4</strong> sulla SD: la scelta &egrave; ricaduta sulla <a href="http://www.cyanogenmod.com/" target="_blank">Cyanogenmod</a> 7.0.3, pietra miliare nell'ambito delle ROM custom, base per molte altre ROM di successo, e oltretutto graficamente molto accattivante (parere personale).&nbsp;Ecco la procedura che ho seguito..</p>
+<p><a href="/assets/images/cyanogenmod_wallpaper1.png"><img class="aligncenter size-medium wp-image-2233" title="cyanogenmod_wallpaper1" src="/assets/images/cyanogenmod_wallpaper1-300x300.png" alt="" width="300" height="300" /></a></p>
+<p><span style="color: #ff0000;"><strong>Ottenere i permessi di root</strong></span></p>
+<p>Questa operazione &egrave; <span style="text-decoration: underline;">assolutamente necessaria</span>, altrimenti ogni altro discorso &egrave; superfluo. Il metodo pi&ugrave; semplice che ho trovato &egrave; quello di utilizzare il software <a href="http://unrevoked.com/" target="_blank">Unrevoked</a>, disponibile per <strong>Windows</strong>, <strong>Linux</strong> e <strong>MacOSX</strong>. Basta scaricare il programma (scegliendo il terminale, nel mio caso l'HTC Desire, e l'OS), collegare il terminale tramite il cavetto <strong>USB</strong>, attivare il <strong>debug USB</strong>, e aspettare!! Ci saranno un paio di riavvii (<span style="text-decoration: underline;">assolutamente normali</span>), e poi avrete il vostro terminale libero da ogni blocco.</p>
+<p>Fattore importantissimo, verr&agrave; installata anche la <strong>ClockworkMod Recovery</strong>, indispensabile per proseguire.</p>
+<p><span style="color: #ff0000;"><strong>Installazione della custom ROM</strong></span></p>
+<p>Eccoci al piatto forte, per prima cosa scaricare dall'Android Market <a href="https://market.android.com/details?id=com.koushikdutta.rommanager" target="_blank">ROM Manager</a> (&egrave; gratuito tranquilli), poi scaricate la ROM che preferite (nel mio caso la Cyanogenmod da <a href="http://download.cyanogenmod.com/?type=stable&device=bravo" target="_blank">qui</a>, attenzione a scegliere bene il vostro terminale, l'HTC Desire europeo &egrave; il GSM, quello americano &egrave; il CDMA, e le due versioni ovviamente <span style="text-decoration: underline;"><strong>NON</strong></span> sono compatibili) e copiatela nella vostra SD.</p>
+<p>A questo punto, aprite ROM Manager e scegliete <strong>Installa ROM da SD</strong>. A questo punto vi chieder&agrave; cosa fare, se volete selezionate <strong>Backup ROM esistente</strong>, mentre dovete selezionare i <strong>wipe</strong> che vi propone (attenzione, questo <strong>cancella tutti i vostri dati presenti sul terminale!!</strong>), proseguite e il terminale sar&agrave; riavviato ed eseguir&agrave; tutte le operazioni richieste..</p>
+<p>Al riavvio avrete la vostra nuova ROM funzionante.. ;)</p>
+<p>Alla prossima..</p>

@@ -1,0 +1,117 @@
+---
+layout: post
+status: publish
+published: true
+title: 'Problemi di temperatura di Ubuntu 10.04 Lucid Lynx - Soluzione - Parte 1:
+  riconfigurare l''ambiente grafico'
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1144
+wordpress_url: http://redblue.netsons.org/?p=1144
+date: '2010-05-27 13:16:28 +0100'
+date_gmt: '2010-05-27 12:16:28 +0100'
+categories:
+- guide
+- linux
+- ubuntu
+- notebook
+- hp dv6
+- in evidenza
+tags:
+- ubuntu
+- ati
+- temperatura
+- fglrx
+- lucid lynx
+- '10.04'
+- mobility radeon 4530 hd
+- catalyst
+- '10.4'
+comments:
+- id: 6282
+  author: Lino
+  author_email: linofantasia@gmail.com
+  author_url: http://www.anxurweb.com
+  date: '2010-05-27 17:43:00 +0100'
+  date_gmt: '2010-05-27 16:43:00 +0100'
+  content: http://forum.ubuntu-it.org/index.php/topic,329562 Questo l'hai letto?
+- id: 6283
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2010-05-27 17:50:52 +0100'
+  date_gmt: '2010-05-27 16:50:52 +0100'
+  content: Fortunatamente non soffro di questi problemi.. Grazie della segnalazione
+    cmq.. ;)
+- id: 6284
+  author: Marco
+  author_email: nonnoelogu@gmail.com
+  author_url: ''
+  date: '2010-05-27 17:54:52 +0100'
+  date_gmt: '2010-05-27 16:54:52 +0100'
+  content: "La ringrazio per la velocit&agrave; con cui ha postato ;-)\r\nFatti tutti
+    i passaggi, ora non ci resta che vedere se sta temperatura scende un po'\r\nGrazie"
+- id: 6285
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2010-05-27 18:07:39 +0100'
+  date_gmt: '2010-05-27 17:07:39 +0100'
+  content: Se il notebook supporta i sensori per il controllo della temperatura puoi
+    provare a vedere gi&agrave; da ora come va.. Prova ad installare <code>lm-sensors</code>
+    e <code>sensors-applet</code>, poi aggiungi al pannello l'applet <code>Hardware
+    Sensors Monitor</code>..
+- id: 6289
+  author: Marco
+  author_email: nonnoelogu@gmail.com
+  author_url: ''
+  date: '2010-05-27 22:34:25 +0100'
+  date_gmt: '2010-05-27 21:34:25 +0100'
+  content: "I core sono sui 60&deg;-61&deg;C\r\nMentre gli HDD 42&deg;C\r\nMolto meglio,
+    grazie!\r\nUnica cosa ma penso sia qualche garbuglio che ho creato io, facendo
+    l'installazione cos&igrave; non mi mostrava pi&ugrave; il Catalyst Control Center.\r\nCmq
+    dopo qualche problema con un vecchio pacchetto danneggiato sono riuscito a sistemare
+    e ora sembra andare tutto meglio.\r\nTi ringrazio veramente"
+- id: 6324
+  author: 'Problemi di temperatura di Lucid Lynx - Soluzione - Parte 2: Powernowd,
+    LM-Sensors e Plymouth - RedBlue&#39;s Blog'
+  author_email: ''
+  author_url: http://redblue.netsons.org/guide/problemi-di-temperatura-di-lucid-lynx-soluzione-parte-2-powernowd-lm-sensors-e-plymouth.html
+  date: '2010-05-29 19:51:21 +0100'
+  date_gmt: '2010-05-29 18:51:21 +0100'
+  content: "[...] di Lucid con la temperatura, dovuto al driver ATI open source. Il
+    grosso &egrave; stato fatto con la prima parte, ora daremo una sistemata allo
+    scaling della CPU, installeremo una piccola applet che ci [...]"
+---
+<p>Come ho evidenziato nel precedente <a href="http://localhost:4000/linux/breaking-news-qualche-problema-con-lucid-lynx-e-la-temperatura.html" target="_blank">post</a>, il mio notebook con l'arrivo del caldo ha cominciato a soffrire di blocchi improvvisi e spegnimenti dovuti al surriscaldamento. Tale problema si &egrave; presentato solo con l'ultima release di Ubuntu, la <strong>10.04 Lucid Lynx</strong> e, dopo un p&ograve; prove, deduco che si tratta di un problema relativo esclusivamente al comparto video, composto sul mio notebook da una scheda video <strong>ATI Mobility Radeon 4530 HD</strong>. Da quello che posso ipotizzare io, e da quello che ho letto in rete, dovrebbe trattarsi di un problema relativo ai <strong>driver radeon open source</strong>, che non riescono a gestire bene la modalit&agrave; Powersave della scheda video, oltre, mi permetto di aggiungere io, a non gestire il sensore di temperatura della scheda stessa, probabilmente non riuscendo quindi a leggere la corretta temperatura. Per risolvere il problema ho deciso di ricorrere ai driver proprietari rilasciati da ATI, vi illustro come installarli..</p>
+<p><strong><span style="text-decoration: underline;">ATTENZIONE!! Quanto scritto in questa guida &egrave; rivolto solo ed esclusivamente alle schede video ATI!! Ho letto di problemi riguardanti anche le NVidia, ma non possedendone una non posso fare alcuna considerazione a riguardo!! Inoltre nel mio caso la procedura che ho seguito ha risolto il problema, ma non garantisco che sia universalmente efficace (come sopra, l'ho testata solo sulla mia configurazione)..</span></strong></p>
+<p><strong>Primo passo</strong> - Installare i driver proprietari ATI</p>
+<p>Personalmente non sono riuscito ad utilizzare la procedura automatica di Ubuntu, per il semplice motivo che la temperatura si &egrave; alzata e si &egrave; spento tutto prima che terminasse l'installazione, per cui mi sono ritrovato con un ambiente grafico inutilizzabile.. Ho fatto perci&ograve; ricorso all'ultima versione dei <strong>Catalyst</strong> rilasciata dalla ATI, la <strong>10.4</strong>, scaricabile da <a href="http://support.amd.com/it/gpudownload/Pages/index.aspx" target="_blank">qui</a> (attenzione a scegliere correttamente il vostro hardware e la vostra architettura). Prima di proseguire, prepariamo il sistema installando tutto il necessario:</p>
+<blockquote><p><code>apt-get install build-essential fakeroot dh-make libstdc++6 gcc-4.4-base dkms module-assistant linux-headers-$(uname -r)</code></p></blockquote>
+<p>A questo punto, <span style="text-decoration: underline;">supponendo che stiate utilizzando i driver open</span> (altrimenti &egrave; fondamentale disinstallare prima i vecchi driver proprietari, come ho spiegato <a href="http://localhost:4000/guide/effetti-3d-su-karmic-con-driver-ati-open-source-addio-fglrx.html#more-805" target="_blank">qui</a>), consiglio di riavviare e di selezionare la <strong>modalit&agrave; di ripristino</strong> del kernel da Grub, per poi selezionare "<strong>Avvia shell di root</strong>", e da qui dare i seguenti comandi:</p>
+<blockquote><p><code>cd percorso-della-dir-dove-si-&egrave;-scaricato-il-driver<br />
+chmod a+x ati-driver-installer-10-4-x86.x86_64.run<br />
+./ati-driver-installer-10-4-x86.x86_64.run</code></p></blockquote>
+<p>Ovviamente quello che ho indicato &egrave; il file che ho usato io, se quello che fa al caso vostro &egrave; un altro va indicato quello.. A questo punto partir&agrave; l'installazione automatica, al termine della quale tornerete alla shell di root.</p>
+<p><strong>Secondo passo</strong> - Configurare i driver proprietari</p>
+<p>A questo punto configuriamo il driver: per prima cosa aggiorniamo la lista dei moduli:</p>
+<blockquote><p><code>depmod -a</code></p></blockquote>
+<p>Poi la configurazione vera e propria (<strong>NB.</strong> Ormai il file <strong>xorg.conf</strong> non viene pi&ugrave; usato di default, ma crearlo non &egrave; un errore), con i seguenti comandi:</p>
+<blockquote><p><code>cd /etc/X11<br />
+aticonfig --initial<br />
+aticonfig --overlay-type=Xv</code></p></blockquote>
+<p>Se vi viene restituito un errore dall'ultimo comando, provate con:</p>
+<blockquote><p><code>aticonfig --overlay-type=opengl</code></p></blockquote>
+<p>Ora riavviare il computer e verificate l'effettivo funzionamento del nuovo driver con il comando:</p>
+<blockquote><p><code>fglrxinfo</code></p></blockquote>
+<p>Che dovrebbe restituire qualcosa del genere:</p>
+<blockquote><p><code>display: :0.0  screen: 0<br />
+OpenGL vendor string: ATI Technologies Inc.<br />
+OpenGL renderer string: ATI Mobility Radeon HD 4500 Series<br />
+OpenGL version string: 3.2.9756 Compatibility Profile Context</code></p></blockquote>
+<p>Ecco fatto.. Per maggiore sicurezza il sottoscritto ha anche impostato la modalit&agrave; <strong>Powerplay</strong> (dal Catalyst Control Center che troverete in <strong>Sistema -> Preferenze</strong>) su <strong>Massimo batteria</strong> e disabilitato gli effetti di <strong>Compiz</strong>..</p>
+<p>Questo dovrebbe bastare a far calare la temperatura della vostra GPU (almeno nel mio caso ha funzionato). Da notare che ora avrete qualche problemino con Plymouth, il nuovo splashscreen di avvio e chiusura che non riconoscer&agrave; pi&ugrave; la giusta risoluzione. Questo, insieme a qualche altra "aggiustatina" che consentir&agrave; di controllare meglio la temperatura, sar&agrave; l'oggetto della seconda parte di questa guida..</p>
+<p>Stay tuned.. ;)</p>

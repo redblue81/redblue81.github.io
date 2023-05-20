@@ -1,0 +1,108 @@
+---
+layout: post
+status: publish
+published: true
+title: Grafica ibrida Intel/AMD e Debian, la mia situazione
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3543
+wordpress_url: http://www.red-blue.it/?p=3543
+date: '2013-08-23 18:47:59 +0100'
+date_gmt: '2013-08-23 16:47:59 +0100'
+categories:
+- linux
+- debian
+- notebook
+- samsung serie 3
+tags:
+- debian
+- amd
+- grafica ibrida
+- intel
+- vgaswitcheroo
+comments:
+- id: 72974
+  author: Stefano Marzorati
+  author_email: stefano.marzorati@gmail.com
+  author_url: ''
+  date: '2013-08-25 14:46:13 +0100'
+  date_gmt: '2013-08-25 12:46:13 +0100'
+  content: |-
+    Due anni fa, mia sorella prese uno dei primi notebook con scheda intel e nvidia. Ovviamente non c'era molto da fare. L'anno successivo son nati un po' di progetti tipo bumblebee, ma la stabilit&agrave; era qualcosa di utopistico. Usare solo la scheda intel, dopo aver pagato per un'ottima scheda nvidia era una bestemmia e usando perennemente l'nvidia scoprii che comunque la intel veniva attivata e ovviamente consumava. Risultato, la batteria durava poco niente.
+    Con gran dispiacere mia sorella dovette tornare ad usare Windows 7.
+    Ovviamente mi dovetti arrendere, anche perch&egrave; non ero io l'utlizzatore finale. Spero per te che riesca a trovare il modo di farlo funzionare bene quanto su Windows.
+- id: 72975
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2013-08-25 15:17:19 +0100'
+  date_gmt: '2013-08-25 13:17:19 +0100'
+  content: "Ciao e grazie del commento.. \n\nGuarda, come ho scritto potrei direttamente
+    buttarmi sui drivers proprietari, che supportano lo switch, almeno stando alla
+    documentazione che ho letto.. \n\nDiciamo che al momento preferisco accettare
+    la sfida &egrave; provare a far andare il tutto con gli open source!! ;-)"
+- id: 78428
+  author: Zoomingin
+  author_email: staff@zoomingin.net
+  author_url: http://www.zoomingin.net
+  date: '2013-09-24 20:47:02 +0100'
+  date_gmt: '2013-09-24 18:47:02 +0100'
+  content: "io sul NP350V5C-S09IT ho gli stessi problemi con ubuntu 13.04 e la 7670M,
+    inizialmente vgaswitcheroo mi funzionava (nel senso che disabilitavo la scheda
+    dedicata e usavo solo la discreta, in modo da risparmiare batteria aspettando
+    che i driver open gestiscano meglio le schede ibride) ma adesso nemmeno pi&ugrave;
+    quello funziona (ma sicuramente &egrave; colpa mia perch&eacute; ho fatto una
+    nuova installazione pulita del sistema), mi sono arrangiato mettendo gli ultimi
+    driver intel e sembra che adesso gestisca meglio la durata della batteria e le
+    temperature. \r\nho anche provato i driver proprietari ma l'unica cosa che hanno
+    portato &egrave; una bella schermata nera...."
+- id: 78441
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2013-09-24 22:30:26 +0100'
+  date_gmt: '2013-09-24 20:30:26 +0100'
+  content: Praticamente lo stesso funzionamento che riscontro io.. Scheda video Intel
+    attiva e se provo ad usare l'altra blocco totale.. Mi dici per&ograve; che anche
+    i proprietari non vanno??
+- id: 78531
+  author: Zoomingin
+  author_email: staff@zoomingin.net
+  author_url: http://www.zoomingin.net
+  date: '2013-09-25 09:32:56 +0100'
+  date_gmt: '2013-09-25 07:32:56 +0100'
+  content: 'probabilmente i proprietari non mi vanno perch&eacute; quando l''ho configurato
+    avevo attiva una configurazione dual-monitor e anche riconfigurando gnome 3 non
+    sono riuscito a farla funzionare (da un altro sito ho scoperto che a parit&agrave;
+    di schede video e pc al variare dell''ambiente desktop i driver fglrx funzionavano
+    o meno: http://www.rinorusso.it/2012/11/come-risolvere-luso-eccessivo-della-cpu-e-la-conseguente-scarica-della-batteria-su-ubuntu-12-10-e-derivate/
+    ), inoltre dopo vari tentativi di installazione (anche manuale installando i driver
+    beta dal sito amd) ho optato momentaneamente per gli intel. comunque penso che
+    utilizzando ubuntu 13.04 liscio senza modifiche e installando i driver ati al
+    primo avvio dovrebbe andare (al max basta rilanciare la configurazione di unity),
+    ma in questo momento non posso provare sul mio pc perch&eacute; ho sostituito
+    l'' hard disk con un ssd e quindi cerco di non sputtanare la configurazione e
+    rischiare di dover formattare tutto.'
+- id: 78804
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2013-09-26 20:08:49 +0100'
+  date_gmt: '2013-09-26 18:08:49 +0100'
+  content: Articolo interessante.. Si anche io al momento non ho il tempo materiale
+    di testare n&eacute; i proprietari, n&eacute; tantomeno altre soluzioni open.
+    Appena mi libero un pochino vedr&ograve; di pubblicare altri aggiornamenti sulla
+    situazione..
+---
+<p>Come dicevo in un <a title="La mia (nuova) prima installazione di Debian" href="http://localhost:4000/tips-tricks/la-mia-nuova-prima-installazione-di-debian.html">post precedente</a>, temevo che sfida pi&ugrave; grande per quanto riguarda la configurazione del mio notebook con Debian sarebbe stata la grafica ibrida..</p>
+<p>.. Avevo ragione.. :(</p>
+<p>Il mio notebook ha un <strong>sistema grafico ibrido Intel/AMD</strong> (nello specifico, una <strong>ATI HD 7670M</strong>); come avviene ormai sempre pi&ugrave; spesso, la grafica integrata permette di risparmiare notevolmente la batteria nelle operazioni "comuni". Sto usando i <strong>driver open source</strong> che Debian ha installato in automatico (sia per la parte Intel che per quella AMD).</p>
+<p>La situazione &egrave; semplice, esiste un flag del kernel, <strong>vgaswitcheroo</strong>, che permette lo switch tra scheda integrata (<strong>IGD</strong>) e discreta (o dedicata, <strong>DIS</strong>). Il suo uso sarebbe semplicissimo, pochi comandi da shell per abilitare la scheda dedicata, e per selezionarla a spese di quella integrata. Poi al massimo ci sarebbe da mettere il tutto in uno <strong>script</strong> per dare "eleganza" all'operazione.</p>
+<p>La problematica &egrave; che non vuole saperne di funzionare.. Nello specifico, seguendo le numerosissime guide in rete, riesco ad ottenere (almeno in apparenza) l'<strong>attivazione</strong> della scheda discreta, ma quando tento di effettuare lo <strong>switch</strong> vero e proprio, ecco che inevitabilmente mi ritrovo con lo schermo nero e il sistema <strong>bloccato</strong>.</p>
+<p>Leggendo ancora in rete, credo che il problema sia dovuto alla struttura hardware della grafica ibrida del mio notebook: il mio sistema (e il comportamento dello stesso sotto Windows me lo conferma) usa <strong>sempre e comunque</strong> la scheda integrata, e solo quando il <strong>carico</strong> su questa sale oltre una certa soglia avviene lo switch (del tutto automatico e trasparente) con la dedicata. Evidentemente, questo interagisce negativamente con i driver open di Linux.</p>
+<p>Al momento ammetto di essere fermo ad un punto morto, e sinceramente, poich&egrave; sotto Linux difficilmente mi servir&agrave; mai davvero la scheda dedicata, potrei anche lasciar perdere, ma non sarebbe da me! ;)</p>
+<p>Prima di provare i drivers proprietari (per i quali sarebbe stato sviluppato il supporto completo alla grafica ibrida), far&ograve; qualche altro test. Seguiranno aggiornamenti..</p>
+<p>Stay tuned..</p>

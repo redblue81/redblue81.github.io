@@ -1,0 +1,38 @@
+---
+layout: post
+status: publish
+published: true
+title: Aggiornare Firefox con Ubuntuzilla
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 660
+wordpress_url: http://redblue.netsons.org/?p=660
+date: '2009-08-17 11:44:56 +0100'
+date_gmt: '2009-08-17 10:44:56 +0100'
+categories:
+- tips & tricks
+- linux
+- ubuntu
+- software
+- browser
+- firefox
+tags:
+- tips
+- mozilla
+- script
+- firefox 3.5
+- aggiornamento
+- ubuntuzilla
+comments: []
+---
+<p>Ammettiamolo, gli aggiornamenti per <strong>Firefox</strong> sono decisamente lunghi come tempistica di rilascio, e anche l'aggiornamento secondo il metodo che ho consigliato in precedenza ("<a href="http://localhost:4000/guide/aggiornare-firefox-dopo-averlo-installato-da-tar.html" target="_blank">Aggiornare Firefox dopo averlo installato dai tarball</a>") pu&ograve; essere macchinoso. Ecco allora che ci viene in aiuto <strong>Ubuntuzilla</strong>, un semplice script in <strong>Python</strong> che consente di aggiornare in modo automatico non solo Firefox, ma anche <strong>Thunderbird</strong> e <strong>Seamonkey</strong>.</p>
+<p>Semplicemente, dopo aver verificato la presenza di aggiornamenti sui server, provvede ad installarli in <code>/opt</code>..</p>
+<p>Ubuntuzilla lo trovate <a href="http://sourceforge.net/projects/ubuntuzilla/" target="_blank">qui</a>, in formato <strong>deb</strong>, semplice da installare..</p>
+<p>Il suo utilizzo, nulla di pi&ugrave; semplice, da terminale digitate:</p>
+<blockquote><p><code>ubuntuzilla.py -a install -p firefox</code></p></blockquote>
+<p>Oppure</p>
+<blockquote><p><code>ubuntuzilla.py -a install -p thunderbird</code></p></blockquote>
+<p>Per aggiornare rispettivamente Firefox e/o Thunderbird..</p>

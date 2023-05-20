@@ -1,0 +1,94 @@
+---
+layout: post
+status: publish
+published: true
+title: 'ownCloud su Raspberry Pi: usare SSL'
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3889
+wordpress_url: http://www.red-blue.it/?p=3889
+date: '2016-12-17 16:51:43 +0100'
+date_gmt: '2016-12-17 15:51:43 +0100'
+categories:
+- guide
+- linux
+- raspberry pi
+- raspbian
+tags:
+- guida
+- raspberry pi
+- owncloud
+- ssl
+comments: []
+---
+<p>Dopo aver <a href="http://localhost:4000/guide/owncloud-raspberry-pi.html" target="_blank">installato</a> ownCloud sul nostro Raspberry Pi, e magari aver configurato un servizio di <strong>DNS dinamico</strong> come No-IP per potervi accedere dall'esterno della nostra&nbsp;rete locale, potremmo voler rendere pi&ugrave; sicuro il collegamento, e qui entra in gioco il protocollo <strong>SSL</strong>.</p>
+<p><a href="/assets/images/ownCloud2.jpg"><img class="aligncenter wp-image-3886 size-medium" src="/assets/images/ownCloud2-300x120.png" alt="" width="300" height="120" /></a></p>
+<p><!--moreContinua a leggere...--></p>
+<p>Per prima cosa installiamolo&nbsp;(anche se probabilmente su <strong>Raspbian</strong> &egrave; gi&agrave; tutto pronto):</p>
+<pre class="brush: bash; gutter: false">sudo apt-get install openssl</pre>
+<p>Poi,&nbsp;va <strong>abilitato</strong> nella nostra installazione di Apache:</p>
+<pre class="brush: bash; gutter: false">sudo a2enmod ssl</pre>
+<p>Poi, per comodit&agrave;, creiamo una directory dove andremo ad inserire i certificati una volta ottenuti:</p>
+<pre class="brush: bash; gutter: false">sudo mkdir /etc/apache2/ssl</pre>
+<p>Benissimo, a questo punto basta <strong>creare il nostro certificato</strong> col seguente comando:</p>
+<pre class="brush: bash; gutter: false">sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/sslkey.key -out /etc/apache2/ssl/sslcert.crt</pre>
+<p>Vi verranno poste alcune domande, la pi&ugrave; importante delle quali &egrave; senza dubbio il <strong>Common Name</strong>, alla quale dovrete rispondere con la URL del vostro servizio (ovviamente, parliamo della URL "esterna"). Dopo aver risposto all'ultima domanda, verranno creati il certificato SSL e la relativa chiave nella directory creata in precedenza.</p>
+<p>A questo punto per&ograve;, ancora non abbiamo terminato, in quanto &egrave; necessario <strong>configurare</strong> Apache affinch&egrave; usi SSL. Personalmente, ho scelto di creare un file apposito, ma &egrave; possibile anche modificare quelli esistenti:</p>
+<pre class="brush: bash; gutter: false">sudo nano /etc/apache2/sites-available/owncloud-ssl.conf</pre>
+<p>Con all'interno:</p>
+<pre class="brush: bash; gutter: true"><IfModule mod_ssl.c>
+
+  <VirtualHost *:443>
+
+    ServerAdmin redblue@red-blue.it
+
+    ServerName localhost/owncloud
+
+    ServerAlias owncloud
+
+    DocumentRoot /var/www/owncloud
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+    SSLEngine on
+
+    SSLCertificateFile /etc/apache2/ssl/sslcert.crt
+
+    SSLCertificateKeyFile /etc/apache2/ssl/sslkey.key
+
+    <FilesMatch "\.(cgi|shtml|phtml|php)$">
+
+       SSLOptions +StdEnvVars
+
+    </FilesMatch>
+&egrave;&egrave;&egrave;&egrave;&egrave;
+    <Directory /usr/lib/cgi-bin>&egrave;
+&egrave;
+       SSLOptions +StdEnvVars
+
+    </Directory>
+
+    BrowserMatch "MSIE [2-6]" \
+
+           nokeepalive ssl-unclean-shutdown \
+
+           downgrade-1.0 force-response-1.0
+
+    BrowserMatch "MSIE [17-9]" ssl-unclean-shutdown
+
+  </VirtualHost>
+
+</IfModule></pre>
+<p>Abilitiamo il sito:</p>
+<pre class="brush: bash; gutter: false">sudo a2ensite owncloud-ssl</pre>
+<p>E riavviamo Apache:</p>
+<pre class="brush: bash; gutter: false">sudo systemctl reload apache2.service</pre>
+<p>E abbiamo finito. <strong>Attenzione</strong> per&ograve; perch&egrave; il browser vi dir&agrave; comunque che il certificato SSL usato <strong>non &egrave; attendibile</strong>&nbsp;(anche se vi consentir&agrave; tranquillamente la connessione, &egrave; solo un avviso): questo avviene perch&egrave; il certificato che abbiamo creato non &egrave; stato rilasciato da <strong>un'autorit&agrave; certificata</strong>, ovvero nessuno ha verificato che i dati inseriti siano veritieri.</p>
+<p>Normalmente, un certificato SSL attendibile &egrave; a pagamento (il costo annuo dipende da vari fattori), ma esistono anche servizi che consentono di ottenerne uno gratuito. Per quanto riguarda il sottoscritto, quello "autoprodotto" va pi&ugrave; che bene per lo scopo che mi sono prefisso.</p>
+<p>Ovviamente, nel caso decidiate di ottenere un certificato attendibile, la procedura &egrave; <strong>esattamente la stessa</strong>, anzi addirittura la chiave che abbiamo creato potr&agrave; essere utilizzata nella procedura di certificazione.</p>
+<p>Alla prossima..</p>

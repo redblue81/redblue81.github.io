@@ -1,0 +1,41 @@
+---
+layout: post
+status: publish
+published: true
+title: Ottimizzare la velocità di accesso al proprio sito
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3086
+wordpress_url: http://www.red-blue.it/?p=3086
+date: '2012-05-11 11:35:28 +0100'
+date_gmt: '2012-05-11 09:35:28 +0100'
+categories:
+- blog
+- tips & tricks
+- wordpress
+tags:
+- wordpress
+- tips
+- tricks
+- velocit&agrave;
+- accesso
+- ottimizzare
+comments: []
+---
+<p>La <strong>velocit&agrave; di accesso</strong> (anche detta velocit&agrave; di caricamento) del proprio sito &egrave; uno di quei fattori che possono determinare il <strong>successo</strong> o meno del sito stesso. Questo perch&egrave; i principali <strong>motori di ricerca</strong> usano tale parametro (insieme a molti altri) nella valutazione di un sito quando devono classificare le pagine web.</p>
+<p>Pi&ugrave; intuitivamente, &egrave; facile immaginare la situazione in cui un utente medio trova mediante MdR il link al nostro sito, clicca e si ritrova in una<strong> interminabile attesa</strong> di caricamento della pagina richiesta; cosa fa l'utente medio? Semplice, <strong>chiude</strong> la pagina e si rivolge <strong>altrove</strong>!!</p>
+<p><!--moreContinua a leggere.. --></p>
+<p>Ecco quindi la <strong>fondamentale</strong> importanza di ridurre quanto pi&ugrave; possibile la velocit&agrave; di accesso al nostro sito.</p>
+<p>Per evitare questi problemi (o almeno per cercare di limitarli), basta un piccolo accorgimento da adottare all'interno del proprio <strong>.htaccess</strong>:</p>
+<pre class="brush: bash; gutter: true">AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml application/xhtml+xml text/css text/javascript application/javascript application/x-javascript</pre>
+<p>Inserendo questa riga all'interno del file .htaccess andiamo ad abilitare la <strong>compressione GZIP</strong> dei files indicati, in modo tale da velocizzare, e di molto, il caricamento delle nostre pagine.</p>
+<p>Prima di chiudere, un altro trucchetto che, se usate <strong>WordPress</strong>, a seconda delle vostre abitudini, potrebbe rivelarsi importante: la gestione delle <strong>revisioni</strong> dei vostri articoli.</p>
+<p>Wordpress salva <strong>automaticamente</strong> le revisioni mentre scrivete i vostri articoli. Questo significa che, a meno di usare appositi plugin per la pulizia del database, quest'ultimo sar&agrave; "<strong>appesantito</strong>" proprio da tali revisioni, che restano sempre nel DB.</p>
+<p>Bene, &egrave; possibile impostare una politica di<strong> gestione automatica</strong> delle revisioni, basta aggiungere la seguente direttiva al file <strong>wp-config.php</strong>:</p>
+<pre class="brush: bash; gutter: true">define(&#039;WP_POST_REVISIONS&#039;, 3 );</pre>
+<p>In tal modo, le revisioni saranno <strong>mantenute</strong> per 3 giorni. Ma &egrave; tranquillamente possibile cambiare tale valore (ad esempio mettendo un solo giorno, in modo da cancellarle quasi subito dopo la pubblicazione), oppure <strong>disabilitare</strong> del tutto questa funzione, mettendo un <strong>false</strong> al posto del numero.</p>
+<p>Grazie a <a href="http://www.wpstyle.it" target="_blank">WPStyle</a> per le dritte!! ;)</p>
+<p>Alla prossima..</p>

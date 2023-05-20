@@ -1,0 +1,36 @@
+---
+layout: post
+status: publish
+published: true
+title: Rimuovere icona Accessibilità dal pannello di Gnome 3 senza estensioni
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2891
+wordpress_url: http://www.red-blue.it/?p=2891
+date: '2012-01-27 18:50:55 +0100'
+date_gmt: '2012-01-27 17:50:55 +0100'
+categories:
+- tips & tricks
+- linux
+- debian
+tags:
+- estensioni
+- gnome-shell
+- gnome 3
+- tip
+- accessibilit&agrave;
+comments: []
+---
+<p>Un <strong>tip</strong> veloce oggi su Gnome 3..</p>
+<p>Ho reinstallato la mia <strong>Debian Sid</strong> (in seguito al ritorno ai <strong>64 bit</strong> grazie alla mia nuova <a href="http://t.co/2F7OMes1" target="_blank">CPU</a>) e mi sono ritrovato nella condizione di non poter installare l'estensione di Gnome-shell che rimuove l'icona <strong>Accessibilit&agrave;</strong> dal pannello tramite il <a href="http://extensions.gnome.org" target="_blank">sito</a> dedicato alle estensioni (problema di compatibilit&agrave; con la versione installata di Gnome); questa qui per capirci..</p>
+<p><a href="/assets/images/a11y.jpg"><img class="aligncenter size-full wp-image-2892" title="a11y" src="/assets/images/a11y.jpg" alt="" width="42" height="32" /></a></p>
+<p>Non trovando i <strong>sorgenti</strong> per l'estensione in questione, mi sono messo alla ricerca di un modo per rimuovere questa icona "<strong>manualmente</strong>". Ecco come fare.. ;)</p>
+<p>Editiamo il seguente file:</p>
+<pre class="brush: bash; gutter: true">sudo gedit /usr/share/gnome-shell/js/ui/panel.js</pre>
+<p>Cerchiamo la seguente stringa:</p>
+<pre class="brush: javascript; gutter: true">const STANDARD_STATUS_AREA_ORDER = [&#039;a11y&#039;, &#039;keyboard&#039;, &#039;volume&#039;, &#039;bluetooth&#039;, &#039;network&#039;, &#039;battery&#039;, &#039;userMenu&#039;];</pre>
+<p>E cancelliamo la stringa relativa all'icona in questione, cio&egrave; <strong>a11y</strong>, poi <strong>ALT+F2</strong> e scriviamo <strong>r</strong> per riavviare la shell. Ovviamente per riavere l'icona baster&agrave; <strong>reinserire</strong> questa stringa.. Gi&agrave; finito.. ;)</p>
+<p>Alla prossima..</p>

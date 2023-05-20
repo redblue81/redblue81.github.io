@@ -1,0 +1,36 @@
+---
+layout: post
+status: publish
+published: true
+title: Auto-apt + Checkinstall
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 298
+wordpress_url: http://redblue.netsons.org/?p=298
+date: '2009-02-25 16:12:33 +0100'
+date_gmt: '2009-02-25 15:12:33 +0100'
+categories:
+- tips & tricks
+- linux
+tags:
+- debian
+- linux
+- installazione
+- apt
+- sorgenti
+- checkinstall
+- auto-apt
+comments: []
+---
+<p>Spesso i "linuxiani" come il sottoscritto devono fare i conti con l'installazione dai sorgenti, operazione che pu&ograve; essere estremamente complicata, ma se fatta con la giusta metodologia, &egrave; estremamente soddisfacente. A volte per&ograve; pu&ograve; essere molto comodo creare un pacchetto .deb, da installare (o disinstallare) successivamente con strumenti automatici come dpkg o Synaptic. Per questo scopo ci serviamo di <strong>auto-apt</strong> e <strong>checkinstall</strong>: con il primo teniamo traccia delle dipendende, con il secondo creiamo il pacchetto. Come si usano? Prima di tutto installiamo il necessario (come <strong>root</strong>):</p>
+<blockquote><p><code>apt-get install auto-apt checkinstall</code></p></blockquote>
+<p>Potrebbe anche chiedervi delle altre dipendenze, installatele. A questo punto, quando abbiamo scompattato i sorgenti, invece del classico <strong>./configure</strong>, <strong>make</strong>, <strong>make install</strong>, diamo la seguente sequenza:</p>
+<blockquote><p><code>auto-apt run ./configure<br />
+make<br />
+checkinstall</code></p></blockquote>
+<p>Dove ovviamente l'ultimo comando va dato come root. Ed ecco che avremo il nostro programma installato e presente nella lista dei pacchetti del sistema. Piccolo <strong>trick</strong> supplementare, potete anche decidere di non installare subito il programma, ma solo di creare il pacchetto, il comando &egrave; il seguente:</p>
+<blockquote><p><code>checkinstall --install=no</code></p></blockquote>
+<p>Ed avrete il vostro .deb pronto per essere installato.</p>

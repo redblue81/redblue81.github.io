@@ -1,0 +1,46 @@
+---
+layout: post
+status: publish
+published: true
+title: Rockbox Round su Debian
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3754
+wordpress_url: http://www.red-blue.it/?p=3754
+date: '2015-05-24 10:47:36 +0100'
+date_gmt: '2015-05-24 08:47:36 +0100'
+categories:
+- guide
+- linux
+- debian
+tags:
+- guida
+- debian
+- bluetooth
+- rockbox round
+comments: []
+---
+<p>Per collegare questo piccolo ma potente <strong>altoparlante Bluetooth</strong> a <strong>Debian</strong> ho seguito la seguente procedura.</p>
+<p><img class="aligncenter size-full wp-image-3756" src="/assets/images/Rockbox-Round-H2O-mistergadget.net-002-300x300.jpg" alt="Rockbox-Round-H2O-mistergadget.net-002-300x300" width="300" height="300" />Premetto che nel mio caso si tratta di una Debian <strong>testing</strong> con <strong>MATE</strong> come desktop environment, ma pi&ugrave; o meno la procedura dovrebbe essere adattabile al caso generico.</p>
+<p>Per prima cosa installiamo il necessario:</p>
+<pre class="brush: bash; gutter: false">sudo apt-get install pulseaudio pulseaudio-module-bluetooth pavucontrol blueman bluetooth bluez bluez-tools</pre>
+<p>Creiamo il seguente file:</p>
+<pre class="brush: bash; gutter: false">nano ~/.asoundrc</pre>
+<p>E al suo interno scriviamo:</p>
+<pre class="brush: bash; gutter: true">pcm.!default plug:pulse 
+
+pcm.pulse { 
+
+ type pulse 
+
+}</pre>
+<p>Editiamo /etc/default/bluetooth mettendo 1 al posto di zero nelle due linee:</p>&egrave;
+<pre class="brush: bash; gutter: true">HID2HCI_ENABLED=1 
+
+HID2HCI_UNDO=1</pre>
+<p>Riavviamo il sistema (potrebbe anche essere sufficiente un <strong>restart</strong> del servizio bluetooth), poi tramite l'<strong>applet</strong> apposita facciamo il <strong>pairing</strong> dell'altoparlante (nel remoto caso in cui vi chiedesse un PIN inserite pure 0000) e mandiamo in esecuzione un file audio per provare: non sentiremo <strong>nulla</strong> (almeno nel mio caso &egrave; stato cos&igrave;).</p>
+<p>Andiamo nelle <strong>impostazioni</strong> audio di <strong>PulseAudio</strong> e nell'ultima scheda, <strong>Configurazione</strong>, associamo a Rockbox Round (che spero a questo punto si veda) il profilo <strong>High Fidelity Playback (A2DP Sink)</strong>, infine nella scheda <strong>Riproduzione</strong> troveremo elencata l'applicazione che sta eseguendo l'audio, settiamola su Rockbox Round ed ecco che l'audio passer&agrave; appunto sul Rockbox Round.</p>
+<p>Alla prossima..</p>

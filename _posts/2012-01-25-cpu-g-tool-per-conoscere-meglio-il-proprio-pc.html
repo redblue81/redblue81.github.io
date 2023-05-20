@@ -1,0 +1,38 @@
+---
+layout: post
+status: publish
+published: true
+title: CPU-G, tool per conoscere meglio il proprio PC
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2883
+wordpress_url: http://www.red-blue.it/?p=2883
+date: '2012-01-25 12:15:46 +0100'
+date_gmt: '2012-01-25 11:15:46 +0100'
+categories:
+- tips & tricks
+- linux
+- software
+tags:
+- tips
+- software
+- cpu-g
+- python
+- hardware
+comments: []
+---
+<p>Avete presente <strong>CPU-Z</strong>? Esiste per Linux un tool molto simile, si tratta di <strong>CPU-G</strong>.</p>
+<p>Per chi non lo sapesse, questi tool servono ad elencare le <strong>caratteristiche dell'hardware</strong> del PC, utile ad esempio se si vuole effettuare un upgrade del <strong>BIOS</strong>, o della <strong>RAM</strong>, per conoscere il tipo di quella che &egrave; gi&agrave; installata.</p>
+<p>Bene, CPU-G non richiede installazione, ma bisogna avere <strong>Python</strong> sul proprio PC (Python &egrave; il linguaggio in cui &egrave; scritta l'applicazione). <!--moreContinua a leggere.. -->A scanso di errori, prima di scaricarlo installate i seguenti pacchetti:</p>
+<pre class="brush: bash; gutter: true">sudo apt-get install python-gtk2 python-glade2</pre>
+<p>A questo punto, scaricate l'archivio compresso da <a href="http://sourceforge.net/projects/cpug/files/" target="_blank">qui</a>, poi estraetelo con il comando</p>
+<pre class="brush: bash; gutter: true">tar -xvzf cpu-g-0.9.0.tar.gz</pre>
+<p>Entrate nella cartella ottenuta, e lanciate il programma con</p>
+<pre class="brush: bash; gutter: true">python cpu-g</pre>
+<p>Avrete la maschera principale:</p>
+<p><a href="/assets/images/cpu-g.jpg"><img class="aligncenter size-medium wp-image-2885" title="cpu-g" src="/assets/images/cpu-g-242x300.jpg" alt="" width="242" height="300" /></a>Come vedete, c'&egrave; subito un riepilogo delle caratteristiche della CPU installata, ma nelle altre schede ci sono le caratteristiche del BIOS, della RAM e del sistema operativo in esecuzione.</p>
+<p>Vi riporto nuovamente il <strong>link per il download</strong>: http://sourceforge.net/projects/cpug/files/</p>
+<p>Alla prossima..</p>

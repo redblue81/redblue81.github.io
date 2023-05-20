@@ -1,0 +1,65 @@
+---
+layout: post
+status: publish
+published: true
+title: Nuova Gnome-shell Weather Extension + pacchetto DEB
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3202
+wordpress_url: http://www.red-blue.it/?p=3202
+date: '2012-06-10 15:59:52 +0100'
+date_gmt: '2012-06-10 13:59:52 +0100'
+categories:
+- guide
+- linux
+- debian
+- ubuntu
+- in evidenza
+- download
+tags:
+- debian
+- ubuntu
+- repository
+- gnome-shell
+- deb
+- download
+- weather extension
+- meteo
+comments:
+- id: 26189
+  author: janca
+  author_email: gdjhg@jhgvgjh.it
+  author_url: ''
+  date: '2012-11-11 01:48:55 +0100'
+  date_gmt: '2012-11-11 00:48:55 +0100'
+  content: grande!!!guida semplice e ben esposti tutti i passaggi!!soprattutto funziona
+    finalminte!!veramente veramente seperbo!ciao..grazie..
+---
+<p>In passato ho parlato della<strong> Gnome-shell Weather Extension</strong> (<a href="http://localhost:4000/guide/gnome-shell-weather-extension-pacchetto-deb.html" target="_blank">qui</a>), ma ho trovato un <strong>fork</strong> di questo progetto che mi sembra decisamente interessante. E' mantenuto da <strong>Neroth</strong> ed &egrave; gi&agrave; provvisto di un comodissimo <strong>repository</strong> funzionante per <strong>Ubuntu</strong>. Purtroppo questa estensione non si trova sul sito dedicato extensions.gnome.org.</p>
+<p><a href="/assets/images/weather_new.jpg"><img class="aligncenter size-medium wp-image-3204" title="weather_new" src="/assets/images/weather_new-300x298.jpg" alt="" width="300" height="298" /></a>Inoltre, questa versione di Gnome-shell Weather Extension prevede un'interfaccia (che si trova in <strong>Strumenti di sistema -> Impostazioni meteo</strong>) per la configurazione della localit&agrave; e dell'aspetto.</p>
+<p><!--moreContinua a leggere.. --></p>
+<p>Ancora, non c'&egrave; pi&ugrave; bisogno di andare a cercare alcun <strong>WOEID</strong> o altro codice relativo alla localit&agrave; (viene tutto gestito in automatico); e infine, si pu&ograve; impostare <strong>pi&ugrave; di una sola localit&agrave;</strong> di cui scaricare le informazioni relative al meteo.</p>
+<p>Per chi usa Ubuntu, ecco le tre semplicissime istruzioni da seguire:</p>
+<pre class="brush: bash; gutter: true; first-line: 1; highlight: []; html-script: false">sudo add-apt-repository ppa:gnome-shell-extensions
+
+sudo apt-get update
+
+sudo apt-get install gnome-shell-extension-weather</pre>
+<p>Se invece, come me, usate <strong>Debian</strong>, allora potete scaricare i sorgenti da <strong>Git</strong> (<a href="https://github.com/Neroth/gnome-shell-extension-weather" target="_blank">qui</a>), compilare ed installare il tutto col "solito" metodo:</p>
+<pre class="brush: bash; gutter: true; first-line: 1; highlight: []; html-script: false">git clone http://github.com/Neroth/gnome-shell-extension-weather
+
+cd gnome-shell-extension-weather
+
+./autogen.sh --prefix=/usr
+
+make
+
+sudo make install</pre>
+<p>In entrambi i casi, prima di procedere dovete <strong>riavviare</strong> Gnome-shell con la combinazione <strong>ALT+F2</strong> e digitare la lettera <strong>r</strong>, poi attivate l'estensione tramite <strong>gnome-tweak-tool</strong>.</p>
+<p>Per i pi&ugrave; pigri, ho compilato e pacchettizzato il tutto, pronto per essere installato (su architettura a <strong>64 bit</strong>). Lo trovate come al solito nell'<a href="http://localhost:4000/downloads/" target="_blank">area download</a> e per installarlo basta dare, come <strong>root</strong>:</p>
+<pre class="brush: bash; gutter: true">dpkg -i gnome-shell-extension-weather_3.4.1-1_amd64.deb</pre>
+<p>Alla prossima..</p>
+<p><strong>LINK DOWNLOAD:</strong> [download id="3950"]</p>

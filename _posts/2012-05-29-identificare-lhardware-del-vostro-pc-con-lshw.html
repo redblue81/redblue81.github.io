@@ -1,0 +1,36 @@
+---
+layout: post
+status: publish
+published: true
+title: Identificare l'hardware del vostro PC con lshw
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3174
+wordpress_url: http://www.red-blue.it/?p=3174
+date: '2012-05-29 15:47:36 +0100'
+date_gmt: '2012-05-29 13:47:36 +0100'
+categories:
+- tips & tricks
+- linux
+- software
+tags:
+- linux
+- tips
+- tricks
+- hardware
+- lshw
+comments: []
+---
+<p>Esiste una piccola utility, <strong>lshw</strong>, che consente di conoscere nel dettaglio parecchie caratteristiche relative all'<strong>hardware</strong> del nostro PC.</p>
+<p>Di software del genere ne esistono parecchi per Windows, mentre su Linux diciamo che la scelta &egrave; pi&ugrave; ristretta; in passato avevo anche parlato di <a href="http://localhost:4000/tips-tricks/cpu-g-tool-per-conoscere-meglio-il-proprio-pc.html" target="_blank">CPU-G</a>, ma questa soluzione mi sembra leggermente migliore.</p>
+<p>Potete visualizzare le info direttamente nel <strong>terminale</strong>, oppure tramite una comoda interfaccia in <strong>GTK</strong> da installare a parte. Come <strong>root</strong> date:</p>
+<pre class="brush: bash; gutter: true">apt-get install lshw lshw-gtk</pre>
+<p>Ovviamente il secondo pacchetto &egrave; proprio quello relativo all'interfaccia, e quindi &egrave; da considerare come <span style="text-decoration: underline;">opzionale</span>. A questo punto, nel terminale basta dare (sempre come root):</p>
+<pre class="brush: bash; gutter: true">lshw</pre>
+<p>Oppure per avere la versione <strong>con interfaccia</strong> grafica:</p>
+<pre class="brush: bash; gutter: true">lshw -X</pre>
+<p>Avrete un resoconto come questo, relativo alla CPU del mio notebook:</p>
+<p><a href="/assets/images/lshw.jpg"><img class="aligncenter size-medium wp-image-3181" title="lshw" src="/assets/images/lshw-300x175.jpg" alt="" width="300" height="175" /></a>Alla prossima..</p>

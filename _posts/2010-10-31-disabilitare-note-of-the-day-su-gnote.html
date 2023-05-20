@@ -1,0 +1,54 @@
+---
+layout: post
+status: publish
+published: true
+title: Disabilitare "Note of the day" su Gnote
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1754
+wordpress_url: http://www.red-blue.it/?p=1754
+date: '2010-10-31 09:20:31 +0100'
+date_gmt: '2010-10-31 08:20:31 +0100'
+categories:
+- tips & tricks
+- linux
+- ubuntu
+tags:
+- ubuntu
+- tips
+- tricks
+- gnote
+- estensione
+- '10.10'
+- note of the day
+comments:
+- id: 7049
+  author: ''
+  author_email: knno@hjn.com
+  author_url: ''
+  date: '2011-03-24 14:33:03 +0100'
+  date_gmt: '2011-03-24 13:33:03 +0100'
+  content: Soluzione semplice ma efficace, anch'io avevo lo stesso problema!
+---
+<p>Conoscete <a href="http://live.gnome.org/Gnote" target="_blank">Gnote</a>?? Si tratta dell'alternativa&nbsp; a <strong>Tomboy</strong> scritta in <strong>C++</strong>.. Praticamente &egrave; un programmino che semplicemente crea delle note, dei post-it virtuali (con la differenza che non ve li ritrovate sul desktop, ma potete accedervi tramite un'icona nel pannello superiore di Ubuntu)..</p>
+<p>Nell'ultima versione di Ubuntu, la <strong>10.10</strong>, mi &egrave; per&ograve; capitato che un'estensione di Gnote, <strong>Note of the day</strong>, che serve a creare automaticamente una nota "giornaliera", si ostinasse a creare ogni giorno una nota, pur avendola io ovviamente disabilitata..</p>
+<p>Non so se si tratta di un bug o altro, ma stanco di cancellare ogni giorno la nota del giorno, ho deciso di procedere "<strong>brutalmente</strong>": semplicemente ho creato una directory all'interno di quella di installazione di Gnote, e vi ho spostato il file dell'estensione, in modo che non venga pi&ugrave; caricata all'avvio..</p>
+<p>Per prima cosa portatevi nella directory di installazione</p>
+<blockquote>
+<pre lang="bash" escaped="true">cd /usr/lib/gnote/addins</pre>
+</blockquote>
+<p>All'interno troverete una directory col numero di versione di Gnote, nel mio caso la 0.7.1, entrate in questa directory, createne un'altra e spostatevi all'interno il file <code>libnoteoftheday.so</code>:</p>
+<blockquote>
+<pre lang="bash" escaped="true">cd 0.7.1
+
+sudo mkdir disabled
+
+sudo mv libnoteoftheday.so disabled/
+
+killall gnote</pre>
+</blockquote>
+<p>L'ultimo comando serve a "<strong>uccidere</strong>" Gnote, in modo che il sistema vi chieda se volete <strong>riavviarlo</strong>. Al riavvio non avrete pi&ugrave; l'estensione Note ofthe day caricata.. ;)</p>
+<p>Alla prossima..</p>

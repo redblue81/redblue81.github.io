@@ -1,0 +1,96 @@
+---
+layout: post
+status: publish
+published: true
+title: Accedere da Internet al proprio server di casa con No-Ip
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3289
+wordpress_url: http://www.red-blue.it/?p=3289
+date: '2012-07-20 11:58:24 +0100'
+date_gmt: '2012-07-20 09:58:24 +0100'
+categories:
+- guide
+- linux
+- internet
+- in evidenza
+- server
+tags:
+- server
+- noip2
+- file manager
+- accesso dall'esterno
+- web server
+- no-ip
+comments:
+- id: 475895
+  author: ownCloud su Raspberry Pi con Raspbian - RedBlue&#039;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/guide/owncloud-raspberry-pi.html
+  date: '2016-12-14 17:49:04 +0100'
+  date_gmt: '2016-12-14 16:49:04 +0100'
+  content: "[&#8230;] di fuori della rete di casa, sar&agrave; necessario usare anche
+    un servizio di DNS dinamico (tipo No-ip, ne ho gi&agrave; parlato in passato,
+    l&#8217;articolo &egrave; vecchiotto, ma il servizio &egrave; rimasto pressoch&egrave;
+    [&#8230;]"
+---
+<p>Oggi vi parlo di <a href="http://www.no-ip.com/" target="_blank">No-Ip</a>, un servizio che mi ha risolto un problema potenzialmente grosso.</p>
+<h3>Premessa</h3>
+<p>Dopo un viaggio in <strong>Spagna</strong> (<a href="http://www.redblue.co.vu/2012/07/en-valencia.html" target="_blank">qui</a> il resoconto completo), sorge il pesantissimo problema di scambiarsi foto e video della vacanza tra gli amici che vi hanno preso parte: pu&ograve; sembrare semplice, ma in realt&agrave; si tratta spesso di un'impresa <strong>titanica</strong>.</p>
+<p>Ecco allora l'idea, una specie di <strong>repository</strong> online in cui ognuno pu&ograve; caricare il proprio materiale e scaricare quello degli altri. Semplice no? Basta un <strong>file manager</strong>, e in rete ce ne sono tantissimi gratuiti, e lo spazio per contenere il tutto. L'unico problema &egrave; proprio lo <strong>spazio</strong>, dato che con fotocamere e videocamere digitali moderne, i file multimediali hanno dimensioni considerevoli (io ad esempio ho una videocamera <strong>full HD</strong>) e per i servizi di hosting online pi&ugrave; spazio significa maggior <strong>costo</strong>; ricordate il mio <a href="http://localhost:4000/io/il-mio-primo-server.html" target="_blank">server</a> casalingo? Bene, &egrave; proprio quello che fa al caso mio, basta collegarci un disco esterno capiente e il gioco &egrave; fatto.</p>
+<p><!--moreContinua a leggere.. --></p>
+<p>Pi&ugrave; o meno, dato che quel server <strong>non &egrave; direttamente accessibile dall'esterno</strong>.</p>
+<h3>Soluzione</h3>
+<p>Finita la lunga, ma doverosa premessa, ecco il problema: installando un <strong>web server</strong> (Apache ad esempio) sul proprio server, un file manager (e pi&ugrave; in generale un sito web) sar&agrave; accessibile mediante l'<strong>indirizzo IP del server</strong> seguito dalla directory del file manager stesso (se lo avete messo in una directory, altrimenti direttamente dall'IP); ovviamente parlo dell'IP del <strong>router</strong> di casa, non di quello del PC (occorre a questo proposito un <strong>forward</strong>, ne parleremo pi&ugrave; avanti). Il punto &egrave; che ogni provider fornisce un indirizzo <strong>IP dinamico</strong> al router, ovvero un indirizzo che pu&ograve; cambiare senza alcun preavviso, rendendo di fatto inutile tutto il lavoro fatto. Ovviamente si pu&ograve; acquistare un <strong>IP statico</strong> (ovvero un indirizzo univoco di propriet&agrave;), ma i costi non sono accessibilissimi, e per un progettino come il mio ovviamente non ne vale la pena in ogni caso.</p>
+<p>Esiste una soluzione diversa: <a href="http://www.no-ip.com/" target="_blank">No-Ip</a>. Questo servizio non fa altro che <strong>associare</strong> l'IP dinamico del vostro router ad un <strong>dominio</strong> di terzo livello del tipo <em>nomedominio.no-ip.org</em>, monitorando poi l'IP stesso e mantenendo l'associazione in caso di cambio. Praticamente, dall'esterno potrete accedere al vostro server casalingo digitando nel browser <em>nomedominio.no-ip.org/sito</em>. Facile no? ;)</p>
+<p>Vediamo come si usa: colleghiamoci a http://www.no-ip.com e <strong>registriamoci</strong> mediante il box in alto a destra (voce <strong>Sign in</strong>):</p>
+<p><a href="/assets/images/no-ip_1.jpg"><img class="aligncenter size-full wp-image-3294" title="no-ip_1" src="/assets/images/no-ip_1.jpg" alt="" width="237" height="215" /></a>Dopo esserci iscritti, saremo su questa pagina:</p>
+<p><a href="/assets/images/no-ip_2.jpg"><img class="aligncenter size-medium wp-image-3295" title="no-ip_2" src="/assets/images/no-ip_2-300x152.jpg" alt="" width="300" height="152" /></a>Clicchiamo su <strong>Add Host</strong> (la quarta icona partendo da sinistra), poi nella pagina successiva alla voce <strong>Hostname</strong> mettiamo il nome da associare al server, e dal box affianco scegliamo il dominio (occhio che bisogna scegliere esclusivamente uno di quelli appartenenti al gruppo <strong>No-Ip Free Domains</strong>, altrimenti per gli altri si paga!). Lasciare impostato <strong>DNS Host A</strong>, infine controllare che l'IP indicato sia effettivamente il nostro IP pubblico (usando un servizio online come come http://www.ilmioip.it/). Per finire clicchiamo su <strong>Create Host</strong>.</p>
+<p>A questo punto, occorre configurare anche il server in modo che utilizzi il servizio. Esistono <strong>due modi</strong>, o tramite il router stesso, oppure tramite un <strong>client dedicato</strong>.</p>
+<p>Nel primo caso, solitamente nel router (se supporta questo genere di servizi) c'&egrave; un'opzione <strong>DNS Dinamico</strong> nella quale impostare il servizio (no-ip.com), il nome utente scelto in fase di registrazione e la password. In tal modo, potrete usare il servizio da subito.</p>
+<p>Nel secondo caso invece, occorre scaricare da <a href="https://www.no-ip.com/downloads.php" target="_blank">questa pagina</a> il <strong>client</strong> di No-Ip, multipiattaforma, il quale si occuper&agrave; di associare e monitorare l'indirizzo IP al dominio creato in precedenza.</p>
+<p>Vediamo come usare il client per <strong>Linux</strong>: per prima cosa lo installiamo, semplicemente portandoci nella directory in cui abbiamo scaricato l'archivio, <strong>decomprimendolo</strong> e poi dando i classici:</p>
+<pre class="brush: bash; gutter: true">make
+
+sudo make install</pre>
+<p>A questo punto, basta lanciarlo:</p>
+<pre class="brush: bash; gutter: false">sudo /usr/local/bin/noip2</pre>
+<p>Mentre per far s&igrave; che si avvii insieme al PC, basta inserire questo <strong>script</strong> (chiamatelo semplicemente <strong>noip2</strong> e <span style="text-decoration: underline;">rendetelo eseguibile</span> prima) tra quelli in avvio automatico del pc:</p>
+<pre class="brush: bash; gutter: true">#! /bin/sh
+
+case "$1" in
+
+    start)
+
+	echo -n "Avvio client noip2."
+
+	/usr/local/bin/noip2
+
+    ;;
+
+    stop)
+
+	echo -n "Chiusura client noip2."
+
+	killall noip2
+
+    ;;&egrave;
+
+    *)
+
+	echo "Uso: $0 {start|stop}"
+
+	exit 1
+
+esac
+
+exit 0</pre>
+<p>Ovviamente date anche un:</p>
+<pre class="brush: bash; gutter: false">sudo update-rc.d noip2 defaults 90</pre>
+<p>Per aggiornare la configurazione di avvio del sistema.</p>
+<p>No resta che aprire la <strong>porta 80</strong> sul router: cercate l'opzione <strong>Port forwarding</strong>, o <strong>Port mapping</strong>, o alle volte anche <strong>Virtual Server</strong>, e aprite la porta <strong>80 TCP</strong> (e la <strong>8245 TCP</strong> per il client, anche se questo potrebbe non essere strettamente necessario).</p>
+<p>E' tutto, ora il vostro server casalingo (o qualunque altro computer vogliate usare)&nbsp; &egrave; raggiungibile dall'esterno.</p>
+<p>Alla prossima..</p>

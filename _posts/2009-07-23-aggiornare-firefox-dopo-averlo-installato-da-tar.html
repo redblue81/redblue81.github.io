@@ -1,0 +1,40 @@
+---
+layout: post
+status: publish
+published: true
+title: Aggiornare Firefox dopo averlo installato dai tarball
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 635
+wordpress_url: http://redblue.netsons.org/?p=635
+date: '2009-07-23 17:54:22 +0100'
+date_gmt: '2009-07-23 16:54:22 +0100'
+categories:
+- guide
+- linux
+- debian
+- ubuntu
+- browser
+- firefox
+tags:
+- guida
+- linux
+- ubuntu
+- lenny
+- jaunty
+- firefox 3.5
+- aggiornamento
+comments: []
+---
+<p>Bene bene bene.. Rieccomi qua, finalmente libero dagli impegni!!</p>
+<p>E' stato recentemente rilasciato <strong>Firefox 3.5.1</strong>, aggiornamento reso necessario dalla scoperta di un bug di sicurezza. Se avete installato la versione 3.5 seguendo la mia <a href="http://localhost:4000/guide/installare-firefox-3-5-dai-sorgenti.html" target="_blank">guida</a>, allora ecco come fare ad aggiornarlo in maniera del tutto automatica..</p>
+<p>Seguendo quella guida avete installato Firefox in <code>/opt</code> con i privilegi di <strong>root</strong>, e per questo per aggiornare dovrete avviare Firefox come root:</p>
+<blockquote><p><code>sudo firefox-3.5</code></p></blockquote>
+<p>Poi andate su <strong>Aiuto > Controlla gli aggiornamenti</strong> e il gioco &egrave; fatto, trover&agrave; in automatico l'aggiornamento e lo installer&agrave;.. Ovviamente appena finito ricordatevi di chiudere Firefox e riavviarlo normalmente, come utente!!</p>
+<p>Piccolo trick, pu&ograve; succedere che non vi riconosca pi&ugrave; i segnalibri, semplicemente basta dare:</p>
+<blockquote><p><code>cd ~<br />
+sudo chown -Rv NOMEUTENTE .mozilla/</code></p></blockquote>
+<p>Dove ovviamente <strong>NOMEUTENTE</strong> va sostituito col vostro nome utente.. ;)</p>

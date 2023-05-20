@@ -1,0 +1,74 @@
+---
+layout: post
+status: publish
+published: true
+title: Bisigi Themes su Lucid
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1094
+wordpress_url: http://redblue.netsons.org/?p=1094
+date: '2010-05-09 19:56:25 +0100'
+date_gmt: '2010-05-09 18:56:25 +0100'
+categories:
+- tips & tricks
+- linux
+- ubuntu
+- temi desktop
+tags:
+- linux
+- ubuntu
+- repository
+- gnome
+- ppa
+- lucid
+- bisigi
+- temi
+comments:
+- id: 5725
+  author: Asr77DValek
+  author_email: aldo.doffizi@gmail.com
+  author_url: http://aldodoffizi-ubuntu.blogspot.com/
+  date: '2010-05-11 12:43:03 +0100'
+  date_gmt: '2010-05-11 11:43:03 +0100'
+  content: Ciao ma &egrave; un problema mio (forse da questa lan non esce) o non sono
+    il solo a vedersi chiedere la GPG ? Se s&igrave; qual'&egrave;?
+- id: 5729
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2010-05-11 14:51:56 +0100'
+  date_gmt: '2010-05-11 13:51:56 +0100'
+  content: |-
+    Col comando che ho indicato dovrebbe automaticamente importare anche la chiave GPG del repository.. Ma ad ogni modo non dovresti ugualmente avere problemi nell'installazione.. Semplicemente riceverai un avviso che ti dice che i pacchetti non sono autenticati..
+
+    Ad ogni modo.. Questo &egrave; il comando per importare la chiave, preso direttamente dal sito ufficiale del progetto:
+    <code>gpg --keyserver hkp://keyserver.ubuntu.com:11371 --recv-key 881574DE && gpg -a --export 881574DE | sudo apt-key add -</code>
+
+    Ovviamente se non dovesse funzionare al primo colpo, il consiglio &egrave; quello di aspettare un p&ograve; e poi riprovare.. ;)
+---
+<p><strong>Bisigi</strong> &egrave; una parola africana che indica una nozione fantasiosa.. E il progetto <a href="http://www.bisigi-project.org/?lang=it" target="_blank">Bisigi</a> &egrave; proprio questo.. Fantasia applicata ad <strong>Ubuntu</strong> per renderne pi&ugrave; accattivante il desktop.. Si tratta di una raccolta di ben <strong>13 temi</strong> per Gnome curati in tutto e per tutto, in ogni minimo aspetto possibile, semplici da installare ed immediati da usare..</p>
+<p style="text-align: center;"><a rel="lightbox" href="http://www.bisigi-project.org/" target="_blank"> <img class="aligncenter" title="Bisigi" src="http://www.bisigi-project.org/images/spread-bisigi/spread-bisigi-130.png" alt="Try bisigi themes for Gnome" width="130" height="112" /></a></p>
+<p>Installarli su Lucid &egrave; semplicissimo, basta aggiungere il seguente <strong>repository</strong>:</p>
+<blockquote><p><code>sudo add-apt-repository ppa:bisigi/ppa</code></p></blockquote>
+<p>E poi dare il comando</p>
+<blockquote><p><code>sudo apt-get update && sudo aptitude install bisigi-themes</code></p></blockquote>
+<p>A questo punto li avrete tutti a disposizione a partire in <strong>Sistema -> Preferenze -> Aspetto</strong>..</p>
+<p>Oppure potete installarne uno solo, quello che pi&ugrave; vi piace.. Questi sono i comandi per installarli singolarmente:</p>
+<blockquote><p><code><strong>AquaDreams</strong>:               sudo aptitude install aquadreams-theme<br />
+<strong>Ubuntu Sunrise</strong>:           sudo aptitude install ubuntu-sunrise-theme<br />
+<strong>Bamboo-Zen</strong>:               sudo aptitude install bamboo-zen-theme<br />
+<strong>Step into Freedom</strong>:       sudo aptitude install step-into-freedom-theme<br />
+<strong>Tropical</strong>:                      sudo aptitude install tropical-theme<br />
+<strong>Exotic</strong>:                        sudo aptitude install exotic-theme<br />
+<strong>Balanzan</strong>:                    sudo aptitude install balanzan-theme<br />
+<strong>Wild Shine</strong>:                  sudo aptitude install wild-shine-theme<br />
+<strong>Infinity</strong>:                        sudo aptitude install infinity-theme<br />
+<strong>Showtime</strong>:                   sudo aptitude install showtime-theme<br />
+<strong>Orange</strong>:                       sudo aptitude install orange-theme<br />
+<strong>Ellanna</strong>:                       sudo aptitude install ellanna-theme<br />
+<strong>AirLines</strong>:                      sudo aptitude install airlines-theme</code></p></blockquote>
+<p>Sul sito ufficiale trovate anche gli screenshot di ogni tema..</p>
+<p>Alla prossima.. ;)</p>

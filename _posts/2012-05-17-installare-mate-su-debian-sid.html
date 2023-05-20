@@ -1,0 +1,61 @@
+---
+layout: post
+status: publish
+published: true
+title: Installare MATE su Debian Sid
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3097
+wordpress_url: http://www.red-blue.it/?p=3097
+date: '2012-05-17 11:03:57 +0100'
+date_gmt: '2012-05-17 09:03:57 +0100'
+categories:
+- guide
+- linux
+- debian
+- in evidenza
+- recensioni
+tags:
+- linux
+- desktop environment
+- MATE
+- debian sid
+comments: []
+---
+<p><a href="http://mate-desktop.org/team/" target="_blank">MATE</a> &egrave; un <strong>fork</strong> di <strong>Gnome 2</strong> nato con l'obiettivo di permettere a questo DE ormai antiquato di sfruttale le nuove <strong>GTK3</strong>. In pratica, &egrave; un progetto che vuole tentare di <span style="text-decoration: underline;">proseguire lo sviluppo di Gnome 2</span>. L'avevo accennato in passato parlando di <strong>Linux Mint</strong> <a href="http://localhost:4000/linux/rilasciata-linux-mint-12-lisa.html" target="_blank">qui</a>, ma ora &egrave; giunto il momento di effettuare un test, ovviamente sulla mia <strong>Debian Sid</strong>.</p>
+<p>L'installazione &egrave; molto semplice, in quanto abbiamo a disposizione un comodo <strong>repository</strong> da cui prelevare tutto il necessario.</p>
+<p><!--moreContinua a leggere.. --></p>
+<p>Iniziamo proprio <strong>aggiungendo</strong> il repository al nostro <code>/etc/apt/sources.list</code>:</p>
+<blockquote><p><code>### MATE<br />
+deb http://packages.mate-desktop.org/repo/debian wheezy main</code></p></blockquote>
+<p>Successivamente, <strong>aggiorniamo</strong> la lista dei pacchetti disponibili ed <strong>installiamo</strong> la chiave di autenticazione del repository, poi <strong>aggiorniamo</strong> nuovamente la lista (tutte operazioni che vanno eseguite come <strong>root</strong>):</p>
+<pre class="brush: bash; gutter: true">apt-get update
+
+apt-get install mate-archive-keyring
+
+apt-get update</pre>
+<p>Non ci resta che installare il tutto (sono circa 300 MB):</p>
+<pre class="brush: bash; gutter: true">apt-get install mate-desktop-environment</pre>
+<p><strong>Riavviamo la sessione</strong> e scegliamo il nuovo "vecchio" DE. Ecco cosa avremo:</p>
+<p><a href="/assets/images/MATE-1.jpg"><img class="alignleft size-thumbnail wp-image-3101" title="MATE-1" src="/assets/images/MATE-1-150x150.jpg" alt="" width="150" height="150" /></a><a href="/assets/images/MATE-2.jpg"><img class="alignleft size-thumbnail wp-image-3102" title="MATE-2" src="/assets/images/MATE-2-150x150.jpg" alt="" width="150" height="150" /></a><a href="/assets/images/MATE-3.jpg"><img class="alignleft size-thumbnail wp-image-3103" title="MATE-3" src="/assets/images/MATE-3-150x150.jpg" alt="" width="150" height="150" /></a><a href="/assets/images/MATE-4.jpg"><img class="alignleft size-thumbnail wp-image-3104" title="MATE-4" src="/assets/images/MATE-4-150x150.jpg" alt="" width="150" height="150" /></a><a href="/assets/images/MATE-5.jpg"><img class="alignleft size-thumbnail wp-image-3105" title="MATE-5" src="/assets/images/MATE-5-150x150.jpg" alt="" width="150" height="150" /></a><a href="/assets/images/MATE-6.jpg"><img class="alignleft size-thumbnail wp-image-3106" title="MATE-6" src="/assets/images/MATE-6-150x150.jpg" alt="" width="150" height="150" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>&egrave;&egrave;&egrave;&egrave;
+<p>&nbsp;</p>&egrave;&egrave;
+<p>L'esperienza desktop devo dire che si &egrave; rivelata davvero <strong>piacevole</strong>. Un "tuffo nel passato" che non mi aspettavo: MATE &egrave; un DE giovane, ma gi&agrave; parecchio <strong>maturo</strong>, in parecchie ore di utilizzo non c'&egrave; stato un solo crash, n&eacute; un rallentamento o qualsiasi altro problema. Ovviamente, la <strong>maggiore agilit&agrave;</strong> rispetto a Gnome 3 &egrave; notevole, e alla vista il tutto risulta estremamente gradevole (non poteva essere altrimenti, dato che si tratta del desktop che chi usa Gnome ha visto per anni e anni).</p>
+<p>Devo dire che capisco perch&egrave; il team di sviluppo di <strong>Mint</strong> ha scelto di affidarsi a questa soluzione per quanto riguarda il desktop (anche se poi ci si &egrave; orientati su <strong>Cinnamon</strong>), si tratta di un DE che davvero pu&ograve; far innamorare e decidere di usarlo in pianta stabile.</p>
+<p>Alla prossima..</p>

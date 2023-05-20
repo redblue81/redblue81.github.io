@@ -1,0 +1,40 @@
+---
+layout: post
+status: publish
+published: true
+title: GZ Calendar Date Style WP Plugin
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 477
+wordpress_url: http://redblue.netsons.org/?p=477
+date: '2009-05-05 11:01:16 +0100'
+date_gmt: '2009-05-05 10:01:16 +0100'
+categories:
+- blog
+- guide
+- tips & tricks
+- wordpress
+tags:
+- blog
+- wordpress
+- plugin
+- calendario
+- css
+comments: []
+---
+<p>Avete notato il calendario accanto al titolo dei post?? E' un piccolo aggiornamento che avevo in mente da un p&ograve;, ma che non applicavo mai per mancanza di tempo (&egrave; necessario modificare il <strong>CSS</strong> del template per realizzarlo, o almeno il sottoscritto voleva procedere in questo modo).</p>
+<p>Ieri invece ho beccato per caso questo <strong>plugin</strong>: <a href="http://blog.giallozafferano.it/index.php/gz-calendar-date-style/" target="_blank">GZ Calendar Date Style</a>, e ne ho subito approfittato. L'installazione &egrave; veramente semplice, ed &egrave; ben descritta nella pagina del plugin, eccola qui:</p>
+<ul>
+<li> dopo aver scaricato il plugin, scompattate il file e trasferite la cartella <strong><code>gz-datestyle</code></strong> nella cartella <strong><code>wp-content/plugins</code></strong> presente sul server;</li>
+<li>attivate il plugin dal relativo pannello di amministrazione;</li>
+<li>modificate i seguenti files del vostro tema: <span style="text-decoration: underline;"><code>index.php</code>, <code>archive.php</code>, <code>archives.php</code>, <code>single.php</code></span>, nel modo seguente:
+<ul>
+<li>rimuovete la riga <code><?php the_time('F jS, Y') ?></code></li>
+<li>sostituitela con <code><?php if(function_exists("draw_calendar")) draw_calendar(); ?></code></li>
+</ul>
+</li>
+</ul>
+<p>Il gioco &egrave; fatto. Sempre sulla stessa pagina che ho linkato prima, c'&egrave; qualche interessante trick: il file che gestisce il calendario &egrave; <code>calendar.css</code>, da qui &egrave; semplicissimo scegliere il colore della parte superiore del calendario stesso (il file <code>Upcalendar-colore.gif</code> nella directory <code>images</code>), la dimensione del testo e il colore.</p>

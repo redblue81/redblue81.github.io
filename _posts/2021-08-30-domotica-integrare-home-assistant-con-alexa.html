@@ -1,0 +1,176 @@
+---
+layout: post
+status: publish
+published: true
+title: Domotica - Integrare Home Assistant con Alexa
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 4144
+wordpress_url: https://www.red-blue.it/?p=4144
+date: '2021-08-30 13:12:00 +0100'
+date_gmt: '2021-08-30 11:12:00 +0100'
+categories:
+- guide
+- linux
+- in evidenza
+- domotica
+tags:
+- home assistant
+- alexa
+- smart home
+- domorica
+- skill
+- integrare
+comments: []
+---
+<p><!-- wp:paragraph --></p>
+<p>Oggi vediamo come <strong>integrare Home Assistant con Alexa</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><a href="http://localhost:4000/domotica" data-type="page" data-id="4071" target="_blank" rel="noreferrer noopener">Finora</a> abbiamo un sistema controllabile unicamente dall'interfaccia del PC o dall'app, ma la possibilit&agrave; di usare tutto solo con la voce non pu&ograve; essere trascurata.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Diciamo subito che esistono almeno due modi di realizzare questa integrazione: il primo, pi&ugrave; semplice, prevede di far apparire tutto come fosse una <strong>lampadina</strong>, il secondo invece prevede una vera e propria integrazione mediante una <strong>skill</strong> realizzata apposta.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ho scelto il secondo metodo, all'apparenza molto complesso, ma in realt&agrave; vedremo come integrare Home Assistant con Alexa sia pi&ugrave; semplice del previsto, basta procedere con calma e seguire le istruzioni che scriver&ograve;.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:more --><br />
+<!--more--><br />
+<!-- /wp:more --></p>
+<p><!-- wp:paragraph --></p>
+<p><strong>Premessa</strong>: &egrave; necessario che Home Assistant sia <a rel="noreferrer noopener" href="http://localhost:4000/domotica/domotica-accedere-a-home-assistant-dallesterno.html" data-type="post" data-id="4121" target="_blank">raggiungibile dall'esterno</a>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><strong>Primo passo.</strong> Iniziamo col creare un <strong>token di accesso a lunga vita</strong> dal menu relativo al nostro utente (in basso a sinistra), baster&agrave; crearlo, indicare un nome e copiarlo da qualche parte, servir&agrave; successivamente.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><strong>Secondo passo</strong>, editiamo il file configuration.yaml ed inseriamo le seguenti righe di codice:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"yaml"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">alexa:
+  smart_home:
+    filter:
+      include_domains:
+        - light</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>In questo modo stiamo indicando che useremo solo il dominio <strong>lights</strong>, ovvero controlleremo con Alexa solo le luci (ma ovviamente possiamo estendere il tutto in un secondo momento a qualsiasi dominio consentito).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Adesso &egrave; il momento di iscriverci alla <strong>Developer Console</strong> di Amazon, baster&agrave; loggarsi in <a rel="noreferrer noopener" href="https://developer.amazon.com/it/" target="_blank">questa pagina</a> col proprio account Amazon, cliccare su <strong>Developer Console</strong> (in alto a destra) e creare un <strong>Nuovo profilo di Sicurezza</strong> cliccando su <strong>Impostazioni -> Profili di sicurezza</strong>, assegnamo come nome ad esempio Domotica e come descrizione scegliamo <strong>Dialogo tra Home Assistant e Alexa</strong>, infine salviamo.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ora &egrave; il momento di creare un account su <a href="https://aws.amazon.com/it/" target="_blank" rel="noreferrer noopener">Amazon Web Services</a>, dovremo registrarci con un account non professionale, inserendo i dati di una carta di credito (necessari per la verifica dell'identit&agrave;) dalla quale verr&agrave; prelevata una piccola somma (poi restituita). Ovviamente, l'uso che faremo di questo account <strong>non preveder&agrave;</strong> alcun pagamento in futuro.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Dopo la registrazione, andiamo sulla console, clicchiamo a sinistra su <strong>Ruoli</strong> e poi su <strong>Crea ruolo</strong>. A questo punto scegliamo <strong>Servizio AWS</strong>, nella stessa pagina clicchiamo su <strong>Lambda</strong> e vedremo in basso a destra abilitarsi il pulsante <strong>Successivo: Autorizzazioni</strong>, sul quale dovremo cliccare.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Nella successiva schermata, selezionare <strong>AWSLambdaBasicExecutionRole</strong> (se non &egrave; immediatamente visualizzato basta cercarlo nel box in cima all'elenco), poi cliccare su <strong>Successivo: Tag</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Nella successiva schermata non c'&egrave; bisogno di modificare alcunch&egrave;, si pu&ograve; direttamente cliccare in basso su <strong>Successivo: Verifica</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto, inseriamo come nome ruolo <strong>AWSLambdaBasicExecutionRole-SmartHome</strong>, lasciando pure vuota la descrizione e clicchiamo finalmente su <strong>Crea Ruolo</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ci siamo quasi, &egrave; il momento di creare la funzione che permette di integrare Home Assistant con Alexa!</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Andiamo nella <a rel="noreferrer noopener" href="https://console.aws.amazon.com/lambda/home" target="_blank">dashboard relativa alle funzioni</a> e clicchiamo su <strong>Crea Funzione</strong>. Proseguiamo con <strong>Crea da zero</strong> e inseriamo un nome (Domotica), scegliamo <strong>Python 3.8</strong> come linguaggio, in <strong>Modifica del ruolo di esecuzione predefinito</strong> scegliamo <strong>Utilizza un ruolo esistente</strong> e selezioniamo quello creato in precedenza.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Clicchiamo su <strong>Crea Funzione</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto raggiungiamo <a rel="noreferrer noopener" href="https://developer.amazon.com/alexa/console/ask" target="_blank">questa pagina</a>, clicchiamo su <strong>Crea Skill</strong>, assegnamo un nome, scegliamo Italiano come lingua, <strong>Smart Home</strong> come <strong>Model</strong> e infine <strong>Provision your own</strong>. In alto a destra c'&egrave; il pulsante <strong>Create skill</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Nella successiva schermata scegliamo (se non gi&agrave; selezionata) la <strong>versione 3</strong> del payload e copiate da qualche parte lo <strong>skill-ID</strong> che trovate subito sotto.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Possiamo tornare sulla <a href="https://console.aws.amazon.com/lambda/home" target="_blank" rel="noreferrer noopener">dashboard delle funzioni</a> che abbiamo visto in precedenza e selezionare la funzione Domotica (se l'avete chiamata cos&igrave;), clicchiamo poi su <strong>Aggiungi trigger</strong> e selezioniamo nella schermata successiva <strong>Alexa Smart Home</strong>, inserendo come <strong>ID Applicazione</strong> lo skill-ID che abbiamo copiato al passo precedente, infine clicchiamo su <strong>Aggiungi</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Torneremo indietro di una schermata, basta cliccare su Domotica (vedremo un'icona arancione a sinistra) e in basso, nella scheda <strong>Codice</strong>, bisogner&agrave; cancellare quello che viene proposto e copiare il codice che si trova in <a href="https://gist.githubusercontent.com/matt2005/744b5ef548cc13d88d0569eea65f5e5b/raw/97b018bb12f574e780927c7b8dc85beae3fce6cc/lambda_function.py" target="_blank" rel="noreferrer noopener">questa pagina</a>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Clicchiamo su <strong>File -> Salva</strong> e poi su <strong>Deploy</strong> (si trova tutto nella scheda Codice), poi andiamo nella scheda <strong>Configurazione -> Modifica -> Aggiungi Variabili d'ambiente</strong>. Dovremo aggiungere le seguenti 4 variabili:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:list --></p>
+<ul>
+<li><strong>BASE_URL</strong>: https://nomedominio.duckdns.org</li>
+<li><strong>DEBUG</strong>: True</li>
+<li><strong>NOT_VERIFY_SSL</strong>: True</li>
+<li><strong>LONG_LIVED_ACCESS_TOKEN</strong>: il token creato inizialmente su Home Assistant</li>
+</ul>
+<p><!-- /wp:list --></p>
+<p><!-- wp:paragraph --></p>
+<p>Attenzione perch&egrave; <strong>ad ogni variabile</strong> occorre cliccare su Aggiungi variabile d'ambiente.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Salviamo il tutto e clicchiamo su <strong>Copia ARN</strong> in alto a destra, mettiamo da parte anche questo codice che ci servir&agrave; a breve.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Testiamo ora il tutto, basta cliccare su <strong>Test -> Configure test event -> Crea un nuovo evento di test</strong>. Diamo un nome e inseriamo le seguenti righe di codice:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"jscript"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">{
+  "directive": {
+    "header": {
+      "namespace": "Alexa.Discovery",
+      "name": "Discover",
+      "payloadVersion": "3",
+      "messageId": "1bd5d003-31b9-476f-ad03-71d471922820"
+    },
+    "payload": {
+      "scope": {
+        "type": "BearerToken"
+      }
+    }
+  }
+}</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Clicchiamo su <strong>Crea</strong>, poi su <strong>Test</strong>. Se tutto &egrave; andato bene, la risposta sar&agrave; affermativa.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Torniamo adesso alla <a rel="noreferrer noopener" href="https://developer.amazon.com/alexa/console/ask" target="_blank">console di AWS</a>, selezionando la skill creata in precedenza. Come <strong>Default Endpoint</strong> occorre inserire il codice ARN copiato in precedenza. Salviamo e poi clicchiamo su <strong>Setup Account Linking</strong> in basso, nella schermata successiva compiliamo i campi come segue:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:list --></p>
+<ul>
+<li><strong>Your Web Authorization URI</strong>: https://nomedominio.duckdns.org/auth/authorize</li>
+<li><strong>Access Token URI</strong>: https://nomedominio.duckdns.org/auth/token</li>
+<li><strong>Your Client ID</strong>: https://layla.amazon.com</li>
+<li><strong>Client Secret</strong>: Home Assistant HDJ</li>
+<li><strong>Your Authentication Scheme</strong>: Credentials in request body</li>
+<li><strong>Scope</strong>: cliccate su add scope e inserite smart_home</li>
+</ul>
+<p><!-- /wp:list --></p>
+<p><!-- wp:paragraph --></p>
+<p>Lasciate invariato il resto e cliccate su Save.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto per integrare Home Assistant con Alexa non resta che collegare il tutto all'app Alexa! Andiamo in <a rel="noreferrer noopener" href="https://alexa.amazon.com/" target="_blank">questa pagina</a>, facciamo il login con le credenziali del nostro dispositivo Alexa, poi su <strong>Skill -> Le tue skill -> Skill per sviluppatori</strong>: dovremmo vedere la skill Domotica che abbiamo creato e, cliccando su <strong>Attiva</strong>, dovrebbe segnalare che la skill &egrave; collegata con successo.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Andando infine su Scopri i dispositivi dovrebbero <strong>magicamente</strong> apparire in lista tutti i dispositivi (per ora solo le luci, ve lo ricordo) gestiti da Home Assistant! Se tutto &egrave; andato bene, siamo riusciti ad integrare Home Assistant con Alexa.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Non resta che limare la configurazione creata per aumentare la sicurezza, torniamo in <a rel="noreferrer noopener" href="https://eu-west-1.console.aws.amazon.com/lambda/home?region=eu-west-1#/functions/Domotica?tab=configuration" target="_blank">questa pagina</a>, e cancelliamo le due variabili d'ambiente DEBUG e LONG_LIVED_ACCESS_TOKEN create in precedenza, non serviranno ulteriormente.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Il token di accesso a lunga vita a questo punto pu&ograve; essere cancellato anche da Home Assistant.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>So che integrare Home Assistant con Alexa pu&ograve; sembrare un processo piuttosto complesso, ma seguendo il tutto con calma vi assicuro che il risultato &egrave; estremamente soddisfacente.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:tadv/classic-paragraph /--></p>

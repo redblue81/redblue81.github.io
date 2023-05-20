@@ -1,0 +1,41 @@
+---
+layout: post
+status: publish
+published: true
+title: Tethering gratuito su Nexus 5
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3772
+wordpress_url: http://www.red-blue.it/?p=3772
+date: '2015-07-30 20:12:57 +0100'
+date_gmt: '2015-07-30 18:12:57 +0100'
+categories:
+- tips & tricks
+- android
+tags:
+- android
+- nexus 5
+- tethering
+- adb
+comments: []
+---
+<p>Recentemente ho cambiato gestore telefonico, e ho mio malgrado riscontrato che un'operazione che facevo molto spesso, il <strong>tethering</strong>, ovvero la <strong>condivisione</strong> della mia connessione dati con altri dispositivi, &egrave; a <strong>pagamento</strong> (e molto salata anche)!</p>
+<p>Rapido giro in rete, e il consiglio che andava per la maggiore era quello di cancellare uno degli APN presenti, ma con mio enorme dispiacere, questa soluzione <strong>non</strong> ha funzionato. Ho scoperto che il problema &egrave; un parametro del terminale che "comunica" all'operatore l'avvio della sessione di tethering.</p>
+<p>Bene, basta usare <strong>ADB</strong> (&egrave; necessario scaricare l'<a href="https://developer.android.com/sdk/index.html" target="_blank">SDK</a> di Android) e dare i seguenti comandi:</p>
+<ul style="list-style-type: square;">
+<li><code>adb devices</code> (per controllare se il terminale &egrave; riconosciuto e correttamente connesso)</li>
+<li><code>adb shell</code></li>
+<li><code>settings get global tether_dun_required</code>
+<ul style="list-style-type: disc;">
+<li>se viene restituito null oppure 1 vuol dire che il terminale comunica l'avvio del tethering</li>
+<li>se viene restituito 0 il terminale non comunica nulla</li>
+</ul>
+</li>
+<li>nel primo caso, dare il seguente comando:&nbsp;<code>settings put global tether_dun_required 0</code></li>
+<li>scollegare e riavviare il terminale</li>
+</ul>
+<p>Finito, buon tethering!</p>
+<p>Alla prossima..</p>

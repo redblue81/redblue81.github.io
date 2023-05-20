@@ -1,0 +1,42 @@
+---
+layout: post
+status: publish
+published: true
+title: 'MAME su Linux: SDLMame'
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 438
+wordpress_url: http://redblue.netsons.org/?p=438
+date: '2009-04-21 12:33:02 +0100'
+date_gmt: '2009-04-21 11:33:02 +0100'
+categories:
+- miti
+- guide
+- linux
+- debian
+- software
+tags:
+- guida
+- debian
+- linux
+- ubuntu
+- lenny
+- mame
+- sdlmame
+- anni 80
+- emulatore
+comments: []
+---
+<p style="text-align: center;"><img class="aligncenter" src="/assets/images/mame.jpg" alt="" width="400" height="339" /></p>
+<p>Chi come il sottoscritto ha vissuto la propria infanzia negli <strong>anni 80</strong> non pu&ograve; non ricordare i primi videogame, reperibili solo in sala giochi.. Centinaia e centinaia di ore (e monetine) spese nel tentativo di completare quei giochi che, al confronto con quelli di oggi, sembrano i disegni di un bambino. Molti probabilmente conoscono anche il <strong>MAME</strong>, emulatore di tali giochi, capace di riportare quell'atmosfera sui nostri pc. Vediamo come installare questo emulatore sulla nostra <strong>Debian Lenny</strong>..</p>
+<p>Per prima cosa occorre dire che <strong>SDLMame</strong> (il nostro emulatore), come dice il nome stesso, sfrutta le <strong>SDL</strong>, quindi installiamole:</p>
+<blockquote><p><code>apt-get install libsdl-image1.2 libsdl-mixer1.2 libsdl-net1.2 libsdl1.2debian libsdl1.2debian-alsa</code></p></blockquote>
+<p>Pi&ugrave; eventuali altre dipendenze. Poi passiamo a scaricare il pacchetto da <a href="http://wallyweek.altervista.org/index.php" target="_blank">qui</a> (sono pacchetti compilati per <strong>Ubuntu</strong>, ma non &egrave; un problema) e installiamolo:</p>
+<blockquote><p><code>dpkg -i sdlmame_0.130u4-ww~intrepid1_i386.deb</code></p></blockquote>
+<p>Fatto.. A questo punto tenete presente che nella directory <strong><code>/etc/sdlmame/</code></strong> trovate l'emulatore e il relativo file di configurazione <strong><code>mame.ini</code></strong>, mentre nelle cartelle <strong><code>/usr/local/share/games/sdlmame/roms/</code></strong> o <strong><code>/NOMEUTENTE/.mame/roms/</code></strong> dovrete andare a posizionare le rom dei vostri giochi preferiti, che sono facilmente reperibili in rete (ad esempio <a href="http://www.rom-world.com/" target="_blank">qui</a>)..</p>
+<p>L'emulatore si avvia col semplice comando <strong><code>sdlmame</code></strong>, ma se avete l'accelerazione grafica abilitata vi consiglio:</p>
+<blockquote><p><code>sdlmame -video opengl</code></p></blockquote>
+<p>La differenza si vede! ;)</p>

@@ -1,0 +1,42 @@
+---
+layout: post
+status: publish
+published: true
+title: Cosa sono i database non relazionali (NoSQL)
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3726
+wordpress_url: http://www.red-blue.it/?p=3726
+date: '2015-03-29 16:07:58 +0100'
+date_gmt: '2015-03-29 14:07:58 +0100'
+categories:
+- programmazione
+tags:
+- database
+- sviluppo
+- nosql
+- programmazione
+comments: []
+---
+<p>Sempre pi&ugrave; spesso si parla di <strong>NoSQL</strong>, ovvero <strong>database non relazionali</strong>. Ma di cosa si parla esattamente? Da dove nasce l'esigenza di queste basi dati flessibili e scalabili?</p>
+<p>Cominciamo col dire che un database <strong>SQL </strong>si basa su <strong>relazioni </strong>tra i dati in esso contenuti: semplicemente, possiamo pensare di rappresentare i dati in <strong>tabelle</strong> le cui righe rappresentano le informazioni estratte da una situazione reale. Ovviamente questa rappresentazione dei dati deve essere <strong>sensata</strong>, ad esempio una tabella che astrae l'anagrafica degli utenti conterr&agrave; nome, cognome, indirizzo, username, password e via dicendo. Le informazioni devono essere <strong>frammentate</strong> su pi&ugrave; tabelle, che poi vanno messe appunto in relazione tra loro (nell'esempio precedente, possiamo pensare di separare la parte relativa all'indirizzo in un'apposita tabella a parte: il collegamento tra le due avverr&agrave; semplicemente con un campo ID presente in entrambe), come nella figura seguente:</p>
+<p><a href="/assets/images/sql.jpg"><img class="aligncenter wp-image-3728 size-full" src="/assets/images/sql.jpg" alt="sql" width="652" height="195" /></a><br />
+<!--moreContinua a leggere...--><br />
+La frammentazione &egrave; necessaria in quanto tabelle troppo grandi in termini di campi in esse contenuti diventano di difficile gestione. Questa struttura &egrave; <strong>potentissima</strong>, consentendo di rappresentare e organizzare moli di dati estremamente grandi, con la possibilit&agrave; di ricercare (interrrogare) record, inserirli e cancellarli in maniera estremamente rapida (a patto di realizzare ed utilizzare bene il tutto). Ovviamente, impone anche una serie di <strong>regole</strong> ferree sulle relazioni tra i dati e sui dati stessi, che devono essere organizzati in maniera rigida, dopo un'attenta progettazione.</p>
+<p>Ma le applicazioni moderne, <strong>social</strong> e <strong>cloud</strong> in testa, hanno esigenze diverse, prima tra tutte la flessibilit&agrave;. Questo ha dato una grossa spinta ai cosiddetti database <strong>NoSQL</strong>, ovvero non relazionali (ad esempio, <strong>MongoDB</strong>). I social network, ad esempio, necessitano di dover elaborare <strong>miliardi e miliardi di byte</strong> di dati alla volta, dovendo fornire risposte in tempi praticamente <strong>nulli</strong> (pensate alla ricerca di un utente su Facebook, &egrave; praticamente in tempo reale, iniziando a mostrare risultati gi&agrave; alla digitazione dei primi caratteri), e spesso dovendo adattare i dati dell'utenza nel tempo, tutte caratteristiche difficilmente ottenibili senza costi esorbitanti con soluzioni SQL.</p>
+<p>In un database NoSQL i dati non sono pi&ugrave; rigidamente organizzati in tabelle, ma in <strong>documenti</strong>, per cui l'informazione non risulta pi&ugrave; suddivisa in strutture logiche (le tabelle), ma appunto aggregata come <strong>oggetto</strong> in un documento (che deve avere per&ograve; una sua struttura interna interpretabile). L'applicazione che andremo a sviluppare considerer&agrave; il documento come un oggetto,<strong> potendo quindi andare a valutare tutte le informazioni relative all'entit&agrave; rappresentata in un colpo solo</strong>. In parole povere, andremo ad evitare tutto l'onere di dover interrogare il database pi&ugrave; volte, risalendo le varie relazioni fino ad ottenere l'informazione cercata tipica dei database relazionali.</p>
+<p>Non essendoci pi&ugrave; le tabelle, il database NoSQL diventa flessibile, poich&egrave; non deve necessariamente seguire uno schema definito inizialmente in fase di progettazione: ad esempio, possiamo usare un semplice documento in formato <strong>JSON</strong>.</p>
+<pre class="brush: javascript; gutter: true">{
+
+&nbsp;&nbsp; &ldquo;ID&rdquo; : 1,
+
+&nbsp;&nbsp; &ldquo;Utente&rdquo; : &ldquo;Utente 1&rdquo;,
+&egrave;&egrave;&egrave;
+&nbsp;&nbsp; &ldquo;Indirizzo&rdquo; : &ldquo;Indirizzo Utente 1&rdquo;
+
+}</pre>
+<p>Il vantaggio computazionale &egrave; fuori discussione: tutte le informazioni sono in questo documento, non serve andare ad interrogare varie strutture dati per ricostruire il tutto, anche se ovviamente le informazioni cos&igrave; sono molto pi&ugrave; onerose in termini di storage (ma con il costo sempre minore dei Terabyte questo spesso non rappresenta un grosso problema), al contrario dei database SQL nei quali al crescere dei dati occorre maggiore potenza computazionale (e maggiore attenzione all'organizzazione dei dati stessi, ad esempio prevedendo indici per determinate interrogazioni). Anche un altro vantaggio &egrave; piuttosto ovvio: se devo aggiungere un campo "Paese" ovvviamente questa operazione &egrave; banale, basta aggiungere questo dato al file JSON visto prima, senza dover aggiornare null'altro. Anche in termini di <strong>scalabilit&agrave;</strong>, ad esempio se si volesse aggiungere un nuovo server di elaborazione dei dati, la soluzione NoSQL non pone particolari problemi.</p>
+<p>Alla prossima..</p>

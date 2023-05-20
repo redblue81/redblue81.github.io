@@ -1,0 +1,40 @@
+---
+layout: post
+status: publish
+published: true
+title: Come eliminare Mono da Karmic
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 895
+wordpress_url: http://redblue.netsons.org/?p=895
+date: '2009-12-20 13:01:50 +0100'
+date_gmt: '2009-12-20 12:01:50 +0100'
+categories:
+- tips & tricks
+- linux
+- ubuntu
+tags:
+- karmic
+- mono
+- tomboy
+- f-spot
+- beagle
+- banshee
+- rhythmbox
+- gnote
+- tracker
+- come eliminare
+comments: []
+---
+<p><strong>Premessa</strong>: non intendo addentrarmi in discussioni sulla filosofia che pu&ograve; stare dietro alla scelta di tenere o meno installato <strong>Mono</strong> sulla propria distribuzione Linux.. Non star&ograve; qui a parlare di Microsoft o di opensource.. Semplicemente l'argomento in rete &egrave; gi&agrave; stratrattato, quindi mi sembra superfluo aggiungere altro.. Per quanto mi riguarda, semplicemente ho notato che le applicazioni scritte in Mono sono decisamente "<strong>pesanti</strong>", per cui, poich&egrave; esistono alternative pi&ugrave; leggere e altrettanto valide, ho optato per la rimozione di Mono..</p>
+<p>E allora, la rimozione &egrave; semplicissima, basta dare:</p>
+<blockquote><p><code>sudo apt-get --purge remove libmono* libgdiplus cli-common</code></p></blockquote>
+<p><!--more Continua a leggere questo articolo.. --><br />
+Le applicazioni principali che (probabilmente) vi verranno a mancare sono <strong>F-Spot</strong> (gestore di fotografie), <strong>Tomboy</strong> (gestore di note sul desktop), <strong>Banshee</strong> (lettore multimediale), <strong>Beagle</strong> (tool per la ricerca sul desktop)..</p>
+<p>Bene, le alternative sono <strong>GNote</strong> per Tomboy, che &egrave; assolutamente identico, <strong>Rhythmbox</strong> per Banshee, che &egrave; gi&agrave; incluso in Ubuntu, cos&igrave; come <strong>Tracker</strong> per Beagle (che ormai &egrave; decisamente stato superato), mentre bisogna dire che per F-Spot le alternative al momento latitano, ho sentito parlare di qualche progetto interessante, ma al momento sembra sia tutto in stato embrionale..</p>
+<p>I tre software che ho indicato sono tranquillamente disponibili nei repository di <strong>Karmic</strong>, quindi la loro installazione &egrave; addirittura banale.. ;)</p>
+<p>Se avete altri software da segnalare (con le corrispondenti alternative) non esitate a farlo!!</p>
+<p>Alla prossima..</p>

@@ -1,0 +1,98 @@
+---
+layout: post
+status: publish
+published: true
+title: Domotica - Installare Home Assistant
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 4056
+wordpress_url: https://www.red-blue.it/?p=4056
+date: '2021-05-29 14:18:00 +0100'
+date_gmt: '2021-05-29 12:18:00 +0100'
+categories:
+- guide
+- linux
+- in evidenza
+- raspberry pi
+- domotica
+tags:
+- guida
+- installazione
+- domotica
+- home assistant
+comments: []
+---
+<p><!-- wp:paragraph --></p>
+<p>Bentrovati su questa serie riguardo la realizzazione del proprio sistema domotico casalingo. Dopo la doverosa <a href="http://localhost:4000/domotica/realizzare-il-proprio-sistema-domotico-introduzione.html" data-type="post" data-id="4047" target="_blank" rel="noreferrer noopener">introduzione fatta in precedenza</a>, iniziamo con installare <strong>Home Assistant</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Il primo passo &egrave; sicuramente l'acquisto del <strong>server</strong>, nel mio caso ho optato per un <strong>RaspberryPi 4</strong> con 4GB di RAM (ma va bene un qualsiasi PC, mini PC, NAS dotato di sistema operativo, etc.). Successivamente, occorre <strong>installare </strong>Home Assistant.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><a href="https://www.home-assistant.io/" target="_blank" rel="noreferrer noopener">Home Assistant</a> &egrave; un <strong>HUB personale</strong> che consente di gestire la domotica in maniera semplice ed intuitiva, consentendo di integrare dispositivi di natura diversa <strong>a prescindere dal produttore e dagli standard utilizzati</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:more --><br />
+<!--more--><br />
+<!-- /wp:more --></p>
+<p><!-- wp:paragraph --></p>
+<p>Diciamo che l'obiettivo finale &egrave; quello di avere un'<strong>unica plancia</strong> dalla quale poter controllare tutta la domotica in casa, avendo un unico <strong>gateway</strong> (una sorta di "centralina") e una sola <strong>app </strong>installata sullo smartphone.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Home Assistant &egrave; disponibile fondamentalmente in due opzioni: <strong>OS </strong>e <strong>Core</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>La differenza fondamentale &egrave; che con l'opzione OS Home Assistant verr&agrave; installato come <strong>sistema operativo</strong>, quindi il Raspberry sar&agrave; dedicato solo alla domotica. Diversamente, avrete Home Assistant come applicativo installato nel sistema operativo, tipicamente <a rel="noreferrer noopener" href="https://www.raspberrypi.org/software/" target="_blank">Raspberry Pi OS</a>, e quindi sarete poi liberi di installare anche altro sul server.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Inoltre, con la versione OS verr&agrave; installato anche <strong>Supervisor</strong>, uno store gratuito di plugin e componenti aggiuntivi, che altrimenti andranno installati a mano.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>E' disponibile in realt&agrave; anche l'opzione di installazione in <strong>Docker </strong>container, che sfrutta la tecnologia di virtualizzazione, ma questo merita un approfondimento a parte, magari in futuro potrei pensarci.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Personalmente, ho deciso di dedicare il Raspberry alla domotica, quindi ho scelto di andare sull'opzione pi&ugrave; semplice, installando Home Assistant OS. L'installazione &egrave; semplicissima (<a href="https://www.home-assistant.io/installation/raspberrypi" target="_blank" rel="noreferrer noopener">questo il link</a>):</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:list --></p>
+<ul>
+<li>scaricare <a rel="noreferrer noopener" href="https://www.balena.io/etcher" data-type="URL" data-id="https://www.balena.io/etcher" target="_blank">Balena Etcher</a> ed avviarlo;</li>
+<li>selezionare <strong>Flash from URL</strong> ed inserire (attualmente): </li>
+</ul>
+<p><!-- /wp:list --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">https://github.com/home-assistant/operating-system/releases/download/5.13/hassos_rpi4-64-5.13.img.xz</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:list --></p>
+<ul>
+<li>selezionare la propria micro SD dalla scheda <strong>Target</strong>;</li>
+<li>cliccare su <strong>Flash </strong>ed attendere il completamento.</li>
+</ul>
+<p><!-- /wp:list --></p>
+<p><!-- wp:paragraph --></p>
+<p>Attenzione perch&egrave; la micro SD sar&agrave; <strong>formattata</strong>, quindi perderete il suo eventuale contenuto precedente!</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><strong>Finito</strong>! Home Assistant &egrave; installato e pronto per il primo avvio!</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto potete inserire la micro SD nel Raspberry, <strong>collegare un cavo di rete</strong> e accendere il tutto. In pochi minuti sar&agrave; operativo.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Potete verificare collegandovi all'indirizzo <strong>homeassistant.local:8123</strong>, se tutto &egrave; andato liscio, vi chieder&agrave; di creare un utente:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4058,"width":425,"height":346,"sizeSlug":"full","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-full is-resized"><img src="/assets/images/home-assistant-1.jpg" alt="" class="wp-image-4058" width="425" height="346"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla schermata successiva, date un <strong>nome </strong>alla vostra casa ed inserite la <strong>posizione </strong>sulla mappa (servir&agrave; per alcune integrazioni interessanti). Vi chieder&agrave; anche di configurare eventuali integrazioni se trova dispositivi compatibili (molto probabile), nel caso configurate gi&agrave; adesso tutto, ci torner&agrave; utile.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Nel prossimo articolo, vedremo come sostituire la micro SD con un disco SSD.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>

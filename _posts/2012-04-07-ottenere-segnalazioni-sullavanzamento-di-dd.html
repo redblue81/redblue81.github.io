@@ -1,0 +1,52 @@
+---
+layout: post
+status: publish
+published: true
+title: Ottenere segnalazioni sull'avanzamento di DD
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3028
+wordpress_url: http://www.red-blue.it/?p=3028
+date: '2012-04-07 12:24:23 +0100'
+date_gmt: '2012-04-07 10:24:23 +0100'
+categories:
+- tips & tricks
+- linux
+tags:
+- tips
+- bash
+- dd
+- avanzamento
+comments:
+- id: 9314
+  author: marste
+  author_email: stefano.marzorati@gmail.com
+  author_url: ''
+  date: '2012-04-07 13:47:08 +0100'
+  date_gmt: '2012-04-07 11:47:08 +0100'
+  content: Ma quando si lancia il comando dd, la pendrive deve essere montata oppure
+    no?
+- id: 9315
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2012-04-07 19:27:59 +0100'
+  date_gmt: '2012-04-07 17:27:59 +0100'
+  content: |-
+    Ciao,
+
+    deve essere montata, infatti il comando esegue, in fin dei conti, una semplice copia.. ;)
+---
+<p>Cos'&egrave; <strong>DD</strong>?</p>
+<p>Si tratta di un <strong>comando</strong> in grado di "<strong>specchiare</strong>" un intero hard disk. In altre parole, copia tutto ci&ograve; che gli indichiamo in una <strong>partizione</strong>, sia che si tratti di un'<strong>immagine</strong> (ad esempio), o dell'<strong>intero contenuto di un disco</strong> (un clone vero e proprio). Per questi motivi &egrave; ovviamente un comando "pericoloso" se utilizzato nel modo sbagliato (in men che non si dica potreste ritrovarvi senza dati fondamentali).</p>
+<p>Una grave pecca di questo comando &egrave; quella di <strong>non</strong> presentare di default alcuna <strong>segnalazione</strong> di avanzamento all'utente, che vede semplicemente il cursore lampeggiante, ignaro di ci&ograve; che sta realmente succedendo.</p>
+<p>Esiste per&ograve; un'opzione, <strong>pv</strong>, che consente di aggiungere all'output una specie di barra che, se non altro, ci fa capire che il programma sta avanzando e quando, pi&ugrave; o meno, star&agrave; per finire.</p>
+<p>Ad esempio, per copiare l'immagine di un disco su una <strong>pendrive</strong> (alcune distribuzioni Linux vengono rilasciate in questo modo) il comando &egrave; il seguente:</p>
+<pre class="brush: bash; gutter: true">dd if=/home/nomeutente/nomefile.img dd of=/dev/sdb bs=10M</pre>
+<p>Dove <strong>if</strong> &egrave; l'input, <strong>of</strong> indica l'output e <strong>bs</strong> indica la dimensione del blocco che andr&agrave; scritto di volta in volta. Ovviamente i nomi vanno <strong>adattati</strong> alle vostre esigenze (la pendrive pu&ograve; anche essere /dev/sdc ad esempio).</p>
+<p>Se vogliamo un'indicazione di avanzamento, aggiungiamo l'opzione <strong>pv</strong>:</p>
+<pre class="brush: bash; gutter: true">dd if=/home/nomeutente/nomefile.img |pv|dd of=/dev/sdb bs=10M</pre>
+<p>Alla prossima..</p>

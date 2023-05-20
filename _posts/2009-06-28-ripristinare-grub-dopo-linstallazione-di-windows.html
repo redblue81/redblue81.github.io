@@ -1,0 +1,38 @@
+---
+layout: post
+status: publish
+published: true
+title: Ripristinare GRUB dopo l'installazione di Windows
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 609
+wordpress_url: http://redblue.netsons.org/?p=609
+date: '2009-06-28 13:01:22 +0100'
+date_gmt: '2009-06-28 12:01:22 +0100'
+categories:
+- guide
+- tips & tricks
+- linux
+- windows
+tags:
+- guida
+- linux
+- windows
+- grub
+- dual boot
+- ripristino
+comments: []
+---
+<p>Mi rivolgo a coloro che hanno un sistema in <strong>dual boot</strong>, ovvero due partizioni da cui si avviano, a scelta, una distribuzione <strong>Linux</strong> o <strong>Windows</strong>. Penso tutti sappiano che se si installa Windows dopo aver installato Linux, il nostro <strong>Grub</strong> va a farsi benedire, e quindi non &egrave; pi&ugrave; possibile avviare LInux.. Bene, vediamo ora come ripristinare la situazione:</p>
+<ul>
+<li>per prima cosa bisogna procurarsi una qualsiasi distribuzione Linux in versione <strong>Live</strong>, che si avvii cio&egrave; da CD/USB;</li>
+<li>avviata la distribuzione, aprire il terminale e digitare <code>sudo grub</code> per avviare una <strong>shell</strong> di Grub;</li>
+<li>a questo punto digitare <code>/boot/grub/stage1</code>;</li>
+<li>il comando restituisce la partizione su cui si trova <code>/root</code>, per cui, ipotizzando di ottenere come risultato <code>(hd0,2)</code>, digitare <code>root (hd0,2)</code>;</li>
+<li>seguendo l'esempio del punto precedente, ripristinare infine Grub digitando <code>setup (hd0)</code>;</li>
+<li>riavviare il pc.</li>
+</ul>
+<p>Fatto.. Ora avrete di nuovo il dual boot.. <strong>ATTENZIONE</strong>: ho letto in rete che tale procedura non funziona con la RC di Windows Seven, non avendo tale sistema operativo a disposizione, non ho potuto per&ograve; provare..</p>

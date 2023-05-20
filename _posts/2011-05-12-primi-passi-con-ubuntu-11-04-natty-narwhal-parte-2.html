@@ -1,0 +1,45 @@
+---
+layout: post
+status: publish
+published: true
+title: Primi passi con Ubuntu 11.04 Natty Narwhal - Parte 2
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2130
+wordpress_url: http://www.red-blue.it/?p=2130
+date: '2011-05-12 08:56:31 +0100'
+date_gmt: '2011-05-12 06:56:31 +0100'
+categories:
+- guide
+- linux
+- ubuntu
+- software
+tags:
+- ubuntu
+- installazione
+- '11.04'
+- natty
+- software
+comments: []
+---
+<p>Dopo l'installazione di ci&ograve; che ritengo fondamentale, oggi completo questa guida indicando alcuni altri <strong>software</strong> che uso ormai da tempo, e che ritengo affidabili ed accattivanti..</p>
+<p>Innanzi tutto, direi di iniziare dai software di <strong>comunicazione</strong>:</p>
+<blockquote><p><code>sudo add-apt-repository ppa:hotot-team &&&nbsp;sudo apt-get update && sudo apt-get install hotot<br />
+sudo apt-get install skype</code></p></blockquote>
+<p>Se usate <strong>MSN</strong> poi potete installare <strong>Emesene</strong>, giunto alla versione <strong>2</strong>:</p>
+<blockquote><p><code>sudo apt-get install emesene</code></p></blockquote>
+<p>Ovviamente non possono mancare software come <strong>aMule</strong>, <strong>JDownloader</strong>, <strong>Gimp</strong>, <strong>indicator-weather</strong>, <strong>gdebi</strong>, pi&ugrave; l'applet di notifica di <strong>GMail</strong> nella barra superiore:</p>
+<blockquote><p><code>sudo apt-get install amule gimp indicator-weather gdebi gm-notify<br />
+sudo add-apt-repository ppa:jd-team/jdownloader &&&nbsp;sudo apt-get update &&&nbsp;sudo apt-get install jdownloader</code></p></blockquote>
+<p>E, perch&egrave; no, anche <strong>Dropbox</strong>, per il quale basta scaricare il pacchetto <strong>.DEB</strong> adatto alla vostra distribuzione direttamente dal <a href="http://www.dropbox.com" target="_blank">sito ufficiale</a>.</p>
+<p>Personalmente, sono un accanito sostenitore del browser di Google, <strong>Chrome</strong>, e per questo installo la Daily Build, dal seguente <strong>PPA</strong>:</p>
+<blockquote><p><code>sudo add-apt-repository ppa:chromium-daily/ppa<br />
+sudo apt-get update<br />
+sudo apt-get install chromium-browser chromium-browser-l10n</code></p></blockquote>
+<p>Infine, potete abilitare il repository <strong>Medibuntu</strong>, contenente molti pacchetti utili al corretto utilizzo di file multimediali:</p>
+<blockquote><p><code>sudo wget --output-document=/etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list && sudo apt-get --quiet update && sudo apt-get --yes --quiet --allow-unauthenticated install medibuntu-keyring && sudo apt-get --quiet update<br />
+sudo apt-get --yes install app-install-data-medibuntu apport-hooks-medibuntu</code></p></blockquote>
+<p>Alla prossima..</p>

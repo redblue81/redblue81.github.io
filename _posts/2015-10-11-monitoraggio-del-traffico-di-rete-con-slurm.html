@@ -1,0 +1,33 @@
+---
+layout: post
+status: publish
+published: true
+title: Monitoraggio del traffico di rete con Slurm
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3783
+wordpress_url: http://www.red-blue.it/?p=3783
+date: '2015-10-11 11:24:11 +0100'
+date_gmt: '2015-10-11 09:24:11 +0100'
+categories:
+- tips & tricks
+- linux
+tags:
+- linux
+- tips
+- traffico
+- slurm
+- rete
+comments: []
+---
+<p>Slurm &egrave; una piccola utility a riga di comando che serve semplicemente a monitorare il traffico in entrata e in uscita per una certa interfaccia di rete. Non &egrave; il pi&ugrave; esaustivo dei tool, ma &egrave; molto utile ed immediato per avere velocemente un'idea di quello che sta succedendo.</p>
+<p>Lo installiamo con il classico</p>
+<p>apt-get install slurm</p>
+<p>E lo avviamo con il comando:</p>
+<p>slurm -i <interfaccia di rete></p>
+<p>Ad esempio, l'interfaccia pu&ograve; essere la classica wlan0. Otterremo come risultato qualcosa del genere:</p>
+<p><a href="/assets/images/slurm.png"><img class="aligncenter size-medium wp-image-3784" src="/assets/images/slurm-300x188.png" alt="slurm" width="300" height="188" /></a></p>
+<p>Alla prossima..</p>

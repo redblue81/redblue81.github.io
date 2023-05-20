@@ -1,0 +1,96 @@
+---
+layout: post
+status: publish
+published: true
+title: La mia (nuova) prima installazione di Debian
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3528
+wordpress_url: http://www.red-blue.it/?p=3528
+date: '2013-08-20 17:23:18 +0100'
+date_gmt: '2013-08-20 15:23:18 +0100'
+categories:
+- tips & tricks
+- linux
+- debian
+- piccole soddisfazioni
+- notebook
+- samsung serie 3
+tags:
+- debian
+- installazione
+- testing
+- notebook
+- soddisfazioni
+- personalizzazione
+comments:
+- id: 72282
+  author: picchiopc
+  author_email: picchiopc@yahoo.it
+  author_url: http://picchiopc.wordpress.com
+  date: '2013-08-21 15:43:43 +0100'
+  date_gmt: '2013-08-21 13:43:43 +0100'
+  content: "Per quanto riguarda i drivers video hai varie possibilit&agrave;, ho disattivi
+    la scheda ATI e usi solo la Intel in modo tale da risparmiare batteria oppure
+    usi qualche script per swicciare da una scheda all'altra al boot.\r\n\r\nPersonalmente
+    non ho esperienza in merito ma in rete si trovano un sacco di guide e script quindi
+    non dovresti avere problemi.\r\n\r\nPer la questione open o proprietari tutto
+    dipende da come si comporta la tua scheda, la cosa migliore &egrave; fare dei
+    test e vedere con quali drivers gira meglio."
+- id: 72316
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2013-08-21 17:46:25 +0100'
+  date_gmt: '2013-08-21 15:46:25 +0100'
+  content: |-
+    Grazie Picchio!
+
+    Mi sto documentando sull'argomento in effetti, ora vedr&ograve; il da farsi.. ;)
+- id: 72694
+  author: Grafica ibrida Intel/AMD e Debian, la mia situazione - RedBlue&#039;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/linux/grafica-ibrida-intelamd-debian-la-mia-situazione.html
+  date: '2013-08-23 18:48:31 +0100'
+  date_gmt: '2013-08-23 16:48:31 +0100'
+  content: "[&#8230;] dicevo in un post precedente, temevo che sfida pi&ugrave; grande
+    per quanto riguarda la configurazione del mio notebook con Debian [&#8230;]"
+---
+<p>Come scrivevo nel <a title=". . Riconnessione in corso . ." href="http://localhost:4000/io/riconnessione-in-corso.html" target="_blank">post precedente</a>, dopo quasi un anno sto tornando ad usare <strong>Linux</strong> a tempo pieno, e nello specifico <strong>Debian</strong>. Ecco quindi il perch&egrave; del titolo di questo post; chi mi seguiva un minimo, sa che uso Debian da anni e quindi la sua installazione non &egrave; un problema, ma dopo circa un anno di "assenza", sicuramente un bel po' di ruggine si &egrave; formata, ed ecco il report del mio "ripristino"..</p>
+<p>Dopo aver scaricato dal <a href="http://cdimage.debian.org/debian-cd/7.1.0/amd64/iso-cd/debian-7.1.0-amd64-netinst.iso" target="_blank">sito ufficiale</a> la ISO di<strong> Debian 7.1</strong> versione <strong>netinst</strong>, ovvero la versione che necessit&agrave; della connessione ad Internet (via cavo) per funzionare, e dopo averla messa su un pendrive, via con l'installazione vera e propria, che devo dire mi ricordavo abbastanza bene, e che non &egrave; cambiata di una virgola. Scelgo di non installare praticamente nulla al di fuori del <strong>sistema base</strong>, in modo da poter poi "plasmare" la distribuzione come meglio credo.</p>
+<p><!--moreContinua a leggere..--></p>
+<p>L'installazione &egrave; stata effettuata sul mio <strong>Samsung NP350V5C-S0AIT</strong>, praticamente questo giocattolino <a href="http://www.samsung.com/it/consumer/pc-peripherals-printer/notebook/essential/NP350V5C-S0AIT" target="_blank">qui</a>.</p>
+<p><a href="/assets/images/Joif_-_debian_logo_sticker.jpg"><img class="aligncenter size-full wp-image-2773" alt="Joif_-_debian_logo_sticker" src="/assets/images/Joif_-_debian_logo_sticker.jpg" width="200" height="268" /></a>Poi, dato che comunque resto un tipo non da stable, ho provveduto a cambiare i repository in <strong>testing</strong> (meglio non lanciarsi immediatamente alla sid che usavo tempo fa), aggiungendo le fonti contrib e non-free, per poter contare su un database di pacchetti ragguardevole.</p>
+<p>In sequenza:</p>
+<ul>
+<li>dopo essermi loggato come root,
+<pre class="brush: bash; gutter: false">apt-get upgrade</pre>
+<p>per passare da stable a testing;</li>
+<li>ho cercato di installare <strong>aptitude</strong> (sempre in omaggio al voler procedere senza strafare), ma ho riscontrato con piacere che era gi&agrave; installato;</li>
+<li>
+<pre class="brush: bash; gutter: false">aptitude safe-upgrade && aptitude full-upgrade</pre>
+<p>il secondo non ha aggiornato nulla in realt&agrave;;</li>
+<li>
+<pre class="brush: bash; gutter: false">update-grub</pre>
+</li>
+<li>
+<pre class="brush: bash; gutter: false">aptitude install xorg xfce4 lightdm build-essential linux-headers</pre>
+</li>
+</ul>
+<p>E gi&agrave;, ho scelto di usare <strong>XFCE</strong> come desktop environment. Era una scelta che avevo fatto a suo tempo seguendo l'esempio degli sviluppatori, che per ragioni di spazio (soltanto?) avevano deciso di passare a questo ambiente. Inoltre, aggiungo il minimo indispensabile per compilare qualche pacchetto, e gli headers del <strong>kernel</strong> che mi ha installato, versione <strong>3.10-2</strong>.</p>
+<p>Successivamente, per iniziare la personalizzazione, ho eseguito i seguenti passi:</p>
+<ul>
+<li>installazione e configurazione di <strong>sudo</strong></li>
+<li>Iceweasel + Icedove (browser e email)</li>
+<li>Flashplayer</li>
+<li>firmware <strong>Atheros</strong> per la mia scheda WiFi + Wicd come gestore di reti</li>
+<li>Intel-microcode (in risoluzione ad un errore in avvio riscontrato con dmesg)</li>
+<li>pacchetto xfce4-goodies per ottenere un bel po' di futilit&agrave; essenziali ( :) ) per l'ambiente grafico</li>
+<li>pacchetto esound per abilitare l'audio</li>
+<li>attivazione del compositore di finestre di xfce</li>
+</ul>
+<p>Direi che per ora funziona tutto alla grande, e di ruggine forse ce n'&egrave; meno di quanto pensassi, ma la sfida (?) sar&agrave; forse col <strong>sistema grafico</strong>, poich&egrave; si tratta di un dual graphics <strong>Intel/AMD</strong> (dovuto alla CPU I7 di 3a generazione). In realt&agrave; sembra funzionare tutto, ma devo capire bene la situazione. Drivers open ne esistono? O devo ricorrere ai proprietari? Si accettano consigli ovviamente!! ;)</p>
+<p>Alla prossima..</p>

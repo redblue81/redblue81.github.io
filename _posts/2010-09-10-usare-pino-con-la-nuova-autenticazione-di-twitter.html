@@ -1,0 +1,46 @@
+---
+layout: post
+status: publish
+published: true
+title: Usare Pino con la nuova autenticazione di Twitter..
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1511
+wordpress_url: http://www.red-blue.it/?p=1511
+date: '2010-09-10 14:50:51 +0100'
+date_gmt: '2010-09-10 13:50:51 +0100'
+categories:
+- guide
+- tips & tricks
+- linux
+- ubuntu
+- in evidenza
+tags:
+- linux
+- ubuntu
+- tips
+- tricks
+- twitter
+- pino
+- '10.04'
+- oauth
+- http
+comments: []
+---
+<p><strong>Pino</strong> &egrave; il client per <strong>Twitter</strong> che preferisco (cfr. "<a href="http://localhost:4000/internet/pino-un-client-twitter-su-karmic.html" target="_blank">Pino, un client Twitter su Karmic</a>")..</p>
+<p>Purtroppo con l'introduzione da parte di Twitter della nuova autenticazione basata su <strong>OAuth</strong> ha smesso di funzionare (il vecchio metodo era il semplice <strong>HTTP</strong>). Sul <a href="http://pino-app.appspot.com/" target="_blank">sito ufficiale</a> dicono che la prossima versione, la <strong>0.3</strong>, sar&agrave; perfettamente compatibile con questo nuovo metodo, ma per il momento &egrave; possibile ricorrere ad un piccolo workaround per accedere a Twitter anche con la versione attuale (0.2.11)..</p>
+<p>E' molto semplice, basta andare su questo sito: <a href="http://www.supertweet.net/" target="_blank">http://www.supertweet.net/</a>, e selezionare "<strong>Sign in with Twitter</strong>", inserire nome utente e password, e nella schermata successiva cliccare su "<strong>Activate</strong>" ed inserire una password (non quella dell'account Twitter, un'altra password a vostra scelta), per poi cliccare su "<strong>Submit</strong>"..</p>
+<p>A questo punto possiamo aprire Pino e modificare il nostro account (<strong>Preferenze -> Account -> Modifica</strong>) come segue:</p>
+<ul>
+<li>l'<strong>username</strong> resta quello che usiamo su Twitter;</li>
+<li>la <strong>password</strong> sar&agrave; quella creata prima su Supertweet.net (<span style="text-decoration: underline;"><strong>NON</strong></span> quella che avete per l'account su Twitter!!);</li>
+<li>alla voce <strong>Servizio</strong> scegliamo <strong>other</strong>;</li>
+<li>come <strong>Proxy API</strong> indichiamo <strong>http://api.supertweet.net/1/</strong></li>
+</ul>
+<p>Finito.. Ora magicamente Pino torner&agrave; a funzionare!! ;)</p>
+<p>In pratica usiamo l'applicazione come <strong>Proxy</strong> per aggirare il nuovo sistema di autenticazione (ci autentichiamo all'API che a sua volta si autentica su Twitter), questo ovviamente fino al rilascio della nuova versione di Pino, con la quale (speriamo) potremo tornare alla configurazione normale..</p>
+<p>Alla prossima..</p>
+<div id="_mcePaste" style="position: absolute; left: -10000px; top: 0px; width: 1px; height: 1px; overflow: hidden;">http://www.red-blue.it/internet/pino-un-client-twitter-su-karmic.html</div>

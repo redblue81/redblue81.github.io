@@ -1,0 +1,57 @@
+---
+layout: post
+status: publish
+published: true
+title: Autenticarsi in Debian tramite LDAP - Parte 3 - PHPLDAPAdmin
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3805
+wordpress_url: http://www.red-blue.it/?p=3805
+date: '2015-10-25 18:42:38 +0100'
+date_gmt: '2015-10-25 17:42:38 +0100'
+categories:
+- guide
+- linux
+- debian
+- in evidenza
+- server
+tags:
+- guida
+- debian
+- phpldapadmin
+- ldap
+- amministrazione
+comments: []
+---
+<p>Ed eccoci alla terza ed ultima parte della guida all'autenticazione in Debian tramite LDAP: dopo aver <a href="http://localhost:4000/guide/autenticarsi-in-debian-tramite-ldap-parte-1-installazione-server.html">installato la parte server</a> e la <a href="http://localhost:4000/guide/autenticarsi-in-debian-tramite-ldap-parte-2-installazione-client.html">parte client</a>, vediamo un tool di gestione molto utile: <strong>PHPLDAPAdmin</strong>.</p>
+<p>Si tratta di un tool <strong>web</strong>, concettualmente molto simile a PHPMyAdmin (usato spesso per i database MySql): permette la navigazione all'interno del database di LDAP, l'esecuzione di ricerche, la creazione e la gestione di utenti e gruppi. Non &egrave; assolutamente necessario, ma pu&ograve; dare una bella mano nell'<strong>amministrazione</strong> del server LDAP, operazione, ripeto, alle volte piuttosto macchinosa.</p>
+<p>Per prima cosa installiamolo, come <strong>root</strong> diamo:</p>
+<pre class="brush: bash; gutter: true">apt-get install phpldapadmin</pre>
+<p>Dopo l'installazione, sar&agrave; necessario configurare PHPLDAPAdmin, in primo luogo per indicare quel &egrave; il nostro server LDAP. Andiamo quindi ad editare il file <code>/etc/phpldapadmin/config.php</code>.</p>
+<p>Per prima cosa possiamo sistemare il fuso orario, quindi cerchiamo la seguente riga e impostiamo "Europe/Rome".</p>
+<pre class="brush: bash; gutter: true">$config->custom->appearance[&#039;timezone&#039;] = &#039;Europe/Rome&#039;;</pre>
+<p>Pi&ugrave; in basso, troveremo la sezione pi&ugrave; importante, ovvero quella relativa al <strong>server</strong>, e dovremo ovviamente indicare il nostro, se seguiamo l'esempio proposto nelle varie parti di questa guida avremo:</p>
+<pre class="brush: bash; gutter: true">// Set your LDAP server name //
+
+$servers->setValue(&#039;server&#039;,&#039;name&#039;,&#039;RedBlue LDAP Server&#039;);
+
+// Set your LDAP server IP address //
+
+$servers->setValue(&#039;server&#039;,&#039;host&#039;,&#039;192.168.10.100&#039;);
+
+// Set Server domain name //
+
+$servers->setValue(&#039;server&#039;,&#039;base&#039;,array(&#039;dc=red-blue,dc=local&#039;));
+
+// Set Serve&egrave; name again//
+
+$servers->setValue(&#039;login&#039;,&#039;bind_id&#039;,&#039;cn=admin,dc=red-blue,dc=local&#039;);</pre>
+<p>Abbiamo praticamente gi&agrave; finito, basta solo riavviare <strong>Apache</strong>:</p>
+<pre class="brush: bash; gutter: true">service apache2 restart</pre>
+<p>E a riavvio avvenuto, apriamo un browser e andiamo all'indirizzo:</p>
+<pre class="brush: bash; gutter: true">http://192.168.10.100/phpldapadmin</pre>
+<p>Se tutto &egrave; andato a buon fine ci ritroveremo davanti alla <strong>home</strong> di PHPLDAPAdmin estremamente intuitiva attraverso la quale effettuare il login con l'utente amministratore creato in precedenza, e sempre tramite la quale sar&agrave; uno scherzo creare utenti e gruppi, in maniera del tutto identica a come abbiamo fatto nella prima parte sfruttando per&ograve; la linea di comando.</p>
+<p>Alla prossima..</p>

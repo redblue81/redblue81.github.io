@@ -1,0 +1,100 @@
+---
+layout: post
+status: publish
+published: true
+title: Convertire un video in formato DPG per NDS su Karmic
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 898
+wordpress_url: http://redblue.netsons.org/?p=898
+date: '2009-12-27 11:50:00 +0100'
+date_gmt: '2009-12-27 10:50:00 +0100'
+categories:
+- linux
+- ubuntu
+- software
+- nintendo ds
+tags:
+- persona speciale
+- karmic
+- nds
+- nintendo ds lite
+- dpgconv
+- avi
+- conversione
+comments:
+- id: 2670
+  author: V
+  author_email: vittorio.re@gmail.com
+  author_url: ''
+  date: '2009-12-27 17:31:13 +0100'
+  date_gmt: '2009-12-27 16:31:13 +0100'
+  content: "certo che &egrave; proprio una coincidenza, ma dopo aver acquistato lo
+    stesso pc, contemporaneamente abbiamo preso anche la ndsl ;)\r\nbeh, io l'ho regalata
+    a mia figlia, anche se forse a sette anni &egrave; un po' piccola.\r\n\r\ncomunque,
+    venendo al dunque: io ho una r4 con microsd, ma non riesco a scriverci con karmic
+    (la microsd la leggo tramite la porta usb), mentre con vista ci sono riuscito.\r\n\r\nqualche
+    indizio su come rendere writable il fs con karmic?"
+- id: 2671
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-12-27 17:38:34 +0100'
+  date_gmt: '2009-12-27 16:38:34 +0100'
+  content: |-
+    Vedi tu!! :D
+
+    E' una MicroSD HC?? Perch&egrave; giorni fa leggevo che potrebbe esserci qualche problemino tra Karmic e quelle schede, ma non posso confermare al momento perch&egrave; la mia scheda &egrave; del vecchio tipo..
+- id: 2677
+  author: V
+  author_email: vittorio.re@gmail.com
+  author_url: ''
+  date: '2009-12-28 09:18:21 +0100'
+  date_gmt: '2009-12-28 08:18:21 +0100'
+  content: "dunque, l'R4 si chiama R4-SDHC, per&ograve; sulla microsd inclusa non
+    ho trovato traccia di diciture HC. guardando un po' in giro ho visto che le HC
+    dovrebbero consentire capacit&agrave; superiori ai 2Gb e la mia microsd &egrave;
+    di 2Gb.\r\n\r\nin lettura riesco ad accederci anche se i nomi di file e directory
+    lasciano intendere che ci siano problemi anche l&igrave;... proseguo con le ricerche..."
+- id: 2678
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-12-28 10:20:45 +0100'
+  date_gmt: '2009-12-28 09:20:45 +0100'
+  content: No no il problema allora non &egrave; la scheda di memoria.. L'R4 &egrave;
+    originale? Ho letto in rete che le "fake" possono creare problemi..
+- id: 2681
+  author: V
+  author_email: vittorio.re@gmail.com
+  author_url: ''
+  date: '2009-12-28 14:41:44 +0100'
+  date_gmt: '2009-12-28 13:41:44 +0100'
+  content: "hmmm perch&eacute; parli dell'R4?\r\nio, per la gestione dei file, inserisco
+    solo la microSD in un lettore di schede che collego alla porta USB del PC.\r\n\r\nboh,
+    io comunque ho acquistato il \"pacchetto\" da un amico di un amico di un amico,
+    ecc... e la confezione riporta la dicitura R4 SDHC Upgrade Revolution for DS"
+- id: 2686
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-12-29 00:00:21 +0100'
+  date_gmt: '2009-12-28 23:00:21 +0100'
+  content: Ah.. In effetti ho riletto quello che avevi scritto e mi sono reso conto
+    che il problema ce l'hai col pc, non con il DS.. Mmm.. Non mi sembra di aver letto
+    da nessuna parte di problemi del lettore del notebook con le SDHC, e tra l'altro
+    con Vista la leggi, quindi funziona.. Problema di Karmic?? Devo informarmi a riguardo
+    perch&egrave; anch'io ho in programma di acquistare una scheda di quel tipo..
+---
+<p>B&egrave;?? Passato un buon Natale?? E i regali?? A me devo ammettere che &egrave; andata piuttosto bene quest'anno, e l'apice tecnologico dei miei regali &egrave; questo:</p>
+<p style="text-align: center;"><a href="/assets/images/nintendo-ds-lite-black.jpg"><img class="aligncenter" src="/assets/images/nintendo-ds-lite-black.jpg" alt="" /></a></p>
+<p>Un bel <strong>Nintendo DS Lite Black</strong>!! Ovviamente &egrave; facile immaginare chi possa essere la <strong>persona</strong> che me lo ha regalato (graziegraziegrazie!! :D)..</p>
+<p><!--more Continua a leggere questo articolo.. --></p>
+<p>Nel regalo era compresa anche una <a href="http://www.m3adapter.com" target="_blank">M3DS Real</a>, e quindi mi sono subito cimentato nel tentativo di vedere i film sul DS!! Con un rapido giro ho conosciuto <strong>Moonshell</strong>, comodissimo player multimediale, che per&ograve; legge solo filmati in formato <strong>DPG</strong>..</p>
+<p>Non ci crederete, ma la conversione di un AVI in DPG con Karmic &egrave; addirittura banale!! Basta usare un semplicissimo script in <strong>Python</strong>, <strong>DPGconv</strong>, scaricabile da <a href="http://cimi.netsons.org/media/download_gallery/dpgconv-0.3.tar.bz2" target="_blank">qui</a>.. Basta semplicemente scompattare l'archivio, entrare nella directory e poi dare il comando:</p>
+<blockquote><p><code>sudo ./install.sh</code></p></blockquote>
+<p>Vedrete apparire l'opzione DPGconv tra gli script di Nautilus, baster&agrave; semplicemente cliccare su uno o pi&ugrave; AVI col tasto destro, scegliere dal menu contestuale DPGconv e seguire le istruzioni.. ;)</p>
+<p>Alla prossima..</p>

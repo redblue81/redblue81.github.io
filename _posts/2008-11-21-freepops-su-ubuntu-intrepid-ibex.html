@@ -1,0 +1,49 @@
+---
+layout: post
+status: publish
+published: true
+title: Freepops su Ubuntu 8.10 (Intrepid Ibex)
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 97
+wordpress_url: http://redblue.netsons.org/?p=97
+date: '2008-11-21 19:21:17 +0100'
+date_gmt: '2008-11-21 18:21:17 +0100'
+categories:
+- tips & tricks
+- linux
+- ubuntu
+tags:
+- linux
+- ubuntu
+- tips
+- intrepid
+- freepops
+- evolution
+comments:
+- id: 2382
+  author: simone
+  author_email: simonedelaiti@alice.it
+  author_url: ''
+  date: '2009-11-25 19:53:43 +0100'
+  date_gmt: '2009-11-25 18:53:43 +0100'
+  content: hei ma pi una volta instalato come fai a configurarlo?
+- id: 2383
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-11-25 20:37:32 +0100'
+  date_gmt: '2009-11-25 19:37:32 +0100'
+  content: "Ciao Simone,\r\n\r\nallora, &egrave; semplice: prima assicurati di mettere
+    il binario di FreePOPs tra i programmi di avvio (aggiungi il comando <code>/usr/bin/freepopsd</code>
+    alle applicazioni di avvio), poi, dopo aver riavviato, vai nel tuo client email,
+    e nelle impostazioni dell'account di posta elettronica metti come server in ingresso
+    <code>localhost</code> e come porta 2000.."
+---
+<p>La distribuzione Linux pi&ugrave; amata dal sottoscritto &egrave; senza ombra di dubbio la <strong>Debian</strong>, ma recentemente, dovendo formattare il notebook e non avendo minimamente a disposizione il tempo per installare e (soprattutto) configurare tale distribuzione, ho deciso di optare per la sua derivata pi&ugrave; famosa (e pi&ugrave; rapida da installare sul mio notebook), <strong>Ubuntu</strong>, precisamente la recentissima <strong>8.10</strong>, meglio conosciuta come <strong>Intrepid Ibex</strong>.</p>
+<p>Tutto ok, ho riscontrato solo un piccolissimo bug installando <strong>Freepops</strong>, il celeberrimo programmino in grado di scaricare la posta elettronica sul proprio client e-mail praticamente da ogni webmail. Il problema &egrave; semplicemente che installando la versione presente nei repository, non riuscivo a scaricare la posta dal mio account su Libero, ricevendo l'errore "<strong>Autenticazione fallita</strong>".</p>
+<p>Soluzione semplice semplice, andate qui: <a title="Freepops" href="http://cybertech.altervista.org/it/freepops.php" target="_blank">http://cybertech.altervista.org/it/freepops.php</a> e scaricate la versione di Freepops pi&ugrave; recente, poi installatela con <strong>GDebi</strong> e, come per magia, ecco Evolution scaricare senza il minimo problema la posta!! Consiglio di scaricare ed installare anche il <strong>Freepops Updater</strong>, presente nella stessa pagina, in quanto i plugin sono in costante aggiornamento.</p>
+<p>Semplice e geniale!!</p>

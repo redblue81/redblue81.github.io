@@ -1,0 +1,45 @@
+---
+layout: post
+status: publish
+published: true
+title: Il tuo sito WP è vulnerabile? Scoprilo con WPScan
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3667
+wordpress_url: http://www.red-blue.it/?p=3667
+date: '2014-03-19 10:40:41 +0100'
+date_gmt: '2014-03-19 09:40:41 +0100'
+categories:
+- guide
+- linux
+- debian
+- internet
+- wordpress
+tags:
+- wordpress
+- vulnerabilit&agrave;
+- wpscan
+- analisi
+comments: []
+---
+<p><strong>Wordpress</strong> &egrave; una delle piattaforme software che stanno alla base di molti siti di successo. Secondo le statistiche, a livello di <strong>CMS</strong> ha davvero pochi rivali.</p>
+<p>E' ovvio quindi che sia oggetto di <strong>attacchi</strong>, specie se il sito non &egrave; mantenuto come si deve: un tool come <strong>WPScan</strong> ci aiuta a capire se e quanto il nostro sito sia <strong>vulnerabile</strong>.</p>
+<p>Si tratta di un tool scritto in <strong>Ruby</strong> che gira da riga di comando molto usato da chi si occupa di sicurezza, e il suo funzionamento di base, cos&igrave; come la sua installazione su Debian, non presentano particolari difficolt&agrave;. Ovviamente ci sono funzioni <strong>avanzate</strong>, ma questa &egrave; un'altra storia, e altrettanto ovviamente il suo uso errato &egrave; da <strong>scoraggiare</strong>: si tratta di uno strumento per capire se il proprio sito &egrave; vulnerabile o meno, non per scoprire le vulnerabilit&agrave; <strong>altrui</strong>!</p>
+<p>Su <strong>Debian</strong> occorrono davvero pochi passaggi per installare WPScan:</p>
+<pre class="brush: bash; gutter: true">sudo apt-get install git
+
+sudo apt-get install libcurl4-gnutls-dev libruby libxml2 libxml2-dev libxstl1-dev ruby-dev
+
+git clone https://github.&&team/wpscan.git
+
+cd wpscan
+
+sudo gem install bundler &amp;&amp; bundle install --without test development</pre>
+<p>&nbsp;</p>
+<p>Finito. Per lanciare la scansione basta poi dare:</p>
+<pre class="brush: bash; gutter: false">./wpscan.rb --url http://urldacontrollare</pre>
+<p>Vi sar&agrave; restituita una lista di tutti gli elementi critici analizzati, e se scoperte vulnerailit&agrave; saranno evidenziate in <strong>rosso</strong>.</p>
+<p>Alla prossima..</p>

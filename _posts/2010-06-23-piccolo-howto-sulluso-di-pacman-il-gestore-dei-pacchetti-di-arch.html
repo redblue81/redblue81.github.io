@@ -1,0 +1,47 @@
+---
+layout: post
+status: publish
+published: true
+title: Piccolo howto sull'uso di pacman, il gestore dei pacchetti di Arch
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1356
+wordpress_url: http://www.red-blue.it/?p=1356
+date: '2010-06-23 11:57:04 +0100'
+date_gmt: '2010-06-23 10:57:04 +0100'
+categories:
+- tips & tricks
+- linux
+- arch
+tags:
+- linux
+- tips
+- howto
+- tricks
+- arch
+- pacman
+comments: []
+---
+<p><strong>Pacman</strong> &egrave; universalmente ritenuto uno dei pregi maggiori di <strong>Arch</strong>, per certi versi &egrave; molto simile ad <code>apt-get</code> di Ubuntu. Oggi non voglio scriverne una guida completa (che trovate <a href="http://wiki.archlinux.org/index.php/Pacman_(Italiano)" target="_blank">qui</a>), n&eacute; un articolo che descriva i suoi pregi e difetti, semplicemente voglio stilare una lista dei comandi che sicuramente utilizzeremo quotidianamente..</p>
+<p>Cominciamo col dire che &egrave; buona regola effettuare un aggiornamento completo del sistema, ovvero, nel "linguaggio" di Arch, una <strong>sincronizzazione</strong> dei repository, un <strong>refresh</strong> del database locale e un <strong>update</strong> del sistema, pi&ugrave; semplicemente:</p>
+<blockquote><p><code>pacman -Syu</code></p></blockquote>
+<p>Che pu&ograve; essere considerato come l'insieme dei due comandi:</p>
+<blockquote><p><code>pacman -Sy<br />
+pacman -Su</code></p></blockquote>
+<p>In generale l'<strong>installazione</strong> di un pacchetto si effettua col comando:</p>
+<blockquote><p><code>pacman -S <em>pacchetto</em></code></p></blockquote>
+<p>Mentre la <strong>disinstallazione</strong> (rispettivamente insieme a tutte le dipendenze non necessarie ad altri pacchetti e senza) richiede il comando:</p>
+<blockquote><p><code>pacman -Rs <em>pacchetto</em><br />
+pacman -R <em>pacchetto</em></code></p></blockquote>
+<p>Si pu&ograve; poi <strong>interrogare</strong> il database alla ricerca di un pacchetto, sia su tutto il database stesso, sia solo all'interno dei pacchetti installati, i relativi comandi sono:</p>
+<blockquote><p><code>pacman -Ss <em>pacchetto</em><br />
+pacman -Qs <em>pacchetto</em></code></p></blockquote>
+<p>E infine tre comandi che trovo estremamente utili per avere un sistema degno di questo nome, ovvero comandi che servono per la <strong>pulizia</strong> del sistema stesso. In sequenza, con questi tre comandi andremo a cercare i pacchetti "orfani" nel sistema (quei pacchetti cio&egrave; che erano necessari per altri pacchetti che sono stati disinstallati), per poi disinstallarli, e infine svuoteremo la <strong>cache</strong> di pacman, ovvero andremo a cancellare i pacchetti scaricati prima di essere installati:</p>
+<blockquote><p><code>pacman -Qdt<br />
+pacman -Rsn $(pacman -Qdtq)<br />
+pacman -Scc</code></p></blockquote>
+<p>Tutti i comandi che ho descritto vanno ovviamente dati con i privilegi di <strong>root</strong>. Attenzione per&ograve; a non cadere nell'errore di considerare pacman alla stregua di APT.. Come ho detto in passato (cfr. "<a href="http://localhost:4000/linux/arch-linux.html">Arch Linux</a>") Arch <strong><span style="text-decoration: underline;">non</span></strong> &egrave; semplice come Ubuntu, quindi un aggiornamento del sistema, o una sua pulizia va tenuta costantemente sotto controllo e <span style="text-decoration: underline;"><strong>mai</strong></span> effettuata con leggerezza, pena possibili malfunzionamenti del sistema stesso..</p>
+<p>Alla prossima..</p>

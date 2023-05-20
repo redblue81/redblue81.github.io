@@ -1,0 +1,38 @@
+---
+layout: post
+status: publish
+published: true
+title: Videosorveglianza con Rasperry Pi e PiCamera
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3909
+wordpress_url: https://www.red-blue.it/?p=3909
+date: '2017-03-11 17:24:36 +0100'
+date_gmt: '2017-03-11 16:24:36 +0100'
+categories:
+- guide
+- in evidenza
+- raspberry pi
+tags: []
+comments: []
+---
+<p>Trasformare un Raspberry Pi in una <strong>videocamera di sorveglianza</strong> &egrave; davvero semplice, basta usare un Raspberry Pi (ovviamente), un modulo <strong>PiCamera</strong> (ma va bene anche una normale webcam USB), e una scheda di memoria.</p>
+<p><a href="/assets/images/Raspberry_Pi_Logo.jpg"><img class="aligncenter size-medium wp-image-3911" src="/assets/images/Raspberry_Pi_Logo-237x300.jpg" alt="" width="237" height="300" /></a></p>
+<p><!--moreContinua a leggere...--></p>
+<p>Io ho usato un Raspberry Pi 3 e un modulo PiCamera, quindi il primo passo &egrave; installare tale modulo, operazione decisamente semplice: basta inserire il cavo flat del modulo camera nell'apposito <strong>connettore</strong> posto tra il connettore HDMI e quello Ethernet (tranquilli, &egrave; chiaramente indicato come "Camera") del Raspberry Pi:</p>
+<p><a href="/assets/images/rpi-display-connector.jpg"><img class="aligncenter size-medium wp-image-3910" src="/assets/images/rpi-display-connector-300x198.jpg" alt="" width="300" height="198" /></a>Successivamente, basta bloccare il flat con l'apposito fermo.</p>
+<p>Il modulo va attivato, quindi, dopo aver acceso il nostro Raspberry Pi, lanciamo l'ultility <strong>raspi-config</strong> ed abilitiamo il modulo camera. A questo punto, dovremmo gi&agrave; essere a posto per quanto riguarda la parte hardware; per la parte software, possiamo fare ricorso a <strong>motionEye OS</strong>, una distribuzione Linux ottimizzata per Raspberry dedicata proprio alla videosorveglianza.</p>
+<p>Baster&agrave; scaricare l'immagine dal relativo <a href="https://github.com/ccrisan/motioneyeos/releases" target="_blank">repository su GitHub</a>, scegliendo il file opportuno per il proprio hardware.</p>
+<p>E, supponendo di usare Linux, trasferirla su una micro SD con il comando:</p>
+<pre class="brush: bash; gutter: false">sudo dd bs=4M if=motioneyeos-raspberrypi3-20170212.img of=/dev/mmcblk0</pre>
+<p>Dove ovviamente al posto di <strong>/dev/mmcbkl0</strong> dovrete inserire il vostro dispositivo di memoria. Una volta completata la copia, baster&agrave; inserire la micro SD nel Raspberry Pi, <span style="text-decoration: underline;">collegare quest'ultimo al vostro router mediante un cavo Ethernet</span> (altrimenti il sistema non riuscir&agrave; ad avviarsi), ed accenderlo. <span style="text-decoration: underline;">Fate attenzione alla procedura di avvio</span>, durante la quale vi sar&agrave; indicato l'indirizzo IP assegnato al Raspberry!</p>
+<p>Una volta completata la procedura di avvio, da un qualsiasi computer connesso alla rete, aprite un browser e collegatevi all'indirizzo IP che vi &egrave; stato indicato prima per ritrovarvi davanti alle immagini riprese dalla vostra Pi Camera! Molto probabilmente vi sar&agrave; richiesto nome utente e password, inserite <strong>admin</strong> come utente e nulla come password (potrete cambiarla successivamente).</p>
+<p>Cliccando sull'immagine visualizzata appariranno i <strong>controlli</strong>, e in alto a destra potrete cliccare sull'icona raffigurante una chiave inglese per accedere al pannello delle opzioni, dal quale potrete agevolmente settare il fuso orario giusto, attivare la WLAN, regolare i parametri di <strong>streaming</strong> video, etc. A proposito dello streaming, nella relativa sezione prendete nota del numero di porta (oppure settatela voi), perch&egrave; servir&agrave; per&nbsp;collegarvi alle immagini riprese dalla vostra videocamera.</p>
+<p>Per collegarvi allo <strong>streaming</strong> delle immagini, occorrer&agrave; digitare l'indirizzo IP del vostro Raspberry Pi completo del numero di porta, ad esempio, supponendo di aver usato la porta 8081 (quella di default) per lo streaming ed avere assegnato l'IP 192.168.0.100 al Raspberry Pi (consiglio sempre di assegnare un IP statico), dovremo andare all'indirizzo:</p>
+<pre class="brush: bash; gutter: false">http://192.168.0.100:8081</pre>
+<p>Ovviamente, per collegarci dall'esterno della rete locale di casa nostra, sar&agrave; necessario disporre di un indirizzo IP statico, oppure far ricorso ad un servizio di DNS dinamico quale ad esempio no-ip.com. In tal caso, supponendo ad esempio di aver creato un host chiamato casamia.ddns.net, per accedere allo streaming delle immagini dovremo digitare:</p>
+<pre class="brush: bash; gutter: false">http://casamia.ddns.net:8081</pre>
+<p>Alla prossima..</p>

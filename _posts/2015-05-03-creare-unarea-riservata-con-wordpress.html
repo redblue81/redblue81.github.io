@@ -1,0 +1,35 @@
+---
+layout: post
+status: publish
+published: true
+title: Creare un'area riservata con Wordpress
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3741
+wordpress_url: http://www.red-blue.it/?p=3741
+date: '2015-05-03 16:45:40 +0100'
+date_gmt: '2015-05-03 14:45:40 +0100'
+categories:
+- guide
+- wordpress
+tags:
+- wordpress
+- guida
+- area riservata
+comments: []
+---
+<p>Recentemente mi &egrave; stato chiesto di dotare un sito creato con Wordpress di un'area riservata, dedicata ai clienti (nello specifico, una pagina personale per cliente).</p>
+<p>Considerato che non c'era nemmeno la necessit&agrave; di fornire un modulo di registrazione (&egrave; l'admin del sito a dare l'accesso), con una veloce ricerca in rete ho deciso di creare un'area riservata con Wordpress usando due semplici plugin, del tutto gratuiti: <a href="https://wordpress.org/plugins/user-access-manager/" target="_blank">User Access Manager</a> e <a href="https://wordpress.org/plugins/peters-login-redirect/" target="_blank">Peter's Login Redirect</a>.</p>
+<p>Il "progetto" &egrave; in realt&agrave; molto semplice: sfruttando la gestione dei ruoli utente di Wordpress, andiamo a ridirezionare l'utente specifico sulla sua pagina dopo il login.</p>
+<p><!--moreContinua a leggere...--></p>
+<p>Dopo aver installato User Access Manager, andiamo a configurare un ruolo, ad esempio il "Sottoscrittore" predefinito di WP (che praticamente pu&ograve; solo leggere), pi&ugrave; o meno come segue:</p>
+<p><a href="/assets/images/area_riservata_1.jpg"><img class="aligncenter size-medium wp-image-3742" src="/assets/images/area_riservata_1-300x155.jpg" alt="area_riservata_1" width="300" height="155" /></a>A questo punto, abbiamo gi&agrave; di fatto creato l'area riservata con Wordpress, dando accesso solo al gruppo dei sottoscrittori. Da dire che potremmo anche restringere tale accesso, togliendo la spunta al ruolo (nella schermata sopra), e spuntando la relativa voce nella pagina di amministrazione dell'utente che vogliamo abilitare.</p>
+<p>Non abbiamo per&ograve; finito, occorre indicare i contenuti che dovranno essere inclusi nell'area riservata con Wordpress, semplicemente baster&agrave; spuntare la voce realtiva che sar&agrave; ora presente durante la creazione del post e/o della pagina:</p>
+<p><a href="/assets/images/area_riservata_2.jpg"><img class="aligncenter size-medium wp-image-3743" src="/assets/images/area_riservata_2-300x123.jpg" alt="area_riservata_2" width="300" height="123" /></a>Perfetto, ora per concludere, basta abilitare il widget relativo all'accesso utente (ad esempio nella sidebar) e il gioco &egrave; fatto. Come rifinitura, &egrave; stato utile redirezionare direttamente l'utente sulla propria pagina subito dopo il login.</p>
+<p>Per fare ci&ograve;, dopo aver installato il secondo plugin, nelle relative impostazioni selezionare l'utente in questione ed assegnare il link della pagina personale, oltre a quella di default dopo il logout:</p>
+<p><a href="/assets/images/area_riservata_3.jpg"><img class="aligncenter size-medium wp-image-3744" src="/assets/images/area_riservata_3-300x90.jpg" alt="area_riservata_3" width="300" height="90" /></a>Da dire che questo plugin permette anche ad esempio di scegliere un contenuto comune al quale saranno redizionati tutti gli utenti del ruolo indicato.</p>
+<p>Ci siamo, abbiamo creato una semplice area riservata con Wordpress, funzionante e molto pratica anche in termini di manutenzione. Ricordo che in questo caso manca un modulo di registrazione (non era richiesto nel caso specifico), per cui la creazione degli utenti &egrave; un'onere a carico dell'amministratore del sito.</p>
+<p>Alla prossima..</p>

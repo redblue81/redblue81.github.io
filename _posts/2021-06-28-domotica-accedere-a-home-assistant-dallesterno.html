@@ -1,0 +1,88 @@
+---
+layout: post
+status: publish
+published: true
+title: Domotica - Accedere a Home Assistant dall'esterno
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 4121
+wordpress_url: https://www.red-blue.it/?p=4121
+date: '2021-06-28 12:38:00 +0100'
+date_gmt: '2021-06-28 10:38:00 +0100'
+categories:
+- guide
+- linux
+- in evidenza
+- domotica
+tags:
+- domotica
+- home assistant
+- duckdns
+- accesso remoto guida
+comments: []
+---
+<p><!-- wp:paragraph --></p>
+<p>Un elemento fondamentale per il nostro sistema domotico &egrave; il poter <strong>accedere a Home Assistant dall'esterno</strong>. <a href="http://localhost:4000/domotica" data-type="page" data-id="4071">Finora</a> abbiamo messo in piedi un sistema funzionante solo finch&egrave; siamo in casa, collegati al nostro router.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Oggi vediamo come poter accedere da Internet mentre siamo fuori casa, ad esempio per controllare una telecamera.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4079,"sizeSlug":"medium","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-medium"><img src="/assets/images/1200px-Home_Assistant_Logo.svg_-300x300.png" alt="" class="wp-image-4079"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ci serviremo di un plugin, <strong>DuckDNS</strong>, che possiamo installare da <strong>Supervisor</strong>. Per prima cosa per&ograve;, &egrave; necessario creare un account su <a href="https://www.duckdns.org/" target="_blank" rel="noreferrer noopener">duckdns.org</a>, quindi andiamo sul sito, creiamo un account (assolutamente gratuito) e scegliamo un nome di dominio, basta cliccare su "<strong>Add domain</strong>".</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>In tal modo, potremo accedere a Home Assistant dall'esterno tramite l'indirizzo <em>nomescelto.duckdns.org</em>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:more --><br />
+<!--more--><br />
+<!-- /wp:more --></p>
+<p><!-- wp:paragraph --></p>
+<p>Molto importante, nella pagina relativa al dominio creato, sar&agrave; visualizzato un <strong>token di accesso</strong>, mettiamolo da parte perch&egrave; ci servir&agrave; tra poco.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4123,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/duckdnss-1024x278.png" alt="" class="wp-image-4123"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Andiamo ora su Home Assistant, e da Supervisor installiamo (se non l'abbiamo fatto prima) il plugin di DuckDNS, e nella scheda <strong>Configurazione </strong>inseriamo il token di accesso nella relativa riga, oltre ovviamente a specificare il nome di dominio scelto in precedenza.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Consiglio anche di inserire <strong>true </strong>alla riga <strong>accept_terms</strong> di <strong>Let's Encrypt</strong>, in modo da consentire la ceazione la gestione automatica di un certificato SSL.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto siamo gi&agrave; a posto, avviamo il plugin e poi tramite il File Editor (<a href="http://localhost:4000/domotica/domotica-configurare-home-assistant.html" data-type="post" data-id="4102">lo avete installato vero?</a>) aggiungiamo subito dopo <strong>default_config:</strong> le seguenti righe:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">http:
+  base_url: https://nomedominio.duckdns.org:8123
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Non resta che impostare il <strong>port forwarding</strong> della porta 8123 sulla porta 443 sul router (purtroppo per questo non posso dare istruzioni precise in quanto dipenden molto dal router in uso).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Riavviamo infine Home Assistant (<strong>Impostazioni -> Controlli del server</strong>) e il gioco &egrave; fatto.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>In realt&agrave; c'&egrave; un'ultimo passaggio che consiglio sempre: <strong>installare un reverse proxy</strong> in modo da aumentare considerevolmente la sicurezza delle connessioni in uscita e in ingresso. </p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Semplicemente, da Supervisor installate il plugin <strong>NGINX Home Assistant SSL proxy</strong> e avviatelo.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Fatto, ora potete accedere ad Home Assistant dall'esterno, baster&agrave; impostare laa nuova URL in <strong>Impostazioni -> Generale -> URL esterno</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:tadv/classic-paragraph /--></p>

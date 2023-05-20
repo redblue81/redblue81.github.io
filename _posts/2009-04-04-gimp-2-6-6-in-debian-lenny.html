@@ -1,0 +1,46 @@
+---
+layout: post
+status: publish
+published: true
+title: GIMP 2.6.6 in Debian Lenny
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 428
+wordpress_url: http://redblue.netsons.org/?p=428
+date: '2009-04-04 10:15:17 +0100'
+date_gmt: '2009-04-04 09:15:17 +0100'
+categories:
+- guide
+- linux
+- debian
+- software
+tags:
+- guida
+- debian
+- linux
+- installazione
+- lenny
+- sorgenti
+- gimp 2.6.6
+comments: []
+---
+<p>Immagino che un p&ograve; tutti coloro che "bazzicano" l'open souce, e <strong>Debian</strong> (ma anche <strong>Ubuntu</strong>) sanno di cosa &egrave; capace <strong>Gimp</strong>, notissimo programma di fotoritocco utile tanto per creare e/o modificare immagini, quanto come sostituto di Photoshop. Vediamo come installare sulla nostra <strong>Lenny</strong> l'ultima release, la <strong>2.6.6</strong>, partendo dai sorgenti..</p>
+<p>Un consiglio, se avete una versione precedente gi&agrave; installata (molto probabile, visto che quasi sempre fa parte dell'installazione di default di Debian), rimuovetela, ad esempio da Synaptic.</p>
+<p>Per prima cosa assicuratevi di avere i <strong>repositories dei sorgenti abilitati</strong>, controllando che nel file <code>/etc/apt/sources.list</code> ci sia la linea:</p>
+<blockquote><p><code>deb-src http://ftp.it.debian.org/debian/ lenny main contrib non-free</code></p></blockquote>
+<p>Poi pensiamo alle <strong>dipendenze</strong> (i seguenti comandi vanno dati come <strong>root</strong>):</p>
+<blockquote><p><code>apt-get update<br />
+apt-get install build-essential<br />
+apt-get build-dep gimp<br />
+apt-get install libgegl-0.0-dev</code></p></blockquote>
+<p>A questo punto scarichiamo da <a href="ftp://ftp.gimp.org/pub/gimp/v2.6/gimp-2.6.6.tar.bz2" target="_blank">qui</a> i sorgenti e scompattiamoli:</p>
+<blockquote><p><code>tar -xjvf gimp-2.6.6.tar.bz2<br />
+cd gimp-2.6.6</code></p></blockquote>
+<p>Possiamo infine installare (l'ultimo comando va dato come <strong>root</strong>):</p>
+<blockquote><p><code>./configure<br />
+make<br />
+make install</code></p></blockquote>
+<p>A questo avrete l'eseguibile di Gimp 2.6.6 in <code>/usr/local/bin</code>, per comodit&agrave; potete creare un lanciatore da posizionare direttamente sul desktop..</p>

@@ -1,0 +1,50 @@
+---
+layout: post
+status: publish
+published: true
+title: Attivare lo scaling della CPU
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 520
+wordpress_url: http://redblue.netsons.org/?p=520
+date: '2009-05-20 07:54:09 +0100'
+date_gmt: '2009-05-20 06:54:09 +0100'
+categories:
+- guide
+- linux
+- debian
+- ubuntu
+- software
+tags:
+- attivare
+- scaling
+- CPU
+- cpufrequtils
+- applet
+- sensor
+- monitor
+- temperatura
+- ventola
+- frequenza
+comments:
+- id: 1728
+  author: Ubuntu Netbook Remix 9.04 su eCaf&eacute; EC-900 | RedBlue's Blog
+  author_email: ''
+  author_url: http://redblue.netsons.org/guide/ubuntu-netbook-remix-9-04-su-ecafe-ec-900.html
+  date: '2009-05-27 11:52:50 +0100'
+  date_gmt: '2009-05-27 10:52:50 +0100'
+  content: "[...] la ventola &egrave; di per s&eacute; gi&agrave; silenziosissima),
+    e la procedura &egrave; esattamente identica a quella che ho descritto in precedenza
+    (tranne che per gli altri sensori di temperatura, probabilmente non presenti).
+    Inoltre, come chicca [...]"
+---
+<p>Lo <strong>scaling</strong> &egrave; la capacit&agrave; di variare la frequenza di lavoro della CPU, in modo da aver un minor consumo energetico e, visto che ora fa caldo, magari un minor tempo di accensione della ventola. Vediamo come attivarlo, il demone si chiama <strong>cpufrequtils</strong>:</p>
+<blockquote><p><code>sudo apt-get install cpufrequtils</code></p></blockquote>
+<p>A questo punto per caricare il modulo all'avvio, basta inserire la riga <code>p4_clockmod</code> alla fine del file <code>/etc/modules</code>. Poi possiamo anche installare una comoda <strong>applet</strong> per la gestione dello scaling e, se vogliamo fare le cose per bene, anche un'altra applet capace di monitorare le temperature:</p>
+<blockquote><p><code>sudo apt-get install gnome-applets<br />
+sudo dpkg-reconfigure gnome-applets<br />
+sudo apt-get install lm-sensors sensors-applet</code></p></blockquote>
+<p>Fatto. Ora non ci resta che inserire in un pannello le applet "Variazione frequenza CPU" e "Hardware sensors monitor" (click destro sul pannello -> Aggiungi al pannello..).</p>

@@ -1,0 +1,62 @@
+---
+layout: post
+status: publish
+published: true
+title: Cambiare il look di Debian
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 328
+wordpress_url: http://redblue.netsons.org/?p=328
+date: '2009-03-02 17:38:44 +0100'
+date_gmt: '2009-03-02 16:38:44 +0100'
+categories:
+- guide
+- linux
+- debian
+tags:
+- debian
+- linux
+- desktop
+- lenny
+- widget
+- look
+- screenlets
+- gnome
+- compiz
+- ati
+- driver
+- gadgets
+- kde
+comments: []
+---
+<p>Cambiare il look del proprio desktop, diciamolo, &egrave; un'attivit&agrave; piuttosto frivola, ma ragazzi, chi non vorrebbe un desktop veramente figo? Magari con tanto di effetti 3D??  Ecco come ha fatto il sottoscritto ad abbellire la propria schermata di Debian. Prima di tutto &egrave; necessario configurare la propria scheda video per il 3D, fino a qualche temp fa i possessori delle ATI (come il sottoscritto) dovevano passare attraverso un mezzo calvario, ma per fortuna oggi le cose sono un p&ograve; pi&ugrave; semplici. Cominciamo..  <strong>ATTENZIONE</strong>: ho testato il tutto su una Mobility Radeon X1600!!</p>
+<h3><span style="color: rgb(255, 0, 0);">1) Installare e configurare i driver</span></h3>
+<p>I driver ufficiali ATI sono ormai presenti nei repository (non sono proprio gli ultimissimi, ma servono allo scopo), per prima cosa installiamo, se non ci sono gi&agrave;, i seguenti pacchetti (il comando va dato come root):</p>
+<blockquote><p><code>apt-get install module-assistant build-essential</code></p></blockquote>
+<p>Pi&ugrave; ovviamente tutte le dipendenze che questi pacchetti possono portarsi appresso, poi installiamo i drivers:</p>
+<blockquote><p><code>apt-get install fglrx-driver fglrx-control fglrx-kernel-src</code></p></blockquote>
+<p>Questi sono i pacchetti "minimi", io personalmente ho preferito installare tutto ci&ograve; inerente a <code>fglrx</code> presente nei repository. Anche qui ovviamente vanno installate anche le eventuali dipendenze.  A questo punto occorre compilare il modulo del kernel, diamo come root i seguenti comandi:</p>
+<blockquote><p><code>module-assistant prepare module-assistant update module-assistant build fglrx module-assistant -t -f a-i fglrx</code></p></blockquote>
+<p>Se non ci sono errori, i drivers sono installati, bisogna quindi configurare Xorg:</p>
+<blockquote><p><code>aticonfig --initial aticonfig --overlay-type=Xv</code></p></blockquote>
+<p>Infine, inseriamo il modulo <code>fglrx</code> nel file <code>/etc/modules</code> (pu&ograve; anche non essere necessario, ma non genera errori, quindi perch&egrave; no?) e le seguenti righe nel file <code>/etc/X11/xorg.conf</code>:</p>
+<blockquote><p><code>Section "Extensions" Option "Composite" "enable" EndSection</code></p></blockquote>
+<p>Riavviamo, e dopo il riavvio, il comando <code>fgl_glxgears</code> dovrebbe restituire il famoso cubo con all'interno gli ingranaggi che ruotano, se &egrave; cos&igrave; possiamo passare al prossimo passaggio.</p>
+<h3><span style="color: rgb(255, 0, 0);">2) Installare Compiz</span></h3>
+<p>Compiz &egrave; un <strong>window manager</strong>, ovvero un programma che gestisce la creazione, l'estetica e il piazzamento delle finestre, oltre a numerosi effetti che le riguardano. Per prima cosa aggiungiamo le seguenti linee al file <code>/etc/apt/sources.list</code>:</p>
+<blockquote><p><code>deb http://download.tuxfamily.org/osrdebian unstable compiz-fusion-git deb-src http://download.tuxfamily.org/osrdebian unstable compiz-fusion-git</code></p></blockquote>
+<p>E poi diamo un bel <code>apt-get update</code>.  Ora possiamo installare Compiz:</p>
+<blockquote><p><code>apt-get install compiz compiz-core compiz-gnome compiz-plugins emerald fusion-icon compiz-fusion-plugins-main compiz-fusion-plugins-extra compiz-fusion-plugins-unsupported compizconfig-settings-manager compizconfig-backend-gconf</code></p></blockquote>
+<p>Ovviamente se usate <strong>KDE</strong> invece di Gnome installerete <code>compiz-kde</code> e <code>compizconfig-backend-kconfig</code>.&nbsp; A questo punto lanciate <strong>Compiz Fusion Icon</strong> (presente nel menu <strong>Applicazioni -> Strumenti di sistema</strong>), e dal menu a tendina (click destro sull'icona apparsa in alto a destra) scegliete <strong>Compiz</strong> come <strong>Window Manager</strong> (se non si &egrave; gi&agrave; avviato) e <strong>Emerald</strong> come <strong>Window</strong> <strong>Decorator</strong>, poi per configurare tutti gli effetti speciali, baster&agrave; lanciare <strong>Gestore Configurazione CompizConfig</strong> presente in <strong>Sistema -> Preferenze</strong>. Ecco l'effetto pi&ugrave; conosciuto, il cubo 3D, sul mio desktop:</p>
+<p style="text-align: center;"><img height="280" width="448" alt="" src="/assets/images/cubo.gif" class="alignnone" /></p>
+<p>Per far partire il tutto in automatico all'avvio del sistema aggiungiamo /usr/bin/fusion-icon ai <strong>Programmi d'avvio</strong> in <strong>Sistema -> Preferenze -> Sessioni</strong>.</p>
+<h3><span style="color: rgb(255, 0, 0);">3) Cambiare sfondo, splashscreen, login manager ecc.</span></h3>
+<p>Anche questa &egrave; un'attivit&agrave; che in passato portava via un p&ograve; di tempo, oggi invece, grazie a Lenny, &egrave; possibile installare semplicemente il pacchetto <code>gnome-art</code>, una pratica interfaccia grazie alla quale &egrave; semplicissimo scegliere il proprio sfondo, il proprio splashscreen, il tema del login manager, ma anche il set di icone del sistema e l'aspetto delle finestre.</p>
+<blockquote><p><code>apt-get install gnome-art</code></p></blockquote>
+<h3><span style="color: rgb(255, 0, 0);">4) Screenlets</span></h3>
+<p>Ultima cosa, potete anche aggiungere degli screenlets, ovvero dei <strong>widget</strong>, al desktop.. Avete presente i Google Gadgets? Praticamente la stessa cosa, basta solo installare il pacchetto <code>screenlets</code>, avviare il manager che si trova nel men&ugrave; <strong>Applicazioni -> Accessori</strong> e selezionare i proprio screenlets, ricordandosi di indicare di caricarli all'avvio.</p>
+<blockquote><p><code>apt-get install screenlets</code></p></blockquote>
+<p>A questo punto, non vi resta che dare spazio alla fantasia!</p>

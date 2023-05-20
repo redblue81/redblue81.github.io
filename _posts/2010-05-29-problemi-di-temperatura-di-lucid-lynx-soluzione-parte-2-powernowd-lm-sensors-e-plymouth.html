@@ -1,0 +1,190 @@
+---
+layout: post
+status: publish
+published: true
+title: 'Problemi di temperatura di Ubuntu 10.04 Lucid Lynx - Soluzione - Parte 2:
+  Powernowd, LM-Sensors e Plymouth'
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1161
+wordpress_url: http://redblue.netsons.org/?p=1161
+date: '2010-05-29 19:51:11 +0100'
+date_gmt: '2010-05-29 18:51:11 +0100'
+categories:
+- guide
+- linux
+- ubuntu
+- notebook
+- hp dv6
+- in evidenza
+tags:
+- guida
+- ubuntu
+- problemi
+- ati
+- temperatura
+- lucid lynx
+- '10.04'
+- plymouth
+- powernowd
+- lm-sensors
+comments:
+- id: 6359
+  author: Disabilitare Plymouth - RedBlue&#39;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/tips-tricks/disabilitare-plymouth.html
+  date: '2010-06-04 07:44:26 +0100'
+  date_gmt: '2010-06-04 06:44:26 +0100'
+  content: "[...] Ed ecco la seconda ed ultima parte della guida per sistemare (non
+    voglio ancora scrivere risolvere) il&hellip; [more] [...]"
+- id: 6416
+  author: v
+  author_email: vittorio.re@gmail.com
+  author_url: ''
+  date: '2010-08-13 21:07:15 +0100'
+  date_gmt: '2010-08-13 20:07:15 +0100'
+  content: "ho appena fatto il gran passo: son passato a lucid sul notebook hp...\r\n\r\nho
+    anche seguito la tua guida per installare i sensori di temperatura (mi son fermato
+    prima della riconfig di plymouth perch&eacute; io non ho installato i driver proprietari)
+    e devo dirti che in questo momento, praticamente a riposo, la temperatura svaria
+    tra i 62 e i 70. non ho ancora provato a metterlo sotto stress. bah... hai qualche
+    suggerimento per rinfrescargli un po' le idee? ;)"
+- id: 6419
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2010-08-17 08:20:17 +0100'
+  date_gmt: '2010-08-17 07:20:17 +0100'
+  content: |-
+    Ehil&agrave;!!
+
+    B&egrave; quelle temperature sono abbastanza normali (questo notebook scalda, &egrave; inutile girarci intorno).. Dipende da che intendi con "a riposo".. Ad esempio sappi che con il browser Firefox con varie schede aperte il computer non &egrave; a riposo, anzi.. Se in queste condizioni arriva a 70&deg; vai tranquillo, come ho scritto nel blog il mio che si &egrave; fritto &egrave; stato un caso particolare, probabilmente dovuto a qualche difetto precedente.. ;)
+- id: 6422
+  author: V
+  author_email: vittorio.re@gmail.com
+  author_url: ''
+  date: '2010-08-19 12:39:31 +0100'
+  date_gmt: '2010-08-19 11:39:31 +0100'
+  content: "ho fatto qualche test:\r\nsenza gnome, quindi lanciando il comando sensors
+    da console, la temperatura &egrave; intorno ai 50&deg;.\r\nappena mi loggo con
+    l'interfaccia grafica si alza di una diecina di gradi. se apro firefox (anche
+    su pagine statiche) si sale ancora...\r\neffettivamente sto pensando di utilizzare
+    il notebook per integrare il riscaldamento della casa quest'inverno :D"
+- id: 6423
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2010-08-19 15:59:57 +0100'
+  date_gmt: '2010-08-19 14:59:57 +0100'
+  content: Mmm.. Ti dir&ograve; che io, da quando l'ho fatto riparare, con solo Gnome
+    attivo (quindi con l'interfaccia grafica attiva) arrivo a 50&deg; a riposo (senza
+    applicazioni attive, nemmeno il browser) in questa stagione, altrimenti va sotto
+    i 50&deg;.. Per&ograve; dipende anche dal clima esterno, posso chiederti dove
+    vivi?
+- id: 6424
+  author: v
+  author_email: vittorio.re@gmail.com
+  author_url: ''
+  date: '2010-08-21 21:17:19 +0100'
+  date_gmt: '2010-08-21 20:17:19 +0100'
+  content: a 20Km da Milano
+- id: 6425
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2010-08-22 09:42:23 +0100'
+  date_gmt: '2010-08-22 08:42:23 +0100'
+  content: |-
+    Mmm.. Quindi decisamente fa pi&ugrave; caldo dove sono io, nel profondo sud.. ;)
+
+    Cmq finch&egrave; resti lontano dagli 80&deg; (e pi&ugrave;) dovresti essere pi&ugrave; che tranquillo.. Se posso darti un consiglio, non aggiornare il firmware, l'ultimo non dovrebbe essere proprio perfetto..
+- id: 6591
+  author: milingo
+  author_email: radiomilingo@gmail.com
+  author_url: ''
+  date: '2010-11-07 04:15:26 +0100'
+  date_gmt: '2010-11-07 03:15:26 +0100'
+  content: "ragazzi io ho un portatile asus abbastanza vecchio con una scheda abbastanza
+    performante per quei tempi, adesso installadogli ubuntu 10.10\r\navevo anche io
+    problemi di temperatura (appena acceso schizzava ai 68 fino poi arrivare ad 80
+    gradi e piu), le ventole sembravano pale di un elicottero etcetc . dimenticavo
+    che ho i driver open (no proprietari) per la scheda grafica .\r\nho semplicemente
+    installato powernowd e la temperatura e scesa magicamente a 59/54 gradi.\r\nora
+    pero' ho una domanda : con sensors mi vede solo un chip , mi da solo una temperatura
+    e i giri delle ventole, &egrave; normale? non vorrei che qualche altro componente
+    stia nel frattempo friggendo .c'&egrave; una maniera per monitorare meglio con
+    o senza sensors?\r\ngrazie molte, ciao"
+- id: 6592
+  author: RedBlue
+  author_email: redblue@red-blue.it
+  author_url: http://www.red-blue.it
+  date: '2010-11-07 09:55:57 +0100'
+  date_gmt: '2010-11-07 08:55:57 +0100'
+  content: Semplicemente aggiungi al pannello un altro sensore e configuralo per monitorare
+    il secondo core.. ;)
+- id: 7281
+  author: Primi passi con Ubuntu 11.04 Natty Narwhal - Parte 1 - RedBlue&#039;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/guide/primi-passi-con-ubuntu-11-04-natty-narwhal-parte-1.html
+  date: '2011-05-11 17:16:14 +0100'
+  date_gmt: '2011-05-11 15:16:14 +0100'
+  content: "[...] vedere pi&ugrave; Plymouth, il bootscreen di Ubuntu!! Niente paura,
+    per sistemare le cose potete seguire questa mia vecchia guida (solo la parte riguardante
+    Plymouth), oppure pi&ugrave; semplicemente installare [...]"
+---
+<p>Ed ecco la seconda ed ultima parte della guida per sistemare (non voglio ancora scrivere risolvere) il problema di Lucid con la temperatura, dovuto al driver ATI open source. Il grosso &egrave; stato fatto con la <a href="http://localhost:4000/guide/problemi-di-temperatura-di-ubuntu-10-04-lucid-lynx-soluzione-parte-1-riconfigurare-lambiente-grafico.html" target="_blank">prima parte</a>, ora daremo una sistemata allo <strong>scaling</strong><strong> della CPU</strong>, installeremo una piccola applet che ci consentir&agrave; di <strong>monitorare in tempo reale</strong> la temperatura (per essere sicuri che tutto vada al meglio), e riconfigureremo <strong>Plymouth</strong>, il nuovo splashscreen di avvio e chiusura del sistema operativo, che con i driver proprietari non va daccordissimo..</p>
+<p><strong><span style="color: #ff0000;">Primo passo</span></strong> - Installare Powernowd</p>
+<p>In realt&agrave; questo non c'entra nulla col comparto video, ma smanettando mi sono reso conto che sul mio notebook le applet di variazione della frequenza della CPU funzionavano regolarmente senza che fosse installato n&eacute; <strong>Powernowd</strong> n&eacute; <strong>Cpufreqd</strong> n&eacute; <strong>Cpufrequtils</strong>.. Mah.. Misteri di Linux.. Cmq a scanso di equivoci ho provveduto ad installare Powernowd (Cpufreqd ancora non sono riuscito a configurarlo come si deve, quindi preferisco non usarlo), dando semplicemente:</p>
+<blockquote><p><code>sudo apt-get install powernowd</code></p></blockquote>
+<p><strong><span style="color: #ff0000;">Secondo passo</span></strong> - Configurare i sensori di temperatura</p>
+<p>Per prima cosa provvediamo ad installare il necessario per usare i sensori di temperatura <span style="text-decoration: underline;">probabilmente</span> presenti sul nostro notebook:</p>
+<blockquote><p><code>sudo apt-get install lm-sensors sensors-applet</code></p></blockquote>
+<p>Poi, sempre da linea di comando, vediamo quali moduli dobbiamo caricare all'avvio:</p>
+<blockquote><p><code>sudo sensors-detect</code></p></blockquote>
+<p>A questo punto rispondete sempre <strong>yes</strong> alle varie domande che vi verrano poste e alla fine vi verranno indicati dei moduli da caricare all'avvio; inseriteli in <code>/etc/modules</code> e riavviate, poi aggiungete al pannello l'applet <strong>Hardware Sensors Monitor</strong> e il gioco &egrave; fatto.. ;)</p>
+<p>Ehm.. Quasi.. Perch&egrave; ad esempio il modulo relativo al sensore di temperatura del mio notebook, chiamato <strong>k10temp</strong>,&nbsp;non &egrave; incluso ancora nel kernel, lo sar&agrave; dalla versione <strong>2.6.34</strong>, purtroppo per&ograve; i driver ATI proprietari <span style="text-decoration: underline;">non sono ancora compatibili con tale kernel</span> (cosa provata e riprovata, fidatevi), quindi &egrave; necessario provvedere a compilare questo benedetto modulo "a manina"..</p>
+<p><strong><span style="text-decoration: underline;">ATTENZIONE!! Questa parte della guida &egrave; rivolta solo a coloro che non posso usare direttamente i sensori di temperatura, precisamente mi riferisco al seguente hardware indicato dal comando </span></strong><code><strong><span style="text-decoration: underline;">sensors-detect</span></strong></code><strong><span style="text-decoration: underline;">, indicato anche </span></strong><a href="http://lm-sensors.org/wiki/Devices" target="_blank"><strong>qui</strong></a><strong><span style="text-decoration: underline;">, sulla pagina ufficiale del progetto</span></strong>:</p>
+<blockquote><p><code>Family 10h CPU, family 11h CPU</code></p></blockquote>
+<p>Bene, se avete questo sensore, scaricate i sorgenti del modulo da <a href="/assets/images/k10temp.tar.gz " target="_blank">qui</a>, decomprimeteli in una directory e poi, prima di passare alla compilazione vera e propria, <strong>installate i sorgenti del kernel</strong>:</p>
+<blockquote><p><code>sudo apt-get install linux-source</code></p></blockquote>
+<p>A questo punto entrate nella directory dove avete decompresso i sorgenti ed eseguite il <strong>make</strong> in questo modo:</p>
+<blockquote><p><code>sudo make -C /lib/modules/$(uname -r)/build M=$(pwd) modules</code></p></blockquote>
+<p>Poi carichiamo temporaneamente il modulo, per testare se funziona:</p>
+<blockquote><p><code>sudo insmod k10temp.ko</code></p></blockquote>
+<p>Ed effettuiamo il test:</p>
+<blockquote><p><code>sensors</code></p></blockquote>
+<p>Se funziona vedremo visualizzate le informazioni sul/sui sensore/i, oltre ovviamente alle temperature, altrimenti possiamo cancellare tutto e fermarci, vuol dire che il sensore non &egrave; compatibile nemmeno con questo modulo. Se il sensore ora viene letto, possiamo aggiungere il modulo al sistema permanentemente e caricarlo all'avvio:</p>
+<blockquote><p><code>sudo cp k10temp.ko /lib/modules/$(uname -r)/kernel/drivers/hwmon<br />
+sudo depmod<br />
+sudo modprobe k10temp<br />
+echo 'k10temp' | sudo tee -a /etc/modules >/dev/null</code></p></blockquote>
+<p>E riavviamo.. A questo punto l'applet di cui parlavo prima dovrebbe funzionare correttamente.. ;)</p>
+<p><span style="color: #ff0000;"><strong>Terzo passo</strong></span> - Riconfigurare Plymouth</p>
+<p>Il problema &egrave; che Plymouth usa il <strong>KMS</strong> (Kernel Mode Settings, praticamente &egrave; il kernel ad adattare la risoluzione dello schermo), pienamente supportato dai driver open, ma non dai proprietari (che invece ricorrono a <strong>X.Org</strong>).. Procediamo installando per prima cosa <strong>hwinfo</strong> e <strong>v86d</strong>:</p>
+<blockquote><p><code>sudo apt-get hwinfo v86d</code></p></blockquote>
+<p>Diamo il comando:</p>
+<blockquote><p><code>sudo hwinfo --framebuffer</code></p></blockquote>
+<p>Otterremo una lista di linee tipo questa:</p>
+<blockquote><p><code> Mode 0x0323: 1024x768 (+4096), 24 bits</code></p></blockquote>
+<p>Scegliamo la risoluzione che vogliamo (io ho indicato quella che ho scelto) e prendiamone nota, poi dobbiamo fare lo stesso con il monitor:</p>
+<blockquote><p><code>xrandr</code></p></blockquote>
+<p>A questo punto abbiamo tutto, ovviamente scegliamo una risoluzione compatibile con quelle visualizzate prima. Supponiamo di usare la stessa che ho scelto io, dobbiamo riconfigurare <strong>Grub</strong>:</p>
+<blockquote><p><code>sudo gedit /etc/default/grub</code></p></blockquote>
+<p>Dovete modifica le due linee corrispondenti a <code>GRUB_CMDLINE_LINUX_DEFAULT</code> e <code>GRUB_GFXMODE</code> e modificatele in:</p>
+<blockquote><p><code>GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nomodeset video=uvesafb:mode_option=1024x768-24,mtrr=3,scroll=ywrap"<br />
+GRUB_GFXMODE=1024x768</code></p></blockquote>
+<p>Ovviamente se scegliete una risoluzione diversa dovete mettere quella.. Ora modifichiamo il seguente file:</p>
+<blockquote><p><code>sudo gedit /etc/initramfs-tools/modules</code></p></blockquote>
+<p>Aggiungendo alla fine la linea:</p>
+<blockquote><p><code>uvesafb mode_option=1024x768-24 mtrr=3 scroll=ywrap</code></p></blockquote>
+<p>Ovviamente anche qui se avete scelto una risoluzione diversa dovete indicare quella. Non ci resta che dare:</p>
+<blockquote><p><code>echo FRAMEBUFFER=y | sudo tee /etc/initramfs-tools/conf.d/splash</code></p></blockquote>
+<p>Abbiamo quasi finito, dobbiamo solo aggiornare i file di sistema:</p>
+<blockquote><p><code>sudo update-grub2<br />
+sudo update-initramfs -u</code></p></blockquote>
+<p>Ora possiamo riavviare e testare il corretto funzionamento di <strong>Plymouth</strong>.</p>
+<p>Mi rendo conto che &egrave; una procedura molto lunga (spero che siate riusciti ad arrivare fino alla fine prima di addormentarvi), ma ho ritenuto di non spezzettare ulteriormente questa guida, in modo da avere un sistema che torni a funzionare correttamente (almeno spero!!) in un tempo ragionevole..</p>
+<p>Alla prossima..</p>

@@ -1,0 +1,170 @@
+---
+layout: post
+status: publish
+published: true
+title: 'Karmic Koala su HP DV6-1205sl: prime impressioni'
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 759
+wordpress_url: http://redblue.netsons.org/?p=759
+date: '2009-11-02 16:56:52 +0100'
+date_gmt: '2009-11-02 15:56:52 +0100'
+categories:
+- tips & tricks
+- linux
+- ubuntu
+- notebook
+- hp dv6
+tags:
+- ubuntu
+- installazione
+- wireless
+- video
+- audio
+- '9.10'
+- karmic koala
+- dv6-1205sl
+comments:
+- id: 2314
+  author: V
+  author_email: vittorio.re@gmail.com
+  author_url: ''
+  date: '2009-11-03 09:46:03 +0100'
+  date_gmt: '2009-11-03 08:46:03 +0100'
+  content: "nella notte ho provato a reinstallare karmic ed effettivamente il wireless
+    &egrave; andato senza problemi. probabilmente prima avevo fatto qualche tentativo
+    con network tools e iwconfig che aveva rovinato la configurazione tanto che nemmeno
+    wicd rilevava nulla.\r\n\r\nil microfono (senza compilare gli alsa, ma editando
+    solo il file .conf e riavviando) continua a non funzionare (provato facendo la
+    test call di skype)"
+- id: 2315
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-11-03 11:11:31 +0100'
+  date_gmt: '2009-11-03 10:11:31 +0100'
+  content: |-
+    Sono contento per il wireless..
+
+    Per l'audio, ho testato Skype, funziona perfettamente.. Chiaramente devi usare solo Skype mentre effettui una chiamata/videochiamata.. Non deve cio&egrave; essere presente alcun altro programma (compresi i plugin del browser) che abbia accesso all'audio prima di avviare Skype..
+
+    Per il curioso effetto del jack della cuffia, ho provato anche a compilare l'ultimissima versione di Alsa, ma ancora niente.. Aggiorno il post a questo punto..
+- id: 2316
+  author: V
+  author_email: vittorio.re@gmail.com
+  author_url: ''
+  date: '2009-11-04 07:57:43 +0100'
+  date_gmt: '2009-11-04 06:57:43 +0100'
+  content: "per il microfono devo fare mea culpa: era flaggato il \"mute\". devo smetterla
+    di fare questi lavori alle 4 del mattino!! ;)\r\nprover&ograve; poi il rimedio
+    artigianale per l'esclusione degli altoparlanti.\r\n\r\ngrazie comunque di nuovo
+    per le preziose indicazioni!"
+- id: 2317
+  author: V
+  author_email: vittorio.re@gmail.com
+  author_url: ''
+  date: '2009-11-04 22:26:29 +0100'
+  date_gmt: '2009-11-04 21:26:29 +0100'
+  content: disabilitando gli speaker mi si ammutoliscono pure le cuffie
+- id: 2318
+  author: V
+  author_email: vittorio.re@gmail.com
+  author_url: ''
+  date: '2009-11-04 22:41:07 +0100'
+  date_gmt: '2009-11-04 21:41:07 +0100'
+  content: "e, che tu sappia, c'&egrave; qualche chance di accedere ad una scheda
+    SD tramite il card reader?\r\nperch&eacute; f-spot e gtkam non riconoscono la
+    mia fotocamera (kodak easy share v1003)..."
+- id: 2319
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-11-04 22:53:03 +0100'
+  date_gmt: '2009-11-04 21:53:03 +0100'
+  content: |-
+    Mmm.. Mi fa pensare che l'aggiornamento che ho fatto di Alsa sia servito a qsa dopotutto.. Che versione hai installata tu? Verifica col comando:
+    <blockquote><code>cat /proc/asound/version</code></blockquote>
+- id: 2320
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-11-04 22:54:22 +0100'
+  date_gmt: '2009-11-04 21:54:22 +0100'
+  content: Bella domanda.. Qui sono ancora in alto mare lo ammetto.. Ma era cos&igrave;
+    anche con Jaunty.. Sul nostro notebook c'&egrave; un lettore di SD, MMC, MSPro
+    e XD.. Per il momento il max che ho ottenuto &egrave; che mi abbia letto una SD,
+    come?? Prova a riavviare il sistema con inserita la scheda.. ;)
+- id: 2321
+  author: V
+  author_email: vittorio.re@gmail.com
+  author_url: ''
+  date: '2009-11-04 23:58:20 +0100'
+  date_gmt: '2009-11-04 22:58:20 +0100'
+  content: "versione di alsa:\r\n1.0.20.\r\n\r\nprover&ograve; il trucco per la lettura
+    della SD ;)"
+- id: 2355
+  author: TheSim
+  author_email: simoncinip@tiacali.it
+  author_url: ''
+  date: '2009-11-18 11:33:40 +0100'
+  date_gmt: '2009-11-18 10:33:40 +0100'
+  content: "Su un Acer con Jaunty ho scaricato i tool a linea di comando di ALSA (mi
+    pare si chiamino alsa-utils o qlcs del genere) ho fatto un paioo script con il
+    comando secco che spegne/accende gli speaker e poi, con Ubuntu Tweak, ho abbinato
+    gli script a due tasti funzione. Semplice e diretto.\r\n\r\nSe hai bisegno vedo
+    di passare dove ho fatto questa cosa per darti pi&ugrave; dettagli. ;)"
+- id: 2357
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-11-18 19:50:33 +0100'
+  date_gmt: '2009-11-18 18:50:33 +0100'
+  content: Mmm.. Interessante.. Si mi interessa grazie.. ;)
+- id: 2567
+  author: Lorenpro
+  author_email: lorenzo.lucesoli@poste.it
+  author_url: ''
+  date: '2009-12-16 19:26:18 +0100'
+  date_gmt: '2009-12-16 18:26:18 +0100'
+  content: 'Io ho un Pavillon dv6 1123, non mi funzionava l''audio, dal forum, in
+    alsa-base.conf mi hanno fatto mettere nelle options: model=hp-dv5 e funziona,
+    mentre te metti hp-hdx. Esiste una tabella che identifica con precisione il modello??
+    Poi pur avendo la scheda audio interna sia Analog che Digital oltre che una scheda
+    Ati Radeon700, tutte visibili e selezionabili in Preferenze Audio, l''audio funziona
+    solo con la scheda Interna Analog e si spegne con le altre, sai da che altra parte
+    occorre intervenire??'
+- id: 2574
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-12-17 10:19:33 +0100'
+  date_gmt: '2009-12-17 09:19:33 +0100'
+  content: |-
+    Ciao,
+
+    prima di tutto devo ringraziarti, perch&egrave; con la tua dritta sull'opzione <code>model=hp-dv5</code> ho sistemato il problema delle cuffie!! Io avevo trovato l'opzione che consigliavo nel forum inglese, ma per una volta quello italiano si &egrave; dimostrato pi&ugrave; affidabile.. ;)
+
+    Per la seconda domanda purtroppo non so darti risposta, per il semplice fatto che non avendo modo di usare l'uscita digitale, non mi sono mai posto il problema di controllare il suo corretto funzionamento..
+---
+<p>E' stata rilasciata <strong>Karmic Koala</strong>, la nuova versione (<strong>9.10</strong>) di Ubuntu!! Chiaramente, non potevo non installarla.. Premetto che parlo di un'installazione <strong>nuova di zecca</strong>, non di un aggiornamento. Devo dire che, rispetto a Jaunty, sono piacevolmente sorpreso.. Riguardo i tre aspetti che non mi erano piaciuti con la vecchia versione (vedere "<a href="../guide/hp-pavilion-dv6-1205sl-e-jaunty.html" target="_blank">HP Pavilion DV6-1205sl e Jaunty</a>"):</p>
+<ul>
+<li>il <strong>wireless</strong> ora funziona direttamente, senza bisogno di installare alcun pacchetto aggiuntivo..</li>
+<li>per l'<strong>audio</strong> non &egrave; pi&ugrave; necessario l'aggiornamento di Alsa, ma mi &egrave; bastato editare il file <code>/etc/modprobe.d/alsa-base.conf</code> come segue:<br />
+<blockquote><p><code>sudo gedit /etc/modprobe.d/alsa-base.conf</code></p></blockquote>
+<p>L'ultima riga era:</p>
+<blockquote><p><code>options snd-hda-intel power_save=10 power_save_controller=N</code></p></blockquote>
+<p>Io ho solo aggiunto alla fine <span style="text-decoration: line-through;"><code>model=hp-hdx</code>:</span></p>
+<blockquote><p><span style="text-decoration: line-through;"><code>options snd-hda-intel power_save=10 power_save_controller=N model=hp-hdx</code></span></p></blockquote>
+<p><span style="text-decoration: line-through;"><span style="color: #ff0000;"><strong>EDIT</strong></span>: grazie alla segnalazione di V, mi sono reso conto che inserendo il jack delle cuffie si ottiene lo strano effetto che le cuffie stesse funzionano, ma resta attivo anche l'altoparlante del notebook.. Al momento non ho trovato una soluzione (l'aggiornamento di Alsa non ha dato esito positivo), vi terr&ograve; aggiornati..<br />
+<span style="color: #ff0000;"><strong>EDIT 2</strong></span>: dopo un'altra prova, ho trovato il sistema per disabilitare gli altoparlanti quando si inseriscono le cuffie.. Nella maniera pi&ugrave; artigiale del mondo, da terminale digitare:</span></p>
+<blockquote><p><span style="text-decoration: line-through;"><code>alsamixer -Dhw</code></span></p></blockquote>
+<p><span style="text-decoration: line-through;">spostarsi con le frecce alla voce <strong>Speaker</strong> e premere <strong>m</strong> per disabilitarlo, poi una volta staccate le cuffie ripremere <strong>m</strong> per riabilitarlo.. E' orribile come soluzione lo so, prometto che cercher&ograve; di trovarne una pi&ugrave; elegante!! ;) </span><br />
+<span style="color: #ff0000;"><strong>RISOLTO</strong></span>!! Grazie ad un segnalazione nei commenti, ho scoperto che l'opzione corretta da aggiungere &egrave; la seguente:</p>
+<blockquote><p><code>model=hp-dv5</code></p></blockquote>
+<p>E funzionano cos&igrave; perfettamente anche le cuffie..</li>
+<li>per la <strong>parte video</strong>, non &egrave; cambiato nulla, va alla grande, basta scaricare l'ultima versione dei Catalyst da <a href="http://support.amd.com/it/gpudownload/Pages/index.aspx" target="_blank">qui</a>, e poi procedere come <a href="http://localhost:4000/guide/driver-ati-catalyst-su-pavilion-dv6-1205sl.html" target="_blank">ho descritto in precedenza</a>..<br />
+<span style="color: #ff0000;"><strong>EDIT</strong></span>: oppure si possono installare i driver Open Souce, come descritto <a href="http://localhost:4000/guide/effetti-3d-su-karmic-con-driver-ati-open-source-addio-fglrx.html" target="_blank">qui</a>.. ;)</li>
+</ul>

@@ -1,0 +1,40 @@
+---
+layout: post
+status: publish
+published: true
+title: Samba su Raspberry Pi come server di stampa
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3881
+wordpress_url: http://www.red-blue.it/?p=3881
+date: '2016-12-11 12:00:07 +0100'
+date_gmt: '2016-12-11 11:00:07 +0100'
+categories:
+- guide
+- linux
+- raspberry pi
+tags:
+- windows
+- raspberry pi
+- server di stampa
+- samba
+comments: []
+---
+<p>Questo articolo vuole essere un completamento del precedente&nbsp;<a href="http://localhost:4000/guide/semplice-server-stampa-raspberry-pi.html" target="_blank">Semplice server stampa Raspberry Pi</a>.</p>
+<p>Supponiamo che nella nostra rete ci sia un computer con installato <strong>Windows</strong>, come possiamo collegarci al <strong>Raspberry Pi</strong> e sfruttare la stampante ad esso collegata?</p>
+<p><a href="/assets/images/Pi_3_Model_B.png"><img class="aligncenter size-medium wp-image-3873" src="/assets/images/Pi_3_Model_B-300x157.png" alt="" width="300" height="157" /></a></p>
+<p>Semplice, occorre installare <strong>Samba</strong>:</p>
+<pre class="brush: bash; gutter: false">sudo apt-get install samba</pre>
+<p>Editiamo poi il file di configurazione <strong>/etc/samba/smb.conf</strong>. All'inizio del file assicuriamoci che il gruppo di lavoro sia quello usato dal nostro PC Windows (normalmente si usa <strong>WORKGROUP</strong>), poi&nbsp;assicuriamoci di avere la riga:</p>
+<pre class="brush: bash; gutter: false">wins support = yes</pre>
+<p>Nella sezione <strong>[printers]</strong> deve esserci:</p>
+<pre class="brush: bash; gutter: false">guest ok = yes</pre>
+<p>Mentre nella successiva sezione <strong>[print$]</strong> deve esserci la riga:</p>
+<pre class="brush: bash; gutter: false">path = /usr/share/cups/drivers</pre>
+<p>Salviamo il file e riavviamo il servizio:</p>
+<pre class="brush: bash; gutter: false">sudo /etc/init.d/samba restart</pre>
+<p>Finito, a questo punto, il vostro PC con Windows sar&agrave; in grado di "vedere" sulla rete il Raspberry Pi e baster&agrave; usare la normale procedura di installazione di una stampante remota.</p>
+<p>Alla prossima..</p>

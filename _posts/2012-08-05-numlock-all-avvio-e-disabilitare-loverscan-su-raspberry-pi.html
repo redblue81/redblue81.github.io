@@ -1,0 +1,52 @@
+---
+layout: post
+status: publish
+published: true
+title: Numlock all'avvio e disabilitare l'overscan su Raspberry Pi
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3352
+wordpress_url: http://www.red-blue.it/?p=3352
+date: '2012-08-05 19:49:49 +0100'
+date_gmt: '2012-08-05 17:49:49 +0100'
+categories:
+- tips & tricks
+- linux
+- debian
+- raspberry pi
+tags:
+- linux
+- tips
+- tricks
+- raspberry pi
+comments: []
+---
+<p>Due tips veloci sul <strong>Raspberry Pi</strong>.</p>
+<p><a href="/assets/images/raspberry-pi.jpg"><img class="aligncenter size-medium wp-image-2954" title="raspberry-pi" src="/assets/images/raspberry-pi-300x191.jpg" alt="" width="300" height="191" /></a></p>
+<p>Primo, &egrave; fastidioso, almeno per il sottoscritto, non avere il <strong>Numlock</strong> attivo direttamente all'avio del pc, per cui risolviamo installando il pacchetto <strong>numlockx</strong>:</p>
+<pre class="brush: bash; gutter: false">sudo apt-get install numlockx</pre>
+<p>Poi basta aggiungere queste righe a <code>/etc/X11/xinit/xinitrc</code> (o meglio ancora a <code>/etc/X11/Xsession</code>):</p>
+<pre class="brush: bash; gutter: true">if [ -x /usr/bin/numlockx ]; then
+
+&nbsp;&nbsp;&nbsp; /usr/bin/numlockx on
+
+fi</pre>
+<p>Secondo, il Raspberry Pi sul mio monitor presentava una schermata "ridotta", nel senso che presentava delle <strong>bande nere</strong> intorno allo schermo.</p>
+<p>Si risolve tutto editando il file <code>/boot/config.txt</code>, nel quale basta localizzare la riga:</p>
+<pre class="brush: bash; gutter: false">disable_overscan=0</pre>
+<p>Che va modificata in:</p>
+<pre class="brush: bash; gutter: false">disable_overscan=1</pre>
+<p>Oppure potete cambiare i valori delle righe successive per adattare lo schermo alle vostre esigenze:</p>
+<pre class="brush: bash; gutter: false">overscan_top=-5
+
+overscan_bottom=-5
+
+overscan_left=-5
+
+overscan_right=-5</pre>
+<p>Aumentate i quattro valori ed avrete lo schermo pi&ugrave; largo, viceversa diminuendoli, si restringer&agrave; lo schermo.</p>
+<p>Al riavvio avrete il Raspberry Pi a schermo pieno.</p>
+<p>Alla prossima..</p>

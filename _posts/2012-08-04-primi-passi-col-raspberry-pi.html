@@ -1,0 +1,77 @@
+---
+layout: post
+status: publish
+published: true
+title: Primi passi col Raspberry Pi
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3343
+wordpress_url: http://www.red-blue.it/?p=3343
+date: '2012-08-04 14:33:28 +0100'
+date_gmt: '2012-08-04 12:33:28 +0100'
+categories:
+- guide
+- linux
+- debian
+- in evidenza
+- raspberry pi
+tags:
+- guida
+- debian
+- linux
+- configurazione
+- raspberry pi
+comments:
+- id: 14281
+  author: Overclock del Raspberry Pi - RedBlue&#039;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/guide/overclock-del-raspberry-pi.html
+  date: '2012-08-27 13:02:26 +0100'
+  date_gmt: '2012-08-27 11:02:26 +0100'
+  content: "[...] C&#039;&egrave; voluto qualche giorno, ma finalmente ho il tempo
+    di smanettare un po&#039; col mio Raspberry Pi. Prima&hellip; [Leggi tutto] [...]"
+- id: 35348
+  author: Nasce il PiStore, l&#039;app store per Raspberry Pi - RedBlue&#039;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/linux/nasce-lapp-store-per-raspberry-pi.html
+  date: '2012-12-26 11:17:58 +0100'
+  date_gmt: '2012-12-26 10:17:58 +0100'
+  content: "[...] sulla nostra Raspbian (si tratta di Debian ottimizzata per Raspberry
+    Pi, ne ho parlato in passato qui), basta dare i seguenti [...]"
+---
+<p>C'&egrave; voluto qualche giorno, ma finalmente ho il tempo di smanettare un po' col mio <strong>Raspberry Pi</strong>.</p>
+<p><a href="/assets/images/raspberry-pi.jpg"><img class="aligncenter size-medium wp-image-2954" title="raspberry-pi" src="/assets/images/raspberry-pi-300x191.jpg" alt="" width="300" height="191" /></a>Prima di tutto, anche se penso lo sappiate, serve una <strong>memory card di tipo SD</strong> (le pi&ugrave; comuni, va bene anche in formato <strong>microSD</strong> purch&egrave; sia abbinata ad un apposito <strong>adattatore</strong>); io ne ho a disposizione una da <strong>4 GB</strong>, con prestazioni non particolarmente elevate. Ovviamente, pi&ugrave; veloce sar&agrave; questa memoria, meglio &egrave;, anche se il Raspberry Pi non ha particolari pretese; per quanto riguarda la dimensione invece, pensate che il produttore prevede addirittura l'uso di una SD da <strong>2 GB</strong>, anche se ovviamente pi&ugrave; &egrave; grande, pi&ugrave; spazio avrete a disposizione per i vostri files.</p>
+<p><!--moreContinua a leggere.. --></p>
+<p>Iniziamo ad installare un sistema operativo: ci serve una distribuzione Linux con supporto alla CPU <strong>ARM</strong>, e consiglierei, per iniziare, di scorrere la <a href="http://www.raspberrypi.org/downloads" target="_blank">pagina dei download</a> del sito ufficiale, dove sono presenti delle distro gi&agrave; pronte. Io ho scaricato (ovviamente! ;) ) <strong>Raspbian</strong>, distro derivata da <strong>Debian Wheezy</strong> ed ottimizzata per funzionare al meglio su questo dispositivo. Dopo aver scaricato l'archivio ed averlo decompresso, inseriamo la SD e la smontiamo, poi ci copiamo sopra l'immagine:</p>
+<pre class="brush: bash; gutter: true">sudo fdisk -l
+
+sudo umount /dev/sdXX
+
+sudo dd bs=1M if=2012-07-15-wheezy-raspbian.img of=/dev/sdX</pre>
+<p>In cui bisogna sostituire a <code>sdX</code> l'identificativo della vostra scheda, che avrete ottenuto con <code>fdisk</code>. Quando avr&agrave; terminato, se la SD ha una capacit&agrave; maggiore di 2 GB, consiglio di usare <strong>GParted</strong> per ridimensionare le partizioni di default create<strong></strong>, in modo da poter sfruttare tutto lo spazio a disposizione. Inoltre, sarebbe bene aggiungere una partizione di <strong>swap</strong> da almeno 256 MB.</p>
+<p>A questo punto, inserite la SD preparata nel Raspberry Pi, collegate tastiera, mouse, monitor, cavo di rete, e potete avviare, semplicemente inserendo un alimentatore (va benissimo un comune caricabatterie per cellulare che sfrutti il collegamento USB, e un cavetto con terminale micro-USB), che far&agrave; da <strong>startup</strong>.</p>
+<p>Terminato il caricamento (piuttosto rapido, considerato l'hardware a disposizione), vi ritroverete in un wizard tramite il quale settare il <strong>layout di tastiera</strong>, la <strong>lingua</strong>, la <strong>password</strong> dell'utente <strong>pi</strong> (predefinito), la modalit&agrave; di avvio (<strong>testo</strong> o <strong>grafica</strong>), e altre cosette, poi potrete finalmente avviare il vostro OS! ;)</p>
+<p>A questo punto, possiamo pensare di impostare una <strong>password</strong> per l'utente <strong>root</strong>, aggiungere il nostro utente, e di avviare il PC direttamente con tale utente, piuttosto che con pi:</p>
+<pre class="brush: bash; gutter: true">sudo passwd root
+
+sudo adduser VOSTRO_UTENTE</pre>
+<p>Poi diamo all'utente creato la possibilit&agrave; di usare il comando sudo; per fare ci&ograve; editiamo il file <code>/etc/sudoers</code> nel seguente modo:</p>
+<pre class="brush: bash; gutter: true">su
+
+EDITOR=nano visudo</pre>
+<p>E subito dopo la riga:</p>
+<pre class="brush: bash; gutter: false">root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ALL=(ALL:ALL) ALL</pre>
+<p>Inseriamo la riga seguente:</p>
+<pre class="brush: bash; gutter: false">VOSTRO_UTENTE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ALL=(ALL) ALL</pre>
+<p>Possiamo ora <strong>loggarci</strong> col nostro utente:</p>
+<pre class="brush: bash; gutter: false">su VOSTRO_UTENTE</pre>&
+<p>Bene, adesso il nostro Raspberry Pi si avvia ancora con l'utente pi, quello predefinito, per avviare direttamente il nostro utente, senza richiesta di password, editiamo il file <code>/etc/inittab</code>, cercando la riga (attenzione perch&egrave; potrebbe essere leggermente diversa):</p>
+<pre class="brush: bash; gutter: false">1:2345:respawn:/sbin/getty 38400 tty1</pre>
+<p>E <strong>commentandola</strong> mettendo un # davanti, poi inseriamo la riga:</p>
+<pre class="brush: bash; gutter: false">1:2345:respawn:/bin/login -f VOSTRO_UTENTE tty1/dev/tty1 2>&amp;1</pre>
+<p>Salviamo e chiudiamo l'editor, poi editiamo il file <code>/etc/profile</code> inserendo semplicemente alla fine uno <code>startx</code>. Riavviamo e vedremo come l'utente predefinito sia diventato il nostro.</p>
+<p>Per ora direi che basta cos&igrave;, ovviamente continuer&ograve; a smanettare col Raspberry Pi e a tenervi aggiornati.. ;)</p>
+<p>Alla prossima..</p>

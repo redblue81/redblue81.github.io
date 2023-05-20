@@ -1,0 +1,41 @@
+---
+layout: post
+status: publish
+published: true
+title: Adobe Flash Player su Ubuntu x64
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 919
+wordpress_url: http://redblue.netsons.org/?p=919
+date: '2010-01-12 15:58:11 +0100'
+date_gmt: '2010-01-12 14:58:11 +0100'
+categories:
+- tips & tricks
+- linux
+- ubuntu
+- browser
+- firefox
+tags:
+- tips
+- firefox
+- tricks
+- flash
+- karmic
+- 64 bit
+- x64
+- ubuntu 9.10
+- flash player 64 bit
+comments: []
+---
+<p>Da quando sono passato all'architettura a 64 bit, non ho avuto il bench&egrave; minimo problema.. Devo ammetterlo, sono davvero soddisfatto..</p>
+<p>Ma stamattina mi sono reso conto che alcune animazioni in <strong>Flash</strong> non andavano a dovere, o meglio, semplicemente all'improvviso diventavano completamente bianche, mentre alcuni video "embeddati" in pagine web non partivano proprio.. Rapido giro in rete, e ho scoperto che il Flash Player che avevo installato su <strong>Firefox</strong> era la versione a 32 bit "adattata" alla mia architettura tramite il pacchetto <strong>nspluginwrapper</strong>..</p>
+<p>Altro rapido giro, e ho scoperto che Adobe ha rilasciato il Flash Player <strong>nativamente</strong> a 64 bit, si tratta ancora di una prerelease, ma a mio modo di vedere funziona gi&agrave; pi&ugrave; che bene. Lo trovate <a href="http://labs.adobe.com/downloads/flashplayer10_64bit.html" target="_blank">qui</a>..</p>
+<p>Prima di installarlo, <span style="text-decoration: underline;">abbiate cura di rimuovere la vecchia versione</span>; se come me l'avevate installato direttamente da Firefox, basta dare il comando:</p>
+<blockquote><p><code>sudo apt-get remove flashplugin-installer nspluginwrapper</code></p></blockquote>
+<p>E poi, dopo aver scaricato e scompattato l'archivio, dare il comando:</p>
+<blockquote><p><code>sudo cp /percorso-del-file/libflashplayer.so /usr/lib/mozilla/plugins</code></p></blockquote>
+<p>A questo punto riavviate e godetevi il vostro <strong>Flash Player a 64 bit</strong>..</p>
+<p>Alla prossima..</p>

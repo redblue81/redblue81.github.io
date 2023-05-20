@@ -1,0 +1,50 @@
+---
+layout: post
+status: publish
+published: true
+title: 'Google Chromium: arrivano le estensioni..'
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 853
+wordpress_url: http://redblue.netsons.org/?p=853
+date: '2009-12-15 13:08:52 +0100'
+date_gmt: '2009-12-15 12:08:52 +0100'
+categories:
+- tips & tricks
+- linux
+- ubuntu
+- browser
+- chromium
+tags:
+- browser
+- estensioni
+- google chromium
+- ppa
+comments: []
+---
+<p style="text-align: center;"><a rel="lightbox" href="/assets/images/chrome.gif"><img class="aligncenter" src="/assets/images/chrome.gif" alt="" width="151" height="131" /></a></p>
+<p>In passato&nbsp;<a href="http://localhost:4000/internet/google-chromium-per-linux.html" target="_blank">avevo gi&agrave; parlato di Google Chromium</a>, dopo un bel p&ograve; di mesi il progetto &egrave; andato molto avanti, ma non solo, &egrave; arrivato anche il supporto alle&nbsp;<strong>estensioni</strong>!! Esattamente come per Firefox.. Vediamo un p&ograve; di rinfrescare la memoria, cominciando dall'installazione e dalla&nbsp;<strong>localizzazione in italiano</strong>..</p>
+<p><!--more Continua a leggere questo articolo.. --></p>
+<p>Innanzi tutto aggiungiamo il&nbsp;<strong>repository</strong> al file&nbsp;<code>/etc/apt/sources.list</code>:</p>
+<blockquote><p><code>deb http://ppa.launchpad.net/chromium-daily/ppa/ubuntu distro main<br />
+deb-src http://ppa.launchpad.net/chromium-daily/ppa/ubuntu distro main</code></p></blockquote>
+<p>Dove al posto di&nbsp;<code>distro</code> va il nome della vostra Ubuntu: sono disponibili pacchetti per&nbsp;<strong>Karmic</strong>,&nbsp;<strong>Jaunty</strong>,&nbsp;<strong>Intrepid</strong> e&nbsp;<strong>Hardy</strong>. Poi importiamo la&nbsp;<strong>chiave GPG</strong>:</p>
+<blockquote><p><code>sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xfbef0d696de1c72ba5a835fe5a9bf3bb4e5e17b5</code></p></blockquote>
+<p>E infine installiamo:</p>
+<blockquote><p><code>sudo apt-get update<br />
+sudo apt-get install chromium-browser chromium-browser-l10n</code></p></blockquote>
+<p>A questo punto abbiamo Chromium in italiano, per attivare il supporto alle estensioni dobbiamo <span style="text-decoration: underline;">lanciare il programma aggiungendo l'opzione </span><code><strong><span style="text-decoration: underline;">-</span><span style="text-decoration: underline;">-enable-extensions</span></strong></code>, mentre installare le estensioni &egrave; semplicissimo, basta andare nel menu e scegliere la relativa voce, per poi essere catapultati in una gallery in continua espansione.. Ecco quelle che ho provato io:</p>
+<ul>
+<li><a href="https://chrome.google.com/extensions/detail/gffjhibehnempbkeheiccaincokdjbfe" target="_blank">GMail Checker Plus</a>: versatile estensione che gestisce le notifiche della nostra casella di posta elettronica GMail;</li>
+<li><a href="https://chrome.google.com/extensions/detail/jjegmigigagnpcimcbimpefifgplgmge" target="_blank">AdBlock Chromium</a>: &egrave; la stessa estensione di Firefox, serve ad eliminare i fastidiosi ads dalle pagine web;</li>
+<li><a href="https://chrome.google.com/extensions/detail/pneoplpmnpjoioldpodoljacigkahohc" target="_blank">Page Rank</a>: piccola estensione che consente di visualizzare il Page Rank di una pagina;</li>
+<li><a href="https://chrome.google.com/extensions/detail/nolajahnlkgfiaoipedmgfnmpdejljmg" target="_blank">Anyweather</a>: visualizza il meteo in tempo reale;</li>
+<li><a href="https://chrome.google.com/extensions/detail/ajpgkpeckebdhofmmjfgcjjiiejpodla" target="_blank">XMarks</a>: anche qui, stessa estensione di Firefox, consente di salvare online i propri preferiti, per poterli recuperare in modo facile.. Utile soprattutto perch&egrave; consente di esportare i preferiti di Firefox in Chromium;</li>
+<li><a href="https://chrome.google.com/extensions/detail/encaiiljifbdbjlphpgpiimidegddhic" target="_blank">Chromed Bird</a>: piccola estensione per collegare il browser a Twitter;</li>
+<li><a href="https://chrome.google.com/extensions/detail/cdngiadmnkhgemkimkhiilgffbjijcie" target="_blank">FlashBlock</a>: blocca i contenuti Flash delle pagine..</li>
+</ul>
+<p>E voi che estensioni usate??</p>
+<p>Alla prossima..</p>

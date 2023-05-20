@@ -1,0 +1,89 @@
+---
+layout: post
+status: publish
+published: true
+title: Aggiornare Alsa dai sorgenti..
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 769
+wordpress_url: http://redblue.netsons.org/?p=769
+date: '2009-11-05 12:39:03 +0100'
+date_gmt: '2009-11-05 11:39:03 +0100'
+categories:
+- guide
+- linux
+- ubuntu
+- notebook
+- hp dv6
+tags:
+- sorgenti
+- aggiornamento
+- hp pavilion
+- karmic koala
+- dv6-1205sl
+- alsa
+comments:
+- id: 3505
+  author: Lorenzo
+  author_email: lorenzo.cameroni@gmail.com
+  author_url: ''
+  date: '2010-03-15 19:58:42 +0100'
+  date_gmt: '2010-03-15 18:58:42 +0100'
+  content: "Ciao, ho seguito la procedura che hai riportato sul mio HP pavillion dv6
+    1304el con il risultato che... non sento pi&ugrave; nulla n&eacute; dalle casse
+    n&eacute; dalle cuffie...\r\nHai qualche suggerimento?\r\nOppure... come si fa
+    a disinstallare quanto installato da sorgente? C'&egrave; un metodo pi&ugrave;
+    o meno automatico o l'unica cosa da fare &egrave; andare a cancellare a mano tutti
+    i file nelle varie cartelle in /etc, /bin, eccetera ?\r\n\r\nGrazie 1000\r\n\r\nCiao"
+- id: 3506
+  author: Lorenzo
+  author_email: lorenzo.cameroni@gmail.com
+  author_url: ''
+  date: '2010-03-15 20:27:10 +0100'
+  date_gmt: '2010-03-15 19:27:10 +0100'
+  content: "Risolto installando la versione successiva (1.0.22)\r\nGrazie per la guida\r\n\r\nCiao"
+---
+<p>Con la nuova release di Ubuntu, Karmic, sembrava che l'audio sui notebook <strong>HP DV6</strong>, dotati di scheda audio HDA Intel, fosse stato sistemato.. In realt&agrave;, dai commenti al mio precedente post ("<a href="Karmic Koala su HP DV6-1205sl: prime impressioni" target="_blank">Karmic Koala su HP DV6-1205sl: prime impressioni</a>"), non &egrave; proprio cos&igrave;.. Pare infatti che, anche azzerando manualmente il volume dello speaker del pc, non si riescano ad usare le cuffie.. Personalmente ho aggiornato <strong>Alsa</strong>, fatto che non risolve definitivamente il problema, ma se non altro lo limita. Inoltre, penso sia cmq utile essere in grado di effettuare un aggiornamento manuale, e questo spiega questa guida.</p>
+<p><strong>Primo passo, preparare il sistema:</strong></p>
+<blockquote><p><code>sudo apt-get -y install build-essential ncurses-dev gettext xmlto<br />
+sudo apt-get -y install linux-headers-`uname -r`</code></p></blockquote>
+<p><strong>Secondo passo, scaricare i sorgenti in una directory creata apposta:</strong></p>
+<blockquote><p><code>mkdir -p /home/alsa-driver<br />
+cd /home/alsa-driver</code></p>
+<p>wget ftp://ftp.alsa-project.org/pub/driver/alsa-driver-1.0.21.tar.bz2<br />
+wget ftp://ftp.alsa-project.org/pub/lib/alsa-lib-1.0.21.tar.bz2<br />
+wget ftp://ftp.alsa-project.org/pub/utils/alsa-utils-1.0.21.tar.bz2</p></blockquote>
+<p>N.B. Ci sarebbe da scaricare anche <code>alsa-firmware</code>, ma sul sito ufficiale del progetto (<a href="http://www.alsa-project.org/main/index.php/Main_Page" target="_blank">Alsa-project</a>) &egrave; fermo alla versione 1.0.20, che &egrave; gi&agrave; presente in Karmic, quindi ho preferito saltare questo file..</p>
+<p>Ora decomprimiamo i tre archivi scaricati:</p>
+<blockquote><p><code>tar xjf alsa-driver*<br />
+tar xjf alsa-lib*<br />
+tar xjf alsa-utils*</code></p></blockquote>
+<p><strong>Terzo passo, compilare i sorgenti ottenuti:</strong></p>
+<blockquote><p><code>cd alsa-driver*<br />
+./configure --with-cards=hda-intel --with-kernel=/usr/src/linux-headers-$(uname -r)<br />
+make<br />
+sudo make install</code></p>
+<p>cd ../alsa-lib*<br />
+./configure<br />
+make<br />
+sudo make install</p>
+<p>cd ../alsa-utils*<br />
+./configure<br />
+make<br />
+sudo make install</p></blockquote>
+<p><span style="color: #ff0000;"><span style="text-decoration: underline;"><strong>ATTENZIONE!!</strong></span></span> Durante il <code>configure</code> potreste avere l'errore: <code>configure: error: panelw library not found</code>. Niente paura, basta creare nella directory in cui vi trovate i seguenti <strong>link simbolici</strong>:</p>
+<blockquote><p><code>sudo ln -s libpanelw.so.5 /usr/lib/libpanelw.so<br />
+sudo ln -s libformw.so.5 /usr/lib/libformw.so<br />
+sudo ln -s libmenuw.so.5 /usr/lib/libmenuw.so<br />
+sudo ln -s libncursesw.so.5 /lib/libncursesw.so</code></p></blockquote>
+<p>A questo punto non resta che <strong>riavviare il sistema</strong> (eh si, ogni tanto serve anche in Linux!! :D), e al riavvio verificare che tutto sia andato bene col comando:</p>
+<blockquote><p><code>cat /proc/asound/version</code></p></blockquote>
+<p>Che dovrebbe restituire come output qualcosa del genere:</p>
+<blockquote><p><code>Advanced Linux Sound Architecture Driver Version 1.0.21.<br />
+Compiled on Nov  3 2009 for kernel 2.6.31-14-generic (SMP).</code></p></blockquote>
+<p><strong>Quarto ed ultimo passo, eseguire la configurazione automatica di Alsa, digitando da terminale:</strong></p>
+<blockquote><p><code>sudo alsaconf</code></p></blockquote>
+<p>Alla prossima..</p>

@@ -1,0 +1,35 @@
+---
+layout: post
+status: publish
+published: true
+title: VLC non visualizza correttamente i canali DVB-T - SOLUZIONE
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3336
+wordpress_url: http://www.red-blue.it/?p=3336
+date: '2012-08-02 19:49:24 +0100'
+date_gmt: '2012-08-02 17:49:24 +0100'
+categories:
+- tips & tricks
+- linux
+- software
+tags:
+- debian
+- linux
+- tips
+- vlc
+- tricks
+- pinnacle 330e
+- dvb
+comments: []
+---
+<p>In un precedente articolo (<a href="http://localhost:4000/guide/ricevere-il-dvb-t-su-debian-sid-con-vlc.html" target="_blank">questo</a>) avevo spiegato come vedere la tv semplicemente con <strong>VLC</strong>. In realt&agrave;, per&ograve;, un utente mi ha fatto notare che non tutti i canali <strong>DVB-T</strong> si vedono correttamente, anzi a dirla tutta alcuni (comprese le tre principali reti Mediaset) <strong>non si vedono affatto</strong>, pur apparendo correttamente nella lista dei canali.</p>
+<p>Con un p&ograve; di test assortiti, abbiamo verificato che il problema &egrave; relativo alla <strong>ricezione</strong> (specie in questo periodo di passaggio totale e definitivo al segnale digitale), ma anche e soprattutto a <strong>VLC stesso</strong>, che mal "<strong>digerisce</strong>" la lista di canali che gli diamo in pasto dopo una scansione con <strong>W-Scan</strong>. A riprova di ci&ograve;, un programma alternativo come <strong>Kaffeine</strong> riusciva tranquillamente a visualizzare tutti i canali disponibili.</p>
+<p><a href="/assets/images/dvb_t.jpg"><img class="aligncenter size-medium wp-image-3190" title="dvb_t" src="/assets/images/dvb_t-296x300.jpg" alt="" width="296" height="300" /></a>Bene, devo dire grazie a <strong>Massimilianonball</strong>, che in <a href="http://forum.videolan.org/viewtopic.php?f=13&t=85437" target="_blank">questa discussione</a> sul forum ufficiale di VLC &egrave; riuscito a risolvere il problema; semplicemente, basta lanciare VLC con la seguente <strong>opzione</strong>:</p>
+<pre class="brush: bash; gutter: false">vlc [vostra_lista_canali.conf] --dvb-budget-mode</pre>
+<p>In tal modo, i canali che prima restavano inesorabilmente neri, si vedono tranquillamente, ovviamente fermo restando la corretta ricezione del segnale DVB (a casa mia, ad esempio, dove ho due antenne installate, su una la ricezione &egrave; decisamente peggiore e VLC ne risente parecchio, arrivando a visualizzare i canali Mediaset, prima assolutamente neri, ma comunque poco fluidi o addirittura scattosi)!!</p>
+<p>Grazie mille a Massimilianonball per la <strong>dritta</strong>!</p>
+<p>Alla prossima..</p>

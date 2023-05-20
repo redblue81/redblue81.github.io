@@ -1,0 +1,34 @@
+---
+layout: post
+status: publish
+published: true
+title: OpenOffice 3.1 su Ubuntu 9.04
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 524
+wordpress_url: http://redblue.netsons.org/?p=524
+date: '2009-05-22 11:26:18 +0100'
+date_gmt: '2009-05-22 10:26:18 +0100'
+categories:
+- guide
+- linux
+- ubuntu
+tags:
+- installazione
+- repository
+- openoffice 3.1
+- openoffice.org 3.1
+- ubuntu 9.04
+- jaunty
+comments: []
+---
+<p>Recentemente &egrave; stata rilasciata la versione 3.1 di <strong>OpenOffice</strong>. Installarla su <strong>Ubuntu 9.04</strong> ("Jaunty Jackalope") &egrave; semplicissimo, basta aggiungere un opportuno <strong>repository</strong>. Vediamo come fare..</p>
+<p>Per prima cosa aggiungiamo il repository:</p>
+<blockquote><p><code>deb http://ppa.launchpad.net/openoffice-pkgs/ppa/ubuntu jaunty main</code></p></blockquote>
+<p>Per farlo semplicemente copiamo questa riga nel file <code>/etc/apt/sources.list</code> oppure da <strong>Sistema -> Amministrazione -> Sorgenti software -> Software di terze parti -> Aggiungi</strong>, poi scarichiamo la <a href="http://keyserver.ubuntu.com:11371/pks/lookup?op=get&search=0x60D11217247D1CFF" target="_blank">chiave di autenticazione</a> (<span style="text-decoration: underline;">selezionare Salva destinazione con nome dopo aver cliccato col tasto destro sul collegamento</span>) che andremo ad inserire da <strong>Sistema -> Amministrazione -> Sorgenti software -> Autenticazione -> Importa file chiave</strong>, e infine da terminale digitiamo:</p>
+<blockquote><p><code>sudo apt-get update<br />
+sudo apt-get dist-upgrade</code></p></blockquote>
+<p>Se avevamo gi&agrave; installata la versione precendente di OpenOffice abbiamo finito, altrimenti bisogna installarlo da <strong>Synaptic</strong>, oppure selezionando <strong>Applicazioni -> Aggiungi/rimuovi..</strong> e cercando OpenOffice (si pu&ograve; fare anche da riga di comando, ma in genere &egrave; pi&ugrave; complesso perch&egrave; bisogna indicare vari pacchetti e onestamente il sottoscritto non conosce con precisione questa lista)..</p>

@@ -1,0 +1,42 @@
+---
+layout: post
+status: publish
+published: true
+title: Trasferire un sito Wordpress da locale a remoto
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3682
+wordpress_url: http://www.red-blue.it/?p=3682
+date: '2014-06-22 17:45:57 +0100'
+date_gmt: '2014-06-22 15:45:57 +0100'
+categories:
+- blog
+- guide
+- wordpress
+tags:
+- trasferimento
+- wordpress
+- guida
+- phpmyadmin
+- ftp
+- locale
+- remoto
+- upload
+comments: []
+---
+<p>Spesso si realizza un sito in <strong>locale</strong>, costruendo un ambiente di test appropriato in cui possiamo "<strong>giocare</strong>" come meglio crediamo. Bene, una volta completo il lavoro, sar&agrave; necessario trasferire il nostro sito Wordpress<strong> da locale a remoto</strong>, nello spazio web che avremo ne frattempo acquistato.</p>
+<p>Le strade sono due: <strong>ricostruire</strong> tutto passo passo, <strong>installando</strong> e <strong>configurando</strong> tutto il necessario, ovvero praticamente ricostruire il sito in remoto partendo da zero, oppure, pi&ugrave; pratico e veloce,<strong> trasferire direttamente il sito Wordpress da locale a remoto</strong>, con una sorta di copia e incolla avanzato.. ;)</p>
+<p>Per perseguire quest'ultima strategia, sono necessari <strong>pochi</strong>, <strong>semplici</strong>, ma <strong>precisi</strong> passaggi:</p>
+<ol>
+<li style="text-align: justify;"><strong>esportiamo il database</strong>: possiamo farlo comodamente da <strong>phpmyadmin</strong> (dai se avete costruito un sito in locale lo avete sicuramente installato ed utilizzato). Mi raccomando esportiamo un file <strong>.sql</strong> e ricordiamoci di esportare oltre alla struttura del DB anche i <strong>dati</strong> in esso contenuti;</li>
+<li style="text-align: justify;"><strong>modifichiamo il file cos&igrave; ottenuto</strong>: al suo interno ci saranno numerosi riferimenti a <strong>localhost</strong>, ovvero al sito in locale, tutti questi riferimenti vanno trasformati nella url del sito che sar&agrave; online. Potete tranquillamente farlo con un buon editor di test che consenta il cosiddetto trova e sostituisci. In realt&agrave; si potrebbe anche usare un'apposita <strong>query</strong> direttamente sul DB, ma potrebbe rivelarsi un'operazione pi&ugrave; complessa del necessario per i nostri scopi;</li>
+<li style="text-align: justify;"><strong>importiamo il DB online</strong>: nello spazio web <strong>creiamo</strong> il DB che ricever&agrave; i dati, poi eseguiamo l'<strong>import</strong> del file creato in precedenza, sempre con <strong>phpmyadmin</strong>, presente in praticamente qualunque servizio attualmente in commercio. Sar&agrave; un'operazione non proprio velocissima (nulla di esagerato, il DB non conterr&agrave; una grandissima mole di dati). Mi raccomando, questa operazione &egrave; <strong>fondamentale</strong>, <strong>deve andare a buon fine prima che si possa proseguire</strong>;</li>
+<li style="text-align: justify;"><strong>modifichiamo il file&nbsp; wp-config.php</strong>: si tratta del file che contiene le informazioni relative al DB. Ovviamente ci saranno quelle riguardanti il sito in locale, bene dobbiamo inserire quelle relative al DB remoto. Essenzialmente, l'<strong>host</strong> potrebbe anche restare localhost (molti servizi di hosting lo consentono), ma non &egrave; sicuro, controllate prima di procedere, poi dovremo inserire <strong>utente</strong> del DB remoto e <strong>relativa password</strong> (spesso in locale si usa semplicemente un utente root senza password, cosa che accade raramente online), oltre che il <strong>nome</strong> del DB online che abbiamo creato e popolato in precedenza; anche questa operazione &egrave; <strong>fondamentale</strong>, attenzione alla correttezza dei dati che andiamo ad inserire;</li>
+<li style="text-align: justify;">finalmente, possiamo eseguire l'<strong>upload</strong> del sito: basta un client FTP come ad esempio <strong>FileZilla</strong>, e attraverso l'account FTP del nostro servizio di hosting andremo a mettere online i files finora presenti solo sul nostro pc.</li>
+</ol>
+<p>Finito! A questo punto, se tutto &egrave; andato bene, basta collegarsi alla <strong>url</strong> del sito remoto e "magicamente" vedremo ci&ograve; che poco prima era solo in locale, esattamente identico, ma online!! ;)</p>
+<p>Ovviamente, un <strong>controllino</strong> generale non fa mai male, il metodo &egrave; sicuro ma qualcosa potrebbe pur sempre sfuggire..</p>
+<p>Alla prossima..</p>

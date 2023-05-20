@@ -1,0 +1,63 @@
+---
+layout: post
+status: publish
+published: true
+title: Convertire un disco MBR in GPT senza perdere dati
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 4153
+wordpress_url: https://www.red-blue.it/?p=4153
+date: '2021-10-22 14:05:00 +0100'
+date_gmt: '2021-10-22 12:05:00 +0100'
+categories:
+- tips & tricks
+- linux
+tags: []
+comments: []
+---
+<p><!-- wp:paragraph --></p>
+<p>Convertire un disco MBR in  GTP <strong>senza perdere dati in Linux</strong> &egrave; semplice, basta utilizzare un semplicissimo comando: <strong>gdisk</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Lo scenario: abbiamo un disco che presenta un classico record di boot (<strong>MBR</strong>), quindi una tabella delle partizioni di tipo <strong>BIOS</strong>, e abbiamo bisogno di convertirlo nel nuovo standard <strong>GPT</strong>, che utilizza <strong>UEFI</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Questo consente di creare pi&ugrave; di quattro partizioni su un singolo disco e superare il limite dei 2 TB di dimensioni.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>L'operazione di conversione andrebbe fatta prima di installare un qualsiasi OS, ma in caso il sistema operativo sia gi&agrave; installato, &egrave; possibile usare gdisk per convertire un disco MBR in GPT senza perdere dati.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Semplicemente (supponendo che il disco da convertire sia /dev/sda), dare:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">sudo gdisk /dev/sda</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto, avremo una schermata in cui sar&agrave; ben visibile la dicitura <strong>MBR: MBR only</strong> e <strong>GPT: not present</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Premiamo w e confermiamo l'operazione, il tutto sar&agrave; velocissimo.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><strong><span style="text-decoration: underline;">ATTENZIONE: personalmente non ho avuto problemi particolari, ma l'operazione non &egrave; comunque esente da rischi. Un backup preventivo &egrave; sempre una buona idea in questi casi.</span></strong></p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Proseguiamo:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">sudo partprobe /dev/sda
+sudo grub-install /dev/sda</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Al <strong>reboot</strong> avremo il disco convertito in GTP (baster&agrave; verificarlo dalla schermata di gdisk, che riporter&agrave; <strong>GPT: present</strong>).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto, abbiamo due strade, o abbiamo gi&agrave; una partizione <strong>/boot/efi</strong> (necessaria all'avvio di OS basati su UEFI, alcune distribuzioni Linux prevedono questa possibilit&agrave;), oppure dovremo crearne una, ad esempio con <strong>gparted</strong>. In tal caso ricordate, dimensione minima 100 MB, tipo FAT32, flag boot da settare.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>

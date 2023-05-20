@@ -1,0 +1,142 @@
+---
+layout: post
+status: publish
+published: true
+title: CORS Filter in Java per applicazioni web
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3929
+wordpress_url: https://www.red-blue.it/?p=3929
+date: '2018-04-19 13:31:22 +0100'
+date_gmt: '2018-04-19 11:31:22 +0100'
+categories:
+- tips & tricks
+- programmazione
+tags:
+- java
+- programmazione
+- CORS
+comments: []
+---
+<p>Forse in molti avranno sentito parlare di Cross Origin Resource Sharing (<strong>CORS</strong>). Un caso estremamente comune per le <strong>applicazioni web</strong> &egrave; quello del reperimento dei dati mediante un web service di tipo <strong>REST</strong>, la nostra applicazione quindi andr&agrave; a reperire i dati da mostrare attraverso un servizio esposto.</p>
+<p>Purtroppo, per limitare l'eventualit&agrave; di attacchi informatici, i browser moderni applicano la restrizione <strong>same-origin</strong>; senza entrare in dettagli, un'applicazione web su un dominio A non riuscir&agrave; a chiamare il servizio REST esposto su un dominio B.</p>
+<p>In <strong>Java</strong>, esistono vari modi per aggirare tale restrizione, una semplicissima consiste nello scrivere una classe CORSFilter che, come dice il nome stesso, &egrave; un filtro CORS personalizzato:</p>
+<pre class="brush: java; gutter: true">import java.io.IOException;
+
+
+
+import javax.servlet.Filter;
+
+import javax.servlet.FilterChain;
+
+import javax.servlet.FilterConfig;
+
+import javax.servlet.ServletException;
+
+import javax.servlet.ServletRequest;
+
+import javax.servlet.ServletResponse;
+
+import javax.servlet.http.HttpServletRequest;
+
+import javax.servlet.http.HttpServletResponse;
+
+
+
+public class CORSFilter implements Filter {
+
+	
+
+	@Override
+
+	public void init(FilterConfig filterConfig) throws ServletException {
+
+		// TODO Auto-generated method stub
+
+		
+
+	}
+
+
+
+	@Override
+
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+
+			throws IOException, ServletException {
+
+		
+
+		HttpServletRequest req = (HttpServletRequest) request;
+
+ 
+
+        // Autorizza tutti i domini a consumare il servizio
+
+        ((HttpServletResponse) response).addHeader("Access-Control-Allow-Origin", "*");
+
+        ((HttpServletResponse) response).addHeader("Access-Control-Allow-Methods", "GET, OPTIONS, HEAD, PUT, POST, DELETE");
+
+        ((HttpServletResponse) response).addHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+ 
+
+        HttpServletResponse resp = (HttpServletResponse) response;
+
+ 
+
+        if (req.getMethod().equals("OPTIONS")) {
+
+            resp.setStatus(HttpServletResponse.SC_ACCEPTED);
+
+            return;
+
+        }
+
+ 
+
+        chain.doFilter(request, response);
+
+		
+
+	}
+
+
+
+	@Override
+
+	public void destroy() {
+
+		// TODO Auto-generated method stub
+
+		
+
+	}
+
+
+
+}</pre>
+<p>Per poi registrarla come filtro nel <strong>web.xml</strong>:</p>
+<pre class="brush: xml; gutter: true"><filter>
+
+    <filter-name>CorsFilter</filter-name>
+
+    <filter-class>nomedelpackage.CORSFilter</filter-class>
+
+</filter>
+
+ 
+
+<filter-mapping>
+
+    <filter-name>CorsFilter</filter-name>
+
+    <url-pattern>/*</url-pattern>
+
+</filter-mapping></pre>
+<p>Da ricordare che le righe qui sopra vanno inserite prima del tag <strong><servlet></strong>.</p>
+<p>Tutto qui.. Adesso il filtro CORS funziona a dovere.</p>
+<p>Alla prossima..</p>

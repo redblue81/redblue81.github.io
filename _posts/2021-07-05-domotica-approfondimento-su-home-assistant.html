@@ -1,0 +1,72 @@
+---
+layout: post
+status: publish
+published: true
+title: Domotica - Approfondimento su Home Assistant
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 4130
+wordpress_url: https://www.red-blue.it/?p=4130
+date: '2021-07-05 12:59:00 +0100'
+date_gmt: '2021-07-05 10:59:00 +0100'
+categories:
+- tips & tricks
+- linux
+- in evidenza
+- domotica
+tags:
+- tips
+- tricks
+- consigli
+- configurazione
+- raspberry pi
+- domotica
+- home assistant
+- app android
+comments: []
+---
+<p><!-- wp:paragraph --></p>
+<p>In questo articolo vedremo alcuni concetti fondamentali di Home Assistant, necessari al proseguimento della realizzazione del nostro <a href="http://localhost:4000/domotica" data-type="page" data-id="4071" target="_blank" rel="noreferrer noopener">sistema domotico</a>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Per prima cosa, un po' di termini che occorre conoscere:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:list --></p>
+<ul>
+<li><strong>Integrazione</strong>: si tratta di tutto ci&ograve; che possiamo collegare ad Home Assistant, dalle lampadine alle smart TV, passando per il cellulare; attenzione perch&egrave; per integrazione si intendono anche servizi in cloud. Ogni integrazione pu&ograve; contenere multipli dispositivi o entit&agrave;;</li>
+<li><strong>Area</strong>:&nbsp; un&rsquo;area virtuale in cui sono localizzati i nostri dispositivi (una stanza, l'intera casa, la mia scrivania);</li>
+<li><strong>Dispositivo</strong>: fisico o virtuale,pu&ograve; contenere multiple entit&agrave; (lo smartphone, tanto per fare un esempio);</li>
+<li><strong>Dominio</strong>: la categoria a cui appartiene un&rsquo;entit&agrave; (es. sensor, light);</li>
+<li><strong>Entit&agrave;</strong>: un "oggetto" con cui interagisce Home Assistant (es. un interruttore, un sensore);</li>
+<li><strong>Attributi</strong>: Un valore contenuto all&rsquo;interno di un&rsquo;entit&agrave; (Esempio: Consumo di un interruttore che funge da presa);</li>
+<li><strong>Card</strong>: una scheda dell'interfaccia grafica legata ad una o pi&ugrave; entit&agrave;.</li>
+<li><strong>Automazione</strong>: un'azione, o una sequenza di azioni, che viene scatenata da un trigger (un evento). Ad esempio, se il cellulare si allontana da casa, attiva il sistema di allarme, oppure ad un certa ora spegni tutto in una stanza.</li>
+<li><strong>Scena</strong>: lo stato di uno o pi&ugrave; entit&agrave;, facilmente richiamabile all'occorrenza (ad esempio, il colore e la luminosit&agrave; delle lampade di una stanza quando vogliamo vedere un film).</li>
+</ul>
+<p><!-- /wp:list --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ormai &egrave; praticamente tutto configurabile tramite interfaccia grafica, tramite pochissimi clic del mouse. Nonostante tutto, in alcuni casi &egrave; possibile/necessario utilizzare la configurazione mediante file.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Se abbiamo installato il plugin <strong>File Editor</strong>, sar&agrave; semplice accedere alla directory <strong>/config</strong>, all'interno della quale si trova il file <strong>configuration.yaml</strong>, che contiene la configurazione fondamentale di Home Assistant.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Tale file va manipolato con molta attenzione, in quanto una configurazione errata produce instabilit&agrave; del sistema.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>La modifica del configuration.yaml comporta sempre un riavvio per essere applicata. Consiglio sempre di usare la funzione <strong>Impostazioni -> Controlli del server</strong> prima di riavviare, avremo cos&igrave; almeno una verifica formale di quanto scritto.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Prima di concludere, segnalo la possibilit&agrave; di utilizzare Home Assistant anche attraverso l'apposita <strong>App</strong>, disponibile nei principali store (<a href="https://play.google.com/store/apps/details?id=io.homeassistant.companion.android&hl=it&gl=US" target="_blank" rel="noreferrer noopener">link per Android</a>). Si tratta fondamentalmente della stessa interfaccia che abbiamo visto, ma portata nel mondo mobile.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Consente di controllare completamente il sistema, oltre ad essere un comodissimo strumento per poter controllare la nostra domotica anche quando siamo fuori casa.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><!-- /wp:paragraph --></p>

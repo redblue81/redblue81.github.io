@@ -1,0 +1,60 @@
+---
+layout: post
+status: publish
+published: true
+title: Qualche piccola miglioria per Nautilus..
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1432
+wordpress_url: http://www.red-blue.it/?p=1432
+date: '2010-08-17 09:19:21 +0100'
+date_gmt: '2010-08-17 08:19:21 +0100'
+categories:
+- tips & tricks
+- linux
+- ubuntu
+tags:
+- ubuntu
+- tips
+- gnome
+- ppa
+- nautilus
+- tweaks
+- '10.04'
+- lucid
+- elementary
+- gloobus
+comments:
+- id: 6435
+  author: 'Il nuovo aspetto del mio desktop: Elegant Gnome Theme Pack - RedBlue&#039;s
+    Blog'
+  author_email: ''
+  author_url: http://www.red-blue.it/linux/il-nuovo-aspetto-del-mio-desktop-elegant-gnome-theme-pack.html
+  date: '2010-09-04 15:55:23 +0100'
+  date_gmt: '2010-09-04 14:55:23 +0100'
+  content: "[...] dell&#8217;Elengant Pack consiglia poi di installare Nautilus Elementary
+    (ne ho gi&agrave; parlato qui), perci&ograve;: sudo add-apt-repository ppa:am-monkeyd/nautilus-elementary-ppa
+    sudo apt-get update sudo [...]"
+---
+<p>Al ritorno da una piccola vacanza in Emilia e Toscana, eccomi a "rianimare" il blog, che fatalmente risente della voglia di staccare la spina tipica di agosto (tranquilli da settembre torner&ograve; a pieno regime ;) )..</p>
+<p>In passato avevo parlato di alcuni scripts molto utili per <a href="http://localhost:4000/tips-tricks/nautilus-scripts-aumentare-le-funzionalita-di-nautilus.html" target="_blank">estendere le funzionalit&agrave; di Nautilus</a>, oggi invece voglio proporre dei piccoli tips che lo rendono pi&ugrave; "maneggevole"..</p>
+<p>Cominciamo da <span style="color: #ff0000;"><strong>Nautilus Elementary</strong></span>: si tratta di una rivisitazione di Nautilus al fine di renderlo pi&ugrave; funzionale e gradevole, specie in termini di <strong>spazio</strong> sul desktop occupato dalla finestra.. Installarlo &egrave; semplicissimo, in quanto esiste un comodo <strong>PPA</strong>:</p>
+<blockquote><p><code>sudo add-apt-repository ppa:am-monkeyd/nautilus-elementary-ppa<br />
+sudo apt-get update<br />
+sudo apt-get upgrade<br />
+sudo nautilus -q</code></p></blockquote>
+<p>Finito. Ora aprite una finestra di Nautilus (ad esempio la vostra home) e selezionate <strong>Modifica -> Preferenze</strong>, e successivamente la nuova voce <strong>Tweaks</strong> (in fondo a destra). Da questo pannello potrete modificare il vostro Nautilus. Ad esempio potrete ottenere qualcosa del genere:</p>
+<p><a href="/assets/images/elementary.jpg"><img class="aligncenter size-medium wp-image-1787" title="elementary" src="/assets/images/elementary-300x215.jpg" alt="" width="300" height="215" /></a></p>
+<p style="text-align: center;">
+<p style="text-align: center;">
+<p>Pu&ograve; essere utile anche <span style="color: #ff0000;"><strong>impostare uno sfondo particolare per le finestre di Nautilus</strong></span>.. Per farlo semplicemente andate su <strong>Preferenze -> Sfondi e simboli</strong>, e trascinate lo sfondo che volete nella finestra per applicarlo.. ;)</p>
+<p>Ancora, potreste voler avere un'<span style="color: #ff0000;"><strong>indicazione immediata circa la dimensione di un file</strong></span> (almeno, il sottoscritto usa questa impostazione): niente di pi&ugrave; facile, basta selezionate <strong>Preferenze -> Visualizzazione</strong> e nella scheda relativa alla prima voce selezionare <strong>Dimensione</strong>.</p>
+<p>Infine, giusto stamattina ho scoperto <span style="color: #ff0000;"><strong>Gloobus Preview</strong></span>, una piccola utility capace di effettuare l'<strong>anteprima</strong> di qualsiasi file (anche audio e video!!), semplicemente selezionando il file stesso e premendo la <strong>barra spaziatrice</strong>. Installiamolo da <strong>PPA</strong>:</p>
+<blockquote><p><code>sudo add-apt-repository ppa:gloobus-dev/gloobus-preview<br />
+sudo apt-get update<br />
+sudo apt-get install gloobus-preview</code></p></blockquote>
+<p><strong>NB</strong>. Ricordate di usare Gloobus abbinato a Nautilus Elementary (non &egrave; obbligatorio, almeno non sembra, ma &egrave; fortemente consigliato)..</p>
+<p>Alla prossima..</p>

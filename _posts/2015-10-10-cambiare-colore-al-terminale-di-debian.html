@@ -1,0 +1,30 @@
+---
+layout: post
+status: publish
+published: true
+title: Cambiare colore al terminale di Debian
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3780
+wordpress_url: http://www.red-blue.it/?p=3780
+date: '2015-10-10 10:14:13 +0100'
+date_gmt: '2015-10-10 08:14:13 +0100'
+categories:
+- tips & tricks
+- linux
+tags:
+- linux
+- tips
+- terminale
+comments: []
+---
+<p>Per cambiare momentaneamente il colore del terminale di Debian, esiste un comando semplicissimo da usare:</p>
+<pre class="brush: bash; gutter: false">setterm -term linux -back -fore -clear all</pre>
+<p>Nel quale per il colore di sfondo (opzione -back) e testo (opzione -fore) possiamo usare i codici:</p>
+<pre class="brush: bash; gutter: false">black|blue|green|cyan|red|magenta|yellow|white|default</pre>
+<p><span style="line-height: 1.5;">Semplice no?</span></p>
+<p>Come ho scritto all'inizio per&ograve;, questa impostazione &egrave; temporanea, chiudendo e riaprendo il terminale si torna al default.</p>
+<p>Alla prossima..</p>

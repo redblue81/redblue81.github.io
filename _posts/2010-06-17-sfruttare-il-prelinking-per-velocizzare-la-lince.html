@@ -1,0 +1,40 @@
+---
+layout: post
+status: publish
+published: true
+title: Sfruttare il prelinking per velocizzare la Lince..
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 1319
+wordpress_url: http://www.red-blue.it/?p=1319
+date: '2010-06-17 07:36:35 +0100'
+date_gmt: '2010-06-17 06:36:35 +0100'
+categories:
+- guide
+- linux
+- ubuntu
+- in evidenza
+tags:
+- linux
+- ubuntu
+- lucid lynx
+- prelink
+- avvio programmi
+- velocizzare
+comments: []
+---
+<p>Agli albori dell'informatica, i singoli programmi erano dei grossi file (per non parlare dei tempi delle schede perforate) che dovevano essere interamente caricati in memoria per poter essere eseguiti, e l'elaboratore era in grado di mantenerne ed eseguirne uno solo per volta. Oggi la situazione &egrave; radicalmente diversa: pur essendo la memoria cresciuta in maniera <strong>esponenziale</strong>, i programmi sono cresciuti (in termini di dimensioni) ancora pi&ugrave; velocemente, in pi&ugrave; siamo nell'era del <strong>multitasking</strong>, per cui nella memoria del nostro pc si trovano residenti svariati programmi ad ogni istante.. Ci&ograve; &egrave; reso possibile (tra le altre cose) dall'operazione di <strong>linking</strong>: quando avviamo un programma, in memoria va subito la parte essenziale del programma stesso, e dinamicamente vengono poi caricate (<strong>linkate</strong> = <strong>collegate</strong>) le altri parti quando servono (&egrave; quello che accade ad esempio con le librerie, le <strong>dll</strong>, in Windows)..</p>
+<p>Finita la lezione di Sistemi Operativi, passo ad illustrarvi un metodo per velocizzare l'avvio delle applicazioni in Linux: si tratta del <strong>prelinking</strong>. In pratica si agisce sugli indirizzi di memoria a cui fanno capo le parti non essenziali di un programma per velocizzarne l'avvio (la spiegazione sarebbe pi&ugrave; complicata, ma preferisco risparmiarvela in quanto dovrei spiegare ampiamente come funziona il <strong>linking</strong> <strong>dinamico</strong>). Utilizzare questo stratagemma &egrave; semplicissimo (molto pi&ugrave; di tutta la spiegazione che ho fatto finora), basta installare il seguente pacchetto:</p>
+<blockquote><p><code>sudo apt-get install prelink</code></p></blockquote>
+<p>Per poi andare a modificare il file di configurazione:</p>
+<blockquote><p><code>sudo nano /etc/default/prelink</code></p></blockquote>
+<p>Andando a modificare la riga <strong>PRELINK=unknown</strong> in <strong>PRELINK=yes</strong>.<code> </code>Non serve nemmeno riavviare, dopo un p&ograve; di tempo (dipende da quanto &egrave; potente il vostro pc, potrebbe anche metterci pi&ugrave; di 10 minuti, ma tranquilli &egrave; solo la prima volta, poi &egrave; estremamente pi&ugrave; veloce) dovreste cominciare a notare la differenza.. ;)</p>
+<p>C'&egrave; da dire che se riscontrate problemi (&egrave; un'ipotesi remota, ma pur sempre possibile), per tornare indietro basta dare:</p>
+<blockquote><p><code>sudo prelink -ua<br />
+sudo apt-get purge prelink</code></p></blockquote>
+<p>Tutto qui, come dicevo &egrave; pi&ugrave; semplice da fare che da spiegare..</p>
+<p>Alla prossima..</p>
+<p><strong>NB.</strong> Per chi volesse cimentarsi, <a href="http://manpages.ubuntu.com/manpages/jaunty/man8/prelink.8.html" target="_blank">qui</a> c'&egrave; la manpage di prelink, con tutte le opzioni, io personalmente mi accontento di quelle standard, in quanto comunque manipolare tali opzioni in maniera errata pu&ograve; portare a malfunzionamenti del sistema..</p>

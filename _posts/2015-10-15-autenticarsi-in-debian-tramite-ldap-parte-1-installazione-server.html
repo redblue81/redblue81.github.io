@@ -1,0 +1,298 @@
+---
+layout: post
+status: publish
+published: true
+title: Autenticarsi in Debian tramite LDAP - Parte 1 - Installazione server
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3777
+wordpress_url: http://www.red-blue.it/?p=3777
+date: '2015-10-15 20:49:57 +0100'
+date_gmt: '2015-10-15 18:49:57 +0100'
+categories:
+- guide
+- linux
+- debian
+- in evidenza
+- server
+tags:
+- guida
+- debian
+- server
+- openldap
+- autenticazione
+comments:
+- id: 475884
+  author: Autenticarsi in Debian tramite LDAP - Parte 2 - RedBlue&#039;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/guide/autenticarsi-in-debian-tramite-ldap-parte-2-installazione-client.html
+  date: '2015-10-19 14:39:06 +0100'
+  date_gmt: '2015-10-19 12:39:06 +0100'
+  content: "[&#8230;] prima parte avevamo installato e configurato la parte server,
+    assolutamente necessaria per metter su [&#8230;]"
+- id: 475885
+  author: Autenticarsi in Debian tramite LDAP - Parte 3 - PHPLDAPAdmin - RedBlue&#039;s
+    Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/guide/autenticarsi-in-debian-tramite-ldap-parte-3-phpldapadmin.html
+  date: '2015-10-25 18:44:00 +0100'
+  date_gmt: '2015-10-25 17:44:00 +0100'
+  content: "[&#8230;] alla terza ed ultima parte della guida all&#8217;autenticazione
+    in Debian tramite LDAP: dopo aver installato la parte server e la parte client,
+    vediamo un tool di gestione molto utile: [&#8230;]"
+---
+<p>LDAP (LightWeight Directory Access Protocol) &egrave; un <em>protocollo standard per l'interrogazione e la modifica dei servizi di directory, come ad esempio un elenco aziendale di email o una rubrica telefonica, o pi&ugrave; in generale qualsiasi raggruppamento di informazioni che pu&ograve; essere espresso come record di dati ed organizzato in modo gerarchico</em> (fonte <strong>Wikipedia</strong>). Esso permette in parole povere di memorizzare e gestire dati, relativi esempio ad utenti di un sistema, su un server, per poi gestirli a livello client. Pu&ograve; essere molto utile per gestire ad esempio un archivio <strong>centralizzato</strong> di utenti di una rete locale; vedremo come installarlo su Debian e come configurarlo affinch&egrave; l'accesso al sistema sui client (ovvero l'<strong>autenticazione</strong>) possa avvenire usando (anche) utenti remoti memorizzati sul server.</p>
+<p><a href="/assets/images/LDAPworm.gif"><img class="aligncenter size-medium wp-image-3791" src="/assets/images/LDAPworm-300x118.gif" alt="LDAPworm" width="300" height="118" /></a><br />
+<!--moreContinua a leggere...-->Si tratta di un protocollo <strong>complesso</strong>, utilizzabile in svariate situazioni, altamente configurabile (anche se a mio modesto parere, la configurazione alle volte risulta piuttosto macchinosa): quello che sar&agrave; mostrato &egrave; solo un <strong>esempio</strong> di utilizzo, in quanto una trattazione davvero esaustiva pretenderebbe praticamente un intero corso dedicato a LDAP. Questa &egrave; una configurazione che ho realizzato nella pratica io stesso per un progettino di qualche tempo fa. Non pretendo che sia la migliore possibile, n&eacute; che sia l'unica possibile, per&ograve; funziona.</p>
+<p>Prima di proseguire, fissiamo una <strong>configurazione</strong> di esempio per il nostro server:</p>
+<ul>
+<li>IP: 192.168.10.100</li>
+<li>Hostname: server.red-blue.local</li>
+</ul>
+<p>Il primo passo consiste nell'<strong>installazione</strong> di OpenLDAP, l'implementazione open source del protocollo LDAP, sulla macchina server, per farlo su Debian diamo come <strong>root</strong>:</p>
+<pre class="brush: bash; gutter: false">apt-get install slapd ldap-utils</pre>
+<p>Durante l'installazione ci verr&agrave; richiesta una <strong>password</strong> di amministrazione per LDAP, baster&agrave; fornirla e confermarla; inoltre, dovremo rispondere anche ad una serie di domande, diciamo che si pu&ograve; rispondere nel seguente modo:</p>
+<ul>
+<li>Omettere la configurazione del server di OpenLDAP? <strong>No</strong></li>
+<li>Nome di dominio: <strong>red-blue.local</strong></li>
+<li>Nome dell'organizzazione: <strong>red-blue.local</strong></li>
+<li>Password di amministrazione: <strong>fornire password</strong></li>
+<li>Conferma password: <strong>ripetere la password</strong></li>
+<li>Database di backend: <strong>HDB</strong></li>
+<li>Rimuovere il database se slapd viene disinstallato: <strong>No</strong></li>
+<li>Muovere il vecchio database: <strong>Si</strong></li>
+<li>Abilitare LDAPv2: <strong>No</strong></li>
+</ul>
+<p>A questo punto la configurazione &egrave; completa, e possiamo <strong>testare</strong> in maniera molto semplice:</p>
+<pre class="brush: bash; gutter: true">ldapsearch -x</pre>
+<p>Da dare sempre come root. Il risultato dovrebbe essere qualcosa del genere:</p>
+<pre class="brush: shell; gutter: true">&nbsp;# extended LDIF
+
+ #
+
+ # LDAPv3
+
+ # base <dc=unixmen,dc=local> (default) with scope subtree
+
+ # filter: (objectclass=*)
+
+ # requesting: ALL
+
+ #
+
+ # red-blue.local
+
+ dn: dc=red-blue,dc=local
+
+ objectClass: top
+
+ objectClass: dcObject
+
+ objectClass: organization
+
+ o: red-blue
+&egrave;
+ dc: red-blue
+
+ # admin, red-blue.local
+
+ dn: cn=admin,dc=red-blue,dc=local
+
+ objectClass: simpleSecurityObject
+
+ objectClass: organizationalRole
+
+ cn: admin
+
+ description: LDAP administrator
+
+ # search result
+&egrave;
+ search: 2
+
+ result: 0 Success
+
+ # numResponses: 3
+
+ # numEntries: 2</pre>
+<p>In pratica, ci viene detto che il server presenta solo l'utente admin, relativo al dominio che abbiamo specificato. Ora, il database &egrave; <strong>vuoto</strong>, occorre <strong>popolarlo</strong> con gli utenti che poi potranno autenticarsi su un qualsiasi sistema. Prima di procedere per&ograve;, come ulteriore conferma, apriamo il file <code>/etc/ldap/ldap.conf</code>, dovremmo vedere qualcosa di simile:</p>
+<pre class="brush: bash; gutter: true">#
+
+ # LDAP Defaults
+
+ #
+
+ # See ldap.conf(5) for details
+
+ # This file should be world readable but not world writable.
+
+ BASE dc=red-blue,dc=local
+
+ URI ldap://192.168.10.100 ldap://server.red-blue.local
+
+ #SIZELIMIT 12
+
+ #TIMELIMIT 15
+
+ #DEREF never
+
+ # TLS certificates (needed for GnuTLS)
+
+ TLS_CACERT /etc/ssl/certs/ca-certificates.crt</pre>
+<p>Da notare&egrave;e <strong>BASE</strong> e <strong>URI</strong>, che contengono le informazioni principali, soprattutto per quanto riguarda l'URI. Se le due righe dovessero essere commentate, decommentatele e modificatele aggiungendo i dati necessari.</p>
+<p>Se dovesse essere necessario, riavviate LDAP con il comando (sempre come root mi raccomando!):</p>
+<pre class="brush: bash; gutter: false">service slapd restart</pre>
+<p>Dicevamo, occorre popolare il database: quello di LDAP &egrave; un database con un'organizzazione <strong>gerarchica</strong>, per cui di fatto avremo una specie di <strong>albero</strong>, a partire dalla radice fino ad arrivare alle foglie (gli utenti). Proviamo ad aggiungere un paio di <strong>organizationalUnit</strong> (gruppi all'interno dei quali poi potremo inserire gli utenti), creiamo un file <code>orgunits.ldif</code> con all'interno:</p>
+<pre class="brush: shell; gutter: true">dn: ou=Groups,dc=red-blue,dc=local
+
+ou: Groups
+
+objectClass: top
+
+objectClass: organizationalUnit
+
+&nbsp;
+
+dn: ou=People,dc=red-blue,dc=local
+
+ou: People
+
+objectClass: top
+
+objectClass: organizationalUnit</pre>
+<p>Dopo aver salvato il file, diamo il comando:</p>
+<pre class="brush: bash; gutter: false">ldapadd -x -D cn=admin,dc=red-blue,dc=local -w 123456 -f orgunits.ldif</pre>
+<p>In pratica, ci stiamo autenticando come admin, fornendo la password (supponiamo che sia banalmente 123456) e indichiamo come fonte di informazioni il file appena creato.</p>
+<p>A questo punto, non ci resta che provare ad inserire un <strong>utente</strong>, facciamolo creando il file <code>user.ldif</code>:</p>
+<pre class="brush: shell; gutter: true">dn: uid=user1,ou=People,dc=red-blue,dc=local
+
+uid: user1
+
+cn: Utente di Test
+
+givenName: user1
+
+sn: user1
+
+objectClass: inetOrgPerson
+
+objectClass: posixAccount
+
+loginShell: /bin/bash
+
+uidNumber: 1000
+
+gidNumber: 1000
+
+homeDirectory: /home/user
+
+&nbsp;
+
+dn: cn=user1,ou=Groups,dc=red-blue,dc=local&egrave;&egrave;
+
+objectClass: posixGroup
+
+cn: user1
+
+gidNumber:1000</pre>
+<p>E come prima, dopo aver salvato, diamo il comando:</p>
+<pre class="brush: bash; gutter: false">ldapadd -x -D cn=admin,dc=red-blue,dc=local -w 123456 -f user.ldif</pre>
+<p>Se tutto &egrave; andato bene, il comando:</p>
+<pre class="brush: bash; gutter: false"> ldapsearch -x</pre>
+<p>Adesso restituir&agrave; qualcosa del genere:</p>
+<pre class="brush: shell; gutter: true"># extended LDIF
+
+ #
+
+ # LDAPv3
+
+ # base <dc=unixmen,dc=local> (default) with scope subtree
+
+ # filter: (objectclass=*)
+
+ # requesting: ALL
+
+ #
+
+ # red-blue.local
+
+ dn: dc=red-blue,dc=local
+
+ objectClass: top
+
+ objectClass: dcObject
+
+ objectClass: organization
+
+ o: red-blue
+
+ dc: red-blue
+
+ # admin, red-blue.local
+
+ dn: cn=admin,dc=red-blue,dc=local
+
+ objectClass: simpleSecurityObject
+
+ objectClass: organizationalRole
+
+ cn: admin
+
+ description: LDAP administrator
+
+ # Groups, red-blue.local
+
+ dn: ou=Groups,dc=red-blue,dc=local
+
+ objectClass: organizationalUnit
+
+ objectClass: top
+
+ ou: Groups
+
+ # People, red-blue.local
+
+ dn: ou=People,dc=red-blue,dc=local
+
+ objectClass: organizationalUnit
+
+ objectClass: top
+
+ # user1, People, red-blue.local
+
+ dn: uid=user1,ou=People,dc=red-blue,dc=local
+
+ gidNumber: 1000
+
+ homeDirectory: /home/user
+
+ sn: user
+
+ givenName: Utente di Test
+
+ loginShell: /bin/bash
+
+ objectClass: inetOrgPerson
+
+ objectClass: posixAccount
+
+ objectClass: top
+
+ uidNumber: 1000
+
+ uid: user1
+
+ # search result
+
+ search: 2
+
+ result: 0 Success
+
+ # numResponses: 6
+
+ # numEntries: 5</pre>
+<p>Per ora direi che basta cos&igrave;, il server LDAP &egrave; configurato e <strong>funzionante</strong>. Il mio consiglio &egrave; quello di cercare di fare un pochino di pratica con questi elementi prima di proseguire. Vedremo in seguito come configurare anche un <strong>client</strong> e, infine, uno strumento che potrebbe facilitarci la vita nella gestione del server LDAP.</p>
+<p>Alla prossima..</p>

@@ -1,0 +1,51 @@
+---
+layout: post
+status: publish
+published: true
+title: Backup del sistema con Timeshift
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3968
+wordpress_url: https://www.red-blue.it/?p=3968
+date: '2019-02-09 10:56:09 +0100'
+date_gmt: '2019-02-09 09:56:09 +0100'
+categories:
+- linux
+- debian
+- ubuntu
+- software
+- lmde
+tags:
+- debian
+- linux
+- ubuntu
+- backup
+- lmde
+- timeshift
+- snapshot
+comments: []
+---
+<p><!-- wp:paragraph --></p>
+<p>Utilizzare <strong>Timeshift</strong>, per creare <strong>snapshot (istantanee)</strong> del sistema (ripristinabili all'occorrenza, un po' come avviene con i punti di ripristino del sistema di Windows) &egrave; estremamente semplice. Su un sistema <strong>Debian like</strong>, basta il seguente comando per installare:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:html --></p>
+<pre class="brush: bash; gutter: false">sudo apt install timeshift</pre>
+<p><!-- /wp:html --></p>
+<p><!-- wp:paragraph --></p>
+<p>Dopo l'installazione, baster&agrave; avviare Timeshift e cliccare su <strong>Configurazione guidata</strong>; in realt&agrave; &egrave; tutto estremamente semplice, totalmente basato su una comoda ed intuitiva interfaccia grafica, e se non ci sono particolari esigenze si pu&ograve; scegliere tranquillamente di creare le snapshot con <strong>rsync</strong> (l'altra opzione &egrave; il brtfs), indicare la <strong>destinazione</strong> delle snapshot stesse, il numero di istantanee da mantenere memorizzate, e la <strong>frequenza di creazione</strong> delle istantanee del sistema.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla fine della configurazione, tornando alla schermata iniziale, baster&agrave; cliccare su <strong>Crea</strong> per ottenere la prima istantanea del sistema.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Successivamente, ci penser&agrave; Timeshift a gestire il tutto secondo le cadenze indicate in configurazione.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>In caso di necessit&agrave;, per effettuare un ripristino baster&agrave; scegliere la snapshot desiderata e cliccare su <strong>Ripristina</strong>. In caso di impossibilit&agrave; ad accedere al sistema, si pu&ograve; anche usare una live distro, tramite la quale installare il tool, avviarlo e navigare fino alla posizione in cui si trovano le snapshot per ripristinarne una.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>

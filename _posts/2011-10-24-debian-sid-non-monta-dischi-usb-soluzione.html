@@ -1,0 +1,64 @@
+---
+layout: post
+status: publish
+published: true
+title: Debian Sid non monta dischi USB - Soluzione
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 2630
+wordpress_url: http://www.red-blue.it/?p=2630
+date: '2011-10-24 08:14:29 +0100'
+date_gmt: '2011-10-24 06:14:29 +0100'
+categories:
+- tips & tricks
+- linux
+- debian
+tags:
+- debian
+- linux
+- tips
+- dischi usb
+- montaggio
+- sid
+- fstab
+comments: []
+---
+<p>Mi sono reso conto che la mia fiammante <strong>Debian Sid</strong> non riusciva ad aprire <strong>dischi esterni</strong>. Per la precisione, la chiavetta USB (pi&ugrave; di una in realt&agrave;) veniva tranquillamente riconosciuta alla connessione, ma se provavo ad aprirla con <strong>Dolphin</strong>, ecco l'errore.</p>
+<p>Considerando il fatto che ero abbastanza sicuro che non mancasse alcun pacchetto importante, ho pensato che il problema potesse essere il file <code>fstab</code>. Si tratta di quel file di configurazione che si occupa di indicare quali dispositivi possono essere montati con le relative opzioni di montaggio.</p>
+<p>Bene, il mio si presentava (<code>/etc/fstab</code>) cos&igrave;:</p>
+<pre class="brush: shell; gutter: true"># /etc/fstab: static file system information.
+
+#
+
+# Use 'blkid' to print the universally unique identifier for a
+
+# device; this may be used with UUID= as a more robust way to name devices
+
+# that works even if disks are added and removed. See fstab(5).
+
+#
+
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+
+proc            /proc           proc    defaults        0       0
+
+# / was on /dev/sda3 during installation
+
+UUID=0960ba6f-4c21-432e-8218-4de6dcf8ee82 /               ext4    errors=remount-ro 0       1
+
+# /home was on /dev/sda6 during installation
+
+UUID=959f0b50-d4f9-461f-a28c-6555c4a1acfa /home           ext4    defaults,user_xattr        0       2
+
+# swap was on /dev/sda5 during installation
+
+UUID=39966242-120f-436d-8696-ca55cb3f8e67 none            swap    sw              0       0
+
+/dev/sdb1       /media/cdrom0   udf,iso9660 user,noauto     0       0
+
+/dev/scd0       /media/cdrom1   udf,iso9660 user,noauto     0       0</pre>
+<p>L'errore era nella penultima riga, che praticamente andava a montare una qualsiasi <strong>pendrive USB</strong> come se fosse un <strong>CDROM</strong>, con gli evidenti problemi che questo pu&ograve; comportare. La soluzione? <strong>Commentare</strong> quella riga ovviamente!! Basta aprire come root il file <code>/etc/fstab</code>, mettere un <code>#</code> all'inizio di quella riga (la <strong>15</strong>), salvare e il gioco &egrave; fatto!</p>
+<p>Alla prossima..</p>

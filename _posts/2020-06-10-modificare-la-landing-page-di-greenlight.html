@@ -1,0 +1,190 @@
+---
+layout: post
+status: publish
+published: true
+title: Modificare la landing page di Greenlight
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 4002
+wordpress_url: https://www.red-blue.it/?p=4002
+date: '2020-06-10 14:16:54 +0100'
+date_gmt: '2020-06-10 12:16:54 +0100'
+categories:
+- guide
+- linux
+- in evidenza
+tags:
+- guida
+- ubuntu
+- bigbluebutton
+- greenlight
+- videoconferenza
+comments: []
+---
+<p><!-- wp:paragraph --></p>
+<p><strong>Greenlight </strong>&egrave; una semplice interfaccia grafica per <strong>BigBlueButton</strong>, un sistema di <strong>videoconferenza</strong> web open source.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4012,"sizeSlug":"large"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/bbb.jpg" alt="modificare la landing page di greenlight" class="wp-image-4012"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Dopo l'installazione di BBB (automatica con un unico comando), pu&ograve; risultare necessario <strong>modificare la landing page di Greenlight</strong> per personalizzarla in base alla propria organizzazione, ma di default le opzioni disponibili dal pannello di amministrazione del sito prevedono solo la possibilit&agrave; di personalizzare il <strong>logo</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Supponendo che l'installazione sia avvenuta mediante lo script <a href="https://github.com/bigbluebutton/bbb-install" target="_blank" rel="noreferrer noopener">bbb-install.sh</a> (cosa che consiglio, praticamente fa tutto da solo, compreso creare un certificato <strong>SSL </strong>con Let's Encrypt, in circa mezz'ora), per modificare la landing page di Greenlight occorre eseguire i seguenti passi.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><strong>ATTENZIONE! Si suppone che il sistema operativo sul quale si eseguono le varie operazioni sia Ubuntu LTS 16.04.6 (Xenial Xerus), come specificato nella documentazione di BBB.</strong></p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:more {"customText":"Continua a leggere..."} --><br />
+<!--more Continua a leggere...--><br />
+<!-- /wp:more --></p>
+<p><!-- wp:paragraph --></p>
+<p>Per prima cosa, accediamo alla macchina su cui &egrave; installato BBB, quindi diamo i seguenti comandi per effettuare un <strong>backup </strong>dell'installazione attuale di Greenlight:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">su
+..inserire password di root..
+cd
+cd greenlight
+docker-compose down
+cd ..
+mv greenlight/ greenlight-old/</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto, occorre copiare in locale i sorgenti di Greenlight, mediante il <strong>fork </strong>del repository su GitHub, il che presuppone di avere/creare un account su GitHub (assolutamente gratuito), poi dopo aver effettuato il login, nel repository di Greenlight baster&agrave; cliccare in alto a destra su <strong>fork</strong> per ritrovarsi il repository (un fork appunto di esso) tra i propri.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ora, <strong>dal proprio account GitHub</strong>, basta cliccare sul tasto verde "<strong>Clone or download</strong>" e copiare il link che viene proposto, poi, sulla propria macchina su cui si &egrave; installato BBB, aprire un terminale e, come <strong>root</strong>, dare il comando:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">git clone https://github.com/USERNAME-GITHUB/greenlight.git</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Sostituendo il proprio username a USERNAME-GITHUB. Adesso in locale avremo la directory greenlight, quindi:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">cd greenlight
+git status</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>E dovremmo avere una risposta del tipo:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Che ci assicura che tutto sia andato bene. Ma ancora non siamo pronti, serve il repository della <strong>release-v2</strong>:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">git remote add upstream https://github.com/bigbluebutton/greenlight.git
+git remote -v
+git fetch upstream
+git checkout -b custom-changes upstream/v2</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto, ripetiamo il comando git status e dovremmo avere qualcosa del genere:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">On branch custom-changes
+Your branch is up to date with 'upstream/v2'.
+
+nothing to commit, working tree clean</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ci siamo quasi, possiamo ripristinare i file di cui abbiamo fatto il backup all'inizio:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">cd ..
+cp ~/greenlight-old/.env ~/greenlight/.env
+sudo cp -r ~/greenlight-old/db ~/greenlight</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Finalmente dovremmo essere in grado di avviare Greenlight nella versione che abbiamo appena scaricato:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">cd ~/greenlight
+docker-compose down
+docker-compose up -d</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p><strong>Aspettiamo qualche secondo</strong> e riproviamo ad accedere a BBB, se tutto &egrave; andato bene funzioner&agrave; tutto normalmente e non vedremo grandi differenze.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Possiamo finalmente iniziare a modificare la landing page di Greenlight: l'operazione &egrave; semplice, il <strong>template </strong>della landing page si trova in due files:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:list --></p>
+<ul>
+<li>/greenlight/app/views/main/index.html.erb</li>
+<li>/greenlight/app/views/main/components/_features.html.erb</li>
+</ul>
+<p><!-- /wp:list --></p>
+<p><!-- wp:paragraph --></p>
+<p>Mentre tutte le <strong>stringhe </strong>che vediamo a video si trovano in:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:list --></p>
+<ul>
+<li>/greenlight/config/locales/it.yml</li>
+</ul>
+<p><!-- /wp:list --></p>
+<p><!-- wp:paragraph --></p>
+<p>Dove ovviamente <strong>it.yml &egrave; il file relativo alla lingua italiana</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Per modificare la landing page di Greenlight in lingua italiana, basta cercare nel file sopra indicato la sezione <strong>landing </strong>e modificare le stringhe in essa contenute.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Abbiamo quasi terminato, dobbiamo solo specificare di usare questa nuova versione di Greenlight:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">cd greenlight
+nano docker-compose.yml</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ed editare la riga</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">image: bigbluebutton/greenlight:v2</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>In:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">image: bigbluebutton/greenlight:release-v2</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Non resta che riavviare Greenlight per verificare le modifiche effettuate. Dalla directory di Greenlight (dove si dovrebbe gi&agrave; essere a questo punto):</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">docker-compose down
+./scripts/image_build.sh bigbluebutton/greenlight release-v2
+docker-compose up -d</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Attenzione che il secondo comando serve a <strong>ricompilare tutto</strong>, quindi potrebbe durare un po' (specialmente la prima volta che viene eseguito).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto ci siamo, abbiamo finito.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Vi lascio i link di tutta la documentazione ufficiale:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:list --></p>
+<ul>
+<li><a rel="noreferrer noopener" href="https://bigbluebutton.org/" target="_blank">BigBlueButton</a></li>
+<li><a rel="noreferrer noopener" href="https://docs.bigbluebutton.org/" target="_blank">Documentazione BigBlueButton</a></li>
+<li><a rel="noreferrer noopener" href="https://docs.bigbluebutton.org/greenlight/gl-customize.html" target="_blank">Customizzare Greenlight</a></li>
+<li><a href="https://help.github.com/en/github/getting-started-with-github/fork-a-repo" target="_blank" rel="noreferrer noopener">Effettuare fork di un repository GitHub</a></li>
+</ul>
+<p><!-- /wp:list --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>

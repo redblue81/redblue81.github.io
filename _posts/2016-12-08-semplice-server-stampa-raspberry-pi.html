@@ -1,0 +1,110 @@
+---
+layout: post
+status: publish
+published: true
+title: Semplice server di stampa con Raspberry Pi
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 3863
+wordpress_url: http://www.red-blue.it/?p=3863
+date: '2016-12-08 19:31:44 +0100'
+date_gmt: '2016-12-08 18:31:44 +0100'
+categories:
+- guide
+- linux
+- in evidenza
+- raspberry pi
+tags:
+- guida
+- raspberry pi
+- raspbian
+- server di stampa
+comments:
+- id: 475894
+  author: Samba su Raspberry Pi come server di stampa - RedBlue&#039;s Blog
+  author_email: ''
+  author_url: http://www.red-blue.it/guide/samba-su-raspberry-pi-come-server-di-stampa.html
+  date: '2016-12-11 12:00:30 +0100'
+  date_gmt: '2016-12-11 11:00:30 +0100'
+  content: "[&#8230;] Questo articolo vuole essere un completamento del precedente&nbsp;Semplice
+    server stampa Raspberry Pi. [&#8230;]"
+---
+<p>Tramite il <strong>Raspberry Pi</strong> &egrave; possibile dotare una vecchia stampante delle funzionalit&agrave; <strong>wireless</strong>, liberandoci del cavo USB una volta per tutte. In parole povere, si tratta di collegare la nostra stampante (via USB) al Raspberry Pi opportunamente configurato per funzionare come <strong>server di stampa</strong>.</p>
+<p>Per questa guida ho usato un <strong>Raspberry Pi 3</strong> con installata Raspbian (la cui immagine &egrave; scaricabile da <a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank">qui</a>), e supponiamo che il nostro server avr&agrave; indirizzo di rete <strong>192.168.1.150</strong>; inoltre, user&ograve; l'utente predefinito <strong>pi</strong>.</p>
+<p><a href="/assets/images/Pi_3_Model_B.png"><img class="aligncenter size-medium wp-image-3873" src="/assets/images/Pi_3_Model_B-300x157.png" alt="" width="300" height="157" /></a></p>
+<p><!--moreContinua a leggere...--></p>
+<p>L'installazione del sistema operativo &egrave; estremamente semplice, e trovate le guide per ogni OS a questo <a href="https://www.raspberrypi.org/documentation/installation/installing-images/README.md" target="_blank">link</a>. Una volta completata, suggerisco vivamente di <strong>abilitare SSH</strong> per poter controllare il Raspberry Pi da remoto senza dover necessariamente collegare monitor e tastiera (ovviamente tranne che in occasione dell'installazione e del primo avvio). Semplicemente, nel caso abbiate scelto di installare anche l'ambiente grafico, baster&agrave; lanciare l'apposita utility di configurazione (<strong>Raspberry Pi Configuration</strong>) e andare ad abilitare SSH nel tab <strong>Interfaces</strong>, altrimenti, da riga di comando basta lanciare l'utility <strong>raspi-config</strong> e selezionare successivamente <strong>Advanced Options</strong>.</p>
+<p><strong>NB.</strong> Da queste utility potete comodamente configurare anche la lingua di sistema e il layout della tastiera.. ;)</p>
+<p>Per collegarci da remoto via SSH basta usare il comando (oppure da Windows potete usare ad esempio Putty):</p>
+<pre class="brush: bash; gutter: false">ssh pi@192.168.1.150</pre>
+<p>A questo punto, &egrave; necessario collegare il Raspberry Pi alla rete WiFi. Nel mio caso, &egrave; tutto integrato, mentre con le versioni precedenti del Raspberry sar&agrave; necessario aggiungere un dongle WiFi. Di nuovo, abbiamo due strade, in caso si sia scelto di installare l'ambiente grafico o meno. Nel primo caso, la configurazione sar&agrave; addirittura banale, in quanto dovremo semplicemente inserire SSID e password, e impostare l'indirizzo di rete (come detto in precedenza, ad esempio 192.168.1.150), in caso invece si proceda da riga di comando, occorrer&agrave; modificare un paio di files:</p>
+<pre class="brush: bash; gutter: false">sudo nano /etc/network/interfaces</pre>
+<p>Facciamo in modo che diventi qualcosa di simile:</p>
+<pre class="brush: bash; gutter: false">auto wlan0
+
+iface lo inet loopback
+
+iface eth0 inet dhcp
+
+allow-hotplug wlan0
+
+  iface wlan0 inet static
+
+  address 192.168.1&egrave;
+
+  netmask 255.255.255.0
+
+  gateway 192.168.1.1
+
+  wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+
+iface default inet dhcp</pre>
+<p>Attenzione perch&egrave; alla voce <strong>gateway</strong> dovrete inserire l'indirizzo del vostro <strong>router</strong>. Poi editiamo il secondo file:</p>
+<pre class="brush: bash; gutter: false">sudo nano&nbsp;/etc/wpa_supplicant/wpa_supplicant.conf</pre>
+<p>Rendendolo simile al seguente:</p>
+<pre class="brush: bash; gutter: false">ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+
+update_config=1
+
+network={
+
+  ssid="NYO_WWWP"
+
+  psk="topsecret"
+
+  proto=RSN
+
+  key_mgmt=WPA-PSK
+
+  pairwise=CCMP
+
+  auth_alg=OPEN
+
+}</pre>
+<p>Riavviamo il tutto, oppure soltanto il servizio networking:</p>
+<pre class="brush: bash; gutter: false">sudo service networking restart</pre>
+<p>A questo punto dovremmo essere in grado di collegarci alla rete, possiamo passare alla configurazione vera e propria. Installiamo <strong>CUPS</strong>:</p>
+<pre class="brush: bash; gutter: false">sudo apt-get install cups</pre>
+<p>Al termine, inseriamo l'utente pi nel gruppo <strong>lpadmin</strong>:</p>
+<pre class="brush: bash; gutter: false">sudo usermod -a -G lpadmin pi</pre>
+<p>Per poter amministrare CUPS da remoto, occorrer&agrave; modificare il file <strong>/etc/cups/cupsd.conf</strong> come segue:</p>
+<pre class="brush: bash; gutter: false">la linea Listen localhost:631 va cambiata in
+
+Port 631
+
+nelle sezioni successive, <Localtion />, <Location /admin>, <Location /admin/conf>, aggiungere
+
+Allow @Local</pre>
+<p>Salviamo il file e facciamo ripartire il servizio:</p>
+<pre class="brush: bash; gutter: false">sudo /etc/init.d/cups restart</pre>
+<p>A questo punto, baster&agrave; accedere a <strong>localhost:631</strong> sul Raspberry con un browser (sempre da remoto), ed installare la stampante in questione (da <strong>Amministrazione -> Aggiungi stampante</strong>), scegliendo il driver appropriato (con alcune vecchie stampanti potrebbe essere necessario installare il driver a parte). Ricordatevi di flaggare la checkbox di <strong>condivisione della stampante</strong>.</p>
+<p>Finito. A questo punto, i computer in rete che usano Linux dovrebbero vedere la stampante senza problemi e di conseguenza sarete in grado di stampare senza problemi.</p>
+<p>Alla prossima..</p>
+<p><strong>Direttamente collegati a questa guida:</strong></p>
+<ul>
+<li><a href="http://localhost:4000/guide/drivers-x86-raspberry-pi.html" target="_blank">Usare drivers x86 su Raspberry Pi</a></li>
+<li><a href="http://localhost:4000/guide/samba-su-raspberry-pi-come-server-di-stampa.html" target="_blank">Samba su Raspberry Pi come server di stampa</a></li>
+</ul>

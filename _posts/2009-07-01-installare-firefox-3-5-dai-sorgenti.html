@@ -1,0 +1,81 @@
+---
+layout: post
+status: publish
+published: true
+title: Installare Firefox 3.5 da tarball
+author:
+  RedBlue
+author_login: aDMINniSTRAtor
+author_email: redblue@red-blue.it
+author_url: http://www.red-blue.it
+wordpress_id: 625
+wordpress_url: http://redblue.netsons.org/?p=625
+date: '2009-07-01 18:57:32 +0100'
+date_gmt: '2009-07-01 17:57:32 +0100'
+categories:
+- guide
+- linux
+- debian
+- ubuntu
+- browser
+- firefox
+tags:
+- guida
+- linux
+- ubuntu
+- installazione
+- lenny
+- jaunty
+- firefox 3.5
+comments:
+- id: 2001
+  author: Nicola
+  author_email: ''
+  author_url: ''
+  date: '2009-07-02 07:24:17 +0100'
+  date_gmt: '2009-07-02 06:24:17 +0100'
+  content: Dovresti fare guide pi&ugrave; generalizzate e che non parlino solo di
+    Ubuntu(che poi non &egrave; neanche una distribuzione cos&igrave; grande)ma anche
+    di altre distribuzioni.
+- id: 2002
+  author: RedBlue
+  author_email: redblue@redblue.netsons.org
+  author_url: http://redblue.netsons.org
+  date: '2009-07-02 08:14:45 +0100'
+  date_gmt: '2009-07-02 07:14:45 +0100'
+  content: "Ciao Nicola,\r\n\r\nin primo luogo posso dirti che questa guida in particolare
+    &egrave; piuttosto generica, Firefox da sorgenti si installa nello stesso modo
+    in praticamente ogni distribuzione Linux esistente (comando sudo a parte ovviamente,
+    ma in generale basta scompattare il tarball sull'hd e lanciare il file firefox
+    per lanciare il browser).. Per quanto riguarda il resto, apprezzo molto il tuo
+    consiglio e ti rispondo che mi piacerebbe, ma le mie guide provengono dall'esperienza
+    pratica, ovvero quando riesco a concludere qualcosa che ritengo buona, mi piace
+    condividerla, cos&igrave; che magari la mia esperienza possa aiutare qualcuno
+    con il mio stesso problema. Ovviamente in questo sono fortemente legato alla distribuzione
+    che utilizzo, ed in questo particolare momento utilizzo Ubuntu (e in generale
+    da quando mi sono accostato a Linux ho sempre dato la preferenza alle distribuzioni
+    basate su Debian), purtroppo anche volendo non avrei davvero il tempo di usare
+    altre distribuzioni..\r\n\r\nAlla prossima.. :)"
+---
+<p>Dopo la toppata sull'installazione di Firefox 3.5 che ho preso nel post precedente, mi sento in dovere di scrivere una piccola guida su come installare una versione di Firefox da file .tar che si scarica dal sito ufficiale.. Cominciamo:</p>
+<blockquote><p><code>wget ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/3.5/linux-i686/it/firefox-3.5.tar.bz2<br />
+sudo tar -C /opt -xjvf firefox-3.5.tar.bz2<br />
+sudo ln -s /opt/firefox/firefox /usr/bin/firefox-3.5</code></p></blockquote>
+<p>Fatto.. Creiamo ora un collegamento sul desktop:</p>
+<blockquote><p><code>sudo gedit /usr/share/applications/firefox-3.5.desktop</code></p></blockquote>
+<p>Incollate quanto segue:</p>
+<blockquote><p><code>[Desktop Entry]<br />
+Encoding=UTF-8<br />
+Name=Firefox Web Browser<br />
+Comment=Firefox Web Browser<br />
+Exec=firefox-3.5<br />
+Icon=/opt/firefox/icons/mozicon128.png<br />
+StartupNotify=true<br />
+Terminal=false<br />
+Type=Application<br />
+Categories=Applications;Network</code></p></blockquote>
+<p>Nel caso voleste disinstallare questa versione una volta che sar&agrave; reso disponibile nei repository, procedete cos&igrave;:</p>
+<blockquote><p><code>sudo rm -rf /opt/firefox<br />
+sudo rm /usr/bin/firefox-3.5<br />
+sudo rm /usr/share/applications/firefox-3.5.desktop</code></p></blockquote>
+<p>A posto..</p>
