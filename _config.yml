@@ -5,3 +5,10 @@ author:             RedBlue
 baseurl:            ""
 url:                "https://redblue81.github.io"
 remote_theme:       StartBootstrap/startbootstrap-clean-blog-jekyll
+
+# Social Profiles
+twitter_username:   redblue81
+github_username:    redblue81
+facebook_username:  angeloredbluepascadopoli
+instagram_username: redblue81 
+linkedin_username: angelopascadopoli
