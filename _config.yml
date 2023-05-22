@@ -4,4 +4,4 @@ description:        Development page
 author:             RedBlue
 baseurl:            ""
 url:                "https://redblue81.github.io"
-remote_theme:       clean-blog
+remote_theme:       clean-blog-jekyll
