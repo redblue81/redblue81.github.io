@@ -4,3 +4,4 @@ description:        Development page
 author:             RedBlue
 baseurl:            ""
 url:                "https://redblue81.github.io"
+theme:              minima
