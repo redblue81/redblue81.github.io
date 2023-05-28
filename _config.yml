@@ -4,6 +4,7 @@ description:        Development page
 author:             RedBlue
 baseurl:            ""
 url:                "https://redblue81.github.io"
+# theme:              jekyll-theme-clean-blog
 remote_theme:       StartBootstrap/startbootstrap-clean-blog-jekyll
 
 # Social Profiles
