@@ -3,7 +3,7 @@ email:              redblue81@gmail.com
 description:        Development page
 author:             RedBlue
 baseurl:            ""
-url:                "https://redblue81.github.io"
+url:                "https://red-blue.it"
 plugins:
   - jekyll-feed
   - jekyll-paginate
