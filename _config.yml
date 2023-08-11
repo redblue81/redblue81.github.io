@@ -4,6 +4,12 @@ description:        Development page
 author:             RedBlue
 baseurl:            ""
 url:                "https://redblue81.github.io"
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-archives
+  - jekyll-auto-image
 # theme:              jekyll-theme-clean-blog
 remote_theme:       StartBootstrap/startbootstrap-clean-blog-jekyll
 
