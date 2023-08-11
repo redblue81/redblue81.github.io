@@ -1,13 +1,11 @@
 ---
 layout: page
 title: Posts
-
 ---
 
 {% for post in paginator.posts %}
 
 <article class="post-preview">
-  {{ post.image }}
   <a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">
     <h2 class="post-title">{{ post.title }}</h2>
     {% if post.subtitle %}

@@ -4,8 +4,20 @@ description:        Development page
 author:             RedBlue
 baseurl:            ""
 url:                "https://redblue81.github.io"
-# theme:              jekyll-theme-clean-blog
+
+paginate: 10
+paginate_path: "posts/page:num/"
+
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-archives
+  - jekyll-auto-image
+#theme:              jekyll-theme-clean-blog
 remote_theme:       StartBootstrap/startbootstrap-clean-blog-jekyll
+
+google_analytics: 389635826
 
 # Social Profiles
 twitter_username:   redblue81
