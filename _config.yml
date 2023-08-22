@@ -1,19 +1,19 @@
 title:              RedBlue's Blog
 email:              redblue81@gmail.com
-description:        Development page
+description:        Another technology addicted personal page
 author:             RedBlue
 baseurl:            ""
-url:                "https://redblue81.github.io"
+url:                "https://red-blue.it"
 
-paginate: 10
+paginate: 5
 paginate_path: "posts/page:num/"
 
 plugins:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-sitemap
-  - jekyll-archives
-  - jekyll-auto-image
+#  - jekyll-archives
+#  - jekyll-auto-image
 #theme:              jekyll-theme-clean-blog
 remote_theme:       StartBootstrap/startbootstrap-clean-blog-jekyll
 
