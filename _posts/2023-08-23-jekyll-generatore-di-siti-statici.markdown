@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Creare un sito statico con Jekyll
+title: Jekyll, generatore di siti statici
 background: '/assets/images/jekyll_logo.png'
 author: RedBlue
 categories: guide, blog
