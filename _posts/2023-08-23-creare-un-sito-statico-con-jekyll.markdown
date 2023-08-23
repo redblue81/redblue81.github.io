@@ -1,13 +1,9 @@
 ---
 layout: post
-status: publish
-published: true
 title: Creare un sito statico con Jekyll
 background: '/assets/images/jekyll_logo.png'
 author: RedBlue
 categories: guide, blog
-date: '2023-08-23 10:30:00 +0100'
-date_gmt: '2023-08-23 08:30:00 +0100'
 ---
 
 Piccola guida su come usare [Jekyll](https://jekyllrb.com/) per creare un sito web statico.
