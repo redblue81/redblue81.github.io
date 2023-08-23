@@ -6,7 +6,7 @@ author: RedBlue
 categories: guide, blog
 ---
 
-Piccola guida su come usare [Jekyll](https://jekyllrb.com/) per creare un sito web statico.
+Piccolo post introduttivo su [Jekyll](https://jekyllrb.com/), il generatore di siti web statici.
 
 Per tantissimi anni ho usato per questo blog un CMS (Content Management System), con il quale gestivo un cosidetto sito web **dinamico**, ovvero esisteva un database in cui tutti i dati del sito erano memorizzati, ed era poi il CMS stesso che provvedeva a recuperare tali dati all'occorrenza e a creare _"on demand"_ le pagine web da visualizzare.
 
