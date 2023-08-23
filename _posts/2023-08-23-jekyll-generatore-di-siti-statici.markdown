@@ -3,7 +3,9 @@ layout: post
 title: Jekyll, generatore di siti statici
 background: '/assets/images/jekyll_logo.png'
 author: RedBlue
-categories: guide, blog
+categories: 
+- guide
+- blog
 ---
 
 Piccolo post introduttivo su [Jekyll](https://jekyllrb.com/), il generatore di siti web statici.
