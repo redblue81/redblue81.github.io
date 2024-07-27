@@ -19,7 +19,7 @@ Per realizzare questo piccolissimo progetto, si può usare un servizio esterno, 
 
 Usarlo è semplicissimo, basta registrarsi e si avrà accesso al piano gratuito (hobbyst), più che sufficiente per i miei scopi:
 
-![healthcheck.io pricing](/assets/images/healthchecks_pricing.png){:style="display:block; width: 70%; margin-left:auto; margin-right:auto"}
+![healthcheck.io pricing](/assets/images/healthchecks_pricing.png){:style="display:block; width: 100%; margin-left:auto; margin-right:auto"}
 
 A questo punto, basta creare un **check** e configurarlo a seconda delle nostre necessità, il **period** rappresenta ogni quanto il servizio si aspetta un ping, il **grace** è il limite oltre il quale avremo la notifica del **DOWN**. Una volta configurato avremo un link, il servizio usa quel link come check appunto. Quindi basterà che il nostro dispositivo esegua periodicamente una richiesta a quel link, e se tale richiesta fallisce, dopo il grace avremo la notifica.
 
