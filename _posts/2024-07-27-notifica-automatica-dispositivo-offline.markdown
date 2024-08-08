@@ -9,7 +9,7 @@ categories:
 - raspberrypi
 ---
 
-Come fare a sapere se un dispositivo va **offline**? Può essere un server domestico, ad esempio per la domotica, oppure può essere usato come "alert" del fatto che manca la corrente in casa, in generale può essere utile ricevere una notifica se un dispositi va offline.
+Come fare a sapere se un dispositivo va **offline**? Può essere un server domestico, ad esempio per la domotica, oppure può essere usato come "alert" del fatto che manca la corrente in casa, in generale può essere utile ricevere una notifica se un dispositivo va offline.
 
 Sto per partire per le vacanze, e recentemente mi sta succedendo che, a causa di una situazione un po' "instabile" nella mia zona, il salvavita in casa scatta più del dovuto. Chiaramente, in caso questo succeda mentre siamo via, può diventare un problema, quindi mi serve qualcosa che mi avvisi, in modo che io possa a mia volta avvisare qualcuno di andare a controllare.
 
