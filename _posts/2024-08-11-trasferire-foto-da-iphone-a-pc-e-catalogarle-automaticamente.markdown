@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Trasferire foto da iPhone a PC e catalogarle automaticamente
-background: '/assets/images/smart-home-3096219_1920-768x512.jpg'
+#background: '/assets/images/smart-home-3096219_1920-768x512.jpg'
 author: RedBlue
 categories: 
 - guide
