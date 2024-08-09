@@ -21,7 +21,7 @@ Usarlo è semplicissimo, basta registrarsi e si avrà accesso al piano gratuito 
 
 ![healthcheck.io pricing](/assets/images/healthchecks_pricing.png){:style="display:block; width: 100%; margin-left:auto; margin-right:auto"}
 
-A questo punto, basta creare un **check** e configurarlo a seconda delle nostre necessità, il **period** rappresenta ogni quanto il servizio si aspetta un ping, il **grace** è il limite oltre il quale avremo la notifica del **DOWN**. Una volta configurato avremo un link, il servizio usa quel link come check appunto. Quindi basterà che il nostro dispositivo esegua periodicamente una richiesta a quel link, e se tale richiesta fallisce, dopo il periodo di grace avremo la notifica.
+A questo punto, basta creare un **check** e configurarlo a seconda delle nostre necessità, il **period** rappresenta ogni quanto tempo il servizio si aspetta un ping, il **grace** è il limite temporale oltre il quale avremo la notifica del **DOWN**. Una volta configurato avremo un link, il servizio usa quel link come check appunto. Quindi basterà che il nostro dispositivo esegua periodicamente una richiesta a quel link, e se tale richiesta fallisce, dopo il periodo di grace avremo la notifica.
 
 La notifica di default è via mail, io ho attivato anche l'integrazione con Telegram, ma di integrazioni ce ne sono davvero un'infinita, con praticamente qualsiasi applicazione.
 
@@ -37,6 +37,6 @@ rest_command:
 
 Poi basta creare un'**automazione** che chiama quel servizio ad esempio ogni 5 minuti, e il gioco è fatto!
 
-Una piccola nota a margine, mi rendo conto che questo "sistema" non è certo una soluzione al problema di casa mia (in teoria, potrebbe andare offline il Raspberry senza che la corrente sia andata via tra l'altro), ho già chiamato l'elettricista per quanto rientro (adesso davvero non c'è tempo), così come un salvavita con riarmo automatico potrebbe essere più utile, visto che riattiverebbe tutto automaticamente, ma anche per questo ci vuole l'elettricista e, ripeto, non c'è il tempo adesso.
+Una piccola nota a margine, mi rendo conto che questo "sistema" non è certo una soluzione al problema di casa mia (in teoria, potrebbe andare offline il Raspberry senza che la corrente sia andata via tra l'altro), ho già chiamato l'elettricista per quando rientro (adesso davvero non c'è tempo), così come un salvavita con riarmo automatico potrebbe essere più utile, visto che riattiverebbe tutto automaticamente, ma anche per questo ci vuole l'elettricista e, ripeto, non c'è il tempo adesso.
 
 Alla prossima..
