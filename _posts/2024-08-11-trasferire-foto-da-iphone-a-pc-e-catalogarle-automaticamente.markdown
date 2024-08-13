@@ -41,6 +41,6 @@ get-childitem -Path $p |
     }
 {% endhighlight %}
 
-In pratica, per ogni file presente nella cartella condivisa, questo viene spostato nella cartella del mese corretto, e se questa non esiste, viene **creata**.
+In pratica, per ogni file presente nella cartella condivisa, questo viene spostato nella cartella relativa al mese corretto in base alla data di ultima modifica del file, e se questa non esiste, viene **creata**.
 
 Alla prossima..
