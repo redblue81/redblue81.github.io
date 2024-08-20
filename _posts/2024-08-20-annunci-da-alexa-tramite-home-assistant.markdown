@@ -26,4 +26,15 @@ Al termine della configurazione, saranno comparsi tutti i dispositivi alexa che 
 
 Poi, tali entità saranno richiamabili a piacimento tramite Home Assistant, ad esempio in un'automazione.
 
-Stay tuned
+Per utilizzare gli annunci si può usare il **servizio "notify.alexa_media"**, ad esempio in un'automazione va inserito il seguente codice:
+
+{% highlight bash %}
+service: notify.alexa_media
+data:
+  message: Questo è il testo dell'annuncio che sarà riprodotto
+  target: media_player.nome_dispositvo_alexa
+  data:
+    type: announce
+{% endhighlight %}
+
+Stay tuned..
