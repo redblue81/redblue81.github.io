@@ -12,7 +12,7 @@ Sapete che è possibile usare un dispositivo Alexa come se fosse un riproduttore
 
 Basta installare un custom component di Home Assistant chiamato Alexa Media Player.
 
-Consiglio vivamente di installarlo tramite **HACS**, il Community Store di Home Assistant. Quindi entrate in HACS e cercate "Alexa Media Player", in alternativa clic sui **tre puntini in alto a destra -> Archivi digitali personalizzati** ed inserite **https://github.com/custom-components/alexa_media_player**, poi cercate nuovamente ed installate. Al termine Home Assistant va riavviato.
+Consiglio vivamente di installarlo tramite **HACS**, il Community Store di Home Assistant, installabile da **Impostazioni -> Dispositivi e servizi -> Aggiungi integrazione**. Quindi entrate in HACS e cercate "Alexa Media Player", in alternativa clic sui **tre puntini in alto a destra -> Archivi digitali personalizzati** ed inserite **https://github.com/custom-components/alexa_media_player**, poi cercate nuovamente ed installate. Al termine Home Assistant va riavviato.
 
 Poi collegatevi [qui](https://www.amazon.it/ap/signin?openid.pape.preferred_auth_policies=SinglefactorWithPossessionChallenge&openid.pape.max_auth_age=900&openid.return_to=https%3A%2F%2Fwww.amazon.it%2Fa%2Fsettings%2Fapproval&openid.assoc_handle=itflex&openid.mode=checkid_setup&intercept=false&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0){:target="_blank">} ed accedete con le vostre credenziali Amazon (se usate Alexa, avete un account Amazon) e portate a termine la procedura per l'autenticazione a due passaggi, **obbligatoria** per usare questa integrazione.
 
