@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Annunci da Alexa tramite Home Assistant
+background: '/assets/images/smart-home-3096219_1920-768x512.jpg'
 author: RedBlue
 categories: 
 - guide
