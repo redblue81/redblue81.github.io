@@ -5,6 +5,8 @@ author:             RedBlue
 baseurl:            ""
 url:                "https://red-blue.it"
 
+future: false
+
 paginate: 5
 paginate_path: "posts/page:num/"
 
