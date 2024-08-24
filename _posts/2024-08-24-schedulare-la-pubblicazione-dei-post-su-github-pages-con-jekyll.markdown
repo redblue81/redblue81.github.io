@@ -26,7 +26,7 @@ Creiamo poi un *token di sicurezza*: **Icona del profilo -> Settings -> Develope
 
 A questo punto, aggiungiamo il token appena creato al repository del sito, quindi selezioniamo il relativo repository, poi andiamo in **Settings -> Secrets and variables -> Actions -> New repository secret**. Diamo un nome ed incolliamo il token precedente, per poi salvare il tutto.
 
-Adesso viene il bello, occorre creare un **workflow** per Github, quindi creiamo il file jekyll.yml all'interno di */.github/workflows* (persorso che sarà quasi certamente da creare). In questo file indichiamo di usare la action [jeffreytse/jekyll-deploy-action](https://github.com/jeffreytse/jekyll-deploy-action){:target="_blank">}; leggendo la documentazione, io ho scritto quanto segue:
+Adesso viene il bello, occorre creare un **workflow** per Github, quindi creiamo il file jekyll.yml all'interno di */.github/workflows* (persorso che sarà quasi certamente da creare). In questo file indichiamo di usare la action [jeffreytse/jekyll-deploy-action](https://github.com/jeffreytse/jekyll-deploy-action){:target="_blank"}. Leggendo la documentazione, io ho scritto quanto segue:
 
 {% highlight ruby %}
 name: Build and deploy site
@@ -60,7 +60,7 @@ jobs:
 {% endhighlight %}
 
 Vediamo di commentare un attimo il frammento di codice:
-- Nella sezione **schedule**, indichiamo che la compilazione avverrà ogni giorno alle 17.30 (prima si indicano i minuti, poi le ore, potete verificare con [questo](https://crontab.guru/){:target="_blank">} utile strumento online come usare quella sintassi).
+- Nella sezione **schedule**, indichiamo che la compilazione avverrà ogni giorno alle 17.30 (prima si indicano i minuti, poi le ore, potete verificare con [questo utile strumento online](https://crontab.guru/){:target="_blank"} come usare quella sintassi).
 - Nel **token**, dobbiamo indicare il nome scelto in precedenza.
 - Se abbiamo un **custom domain** configurato, dobbiamo indicarlo in **cname**.
 
