@@ -28,3 +28,4 @@ jobs:
           token: ${{ secrets.BLOG_ACTIONS_TOKEN }} 
           branch: 'gh-pages'
           cname: 'red-blue.it'
+          pre_build_commands: git config --global http.postBuffer 157286400
