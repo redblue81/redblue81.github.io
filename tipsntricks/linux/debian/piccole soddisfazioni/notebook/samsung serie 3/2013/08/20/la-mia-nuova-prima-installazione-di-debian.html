@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    La mia (nuova) prima installazione di Debian - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Come scrivevo nel post precedente, dopo quasi un anno sto tornando ad usare Linux a tempo pieno, e nello specifico Debian. Ecco quindi il perch&amp;egrave; del t...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/tipsntricks/linux/debian/piccole%20soddisfazioni/notebook/samsung%20serie%203/2013/08/20/la-mia-nuova-prima-installazione-di-debian.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>La mia (nuova) prima installazione di Debian</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on August 20, 2013 &middot; <span class="reading-time" title="Estimated read time">
+  
+   3 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Come scrivevo nel <a title=". . Riconnessione in corso . ." href="http://localhost:4000/io/riconnessione-in-corso.html" target="_blank">post precedente</a>, dopo quasi un anno sto tornando ad usare <strong>Linux</strong> a tempo pieno, e nello specifico <strong>Debian</strong>. Ecco quindi il perch&egrave; del titolo di questo post; chi mi seguiva un minimo, sa che uso Debian da anni e quindi la sua installazione non &egrave; un problema, ma dopo circa un anno di "assenza", sicuramente un bel po' di ruggine si &egrave; formata, ed ecco il report del mio "ripristino"..</p>
+<p>Dopo aver scaricato dal <a href="http://cdimage.debian.org/debian-cd/7.1.0/amd64/iso-cd/debian-7.1.0-amd64-netinst.iso" target="_blank">sito ufficiale</a> la ISO di<strong> Debian 7.1</strong> versione <strong>netinst</strong>, ovvero la versione che necessit&agrave; della connessione ad Internet (via cavo) per funzionare, e dopo averla messa su un pendrive, via con l'installazione vera e propria, che devo dire mi ricordavo abbastanza bene, e che non &egrave; cambiata di una virgola. Scelgo di non installare praticamente nulla al di fuori del <strong>sistema base</strong>, in modo da poter poi "plasmare" la distribuzione come meglio credo.</p>
+<p><!--moreContinua a leggere..--></p>
+<p>L'installazione &egrave; stata effettuata sul mio <strong>Samsung NP350V5C-S0AIT</strong>, praticamente questo giocattolino <a href="http://www.samsung.com/it/consumer/pc-peripherals-printer/notebook/essential/NP350V5C-S0AIT" target="_blank">qui</a>.</p>
+<p><a href="/assets/images/Joif_-_debian_logo_sticker.jpg"><img class="aligncenter size-full wp-image-2773" alt="Joif_-_debian_logo_sticker" src="/assets/images/Joif_-_debian_logo_sticker.jpg" width="200" height="268" /></a>Poi, dato che comunque resto un tipo non da stable, ho provveduto a cambiare i repository in <strong>testing</strong> (meglio non lanciarsi immediatamente alla sid che usavo tempo fa), aggiungendo le fonti contrib e non-free, per poter contare su un database di pacchetti ragguardevole.</p>
+<p>In sequenza:</p>
+<ul>
+<li>dopo essermi loggato come root,
+<pre class="brush: bash; gutter: false">apt-get upgrade</pre>
+<p>per passare da stable a testing;</li>
+<li>ho cercato di installare <strong>aptitude</strong> (sempre in omaggio al voler procedere senza strafare), ma ho riscontrato con piacere che era gi&agrave; installato;</li>
+<li>
+<pre class="brush: bash; gutter: false">aptitude safe-upgrade && aptitude full-upgrade</pre>
+<p>il secondo non ha aggiornato nulla in realt&agrave;;</li>
+<li>
+<pre class="brush: bash; gutter: false">update-grub</pre>
+</li>
+<li>
+<pre class="brush: bash; gutter: false">aptitude install xorg xfce4 lightdm build-essential linux-headers</pre>
+</li>
+</ul>
+<p>E gi&agrave;, ho scelto di usare <strong>XFCE</strong> come desktop environment. Era una scelta che avevo fatto a suo tempo seguendo l'esempio degli sviluppatori, che per ragioni di spazio (soltanto?) avevano deciso di passare a questo ambiente. Inoltre, aggiungo il minimo indispensabile per compilare qualche pacchetto, e gli headers del <strong>kernel</strong> che mi ha installato, versione <strong>3.10-2</strong>.</p>
+<p>Successivamente, per iniziare la personalizzazione, ho eseguito i seguenti passi:</p>
+<ul>
+<li>installazione e configurazione di <strong>sudo</strong></li>
+<li>Iceweasel + Icedove (browser e email)</li>
+<li>Flashplayer</li>
+<li>firmware <strong>Atheros</strong> per la mia scheda WiFi + Wicd come gestore di reti</li>
+<li>Intel-microcode (in risoluzione ad un errore in avvio riscontrato con dmesg)</li>
+<li>pacchetto xfce4-goodies per ottenere un bel po' di futilit&agrave; essenziali ( :) ) per l'ambiente grafico</li>
+<li>pacchetto esound per abilitare l'audio</li>
+<li>attivazione del compositore di finestre di xfce</li>
+</ul>
+<p>Direi che per ora funziona tutto alla grande, e di ruggine forse ce n'&egrave; meno di quanto pensassi, ma la sfida (?) sar&agrave; forse col <strong>sistema grafico</strong>, poich&egrave; si tratta di un dual graphics <strong>Intel/AMD</strong> (dovuto alla CPU I7 di 3a generazione). In realt&agrave; sembra funzionare tutto, ma devo capire bene la situazione. Drivers open ne esistono? O devo ricorrere ai proprietari? Si accettano consigli ovviamente!! ;)</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/io/linux/debian/my%20life/piccole%20soddisfazioni/2013/08/19/riconnessione-in-corso.html" data-toggle="tooltip" data-placement="top" title=". . Riconnessione in corso . . ">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/tipsntricks/linux/debian/2013/08/21/luminosita-xfce.html" data-toggle="tooltip" data-placement="top" title="Salvare il valore di luminosit&agrave; dello schermo su XFCE">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

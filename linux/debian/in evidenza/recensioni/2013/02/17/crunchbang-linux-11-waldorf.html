@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Crunchbang Linux 11 &quot;Waldorf&quot; - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Oggi vi parlo della mia ultima scoperta, Crunchbang.. Ormai da tantissimo tempo ho abbandonato i DE &quot;famosi&quot; (Gnome, KDE o Unity che sia) in favore di DE pi&amp;...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/linux/debian/in%20evidenza/recensioni/2013/02/17/crunchbang-linux-11-waldorf.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Crunchbang Linux 11 "Waldorf"</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on February 17, 2013 &middot; <span class="reading-time" title="Estimated read time">
+  
+   4 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Oggi vi parlo della mia ultima scoperta, <strong>Crunchbang</strong>..</p>
+<p>Ormai da tantissimo tempo ho abbandonato i DE "<strong>famosi</strong>" (<strong>Gnome</strong>, <strong>KDE</strong> o <strong>Unity</strong> che sia) in favore di DE pi&ugrave; leggeri e funzionali. In tale ottica, avevo scelto di installare <strong>Xfce</strong> sulla mia <strong>Debian Sid</strong>, ma sinceramente non ne ero pienamente soddisfatto (in alcune occasioni sinceramente lo trovavo "pesante", con le dovute proporzioni rispetto agli altri ovviamente).</p>
+<p>Ed ecco che cercando in rete un'alternativa mi sono imbattuto in <strong>Crunchbang</strong>, una distro giovane che da derivata di Ubuntu &egrave; passata ad essere derivata direttamente da <strong>"Mamma" Debian</strong> (<strong>Wheezy</strong> per la precisione, il ramo che &egrave; in fase di passaggio a stable), con <strong>Openbox</strong> come DE, leggero e funzionale come piace al sottoscritto.</p>
+<p><!--moreContinua a leggere.. --></p>
+<p>Prima curiosit&agrave;, il simbolo di questa distro &egrave; <strong>#!</strong>, in gergo tecnico si tratta di un <a href="http://it.wikipedia.org/wiki/Shebang" target="_blank">hashbang</a>, ovvero un simbolo particolare usato negli script per indicarne l'interprete.</p>
+<p>Dal <a href="http://crunchbang.org" target="_blank">sito ufficiale</a>, scarichiamo la ISO dell'ultima versione, la <strong>11 "Waldorf"</strong> (nel mio caso a <strong>64 bit</strong>) e la portiamo su un pendrive USB da almeno <strong>1 GB</strong> (basta seguire la guida presente nel sito stesso) per poterla installare. Personalmente avrei preferito una ISO su CD, pi&ugrave; adatta anche a vecchi PC, ma fortunatamente il mio vecchio, ma sempre glorioso <a href="http://localhost:4000/io/lunga-vita-al-mio-asus-a6ja.html" target="_blank">Asus A6Ja</a>, permette anche il boot da USB, quindi procediamo.</p>
+<p>Possiamo ovviamente avviare la live, oppure installare direttamente. La procedura di installazione &egrave; quella <strong>classica</strong> di Debian, da seguire passo passo. Purtroppo per&ograve; incorriamo in un <strong>errore</strong> se selezioniamo la lingua italiana:</p>
+<p><a href="/assets/images/crunchbang_error.png"><img class="aligncenter size-medium wp-image-3489" src="/assets/images/crunchbang_error-300x225.png" alt="crunchbang_error" width="300" height="225" /></a>Personalmente, ho risolto installando il sistema in <strong>inglese</strong>, poi dopo l'installazione ho modificato la lingua di sistema con:</p>
+<pre class="brush: bash; gutter: true">apt-get install locales
+
+dpkg-reconfigure locales</pre>&egrave;
+<p>Dati entrambi con i privilegi di <strong>root</strong>. Ma in rete si legge anche di altre soluzioni al problema, che quindi non &egrave; critico e sono certo che verr&agrave; risolto nelle prossime release.</p>
+<p>Dopo l'installazione, ecco la schermata iniziale di Crunchbang, scarna, o meglio <strong>essenziale</strong>, ma estremamente elegante:</p>
+<p><a href="/assets/images/Screenshot-080213-110215.png"><img class="aligncenter size-medium wp-image-3490" src="/assets/images/Screenshot-080213-110215-300x187.png" alt="Screenshot - 080213 - 11:02:15" width="300" height="187" /></a>Da notare lo <strong>script post-installazione</strong> che parte in automatico, e che consente in un colpo solo di installare:</p>
+<ul>
+<li>aggiornamenti della distro</li>
+<li>stampanti</li>
+<li>supporto Java</li>
+<li>LibreOffice</li>
+<li>pacchetti per developers</li>
+</ul>&egrave;&egrave;
+<p>Da notare anche la presenza di&egrave; di <strong>Conky</strong>, programmino molto conosciuto in ambiente Linux che consente di ricavare numerose informazioni sul sistema: da quello che ci dice, notiamo subito che il consumo di Ram &egrave; <strong>minimo</strong> (170 MB su 2 GB totali &egrave; pochissimo), ma smanettando un pochino sono riuscito a scendere<strong> sotto i 100 MB</strong>.</p>
+<p>Altra curiosit&agrave;: non c'&egrave; alcun menu!! Per richiamare applicazioni ed impostazioni di sistema in Crunchbang basta cliccare col <strong>tasto destro</strong> del mouse su un qualsiasi punto del desktop:</p>&egrave;&egrave;&egrave;
+<p><a href="/assets/images/crunchbang_menu.jpg"><img class="aligncen&egrave;-medium wp-image-3492" src="http://www.red-blue.i&egrave;tent/uploads/crunchbang_menu-300x226.jpg" alt="crunchbang_menu" width="300" height="226" /></a>La dotazione di programmi &egrave; davvero completa, e comunque non mancano link su link per installare direttamente ci&ograve; che non &egrave; presente. Inoltre, va detto che a livello di configurazione del sistema, specie del DE, &egrave; possibile agire direttamente tanto sui file di configurazione, quanto tramite comode interfacce grafiche.</p>
+<p>Crunchbang non mi sembra proprio una distro per novellini di Linux (intendo per chi proprio &egrave; a digiumo di questo genere di OS), ma direi che &egrave; un <strong>ottimo punto di partenza</strong> per iniziare a smanettare, anche e soprattutto per imparare a smanettare!</p>
+<p>Per ora sono molto soddisfatto e, devo ammetterlo, impressionato, non pensavo di poter trovare una derivata di Debian tanto <strong>interessante</strong> (specie poi per me, fissato come sono con "Mamma" Debian). Vi terr&ograve; aggiornati..</p>
+<p>Stay tuned..</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/tipsntricks/linux/notebook/hp%20dv6/in%20evidenza/2013/01/11/linstallazione-di-debian-e-le-partizioni-gpt.html" data-toggle="tooltip" data-placement="top" title="L'installazione di Debian e le partizioni GPT">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/linux/internet/software/browser/android/2013/03/16/google-reader-chiude-il-1-luglio-2013.html" data-toggle="tooltip" data-placement="top" title="Google Reader chiude il 1° luglio 2013">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

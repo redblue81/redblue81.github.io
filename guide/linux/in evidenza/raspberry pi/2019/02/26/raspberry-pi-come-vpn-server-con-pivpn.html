@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Raspberry Pi come VPN server con PiVPN - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Oggi vediamo come trasformare il Raspberry Pi in un server VPN con PiVPN. Prima di tutto, cerchiamo di capire (molto sinteticamente) cos&#39;&amp;egrave; una VPN e p...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/linux/in%20evidenza/raspberry%20pi/2019/02/26/raspberry-pi-come-vpn-server-con-pivpn.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Raspberry Pi come VPN server con PiVPN</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on February 26, 2019 &middot; <span class="reading-time" title="Estimated read time">
+  
+   5 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p><!-- wp:paragraph --></p>
+<p>Oggi vediamo come trasformare il <strong>Raspberry Pi</strong> in un <strong>server VPN</strong> con <strong>PiVPN</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Prima di tutto, cerchiamo di capire (molto sinteticamente) cos'&egrave; una VPN e perch&eacute; potrebbe tornare utile.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Oggi in casa abbiamo tutti un <strong>router</strong>, l'apparato che viene fornito dal nostro provider e tramite il quale ci connettiamo ad Internet; al router sono collegati tutti i nostri dispositivi (pc, smartphone, tablet, IoT), sia via cavo che wireless.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>L'insieme di tutti questi dispositivi costituisce una <strong>rete locale</strong>; tale rete non &egrave; accessibile dall'esterno (ovvero da Internet), in quanto l'unico dispositivo abilitato alla comunicazione con l'esterno &egrave; proprio il router. Tutti gli altri dispositivi si collegano al router che gestisce il traffico da e verso Internet.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:more {"customText":"Continua a leggere..."} --><br />
+<!--more Continua a leggere...--><br />
+<!-- /wp:more --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ecco, una VPN (Virtual Private Network) serve a collegarsi alla nostra rete locale attraverso Internet. Ad esempio mentre siamo all'estero, possiamo collegarci alla nostra rete locale di casa, proprio come se fossimo a casa nostra, in Italia!</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Possiamo quindi accedere alla nostra stampante, oppure ad un hard disk collegato alla rete locale, o ancora usare un servizio di streaming come se fossimo a casa (ovviamente per quest'ultimo uso &egrave; necessario avere una signora connessione), poich&eacute; in realt&agrave; con una VPN stiamo usando la nostra connessione di casa, anche se attraverso Internet, il tutto attraverso un canale di comunicazione completamente <strong>criptato</strong> (e quindi sicuro).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Creare un server VPN con un Raspberry Pi &egrave; veramente semplice, basta installare <a href="http://www.pivpn.io/">PiVPN</a>. L'installazione &egrave; addirittura banale, basta dare il comando (da <strong>root</strong>):</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:html --></p>
+<pre class="wp-block-code">curl -L https://install.pivpn.io | bash</pre>
+<p><!-- /wp:html --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ovviamente il Raspberry Pi deve essere gi&agrave; configurato e funzionante, ad esempio con <strong>Raspbian</strong> (se non sapete come installare, date un'occhiata a <a href="http://localhost:4000/guide/primi-passi-col-raspberry-pi.html">questo articolo</a>, &egrave; decisamente datato, ma i passi base per l'installazione sono invariati).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Il setup &egrave; del tutto guidato, alla maggior parte delle domande sar&agrave; sufficiente cliccare semplicemente su Ok. E' importante selezionare un utente (l'utente predefinito pi andr&agrave; benissimo) e il protocollo <strong>UDP</strong>, mentre come porta va bene la porta predefinita<strong>1194</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Come livello di crittografia va bene il livello di standard proposto di default; alla richiesta di selezionare tra un indirizzo <strong>IP pubblico</strong> o un <strong>servizio DNS</strong>, potete usare la prima opzione solo se disponete effettivamente di un IP pubblico (va richiesto al proprio provider), altrimenti potete usare <a href="https://dyndns.it/">dynDNS</a>. L'ultima domanda &egrave; relativa al DNS da usare, io consiglio di usare Google. Poi si pu&ograve; riavviare.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Attenzione perch&eacute; ancora non funziona nulla, dovrete prima <strong>aprire</strong> la porta indicata durante il setup (ad esempio la 1194) per il protocollo UDP sul vostro router. Si tratta di un'operazione semplice, ma non posso aiutarvi molto poich&eacute; la procedura cambia da router a router.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Una volta fatto tutto, occorre creare almeno un <strong>profilo di connessione</strong> alla nostra VPN. Si tratta di un file (con estensione .ovpn) che, importato in un client come <a href="https://openvpn.net/">OpenVPN</a>, configurer&agrave; automaticamente tutti i parametri di connessione alla nostra VPN. </p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Supponiamo di voler creare un profilo per lo <strong>smartphone</strong>, senza usare una password per la connessione, colleghiamoci al Raspberry Pi attraverso SSH (se non disponete di monitor e tastiera collegati direttamente) e diamo il comando:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:html --></p>
+<pre class="wp-block-code">pivpn add nopass</pre>
+<p><!-- /wp:html --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ci chieder&agrave; un <strong>nome</strong> per questo client, e creer&agrave; il file di cui sopra.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Se vogliamo creare un profilo protetto da password, baster&agrave; dare:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:html --></p>
+<pre class="wp-block-code">pivpn add</pre>
+<p><!-- /wp:html --></p>
+<p><!-- wp:paragraph --></p>
+<p>Mentre per ottenere la lista dei profili creati, il comando &egrave;:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:html --></p>
+<pre class="wp-block-code">pivpn list</pre>
+<p><!-- /wp:html --></p>
+<p><!-- wp:paragraph --></p>
+<p>Infine, per rimuovere un profilo creato:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:html --></p>
+<pre class="wp-block-code">pivpn revoke <nomeprofilo></pre>
+<p><!-- /wp:html --></p>
+<p><!-- wp:paragraph --></p>
+<p>Una volta ottenuto il file .ovpn, baster&agrave; copiarlo sul dispositivo dal quale vogliamo connetterci alla VPN (ad esempio uno smartphone), scaricare un <strong>client</strong> per il sistema operativo in uso (ad esempio OpenVPN, che potete scaricare dal sito linkato sopra), ed importarlo. </p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Finito, se tutto &egrave; andato bene, sarete connessi alla vostra VPN attraverso il Raspberry Pi.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/linux/debian/ubuntu/software/lmde/2019/02/09/backup-del-sistema-con-timeshift.html" data-toggle="tooltip" data-placement="top" title="Backup del sistema con Timeshift">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/guide/linux/in%20evidenza/raspberry%20pi/2019/05/25/raspberry-pi-come-ad-blocker-con-pi-hole.html" data-toggle="tooltip" data-placement="top" title="Raspberry Pi come ad-blocker con Pi-Hole">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

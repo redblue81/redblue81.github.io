@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    S2E (simple2ext) per Android - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Come anticipato nel post di ieri, ho deciso di passare ad una ROM custom per il mio Desire anche perch&amp;egrave; lo spazio di memorizzazione per le app era dec...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/tipsntricks/hi-tech/software/android/2011/07/25/s2e-simple2ext-per-android.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>S2E (simple2ext) per Android</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on July 25, 2011 &middot; <span class="reading-time" title="Estimated read time">
+  
+   1 min  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Come anticipato nel <a href="http://localhost:4000/guide/installare-una-nuova-rom-custom-sullhtc-desire.html" target="_blank">post</a> di ieri, ho deciso di passare ad una ROM custom per il mio Desire anche perch&egrave; lo <strong>spazio di memorizzazione</strong> per le app era decisamente <strong>insufficiente</strong>..</p>
+<p>Anche in questo caso, esistono varie soluzioni, e quella che vi vado a proporre non &egrave; la migliore in assoluto, ma &egrave; sicuramente una delle pi&ugrave; semplici, e soprattutto &egrave; quella che mi &egrave; apparsa pi&ugrave; adatta ai miei scopi. Mi sono rivolto allo <a href="https://market.android.com/details?id=ru.krikun.s2e" target="_blank">script S2E</a>, disponibile nell'<strong>Android Market</strong>. Ma andiamo con ordine.</p>
+<p>Requisito <span style="text-decoration: underline;"><strong>fondamentale</strong></span> &egrave; aver seguito l'altra guida, quindi occorre avere i permessi di <strong>root</strong> e una rom <strong>custom</strong> (nel mio caso si tratta della Cyanogenmod); a questo punto, dovete <strong>partizionare</strong> la vostra SD e crearci su una partizione <strong>ext3/4</strong>..</p>
+<p>Potete usare qualsiasi software per farlo (su Linux GParted, in Windows MiniTool e cos&igrave; via), oppure direttamente la <strong>ClockworkMod Recovery</strong>, che ha tale possibilit&agrave; nelle proprie opzioni. In quest'ultimo caso, il consiglio &egrave; quello di creare una partizione da <strong>512 MB</strong> e selezionare <strong>0 MB</strong> per lo swap.</p>
+<p>Installate S2E dal Market, poi avviate S2E e mettete la spunta su <strong>tutti</strong> i campi possibili (normalmente dovrebbe essere disabilitato solo Application Data), riavviate il terminale e al riavvio (attenzione, il primo riavvio sar&agrave; <strong>molto lento</strong> perch&egrave; dovr&agrave; spostare le applicazioni) lo ritroverete gi&agrave; funzionante. A questo punto, ogni volta che installerete qualcosa, questa sar&agrave; messa automaticamente nella partizione creata, a parte ovviamente alcuni casi di app che necessitano comunque di restare nella memoria interna..</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/guide/hi-tech/telefonia/in%20evidenza/android/2011/07/24/installare-una-nuova-rom-custom-sull-htc-desire.html" data-toggle="tooltip" data-placement="top" title="Installare una nuova ROM (custom) sull'HTC Desire">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/tipsntricks/software/android/2011/07/26/ripristinare-il-corretto-funzionamento-del-bluetooth-sulla-cyanogenmod-7-0-3.html" data-toggle="tooltip" data-placement="top" title="Ripristinare il corretto funzionamento del Bluetooth sulla Cyanogenmod 7.0.3">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Raspberry Pi overclockato fino a 1 GHz senza danni - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Torno a scrivere dopo qualche tempo (causa impegni di lavoro), e torno a parlare del Raspberry Pi, il mini pc ARM che ha aperto la strada a tutta una (lunga)...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/linux/hi-tech/in%20evidenza/raspberry%20pi/2012/09/29/raspberry-pi-overclockato-fino-a-1-ghz.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Raspberry Pi overclockato fino a 1 GHz senza danni</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on September 29, 2012 &middot; <span class="reading-time" title="Estimated read time">
+  
+   2 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Torno a scrivere dopo qualche tempo (causa impegni di lavoro), e torno a parlare del <strong>Raspberry Pi</strong>, il mini pc ARM che ha aperto la strada a tutta una (lunga) serie di dispositivi simili.</p>
+<p><a href="/assets/images/raspberry-pi.jpg"><img class="aligncenter size-medium wp-image-2954" title="raspberry-pi" src="/assets/images/raspberry-pi-300x191.jpg" alt="" width="300" height="191" /></a></p>
+<p>L'overclock (del quale avevo gi&agrave; parlato <a href="http://localhost:4000/guide/overclock-del-raspberry-pi.html" target="_blank">qui</a>) eccessivo &egrave; ovviamente sconsigliato, ma sembra che alcuni sviluppatori siano riusciti a realizzare un "<strong>turbo mode</strong>" che consente di spingere il processore (di default a <strong>700 Mhz</strong>) del nostro mostriciattolo fino alla soglia di <strong>1 GHz</strong>, con un significativo aumento di prestazioni.</p>
+<p>L'ottima notizia &egrave; che tale modifica &egrave; stata approvata in <strong>via ufficiale</strong> (<a href="http://www.raspberrypi.org/archives/2008" target="_blank">questo</a> il comunicato a riguardo) ed &egrave; stata introdotta in <strong>Raspbian</strong>, la distro nata apposta per il Raspberry Pi, che consentir&agrave; quindi di settare tale velocit&agrave; semplicemente attraverso l'utility <strong>raspi-config</strong>, quindi non c'&egrave; nemmeno da smanettare pi&ugrave; di tanto.. E ovviamente non si andr&agrave; ad invalidare la garanzia.. ;)</p>
+<p>Da dire che ovviamente un aumento simile di prestazioni (stiamo parlando di <strong>pi&ugrave; del 50%</strong>) si ottiene non solo variando la velocit&agrave; del clock, ma anche attraverso un <strong>overvolt</strong>, ovvero un sovravoltaggio della CPU, quindi &egrave; consigliabile installare delle utility di monitoraggio della situazione, in modo da accorgersi di eventuali problemi. Gli sviluppatori garantiscono un overclock <strong>dinamico</strong> (quindi il massimo della velocit&agrave; &egrave; raggiunto solo con la CPU sotto stress), ed &egrave; inoltre previsto un "<strong>salvagente</strong>" che disabilita ogni overclock automaticamente se si raggiunge la temperatura critica di <strong>85&deg;</strong>, in modo da non rischiare di fondere il tutto.</p>
+<p>Inoltre, &egrave; bene anche usare un alimentatore adeguato, che sia cio&egrave; capace di erogare in maniera "pulita" la tensione che serve al Raspberry Pi per lavorare in turbo mode.</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/guide/linux/debian/in%20evidenza/2012/09/12/risolto-problemi-di-installazione-di-skype-64-bit-su-debian-sid.html" data-toggle="tooltip" data-placement="top" title="[Risolto] Problemi di installazione di Skype 64 bit su Debian Sid">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/linux/internet/software/in%20evidenza/2012/11/15/rilasciato-skype-4-1-per-linux-con-supporto-a-wlm.html" data-toggle="tooltip" data-placement="top" title="Rilasciato Skype 4.1 per Linux con supporto a WLM">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

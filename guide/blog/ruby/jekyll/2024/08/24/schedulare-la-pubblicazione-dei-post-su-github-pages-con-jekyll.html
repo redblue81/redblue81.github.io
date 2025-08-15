@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Schedulare la pubblicazione dei post su Github Pages con Jekyll - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Capita spesso di scrivere un post per poi pubblicarlo in un secondo momento. Con Jekyll basta semplicemente “datare” un post con una data futura per fare in ...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/blog/ruby/jekyll/2024/08/24/schedulare-la-pubblicazione-dei-post-su-github-pages-con-jekyll.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Schedulare la pubblicazione dei post su Github Pages con Jekyll</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on August 24, 2024 &middot; <span class="reading-time" title="Estimated read time">
+  
+   4 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Capita spesso di scrivere un post per poi pubblicarlo in un secondo momento. Con Jekyll basta semplicemente “datare” un post con una data <strong>futura</strong> per fare in modo che non si veda immediatamente dopo il deploy. Il problema è che poi, alla data prevista, sarà necessario <strong>forzare il deploy</strong>, ad esempio apportando una modifica anche minina ad un file, affinchè Github Pages ricompili l’intero sito e renda visibile il nuovo post.</p>
+
+<p>Questo processo si può <strong>automatizzare</strong>, usando una <strong>Action</strong> che compila un branch periodicamente, a prescindere da quello che pubblichiamo, in modo da avere il sito sempre aggiornato. Vediamo come fare:</p>
+
+<p>Per prima cosa, va inserito nel <em>_config.yml</em> la seguente riga:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="ss">future: </span><span class="kp">false</span></code></pre></figure>
+
+<p>Che serve ad indicare a Jekyll di non pubblicare post con data futura.</p>
+
+<p>Creiamo poi un <em>token di sicurezza</em>: <strong>Icona del profilo -&gt; Settings -&gt; Developer Settings -&gt; Personal Access tokens -&gt; Fine grained tokens -&gt; Generate new token</strong>. Diamo un nome al nuovo token, gli diamo accesso a tutti oppure ad uno specifico repository, e sopratutto concediamo tutti i permessi (sono tanti lo so). Al termine copiamo il nuovo token.</p>
+
+<p>A questo punto, aggiungiamo il token appena creato al repository del sito, quindi selezioniamo il relativo repository, poi andiamo in <strong>Settings -&gt; Secrets and variables -&gt; Actions -&gt; New repository secret</strong>. Diamo un nome ed incolliamo il token precedente, per poi salvare il tutto.</p>
+
+<p>Adesso viene il bello, occorre creare un <strong>workflow</strong> per Github, quindi creiamo il file jekyll.yml all’interno di <em>/.github/workflows</em> (persorso che sarà quasi certamente da creare). In questo file indichiamo di usare la action <a href="https://github.com/jeffreytse/jekyll-deploy-action" target="_blank">jeffreytse/jekyll-deploy-action</a>. Leggendo la documentazione, io ho scritto quanto segue:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="ss">name: </span><span class="no">Build</span> <span class="n">and</span> <span class="n">deploy</span> <span class="n">site</span>
+
+<span class="ss">on:
+  schedule:
+    </span><span class="o">-</span> <span class="ss">cron: </span><span class="s2">"30 17 * * *"</span>
+  <span class="ss">workflow_dispatch:
+
+jobs:
+  build_and_deploy:
+    </span><span class="n">runs</span><span class="o">-</span><span class="ss">on: </span><span class="n">ubuntu</span><span class="o">-</span><span class="n">latest</span>
+    <span class="ss">steps:
+      </span><span class="o">-</span> <span class="ss">uses: </span><span class="n">actions</span><span class="o">/</span><span class="n">checkout</span><span class="vi">@v4</span>
+
+      <span class="c1"># Use GitHub Actions' cache to cache dependencies on servers</span>
+      <span class="o">-</span> <span class="ss">uses: </span><span class="n">actions</span><span class="o">/</span><span class="n">cache</span><span class="vi">@v4</span>
+        <span class="ss">with:
+          path: </span><span class="n">vendor</span><span class="o">/</span><span class="n">bundle</span>
+          <span class="ss">key: </span><span class="err">$</span><span class="o">-</span><span class="n">gems</span><span class="o">-</span><span class="err">$</span>
+          <span class="n">restore</span><span class="o">-</span><span class="ss">keys: </span><span class="o">|</span>
+            <span class="err">$</span><span class="o">-</span><span class="n">gems</span><span class="o">-</span>
+
+      <span class="c1"># Use GitHub Deploy Action to build and deploy to Github</span>
+      <span class="o">-</span> <span class="ss">uses: </span><span class="n">jeffreytse</span><span class="o">/</span><span class="n">jekyll</span><span class="o">-</span><span class="n">deploy</span><span class="o">-</span><span class="n">action</span><span class="vi">@v0</span><span class="o">.</span><span class="mf">6.0</span>
+        <span class="ss">with:
+          provider: </span><span class="s1">'github'</span>
+          <span class="ss">token: </span><span class="err">$</span> 
+          <span class="ss">branch: </span><span class="s1">'gh-pages'</span>
+          <span class="ss">cname: </span><span class="s1">'url_custom_domain'</span></code></pre></figure>
+
+<p>Vediamo di commentare un attimo il frammento di codice:</p>
+<ul>
+  <li>Nella sezione <strong>schedule</strong>, indichiamo che la compilazione avverrà ogni giorno alle 17.30 (prima si indicano i minuti, poi le ore, potete verificare con <a href="https://crontab.guru/" target="_blank">questo utile strumento online</a> come usare quella sintassi).</li>
+  <li>Nel <strong>token</strong>, dobbiamo indicare il nome scelto in precedenza.</li>
+  <li>Se abbiamo un <strong>custom domain</strong> configurato, dobbiamo indicarlo in <strong>cname</strong>.</li>
+</ul>
+
+<p>Possiamo testare il nostro workflow, dal repository scegliamo <strong>Actions</strong>, nella colonna a sinistra scegliamo la action appena creata, e a destra clicchiamo su <strong>Run Workflow</strong>, se tutto va bene dopo qualche minuto la compilazione del sito terminerà correttamente.</p>
+
+<p>A questo punto, sarà stato creato un nuovo branch chiamato gh-pages (ma il nome potete sceglierlo a vostro piacimento), l’ultimo step è quello di indicare a Github di visualizzare il sito da questo nuono branch e non dal main (nel mio caso, usavo la compilazione diretta dal main infatti); per farlo, dal repository andiamo in <strong>Settings -&gt; Pages</strong> e selezioniamo, sotto <strong>Build and deployment</strong>, l’opzione <strong>Deploy from a branch</strong> (dovrebbe essere già selezionata) e come branch indichiamo gh-pages (o qualsiasi altro nome abbiate scelto).</p>
+
+<p>A questo punto, scrivete un post con data futura e godetevi la pubblicazione <strong>schedulata</strong>.</p>
+
+<p>Stay tuned..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/guide/domotica/alexa/2024/08/20/annunci-da-alexa-tramite-home-assistant.html" data-toggle="tooltip" data-placement="top" title="Annunci da Alexa tramite Home Assistant">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/guide/domotica/sonoff/2024/08/26/ho-reso-smart-la-mia-lavatrice.html" data-toggle="tooltip" data-placement="top" title="Ho reso smart la mia lavatrice!">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

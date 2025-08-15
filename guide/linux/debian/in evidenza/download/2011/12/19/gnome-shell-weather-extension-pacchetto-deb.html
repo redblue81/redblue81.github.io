@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Gnome-shell Weather Extension, pacchetto DEB - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Oggi vi parlo di un&#39;estensione per Gnome-shell non fondamentale, ma che ritengo utile.. Ormai sono abituato ad avere sul mio desktop un&#39;indicazione relativa ...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/linux/debian/in%20evidenza/download/2011/12/19/gnome-shell-weather-extension-pacchetto-deb.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Gnome-shell Weather Extension, pacchetto DEB</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on December 19, 2011 &middot; <span class="reading-time" title="Estimated read time">
+  
+   3 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Oggi vi parlo di un'estensione per Gnome-shell non fondamentale, ma che ritengo utile..</p>
+<p>Ormai sono abituato ad avere sul mio desktop un'indicazione relativa alle <strong>condizioni metereologiche</strong> della mia citt&agrave;, <strong>Taranto</strong>. Per questa ragione ho deciso di installare un'<strong>estensione</strong> di Gnome-shell adatta allo scopo.</p>
+<p>La scelta &egrave; ricaduta sull'estensione realizzata da <strong>simon04</strong> e disponibile <a href="https://github.com/simon04/gnome-shell-extension-weather" target="_blank">qui</a>, che una volta installata e configurata si presenta come segue:</p>
+<p><a href="/assets/images/weather-extension.jpg"><img class="aligncenter size-medium wp-image-2797" title="weather-extension" src="/assets/images/weather-extension-300x111.jpg" alt="" width="300" height="111" /></a><!--moreContinua a leggere.. -->Per chi non vuole troppo sbattimento, vi riporto il <strong>pacchetto .deb</strong> gi&agrave; pronto realizzato da me per un'istallazione diretta, lo trova nell'<a href="http://localhost:4000/download/" target="_blank">area download</a>.</p>
+<p>[download id="3935"]</p>
+<p>Faccio presente che &egrave; stato realizzato con <strong>checkinstall</strong>, quindi non rispetta in pieno le <strong>policy</strong> Debian riguardo i file .deb, ma per un'istallazione rapida sul proprio PC pu&ograve; andar bene, per installarlo si pu&ograve; usare <strong>GDebi</strong> (se l'avete installato) oppure <strong>dpkg</strong>:</p>
+<pre class="brush: bash; gutter: true">sudo dpkg -i simon04-gnome-shell-extension-weather_9de1987-1_i386.deb</pre>
+<p>Si tratta di un pacchetto compilato su <strong>Debian Sid</strong> per <strong>architetture a 32 bit</strong>. Invece, per chi volesse compilarsi direttamente i <strong>sorgenti</strong>, basta scaricare l'archivio da <a href="https://github.com/simon04/gnome-shell-extension-weather/zipball/master" target="_blank">qui</a>, <strong>decomprimerlo</strong> e infine dare i seguenti comandi:</p>
+<pre class="brush: bash; gutter: true">./autogen.sh --prefix=/usr
+
+make
+
+sudo make install</pre>
+<p>Ovviamente, se dovesse presentarsi qualche <strong>errore</strong> dopo il primo comando, molto probabilmente manca nel vostro sistema una o pi&ugrave; <strong>dipendenze</strong>, nel qual caso installate i pacchetti indicati, ricordando per&ograve; di scegliere il pacchetto con suffisso <strong>-dev</strong>.</p>
+<p>Dopo l'installazione, l'estensione va configurata per indicare la citt&agrave; di nostro interesse. Andate su questo sito http://sigizmund.info/woeidinfo/?woeid e indicate la vostra citt&agrave;. Vi sar&agrave; restituito un codice di 6 cifre, il <strong>WOEID</strong> relativo alla localit&agrave; indicata, dovrete usarlo nel seguente comando:</p>
+<pre class="brush: bash; gutter: true">gsettings set org.gnome.shell.extensions.weather woeid vostro_woeid</pre>
+<p>A questo punto, riavviate la shell e attivate l'estensione da <strong>gnome-tweak-tool</strong> e dovrebbe funzionare tutto.. ;)</p>
+<p>E' anche possibile cambiare la <strong>posizione</strong> dell'estensione nel pannello superiore, per farlo basta dare il seguente comando:</p>
+<pre class="brush: bash; gutter: true">gsettings set org.gnome.shell.extensions.weather position-in-panel left/center/right</pre>
+<p>Scegliete ovviamente la posizione che preferite.</p>
+<p>Chiudo segnalando un'<strong>anomalia</strong> che ho riscontrato sul mio notebook, ovvero che potrebbe accadere che il WOEID prima ricavato non funzioni, nel senso che l'estensione non riesce a caricare i dati della localit&agrave; indicata. In tal caso, andate su http://www.weather.com e indicate l&igrave; la vostra localit&agrave;; prenderete il codice relativo alla citt&agrave; dall'indirizzo della pagina che sar&agrave; visualizzata, come in figura:</p>
+<p><a href="/assets/images/codice_meteo.jpg"><img class="aligncenter size-medium wp-image-2799" title="codice_meteo" src="/assets/images/codice_meteo-300x57.jpg" alt="" width="300" height="57" /></a>Basta semplicemente indicare quel codice al posto del WOEID nell'istruzione precedente.</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/tipsntricks/linux/2011/12/15/realizzare-screencast-con-gnome-3.html" data-toggle="tooltip" data-placement="top" title="Realizzare screencast con Gnome 3">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/guide/linux/in%20evidenza/2012/01/03/shell-bash-5-cicli.html" data-toggle="tooltip" data-placement="top" title="Shell Bash - 5 - Cicli">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

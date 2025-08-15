@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Trasferire un sito Wordpress da locale a remoto - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Spesso si realizza un sito in locale, costruendo un ambiente di test appropriato in cui possiamo &quot;giocare&quot; come meglio crediamo. Bene, una volta completo il ...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/blog/guide/wordpress/2014/06/22/trasferire-sito-wordpress-da-locale-a-remoto.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Trasferire un sito Wordpress da locale a remoto</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on June 22, 2014 &middot; <span class="reading-time" title="Estimated read time">
+  
+   3 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Spesso si realizza un sito in <strong>locale</strong>, costruendo un ambiente di test appropriato in cui possiamo "<strong>giocare</strong>" come meglio crediamo. Bene, una volta completo il lavoro, sar&agrave; necessario trasferire il nostro sito Wordpress<strong> da locale a remoto</strong>, nello spazio web che avremo ne frattempo acquistato.</p>
+<p>Le strade sono due: <strong>ricostruire</strong> tutto passo passo, <strong>installando</strong> e <strong>configurando</strong> tutto il necessario, ovvero praticamente ricostruire il sito in remoto partendo da zero, oppure, pi&ugrave; pratico e veloce,<strong> trasferire direttamente il sito Wordpress da locale a remoto</strong>, con una sorta di copia e incolla avanzato.. ;)</p>
+<p>Per perseguire quest'ultima strategia, sono necessari <strong>pochi</strong>, <strong>semplici</strong>, ma <strong>precisi</strong> passaggi:</p>
+<ol>
+<li style="text-align: justify;"><strong>esportiamo il database</strong>: possiamo farlo comodamente da <strong>phpmyadmin</strong> (dai se avete costruito un sito in locale lo avete sicuramente installato ed utilizzato). Mi raccomando esportiamo un file <strong>.sql</strong> e ricordiamoci di esportare oltre alla struttura del DB anche i <strong>dati</strong> in esso contenuti;</li>
+<li style="text-align: justify;"><strong>modifichiamo il file cos&igrave; ottenuto</strong>: al suo interno ci saranno numerosi riferimenti a <strong>localhost</strong>, ovvero al sito in locale, tutti questi riferimenti vanno trasformati nella url del sito che sar&agrave; online. Potete tranquillamente farlo con un buon editor di test che consenta il cosiddetto trova e sostituisci. In realt&agrave; si potrebbe anche usare un'apposita <strong>query</strong> direttamente sul DB, ma potrebbe rivelarsi un'operazione pi&ugrave; complessa del necessario per i nostri scopi;</li>
+<li style="text-align: justify;"><strong>importiamo il DB online</strong>: nello spazio web <strong>creiamo</strong> il DB che ricever&agrave; i dati, poi eseguiamo l'<strong>import</strong> del file creato in precedenza, sempre con <strong>phpmyadmin</strong>, presente in praticamente qualunque servizio attualmente in commercio. Sar&agrave; un'operazione non proprio velocissima (nulla di esagerato, il DB non conterr&agrave; una grandissima mole di dati). Mi raccomando, questa operazione &egrave; <strong>fondamentale</strong>, <strong>deve andare a buon fine prima che si possa proseguire</strong>;</li>
+<li style="text-align: justify;"><strong>modifichiamo il file&nbsp; wp-config.php</strong>: si tratta del file che contiene le informazioni relative al DB. Ovviamente ci saranno quelle riguardanti il sito in locale, bene dobbiamo inserire quelle relative al DB remoto. Essenzialmente, l'<strong>host</strong> potrebbe anche restare localhost (molti servizi di hosting lo consentono), ma non &egrave; sicuro, controllate prima di procedere, poi dovremo inserire <strong>utente</strong> del DB remoto e <strong>relativa password</strong> (spesso in locale si usa semplicemente un utente root senza password, cosa che accade raramente online), oltre che il <strong>nome</strong> del DB online che abbiamo creato e popolato in precedenza; anche questa operazione &egrave; <strong>fondamentale</strong>, attenzione alla correttezza dei dati che andiamo ad inserire;</li>
+<li style="text-align: justify;">finalmente, possiamo eseguire l'<strong>upload</strong> del sito: basta un client FTP come ad esempio <strong>FileZilla</strong>, e attraverso l'account FTP del nostro servizio di hosting andremo a mettere online i files finora presenti solo sul nostro pc.</li>
+</ol>
+<p>Finito! A questo punto, se tutto &egrave; andato bene, basta collegarsi alla <strong>url</strong> del sito remoto e "magicamente" vedremo ci&ograve; che poco prima era solo in locale, esattamente identico, ma online!! ;)</p>
+<p>Ovviamente, un <strong>controllino</strong> generale non fa mai male, il metodo &egrave; sicuro ma qualcosa potrebbe pur sempre sfuggire..</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/tipsntricks/linux/2014/04/05/impostare-l-ora-di-sistema-riga-comando.html" data-toggle="tooltip" data-placement="top" title="Impostare l'ora di sistema da riga di comando">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/tipsntricks/wordpress/2014/08/07/url-rewrite-su-wordpress-in-locale.html" data-toggle="tooltip" data-placement="top" title="Url rewrite su Wordpress in locale">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

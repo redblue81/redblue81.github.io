@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Installare LibreOffice su Maverick - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Qualche tempo fa &amp;egrave; nata LibreOffice, suite per ufficio open source dovuta alla Document Foundation, ovvero ad una serie di sviluppatori di OpenOffice ...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/linux/debian/ubuntu/software/in%20evidenza/mint/lmde/2010/12/26/installare-libreoffice-su-maverick.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Installare LibreOffice su Maverick</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on December 26, 2010 &middot; <span class="reading-time" title="Estimated read time">
+  
+   2 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Qualche tempo fa &egrave; nata <a href="http://www.libreoffice.org/" target="_blank">LibreOffice</a>, suite per ufficio open source dovuta alla <a href="http://www.documentfoundation.org/" target="_blank">Document Foundation</a>, ovvero ad una serie di sviluppatori di <strong>OpenOffice</strong> "secessionisti" rispetto ad <strong>Oracle</strong>, attuale proprietaria di <strong>OpenOffice</strong>, avendo acquisito in passato <strong>Sun Microsystems</strong> (che a sua volta era il principale sponsor di OpenOffice)..</p>
+<p><a href="/assets/images/libre_office.png"><img class="aligncenter size-medium wp-image-1935" title="libre_office" src="/assets/images/libre_office-300x76.png" alt="" width="300" height="76" /></a></p>
+<p>Tale "nuova" suite altro non &egrave; che proprio OpenOffice, con <strong>nome</strong> e <strong>marchio</strong> diversi per motivi di copyright. Tralascio i vari aspetti legali/etici della vicenda (la Document Foundation, dato il decennale impegno dei propri membri nel progetto OpenOffice, vorrebbe l'adesione di Oracle alla fondazione stessa, con annessa donazione del marchio originale, altrimenti proseguir&agrave; con questo nuovo brand), e vado a spiegare come installare questa suite in <strong>Ubuntu</strong> (ps. pare che LibreOffice, se sar&agrave; nel frattempo giunta alla release stabile, sar&agrave; presente di <strong>default</strong> nella prossima release di Ubuntu, la <strong>11.04</strong>).</p>
+<p>Per prima cosa occorre <strong>disinstallare</strong> OpenOffice:</p>
+<blockquote><p><code>sudo apt-get remove --purge openoffice*.*</code></p></blockquote>
+<p>Dovete poi scaricare LibreOffice, attualmente alla versione <strong>3.3 RC2</strong>, da <a href="http://www.libreoffice.org/download/" target="_blank">qui</a>, ovviamente scegliendo la versione adatta al vostro sistema; dalla stessa pagina scaricate anche il <strong>language pack</strong> (che verr&agrave; proposto in automatico).</p>
+<p>Decomprimete l'archivio che avete scaricato ed entrate nella directory <code>debs</code>, poi installate:</p>
+<blockquote><p><code>sudo dpkg -i *.deb</code></p></blockquote>
+<p>A questo punto entrate nella directory <code>desktop-integration</code> ed installate il pacchetto al suo interno con lo stesso comando appena visto.</p>
+<p>A questo punto <strong>estraete</strong> anche i files del language pack scaricato in precedenza (a meno che non vi vada bene in inglese) e installate anche tutti i pacchetti appena ottenuti col solito comando visto sopra.</p>
+<p>Non resta che <strong>installare</strong> il seguente pacchetto:</p>
+<blockquote><p><code>sudo apt-get install language-support-writing-it </code></p></blockquote>
+<p>A questo punto avete finito, sul vostro sistema ora avete la nuova suite LibreOffice..</p>
+<p>PS. Ovviamente il procedimetno visto vale per qualsiasi distribuzione derivata da Debian.. ;)</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/linux/in%20evidenza/lmde/2010/12/25/rilasciata-linux-mint-debian-edition-201012.html" data-toggle="tooltip" data-placement="top" title="Rilasciata Linux Mint Debian Edition 201012!!">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/blog/piccole%20soddisfazioni/festivit%C3%A0/2011/01/01/buon-2011-da-redblues-blog.html" data-toggle="tooltip" data-placement="top" title="Buon 2011 da RedBlue's Blog!!">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Domotica - Installare Home Assistant - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Bentrovati su questa serie riguardo la realizzazione del proprio sistema domotico casalingo. Dopo la doverosa introduzione fatta in precedenza, iniziamo con ...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/linux/in%20evidenza/raspberry%20pi/domotica/2021/05/29/domotica-installare-home-assistant.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Domotica - Installare Home Assistant</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on May 29, 2021 &middot; <span class="reading-time" title="Estimated read time">
+  
+   4 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p><!-- wp:paragraph --></p>
+<p>Bentrovati su questa serie riguardo la realizzazione del proprio sistema domotico casalingo. Dopo la doverosa <a href="http://localhost:4000/domotica/realizzare-il-proprio-sistema-domotico-introduzione.html" data-type="post" data-id="4047" target="_blank" rel="noreferrer noopener">introduzione fatta in precedenza</a>, iniziamo con installare <strong>Home Assistant</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Il primo passo &egrave; sicuramente l'acquisto del <strong>server</strong>, nel mio caso ho optato per un <strong>RaspberryPi 4</strong> con 4GB di RAM (ma va bene un qualsiasi PC, mini PC, NAS dotato di sistema operativo, etc.). Successivamente, occorre <strong>installare </strong>Home Assistant.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><a href="https://www.home-assistant.io/" target="_blank" rel="noreferrer noopener">Home Assistant</a> &egrave; un <strong>HUB personale</strong> che consente di gestire la domotica in maniera semplice ed intuitiva, consentendo di integrare dispositivi di natura diversa <strong>a prescindere dal produttore e dagli standard utilizzati</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:more --><br />
+<!--more--><br />
+<!-- /wp:more --></p>
+<p><!-- wp:paragraph --></p>
+<p>Diciamo che l'obiettivo finale &egrave; quello di avere un'<strong>unica plancia</strong> dalla quale poter controllare tutta la domotica in casa, avendo un unico <strong>gateway</strong> (una sorta di "centralina") e una sola <strong>app </strong>installata sullo smartphone.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Home Assistant &egrave; disponibile fondamentalmente in due opzioni: <strong>OS </strong>e <strong>Core</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>La differenza fondamentale &egrave; che con l'opzione OS Home Assistant verr&agrave; installato come <strong>sistema operativo</strong>, quindi il Raspberry sar&agrave; dedicato solo alla domotica. Diversamente, avrete Home Assistant come applicativo installato nel sistema operativo, tipicamente <a rel="noreferrer noopener" href="https://www.raspberrypi.org/software/" target="_blank">Raspberry Pi OS</a>, e quindi sarete poi liberi di installare anche altro sul server.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Inoltre, con la versione OS verr&agrave; installato anche <strong>Supervisor</strong>, uno store gratuito di plugin e componenti aggiuntivi, che altrimenti andranno installati a mano.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>E' disponibile in realt&agrave; anche l'opzione di installazione in <strong>Docker </strong>container, che sfrutta la tecnologia di virtualizzazione, ma questo merita un approfondimento a parte, magari in futuro potrei pensarci.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Personalmente, ho deciso di dedicare il Raspberry alla domotica, quindi ho scelto di andare sull'opzione pi&ugrave; semplice, installando Home Assistant OS. L'installazione &egrave; semplicissima (<a href="https://www.home-assistant.io/installation/raspberrypi" target="_blank" rel="noreferrer noopener">questo il link</a>):</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:list --></p>
+<ul>
+<li>scaricare <a rel="noreferrer noopener" href="https://www.balena.io/etcher" data-type="URL" data-id="https://www.balena.io/etcher" target="_blank">Balena Etcher</a> ed avviarlo;</li>
+<li>selezionare <strong>Flash from URL</strong> ed inserire (attualmente): </li>
+</ul>
+<p><!-- /wp:list --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">https://github.com/home-assistant/operating-system/releases/download/5.13/hassos_rpi4-64-5.13.img.xz</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:list --></p>
+<ul>
+<li>selezionare la propria micro SD dalla scheda <strong>Target</strong>;</li>
+<li>cliccare su <strong>Flash </strong>ed attendere il completamento.</li>
+</ul>
+<p><!-- /wp:list --></p>
+<p><!-- wp:paragraph --></p>
+<p>Attenzione perch&egrave; la micro SD sar&agrave; <strong>formattata</strong>, quindi perderete il suo eventuale contenuto precedente!</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><strong>Finito</strong>! Home Assistant &egrave; installato e pronto per il primo avvio!</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto potete inserire la micro SD nel Raspberry, <strong>collegare un cavo di rete</strong> e accendere il tutto. In pochi minuti sar&agrave; operativo.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Potete verificare collegandovi all'indirizzo <strong>homeassistant.local:8123</strong>, se tutto &egrave; andato liscio, vi chieder&agrave; di creare un utente:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4058,"width":425,"height":346,"sizeSlug":"full","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-full is-resized"><img src="/assets/images/home-assistant-1.jpg" alt="" class="wp-image-4058" width="425" height="346"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla schermata successiva, date un <strong>nome </strong>alla vostra casa ed inserite la <strong>posizione </strong>sulla mappa (servir&agrave; per alcune integrazioni interessanti). Vi chieder&agrave; anche di configurare eventuali integrazioni se trova dispositivi compatibili (molto probabile), nel caso configurate gi&agrave; adesso tutto, ci torner&agrave; utile.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Nel prossimo articolo, vedremo come sostituire la micro SD con un disco SSD.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/guide/linux/in%20evidenza/raspberry%20pi/domotica/2021/05/26/realizzare-il-proprio-sistema-domotico-introduzione.html" data-toggle="tooltip" data-placement="top" title="Realizzare il proprio sistema domotico - Introduzione">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/guide/linux/in%20evidenza/domotica/2021/06/03/domotica-backup-di-home-assistant.html" data-toggle="tooltip" data-placement="top" title="Domotica - Backup di Home Assistant">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

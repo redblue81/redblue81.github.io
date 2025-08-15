@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Aggiornamento su drivers per Pinnacle PCTV Hybrid Pro Stick 330e - Nuovi drivers funzionanti - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Dopo la guida all&#39;installazione del TV Tuner Pinnacle in oggetto (croce e delizia mia e dei lettori di questo blog da ormai non so pi&amp;ugrave; quanto tempo), ...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/linux/ubuntu/in%20evidenza/2010/12/13/aggiornamento-su-drivers-per-pinnacle-pctv-hybrid-pro-stick-330e-nuovi-drivers-funzionanti.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Aggiornamento su drivers per Pinnacle PCTV Hybrid Pro Stick 330e - Nuovi drivers funzionanti</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on December 13, 2010 &middot; <span class="reading-time" title="Estimated read time">
+  
+   2 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Dopo la guida all'installazione del <strong>TV Tuner Pinnacle</strong> in oggetto (croce e delizia mia e dei lettori di questo blog da ormai non so pi&ugrave; quanto tempo), ho ricevuto commenti riguardo il fatto che <strong>aggiornando</strong> il kernel i driver <strong>non funzionavano pi&ugrave;</strong>, e non c'era verso di tornare indietro.. Devo dire che qualcuno c'&egrave; anche riuscito a farli andare comunque, ma si trattava di mosche bianche..</p>
+<p>Oggi, grazie al grande <a href="http://forum.ubuntu-it.org/index.php/topic,375207.140.html" target="_blank">Xgaz</a> del forum italiano di Ubuntu, la situazione potrebbe essersi finalmente sbloccata. Infatti, l'utente in questione ha <strong>patchato</strong> i vecchi drivers di <strong>Kernellabs.com</strong> (da cui si era partiti quasi un anno fa), per adattarli al kernel di <strong>Maverick</strong>!!</p>
+<p>Che dire, un lavoro veramente egregio, per cui lo ringrazio davvero tantissimo, ecco la procedura dettagliata di installazione..</p>
+<p>Ovviamente potete cancellare i vecchi sorgenti, per quanto riguarda i vecchi drivers, al sottoscritto la nuova installazione ha sovrascritto tutto senza particolari problemi, quindi niente paura..</p>
+<p>Installate (se non li avete gi&agrave;) gli <strong>headers</strong> del vostro kernel:</p>
+<blockquote><p><code>sudo apt-get install linux-headers-`uname -r`</code></p></blockquote>
+<p>Poi <strong>scaricate i sorgenti da Kernellabs</strong> (per le operazione da compiere eventualmente prima di questo passo, date uno sguardo <a href="http://localhost:4000/guide/pinnacle-pctv-hybrid-pro-stick-e330-su-lucid.html" target="_blank">qui</a>):</p>
+<p><code></p>
+<blockquote><p>hg clone http://kernellabs.com/hg/~dheitmueller/v4l-dvb-drxd</p></blockquote>
+<p></code></p>
+<p>A questo punto entrate nella directory creata, per poi <strong>scaricare ed applicare la patch</strong> di cui sopra:</p>
+<blockquote><p><code>cd v4l-dvb-drxd<br />
+wget http://xgazza.altervista.org/Linux/DVB/Drivers/drxd_2_6_35.diff<br />
+patch -p1 < drxd_2_6_35.diff</code></p></blockquote>
+<p>A questo punto scatta la <strong>compilazione</strong>:</p>
+<blockquote><p><code>make</code></p></blockquote>
+<p>C'&egrave; da dire che molto probabilmente vi si pianter&agrave;, <strong>restituendo un errore</strong>. Potete aspettare tale errore, oppure bloccare manualmente la compilazione premendo <strong>CTRL+C</strong> dopo circa <strong>10 secondi</strong> dall'inizio del processo, poi date il seguente comando (modifica una riga di codice nel file <code>.config</code>):</p>
+<blockquote><p><code>sed -i 's/CONFIG_DVB_FIREDTV=m/CONFIG_DVB_FIREDTV=n/' ./v4l/.config</code></p></blockquote>
+<p>Ora <strong>riavviate</strong> la compilazione che dovrebbe andare finalmente a buon fine (ci vorr&agrave; un po', non preoccupatevi &egrave; normale):</p>
+<blockquote><p><code>make<br />
+sudo make install<br />
+</code></p></blockquote>
+<p><strong>Riavviate</strong>, inserite la chiavetta e controllate l'esito del comando <code>dmesg</code>, se trovate la seguente riga:</p>
+<blockquote><p><code>DVB: registering adapter 0 frontend 0 (Micronas DRXD DVB-T)...</code></p></blockquote>
+<p>Avrete la conferma che la vostra pendrive sar&agrave; tornata a funzionare!! ;)</p>
+<p>Personalmente, ho testato il corretto funzionamento con il kernel <strong>2.6.35-24</strong> usando come al solito <strong>Kaffeine</strong>..</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/sorprese/browser/firefox/2010/12/07/mozilla-adotta-due-firefox.html" data-toggle="tooltip" data-placement="top" title="Mozilla adotta due Firefox!!">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/guide/tipsntricks/linux/ubuntu/windows/2010/12/15/ripristinare-grub2-dopo-linstallazione-di-windows.html" data-toggle="tooltip" data-placement="top" title="Ripristinare GRUB2 dopo l'installazione di Windows">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

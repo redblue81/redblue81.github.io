@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Shell Bash - 5 - Cicli - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Ritorna, dopo qualche settimana di pausa, il mio &quot;prontuario&quot; alla Shell Bash. Tema di oggi saranno quelle operazioni ripetute pi&amp;ugrave; volte, ciclicamente...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/linux/in%20evidenza/2012/01/03/shell-bash-5-cicli.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Shell Bash - 5 - Cicli</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on January 03, 2012 &middot; <span class="reading-time" title="Estimated read time">
+  
+   5 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Ritorna, dopo qualche settimana di pausa, il mio "<strong>prontuario</strong>" alla <strong>Shell Bash</strong>. Tema di oggi saranno quelle operazioni ripetute pi&ugrave; volte, <strong>ciclicamente</strong>. Un esempio, supponete semplicemente di dover stampare a video un messaggio n volte, potete o scrivere n volte la stessa istruzione, oppure usare un <strong>ciclo</strong>.</p>
+<p>Le istruzioni che andremo a vedere sono essenzialmente tre: <strong>for</strong>, <strong>while</strong> e <strong>until</strong>.<br />
+<!--moreContinua a leggere.. --><br />
+Cominiciamo dalla prima, il <strong>ciclo for</strong>: questa istruzione consente di eseguire una o una serie di istruzioni successive per un numero specificato numero di volte, con la seguente sintassi:</p>
+<pre class="brush: bash; gutter: true">for variabile [in lista]
+
+do istruzioni;
+&egrave;&egrave;
+done</pre>
+<p>Spieghiamo questa sintassi all'apparenza complessa: <strong>variabile</strong> pu&ograve; essere un nome qualsiasi, il pi&ugrave; classico &egrave; semplicemente <strong>i</strong>, <strong>in lista</strong> non &egrave; fondamentale, ma pu&ograve; indicare, ad esempio, in quale ambito applicare le istruzioni successive, che vanno inserite dopo il <strong>do</strong>, senza punto e virgola alla fine di ogni riga meno che nell'ultima istruzione. Vediamo un piccolo esempio:</p>
+<pre class="brush: bash; gutter: true">#!/bin/bash
+
+for ((i=1;i<11;i++));&egrave;&egrave;
+
+do echo $i;
+
+done</pre>
+<p>Questo script stupidissimo scrive i numeri da 1 a 10 a video, uno per ogni riga. Come si vede per&ograve;, il nome della variabile &egrave; semplicemente i, che varia da 1 a 10, e l'istruzione eseguita &egrave; una semplice stampa a video della variabile stessa.</p>
+<p>Un esempio pi&ugrave; concreto? Supponiamo di voler estrarre da un file una serie di informazioni. Per semplicit&agrave;, supponiamo di avere un file chiamato <code>listafile</code>, con all'interno una lista di utenti, chiamati semplicemente utente1, utente2, e cos&igrave; via. Lo script precedente, da lanciare nella stessa directory del file <code>listafile</code>, diventa:</p>
+<pre class="brush: bash; gutter: true&egrave;/bash
+&egrave;
+for i in `cat listafile`;
+
+do UTENTE="$i"
+
+echo $UTENTE;
+
+done</pre>
+<p>La seconda istruzione che vediamo &egrave; il <strong>while</strong>.</p>
+<p>In questo caso si parla di <span style="text-decoration: underline;">controllo in testa</span>, ovvero viene controllata la condizione di uscita, e se questo test non fallisce, allora si eseguono le istruzioni successive (nel caso precedente invece avevamo una ripetizione per un certo numero stabilito di volte). La sintassi &egrave; la seguente:</p>
+<pre class="brush: bash; gutter: true">while CONDIZIONE;
+
+do ISTRUZIONI;&egrave;
+
+done</pre>
+<p>Lo stesso script di esempio visto per il for (quello che stampa a video i numeri da 1 a 10) pu&ograve; essere riscritto usando il while:</p>
+<pre class="brush: bash; gutter: true">#!/bin/bash
+
+i="1"
+&egrave;
+LIM="11"&egrave;&egrave;
+
+while [ $i -lt $LIM ];
+
+do echo $i
+
+i=$[$i+1];
+
+done</pre>
+<p>Nell'esempio, l'opzione del while <code>-lt</code> sta per "lower than", cio&egrave; "minore di", si pu&ograve; usare anche il simbolo matematico "<", ma occorre in questo caso usare le doppie parentesi tonde (( )) (come nel primo esempio). Il ciclo while pu&ograve; essere <strong>annidato</strong>, ovvero assumere la sintassi:</p>
+<pre class="brush: bash; gutter: true">while CONDIZIONE1;
+&egrave;&egrave;
+do BLOCCO-ISTRUZIONI1
+&egrave;&egrave;&egrave;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while CONDIZIONE2;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; do BLOCCO-ISTRUZIONI2;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; done
+
+done</pre>
+<p>Infine, &egrave; il momento di dare un'occhiata al ciclo <strong>until</strong>.</p>
+<p>Questo costrutto ha una sintassi praticamente identica al while, ma c'&egrave; la differenza fondamentale che le istruzioni all'interno del ciclo vengono eseguite finch&egrave; il test non da' risultato positivo:</p>
+<pre class="brush: bash; gutter: true">until CONDIZIONE;
+
+do ISTRUZIONI;
+
+done</pre>
+<p>Di nuovo un piccolo (inutile) script di esempio:</p>
+<pre class="brush: bash; gutter: true">#!/bin/bash 
+
+COUNTER=20
+
+until [&nbsp; $COUNTER -lt 0 ]; do
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo "-" $COUNTER
+
+&nbsp; &nbsp; &nbsp; &nbsp; let COUNTER-=1
+
+done</pre>
+<p>In questo caso viene effettuato un conto alla rovescia da 20 a 0. Come si vede, finch&egrave; COUNTER resta maggiore di zero (ovvero la condizione -lt, minore di, &egrave; falsa), il ciclo si ripete.</p>
+<p>Until, proprio come while, pu&ograve; essere annidato, e anche annidare ad esempio un while all'interno di un until non costituisce un errore, dipende semplicemente dalle esigenze.</p>
+<p>Infine, non possiamo non parlare di <strong>continue</strong> e <strong>break</strong>. Si tratta di due istruzioni usate per "forzare" un ciclo. Supponiamo di <strong>non conoscere a priori</strong> quante volte un ciclo dovr&agrave; essere ripetuto, ad esempio supponiamo che un'operazione va ripetuta finch&egrave; l'utente non preme un tasto, bene questo &egrave; un tipoco caso in cui si usa il <strong>break</strong>. Non ci sar&agrave; una condizione di uscita dal ciclo ma se l'utente preme un tasto allora verr&agrave; invocato il break (basta un <strong>if</strong> nel ciclo!!). <strong>Continue</strong> invece ha l'effetto opposto, ovvero forza il ritorno al controllo della condizione del ciclo; ad esempio, supponiamo di avere un for all'interno del quale dobbiamo eseguire una certa operazione <span style="text-decoration: underline;">solo</span> in determinati casi. Bene, basta un controllo (cio&egrave; un if) interno al for in cui specifichiamo l'operazione da eseguire e in caso contrario la clausola continue, che altro non fa che tornare alla condizione di controllo in testa.</p>
+<p>Alla prossima..</p>
+<p>&nbsp;</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/guide/linux/debian/in%20evidenza/download/2011/12/19/gnome-shell-weather-extension-pacchetto-deb.html" data-toggle="tooltip" data-placement="top" title="Gnome-shell Weather Extension, pacchetto DEB">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/blog/2012/01/04/i-10-articoli-di-questo-blog-piu-letti-nel-2011.html" data-toggle="tooltip" data-placement="top" title="I 10 articoli di questo blog più letti nel 2011">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

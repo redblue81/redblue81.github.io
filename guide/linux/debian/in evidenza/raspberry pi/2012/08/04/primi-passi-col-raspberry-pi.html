@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Primi passi col Raspberry Pi - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="C&#39;&amp;egrave; voluto qualche giorno, ma finalmente ho il tempo di smanettare un po&#39; col mio Raspberry Pi. Prima di tutto, anche se penso lo sappiate, serve una ...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/linux/debian/in%20evidenza/raspberry%20pi/2012/08/04/primi-passi-col-raspberry-pi.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Primi passi col Raspberry Pi</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on August 04, 2012 &middot; <span class="reading-time" title="Estimated read time">
+  
+   4 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>C'&egrave; voluto qualche giorno, ma finalmente ho il tempo di smanettare un po' col mio <strong>Raspberry Pi</strong>.</p>
+<p><a href="/assets/images/raspberry-pi.jpg"><img class="aligncenter size-medium wp-image-2954" title="raspberry-pi" src="/assets/images/raspberry-pi-300x191.jpg" alt="" width="300" height="191" /></a>Prima di tutto, anche se penso lo sappiate, serve una <strong>memory card di tipo SD</strong> (le pi&ugrave; comuni, va bene anche in formato <strong>microSD</strong> purch&egrave; sia abbinata ad un apposito <strong>adattatore</strong>); io ne ho a disposizione una da <strong>4 GB</strong>, con prestazioni non particolarmente elevate. Ovviamente, pi&ugrave; veloce sar&agrave; questa memoria, meglio &egrave;, anche se il Raspberry Pi non ha particolari pretese; per quanto riguarda la dimensione invece, pensate che il produttore prevede addirittura l'uso di una SD da <strong>2 GB</strong>, anche se ovviamente pi&ugrave; &egrave; grande, pi&ugrave; spazio avrete a disposizione per i vostri files.</p>
+<p><!--moreContinua a leggere.. --></p>
+<p>Iniziamo ad installare un sistema operativo: ci serve una distribuzione Linux con supporto alla CPU <strong>ARM</strong>, e consiglierei, per iniziare, di scorrere la <a href="http://www.raspberrypi.org/downloads" target="_blank">pagina dei download</a> del sito ufficiale, dove sono presenti delle distro gi&agrave; pronte. Io ho scaricato (ovviamente! ;) ) <strong>Raspbian</strong>, distro derivata da <strong>Debian Wheezy</strong> ed ottimizzata per funzionare al meglio su questo dispositivo. Dopo aver scaricato l'archivio ed averlo decompresso, inseriamo la SD e la smontiamo, poi ci copiamo sopra l'immagine:</p>
+<pre class="brush: bash; gutter: true">sudo fdisk -l
+
+sudo umount /dev/sdXX
+
+sudo dd bs=1M if=2012-07-15-wheezy-raspbian.img of=/dev/sdX</pre>
+<p>In cui bisogna sostituire a <code>sdX</code> l'identificativo della vostra scheda, che avrete ottenuto con <code>fdisk</code>. Quando avr&agrave; terminato, se la SD ha una capacit&agrave; maggiore di 2 GB, consiglio di usare <strong>GParted</strong> per ridimensionare le partizioni di default create<strong></strong>, in modo da poter sfruttare tutto lo spazio a disposizione. Inoltre, sarebbe bene aggiungere una partizione di <strong>swap</strong> da almeno 256 MB.</p>
+<p>A questo punto, inserite la SD preparata nel Raspberry Pi, collegate tastiera, mouse, monitor, cavo di rete, e potete avviare, semplicemente inserendo un alimentatore (va benissimo un comune caricabatterie per cellulare che sfrutti il collegamento USB, e un cavetto con terminale micro-USB), che far&agrave; da <strong>startup</strong>.</p>
+<p>Terminato il caricamento (piuttosto rapido, considerato l'hardware a disposizione), vi ritroverete in un wizard tramite il quale settare il <strong>layout di tastiera</strong>, la <strong>lingua</strong>, la <strong>password</strong> dell'utente <strong>pi</strong> (predefinito), la modalit&agrave; di avvio (<strong>testo</strong> o <strong>grafica</strong>), e altre cosette, poi potrete finalmente avviare il vostro OS! ;)</p>
+<p>A questo punto, possiamo pensare di impostare una <strong>password</strong> per l'utente <strong>root</strong>, aggiungere il nostro utente, e di avviare il PC direttamente con tale utente, piuttosto che con pi:</p>
+<pre class="brush: bash; gutter: true">sudo passwd root
+
+sudo adduser VOSTRO_UTENTE</pre>
+<p>Poi diamo all'utente creato la possibilit&agrave; di usare il comando sudo; per fare ci&ograve; editiamo il file <code>/etc/sudoers</code> nel seguente modo:</p>
+<pre class="brush: bash; gutter: true">su
+
+EDITOR=nano visudo</pre>
+<p>E subito dopo la riga:</p>
+<pre class="brush: bash; gutter: false">root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ALL=(ALL:ALL) ALL</pre>
+<p>Inseriamo la riga seguente:</p>
+<pre class="brush: bash; gutter: false">VOSTRO_UTENTE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ALL=(ALL) ALL</pre>
+<p>Possiamo ora <strong>loggarci</strong> col nostro utente:</p>
+<pre class="brush: bash; gutter: false">su VOSTRO_UTENTE</pre>&
+<p>Bene, adesso il nostro Raspberry Pi si avvia ancora con l'utente pi, quello predefinito, per avviare direttamente il nostro utente, senza richiesta di password, editiamo il file <code>/etc/inittab</code>, cercando la riga (attenzione perch&egrave; potrebbe essere leggermente diversa):</p>
+<pre class="brush: bash; gutter: false">1:2345:respawn:/sbin/getty 38400 tty1</pre>
+<p>E <strong>commentandola</strong> mettendo un # davanti, poi inseriamo la riga:</p>
+<pre class="brush: bash; gutter: false">1:2345:respawn:/bin/login -f VOSTRO_UTENTE tty1/dev/tty1 2>&amp;1</pre>
+<p>Salviamo e chiudiamo l'editor, poi editiamo il file <code>/etc/profile</code> inserendo semplicemente alla fine uno <code>startx</code>. Riavviamo e vedremo come l'utente predefinito sia diventato il nostro.</p>
+<p>Per ora direi che basta cos&igrave;, ovviamente continuer&ograve; a smanettare col Raspberry Pi e a tenervi aggiornati.. ;)</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/tipsntricks/linux/software/2012/08/02/vlc-non-visualizza-correttamente-i-canali-dvb-t-soluzione.html" data-toggle="tooltip" data-placement="top" title="VLC non visualizza correttamente i canali DVB-T - SOLUZIONE">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/tipsntricks/linux/debian/raspberry%20pi/2012/08/05/numlock-all-avvio-e-disabilitare-loverscan-su-raspberry-pi.html" data-toggle="tooltip" data-placement="top" title="Numlock all'avvio e disabilitare l'overscan su Raspberry Pi">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

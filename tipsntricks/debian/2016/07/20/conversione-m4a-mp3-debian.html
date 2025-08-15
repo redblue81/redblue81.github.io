@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Conversione M4A-MP3 in Debian - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Mi &amp;egrave; capitato di avere a che fare con files audio in formato M4A, ovvero un file MP4 contenente solo audio. Bene, ovviamente la mia Debian li legge se...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/tipsntricks/debian/2016/07/20/conversione-m4a-mp3-debian.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Conversione M4A-MP3 in Debian</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on July 20, 2016 &middot; <span class="reading-time" title="Estimated read time">
+  
+   2 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Mi &egrave; capitato di avere a che fare con files audio in formato <strong>M4A</strong>, ovvero un file MP4 contenente solo <strong>audio</strong>.</p>
+<p>Bene, ovviamente la mia Debian li legge senza alcun problema, ma quando gli stessi files finiscono in un lettore multimediale, non &egrave; detto che valga la stessa cosa. In altre parole, il buon vecchio formato <strong>MP3</strong> &egrave; quello che serve in questi casi.</p>
+<p>Non volendo installare alcun software ad hoc, ho cercato un po' in rete e ho trovato qualche dritta utile per buttar gi&ugrave; un semplicissimo script di conversione batch.</p>
+<p>Per prima cosa, installiamo i "ferri del mestiere":</p>
+<pre class="brush: bash; gutter: true">sudo apt-get install libav-tools</pre>
+<p>Poi, creiamo lo script (ad esempio, lo chiamiamo <em><strong>m4aToMp3.sh</strong></em>) con un qualsiasi editor di testo:</p>
+<pre class="brush: bash; gutter: true">#!/bin/bash
+
+files=*.m4a
+
+#creo una directory dove memorizzare gli mp3
+
+if [ ! -d output ]; then
+
+ mkdir output
+
+fi
+
+
+
+for file in $files; do
+
+ mp3File=${file/%m4a/mp3}
+
+ avconv -y -i "${file}" -ab 320k "output/${mp3File}"
+
+done
+
+</pre>
+<p>Gli assegnamo i permessi di <strong>esecuzione</strong>:</p>
+<pre class="brush: bash; gutter: true">chmod +x m4aToMp3.sh</pre>
+<p>Infine, lo copiamo nella stessa directory dove si trovano i files da convertire e lo lanciamo:</p>
+<pre class="brush: bash; gutter: true">./m4aToMp3.sh</pre>
+<p>Al termine del processo (decisamente rapido), i nostri M4A saranno stati convertiti e avremo i nostri MP3 nella sottodirectory <strong>output</strong> (ovviamente potete cambiare nome a piacimento).</p>
+<p>Un'interessante evoluzione di questo script pu&ograve; essere quella di usare un paio di files di appoggio per leggere quanti pi&ugrave; <strong>tag</strong> possibili dagli M4A di partenza, e ovviamente andare a scriverli poi nei rispettivi MP3. Basta aggiungere un paio di righe:</p>
+<pre class="brush: bash; gutter: true">#!/bin/bash
+
+files=*.m4a
+
+#creo una directory dove memorizzare gli mp3
+
+if [ ! -d output ]; then
+
+ mkdir output
+
+fi
+
+
+
+for file in $files; do
+
+ mp3File=${file/%m4a/mp3}
+
+ avconv -y -i "${file}" -f ffmetadata tagsIn.txt
+
+ sed -e &#039;s/^date=\(.*\)$/TYER=\1/&#039; -e &#039;s/^major_brand=.*$//&#039; -e &#039;s/^minor_version=.*$//&#039; -e &#039;s/^creation.*$//&#039; -e &#039;s/^compatible.*$//&#039; -e &#039;s/^encoder=.*$//&#039; < tagsIn.txt > tagsOut.txt
+
+ avconv -y -i "${file}" -i tagsOut.txt -ab 320k -map_metadata 1 -id3v2_version 3 "output/${mp3File}"
+
+done</pre>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/taranto/in%20evidenza/eventi/2016/05/21/deploy-lab-presenta-primo-appuntamento-laperitivo-letterario-la-stampa-3d.html" data-toggle="tooltip" data-placement="top" title="Deploy LAB presenta il primo appuntamento con l'aperitivo tecnologico: la stampa 3D">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/wordpress/in%20evidenza/2016/09/03/usare-wordpress-json-api.html" data-toggle="tooltip" data-placement="top" title="Sfruttare tutta la potenza di WordPress JSON API">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>
