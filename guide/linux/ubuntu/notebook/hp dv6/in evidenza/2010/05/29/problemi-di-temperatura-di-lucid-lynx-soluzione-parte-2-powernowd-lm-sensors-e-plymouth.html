@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Problemi di temperatura di Ubuntu 10.04 Lucid Lynx - Soluzione - Parte 2: Powernowd, LM-Sensors e Plymouth - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Ed ecco la seconda ed ultima parte della guida per sistemare (non voglio ancora scrivere risolvere) il problema di Lucid con la temperatura, dovuto al driver...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/linux/ubuntu/notebook/hp%20dv6/in%20evidenza/2010/05/29/problemi-di-temperatura-di-lucid-lynx-soluzione-parte-2-powernowd-lm-sensors-e-plymouth.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Problemi di temperatura di Ubuntu 10.04 Lucid Lynx - Soluzione - Parte 2: Powernowd, LM-Sensors e Plymouth</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on May 29, 2010 &middot; <span class="reading-time" title="Estimated read time">
+  
+   5 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Ed ecco la seconda ed ultima parte della guida per sistemare (non voglio ancora scrivere risolvere) il problema di Lucid con la temperatura, dovuto al driver ATI open source. Il grosso &egrave; stato fatto con la <a href="http://localhost:4000/guide/problemi-di-temperatura-di-ubuntu-10-04-lucid-lynx-soluzione-parte-1-riconfigurare-lambiente-grafico.html" target="_blank">prima parte</a>, ora daremo una sistemata allo <strong>scaling</strong><strong> della CPU</strong>, installeremo una piccola applet che ci consentir&agrave; di <strong>monitorare in tempo reale</strong> la temperatura (per essere sicuri che tutto vada al meglio), e riconfigureremo <strong>Plymouth</strong>, il nuovo splashscreen di avvio e chiusura del sistema operativo, che con i driver proprietari non va daccordissimo..</p>
+<p><strong><span style="color: #ff0000;">Primo passo</span></strong> - Installare Powernowd</p>
+<p>In realt&agrave; questo non c'entra nulla col comparto video, ma smanettando mi sono reso conto che sul mio notebook le applet di variazione della frequenza della CPU funzionavano regolarmente senza che fosse installato n&eacute; <strong>Powernowd</strong> n&eacute; <strong>Cpufreqd</strong> n&eacute; <strong>Cpufrequtils</strong>.. Mah.. Misteri di Linux.. Cmq a scanso di equivoci ho provveduto ad installare Powernowd (Cpufreqd ancora non sono riuscito a configurarlo come si deve, quindi preferisco non usarlo), dando semplicemente:</p>
+<blockquote><p><code>sudo apt-get install powernowd</code></p></blockquote>
+<p><strong><span style="color: #ff0000;">Secondo passo</span></strong> - Configurare i sensori di temperatura</p>
+<p>Per prima cosa provvediamo ad installare il necessario per usare i sensori di temperatura <span style="text-decoration: underline;">probabilmente</span> presenti sul nostro notebook:</p>
+<blockquote><p><code>sudo apt-get install lm-sensors sensors-applet</code></p></blockquote>
+<p>Poi, sempre da linea di comando, vediamo quali moduli dobbiamo caricare all'avvio:</p>
+<blockquote><p><code>sudo sensors-detect</code></p></blockquote>
+<p>A questo punto rispondete sempre <strong>yes</strong> alle varie domande che vi verrano poste e alla fine vi verranno indicati dei moduli da caricare all'avvio; inseriteli in <code>/etc/modules</code> e riavviate, poi aggiungete al pannello l'applet <strong>Hardware Sensors Monitor</strong> e il gioco &egrave; fatto.. ;)</p>
+<p>Ehm.. Quasi.. Perch&egrave; ad esempio il modulo relativo al sensore di temperatura del mio notebook, chiamato <strong>k10temp</strong>,&nbsp;non &egrave; incluso ancora nel kernel, lo sar&agrave; dalla versione <strong>2.6.34</strong>, purtroppo per&ograve; i driver ATI proprietari <span style="text-decoration: underline;">non sono ancora compatibili con tale kernel</span> (cosa provata e riprovata, fidatevi), quindi &egrave; necessario provvedere a compilare questo benedetto modulo "a manina"..</p>
+<p><strong><span style="text-decoration: underline;">ATTENZIONE!! Questa parte della guida &egrave; rivolta solo a coloro che non posso usare direttamente i sensori di temperatura, precisamente mi riferisco al seguente hardware indicato dal comando </span></strong><code><strong><span style="text-decoration: underline;">sensors-detect</span></strong></code><strong><span style="text-decoration: underline;">, indicato anche </span></strong><a href="http://lm-sensors.org/wiki/Devices" target="_blank"><strong>qui</strong></a><strong><span style="text-decoration: underline;">, sulla pagina ufficiale del progetto</span></strong>:</p>
+<blockquote><p><code>Family 10h CPU, family 11h CPU</code></p></blockquote>
+<p>Bene, se avete questo sensore, scaricate i sorgenti del modulo da <a href="/assets/images/k10temp.tar.gz " target="_blank">qui</a>, decomprimeteli in una directory e poi, prima di passare alla compilazione vera e propria, <strong>installate i sorgenti del kernel</strong>:</p>
+<blockquote><p><code>sudo apt-get install linux-source</code></p></blockquote>
+<p>A questo punto entrate nella directory dove avete decompresso i sorgenti ed eseguite il <strong>make</strong> in questo modo:</p>
+<blockquote><p><code>sudo make -C /lib/modules/$(uname -r)/build M=$(pwd) modules</code></p></blockquote>
+<p>Poi carichiamo temporaneamente il modulo, per testare se funziona:</p>
+<blockquote><p><code>sudo insmod k10temp.ko</code></p></blockquote>
+<p>Ed effettuiamo il test:</p>
+<blockquote><p><code>sensors</code></p></blockquote>
+<p>Se funziona vedremo visualizzate le informazioni sul/sui sensore/i, oltre ovviamente alle temperature, altrimenti possiamo cancellare tutto e fermarci, vuol dire che il sensore non &egrave; compatibile nemmeno con questo modulo. Se il sensore ora viene letto, possiamo aggiungere il modulo al sistema permanentemente e caricarlo all'avvio:</p>
+<blockquote><p><code>sudo cp k10temp.ko /lib/modules/$(uname -r)/kernel/drivers/hwmon<br />
+sudo depmod<br />
+sudo modprobe k10temp<br />
+echo 'k10temp' | sudo tee -a /etc/modules >/dev/null</code></p></blockquote>
+<p>E riavviamo.. A questo punto l'applet di cui parlavo prima dovrebbe funzionare correttamente.. ;)</p>
+<p><span style="color: #ff0000;"><strong>Terzo passo</strong></span> - Riconfigurare Plymouth</p>
+<p>Il problema &egrave; che Plymouth usa il <strong>KMS</strong> (Kernel Mode Settings, praticamente &egrave; il kernel ad adattare la risoluzione dello schermo), pienamente supportato dai driver open, ma non dai proprietari (che invece ricorrono a <strong>X.Org</strong>).. Procediamo installando per prima cosa <strong>hwinfo</strong> e <strong>v86d</strong>:</p>
+<blockquote><p><code>sudo apt-get hwinfo v86d</code></p></blockquote>
+<p>Diamo il comando:</p>
+<blockquote><p><code>sudo hwinfo --framebuffer</code></p></blockquote>
+<p>Otterremo una lista di linee tipo questa:</p>
+<blockquote><p><code> Mode 0x0323: 1024x768 (+4096), 24 bits</code></p></blockquote>
+<p>Scegliamo la risoluzione che vogliamo (io ho indicato quella che ho scelto) e prendiamone nota, poi dobbiamo fare lo stesso con il monitor:</p>
+<blockquote><p><code>xrandr</code></p></blockquote>
+<p>A questo punto abbiamo tutto, ovviamente scegliamo una risoluzione compatibile con quelle visualizzate prima. Supponiamo di usare la stessa che ho scelto io, dobbiamo riconfigurare <strong>Grub</strong>:</p>
+<blockquote><p><code>sudo gedit /etc/default/grub</code></p></blockquote>
+<p>Dovete modifica le due linee corrispondenti a <code>GRUB_CMDLINE_LINUX_DEFAULT</code> e <code>GRUB_GFXMODE</code> e modificatele in:</p>
+<blockquote><p><code>GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nomodeset video=uvesafb:mode_option=1024x768-24,mtrr=3,scroll=ywrap"<br />
+GRUB_GFXMODE=1024x768</code></p></blockquote>
+<p>Ovviamente se scegliete una risoluzione diversa dovete mettere quella.. Ora modifichiamo il seguente file:</p>
+<blockquote><p><code>sudo gedit /etc/initramfs-tools/modules</code></p></blockquote>
+<p>Aggiungendo alla fine la linea:</p>
+<blockquote><p><code>uvesafb mode_option=1024x768-24 mtrr=3 scroll=ywrap</code></p></blockquote>
+<p>Ovviamente anche qui se avete scelto una risoluzione diversa dovete indicare quella. Non ci resta che dare:</p>
+<blockquote><p><code>echo FRAMEBUFFER=y | sudo tee /etc/initramfs-tools/conf.d/splash</code></p></blockquote>
+<p>Abbiamo quasi finito, dobbiamo solo aggiornare i file di sistema:</p>
+<blockquote><p><code>sudo update-grub2<br />
+sudo update-initramfs -u</code></p></blockquote>
+<p>Ora possiamo riavviare e testare il corretto funzionamento di <strong>Plymouth</strong>.</p>
+<p>Mi rendo conto che &egrave; una procedura molto lunga (spero che siate riusciti ad arrivare fino alla fine prima di addormentarvi), ma ho ritenuto di non spezzettare ulteriormente questa guida, in modo da avere un sistema che torni a funzionare correttamente (almeno spero!!) in un tempo ragionevole..</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/guide/linux/ubuntu/notebook/hp%20dv6/in%20evidenza/2010/05/27/problemi-di-temperatura-di-ubuntu-10-04-lucid-lynx-soluzione-parte-1-riconfigurare-ambiente-grafico.html" data-toggle="tooltip" data-placement="top" title="Problemi di temperatura di Ubuntu 10.04 Lucid Lynx - Soluzione - Parte 1: riconfigurare l'ambiente grafico">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/blog/io/piccole%20soddisfazioni/wordpress/2010/05/31/benvenuti-nel-nuovo-redblue-s-blog.html" data-toggle="tooltip" data-placement="top" title="Benvenuti nel nuovo RedBlue's Blog">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

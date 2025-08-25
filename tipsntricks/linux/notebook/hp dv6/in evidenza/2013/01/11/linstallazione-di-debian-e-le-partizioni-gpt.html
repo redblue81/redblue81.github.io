@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    L&#39;installazione di Debian e le partizioni GPT - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Da anni uso sul mio notebook il dual boot Linux/Windows, e negli ultimi mesi, in cui per motivi di lavoro devo usare Windows, questa esigenza &amp;egrave; ancora...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/tipsntricks/linux/notebook/hp%20dv6/in%20evidenza/2013/01/11/linstallazione-di-debian-e-le-partizioni-gpt.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>L'installazione di Debian e le partizioni GPT</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on January 11, 2013 &middot; <span class="reading-time" title="Estimated read time">
+  
+   3 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Da anni uso sul mio notebook il <strong>dual boot</strong> Linux/Windows, e negli ultimi mesi, in cui per motivi di lavoro devo usare Windows, questa esigenza &egrave; ancora pi&ugrave; pressante.</p>
+<p><a href="/assets/images/dualboot-logo.png"><img class="aligncenter size-full wp-image-3477" alt="dualboot-logo" src="/assets/images/dualboot-logo.png" width="300" height="300" /></a>Fatta questa piccola premessa, recentemente ho rimesso in funzione il mio <strong>notebook HP</strong>, e quindi ho riformattato il disco fisso (<strong>500 GB</strong>), suddividendolo in due parti uguali e installando Windows 7 nella prima.</p>
+<p>Tutto ok, ma quando sono andato ad installare <strong>Debian 6.0.6</strong> (stable che poi diventer&agrave; unstable) &egrave; venuto fuori che l'installer non "<strong>vedeva</strong>" la partizione Windows (normalmente creo nello spazio non allocato una partizione di per il <strong>boot</strong>, una di <strong>swap</strong>, una per <strong>root</strong> e una per la <strong>home</strong>), semplicemente mi dava il disco non partizionato, con lo spazio totale completamente non allocato. Addirittura provando ad usare un <strong>LiveCD</strong>, la partizione Windows veniva correttamente riconosciuta, ma lanciando <strong>GParted</strong> il disco risultava poi non partizionato.</p>
+<p>A questo punto, ho provato a lanciare un <code>fdisk -l</code>, per capire se almeno tale comando riconoscesse la partizione Windows, e mi ha attratto la prima riga dell'output:</p>
+<blockquote><p>WARNING: GPT (GUID Partition Table) detected on '/dev/sda'! The util fdisk doesn't support GPT. Use GNU Parted.</p></blockquote>
+<p>Ecco il problema, il disco ha una tabella di partizioni di tipo <strong>GPT</strong> (GUID Partition Table - su <a href="http://it.wikipedia.org/wiki/GUID_Partition_Table" target="_blank">Wikipedia</a> trovate una veloce descrizione), che non va daccordo con molte distribuzioni Linux, le quali in fase di installazione appunto non riescono a "vedere" eventuali partizioni gi&agrave; presenti sul disco stesso.</p>
+<p>Allora, per risolvere basta usare alcune <strong>utility</strong> presenti ad esempio in <a href="http://www.sysresccd.org/SystemRescueCd_Homepage" target="_blank">SystemRescueCd</a>, un LiveCd Linux utilizzabile proprio per effettuare operazioni di ripristino sul sistema, tra cui ovviamente anche operazioni sui dischi. Una volta avviata, ci troveremo nel prompt dei comandi, e la prima cosa da fare sar&agrave; un backup (non si sa mai), ad esempio con <strong>gdisk</strong> (tool che riconosce la partizioni GPT, si indica il vostro HD, che sar&agrave; probabilmente <code>/dev/sda</code>, comunque meglio ottenere questa informazione con <code>fdisk</code>, e poi usare il comando <strong>b</strong> per il backup).</p>
+<p>Poi, usiamo <strong>fixparts</strong>:</p>
+<pre class="brush: bash; gutter: false">fixparts /dev/sda</pre>
+<p>Diamo<strong> Y</strong> (yes), poi<strong> p</strong> per visualizzare la tabella delle partizioni e se tutto va bene <strong>w</strong> per scriverla su disco. Al riavvio la nostra Debian (ma pi&ugrave; in generale la nostra distribuzione Linux) si installer&agrave; tranquillamente, riconoscendo finalmente la partizione Windows.</p>
+<p>Ovviamente prima di procedere assicuratevi che <code>/dev/sda</code> sia effettivamente il vostro disco, quello su cui state lavorando per capirci!!</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/blog/piccole%20soddisfazioni/in%20evidenza/2013/01/06/redblue-s-blog-top-10-2012.html" data-toggle="tooltip" data-placement="top" title="RedBlue's Blog Top 10 2012">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/linux/debian/in%20evidenza/recensioni/2013/02/17/crunchbang-linux-11-waldorf.html" data-toggle="tooltip" data-placement="top" title="Crunchbang Linux 11 "Waldorf"">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

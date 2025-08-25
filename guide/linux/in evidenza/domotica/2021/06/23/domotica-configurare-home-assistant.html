@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Domotica - Configurare Home Assistant - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Nuovo articolo dedicato alla domotica, oggi vediamo come configurare Home Assistant. In realt&amp;agrave;, a questo punto dovremmo gi&amp;agrave; disporre di un sist...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/linux/in%20evidenza/domotica/2021/06/23/domotica-configurare-home-assistant.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Domotica - Configurare Home Assistant</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on June 23, 2021 &middot; <span class="reading-time" title="Estimated read time">
+  
+   7 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p><!-- wp:paragraph --></p>
+<p>Nuovo articolo dedicato alla <a href="http://localhost:4000/domotica" data-type="page" data-id="4071" target="_blank" rel="noreferrer noopener">domotica</a>, oggi vediamo come <strong>configurare</strong> Home Assistant.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>In realt&agrave;, a questo punto dovremmo gi&agrave; disporre di un sistema che si &egrave; autoconfigurato, dopo <a href="http://localhost:4000/domotica/domotica-installare-home-assistant.html" data-type="post" data-id="4056">l'installazione</a> infatti abbiamo creato un utente (figura sotto) e indicato la nostra posizione sulla mappa, quindi Home Assistant ci avr&agrave; chiesto se vogliamo configurare delle <strong>integrazioni</strong> (in base ai dispositivi che pu&ograve; aver rilevato in casa).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4106,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/hassio_1.png" alt="" class="wp-image-4106"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:more --><br />
+<!--more--><br />
+<!-- /wp:more --></p>
+<p><!-- wp:paragraph --></p>
+<p>Consiglio sia di indicare la posizione di casa sulla mappa (ci torner&agrave; utile per automazioni future, ad esempio "fai qualcosa se siamo tutti fuori casa"), sia di lasciargli configurare eventuali dispositivi (se ci sono, tanto vale iniziare a riconoscerli).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4107,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/hassio_2.png" alt="" class="wp-image-4107"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>La schermata successiva serve a installare Integrazioni, provate a cercare i dispositivi smart che avete in casa, &egrave; abbastanza probabile che l'integrazione relativa esista gi&agrave;. Ad, esempio, provate a cercare ed installare <strong>Meteorologisk institutt (Met.no)</strong>, una semplice integrazione con un servizio meteo gratuito.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4108,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/hassio_3.png" alt="" class="wp-image-4108"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Benissimo, saremo catapultati sulla <strong>plancia</strong> generale, che conterr&agrave; un certo numero di schede (dipende da quello che ha trovato la configurazione iniziale). A questo punto dobbiamo <strong>prendere il controllo</strong>, clicchiamo in alto a destra sui tre puntini e selezioniamo Modifica plancia:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4109,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/hassio_4.png" alt="" class="wp-image-4109"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto ci viene ricordato che la plancia pu&ograve; essere gestita in automatico, ma il nostro scopo &egrave; configurare Home Assistant, quindi prendiamo il controllo.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4110,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/hassio_5.png" alt="" class="wp-image-4110"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>La plancia a questo punto sar&agrave; diversa nell'aspetto rispetto a prima, ma prima di passarla in esame, clicchiamo in basso a sinistra sul nostro nome utente e a destra selezioniamo <strong>Impostazioni avanzate</strong>, cos&igrave; da prendere completamente il controllo.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4111,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/hassio_7.png" alt="" class="wp-image-4111"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto, torniamo sulla plancia, e vedremo che adesso abbiamo un tasto <strong>Aggiungi scheda</strong>, proviamo a cliccare:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"id":4112,"sizeSlug":"large","linkDestination":"none"} --></p>
+<figure class="wp-block-image size-large"><img src="/assets/images/hassio_6-1024x963.png" alt="" class="wp-image-4112"/></figure>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Avremo un elenco di possibili schede da aggiungere, ad esempio ricordate l'integrazione con Meteorologisk institutt? Tra le schede possibili c'&egrave; anche quella relativa a questo servizio, quindi basta cercarla e attivarla:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4113,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/hassio_8-1024x434.png" alt="" class="wp-image-4113"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Fondamentale prendere confidenza con <strong>Supervisor</strong>, lo trovate nella colonna a sinistra. Da questa dashboard potete installare, configurare ed avviare <strong>add-on</strong> per Home Assistant, ne installeremo diverse, ma cominciamo con un paio di base, che conviene sempre tenere attive: <strong>File Editor</strong> e <strong>SSH Terminal</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4114,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/hassio_9-1024x520.png" alt="" class="wp-image-4114"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Il primo lo trovate tra gli add-on ufficiali, in alto, per quanto riguarda il secondo, personalmente preferisco qul'installazioneello della <strong>community</strong>. Per installare un add-on, basta semplicemente selezionarlo e, nella schermata successiva, cliccare su <strong>Installa</strong>. A questo punto avremo questa situazione:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4115,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/hassio_10-1024x560.png" alt="" class="wp-image-4115"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Prima di cliccare su Avvia, possiamo decidere di far avviare il plugin assieme ad Home Assistant, di farlo ripartire automaticamente in caso di errori, di aggiornarsi automaticamente, e possiamo visualizzarlo nella colonna di sinistra.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Inoltre, cosa importantissima, in alto vedremo apparire delle voci tramite le quali accedere alla documentazione, alla configurazione, e al registro (il log). Nel caso di File Editor, possiamo avviare il plugin.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Nel caso di SSH Terminal invece, dovremo andare in <strong>Configurazione</strong> ed inserire una password sufficientemente complessa (altrimenti il plugin, pur avviandosi correttamente, andr&agrave; in errore):</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4116,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/Hassio_11-1024x526.png" alt="" class="wp-image-4116"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>In linea generale, trovate eventuali configurazioni da fare nella scheda <strong>Documentazione</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Prima di concludere, vale la pena dare uno sguardo alla scheda Sistema raggiungibile dalla dashboard di Supervisor:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"id":4117,"sizeSlug":"large","linkDestination":"none"} --></p>
+<figure class="wp-block-image size-large"><img src="/assets/images/hassio_12-1024x598.png" alt="" class="wp-image-4117"/></figure>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Da questa scheda possiamo gestire eventuali aggiornamenti dei componenti del sistema, riavviare Supervisor o direttamente il Raspberry Pi, e abbiamo accesso al log di sistema (la parte in basso), utilissimo in caso di errori strani e/o poco comprensibili.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>L'ultima cosa, che per&ograve; approfondiremo in seguito, da sapere per configurare Home Assistant riguarda la parte relativa ad <strong>Automazioni</strong> e <strong>Scene</strong>, che raggiungiamo da Impostazioni.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>In queste sezioni possiamo decidere di far interagire tra loro dispositivi e/o entit&agrave;, e assegnare comportamenti (azioni) da eseguire in seguito a determinati trigger (eventi).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4118,"sizeSlug":"large","linkDestination":"none"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/hassio_13.png" alt="" class="wp-image-4118"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto, non c'&egrave; molto altro, direi che dalla prossima volta possiamo iniziare a configurare dispositivi.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/guide/in%20evidenza/raspberry%20pi/domotica/2021/06/14/domotica-usare-un-ssd-con-home-assistant.html" data-toggle="tooltip" data-placement="top" title="Domotica - Usare un SSD con Home Assistant">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/guide/linux/in%20evidenza/domotica/2021/06/28/domotica-accedere-a-home-assistant-dallesterno.html" data-toggle="tooltip" data-placement="top" title="Domotica - Accedere a Home Assistant dall'esterno">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

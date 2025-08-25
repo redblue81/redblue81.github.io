@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Pinnacle PCTV Hybrid Pro Stick e330 (ID 2304:0226) su Linux, finalmente!! - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="AGGIORNAMENTO: la nuova Ubuntu 10.04 porta in dote un driver per questo TV Tuner!! Qui c&#39;&amp;egrave; &amp;egrave; la guida.. AGGIORNAMENTO: nel kernel 2.6.31 &amp;egrav...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/linux/debian/ubuntu/hi-tech/2009/05/06/pinnacle-pctv-hybrid-pro-stick-id-23040226-su-linux-finalmente.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Pinnacle PCTV Hybrid Pro Stick e330 (ID 2304:0226) su Linux, finalmente!!</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on May 06, 2009 &middot; <span class="reading-time" title="Estimated read time">
+  
+   7 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p><strong><span style="text-decoration: underline;">AGGIORNAMENTO</span>: la nuova Ubuntu 10.04 porta in dote un driver per questo TV Tuner!! <a href="http://localhost:4000/guide/pinnacle-pctv-hybrid-pro-stick-e330-su-lucid.html" target="_blank">Qui c'&egrave; &egrave; la guida</a>..</strong></p>
+<p><strong><span style="text-decoration: underline;">AGGIORNAMENTO</span>: nel kernel 2.6.31 &egrave; compreso il supporto <span style="text-decoration: underline;">solo</span> alla parte analogica di em28xx, quindi &egrave; inutile tentare di far funzionare il DVB-T!! C'&egrave; chi &egrave; impegnato a trascrivere la parte DVB-T dai vecchi drivers, ma sar&agrave; una cosa complessa, per il momento quindi si pu&ograve; affermare che con Karmic questa scheda &egrave; quasi inutilizzabile purtroppo..</strong></p>
+<p><strong><span style="text-decoration: underline;">AGGIORNAMENTO</span>: grazie a Roberto, ho un backup dei drivers em28xx che trovate <a href="/assets/images/em28xx-new.tar.gz" target="_blank">qui</a>. Confermo quanto scritto nella guida, tali drivers funzionano, a patto che usiate <span style="color: #ff0000;"><span style="text-decoration: underline;">esclusivamente il kernel 2.6.28-11</span></span>, ovvero quello presente di default in Jaunty. Provando a compilarli con altri kernel si ottiene un errore praticamente subito!! In rete circola voce che i drivers dei dispositivi "televisivi" saranno inclusi nativamente nel kernel a partire dal 2.6.31 (quello di Karmic), ma per ora non posso assicurare nulla. Dal test che ho effettuato con tale kernel, &egrave; risultato che effettivamente il dispositivo viene riconosciuto (anche se inizialmente mi veniva richiesto un non meglio precisato firmware), ma la non compatibilit&agrave; dei driver della mia scheda video con quel kernel (accidenti alla ATI) mi ha impedito di poter testare l'effettivo funzionamento.. Inoltre in rete circolano poi alcune patch che dovrebbero consentire l'utilizzo con i kernel 2.6.29 e 2.6.30, ma al momento di scrivere questo aggiornamento, ogni mio tentativo di utilizzarle &egrave; fallito.. Come sempre, chiunque fosse in possesso di notizie pi&ugrave; aggiornate pu&ograve; farsi avanti e condividerle..</strong></p>
+<p><strong></strong><span style="text-decoration: underline;"><strong>ATTENZIONE!! Come segnalato nei commenti, il progetto em28xx su cui si basa questa guida &egrave; stato (momentaneamente??) dismesso, per cui i driver non sono pi&ugrave; disponibili!! NON usate questo metodo, poich&egrave; non potrete portare a termine l'intera procedura. Purtroppo non sono in possesso dei files utilizzati durante la stesura della guida, per cui sono alla ricerca di una soluzione alternativa, nel frattempo se qualcuno fosse in possesso di tali files, farebbe cosa gradita a molti (me compreso) se li rendesse disponibili..</strong></span></p>
+<p>L'oggettino in questione &egrave; questo:</p>
+<p style="text-align: center;"><img class="aligncenter" src="/assets/images/pctv_hybrid_pro_stick_330e_komplet.jpg" alt="" width="384" height="288" /></p>
+<p>Fino a ieri il sottoscritto ha provato in tutti i modi a farlo andare sotto Linux (purtroppo i software proprietari forniti sono esclusivamente per Windows), ma senza esito, poi ho trovato <a href="http://forum.ubuntu-it.org/index.php/topic,285442.0.html" target="_blank">questo</a>, e magicamente tutto &egrave; andato a posto!! Allora vediamo come fare ad installare e far funzionare questa scheda TV esterna. La guida si riferisce alla nuova <strong>Ubuntu 9.04</strong>, ma il procedimento per <strong>Debian</strong> &egrave; analogo..</p>
+<p>Il punto di partenza &egrave; il <a href="http://mcentral.de/wiki/index.php5/Main_Page" target="_blank">sito ufficiale</a> del progetto <strong>Mcentral</strong>, nel quale troviamo le due guide seguenti:</p>
+<ul>
+<li><a href="http://mcentral.de/wiki/index.php5/Installation_Guide" target="_blank">Installation Guide</a></li>
+<li><a href="http://mcentral.de/wiki/index.php5/Using_Guide" target="_blank">Using Guide</a></li>
+</ul>
+<p>Prima di iniziare un consiglio: <span style="text-decoration: underline;">non collegare la scheda alla porta USB per ora!!</span> Pare che ci sia qualche problema se Linux si avvia con la scheda inserita.. Detto questo, per prima cosa <strong>"ripuliamo"</strong> la nostra distribuzione (Debian o Ubuntu che sia):</p>
+<blockquote><p><code>sudo apt-get clean<br />
+sudo apt-get update<br />
+sudo apt-get upgrade<br />
+sudo apt-get autoremove<br />
+sudo apt-get remove linux-headers linux-source linux-headers-$(uname -r)<br />
+sudo apt-get autoremove<br />
+sudo ls -hal /usr/src/<br />
+sudo rm -r /usr/src/*</code></p></blockquote>
+<p>A questo punto possiamo installare tutto il necessario per <strong>compilare i moduli</strong>:</p>
+<blockquote><p><code>sudo apt-get install linux-headers-$(uname -r) build-essential mercurial<br />
+sudo apt-get install linux-source<br />
+cd /usr/src<br />
+sudo tar </code><code>--</code><code>bzip2 -xf linux-source-2.6.*.tar.bz2<br />
+cd ~</code></p></blockquote>
+<p>Prima di proseguire cancelliamo (se sono gi&agrave; presenti) e ricreiamo i seguenti <strong>link simbolici</strong>:</p>
+<blockquote><p><code>sudo rm --verbose /usr/src/linux<br />
+sudo rm </code><code>--</code><code>verbose /lib/modules/$(uname -r)/source<br />
+sudo ln </code><code>--</code><code>symbolic </code><code>--</code><code>verbose /usr/src/linux-source-2.6.28 /usr/src/linux<br />
+sudo ln </code><code>--</code><code>symbolic </code><code>--</code><code>verbose /usr/src/linux-source-2.6.28 /lib/modules/$(uname -r)/source</code></p></blockquote>
+<p>Andiamo a copiare il file di <strong>configurazione</strong> originale nella cartella contenente i sorgenti del kernel:</p>
+<blockquote><p><code>sudo cp --verbose /boot/config-$(uname -r) /usr/src/linux/.config</code></p></blockquote>
+<p>Possiamo finalmente<strong> scaricare e compilare il driver</strong>:</p>
+<blockquote><p><code>cd ~<br />
+rm </code><code>--</code><code>recursive em28xx-new<br />
+hg clone http://mcentral.de/hg/~mrec/em28xx-new<br />
+cd em28xx-new<br />
+bash build.sh build<br />
+sudo bash build.sh install<br />
+sudo depmod -a<br />
+cd ~</code></p></blockquote>
+<p>Non resta che aggiungere il nostro utente al gruppo <code>video</code> e riavviare ($USER va sostituito col vostro nome utente):</p>
+<blockquote><p><code>sudo adduser $USER video<br />
+sudo shutdown -r now</code></p></blockquote>
+<p>Al riavvio potete finalmente collegare la vostra scheda e tutto dovrebbe funzionare.. Almeno cos&igrave; c'&egrave; scritto nella guida ufficiale, in realt&agrave;, almeno al sottoscritto, <span style="text-decoration: underline;">non funzionava nulla!!</span> Ed ecco a cosa serve il post che ho citato inizialmente e che praticamente vado a riportare (<span style="text-decoration: underline;">ATTENZIONE!</span> Si sta parlando specificamente di Ubuntu 9.04, nel caso dovete adattare alla vostra distribuzione):</p>
+<ul>
+<li>reinstallare <code>linux-restricted-modules-2.6.28-11-generic</code> tramite <strong>Synaptic</strong>;</li>
+<li>installare, a seconda delle necessit&agrave;, <strong>uno</strong> di questi 2 pacchetti:
+<ul>
+<li><a href="http://jiemeb.free.fr/pinnacle/em28xx_28-11_i386.deb" target="_blank">http://jiemeb.free.fr/pinnacle/em28xx_28-11_i386.deb</a> (per processori a 32 bit)<a href="http://jiemeb.free.fr/pinnacle/em28xx_28-11_i386.deb" target="_blank"><br />
+</a></li>
+<li><a href="http://jiemeb.free.fr/pinnacle/em28xx_28-11_amd64.deb" target="_blank">http://jiemeb.free.fr/pinnacle/em28xx_28-11_amd64.deb</a> (per processori a 64 bit)</li>
+</ul>
+</li>
+<li>scaricare <a href="http://jiemeb.free.fr/pinnacle/cleanEm28xx.sh" target="_blank">http://jiemeb.free.fr/pinnacle/cleanEm28xx.sh</a>;</li>
+<li>da terminale eseguire:</li>
+</ul>
+<blockquote><p><code>chmod +x cleanEm28xx.sh<br />
+sudo sh cleanEm28xx.sh</code></p></blockquote>
+<p>A questo punto potete riavviare. Dovrebbe finalmente essere tutto installato e funzionante. Io vi consiglio comunque di connettere la scheda sempre <strong>dopo</strong> l'avvio di Linux, onde evitare ogni possibile problema. Potete controllare l'effettivo caricamento del driver con un <code>dmesg</code> dopo aver inserito la scheda..</p>
+<p>Ora bisogna farla funzionare: basta rifarsi alla <span style="text-decoration: underline;">Using Guide</span> che ho linkato sopra, ma se posso darvi un consiglio evitatela, &egrave; mostruosamente complicata (o forse sono io a non averla compresa bene, comunque il massimo che sono riuscito a tirarne fuori &egrave; stata una lista di canali analogici visibile tramite Mplayer da riga di comando); molto meglio installare <strong>Kaffeine</strong> (che si porter&agrave; appresso il runtime di KDE), il quale riconosce in automatico la scheda (se l'installazione &egrave; andata a buon fine), poi basta effettuale una scansione dei canali <strong>DVB-T</strong> (avete capito bene), e il gioco &egrave; fatto.. E funziona anche il <strong>telecomando</strong>!!</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/blog/guide/tipsntricks/wordpress/2009/05/05/gz-calendar-date-style-wp-plugin.html" data-toggle="tooltip" data-placement="top" title="GZ Calendar Date Style WP Plugin">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/taranto/sport/basket/2009/05/11/cras-taranto-campione-ditalia.html" data-toggle="tooltip" data-placement="top" title="Cras Taranto Campione d'Italia!!">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

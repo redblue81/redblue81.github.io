@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Grafica ibrida Intel/AMD e Debian, la mia situazione - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Come dicevo in un post precedente, temevo che sfida pi&amp;ugrave; grande per quanto riguarda la configurazione del mio notebook con Debian sarebbe stata la graf...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/linux/debian/notebook/samsung%20serie%203/2013/08/23/grafica-ibrida-intelamd-debian-la-mia-situazione.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Grafica ibrida Intel/AMD e Debian, la mia situazione</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on August 23, 2013 &middot; <span class="reading-time" title="Estimated read time">
+  
+   2 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Come dicevo in un <a title="La mia (nuova) prima installazione di Debian" href="http://localhost:4000/tips-tricks/la-mia-nuova-prima-installazione-di-debian.html">post precedente</a>, temevo che sfida pi&ugrave; grande per quanto riguarda la configurazione del mio notebook con Debian sarebbe stata la grafica ibrida..</p>
+<p>.. Avevo ragione.. :(</p>
+<p>Il mio notebook ha un <strong>sistema grafico ibrido Intel/AMD</strong> (nello specifico, una <strong>ATI HD 7670M</strong>); come avviene ormai sempre pi&ugrave; spesso, la grafica integrata permette di risparmiare notevolmente la batteria nelle operazioni "comuni". Sto usando i <strong>driver open source</strong> che Debian ha installato in automatico (sia per la parte Intel che per quella AMD).</p>
+<p>La situazione &egrave; semplice, esiste un flag del kernel, <strong>vgaswitcheroo</strong>, che permette lo switch tra scheda integrata (<strong>IGD</strong>) e discreta (o dedicata, <strong>DIS</strong>). Il suo uso sarebbe semplicissimo, pochi comandi da shell per abilitare la scheda dedicata, e per selezionarla a spese di quella integrata. Poi al massimo ci sarebbe da mettere il tutto in uno <strong>script</strong> per dare "eleganza" all'operazione.</p>
+<p>La problematica &egrave; che non vuole saperne di funzionare.. Nello specifico, seguendo le numerosissime guide in rete, riesco ad ottenere (almeno in apparenza) l'<strong>attivazione</strong> della scheda discreta, ma quando tento di effettuare lo <strong>switch</strong> vero e proprio, ecco che inevitabilmente mi ritrovo con lo schermo nero e il sistema <strong>bloccato</strong>.</p>
+<p>Leggendo ancora in rete, credo che il problema sia dovuto alla struttura hardware della grafica ibrida del mio notebook: il mio sistema (e il comportamento dello stesso sotto Windows me lo conferma) usa <strong>sempre e comunque</strong> la scheda integrata, e solo quando il <strong>carico</strong> su questa sale oltre una certa soglia avviene lo switch (del tutto automatico e trasparente) con la dedicata. Evidentemente, questo interagisce negativamente con i driver open di Linux.</p>
+<p>Al momento ammetto di essere fermo ad un punto morto, e sinceramente, poich&egrave; sotto Linux difficilmente mi servir&agrave; mai davvero la scheda dedicata, potrei anche lasciar perdere, ma non sarebbe da me! ;)</p>
+<p>Prima di provare i drivers proprietari (per i quali sarebbe stato sviluppato il supporto completo alla grafica ibrida), far&ograve; qualche altro test. Seguiranno aggiornamenti..</p>
+<p>Stay tuned..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/tipsntricks/linux/debian/2013/08/21/luminosita-xfce.html" data-toggle="tooltip" data-placement="top" title="Salvare il valore di luminosit&agrave; dello schermo su XFCE">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/linux/debian/notebook/samsung%20serie%203/2013/09/24/grafica-ibrida-amdintel-aggiornamento.html" data-toggle="tooltip" data-placement="top" title="Grafica ibrida AMD/Intel, aggiornamento">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

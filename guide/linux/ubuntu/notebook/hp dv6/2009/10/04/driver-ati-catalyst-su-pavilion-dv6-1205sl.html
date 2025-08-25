@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Driver ATI Catalyst su Pavilion DV6-1205sl - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="In relazione a quanto dicevo ieri sulla scheda video del mio nuovo notebook, la ATI Mobility Radeon HD 4530, ho notato che abilitando semplicemente i driver ...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/linux/ubuntu/notebook/hp%20dv6/2009/10/04/driver-ati-catalyst-su-pavilion-dv6-1205sl.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Driver ATI Catalyst su Pavilion DV6-1205sl</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on October 04, 2009 &middot; <span class="reading-time" title="Estimated read time">
+  
+   2 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>In relazione a quanto dicevo <a href="http://localhost:4000/guide/hp-pavilion-dv6-1205sl-e-jaunty.html" target="_blank">ieri</a> sulla scheda video del mio nuovo notebook, la <strong>ATI Mobility Radeon HD 4530</strong>, ho notato che abilitando semplicemente i driver proprietari ATI come avevo consigliato, si ottenevano alcuni rallentamenti nello scrolling delle pagine, nella riproduzione di contenuti Flash (ad esempio i filmati di Youtube) e alcuni colori non corretti su alcune immagini (al limite del bianco e nero). Ho deciso perci&ograve; di scaricare ed installare l'ultimissima versione dei <strong>Catalyst</strong> di ATI (la <strong>9.9</strong>), presi direttamente dal <a href="http://support.amd.com/us/gpudownload/linux/Pages/radeon_linux.aspx?type=2.4.1&product=2.4.1.3.39&lang=English" target="_blank">sito ufficiale</a>.</p>
+<p><span style="text-decoration: underline;">Attenzione!! Ci tengo a precisare che questa &egrave; una procedura che ho voluto eseguire io, ma non &egrave; strettamente necessaria!! Prima verificate il funzionamento dei driver nel vostro caso!!<br />
+</span></p>
+<p>Procediamo..</p>
+<p><strong>Per prima cosa disinstalliamo il vecchio driver</strong>: andiamo in Sistema -> Amministrazione -> Driver hardware e togliamo la spunta (se presente) ai driver proprietari..</p>
+<p><strong>Installiamo ora le dipendenze necessarie all'installazione del nuovo driver</strong>:</p>
+<blockquote><p><code>sudo apt-get install&nbsp; build-essential fakeroot dh-make libstdc++6 gcc-4.3-base dkms module-assistant linux-headers-$(uname -r)</code></p></blockquote>
+<p><strong>Rimuoviamo ora (se presente) XGL</strong>:</p>
+<blockquote><p><code>sudo apt-get --purge remove xserver-xgl</code></p></blockquote>
+<p><strong>Ora esistono due strade per installare il driver; personalmente, ho scelto la pi&ugrave; semplice</strong>.. Portiamoci nella directory dove &egrave; stato scaricato il file e digitiamo:</p>
+<blockquote><p><code>sudo chmod a+x ati-driver-installer-9-9-x86.x86_64.run<br />
+sudo sh ./ati-driver-installer-9-9-x86.x86_64.run</code></p></blockquote>
+<p>A questo punto partir&agrave; l'installazione automatica, alla fine della quale avrete installato il driver. Ora vediamo come effettuare le <strong>ultime configurazioni necessarie</strong>. Da terminale digitiamo:</p>
+<blockquote><p><code>sudo depmod -ae<br />
+cd  /etc/X11<br />
+sudo aticonfig --initial<br />
+sudo aticonfig --overlay-type=Xv</code></p></blockquote>
+<p>Questa &egrave; la procedura standard, che al sottoscritto <strong><span style="text-decoration: underline;">non</span></strong> ha funzionato. Ho sostituito perci&ograve; l'ultimo comando (quello relativo all'overlay) con:</p>
+<blockquote><p><code>sudo aticonfig --overlay-type=opengl</code></p></blockquote>
+<p>Ora si pu&ograve; riavviare. Per verificare la corretta installazione dopo il riavvio digitiamo:</p>
+<blockquote><p><code>fglrxinfo</code></p></blockquote>
+<p>L'output dovrebbe essere questo:</p>
+<blockquote><p><code>display: :0.0  screen: 0<br />
+OpenGL vendor string: ATI Technologies Inc.<br />
+OpenGL renderer string: ATI Mobility Radeon HD 4500 Series<br />
+OpenGL version string: 2.1.8918</code></p></blockquote>
+<p>Possiamo poi verificare anche con:</p>
+<blockquote><p><code>glxinfo | grep "direct rendering"</code></p></blockquote>
+<p>Il cui output dovrebbe essere:</p>
+<blockquote><p><code>direct rendering: Yes</code></p></blockquote>
+<p>Infine suggerisco di <strong>editare il file xorg.conf</strong>:</p>
+<blockquote><p><code>sudo gedit /etc/X11/xorg.conf</code></p></blockquote>
+<p>Aggiungendo alla fine la seguente sezione:</p>
+<blockquote><p><code>Section "Extensions"<br />
+Option		"Composite"	"Enable"<br />
+EndSection</code></p></blockquote>
+<p>Finito.. Ora la parte video funziona come dico io!! ;)</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/guide/linux/ubuntu/hi-tech/notebook/hp%20dv6/2009/10/03/hp-pavilion-dv6-1205sl-e-jaunty.html" data-toggle="tooltip" data-placement="top" title="HP Pavilion DV6-1205sl e Jaunty">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/guide/hi-tech/windows/2009/10/07/creative-zen-mozaic-e-windows-xp-soluzione-definitiva.html" data-toggle="tooltip" data-placement="top" title="Creative ZEN Mozaic e Windows XP: soluzione definitiva!!">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

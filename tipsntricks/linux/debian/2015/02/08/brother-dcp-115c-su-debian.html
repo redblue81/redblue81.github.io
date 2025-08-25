@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Brother DCP-115c su Debian - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Oggi voglio parlare della stampante Brother DCP-115c. Si tratta di una vecchia multifunzione a getto d&#39;inchiostro, acquistata forse 7-8 anni fa, pagata poco,...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/tipsntricks/linux/debian/2015/02/08/brother-dcp-115c-su-debian.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Brother DCP-115c su Debian</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on February 08, 2015 &middot; <span class="reading-time" title="Estimated read time">
+  
+   2 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Oggi voglio parlare della stampante <strong>Brother DCP-115c</strong>.</p>
+<p>Si tratta di una vecchia <strong>multifunzione</strong> a getto d'inchiostro, acquistata forse <strong>7-8 anni fa</strong>, pagata poco, senza chiss&agrave; quali pretese, ma che ha sempre fatto egregiamente il suo dovere (ovviamente &egrave; chiaro che il sottoscritto non ha da stampare fotografie e/o documenti particolari). Oltretutto, ancora oggi trovo senza problemi i consumabili, a prezzi praticamente stracciati.</p>
+<p>Un altro pregio? B&egrave;, dopo tanti anni, il supporto a Linux &egrave; ancora completo e puntuale! Vediamo quindi come installare i drivers per stampante e scanner in Debian, seguendo la nuova procedura pubblicata il <strong>12/03/2014</strong>.</p>
+<p>Andiamo nella <a href="http://support.brother.com/g/b/producttop.aspx?c=it&lang=it&prod=dcp115c_eu_as" target="_blank">pagina relativa alla DCP-115c</a> nel <strong>Solutions Center</strong>, e scegliamo <strong>Download</strong>, poi nella schermata successiva, scegliamo il pacchetto <strong>.deb</strong> per Linux, e probabilmente riceveremo un errore, nulla di preoccupante, clicchiamo su <strong>Chiudi</strong> e inseriamo <strong>English</strong> come lingua di ricerca, ecco che verremo catapultati nella pagina di download dei drivers.</p>
+<p>Benissimo, basta scaricare ora il primo script, il <a href="http://support.brother.com/g/b/downloadend.aspx?c=it&lang=it&prod=dcp115c_eu_as&os=128&dlid=dlf006893_000&flang=4&type3=625" target="_blank">Driver Install Tool</a>. Baster&agrave; cliccare e accettare il contratto di licenza. Una volta scaricato lo script, andiamo nella directory in cui lo abbiamo scaricato, decompattiamolo (avremo scaricato un archivio compresso) e diamogli i permessi di esecuzione:</p>
+<pre class="brush: bash; gutter: false">chmod +x linux-brprinter-installer-2.0.0-1</pre>
+<p>A questo punto, basta dare come root:</p>
+<pre class="brush: bash; gutter: false">sudo ./linux-brprinter-installer-2.0.0-1</pre>
+<p>E lo script ci chieder&agrave; di inserire il modello della stampante, inseriamo DCP-115c e il gioco &egrave; fatto, ci verranno comunicati i pacchetti da scaricare, verrano scaricati ed installati, il tutto condito da varie domande, a cui dovremo praticamente rispondere sempre si (si tratta di accettare le varie licenze d'uso); all'ultima domanda, "Will you specify the DeviceURI?", dovremo invece rispondere No, in quanto presumibilmente la staremo usando collegata direttamente al PC mediante cavo USB (mentre in questo caso ci viene chiesto di inserire l'URI di rete).</p>
+<p>Finito! Facile no?</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/tipsntricks/linux/internet/2014/09/16/supporto-hardware-in-linux-progetto-h-node.html" data-toggle="tooltip" data-placement="top" title="Supporto hardware in Linux: il progetto H-Node">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/tipsntricks/linux/debian/2015/02/09/upgrade-del-flash-player-plugin-flashplugin-nonfree-su-debian.html" data-toggle="tooltip" data-placement="top" title="Upgrade del Flash Player Plugin (flashplugin-nonfree) su Debian">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

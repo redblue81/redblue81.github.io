@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Sfruttare tutta la potenza di WordPress JSON API - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="WordPress JSON API (lo trovate qui) &amp;egrave; un plugin per WP estremamente interessante. Come suggerisce il nome, si tratta di un plugin per WP in grado di m...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/wordpress/in%20evidenza/2016/09/03/usare-wordpress-json-api.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Sfruttare tutta la potenza di WordPress JSON API</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on September 03, 2016 &middot; <span class="reading-time" title="Estimated read time">
+  
+   2 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>WordPress <strong>JSON API</strong> (lo trovate <a href="https://it.wordpress.org/plugins/json-api/" target="_blank">qui</a>) &egrave; un plugin per WP estremamente interessante. Come suggerisce il nome, si tratta di un plugin per WP in grado di mettere a disposizione il contenuto di un sito WordPress semplicemente mediante chiamate <strong>HTTP</strong>.</p>
+<p><strong>Come &egrave; possibile ci&ograve;?</strong></p>
+<p>Semplice, sfruttando <strong>REST</strong> e <strong>JSON</strong>! In parole povere, si tratta della creazione di <strong>webservices</strong>, ovvero servizi in grado di processare e scambiare informazioni tra server ed altre applicazioni mediante chiamate HTTP opportunamente costruite, e della rappresentazione dei dati mediante il celeberrimo formato JSON, facilmente comprensibile per noi umani e altrettanto facilmente elaborabile per le macchine. Un esempio di dati in formato JSON &egrave; il seguente, che rappresenta una lista di utenti:</p>
+<pre class="brush: bash; gutter: false">{"utenti":[
+
+&nbsp; &nbsp; &nbsp; {"username":"utente1", "nome":"Fabio"},
+
+&nbsp; &nbsp; &nbsp; {"username":"utente2", "nome":"Nicola"},
+&egrave;
+&nbsp; &nbsp; &nbsp; {"username":"utente3", "nome":"Giovanni"}
+&egrave;
+]}</pre>
+<p>E' facile intuire che la struttura base &egrave; la coppia <strong>attributo-valore</strong>.</p>
+<p><strong>Quali sono le possibili applicazioni?</strong></p>
+<p>B&egrave;, tutti quegli ambiti in cui abbiamo necessit&agrave; di fornire i contenuti del nostro sito ad alt&egrave;cazioni senza dover necessariamente andare a consultare l'intera pagina web. Oggi moltissime applicazioni di uso comune si basano su questo concetto, le informazioni presenti sul web vengono reperite in formato JSON e successivamente elaborate oppure visualizzate nell'applicazione stessa.</p>
+<p><strong>Come procedere?</strong></p>
+<p>Dopo l'insta&egrave; del plugin WP JSON API, che trovate nel repository ufficiale, e la sua relativa attivazione, basta raggiungere le impostazioni del plugin stesso da <strong>Impostazioni ></strong> JSON API, ed attivare il/i <strong>controller</strong> di vostro interesse. Per controller si intende un modulo che abilita determinate funzionalit&agrave;, ad esempio post recenti, elenco delle categorie, singolo post e cos&igrave; via.</p>
+<p><a href="/assets/images/wp_json_api.png"><img class="aligncenter wp-image-3852 size-medium" title="WP JSON API" src="/assets/images/wp_json_api-300x90.png" alt="wp json api" width="300" height="90" /></a></p>
+<p>Nell'immagine vediamo i controller standard, in realt&agrave; il solo controller&nbsp;<strong>core</strong> &egrave; gi&agrave; sufficiente ad ottenere una gran mole di dati. Ad esempio, per ricevere la lista degli ultimi post in formato json sar&agrave; sufficiente andare all'indirizzo:</p>
+<pre class="brush: shell; gutter: false">http://nome-sito/json/get_recent_posts</pre>
+<p>Ovviamente, &egrave; possibile definire anche controller <strong>personalizzati</strong>.</p>
+<p><strong>Sicurezza</strong></p>
+<p>Ovviamente, se volessimo anche pubblicare oppure modificare le informazioni sul nostro sito, sarebbe necessario avere la possibilit&agrave; di effettuare tali operazioni in sicurezza, per far ci&ograve; ci viene in aiuto un altro plugin: <strong>JSON API Auth</strong> (<a href="https://it.wordpress.org/plugins/json-api-auth/" target="_blank">qui</a>), che andremo ad approfondire in futuro.</p>
+<p>La <strong>documentazione</strong> completa di JSON API la trovate a <a href="https://it.wordpress.org/plugins/json-api/other_notes/" target="_blank">questo indirizzo</a>.</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/tipsntricks/debian/2016/07/20/conversione-m4a-mp3-debian.html" data-toggle="tooltip" data-placement="top" title="Conversione M4A-MP3 in Debian">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/blog/piccole%20soddisfazioni/in%20evidenza/android/programmazione/2016/10/09/disponibile-redblues-blog-android-app.html" data-toggle="tooltip" data-placement="top" title="Disponibile RedBlue's Blog Android App">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

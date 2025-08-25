@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    WP Featured Content Gallery Plugin - Installazione e configurazione - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Penso che lo slideshow dei post &quot;in evidenza&quot; di questo blog sia ben visibile.. Bene, oggi voglio spiegare come &amp;egrave; stato realizzato.. Tutto ruota intor...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/blog/guide/wordpress/in%20evidenza/2010/10/09/wp-featured-content-gallery-plugin-installazione-e-configurazione.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>WP Featured Content Gallery Plugin - Installazione e configurazione</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on October 09, 2010 &middot; <span class="reading-time" title="Estimated read time">
+  
+   5 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Penso che lo <strong>slideshow</strong> dei post "in evidenza" di questo blog sia ben visibile.. Bene, oggi voglio spiegare come &egrave; stato realizzato..</p>
+<p>Tutto ruota intorno al plugin <a href="http://wordpress.org/extend/plugins/featured-content-gallery/" target="_blank">Featured Content Gallery</a>, il quale non fa altro che creare uno slideshow con alcuni post che noi gli andiamo ad indicare. L'installazione &egrave; semplicissima, basta scaricare l'archivio compresso e decomprimerlo, per poi uppare la directory <code>featured-content-gallery</code> nella directory <code>/wp-content/plugins</code> del server; oppure, pi&ugrave; semplicemente, installarlo <strong>automaticamente</strong> online con l'apposita funzione dal pannello di controllo di WP.. ;)</p>
+<p><!--more Continua a leggere..--></p>
+<p>Veniamo alla configurazione, per prima cosa ovviamente il plugin va <strong>attivato</strong>, poi va inserita la seguente linea di codice nel punto in cui vogliamo piazzare il nostro slideshow, quindi da <strong>Aspetto -> Editor</strong> andate nel file del vostro template pi&ugrave; appropriato ed inserite:</p>
+<blockquote><p><code><?php include (ABSPATH . '/wp-content/plugins/featured-content-gallery/gallery.php'); ?></code></p></blockquote>
+<p>A questo punto andiamo nel <strong>Setup</strong> del plugin (dal menu <strong>Impostazioni -> Featured Content Gallery</strong>), questo &egrave; ci&ograve; che vedremo:</p>
+<p style="text-align: center;"><a href="http://www.featuredcontentgallery.com/wp-content/uploads/2009/01/optionsss.jpg"><img class="aligncenter" src="http://www.featuredcontentgallery.com/wp-content/uploads/2009/01/optionsss.jpg" alt="" width="394" height="372" /></a></p>
+<p>Come vedete, le opzioni sono estremamente intuitive, si tratta semplicemente di dichiarare quale <strong>categoria</strong> deve essere collegata alla gallery (o quali <strong>post</strong>), le <strong>dimensioni</strong> della gallery stessa, il <strong>colore</strong> di bordo e sfondo, il <strong>numero di parole</strong> visualizzate nella descrizione e cos&igrave; via..</p>
+<p>Molto importante, la vostra gallery ancora <strong><span style="text-decoration: underline;">non funziona</span></strong>!! Per includere effettivamente gli articoli (attenzione, devono essere <strong>almeno due</strong> perch&egrave; tutto funzioni correttamente), dovete includere un <strong>campo personalizzato</strong> ai post. Come??</p>
+<p>Semplice, <strong>nell'editor</strong> che avete sempre usato per scrivere i vostri post, proprio sotto la finestra di inserimento, esiste una finestra "<strong>Campi personalizzati</strong>"; bene, in questa finestra cliccate su <strong>Aggiungere nuovo</strong> e poi come <strong>nome</strong> usate <code>articleimg</code> e come <strong>valore</strong> l'URL dell'immagine che dovr&agrave; apparire nella gallery, poi cliccate su <strong>Aggiungi campo personalizzato</strong>. Ovviamente questo va fatto per <strong><span style="text-decoration: underline;">ogni</span></strong> post da includere in gallery (nel mio caso, ogni articolo della categoria in evidenza, compreso questo)..</p>
+<p>A questo punto &egrave; tutto a posto, la gallery funziona!!</p>
+<p>O no?!?!?!?</p>
+<p>Dopo aver configurato il tutto, mi sono reso conto che il mio blog <span style="text-decoration: underline;">si era ridotto ai soli 5 articoli compresi nella gallery</span>!!</p>
+<p>Questo problema non si presenta sempre, come descritto nel <a href="http://www.featuredcontentgallery.com/forum/fcg-in-header-php-causing-pages-to-only-show-featured-conten-1401-10.html" target="_blank">forum ufficiale del plugin</a>, &egrave; un problema dovuto all'inserimento della linea di codice relativa al plugin nel file <code>header.php</code> del template (cosa che ovviamente avviene per questo blog); in tal caso (e solo in tal caso, altrimenti il plugin funziona subito!!) la soluzione consiste nel modificare il file <code>gallery.php</code> del plugin.</p>
+<p>Andate allora in <strong>Plugin -> Editor</strong> e nel box <strong>in alto a destra</strong> selezionate il plugin Featured Content Gallery, cliccate su Seleziona e poi cliccate sul file <code>featured-content-gallery/gallery.php</code>, nel box accanto semplicemente sovrascrivete l'intero contenuto con il seguente:</p>
+<blockquote>
+<pre>
+  <div id="featured">
+ <script type="text/javascript">
+  function startGallery() {
+   var myGallery = new gallery($('myGallery'), {
+    timed: true
+   });
+  }
+  window.addEvent('domready',startGallery);
+ </script>
+ <style type="text/css">
+  .jdGallery .slideInfoZone
+  {
+    height: <?php echo get_option('gallery-info'); ?>px;
+  }
+ </style>
+ <div id="myGallery">
+ <?php
+  $imgthumb = get_option('gallery-use-thumb-image') ? "thumbnailimg" : "articleimg";
+  $wordquantity = get_option('gallery-rss-word-quantity') ?&nbsp; get_option('gallery-rss-word-quantity') : 100;
+  if (get_option('gallery-way') == 'new')&nbsp; &nbsp;{//new way
+   $arr = split(",",get_option('gallery-items-pages'));
+  if (get_option('gallery-randomize-pages'))
+   {
+    shuffle($arr);
+   }&
+  foreach ($arr as $post_or_page_id)
+   {
+    get_a_post($post_or_page_id); ?>
+    <div>
+     <h2><?php the_title() ?></h2>
+      <?php
+       if(get_option('gallery-use-featured-content')) {?>
+        <p><?php $key="featuredtext"; echo get_post_meta($post->ID, $key, true); ?></p>
+        <?php
+       } else {
+        ?>
+        <p><?php the_content_rss('', 0, '', $wordquantity); ?></p>
+        <?php
+       }
+      ?>
+      <a href="<?php the_permalink() ?>" title="Read More"></a>
+      <img src="<?php $key="articleimg"; echo get_post_meta($post->ID, $key, true); ?>" alt="<?php $key="alttext"; echo get_post_meta($post->ID, $key, true); ?>" />
+      <img src="<?php $key=$imgthumb; echo get_post_meta($post->ID, $key, true); ?>" alt="<?php $key="alttext"; echo get_post_meta($post->ID, $key, true); ?>" />
+      </div>
+      <?php
+     } ?>
+     </div>
+     <?php
+    }
+   else { ?>
+    <?php $my_query = new WP_Query('category_name=' . get_option('gallery-category') . '&amp;showposts=' . get_option('gallery-items'));&nbsp; &nbsp;?>
+    <?php while ($my_query->have_posts())
+   {
+   $my_query->the_post();&nbsp; ?>
+   <div>
+   <h2><?php the_title() ?></h2>
+   <?php
+   if(get_option('gallery-use-featured-content')) {?>
+    <p><?php $key="featuredtext"; echo get_post_meta($post->ID, $key, true); ?></p>
+    <?php
+   } else {
+    ?>
+    <p><?php the_content_rss('', 0, '', $wordquantity); ?></p>
+    <?php
+   }
+   ?>
+   <a href="<?php the_permalink() ?>" title="Read More"></a>
+   <img src="<?php $key="articleimg"; echo get_post_meta($post->ID, $key, true); ?>" alt="<?php $key="alttext"; echo get_post_meta($post->ID, $key, true); ?>" />
+   <img src="<?php $key=$imgthumb; echo get_post_meta($post->ID, $key, true); ?>" alt="<?php $key="alttext"; echo get_post_meta($post->ID, $key, true); ?>" />
+   </div>
+   <?php } ?>
+   </div>
+   <?php
+  }?>
+</div></pre>
+</blockquote>
+<p>A questo punto avete finito.. Cliccate su <strong>Aggiorna file</strong>, selezionate gli articoli da evidenziare e godetevi la vostra gallery!! ;)</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/miti/internet/youtube/2010/10/08/doodle-video-di-google-dedicato-a-john-lennon.html" data-toggle="tooltip" data-placement="top" title="Doodle video di Google dedicato a John Lennon">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/tipsntricks/linux/2010/10/10/verifica-della-somma-md5-di-un-file-in-linux.html" data-toggle="tooltip" data-placement="top" title="Verifica della somma MD5 di un file in Linux">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

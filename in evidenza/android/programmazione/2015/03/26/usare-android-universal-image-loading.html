@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Usare Android Universal Image Loading - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Recentemente ho avuto necessit&amp;agrave; di caricare dinamicamente dal web delle immagini in una ListView all&#39;interno di un&#39;app Android. Operazione non complic...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/in%20evidenza/android/programmazione/2015/03/26/usare-android-universal-image-loading.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Usare Android Universal Image Loading</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on March 26, 2015 &middot; <span class="reading-time" title="Estimated read time">
+  
+   2 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Recentemente ho avuto necessit&agrave; di caricare dinamicamente dal web delle immagini in una <strong>ListView</strong> all'interno di un'app <strong>Android</strong>. Operazione non complicatissima, ma ci&ograve; che non mi soddisfaceva del codice che avevo scritto erano le <strong>prestazioni</strong> che ero riuscito ad ottenere.</p>
+<p>Con un rapido giro in rete, ho trovato la libreria <a title="Android Universal Image Loading" href="https://github.com/nostra13/Android-Universal-Image-Loader" target="_blank">Android Universal Image Loading</a>, con la quale ho risolto praticamente ogni problema.</p>
+<p>Si tratta di uno strumento pratico e veloce per il caricamento e la visualizzazione di immagini nelle nostre app, con moltissime opzioni di configurazione che aiutano proprio nella gestione delle prestazioni (un occhio di riguardo va sempre tenuto per quanto riguarda velocit&agrave; e consumo di dati).</p>
+<p>L'uso di base &egrave; davvero semplice, dopo aver <strong>importato</strong> la libreria nel progetto, basta dichiarare la <strong>configurazione</strong> di base:</p>
+<pre class="brush: java; gutter: true">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
+
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;.cacheInMemory(true).imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2)
+
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;.displayer(new FadeInBitmapDisplayer(300)).build();
+
+
+
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
+
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;context).defaultDisplayImageOptions(defaultOptions)
+
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;.memoryCache(new WeakMemoryCache()).build();
+
+
+
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;ImageLoader.getInstance().init(config);</pre>
+<p>Ovviamente, quelli che vedete sono i settaggi che ho scelto di utilizzare io, per una mappa completa delle possibilit&agrave; offerte vi rimando alla pagina ufficiale del progetto su GitHub: <a title="Android Universal Image Loading" href="https://github.com/nostra13/Android-Universal-Image-Loader" target="_blank">Android Universal Image Loading</a>.</p>
+<p>Dopo la configurazione iniziale (io ad esempio l'ho inserita nel costruttore dell'Adapter relativo alla mia ListView), basta richiamare nel codice giusto due istruzioni:</p>
+<pre class="brush: java; gutter: true">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; imageLoader = ImageLoader.getInstance();
+
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;imageLoader.displayImage(obj.getImage(), image);</pre>
+<p>Avendo cura di dichiarare nel nostro codice un <strong>oggetto</strong> appartenente alla classe <strong>ImageLoader</strong> (che il sottoscritto con molta fantasia ha chiamato proprio imageLoader). Ovviamente nel mio esempio i due parametri passati al metodo <strong>displayImage</strong> altro non sono che l'URL dell'immagine e la ImageView in cui l'immagine stessa sar&agrave; poi visualizzata.</p>
+<p>Ovviamente Android Universal Image Loader permette il caricamento di immagini anche da fonti diverse rispetto al web, sempre tenendo d'occhio lo sfruttamento delle risorse del dispositivo.</p>
+<p>Semplice no?</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/tipsntricks/linux/debian/2015/02/09/upgrade-del-flash-player-plugin-flashplugin-nonfree-su-debian.html" data-toggle="tooltip" data-placement="top" title="Upgrade del Flash Player Plugin (flashplugin-nonfree) su Debian">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/programmazione/2015/03/29/cosa-sono-i-database-non-relazionali-nosql.html" data-toggle="tooltip" data-placement="top" title="Cosa sono i database non relazionali (NoSQL)">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>
