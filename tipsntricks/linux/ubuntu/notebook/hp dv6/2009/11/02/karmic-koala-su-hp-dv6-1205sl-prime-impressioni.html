@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Karmic Koala su HP DV6-1205sl: prime impressioni - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="E&#39; stata rilasciata Karmic Koala, la nuova versione (9.10) di Ubuntu!! Chiaramente, non potevo non installarla.. Premetto che parlo di un&#39;installazione nuova...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/tipsntricks/linux/ubuntu/notebook/hp%20dv6/2009/11/02/karmic-koala-su-hp-dv6-1205sl-prime-impressioni.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Karmic Koala su HP DV6-1205sl: prime impressioni</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on November 02, 2009 &middot; <span class="reading-time" title="Estimated read time">
+  
+   2 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>E' stata rilasciata <strong>Karmic Koala</strong>, la nuova versione (<strong>9.10</strong>) di Ubuntu!! Chiaramente, non potevo non installarla.. Premetto che parlo di un'installazione <strong>nuova di zecca</strong>, non di un aggiornamento. Devo dire che, rispetto a Jaunty, sono piacevolmente sorpreso.. Riguardo i tre aspetti che non mi erano piaciuti con la vecchia versione (vedere "<a href="../guide/hp-pavilion-dv6-1205sl-e-jaunty.html" target="_blank">HP Pavilion DV6-1205sl e Jaunty</a>"):</p>
+<ul>
+<li>il <strong>wireless</strong> ora funziona direttamente, senza bisogno di installare alcun pacchetto aggiuntivo..</li>
+<li>per l'<strong>audio</strong> non &egrave; pi&ugrave; necessario l'aggiornamento di Alsa, ma mi &egrave; bastato editare il file <code>/etc/modprobe.d/alsa-base.conf</code> come segue:<br />
+<blockquote><p><code>sudo gedit /etc/modprobe.d/alsa-base.conf</code></p></blockquote>
+<p>L'ultima riga era:</p>
+<blockquote><p><code>options snd-hda-intel power_save=10 power_save_controller=N</code></p></blockquote>
+<p>Io ho solo aggiunto alla fine <span style="text-decoration: line-through;"><code>model=hp-hdx</code>:</span></p>
+<blockquote><p><span style="text-decoration: line-through;"><code>options snd-hda-intel power_save=10 power_save_controller=N model=hp-hdx</code></span></p></blockquote>
+<p><span style="text-decoration: line-through;"><span style="color: #ff0000;"><strong>EDIT</strong></span>: grazie alla segnalazione di V, mi sono reso conto che inserendo il jack delle cuffie si ottiene lo strano effetto che le cuffie stesse funzionano, ma resta attivo anche l'altoparlante del notebook.. Al momento non ho trovato una soluzione (l'aggiornamento di Alsa non ha dato esito positivo), vi terr&ograve; aggiornati..<br />
+<span style="color: #ff0000;"><strong>EDIT 2</strong></span>: dopo un'altra prova, ho trovato il sistema per disabilitare gli altoparlanti quando si inseriscono le cuffie.. Nella maniera pi&ugrave; artigiale del mondo, da terminale digitare:</span></p>
+<blockquote><p><span style="text-decoration: line-through;"><code>alsamixer -Dhw</code></span></p></blockquote>
+<p><span style="text-decoration: line-through;">spostarsi con le frecce alla voce <strong>Speaker</strong> e premere <strong>m</strong> per disabilitarlo, poi una volta staccate le cuffie ripremere <strong>m</strong> per riabilitarlo.. E' orribile come soluzione lo so, prometto che cercher&ograve; di trovarne una pi&ugrave; elegante!! ;) </span><br />
+<span style="color: #ff0000;"><strong>RISOLTO</strong></span>!! Grazie ad un segnalazione nei commenti, ho scoperto che l'opzione corretta da aggiungere &egrave; la seguente:</p>
+<blockquote><p><code>model=hp-dv5</code></p></blockquote>
+<p>E funzionano cos&igrave; perfettamente anche le cuffie..</li>
+<li>per la <strong>parte video</strong>, non &egrave; cambiato nulla, va alla grande, basta scaricare l'ultima versione dei Catalyst da <a href="http://support.amd.com/it/gpudownload/Pages/index.aspx" target="_blank">qui</a>, e poi procedere come <a href="http://localhost:4000/guide/driver-ati-catalyst-su-pavilion-dv6-1205sl.html" target="_blank">ho descritto in precedenza</a>..<br />
+<span style="color: #ff0000;"><strong>EDIT</strong></span>: oppure si possono installare i driver Open Souce, come descritto <a href="http://localhost:4000/guide/effetti-3d-su-karmic-con-driver-ati-open-source-addio-fglrx.html" target="_blank">qui</a>.. ;)</li>
+</ul>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/linux/ubuntu/software/videogames/abandonware/punta-e-clicca/2009/10/29/abandonware-su-linux-con-scummvm.html" data-toggle="tooltip" data-placement="top" title="Abandonware su Linux con ScummVM">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/guide/linux/ubuntu/notebook/hp%20dv6/2009/11/05/aggiornare-alsa-dai-sorgenti.html" data-toggle="tooltip" data-placement="top" title="Aggiornare Alsa dai sorgenti..">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

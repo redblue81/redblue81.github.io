@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Domotica - Automazioni e scene su Home Assistant - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Poter accendere e spegnere una lampadina dall&#39;app di Home Assistant &amp;egrave; bello, ma usare automazioni e scene rende il tutto veramente fantastico! In ques...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/in%20evidenza/raspberry%20pi/domotica/2021/08/01/domotica-automazioni-e-scene-su-home-assistant.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Domotica - Automazioni e scene su Home Assistant</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on August 01, 2021 &middot; <span class="reading-time" title="Estimated read time">
+  
+   5 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p><!-- wp:paragraph --></p>
+<p>Poter accendere e spegnere una lampadina dall'app di Home Assistant &egrave; bello, ma usare <strong>automazioni e scene</strong> rende il tutto veramente fantastico!</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><a href="http://localhost:4000/domotica" data-type="page" data-id="4071" target="_blank" rel="noreferrer noopener">In questa pagina</a> c'&egrave; il riepilogo di tutto ci&ograve; che abbiamo fatto finora, oggi invece ci concentriamo su come iniziare ad automatizzare davvero il funzionamento dei nostri dispositivi.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Immaginiamo di voler gestire l'illuminazione di una stanza, con automazioni e scene diventa semplicissimo.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:more --><br />
+<!--more--><br />
+<!-- /wp:more --></p>
+<p><!-- wp:paragraph --></p>
+<p>Supponiamo di avere, in un salone ad esempio, due lampadari separati, uno con un'unica lampadina, l'altro con tre lampadine, tutte smart ovviamente.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Per prima cosa, <strong>le raggruppiamo tutte insieme</strong>, chiamandole genericamente "Salone" (in modo da poterle spegnere ed accendere tutte insieme), poi <strong>raggruppiamo anche le tre</strong> del secondo lampadario, chiamandole ad esempio "LuciTV", come fare? Basta editare il file <strong>configuration.yaml</strong> (<a rel="noreferrer noopener" href="http://localhost:4000/domotica/domotica-configurare-home-assistant.html" data-type="URL" data-id="https://www.red-blue.it/domotica/domotica-configurare-home-assistant.html" target="_blank">avete installato l'add on File Editor vero?</a>) ed inserire il seguente codice:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"yaml"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">light:
+  - platform: group
+    name: LuciTV
+    entities:
+      - light.tv_1
+      - light.tv_2
+      - light.tv_3
+  - platform: group
+    name: Salone
+    entities:
+      - light.tv_1
+      - light.tv_2
+      - light.tv_3
+      - light.tavolo_salone</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ovviamente, diamo per scontato che tutte le lampadine siano state aggiunte a <a rel="noreferrer noopener" href="http://localhost:4000/domotica/domotica-deconz.html" data-type="post" data-id="4135" target="_blank">Deconz</a>. A questo punto, dopo un riavvio di Home Assistant, possiamo procedere con <strong>automazioni e scene</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>In primo luogo, baster&agrave; aggiungere alla <strong>plancia principale</strong> una nuova scheda <strong>Pulsante </strong>relativa all'entit&agrave; Salone che abbiamo appena creato, ed ecco che saremo in grado di accendere e spegnere tutte le lampadine in un colpo solo.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ma potremo anche decidere di creare un pulsante per il gruppo LuciTV, e vari pulsanti per le singole lampadine, in modo da gestirle una alla volta.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Potremmo decidere arbitrariamente di accendere tutte le luci al tramonto (magari in salone non &egrave; il massimo, ma immaginate una lampadina sul terrazzo ad esempio), o spegnere tutto ad una certa ora (stile caserma).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Andiamo in <strong>Impostazioni -> Automazioni</strong>, poi <strong>Crea automazione</strong> e scegliamo di creare un'automazione <strong>vuota</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Le diamo un nome, come attivazione mettiamo ad esempio <strong>Sole -> Tramonto</strong>, sotto, nelle <strong>Azioni </strong>scegliamo tra i Dispositivi una lampadina, e clicchiamo su Accendi, salviamo e il gioco &egrave; fatto! Tutto estremamente semplice ed intuitivo!</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>E se volessimo impostare uno stato particolare per il nostro salone? Ad esempio, vogliamo vedere un film, quindi spegniamo la lampadina del tavolo, e settiamo un colore per il gruppo LuciTV, magari con luminosit&agrave; al 30%.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Settiamo le nostre lampadine come descritto, poi andiamo in <strong>Impostazioni -> Scene</strong>, poi <strong>Nuova scena</strong>, diamole un nome e semplicemente scegliamo tutti i dispositivi che vogliamo includere, uno alla volta, poi salviamo. Salveremo cos&igrave; anche lo stato in cui si trovano.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Successivamente, baster&agrave; attivare la scena appena creata e tutti i dispositivi assumeranno lo stato desiderato.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>E se avessimo un sensore di movimento in casa?</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Potremmo impostare un'automazione che ad esempio accende le luci se rileva un movimento, o ancora sfruttare una webcam (alle quali dedicher&ograve; un articolo a parte) per inviare sul nostro smartphone una foto in caso venga rilevato un movimento mentre non siamo in casa.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<!--
+<p>Per chi potesse essere interessato, io su Amazon ho trovato questo kit di lampadine smart ZigBee, spesso vengono proposte in offerta, ma in generale moltissime lampadine WiFi/ZigBee sono compatibili con Home Assistant. Vi lascio anche il link di un paio di sensori di movimento dal prezzo davvero irrisorio.</p>
+-->
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:html --><br />
+<!--
+  <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-eu.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=redblue03-21&language=it_IT&o=29&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B07VHRP4PS&linkId=808cba61e068b05e2d328ce41ee426cd"></iframe><br />
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-eu.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=redblue03-21&language=it_IT&o=29&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B07VD9LR3T&linkId=bf1f1ec7ea116570e48ed2eafc3380fd"></iframe><br />
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-eu.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=redblue03-21&language=it_IT&o=29&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B0817QP9NJ&linkId=1d26aed7dc1e01313fe13eef3e22c67c"></iframe><br />
+-->
+<!-- /wp:html --></p>
+<p><!-- wp:paragraph --></p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>E se volessimo controllare tutto con <strong>Alexa</strong>?</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/guide/in%20evidenza/raspberry%20pi/domotica/2021/07/17/domotica-deconz.html" data-toggle="tooltip" data-placement="top" title="Domotica - Deconz">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/guide/linux/in%20evidenza/domotica/2021/08/30/domotica-integrare-home-assistant-con-alexa.html" data-toggle="tooltip" data-placement="top" title="Domotica - Integrare Home Assistant con Alexa">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

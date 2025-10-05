@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Conoscere il comando Top di Linux - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Il comando Top di Linux serve a monitorare in tempo reale lo stato dei processi di sistema. Pu&amp;ograve; essere utile a scoprire cosa sta impegnando severament...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/linux/2020/06/12/conoscere-il-comando-top-di-linux.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Conoscere il comando Top di Linux</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on June 12, 2020 &middot; <span class="reading-time" title="Estimated read time">
+  
+   4 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p><!-- wp:paragraph --></p>
+<p>Il comando <strong>Top</strong> di Linux serve a monitorare in tempo reale lo <strong>stato</strong> dei processi di sistema.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Pu&ograve; essere utile a scoprire cosa sta impegnando severamente la <strong>CPU</strong> oppure cosa c'&egrave; nella <strong>RAM</strong> (magari un processo "cresciuto" troppo). Si tratta di un comando estremamente comodo e di semplice interpretazione, installato di default in gran parte delle distribuzioni Linux pi&ugrave; comuni.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Per lanciarlo, semplicemente scriviamo:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">top</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:more {"customText":"Continua a leggere..."} --><br />
+<!--more Continua a leggere...--><br />
+<!-- /wp:more --></p>
+<p><!-- wp:paragraph --></p>
+<p>Otterremo una schermata come questa:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4025,"sizeSlug":"large"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="/assets/images/top_linux.png" alt="comando-top-linux" class="wp-image-4025"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:tadv/classic-paragraph --></p>
+<p>Cerchiamo ora di capire cosa ci racconta il comando Top.</p>
+<p>Nella <strong>prima</strong> riga, che inizia con <strong>top</strong>, troviamo:</p>
+<ul>
+<li>ora attuale</li>
+<li>uptime della macchina, cio&egrave; il tempo trascorso dall'avvio del sistema</li>
+<li>utenti connessi</li>
+<li>load average, ovvero il carico medio del sistema rispettivamente nell&rsquo;ultimo minuto, negli ultimi 5 minuti, nelll&rsquo;ultimo quarto d&rsquo;ora. Valori intorno a 1 non sono preoccupanti, valori maggiori di 1 indicano che un processo per essere eseguito deve attendere. L'attesa sar&agrave; maggiore tanto pi&ugrave; risulta maggiore questo valore.</li>
+</ul>
+<p>Nella <strong>seconda</strong> riga, che inizia con <strong>Tasks</strong>, troviamo:</p>
+<ul>
+<li>processi in esecuzione</li>
+<li>processi attivi</li>
+<li>processi in sleeping</li>
+<li>processi stoppati</li>
+<li>processi zombie, cio&egrave; processi avviati da un processo padre che attendono di essere fermati da quest'ultimo</li>
+</ul>
+<p>Nella <strong>terza</strong> riga, che inizia con <strong>CPU</strong>, troviamo:</p>
+<ul>
+<li>carico dei processi utente</li>
+<li>carico dei processi di sistema</li>
+<li>carico dei processi con priorit&agrave; di aggiornamento <em>nice</em></li>
+<li>percentuale di inattivit&agrave; della cpu</li>
+<li>percentuale dei processi in attesa di operazioni I/O</li>
+<li>percentuale della CPU per interrupt hardware</li>
+<li>percentuale della CPU per interrupt software</li>
+<li>"quantit&agrave;" di CPU usata da (eventuali) macchine virtuali</li>
+</ul>
+<p>Ad esempio nel mio caso vediamo che i processi utente occupano l'1,8% della CPU, mentre i processi di sistema lo 0,5%.</p>
+<p>Nella <strong>quarta</strong> e <strong>quinta</strong> riga troviamo le informazioni relative alla memoria <strong>RAM</strong> e all'area di <strong>SWAP</strong>.</p>
+<p>Infine, abbiamo <strong>l'elenco</strong> di tutti i processi in esecuzione, ognuno corredato da una serie di informazioni utili a capire lo stato del processo stesso e il suo impatto sul sistema:</p>
+<ul>
+<li><strong>PID</strong> &ndash; ID del processo</li>
+<li><strong>USER</strong> &ndash; utente proprietario del processo</li>
+<li><strong>PR</strong> &ndash; priorit&agrave; in cui il processo &egrave; stato lanciato</li>
+<li><strong>NI</strong> &ndash; valore rappresentante il valore &ldquo;NICE&rdquo;</li>
+<li><strong>VIRT</strong> &ndash; memoria virtuale utilizzata dal processo</li>
+<li><strong>RES</strong> &ndash; memoria fisica utilizzata dal processo</li>
+<li><strong>SHR</strong> &ndash; memoria condivisa dal processo&nbsp;</li>
+<li><strong>S</strong> &ndash; stato del processo:&nbsp;<strong>S</strong>=sleep&nbsp;<strong>R</strong>=esecuzione&nbsp;<strong>Z</strong>=zombie</li>
+<li><strong>%CPU</strong> &ndash; percentuale del processo sul carico sulla cpu</li>
+<li><strong>%MEM</strong> &ndash; percentuale del processo sul carico della RAM</li>
+<li><strong>TIME+</strong> &ndash; tempo di attivit&agrave; del processo</li>
+<li><strong>COMMAND</strong> &ndash; nome del processo</li>
+</ul>
+<p>Possiamo anche manipolare le informazioni visualizzate dal comando Top, usando le seguenti opzioni:</p>
+<p>M &ndash; ordina sulla base della memoria in uso<br />P &ndash; ordina sulla base della CPU in uso<br />T &ndash; ordina sulla base del tempo complessivo<br />z &ndash; cambia colore<br />k &ndash; chiude un processo<br />q &ndash; esce dal comando Top</p>
+<p>Ad esempio per killare un processo con ad esempio PID 1234, basta premere la lettera k e inserire 1234 come PID.</p>
+<p>Attenzione perch&egrave; le opzioni appena viste rispettano maiuscole e minuscole.</p>
+<p>Esiste anche una versione pi&ugrave; evoluta del comando Top, il comando HTop, che spesso per&ograve; non &egrave; presente di default. Mi riservo di parlarne in futuro in un post apposito.</p>
+<p>Alla prossima..</p>
+<p><!-- /wp:tadv/classic-paragraph --></p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/guide/linux/in%20evidenza/2020/06/10/modificare-la-landing-page-di-greenlight.html" data-toggle="tooltip" data-placement="top" title="Modificare la landing page di Greenlight">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/tipsntricks/linux/lmde/2020/09/27/realtek-802-11ac-rtl8812au-su-lmde-4.html" data-toggle="tooltip" data-placement="top" title="Realtek 802.11ac (rtl8812au) su LMDE 4">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

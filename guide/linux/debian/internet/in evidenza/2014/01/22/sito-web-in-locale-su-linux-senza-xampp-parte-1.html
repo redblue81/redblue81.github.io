@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Sito web in locale su Linux senza XAMPP - Parte 1 - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Quando si realizza un sito web, sarebbe buona regola non mettere tutto subito online, ma sviluppare e testare tutto in locale, sul proprio pc, per poi passar...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/linux/debian/internet/in%20evidenza/2014/01/22/sito-web-in-locale-su-linux-senza-xampp-parte-1.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Sito web in locale su Linux senza XAMPP - Parte 1</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on January 22, 2014 &middot; <span class="reading-time" title="Estimated read time">
+  
+   4 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Quando si realizza un sito web, sarebbe buona regola <strong>non</strong> mettere tutto subito online, ma sviluppare e testare tutto in <strong>locale</strong>, sul proprio pc, per poi passare online quando si &egrave; ragionevolmente certi che il sito sia abbastanza (per non dire del tutto) completo. Anche in termini di prestazioni, sicuramente il sito web in locale permette tempi di attesa e caricamento estremamente pi&ugrave; brevi.</p>
+<p>Basta fare un giro in rete per rendersi conto che esiste un modo semplicissimo per avere un sito web in locale, ovvero installare un software che si chiama <strong>Xampp</strong>, esistente sia per Windows che per Linux. Personalmente, usando <strong>Linux</strong>, &egrave; una soluzione che <strong>non</strong> condivido, in quanto il sistema operativo del pinguino possiede tutti gli strumenti per mettere su il nostro piccolo server locale su cui caricare il nostro sito web in locale (detto anche <strong>LAMP</strong>, ovvero <strong>L</strong>inux <strong>A</strong>pache <strong>M</strong>ySQL <strong>P</strong>HP), pi&ugrave; qualche piccolo accorgimento che, soprattutto nel caso di un sito sviluppato con Wordpress, possono tornare utili (di questo per&ograve; parler&ograve; nella <strong>seconda parte</strong> di questa guida).</p>
+<p><!--moreContinua a leggere..--></p>
+<p>Cominciamo!</p>
+<p>Per prima cosa installiamo <strong>Apache</strong> (il <strong>webserver</strong> che ci servir&agrave; per far "girare" il nostro sito):</p>
+<pre class="brush: bash; gutter: false">sudo apt-get install apache2</pre>
+<p>A questo punto, apriamo un browser e andiamo all'indirizzo:</p>
+<pre class="brush: bash; gutter: false">http://localhost</pre>
+<p>E se tutto &egrave; andato bene, visualizzeremo una pagina del genere:</p>
+<p><a href="/assets/images/apache.png"><img class="aligncenter size-medium wp-image-3621" src="/assets/images/apache-300x96.png" alt="apache" width="300" height="96" /></a>Bene, passiamo ad installare tutto il resto:</p>
+<pre class="brush: bash; gutter: false">sudo apt-get install php5 libapache2-mod-php5 mysql-server</pre>
+<p>E al termine <strong>riavviamo</strong> Apache:</p>
+<pre class="brush: bash; gutter: false">sudo service apache2 restart</pre>
+<p>Per testare il <strong>PHP</strong>, basta creare un file con estensione <strong>.php</strong>, ad esempio <code>test.php</code>, con all'interno le semplici righe di codice:</p>
+<pre class="brush: php; gutter: true"><?php
+
+   phpinfo();
+
+?></pre>
+<p>Poi creiamo una directory (come <strong>root</strong>) all'interno di <code>/var/www/</code> (la directory predefinita di Apache per i nostri contenuti web), le assegnamo i <strong>permessi</strong> giusti, ad esempio, supponendo di aver creato la directory <code>myfiles</code>, con il comando:</p>
+<pre class="brush: bash; gutter: false">sudo chmod 777 /var/www/myfiles</pre>
+<p>Copiamo al suo interno (ora potremo farlo anche da utente <strong>normale</strong>) il file che abbiamo creato prima e puntiamo il browser su di esso, ovvero andiamo all'indirizzo:</p>
+<pre class="brush: bash; gutter: false">http://localhost/myfiles/test.php</pre>
+<p>Avremo come risposta una pagina che riassume la <strong>configurazione</strong> di PHP, tipo questa:</p>
+<p><a href="/assets/images/php.png"><img class="aligncenter size-medium wp-image-3624" src="/assets/images/php-268x300.png" alt="php" width="268" height="300" /></a>Infine, per testare <strong>MySQL</strong>, proporrei di installare <strong>phpMyAdmin</strong>, comodissa utility per la gestione dei database:</p>
+<pre class="brush: bash; gutter: false">sudo apt-get install phpmyadmin</pre>
+<p>Al termine dell'installazione, testiamo andando col browser all'indirizzo:</p>
+<pre class="brush: bash; gutter: false">http://localhost/phpmyadmin</pre>
+<p>Avremo una maschera di <strong>lo&egrave;ong> come questa:</p>
+<p><a href="ht&egrave;.red-blue.it/wp-content/uploads/php2.png"><img class="aligncenter size-medium wp-image-3629" src="/assets/images/php2-290x300.png" alt="php2" width="290" height="300" /></a>Il nome utente e la password saranno ovviamente quelli che avete <strong>definito</strong> in fase di installazione (personalmente, anche se non si dovrebbe fare, spesso uso l'utente root senza password).</p>
+<p>Abbiamo finito, il nostro server &egrave; completo, basta inserire i nostri contenuti web da testare in <code>/var/www/directory</code>_personale e andarli a visualizzare nel browser tramite <code>localhost</code>. Stessa storia ovviamente vale per <strong>Wordpress</strong>, baster&agrave; copiare i files di installazione in quella directory e avviare l'installazione esattamente come faremmo online e potremo iniziale a sviluppare il sito web in locale, con la possibilit&agrave; di testare tutti i suoi componenti.</p>
+<p>E il bello &egrave; che lo avremo sempre a disposizione! Senza dover avviare un apposito programma!! ;)</p>
+<p>Appuntamento alla <strong>seconda</strong> e ultima parte di questa guida per continuare a parlare di Wordpress..</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/blog/riflessioni/2014/01/06/classifica-10-articoli-piu-letti-del-2013.html" data-toggle="tooltip" data-placement="top" title="Classifica: i 10 articoli più letti del 2013">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/guide/linux/debian/internet/wordpress/in%20evidenza/2014/01/26/sito-web-in-locale-su-linux-senza-xampp-parte-2.html" data-toggle="tooltip" data-placement="top" title="Sito web in locale su Linux senza XAMPP - Parte 2">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    CORS Filter in Java per applicazioni web - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Forse in molti avranno sentito parlare di Cross Origin Resource Sharing (CORS). Un caso estremamente comune per le applicazioni web &amp;egrave; quello del reper...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/tipsntricks/programmazione/2018/04/19/cors-filter-in-java-per-applicazioni-web.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>CORS Filter in Java per applicazioni web</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on April 19, 2018 &middot; <span class="reading-time" title="Estimated read time">
+  
+   1 min  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Forse in molti avranno sentito parlare di Cross Origin Resource Sharing (<strong>CORS</strong>). Un caso estremamente comune per le <strong>applicazioni web</strong> &egrave; quello del reperimento dei dati mediante un web service di tipo <strong>REST</strong>, la nostra applicazione quindi andr&agrave; a reperire i dati da mostrare attraverso un servizio esposto.</p>
+<p>Purtroppo, per limitare l'eventualit&agrave; di attacchi informatici, i browser moderni applicano la restrizione <strong>same-origin</strong>; senza entrare in dettagli, un'applicazione web su un dominio A non riuscir&agrave; a chiamare il servizio REST esposto su un dominio B.</p>
+<p>In <strong>Java</strong>, esistono vari modi per aggirare tale restrizione, una semplicissima consiste nello scrivere una classe CORSFilter che, come dice il nome stesso, &egrave; un filtro CORS personalizzato:</p>
+<pre class="brush: java; gutter: true">import java.io.IOException;
+
+
+
+import javax.servlet.Filter;
+
+import javax.servlet.FilterChain;
+
+import javax.servlet.FilterConfig;
+
+import javax.servlet.ServletException;
+
+import javax.servlet.ServletRequest;
+
+import javax.servlet.ServletResponse;
+
+import javax.servlet.http.HttpServletRequest;
+
+import javax.servlet.http.HttpServletResponse;
+
+
+
+public class CORSFilter implements Filter {
+
+	
+
+	@Override
+
+	public void init(FilterConfig filterConfig) throws ServletException {
+
+		// TODO Auto-generated method stub
+
+		
+
+	}
+
+
+
+	@Override
+
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+
+			throws IOException, ServletException {
+
+		
+
+		HttpServletRequest req = (HttpServletRequest) request;
+
+ 
+
+        // Autorizza tutti i domini a consumare il servizio
+
+        ((HttpServletResponse) response).addHeader("Access-Control-Allow-Origin", "*");
+
+        ((HttpServletResponse) response).addHeader("Access-Control-Allow-Methods", "GET, OPTIONS, HEAD, PUT, POST, DELETE");
+
+        ((HttpServletResponse) response).addHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+ 
+
+        HttpServletResponse resp = (HttpServletResponse) response;
+
+ 
+
+        if (req.getMethod().equals("OPTIONS")) {
+
+            resp.setStatus(HttpServletResponse.SC_ACCEPTED);
+
+            return;
+
+        }
+
+ 
+
+        chain.doFilter(request, response);
+
+		
+
+	}
+
+
+
+	@Override
+
+	public void destroy() {
+
+		// TODO Auto-generated method stub
+
+		
+
+	}
+
+
+
+}</pre>
+<p>Per poi registrarla come filtro nel <strong>web.xml</strong>:</p>
+<pre class="brush: xml; gutter: true"><filter>
+
+    <filter-name>CorsFilter</filter-name>
+
+    <filter-class>nomedelpackage.CORSFilter</filter-class>
+
+</filter>
+
+ 
+
+<filter-mapping>
+
+    <filter-name>CorsFilter</filter-name>
+
+    <url-pattern>/*</url-pattern>
+
+</filter-mapping></pre>
+<p>Da ricordare che le righe qui sopra vanno inserite prima del tag <strong><servlet></strong>.</p>
+<p>Tutto qui.. Adesso il filtro CORS funziona a dovere.</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/tipsntricks/raspberry%20pi/2017/05/10/realizzare-un-timelapse-raspberry-pi-montare-video.html" data-toggle="tooltip" data-placement="top" title="Timelapse con Raspberry Pi - Montare il video con Avidemux">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/tipsntricks/android/2019/01/31/waze-e-amazon-music-su-android-auto-con-miui.html" data-toggle="tooltip" data-placement="top" title="Waze e Amazon Music su Android Auto con MIUI">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

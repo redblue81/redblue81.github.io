@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Autenticarsi in Debian tramite LDAP - Parte 1 - Installazione server - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="LDAP (LightWeight Directory Access Protocol) &amp;egrave; un protocollo standard per l&#39;interrogazione e la modifica dei servizi di directory, come ad esempio un ...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/linux/debian/in%20evidenza/server/2015/10/15/autenticarsi-in-debian-tramite-ldap-parte-1-installazione-server.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Autenticarsi in Debian tramite LDAP - Parte 1 - Installazione server</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on October 15, 2015 &middot; <span class="reading-time" title="Estimated read time">
+  
+   7 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>LDAP (LightWeight Directory Access Protocol) &egrave; un <em>protocollo standard per l'interrogazione e la modifica dei servizi di directory, come ad esempio un elenco aziendale di email o una rubrica telefonica, o pi&ugrave; in generale qualsiasi raggruppamento di informazioni che pu&ograve; essere espresso come record di dati ed organizzato in modo gerarchico</em> (fonte <strong>Wikipedia</strong>). Esso permette in parole povere di memorizzare e gestire dati, relativi esempio ad utenti di un sistema, su un server, per poi gestirli a livello client. Pu&ograve; essere molto utile per gestire ad esempio un archivio <strong>centralizzato</strong> di utenti di una rete locale; vedremo come installarlo su Debian e come configurarlo affinch&egrave; l'accesso al sistema sui client (ovvero l'<strong>autenticazione</strong>) possa avvenire usando (anche) utenti remoti memorizzati sul server.</p>
+<p><a href="/assets/images/LDAPworm.gif"><img class="aligncenter size-medium wp-image-3791" src="/assets/images/LDAPworm-300x118.gif" alt="LDAPworm" width="300" height="118" /></a><br />
+<!--moreContinua a leggere...-->Si tratta di un protocollo <strong>complesso</strong>, utilizzabile in svariate situazioni, altamente configurabile (anche se a mio modesto parere, la configurazione alle volte risulta piuttosto macchinosa): quello che sar&agrave; mostrato &egrave; solo un <strong>esempio</strong> di utilizzo, in quanto una trattazione davvero esaustiva pretenderebbe praticamente un intero corso dedicato a LDAP. Questa &egrave; una configurazione che ho realizzato nella pratica io stesso per un progettino di qualche tempo fa. Non pretendo che sia la migliore possibile, n&eacute; che sia l'unica possibile, per&ograve; funziona.</p>
+<p>Prima di proseguire, fissiamo una <strong>configurazione</strong> di esempio per il nostro server:</p>
+<ul>
+<li>IP: 192.168.10.100</li>
+<li>Hostname: server.red-blue.local</li>
+</ul>
+<p>Il primo passo consiste nell'<strong>installazione</strong> di OpenLDAP, l'implementazione open source del protocollo LDAP, sulla macchina server, per farlo su Debian diamo come <strong>root</strong>:</p>
+<pre class="brush: bash; gutter: false">apt-get install slapd ldap-utils</pre>
+<p>Durante l'installazione ci verr&agrave; richiesta una <strong>password</strong> di amministrazione per LDAP, baster&agrave; fornirla e confermarla; inoltre, dovremo rispondere anche ad una serie di domande, diciamo che si pu&ograve; rispondere nel seguente modo:</p>
+<ul>
+<li>Omettere la configurazione del server di OpenLDAP? <strong>No</strong></li>
+<li>Nome di dominio: <strong>red-blue.local</strong></li>
+<li>Nome dell'organizzazione: <strong>red-blue.local</strong></li>
+<li>Password di amministrazione: <strong>fornire password</strong></li>
+<li>Conferma password: <strong>ripetere la password</strong></li>
+<li>Database di backend: <strong>HDB</strong></li>
+<li>Rimuovere il database se slapd viene disinstallato: <strong>No</strong></li>
+<li>Muovere il vecchio database: <strong>Si</strong></li>
+<li>Abilitare LDAPv2: <strong>No</strong></li>
+</ul>
+<p>A questo punto la configurazione &egrave; completa, e possiamo <strong>testare</strong> in maniera molto semplice:</p>
+<pre class="brush: bash; gutter: true">ldapsearch -x</pre>
+<p>Da dare sempre come root. Il risultato dovrebbe essere qualcosa del genere:</p>
+<pre class="brush: shell; gutter: true">&nbsp;# extended LDIF
+
+ #
+
+ # LDAPv3
+
+ # base <dc=unixmen,dc=local> (default) with scope subtree
+
+ # filter: (objectclass=*)
+
+ # requesting: ALL
+
+ #
+
+ # red-blue.local
+
+ dn: dc=red-blue,dc=local
+
+ objectClass: top
+
+ objectClass: dcObject
+
+ objectClass: organization
+
+ o: red-blue
+&egrave;
+ dc: red-blue
+
+ # admin, red-blue.local
+
+ dn: cn=admin,dc=red-blue,dc=local
+
+ objectClass: simpleSecurityObject
+
+ objectClass: organizationalRole
+
+ cn: admin
+
+ description: LDAP administrator
+
+ # search result
+&egrave;
+ search: 2
+
+ result: 0 Success
+
+ # numResponses: 3
+
+ # numEntries: 2</pre>
+<p>In pratica, ci viene detto che il server presenta solo l'utente admin, relativo al dominio che abbiamo specificato. Ora, il database &egrave; <strong>vuoto</strong>, occorre <strong>popolarlo</strong> con gli utenti che poi potranno autenticarsi su un qualsiasi sistema. Prima di procedere per&ograve;, come ulteriore conferma, apriamo il file <code>/etc/ldap/ldap.conf</code>, dovremmo vedere qualcosa di simile:</p>
+<pre class="brush: bash; gutter: true">#
+
+ # LDAP Defaults
+
+ #
+
+ # See ldap.conf(5) for details
+
+ # This file should be world readable but not world writable.
+
+ BASE dc=red-blue,dc=local
+
+ URI ldap://192.168.10.100 ldap://server.red-blue.local
+
+ #SIZELIMIT 12
+
+ #TIMELIMIT 15
+
+ #DEREF never
+
+ # TLS certificates (needed for GnuTLS)
+
+ TLS_CACERT /etc/ssl/certs/ca-certificates.crt</pre>
+<p>Da notare&egrave;e <strong>BASE</strong> e <strong>URI</strong>, che contengono le informazioni principali, soprattutto per quanto riguarda l'URI. Se le due righe dovessero essere commentate, decommentatele e modificatele aggiungendo i dati necessari.</p>
+<p>Se dovesse essere necessario, riavviate LDAP con il comando (sempre come root mi raccomando!):</p>
+<pre class="brush: bash; gutter: false">service slapd restart</pre>
+<p>Dicevamo, occorre popolare il database: quello di LDAP &egrave; un database con un'organizzazione <strong>gerarchica</strong>, per cui di fatto avremo una specie di <strong>albero</strong>, a partire dalla radice fino ad arrivare alle foglie (gli utenti). Proviamo ad aggiungere un paio di <strong>organizationalUnit</strong> (gruppi all'interno dei quali poi potremo inserire gli utenti), creiamo un file <code>orgunits.ldif</code> con all'interno:</p>
+<pre class="brush: shell; gutter: true">dn: ou=Groups,dc=red-blue,dc=local
+
+ou: Groups
+
+objectClass: top
+
+objectClass: organizationalUnit
+
+&nbsp;
+
+dn: ou=People,dc=red-blue,dc=local
+
+ou: People
+
+objectClass: top
+
+objectClass: organizationalUnit</pre>
+<p>Dopo aver salvato il file, diamo il comando:</p>
+<pre class="brush: bash; gutter: false">ldapadd -x -D cn=admin,dc=red-blue,dc=local -w 123456 -f orgunits.ldif</pre>
+<p>In pratica, ci stiamo autenticando come admin, fornendo la password (supponiamo che sia banalmente 123456) e indichiamo come fonte di informazioni il file appena creato.</p>
+<p>A questo punto, non ci resta che provare ad inserire un <strong>utente</strong>, facciamolo creando il file <code>user.ldif</code>:</p>
+<pre class="brush: shell; gutter: true">dn: uid=user1,ou=People,dc=red-blue,dc=local
+
+uid: user1
+
+cn: Utente di Test
+
+givenName: user1
+
+sn: user1
+
+objectClass: inetOrgPerson
+
+objectClass: posixAccount
+
+loginShell: /bin/bash
+
+uidNumber: 1000
+
+gidNumber: 1000
+
+homeDirectory: /home/user
+
+&nbsp;
+
+dn: cn=user1,ou=Groups,dc=red-blue,dc=local&egrave;&egrave;
+
+objectClass: posixGroup
+
+cn: user1
+
+gidNumber:1000</pre>
+<p>E come prima, dopo aver salvato, diamo il comando:</p>
+<pre class="brush: bash; gutter: false">ldapadd -x -D cn=admin,dc=red-blue,dc=local -w 123456 -f user.ldif</pre>
+<p>Se tutto &egrave; andato bene, il comando:</p>
+<pre class="brush: bash; gutter: false"> ldapsearch -x</pre>
+<p>Adesso restituir&agrave; qualcosa del genere:</p>
+<pre class="brush: shell; gutter: true"># extended LDIF
+
+ #
+
+ # LDAPv3
+
+ # base <dc=unixmen,dc=local> (default) with scope subtree
+
+ # filter: (objectclass=*)
+
+ # requesting: ALL
+
+ #
+
+ # red-blue.local
+
+ dn: dc=red-blue,dc=local
+
+ objectClass: top
+
+ objectClass: dcObject
+
+ objectClass: organization
+
+ o: red-blue
+
+ dc: red-blue
+
+ # admin, red-blue.local
+
+ dn: cn=admin,dc=red-blue,dc=local
+
+ objectClass: simpleSecurityObject
+
+ objectClass: organizationalRole
+
+ cn: admin
+
+ description: LDAP administrator
+
+ # Groups, red-blue.local
+
+ dn: ou=Groups,dc=red-blue,dc=local
+
+ objectClass: organizationalUnit
+
+ objectClass: top
+
+ ou: Groups
+
+ # People, red-blue.local
+
+ dn: ou=People,dc=red-blue,dc=local
+
+ objectClass: organizationalUnit
+
+ objectClass: top
+
+ # user1, People, red-blue.local
+
+ dn: uid=user1,ou=People,dc=red-blue,dc=local
+
+ gidNumber: 1000
+
+ homeDirectory: /home/user
+
+ sn: user
+
+ givenName: Utente di Test
+
+ loginShell: /bin/bash
+
+ objectClass: inetOrgPerson
+
+ objectClass: posixAccount
+
+ objectClass: top
+
+ uidNumber: 1000
+
+ uid: user1
+
+ # search result
+
+ search: 2
+
+ result: 0 Success
+
+ # numResponses: 6
+
+ # numEntries: 5</pre>
+<p>Per ora direi che basta cos&igrave;, il server LDAP &egrave; configurato e <strong>funzionante</strong>. Il mio consiglio &egrave; quello di cercare di fare un pochino di pratica con questi elementi prima di proseguire. Vedremo in seguito come configurare anche un <strong>client</strong> e, infine, uno strumento che potrebbe facilitarci la vita nella gestione del server LDAP.</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/tipsntricks/linux/2015/10/11/monitoraggio-del-traffico-di-rete-con-slurm.html" data-toggle="tooltip" data-placement="top" title="Monitoraggio del traffico di rete con Slurm">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/guide/linux/debian/in%20evidenza/2015/10/19/autenticarsi-in-debian-tramite-ldap-parte-2-installazione-client.html" data-toggle="tooltip" data-placement="top" title="Autenticarsi in Debian tramite LDAP - Parte 2 - Installazione client">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

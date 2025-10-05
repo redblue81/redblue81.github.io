@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Notifica automatica se un dispositivo va offline - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Come fare a sapere se un dispositivo va offline? Può essere un server domestico, ad esempio per la domotica, oppure può essere usato come “alert” del fatto c...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/domotica/raspberrypi/2024/07/27/notifica-automatica-dispositivo-offline.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+<header class="masthead" style="background-image: url('/assets/images/smart-home-3096219_1920-768x512.jpg')">
+  
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Notifica automatica se un dispositivo va offline</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on July 27, 2024 &middot; <span class="reading-time" title="Estimated read time">
+  
+   3 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Come fare a sapere se un dispositivo va <strong>offline</strong>? Può essere un server domestico, ad esempio per la domotica, oppure può essere usato come “alert” del fatto che manca la corrente in casa, in generale può essere utile ricevere una notifica se un dispositivo va offline.</p>
+
+<p>Sto per partire per le vacanze, e recentemente mi sta succedendo che, a causa di una situazione un po’ “instabile” nella mia zona, il salvavita in casa scatta più del dovuto. Chiaramente, in caso questo succeda mentre siamo via, può diventare un problema, quindi mi serve qualcosa che mi avvisi, in modo che io possa a mia volta avvisare qualcuno di andare a controllare.</p>
+
+<p>Ho pensato quindi di ricevere una notifica se il mio piccolo server domotico (un Raspberry Pi sul quale gira Home Assistant) va offline e ci resta per almeno 15 minuti.</p>
+
+<p>Per realizzare questo piccolissimo progetto, si può usare un servizio esterno, come ad esempio <a href="https://healthchecks.io/" target="_blank">healthchecks.io</a>.</p>
+
+<p>Usarlo è semplicissimo, basta registrarsi e si avrà accesso al piano gratuito (hobbyist), più che sufficiente per i miei scopi:</p>
+
+<p><img src="/assets/images/healthchecks_pricing.png" alt="healthcheck.io pricing" style="display:block; width: 100%; margin-left:auto; margin-right:auto" /></p>
+
+<p>A questo punto, basta creare un <strong>check</strong> e configurarlo a seconda delle nostre necessità, il <strong>period</strong> rappresenta ogni quanto tempo il servizio si aspetta un ping, il <strong>grace</strong> è il limite temporale oltre il quale avremo la notifica del <strong>DOWN</strong>. Una volta configurato avremo un link, il servizio usa quel link come check appunto. Quindi basterà che il nostro dispositivo esegua periodicamente una richiesta a quel link, e se tale richiesta fallisce, dopo il periodo di grace avremo la notifica.</p>
+
+<p>La notifica di default è via mail, io ho attivato anche l’integrazione con Telegram, ma di integrazioni ce ne sono davvero un’infinita, con praticamente qualsiasi applicazione.</p>
+
+<p>A questo punto, come dicevo sopra, il mio dispositivo è un Raspberry con installato Home Assistant, quindi basta configurare un <strong>restful_service</strong> che fa il ping sul link del mio check.</p>
+
+<p>Un restful_service va aggiunto direttamente sul <strong>configurations.yaml</strong>, in questo modo:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">rest_command</span><span class="p">:</span>
+  <span class="n">raspberry_pi_online</span><span class="p">:</span>
+    <span class="n">url</span><span class="p">:</span> <span class="o">*</span><span class="n">link_healthchecks</span><span class="o">*</span>
+    <span class="n">method</span><span class="p">:</span> <span class="n">GET</span></code></pre></figure>
+
+<p>Poi basta creare un’<strong>automazione</strong> che chiama quel servizio ad esempio ogni 5 minuti, e il gioco è fatto!</p>
+
+<p>Una piccola nota a margine, mi rendo conto che questo “sistema” non è certo una soluzione al problema di casa mia (in teoria, potrebbe andare offline il Raspberry senza che la corrente sia andata via tra l’altro), ho già chiamato l’elettricista per quando rientro (adesso davvero non c’è tempo), così come un salvavita con riarmo automatico potrebbe essere più utile, visto che riattiverebbe tutto automaticamente, ma anche per questo ci vuole l’elettricista e, ripeto, non c’è il tempo adesso.</p>
+
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/guide/blog/2023/08/23/jekyll-generatore-di-siti-statici.html" data-toggle="tooltip" data-placement="top" title="Jekyll, generatore di siti statici">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/guide/windows/programmazione/2024/08/11/trasferire-foto-da-iphone-a-pc-e-catalogarle-automaticamente.html" data-toggle="tooltip" data-placement="top" title="Trasferire foto da iPhone a PC e catalogarle automaticamente">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

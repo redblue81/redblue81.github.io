@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Aprire la porta SSH 22222 su Home Assistant - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Questa guida su come aprire la porta SSH 22222 su Home Assistant &amp;egrave; indirettamente collegata alla serie di articoli sulla domotica, in quanto servir&amp;ag...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/linux/debian/raspberry%20pi/domotica/2021/06/09/aprire-la-porta-ssh-22222-su-home-assistant.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Aprire la porta SSH 22222 su Home Assistant</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on June 09, 2021 &middot; <span class="reading-time" title="Estimated read time">
+  
+   3 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p><!-- wp:paragraph --></p>
+<p>Questa guida su come aprire la porta SSH <strong>22222 </strong>su Home Assistant &egrave; indirettamente collegata alla serie di articoli sulla <a href="http://localhost:4000/domotica" data-type="page" data-id="4071">domotica</a>, in quanto servir&agrave; per collegare un<strong> disco SSD</strong> al nostro Raspberry Pi che funge da server.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":4079,"sizeSlug":"medium","linkDestination":"none","className":"is-style-default"} --></p>
+<div class="wp-block-image is-style-default">
+<figure class="aligncenter size-medium"><img src="/assets/images/1200px-Home_Assistant_Logo.svg_-300x300.png" alt="" class="wp-image-4079"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Prima di iniziare, un minimo di <strong>teoria</strong>: la porta 22222 &egrave; l'unica a dare accesso alla distribuzione di Home Assistant, consentendo di fare praticamente qualsiasi cosa. Non dovrebbe mai essere usata, in quanto tutto dovrebbe passare dall'interfaccia grafica. Attenzione, &egrave; diverso dagli add-on SSH che si possono installare, poich&egrave; in quel caso si accede tramite container Docker, in parole povere si pu&ograve; accedere solo a ci&ograve; che hanno deciso gli sviluppatori.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:more --><br />
+<!--more--><br />
+<!-- /wp:more --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ovviamente, la porta 22222 su Home Assistant deve restare quanto pi&ugrave; possibile <strong>privata</strong>, si possono fare danni considerevoli utilizzandola in maniera errata!</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Detto questo, procediamo!</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><strong>Primo passo</strong>, formattare una chiavetta USB di qualsiasi dimensione con file system NTFS, ext4 o FAT, e dare alla partizione l'etichetta CONFIG (maiuscolo, come l'ho scritto).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><strong>Secondo passo</strong>, creiamo una coppia di chiavi pubblica/privata: basta digitare da un terminale:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">ssh-keygen</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Premere Invio per mantenere inalterato il nome del file creato, <strong><span style="text-decoration: underline;">NON INSERIRE UNA PASSPHRASE</span></strong>, e nella directory /home/vostroutente/.ssh ci ritroveremo i due files <strong>id_rsa </strong>e <strong>id_rsa.pub</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto, copiate la chiave pubblica nella pendrive precedentemente formattata e rinominatelo in <strong>authorized_keys </strong>(minuscolo e senza estensione).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Fatto questo, inseriamo la pendrive nel Raspberry, logghiamoci su Home Assistant, poi <strong>Supervisor -> Sistema</strong>, sezione <strong>Host </strong>e clicchiamo sui tre puntini in basso a destra, e successivamente su "<strong>Import from USB</strong>".</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Aggiorniamo il log e dovremmo vedere delle righe simili a queste:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">INFO (MainThread) [supervisor.hardware.monitor] Detecting HardwareAction.ADD usb hardware /dev/bus/usb/001/004
+INFO (MainThread) [supervisor.hassos] Synchronizing configuration from USB with Home Assistant Operating System.
+INFO (MainThread) [supervisor.host.services] Restarting local service hassos-config.service</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Potrebbe non funzionare al primo colpo, in tal caso pu&ograve; aiutare un <strong>riavvio </strong>del Raspberry.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto, basta dare:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"bash"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">ssh root@ipdihomeassistant -p 22222</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>E dovreste aver accesso alla command line! In tal caso, siete riusciti ad aprire la porta SSH 22222 su Home Assistant, non resta che digitare <strong>login</strong> e siete dentro, ma ricordate sempre, <strong>DA GRANDI POTERI DERIVANO GRANDI RESPONSABILITA'!</strong></p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/guide/linux/in%20evidenza/domotica/2021/06/03/domotica-backup-di-home-assistant.html" data-toggle="tooltip" data-placement="top" title="Domotica - Backup di Home Assistant">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/guide/in%20evidenza/raspberry%20pi/domotica/2021/06/14/domotica-usare-un-ssd-con-home-assistant.html" data-toggle="tooltip" data-placement="top" title="Domotica - Usare un SSD con Home Assistant">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

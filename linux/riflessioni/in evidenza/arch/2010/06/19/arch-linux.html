@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Arch Linux - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Molto tempo fa (cfr. &quot;Ho deciso di cambiare distribuzione Linux..&quot;) scrissi che avevo intenzione di cambiare distribuzione.. B&amp;egrave; penso che sia chiaro c...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/linux/riflessioni/in%20evidenza/arch/2010/06/19/arch-linux.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Arch Linux</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on June 19, 2010 &middot; <span class="reading-time" title="Estimated read time">
+  
+   7 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Molto tempo fa (cfr. "<a href="http://localhost:4000/io/breaking-news-ho-deciso-di-cambiare-distribuzione-linux.html" target="_blank">Ho deciso di cambiare distribuzione Linux..</a>") scrissi che avevo intenzione di cambiare distribuzione.. B&egrave; penso che sia chiaro che non sia stato un cambiamento radicale.. In tutto questo tempo ho continuato ad usare Ubuntu, e nel frattempo ho testato varie distribuzioni (cosa che continuo a fare tutt'ora). A questo punto per&ograve;, direi che &egrave; il momento di buttar gi&ugrave; qualche riga sull'unica distribuzione che sto testando in maniera approfondita e continuativa: <strong>Arch</strong>.</p>
+<p>Cominciamo dall'abc, cos'&egrave; Arch? Cito direttamente dal <a href="http://www.archlinux.it/" target="_blank">sito</a> della community italiana di Arch:</p>
+<blockquote><p><em>Arch Linux &egrave; una distribuzione linux non specializzata che pu&ograve; essere  modellata per fare praticamente di tutto. E' veloce, leggera, flessibile  e molti dei suoi componenti "sotto il cofano" sono abbastanza semplici  da capire e mettere a punto: ci&ograve; rende Arch Linux una buona distro su  cui fare esperienza . . .</em></p>
+<p><em>. . . Arch Linux adopera un sistema a "rolling release" . . . </em></p>
+<p><em>. . . Arch Linux &egrave; una distribuzione adattabile, progettata per soddisfare le  necessit&agrave; dell'utente linux competente.</em></p></blockquote>
+<p>Chiaramente il documento originale &egrave; ben pi&ugrave; dettagliato, io qui ho voluto mettere in evidenza alcuni aspetti che mi hanno particolarmente colpito quando mi sono avvicinato a questa distro la prima volta.</p>
+<p><!--more Continua a leggere questo articolo..--></p>
+<p>Per prima cosa, &egrave; vero, <strong><span style="text-decoration: underline;">Arch &egrave; veloce, leggera e flessibile</span></strong>, e il motivo &egrave; semplicissimo: l'installazione di default installa solo lo stretto indispensabile ad avviare il sistema, non c'&egrave; null'altro, non c'&egrave; il server X, n&eacute; l'ambiente grafico, n&eacute; programmi vari per l'utilizzo del pc in generale, non c'&egrave; nemmeno un frontend grafico per il gestore dei paccheti, che si chiama pacman (e sappiate sin d'ora che pacman si usa praticamente solo da riga di comando). Questo porta ovviamente <strong>leggerezza</strong>, e di conseguenza <strong>velocit&agrave;</strong>, in quanto molto difficilmente nel sistema ci sar&agrave; software e/o moduli "aggiuntivi" rispetto a quello di cui si necessita. Per farvi un esempio, io spesso dopo la fresh install di una nuova release di Ubuntu come prima cosa (ammesso che l'installazione sia andata a buon fine) disinstallo un p&ograve; di software che non mi serve. Con Arch questo non succede, si installa solo ci&ograve; che serve, e questo spiega ampiamente anche l'ultimo aggettivo, <strong>flessibile</strong>. Flessibilit&agrave; data anche dal fatto, secondo me, che gran parte delle configurazioni di sistema si realizza modificando opportunamente un solo file, <code><strong>rc.conf</strong></code>.</p>
+<p><a href="/assets/images/arch-linux-logo.jpg"><img class="aligncenter size-full wp-image-1802" title="arch-linux-logo" src="/assets/images/arch-linux-logo.jpg" alt="" width="383" height="321" /></a></p>
+<p style="text-align: center;">
+<p>Ma soprattutto ritengo importante sottolineare che questo &egrave; ottimo per "<strong>fare esperienza</strong>".. Io stesso ammetto che mai prima di usare Arch mi ero interessato alla possibilit&agrave; di installare Gnome non completo, saltando direttamente ci&ograve; che non utilizzo. Ma non solo questo, con Arch il sistema va configurato punto per punto, non c'&egrave; nulla di "standardizzato", a partire dal driver video, passando per touchpad, tastiera e via dicendo, bisogna settare tutto secondo i propri gusti/le proprie esigenze. Proprio da questo prendo spunto per spiegare cos'&egrave; una "<span style="text-decoration: underline;"><strong>rolling release</strong></span>", semplicemente &egrave; una distro che non ha un rilascio definitivo (come Ubuntu, rilasciato ogni sei mesi), ovvero i vari pacchetti vengono semplicemente aggiornati man mano che i rispettivi autori li aggiornano (ovviamente per&ograve; vanno nei repository solo dopo essere stati approvati), proprio come avviene, ad esempio, con Debian <strong>sid</strong>. Addirittura esiste un sistema di "repository" degli utenti, chiamato <strong>AUR</strong>, al quale chiunque pu&ograve; partecipare creando degli script attraverso i quali il processo di download, installazione delle dipendenze, compilazione ed installazione di un pacchetto &egrave; del tutto automatizzato; &egrave; previsto anche un sistema di voto attraverso il quale il pacchetto compilato pu&ograve; poi essere inserito nei repository ufficiali. Questo la rende una distribuzione <strong>instabile</strong>??</p>
+<p><strong><span style="text-decoration: underline;">Assolutamente NO</span></strong>!! E qui mi permetto una riflessione del tutto personale: secondo me una distro "stabile" in tutti i sensi non esiste, semplicemente. Dipende dall'uso che se ne fa, punto. Prendete una Debian stable e cominciate a "giocare" con compilazione di pacchetti che volete avere pi&ugrave; aggiornati, installazione di un nuovo kernel, smanettamenti vari e vedrete che in men che non si dica diventer&agrave; "unstable", e anzi probabilmente se non siete abbastanza esperti finirete col formattare tutto.. Stesso discorso per Ubuntu, openSuse o qualsiasi altra distro..</p>
+<p>Infine l'ultima frase che ho citato, della quale mi sembrano importantissime soprattutto le ultime parole, <span style="text-decoration: underline;">utente Linux <strong>competente</strong></span>. Prendete l'attuale utente medio di un pc, parlategli di Linux e poi mettetegli davanti Arch e vi mander&agrave; a quel paese, scartando per sempre anche solo la possibilit&agrave; di provare una distribuzione Linux. Non solo, probabilmente diventer&agrave; un "nemico" di Linux!! Questo perch&egrave; ci sono utenti che hanno tempo, pazienza e (soprattutto) <span style="text-decoration: underline;"><strong>voglia di sperimentare, provare, imparare</strong></span>, e utenti che semplicemente vogliono usare il pc. A questi ultimi personalmente io consiglio assolutamente Ubuntu o Mint, di certo non una Slackware o Arch. Sono migliori i primi o i secondi?? Nessuno dei due secondo me, semplicemente sono utenti con diverse <strong>esigenze</strong>..</p>
+<p>In definitiva cosa penso di Arch?? E' una distribuzione completa, divertente, veloce e potente, che regala grandi soddisfazioni e che rende "un p&ograve; pi&ugrave; bravi", ma che pretende una certa dimestichezza con Linux. Se siete gi&agrave; "rodati" allora vi consiglio perlomeno di provarla (magari all'inzio su una macchina virtuale), dato che potrete sfruttare anche le guide del <a href="http://wiki.archlinux.org/index.php/Main_Page" target="_blank">Wiki</a> (complete e multilingua) e il <a href="http://www.archlinux.it/forum/" target="_blank">forum</a> della comunit&agrave; (devo dire particolarmente attiva), non ve ne pentirete, se invece siete tra quelli che installate Ubuntu e basta, aspettando poi il successivo rilascio, e non avete mai installato un pacchetto da riga di comando, b&egrave; <strong>non</strong> ve la consiglio sicuramente, potrei ritrovarmi con parecchi insulti sul groppone in caso contrario!! ;)</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/guide/linux/ubuntu/internet/software/social%20network/2010/06/18/integrare-varie-notifiche-nellindicator-applet-di-gnome-con-cloudsn.html" data-toggle="tooltip" data-placement="top" title="Integrare varie notifiche nell'Indicator Applet di Gnome con CloudSN">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/tipsntricks/linux/ubuntu/software/2010/06/20/ailurus-software-di-gestione-di-ubuntu.html" data-toggle="tooltip" data-placement="top" title="Ailurus, software di gestione di Ubuntu">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

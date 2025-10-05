@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Condivisione di files in una rete Linux con NFS - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="PREMESSA: questa guida &amp;egrave; rivolta a coloro che hanno bisogno di condividere files tra due o pi&amp;ugrave; pc sui quali sia installato Linux (su tutti, non...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/linux/ubuntu/2009/11/20/condivisione-di-files-in-una-rete-linux-con-nfs.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Condivisione di files in una rete Linux con NFS</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on November 20, 2009 &middot; <span class="reading-time" title="Estimated read time">
+  
+   3 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p><span style="text-decoration: underline;"><strong>PREMESSA</strong></span>: questa guida &egrave; rivolta a coloro che hanno bisogno di condividere files tra due o pi&ugrave; pc <span style="text-decoration: underline;">sui quali sia installato Linux</span> (su <span style="text-decoration: underline;">tutti</span>, non solo su uno).</p>
+<p>Useremo <strong>NFS</strong> (acronimo di Network FileSystem), che, pur avendo ormai la sua et&agrave;, &egrave; sempre semplice, funzionale e sicuro, oltre che rapido (che non guasta mai). Dobbiamo configurare prima il server e poi il/i client..</p>
+<p>Cominciamo dal <strong>server</strong>, installando ovviamente il necessario:</p>
+<blockquote><p><code>sudo apt-get install portmap nfs-kernel-server</code></p></blockquote>
+<p>Poi specifichiamo quali directory sul server vogliamo condividere:</p>
+<blockquote><p><code>sudo gedit /etc/exports</code></p></blockquote>
+<p>Aggiungiamo <span style="text-decoration: underline;">una riga per ogni directory da condividere</span> con la seguente sintassi:</p>
+<blockquote><p><code>/percorso_completo_dir indirizzo_IP_del_client(rw,sync)</code></p></blockquote>
+<p>Per abilitare la lettura/scrittura, oppure</p>
+<blockquote><p><code>/percorso_completo_dir indirizzo_IP_client(ro,sync)</code></p></blockquote>
+<p>Per accedere in sola lettura. Potenzialmente avremmo gi&agrave; finito, ma &egrave; meglio rendere pi&ugrave; sicura questa condivisione, specificando chi pu&ograve; accedervi; per fare ci&ograve; digitiamo</p>
+<blockquote><p><code>sudo gedit /etc/hosts.allow</code></p></blockquote>
+<p>Ed inseriamo le seguenti righe:</p>
+<blockquote><p><code>portmap: indirizzi_IP_client_autorizzati<br />
+mountd: indirizzi_IP_client_autorizzati<br />
+nfsd: indirizzi_IP_client_autorizzati<br />
+statd: indirizzi_IP_client_autorizzati<br />
+lockd: indirizzi_IP_client_autorizzati<br />
+rquotad: indirizzi_IP_client_autorizzati</code></p></blockquote>
+<p>Se abbiamo pi&ugrave; client, i loro indirizzi vanno separati da virgole. Specifichiamo anche quali client non sono autorizzati ad accedere alla condivisione:</p>
+<blockquote><p><code>sudo gedit /etc/hosts.deny</code></p></blockquote>
+<p>Ed inseriamo la riga:</p>
+<blockquote><p><code>portmap: ALL<br />
+mountd: ALL<br />
+nfsd: ALL<br />
+statd: ALL<br />
+lockd: ALL<br />
+rquotad: ALL</code></p></blockquote>
+<p>In questo modo ogni client non compreso tra quelli specificati in precedenza non avr&agrave; accesso alla nostra condivisione. Si pu&ograve; anche precludere l'accesso ad un client preciso, specificandone l'IP al posto di ALL, oppure negare l'accesso a tutti tranne uno, in questo caso si usa la sintassi:</p>
+<blockquote><p><code>ALL EXCEPT indirizzi_IP_client_autorizzati</code></p></blockquote>
+<p>Con il server abbiamo finito. Riavviamo i servizi per rendere effettive le modifiche:</p>
+<blockquote><p><code>sudo portmap restart<br />
+sudo /etc/init.d/nfs-kernel-server restart</code></p></blockquote>
+<p>Andiamo a configurare il <strong>client</strong>. Prima di tutto installiamo anche qui il necessario:</p>
+<blockquote><p><code>sudo apt-get install portmap nfs-common</code></p></blockquote>
+<p>Avremmo gi&agrave; finito, ma anche in questo caso &egrave; meglio rendere la condivisione pi&ugrave; sicura.</p>
+<blockquote><p><code>sudo gedit /etc/hosts.deny</code></p></blockquote>
+<p>Inseriamo la riga:</p>
+<blockquote><p><code>portmap: ALL</code></p></blockquote>
+<p>Poi:</p>
+<blockquote><p>sudo gedit /etc/hosts.allow</p></blockquote>
+<p>Inseriamo:</p>
+<blockquote><p><code>portmap: indirizzo_IP_server</code></p></blockquote>
+<p>A questo punto abbiamo davvero finito, possiamo montare la condivisione: per farlo occorre creare una directory apposita, ad esempio</p>
+<blockquote><p><code>sudo mkdir /media/condivisione</code></p></blockquote>
+<p>Poi montiamo la condivisione con il comando:</p>
+<blockquote><p><code>sudo mount -t nfs indirizzo_IP_server:/percorso_completo_dir_condivisa /media/condivisione</code></p></blockquote>
+<p>Se tutto va bene, vedrete apparire un nuovo dispositivo montato tra le risorse del computer (es. con Gnome). Quest'ultimo comando va dato chiaramente <span style="text-decoration: underline;">ogni volta che si spegne e riaccende il client</span>. Volendo per&ograve; lo si pu&ograve; rendere permanente, editando <code>fstab</code>:</p>
+<blockquote><p><code>sudo gedit /etc/fstab</code></p></blockquote>
+<p>Inseriamo la riga:</p>
+<blockquote><p><code># Condivisione NFS<br />
+indirizzo_IP_server:/percorso_completo_dir_condivisa /media/condivisione nfs rw,hard,intr 0 0</code></p></blockquote>
+<p>Chiaramente <code>rw,hard,intr</code> sono solo alcune opzioni possibili, come ogni altro filesystem ne esistono altre, ad esempio potremmo scrivere semplicemente <code>defaults</code> per montare la condivisione con le opzioni standard.</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/taranto/ambiente/cinema/riflessioni/2009/11/09/marpiccolo-quella-non-e-la-mia-citta.html" data-toggle="tooltip" data-placement="top" title="Marpiccolo.. Quella non è la mia città!!">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/taranto/morte/ambiente/2009/11/22/i-morti-di-tumore-di-taranto-tutte-invenzioni.html" data-toggle="tooltip" data-placement="top" title="I morti di tumore di Taranto?? Tutte invenzioni!!">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

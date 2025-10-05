@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Domotica - Backup di Home Assistant - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Oggi vediamo come effettuare un backup di Home Assistant. Da dove nasce tale necessit&amp;agrave;? Semplice, fino a questo punto, abbiamo installato Home Assista...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/linux/in%20evidenza/domotica/2021/06/03/domotica-backup-di-home-assistant.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Domotica - Backup di Home Assistant</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on June 03, 2021 &middot; <span class="reading-time" title="Estimated read time">
+  
+   5 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p><!-- wp:paragraph --></p>
+<p>Oggi vediamo come effettuare un <strong>backup di Home Assistant</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Da dove nasce tale necessit&agrave;? Semplice, fino a questo punto, abbiamo <a rel="noreferrer noopener" href="http://localhost:4000/domotica/domotica-installare-home-assistant.html" data-type="post" data-id="4056" target="_blank">installato Home Assistant</a> sulla micro SD del nostro Raspberry Pi; tale configurazione al momento potrebbe anche andare bene, su Home Assistant non gira praticamente <strong>nulla</strong>, quindi letture e scritture sulla scheda sono limitate.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>L'idea &egrave; per&ograve; quella di iniziare quanto prima a far lavorare seriamente il sistema, quindi l'uso del disco aumenter&agrave; esponenzialmente. In tali condizioni, <strong>la micro SD diventa un punto debole</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Dipende ovviamente dal tipo di micro SD che usate (maggiore &egrave; la qualit&agrave;, maggiore sar&agrave; verosimilmente la durata nel tempo), da quanto tempo la usate, e via dicendo.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>In linea di massima per&ograve;, usare una micro SD come disco non &egrave; il massimo, a lungo andare tender&agrave; a "friggersi" (poi magari qualcuno usa una micro SD da anni in un RPi, tutto pu&ograve; essere).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Pi&ugrave; avanti vedremo come usare un SSD al posto della micro SD, ma prima di questo, direi che &egrave; necessario impostare una <strong>politica di backup</strong> di Home Assistant.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:more --><br />
+<!--more--><br />
+<!-- /wp:more --></p>
+<p><!-- wp:paragraph --></p>
+<p>Intendiamoci, ho presentato il quadro pi&ugrave; tragico, ma in realt&agrave; una buona politica di backup vi permette ad esempio anche di "tornare indietro" in caso vi rendiate conto che una particolare configurazione apportata non &egrave; soddisfacente e non avete voglia di "smontare" tutto.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Home Assistant prevede di default la possibilit&agrave; di effettuare backup: basta andare su <strong>Supervisor -> Istantanee</strong> (<strong>snapshots </strong>per chi ha l'interfaccia in inglese).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Da questa schermata scegliete se effettuare un backup <strong>parziale </strong>o <strong>completo</strong>, e potete anche scaricarlo in locale (non &egrave; mai una scelta azzeccata conservare il backup di un sistema sul sistema stesso, ricordatelo).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Quindi siamo a posto? Si e no, nel senso che se avete la pazienza di effettuare un backup costantemente, e di scaricarlo da qualche parte con la stessa costanza, potete fermarvi qui.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Altrimenti, se cercate un modo per <strong>automatizzare </strong>il tutto, magari anche effettuando un upload automatico in cloud (es. Google Drive), continuiamo..</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Per il backup di Home Assistant su Google Drive, &egrave; necessario un <strong>plugin non ufficiale</strong>; per aggiungerlo, occorre aggiungere il seguente <a href="https://github.com/sabeechen/hassio-google-drive-backup" data-type="URL" data-id="https://github.com/sabeechen/hassio-google-drive-backup" target="_blank" rel="noreferrer noopener">repository</a>:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"xml","lineNumbers":false} --></p>
+<pre class="wp-block-syntaxhighlighter-code">https://github.com/sabeechen/hassio-google-drive-backup</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Nella seguente schermata:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"id":4063,"sizeSlug":"large","linkDestination":"none"} --></p>
+<figure class="wp-block-image size-large"><img src="/assets/images/hassio_backup_1-1024x399.jpg" alt="" class="wp-image-4063"/></figure>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Baster&agrave; cliccare su "<strong>Repository</strong>" in alto a destra, poi inserire il link sopra e cliccare su "<strong>Aggiungi</strong>". Infine, nella barra di ricerca baster&agrave; scrivere "<strong>google</strong>" come chiave di ricerca, e dovremmo vedere il nostro plugin pronto per l'installazione.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Dopo l'installazione, baster&agrave; <strong>avviare </strong>il plugin:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"id":4064,"sizeSlug":"large","linkDestination":"none"} --></p>
+<figure class="wp-block-image size-large"><img src="/assets/images/hassio_backup_2-1024x588.jpg" alt="" class="wp-image-4064"/></figure>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>E dalla barra laterale, cliccando su "<strong>Snapshots</strong>", visualizziamo una schermata tramite la quale dovremo collegare il plugin a Drive (autorizzando l'accesso).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Nulla di eccessivamente complesso, inseriamo le credenziali di Google, autorizziamo il tutto e alla fine verr&agrave; visualizzata la <strong>API KEY</strong>; in realt&agrave; al 90% baster&agrave; cliccare su "<strong>Send credentials</strong>" e verremo portati alla schermata di login di Home Assistant.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto arriveremo nella pagina di configurazione del plugin:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"id":4065,"sizeSlug":"large","linkDestination":"none"} --></p>
+<figure class="wp-block-image size-large"><img src="/assets/images/hassio_backup_3.jpg" alt="" class="wp-image-4065"/></figure>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>La configurazione &egrave; molto intuitiva, vanno inseriti il numero di backup da mantenere su Home Assistant, il numero di backup da caricare su Drive, e qualche altra opzione, come ad esempio la <strong>frequenza di backup di Home Assistant</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Finito, vedremo poi come usare un SSD al posto della micro SD.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:tadv/classic-paragraph /--></p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/guide/linux/in%20evidenza/raspberry%20pi/domotica/2021/05/29/domotica-installare-home-assistant.html" data-toggle="tooltip" data-placement="top" title="Domotica - Installare Home Assistant">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/guide/linux/debian/raspberry%20pi/domotica/2021/06/09/aprire-la-porta-ssh-22222-su-home-assistant.html" data-toggle="tooltip" data-placement="top" title="Aprire la porta SSH 22222 su Home Assistant">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

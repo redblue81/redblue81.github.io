@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Autenticarsi in Debian tramite LDAP - Parte 3 - PHPLDAPAdmin - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Ed eccoci alla terza ed ultima parte della guida all&#39;autenticazione in Debian tramite LDAP: dopo aver installato la parte server e la parte client, vediamo u...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/linux/debian/in%20evidenza/server/2015/10/25/autenticarsi-in-debian-tramite-ldap-parte-3-phpldapadmin.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Autenticarsi in Debian tramite LDAP - Parte 3 - PHPLDAPAdmin</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on October 25, 2015 &middot; <span class="reading-time" title="Estimated read time">
+  
+   2 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Ed eccoci alla terza ed ultima parte della guida all'autenticazione in Debian tramite LDAP: dopo aver <a href="http://localhost:4000/guide/autenticarsi-in-debian-tramite-ldap-parte-1-installazione-server.html">installato la parte server</a> e la <a href="http://localhost:4000/guide/autenticarsi-in-debian-tramite-ldap-parte-2-installazione-client.html">parte client</a>, vediamo un tool di gestione molto utile: <strong>PHPLDAPAdmin</strong>.</p>
+<p>Si tratta di un tool <strong>web</strong>, concettualmente molto simile a PHPMyAdmin (usato spesso per i database MySql): permette la navigazione all'interno del database di LDAP, l'esecuzione di ricerche, la creazione e la gestione di utenti e gruppi. Non &egrave; assolutamente necessario, ma pu&ograve; dare una bella mano nell'<strong>amministrazione</strong> del server LDAP, operazione, ripeto, alle volte piuttosto macchinosa.</p>
+<p>Per prima cosa installiamolo, come <strong>root</strong> diamo:</p>
+<pre class="brush: bash; gutter: true">apt-get install phpldapadmin</pre>
+<p>Dopo l'installazione, sar&agrave; necessario configurare PHPLDAPAdmin, in primo luogo per indicare quel &egrave; il nostro server LDAP. Andiamo quindi ad editare il file <code>/etc/phpldapadmin/config.php</code>.</p>
+<p>Per prima cosa possiamo sistemare il fuso orario, quindi cerchiamo la seguente riga e impostiamo "Europe/Rome".</p>
+<pre class="brush: bash; gutter: true">$config->custom->appearance[&#039;timezone&#039;] = &#039;Europe/Rome&#039;;</pre>
+<p>Pi&ugrave; in basso, troveremo la sezione pi&ugrave; importante, ovvero quella relativa al <strong>server</strong>, e dovremo ovviamente indicare il nostro, se seguiamo l'esempio proposto nelle varie parti di questa guida avremo:</p>
+<pre class="brush: bash; gutter: true">// Set your LDAP server name //
+
+$servers->setValue(&#039;server&#039;,&#039;name&#039;,&#039;RedBlue LDAP Server&#039;);
+
+// Set your LDAP server IP address //
+
+$servers->setValue(&#039;server&#039;,&#039;host&#039;,&#039;192.168.10.100&#039;);
+
+// Set Server domain name //
+
+$servers->setValue(&#039;server&#039;,&#039;base&#039;,array(&#039;dc=red-blue,dc=local&#039;));
+
+// Set Serve&egrave; name again//
+
+$servers->setValue(&#039;login&#039;,&#039;bind_id&#039;,&#039;cn=admin,dc=red-blue,dc=local&#039;);</pre>
+<p>Abbiamo praticamente gi&agrave; finito, basta solo riavviare <strong>Apache</strong>:</p>
+<pre class="brush: bash; gutter: true">service apache2 restart</pre>
+<p>E a riavvio avvenuto, apriamo un browser e andiamo all'indirizzo:</p>
+<pre class="brush: bash; gutter: true">http://192.168.10.100/phpldapadmin</pre>
+<p>Se tutto &egrave; andato a buon fine ci ritroveremo davanti alla <strong>home</strong> di PHPLDAPAdmin estremamente intuitiva attraverso la quale effettuare il login con l'utente amministratore creato in precedenza, e sempre tramite la quale sar&agrave; uno scherzo creare utenti e gruppi, in maniera del tutto identica a come abbiamo fatto nella prima parte sfruttando per&ograve; la linea di comando.</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/guide/linux/debian/in%20evidenza/2015/10/19/autenticarsi-in-debian-tramite-ldap-parte-2-installazione-client.html" data-toggle="tooltip" data-placement="top" title="Autenticarsi in Debian tramite LDAP - Parte 2 - Installazione client">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/taranto/in%20evidenza/eventi/2015/11/03/deploylab-vi-invita-a-scoprire-felfil-taranto-7112015.html" data-toggle="tooltip" data-placement="top" title="DeployLab vi invita a scoprire FelFil - Taranto 7/11/2015">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

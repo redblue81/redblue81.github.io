@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Debian-alternatives, cosa sono e come gestirle - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="La nostra distribuzione Debian ha un sistema molto efficiente per la gestione &quot;automatica&quot; di applicazioni dello stesso tipo: debian-alternatives. Cerchiamo ...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/linux/debian/2014/01/02/debian-alternatives-cosa-sono-e-come-gestirle.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Debian-alternatives, cosa sono e come gestirle</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on January 02, 2014 &middot; <span class="reading-time" title="Estimated read time">
+  
+   3 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>La nostra distribuzione Debian ha un sistema molto <strong>efficiente</strong> per la gestione "automatica" di applicazioni dello stesso tipo: <strong><code>debian-alternatives</code></strong>.</p>
+<p>Cerchiamo per prima cosa di capire di cosa stiamo parlando: diciamo che sulla nostra distro abbiamo installato i browser Chrome, Iceweasel e Opera, e che una qualsiasi applicazione (l'esempio classico &egrave; uno script) debba aprire il browser, quale dei tre sar&agrave; scelto? Oppure (caso pratico grazie al quale ho deciso poi di scrivere questo articolo) in caso di pi&ugrave; versioni del compilatore Java installate, quale sar&agrave; quella usata di default? Ovviamente, in ogni caso basta far richiamare il giusto comando e non ci saranno mai dubbi, ma la nostra Debian &egrave; capace di invocare, ad esempio, nel primo caso il comando generico <code>x-www-browser</code>, e nel secondo il comando <code>javac</code>.</p>
+<p><!--moreContinua a leggere..--></p>
+<p>Il loro "significato", ovvero il comando di riferimento, possiamo gestirlo tramite il comando <code>debian-alternatives</code>: in parole povere, <span style="text-decoration: underline;">il sistema usa questi comandi generici che noi utenti possiamo far riferire ad uno specifico programma installato</span>.</p>
+<p>Come usarlo? Digitando, come <strong>root</strong>,<code> update-alternatives</code>, seguito da una delle seguenti opzioni:</p>
+<ul>
+<li><code>--display</code>: mostra le impostazioni attuali;</li>
+<li><code>--list</code>: mostra le alternative;</li>
+<li><code>--config</code>: configura un&rsquo;alternativa;</li>
+<li><code>--auto</code>: reimposta lo stato automatico per un&rsquo;alternativa, viene cio&egrave; scelta quella a priorit&agrave; maggiore;</li>
+<li><code>--install</code>: una nuova alternativa entra a far parte di un gruppo, se questo esiste. Se il gruppo non esiste, lo crea;</li>
+<li><code>--remove</code>: rimuove un&rsquo;alternativa all&rsquo;interno di un gruppo, con tutti i suoi slave, cio&egrave; link subordinati a quello principale per l'alternativa;</li>
+<li><code>--remove-all</code>: rimuove un intero gruppo di alternative.</li>
+</ul>
+<p>Ad esempio, il comando</p>
+<pre class="brush: bash; gutter: false">sudo update-alternatives --list x-ww-browser</pre>
+<p>Restituir&agrave; la lista delle alternative disponibili per il browser, ma pi&ugrave; interessante &egrave; l'opzione <strong>display</strong>, che restituisce anche la priorit&agrave; assegnata a ciascuno, in base alla quale avviene la scelta <strong>automatica</strong> (nel caso in cui non sia stata presa una decisione dall'utente ovviamente).</p>
+<p>Ovviamente per configurare un'alternativa si usa:</p>
+<pre class="brush: bash; gutter: false">sudo update-alternatives --config x-www-browser</pre>
+<p>Fermo restando che il sottoscritto sta usando il browser come esempio, ma le opzioni valgono per tutti i comandi generici disponibili nel sistema.</p>
+<p>Ovviamente le opzioni <strong>remove</strong> e <strong>remove-all</strong> servono a rimuovere una o un intero gruppo di alternative.</p>
+<p>Attenzione perch&egrave; se si disinstalla un programma incluso in un gruppo di alternative, queste potrebbero essere <strong>riconfigurate</strong> automaticamente.</p>
+<p>Esistono anche dei tool di configurazione grafica per debian-alternatives, ma sono essenzialmente per <strong>Gnome</strong> e <strong>KDE</strong>, quindi il sottoscritto usando <strong>Xfce</strong> si &egrave; risparmiato la loro installazione.</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/blog/wordpress/2013/12/21/wordpress-3-8-parker-rilasciato.html" data-toggle="tooltip" data-placement="top" title="Wordpress 3.8 "Parker" rilasciato">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/blog/riflessioni/2014/01/06/classifica-10-articoli-piu-letti-del-2013.html" data-toggle="tooltip" data-placement="top" title="Classifica: i 10 articoli più letti del 2013">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

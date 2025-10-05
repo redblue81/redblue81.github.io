@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Creare una &quot;social box&quot; per Wordpress - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Forse non tutti avranno notato che ho eliminato i pulsanti di collegamento ai vari social network in fondo ad ogni articolo, per sostituirli con una &quot;social ...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/blog/guide/wordpress/social%20network/2011/07/27/creare-una-social-box-per-wordpress.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Creare una "social box" per Wordpress</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on July 27, 2011 &middot; <span class="reading-time" title="Estimated read time">
+  
+   2 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Forse non tutti avranno notato che ho eliminato i <strong>pulsanti di collegamento</strong> ai vari social network in fondo ad ogni articolo, per sostituirli con una <strong>"social box"</strong> fissa rispetto alla pagina accanto ad ogni articolo (preso singolarmente)..</p>
+<p>L'idea originale non &egrave; mia, devo ammetterlo, e devo anche dare tutti i <strong>meriti</strong> del caso agli amici di <a href="http://www.wpstyle.it/" target="_blank">WPStyle</a>, che mi hanno anche fornito le dritte per implementarla..</p>
+<p><!--moreContinua a leggere..--></p>
+<p>Per realizzarla, occorre per prima cosa creare un file che chiamiamo <code>social-button.php</code> e che, una volta completo, andremo a caricare nella stessa directory del nostro tema. Tale file conterr&agrave; il seguente codice:</p>
+<pre lang="html4strict" line="1" escaped="true"><div class="buttons">
+
+<div class="buttons" id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like href="" send="true" layout="box_count" width="450" show_faces="true" font=""></fb:like>
+
+<div class="buttons"><a class="twitter-share-button" href="http://twitter.com/share" data-count="vertical" data-via="RedBlue81" data-lang="it">Tweet</a>
+
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>
+
+<div class="buttons"><script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+
+{lang: 'it'}</script>&egrave;
+
+<g:plusone size="tall"></g:plusone></div>
+
+</div></pre>
+<p>Ovviamente <strong>ricordatevi</strong> di mettere il nome del vostro account su Twitter al posto di <code>vostroAccount</code>. Potete gi&agrave; effettuare <strong>l'upload</strong> di questo file sul server, ricordando di metterlo nella directory del vostro tema.</p>
+<p>A questo punto, conviene creare lo <strong>stile CSS</strong> che si dovr&agrave; integrare col vostro tema. Purtroppo qui non posso aiutarvi pi&ugrave; di tanto, nel senso che la scelta del colore di sfondo, le distanze dagli altri elementi del tema, il bordo e qualsiasi altro elemento grafico in genere sono strettamente legati al tema che utilizzate e ai vostri <strong>gusti personali</strong>.</p>
+<p>Quello che posso fare &egrave; riportare quello che ho usato io, per darvi almeno una traccia di quello che serve:</p>
+<pre lang="html4strict" line="1" escaped="true">#social-buttons{
+
+ position:fixed;
+
+ width:90px;
+
+ margin:-10px 0px 0px -97px;
+
+ background:#fff;
+
+ border: 0;
+
+ -moz-border-radius-topleft: 6px;
+
+ -khtml-border-top-left-radius: 6px;
+
+ -webkit-border-top-left-radius: 6px;
+
+ -moz-border-radius-bottomleft: 6px;
+
+ -khtml-border-bottom-left-radius: 6px;
+
+ -webkit-border-bottom-left-radius: 6px;
+
+ border-top-left-radius: 6px;
+
+ border-bottom-left-radius: 6px;
+
+ text-align:center;
+
+}
+
+.buttons{
+
+ margin:7px 7px 7px 7px;
+
+ text-align:center;
+
+}</pre>
+<p>Dovete inserire questo codice, opportunamente adattato ai vostri scopi, all'interno del file <code>style.css</code> che si trova nella directory del tema stesso.</p>
+<p>Non resta che richiamare il file creato all'inizio inserendo questa riga di codice nel file <strong>single.php</strong>, generalmente va bene subito dopo il tag <code>content</code>, ma anche in questo caso dipende da vostro tema, quindi potrebbe essere necessaria qualche prova:</p>
+<pre lang="html4strict" line="1" escaped="true"><code><div id=</code><code>"social-buttons"</code><code>><?php&nbsp;</code><code>include</code>&nbsp;<code>(TEMPLATEPATH .&nbsp;</code><code>'/social-button.php'</code><code>); ?></div></code></pre>
+<p>Ovviamente, non esistono solo i pulsanti di <a href="https://developers.facebook.com/docs/reference/plugins/like/" target="_blank">Facebook</a>, <a href="http://twitter.com/about/resources/tweetbutton" target="_blank">Twitter</a> e <a href="http://www.google.com/webmasters/+1/button/" target="_blank">Google+1</a>, potete inserirne altri, semplicemente aggiungendo il relativo codice nel file <code>social-button.php</code>. ;)</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/tipsntricks/software/android/2011/07/26/ripristinare-il-corretto-funzionamento-del-bluetooth-sulla-cyanogenmod-7-0-3.html" data-toggle="tooltip" data-placement="top" title="Ripristinare il corretto funzionamento del Bluetooth sulla Cyanogenmod 7.0.3">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/io/linux/ubuntu/internet/server/2011/08/08/il-mio-primo-server.html" data-toggle="tooltip" data-placement="top" title="Il mio primo server!!">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

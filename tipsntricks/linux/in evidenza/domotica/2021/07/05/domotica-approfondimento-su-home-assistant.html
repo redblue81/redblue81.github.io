@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Domotica - Approfondimento su Home Assistant - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="In questo articolo vedremo alcuni concetti fondamentali di Home Assistant, necessari al proseguimento della realizzazione del nostro sistema domotico. Per pr...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/tipsntricks/linux/in%20evidenza/domotica/2021/07/05/domotica-approfondimento-su-home-assistant.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Domotica - Approfondimento su Home Assistant</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on July 05, 2021 &middot; <span class="reading-time" title="Estimated read time">
+  
+   3 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p><!-- wp:paragraph --></p>
+<p>In questo articolo vedremo alcuni concetti fondamentali di Home Assistant, necessari al proseguimento della realizzazione del nostro <a href="http://localhost:4000/domotica" data-type="page" data-id="4071" target="_blank" rel="noreferrer noopener">sistema domotico</a>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Per prima cosa, un po' di termini che occorre conoscere:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:list --></p>
+<ul>
+<li><strong>Integrazione</strong>: si tratta di tutto ci&ograve; che possiamo collegare ad Home Assistant, dalle lampadine alle smart TV, passando per il cellulare; attenzione perch&egrave; per integrazione si intendono anche servizi in cloud. Ogni integrazione pu&ograve; contenere multipli dispositivi o entit&agrave;;</li>
+<li><strong>Area</strong>:&nbsp; un&rsquo;area virtuale in cui sono localizzati i nostri dispositivi (una stanza, l'intera casa, la mia scrivania);</li>
+<li><strong>Dispositivo</strong>: fisico o virtuale,pu&ograve; contenere multiple entit&agrave; (lo smartphone, tanto per fare un esempio);</li>
+<li><strong>Dominio</strong>: la categoria a cui appartiene un&rsquo;entit&agrave; (es. sensor, light);</li>
+<li><strong>Entit&agrave;</strong>: un "oggetto" con cui interagisce Home Assistant (es. un interruttore, un sensore);</li>
+<li><strong>Attributi</strong>: Un valore contenuto all&rsquo;interno di un&rsquo;entit&agrave; (Esempio: Consumo di un interruttore che funge da presa);</li>
+<li><strong>Card</strong>: una scheda dell'interfaccia grafica legata ad una o pi&ugrave; entit&agrave;.</li>
+<li><strong>Automazione</strong>: un'azione, o una sequenza di azioni, che viene scatenata da un trigger (un evento). Ad esempio, se il cellulare si allontana da casa, attiva il sistema di allarme, oppure ad un certa ora spegni tutto in una stanza.</li>
+<li><strong>Scena</strong>: lo stato di uno o pi&ugrave; entit&agrave;, facilmente richiamabile all'occorrenza (ad esempio, il colore e la luminosit&agrave; delle lampade di una stanza quando vogliamo vedere un film).</li>
+</ul>
+<p><!-- /wp:list --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ormai &egrave; praticamente tutto configurabile tramite interfaccia grafica, tramite pochissimi clic del mouse. Nonostante tutto, in alcuni casi &egrave; possibile/necessario utilizzare la configurazione mediante file.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Se abbiamo installato il plugin <strong>File Editor</strong>, sar&agrave; semplice accedere alla directory <strong>/config</strong>, all'interno della quale si trova il file <strong>configuration.yaml</strong>, che contiene la configurazione fondamentale di Home Assistant.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Tale file va manipolato con molta attenzione, in quanto una configurazione errata produce instabilit&agrave; del sistema.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>La modifica del configuration.yaml comporta sempre un riavvio per essere applicata. Consiglio sempre di usare la funzione <strong>Impostazioni -> Controlli del server</strong> prima di riavviare, avremo cos&igrave; almeno una verifica formale di quanto scritto.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Prima di concludere, segnalo la possibilit&agrave; di utilizzare Home Assistant anche attraverso l'apposita <strong>App</strong>, disponibile nei principali store (<a href="https://play.google.com/store/apps/details?id=io.homeassistant.companion.android&hl=it&gl=US" target="_blank" rel="noreferrer noopener">link per Android</a>). Si tratta fondamentalmente della stessa interfaccia che abbiamo visto, ma portata nel mondo mobile.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Consente di controllare completamente il sistema, oltre ad essere un comodissimo strumento per poter controllare la nostra domotica anche quando siamo fuori casa.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><!-- /wp:paragraph --></p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/guide/linux/in%20evidenza/domotica/2021/06/28/domotica-accedere-a-home-assistant-dallesterno.html" data-toggle="tooltip" data-placement="top" title="Domotica - Accedere a Home Assistant dall'esterno">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/guide/in%20evidenza/raspberry%20pi/domotica/2021/07/17/domotica-deconz.html" data-toggle="tooltip" data-placement="top" title="Domotica - Deconz">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

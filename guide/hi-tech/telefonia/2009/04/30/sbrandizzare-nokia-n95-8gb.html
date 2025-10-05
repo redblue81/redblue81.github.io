@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Sbrandizzare il Nokia N95/N95 8GB - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Ieri il mio Nokia N95 8GB si &amp;egrave; impallato.. Non dovrebbe succedere lo so, ma se ti ostini a smanettarci sopra come se fosse una distribuzione Linux pri...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/hi-tech/telefonia/2009/04/30/sbrandizzare-nokia-n95-8gb.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Sbrandizzare il Nokia N95/N95 8GB</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on April 30, 2009 &middot; <span class="reading-time" title="Estimated read time">
+  
+   4 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Ieri il mio <strong>Nokia N95 8GB</strong> si &egrave; impallato.. Non dovrebbe succedere lo so, ma se ti ostini a smanettarci sopra come se fosse una distribuzione Linux prima o poi anche il Symbian pi&ugrave; robusto cede! ;)</p>
+<p>Era ora di resettarlo, e magari anche di cercare un bell'aggiornamento del software: in breve&nbsp; ho scoperto che mentre per il mio brand TIM si era ancora al firmware <strong>30.0.018</strong>, per i nobrand &egrave; stato rilasciato il firmware <strong>31.0.015</strong>, allora, visto e considerato che il mio gioiellino <span style="text-decoration: underline;">non &egrave; pi&ugrave; in garanzia</span>, ho deciso di optare per il nobrand. Come fare? Semplice, basta cambiare il <strong>product code</strong>.</p>
+<p>Prima di procedere per&ograve; qualche doverosa precisazione:</p>
+<ul>
+<li>se lo fate <span style="text-decoration: underline;">perdete la garanzia</span>;</li>
+<li>non mi assumo responsabilit&agrave; riguardo eventuali danni che possiate procurare al cellulare (<span style="text-decoration: underline;">ognuno &egrave; responsabile delle proprie azioni</span>);</li>
+<li>la procedura non &egrave; per niente difficile, non bisogna essere professionisti, ma solo un p&ograve; attenti;</li>
+<li>la procedura &egrave; <span style="text-decoration: underline;">reversibile</span> (vi spiegher&ograve; pi&ugrave; in l&agrave; come fare), ma <span style="text-decoration: underline;">non si pu&ograve; effettuare il downgrade del firmware</span> (ad esempio non si pu&ograve; passare da un firmware v30 nobrand ad un v20 brandizzato).</li>
+<li><span style="text-decoration: underline;">questa guida &egrave; un p&ograve; lunga, ma conviene leggerla fino in fondo!!</span></li>
+</ul>
+<p>Cominciamo a procurarci il materiale:</p>
+<ol>
+<li><strong>Nokia PC Suite</strong>, il software di gestione di Nokia: <a href="http://www.nokia.it/A4191026" target="_blank">http://www.nokia.it/A4191026</a></li>
+<li><strong>NSU</strong> (Nokia Software Updater), il software di aggiornamento di Nokia: <a href="http://www.nokia.it/A4321020" target="_blank">http://www.nokia.it/A4321020</a></li>
+<li><strong>NSS</strong> (Nemesis Service Suite), il software che cambia il product code: <a href="http://www.b-phreaks.co.uk/index.php?main_page=page_2" target="_blank">http://www.b-phreaks.co.uk/index.php?main_page=page_2</a></li>
+<li><strong>gsm-magic</strong>, per abilitare la modifica del product code: <a href="http://rapidshare.com/files/13478456/Copie_de_gsm-magic.zip.html" target="_blank">http://rapidshare.com/files/13478456/Copie_de_gsm-magic.zip.html</a></li>
+</ol>
+<p>Dopo aver installato i primi 3 (l'ultimo non ha bisogno di installazione), procediamo:</p>
+<ul>
+<li>lanciare PC Suite;</li>
+<li>collegare il cellulare al PC in <span style="text-decoration: underline;">modalit&agrave; PC Suite</span> e verificare che venga riconosciuto correttamente;</li>
+<li>chiudere PC Suite;</li>
+<li>disabilitare antivirus e firewall;</li>
+<li>lanciare NSS;</li>
+<li>in alto a destra cliccare su <strong>"Scan for new devices"</strong>;</li>
+<li>cliccare su <strong>"Phone info"</strong> e poi su <strong>"Scan"</strong>;</li>
+<li>senza chiudere NSS, lanciare gsm-magic e cliccare su <strong>"enable"</strong>;</li>
+<li>a questo punto nella finestra sulla destra, dove c'&egrave; scritto <strong>"Product code"</strong>, inserire:
+<ul>
+<li><strong>0549487</strong> per la versione 8GB;</li>
+<li><strong>0534841</strong> per la versione standard;</li>
+</ul>
+</li>
+<li>mettere la spunta su <strong>"enable"</strong> e cliccare poi su <strong>"write"</strong>;</li>
+<li>chiudere NSS e gsm-magic e installare NSU (o reinstallare, se era gi&agrave; installato, questo <span style="text-decoration: underline;">&egrave; necessario altrimenti non funzioner&agrave;!</span>);</li>
+<li>eseguire il normale aggiornamento del software.</li>
+</ul>
+<p>A questo punto avrete un cellulare <strong>nobrand</strong>!! :D</p>
+<p>Prima di concludere alcune dritte che potrebbero risultare utili:</p>
+<ul>
+<li>Se avete la versione con Spiderman 3 installato, dopo il cambio del product code perderete la chiave per vederlo!!</li>
+<li>Se volete tornare al firmware brandizzato la procedura &egrave; la stessa, con la differenza che il product code che andrete ad inserire sar&agrave; quello riportato sul retro del cellulare, sotto la batteria, sull'etichetta che &egrave; presente all'interno e che riporta, ad esempio, anche l'IMEI del terminale.</li>
+<li>Attenzione!! Se avete fatto un backup del cellulare prima dell'aggiornamento (con la versione brandizzata quindi), <span style="text-decoration: underline;">non ripristinatelo</span>, altrimenti il cellulare si bloccher&agrave; e avrete la scritta "Contattare assistenza". Nel caso si commetta questo errore, serve un <strong>hard reset</strong>, procedete cos&igrave;:
+<ul>
+<li>
+<ul>
+<li>spegnete il cellulare;</li>
+<li>tenete premuti i tasti 3, asterisco e chiamata (quello verde);</li>
+<li>accendete il cellulare mantenendo premuti i 3 tasti;</li>
+<li>continuate a mantenere i 3 tasti per un p&ograve;. Se &egrave; andato tutto bene il cellulare ripartir&agrave; e vi chieder&agrave; di inserire il paese..</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Ho letto da qualche parte che le ultime versioni di NSS hanno gsm-magic integrato, quindi quest'ultimo <span style="text-decoration: underline;">non dovrebbe pi&ugrave; servire</span>. Non ho avuto modo di testarlo, quindi ho deciso di includerlo comunque nella guida.</li>
+</ul>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/viaggi/2009/04/27/vi-piacerebbe-andare-su-marte.html" data-toggle="tooltip" data-placement="top" title="Vi piacerebbe andare su Marte??">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/linux/riflessioni/2009/05/04/linux-abbatte-la-soglia-dell1.html" data-toggle="tooltip" data-placement="top" title="Linux abbatte la soglia dell'1%">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

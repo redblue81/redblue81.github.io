@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Installare MATE su Debian Sid - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="MATE &amp;egrave; un fork di Gnome 2 nato con l&#39;obiettivo di permettere a questo DE ormai antiquato di sfruttale le nuove GTK3. In pratica, &amp;egrave; un progetto ...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/linux/debian/in%20evidenza/recensioni/2012/05/17/installare-mate-su-debian-sid.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Installare MATE su Debian Sid</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on May 17, 2012 &middot; <span class="reading-time" title="Estimated read time">
+  
+   2 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p><a href="http://mate-desktop.org/team/" target="_blank">MATE</a> &egrave; un <strong>fork</strong> di <strong>Gnome 2</strong> nato con l'obiettivo di permettere a questo DE ormai antiquato di sfruttale le nuove <strong>GTK3</strong>. In pratica, &egrave; un progetto che vuole tentare di <span style="text-decoration: underline;">proseguire lo sviluppo di Gnome 2</span>. L'avevo accennato in passato parlando di <strong>Linux Mint</strong> <a href="http://localhost:4000/linux/rilasciata-linux-mint-12-lisa.html" target="_blank">qui</a>, ma ora &egrave; giunto il momento di effettuare un test, ovviamente sulla mia <strong>Debian Sid</strong>.</p>
+<p>L'installazione &egrave; molto semplice, in quanto abbiamo a disposizione un comodo <strong>repository</strong> da cui prelevare tutto il necessario.</p>
+<p><!--moreContinua a leggere.. --></p>
+<p>Iniziamo proprio <strong>aggiungendo</strong> il repository al nostro <code>/etc/apt/sources.list</code>:</p>
+<blockquote><p><code>### MATE<br />
+deb http://packages.mate-desktop.org/repo/debian wheezy main</code></p></blockquote>
+<p>Successivamente, <strong>aggiorniamo</strong> la lista dei pacchetti disponibili ed <strong>installiamo</strong> la chiave di autenticazione del repository, poi <strong>aggiorniamo</strong> nuovamente la lista (tutte operazioni che vanno eseguite come <strong>root</strong>):</p>
+<pre class="brush: bash; gutter: true">apt-get update
+
+apt-get install mate-archive-keyring
+
+apt-get update</pre>
+<p>Non ci resta che installare il tutto (sono circa 300 MB):</p>
+<pre class="brush: bash; gutter: true">apt-get install mate-desktop-environment</pre>
+<p><strong>Riavviamo la sessione</strong> e scegliamo il nuovo "vecchio" DE. Ecco cosa avremo:</p>
+<p><a href="/assets/images/MATE-1.jpg"><img class="alignleft size-thumbnail wp-image-3101" title="MATE-1" src="/assets/images/MATE-1-150x150.jpg" alt="" width="150" height="150" /></a><a href="/assets/images/MATE-2.jpg"><img class="alignleft size-thumbnail wp-image-3102" title="MATE-2" src="/assets/images/MATE-2-150x150.jpg" alt="" width="150" height="150" /></a><a href="/assets/images/MATE-3.jpg"><img class="alignleft size-thumbnail wp-image-3103" title="MATE-3" src="/assets/images/MATE-3-150x150.jpg" alt="" width="150" height="150" /></a><a href="/assets/images/MATE-4.jpg"><img class="alignleft size-thumbnail wp-image-3104" title="MATE-4" src="/assets/images/MATE-4-150x150.jpg" alt="" width="150" height="150" /></a><a href="/assets/images/MATE-5.jpg"><img class="alignleft size-thumbnail wp-image-3105" title="MATE-5" src="/assets/images/MATE-5-150x150.jpg" alt="" width="150" height="150" /></a><a href="/assets/images/MATE-6.jpg"><img class="alignleft size-thumbnail wp-image-3106" title="MATE-6" src="/assets/images/MATE-6-150x150.jpg" alt="" width="150" height="150" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>&egrave;&egrave;&egrave;&egrave;
+<p>&nbsp;</p>&egrave;&egrave;
+<p>L'esperienza desktop devo dire che si &egrave; rivelata davvero <strong>piacevole</strong>. Un "tuffo nel passato" che non mi aspettavo: MATE &egrave; un DE giovane, ma gi&agrave; parecchio <strong>maturo</strong>, in parecchie ore di utilizzo non c'&egrave; stato un solo crash, n&eacute; un rallentamento o qualsiasi altro problema. Ovviamente, la <strong>maggiore agilit&agrave;</strong> rispetto a Gnome 3 &egrave; notevole, e alla vista il tutto risulta estremamente gradevole (non poteva essere altrimenti, dato che si tratta del desktop che chi usa Gnome ha visto per anni e anni).</p>
+<p>Devo dire che capisco perch&egrave; il team di sviluppo di <strong>Mint</strong> ha scelto di affidarsi a questa soluzione per quanto riguarda il desktop (anche se poi ci si &egrave; orientati su <strong>Cinnamon</strong>), si tratta di un DE che davvero pu&ograve; far innamorare e decidere di usarlo in pianta stabile.</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/blog/tipsntricks/wordpress/2012/05/11/ottimizzare-la-velocita-di-accesso-al-proprio-sito.html" data-toggle="tooltip" data-placement="top" title="Ottimizzare la velocità di accesso al proprio sito">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/hi-tech/2012/05/18/questo-disco-si-autodistruggera-runcore-invincible-ssd.html" data-toggle="tooltip" data-placement="top" title="Questo disco si autodistruggerà.. RunCore InVincible SSD">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

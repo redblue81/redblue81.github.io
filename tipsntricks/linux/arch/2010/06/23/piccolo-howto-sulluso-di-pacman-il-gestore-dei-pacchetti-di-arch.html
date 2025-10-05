@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Piccolo howto sull&#39;uso di pacman, il gestore dei pacchetti di Arch - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Pacman &amp;egrave; universalmente ritenuto uno dei pregi maggiori di Arch, per certi versi &amp;egrave; molto simile ad apt-get di Ubuntu. Oggi non voglio scriverne...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/tipsntricks/linux/arch/2010/06/23/piccolo-howto-sulluso-di-pacman-il-gestore-dei-pacchetti-di-arch.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Piccolo howto sull'uso di pacman, il gestore dei pacchetti di Arch</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on June 23, 2010 &middot; <span class="reading-time" title="Estimated read time">
+  
+   2 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p><strong>Pacman</strong> &egrave; universalmente ritenuto uno dei pregi maggiori di <strong>Arch</strong>, per certi versi &egrave; molto simile ad <code>apt-get</code> di Ubuntu. Oggi non voglio scriverne una guida completa (che trovate <a href="http://wiki.archlinux.org/index.php/Pacman_(Italiano)" target="_blank">qui</a>), n&eacute; un articolo che descriva i suoi pregi e difetti, semplicemente voglio stilare una lista dei comandi che sicuramente utilizzeremo quotidianamente..</p>
+<p>Cominciamo col dire che &egrave; buona regola effettuare un aggiornamento completo del sistema, ovvero, nel "linguaggio" di Arch, una <strong>sincronizzazione</strong> dei repository, un <strong>refresh</strong> del database locale e un <strong>update</strong> del sistema, pi&ugrave; semplicemente:</p>
+<blockquote><p><code>pacman -Syu</code></p></blockquote>
+<p>Che pu&ograve; essere considerato come l'insieme dei due comandi:</p>
+<blockquote><p><code>pacman -Sy<br />
+pacman -Su</code></p></blockquote>
+<p>In generale l'<strong>installazione</strong> di un pacchetto si effettua col comando:</p>
+<blockquote><p><code>pacman -S <em>pacchetto</em></code></p></blockquote>
+<p>Mentre la <strong>disinstallazione</strong> (rispettivamente insieme a tutte le dipendenze non necessarie ad altri pacchetti e senza) richiede il comando:</p>
+<blockquote><p><code>pacman -Rs <em>pacchetto</em><br />
+pacman -R <em>pacchetto</em></code></p></blockquote>
+<p>Si pu&ograve; poi <strong>interrogare</strong> il database alla ricerca di un pacchetto, sia su tutto il database stesso, sia solo all'interno dei pacchetti installati, i relativi comandi sono:</p>
+<blockquote><p><code>pacman -Ss <em>pacchetto</em><br />
+pacman -Qs <em>pacchetto</em></code></p></blockquote>
+<p>E infine tre comandi che trovo estremamente utili per avere un sistema degno di questo nome, ovvero comandi che servono per la <strong>pulizia</strong> del sistema stesso. In sequenza, con questi tre comandi andremo a cercare i pacchetti "orfani" nel sistema (quei pacchetti cio&egrave; che erano necessari per altri pacchetti che sono stati disinstallati), per poi disinstallarli, e infine svuoteremo la <strong>cache</strong> di pacman, ovvero andremo a cancellare i pacchetti scaricati prima di essere installati:</p>
+<blockquote><p><code>pacman -Qdt<br />
+pacman -Rsn $(pacman -Qdtq)<br />
+pacman -Scc</code></p></blockquote>
+<p>Tutti i comandi che ho descritto vanno ovviamente dati con i privilegi di <strong>root</strong>. Attenzione per&ograve; a non cadere nell'errore di considerare pacman alla stregua di APT.. Come ho detto in passato (cfr. "<a href="http://localhost:4000/linux/arch-linux.html">Arch Linux</a>") Arch <strong><span style="text-decoration: underline;">non</span></strong> &egrave; semplice come Ubuntu, quindi un aggiornamento del sistema, o una sua pulizia va tenuta costantemente sotto controllo e <span style="text-decoration: underline;"><strong>mai</strong></span> effettuata con leggerezza, pena possibili malfunzionamenti del sistema stesso..</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/linux/ubuntu/riflessioni/notebook/hp%20dv6/2010/06/22/ancora-problemi-di-temperatura-con-lucid-lynx.html" data-toggle="tooltip" data-placement="top" title="Ancora problemi di temperatura con Lucid Lynx">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/io/riflessioni/notebook/hp%20dv6/2010/06/25/arrivederci-dv6.html" data-toggle="tooltip" data-placement="top" title="Arrivederci DV6...">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

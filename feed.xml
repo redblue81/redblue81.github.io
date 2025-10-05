@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="https://red-blue.it/feed.xml" rel="self" type="application/atom+xml" /><link href="https://red-blue.it/" rel="alternate" type="text/html" /><updated>2025-10-05T10:36:54+00:00</updated><id>https://red-blue.it/feed.xml</id><title type="html">RedBlue’s Blog</title><subtitle>Another technology addicted&apos;s personal page</subtitle><author><name>RedBlue</name></author><entry><title type="html">Aggiornamento dello script relativo alla lavatrice smart</title><link href="https://red-blue.it/guide/domotica/sonoff/updated/2025/08/10/aggiornamento-script-lavatrice-smart.html" rel="alternate" type="text/html" title="Aggiornamento dello script relativo alla lavatrice smart" /><published>2025-08-10T00:00:00+00:00</published><updated>2025-08-10T00:00:00+00:00</updated><id>https://red-blue.it/guide/domotica/sonoff/updated/2025/08/10/aggiornamento-script-lavatrice-smart</id><content type="html" xml:base="https://red-blue.it/guide/domotica/sonoff/updated/2025/08/10/aggiornamento-script-lavatrice-smart.html">&lt;p&gt;In merito all’automazione di &lt;strong&gt;Home Assistant&lt;/strong&gt; per ricevere una notifica tramite Alexa quando la lavatrice termina il lavaggio (&lt;a href=&quot;https://red-blue.it/guide/domotica/sonoff/2024/08/26/ho-reso-smart-la-mia-lavatrice.html&quot; target=&quot;_blank&quot;&gt;qui la guida completa&lt;/a&gt;), c’è da fare un piccolo &lt;strong&gt;aggiornamento&lt;/strong&gt; dello script, in quanto vari aggiornamenti di HA hanno leggermente modificato la situazione, e il vecchio script di fatto non funziona.&lt;/p&gt;
+
+&lt;p&gt;Adesso le automazione vanno tutte in &lt;em&gt;automations.yaml&lt;/em&gt;, quindi il file all’interno della directory &lt;em&gt;packages&lt;/em&gt; conterrà di fatto solo l’input_boolean:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;########################################################&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;################INPUT_BOOLEAN############################&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;########################################################&lt;/span&gt;
+input_boolean:
+  lavatrice_switch:
+    name: stato del lavaggio
+    initial: off
+    icon: mdi:washing-machine&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Mentre in automations.yaml (potete anche scegliere di aggiungerle da interfaccia grafica di HA, cosa che ad esempio ho fatto io, per poi modificare quello che mi serviva):&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;: &lt;span class=&quot;s1&quot;&gt;&apos;1731346166999&apos;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;alias&lt;/span&gt;: Lavatrice fine switch state
+  description: &lt;span class=&quot;s1&quot;&gt;&apos;&apos;&lt;/span&gt;
+  trigger:
+  - entity_id: sensor.lavatrice_power
+    platform: numeric_state
+    below: &lt;span class=&quot;s1&quot;&gt;&apos;5.0&apos;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;:
+      minutes: 1
+  condition:
+  - condition: state
+    entity_id: input_boolean.lavatrice_switch
+    state: &lt;span class=&quot;s1&quot;&gt;&apos;on&apos;&lt;/span&gt;
+  action:
+  - entity_id: input_boolean.lavatrice_switch
+    action: input_boolean.turn_off
+  mode: single
+- &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;: &lt;span class=&quot;s1&quot;&gt;&apos;1731346431244&apos;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;alias&lt;/span&gt;: Lavatrice Finito
+  description: &lt;span class=&quot;s1&quot;&gt;&apos;&apos;&lt;/span&gt;
+  triggers:
+  - entity_id: input_boolean.lavatrice_switch
+    to: &lt;span class=&quot;s1&quot;&gt;&apos;off&apos;&lt;/span&gt;
+    trigger: state
+  conditions: &lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt;
+  actions:
+  - action: notify.alexa_media
+    metadata: &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
+    data:
+      message: La lavatrice ha terminato il lavaggio. Ricordati di stendere il bucato
+      target: media_player.nome_disposivo_alexa
+      data:
+        &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;: announce
+  mode: single
+- &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;: &lt;span class=&quot;s1&quot;&gt;&apos;1731346443168&apos;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;alias&lt;/span&gt;: lavatrice on
+  description: &lt;span class=&quot;s1&quot;&gt;&apos;&apos;&lt;/span&gt;
+  trigger:
+  - entity_id: sensor.lavatrice_power
+    platform: numeric_state
+    above: &lt;span class=&quot;s1&quot;&gt;&apos;50.0&apos;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;:
+      minutes: 1
+  condition: &lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt;
+  action:
+  - entity_id: input_boolean.lavatrice_switch
+    action: input_boolean.turn_on
+  mode: single
+  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;L’automazione tornerà a funzionare regolarmente.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="domotica" /><category term="sonoff" /><category term="updated" /><summary type="html">In merito all’automazione di Home Assistant per ricevere una notifica tramite Alexa quando la lavatrice termina il lavaggio (qui la guida completa), c’è da fare un piccolo aggiornamento dello script, in quanto vari aggiornamenti di HA hanno leggermente modificato la situazione, e il vecchio script di fatto non funziona.</summary></entry><entry><title type="html">Soluzione errore RPC failed; curl 92 HTTP/2 stream 0 was not closed cleanly CANCEL (err 8)</title><link href="https://red-blue.it/guide/domotica/sonoff/2024/09/22/soluzione-RPC-failed-curl-92-HTTP-2-stream-0-was-not-closed-cleanly-CANCEL-err-8.html" rel="alternate" type="text/html" title="Soluzione errore RPC failed; curl 92 HTTP/2 stream 0 was not closed cleanly CANCEL (err 8)" /><published>2024-09-22T00:00:00+00:00</published><updated>2024-09-22T00:00:00+00:00</updated><id>https://red-blue.it/guide/domotica/sonoff/2024/09/22/soluzione-RPC-failed-curl-92-HTTP-2-stream-0-was-not-closed-cleanly-CANCEL-err-8</id><content type="html" xml:base="https://red-blue.it/guide/domotica/sonoff/2024/09/22/soluzione-RPC-failed-curl-92-HTTP-2-stream-0-was-not-closed-cleanly-CANCEL-err-8.html">&lt;p&gt;Per quanto riguarda la schedulazione della pubblicazione di post su Github Pages (vedi questo &lt;a href=&quot;https://red-blue.it/guide/blog/ruby/jekyll/2024/08/24/schedulare-la-pubblicazione-dei-post-su-github-pages-con-jekyll.html{:target=&amp;quot;_blank&amp;quot;}&quot;&gt;precedente articolo&lt;/a&gt;), mi sono imbattuto in un errore che di fatto bloccava la pubblicazione automatica.&lt;/p&gt;
+
+&lt;p&gt;La soluzione è semplicissima, in fondo al file jekyll.yml, basta aggiungere:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;pre_build_commands: git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; http.postBuffer 157286400&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;E la action torna a funzionare.&lt;/p&gt;
+
+&lt;p&gt;Alla prossima..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="domotica" /><category term="sonoff" /><summary type="html">Per quanto riguarda la schedulazione della pubblicazione di post su Github Pages (vedi questo precedente articolo), mi sono imbattuto in un errore che di fatto bloccava la pubblicazione automatica.</summary></entry><entry><title type="html">Ho reso smart la mia lavatrice!</title><link href="https://red-blue.it/guide/domotica/sonoff/2024/08/26/ho-reso-smart-la-mia-lavatrice.html" rel="alternate" type="text/html" title="Ho reso smart la mia lavatrice!" /><published>2024-08-26T00:00:00+00:00</published><updated>2024-08-26T00:00:00+00:00</updated><id>https://red-blue.it/guide/domotica/sonoff/2024/08/26/ho-reso-smart-la-mia-lavatrice</id><content type="html" xml:base="https://red-blue.it/guide/domotica/sonoff/2024/08/26/ho-reso-smart-la-mia-lavatrice.html">&lt;p&gt;Qualche tempo fa mia moglie mi ha chiesto un modo per sapere quando la lavatrice termina il lavaggio. Viviamo in una casa a più piani, e spesso non siamo nei pressi della lavatrice quando termina il lavaggio, ed ecco che dimenticarsi del tutto del bucato da stendere era diventato una problema.&lt;/p&gt;
+
+&lt;p&gt;Escludendo la possibilità di acquistare una modernissima lavatrice nuova, ho cercato in rete qualche progetto che fosse utile al mio scopo, ma non mi andava (e non so nemmeno se sarei stato capace) di saldare/modificare nulla sulla scheda madre, perciò ho cercato una soluzione software.&lt;/p&gt;
+
+&lt;p&gt;L’accoppiata &lt;strong&gt;Sonoff POW Origin + Home Assistant&lt;/strong&gt; ha risolto tutto.&lt;/p&gt;
+
+&lt;p&gt;Il &lt;a href=&quot;https://sonoff.tech/product/diy-smart-switches/pow-origin/&quot; target=&quot;_blank&quot;&gt;Sonoff POW Origin&lt;/a&gt; è una classico switch domotico, un dispositivo capace cioè di funzionare come un interruttore, ma pilotabile da smartphone (mediante app), integrabile con gli assistenti vocali, ma soprattutto capace di misurare i &lt;strong&gt;consumi&lt;/strong&gt; del carico elettrico a cui è collegato.&lt;/p&gt;
+
+&lt;p&gt;Ed ecco l’idea.. Se posso monitorare i consumi della mia lavatrice, posso capire quando è &lt;strong&gt;attiva&lt;/strong&gt; (cioè quando il lavaggio è in corso), e di conseguenza anche quando il lavaggio &lt;strong&gt;termina&lt;/strong&gt; (se prima ha un certo consumo e poi va a zero, vuol dire che ha terminato).&lt;/p&gt;
+
+&lt;p&gt;Detto fatto, ho acquistato un &lt;strong&gt;POW Origin&lt;/strong&gt;, l’ho collegato a due spezzoni di cavo elettrico della giusta sezione per un carico come una lavatrice (il classico 3x2,5mm va benissimo). Il collegamento del dispositivo è assolutamente semplice, di fatto vanno collegati il &lt;em&gt;neutro&lt;/em&gt; (di solito un cavo di colore blu) e la &lt;em&gt;fase&lt;/em&gt; (un cavo di colore solitamente nero o marrone) provenienti dalla linea di casa, rispettivamente su uno dei due morsetti contrassegnati con N (sono in parallelo, quindi è indifferente su quali dei due lo collegate) e su Lin (fase in ingresso); nel mio caso, ho collegato uno spezzone di cavo come indicato e poi all’altro estremo ho messo una spina che andrà in una comune presa elettrica (ho usato una cosiddetta Schuko), mentre l’altro spezzone di cavo, quello che andrà al carico (la lavatrice), va collegato allo stesso modo, ma con la fase su Lout (fase in uscita), ovviamente poi ho completato il mio cavo con una spina femmina (da collegare nel mio caso alla lavatrice).&lt;/p&gt;
+
+&lt;p&gt;A questo punto, basta configurare il dispositivo nell’app &lt;strong&gt;eWelink&lt;/strong&gt; e siamo già in grado di dare/togliere corrente alla lavatrice, e soprattutto misurarne il consumo.&lt;/p&gt;
+
+&lt;p&gt;Benissimo.. Ma la notifica di fine lavaggio? La logica è chiara e non è nulla di speciale, per realizzarla ho utilizzato il &lt;a href=&quot;https://red-blue.it/guide/linux/in%20evidenza/raspberry%20pi/domotica/2021/05/26/realizzare-il-proprio-sistema-domotico-introduzione.html&quot; target=&quot;_blank&quot;&gt;mini server domotico&lt;/a&gt; che ho in casa (utilizzato molto meno di quanto avessi previsto in origine, devo ammetterlo), il quale può tranquillamente interfacciarsi tanto con i dispositivi di casa Sonoff, quanto con i più comuni assistenti vocali (nel mio caso Amazon Alexa). Avevo iniziato a buttar giù qualcosa, quando mi sono imbattutto in &lt;a href=&quot;https://www.vincenzocaputo.com/guide/la-lavatrice-ha-finito-con-home-assistant-te-lo-facciamo-notificare-174&quot; target=&quot;_blank&quot;&gt;questo post&lt;/a&gt; sul blog di Vincenzo Caputo che praticamente mi ha risolto il problema al volo! Davvero &lt;strong&gt;fantastico&lt;/strong&gt;, non posso fare altro che ringraziarli!&lt;/p&gt;
+
+&lt;p&gt;Quindi, esattamente come suggerito, cominciamo con l’indicare al sistema che deve considerare i &lt;strong&gt;packages&lt;/strong&gt; all’interno dell’apposita directory (se non esiste, createla nello stesso percorso del file configuration.yaml):&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;homeassistant:
+  packages: &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;include_dir_named packages&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;E all’interno della suddetta directory, va inserito il seguente script, che personalmente ho battezzato &lt;em&gt;washingmachineintegration.yaml&lt;/em&gt;:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;######################################################&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;####################AUTOMATION########################&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;######################################################&lt;/span&gt;
+automation:
+- &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;: lavatrice_on
+  &lt;span class=&quot;nb&quot;&gt;alias&lt;/span&gt;: lavatrice on
+  trigger:
+  -  entity_id: sensor.lavatrice_power
+     platform: numeric_state
+     above: &lt;span class=&quot;s1&quot;&gt;&apos;50.0&apos;&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;:
+       minutes: 1
+  action:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.lavatrice_switch 
+
+- &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;: lavatrice_fine_switch_state
+  &lt;span class=&quot;nb&quot;&gt;alias&lt;/span&gt;: Lavatrice fine switch state
+  trigger: 
+  - entity_id: sensor.lavatrice_power
+    platform: numeric_state
+    below: &lt;span class=&quot;s1&quot;&gt;&apos;5.0&apos;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;:
+      minutes: 1
+  condition:
+  - condition: state
+    entity_id: &lt;span class=&quot;s1&quot;&gt;&apos;input_boolean.lavatrice_switch&apos;&lt;/span&gt;
+    state: &lt;span class=&quot;s1&quot;&gt;&apos;on&apos;&lt;/span&gt;
+  action:
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.lavatrice_switch
+
+- &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;: lavatrice_done
+  &lt;span class=&quot;nb&quot;&gt;alias&lt;/span&gt;: Lavatrice Finito
+  trigger:
+  - entity_id: input_boolean.lavatrice_switch
+    platform: state
+    to: &lt;span class=&quot;s1&quot;&gt;&apos;off&apos;&lt;/span&gt;
+  action:
+  - service: notify.alexa_media
+    data:
+      message: La lavatrice ha terminato il lavaggio. Ricordati di stendere il bucato
+      target: media_player.nome_primo_dispositivo_alexa
+      data:
+        &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;: announce  
+  - service: notify.alexa_media
+    data:
+      message: La lavatrice ha terminato il lavaggio. Ricordati di stendere il bucato
+      target: media_player.nome_secondo_dispositivo_alexa
+      data:
+        &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;: announce
+&lt;span class=&quot;c&quot;&gt;########################################################&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;################INPUT_BOOLEAN############################&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;########################################################&lt;/span&gt;
+input_boolean:
+  lavatrice_switch:
+    name: stato del lavaggio
+    initial: off
+    icon: mdi:washing-machine&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Si tratta dello script presente al post di cui sopra, che ho adattato alle mie esigenze, ovvero al fatto che volevo che Alexa mi annunciasse la fine del lavaggio. Inoltre, l’ho anche adattato ai consumi della mia lavatrice.&lt;/p&gt;
+
+&lt;p&gt;Il cuore è in pratica l’&lt;strong&gt;INPUT_BOOLEAN&lt;/strong&gt; che si trova alla fine, che switchando tra off e on “fa capire” ad Home Assistant se deve partire o meno l’automazione che chiama l’annuncio di fine bucato: nel mio caso, se rileva un consumo di almeno 50 watt per almeno 1 minuto, switcha ad on (lavatrice in funzione), al contrario se rileva un consumo di meno di 5 watt per almeno 1 minuto, switcha ad off (la lavatrice ha terminato). In quest’ultimo caso, cioè se si verifica &lt;strong&gt;lo switch da on ad off&lt;/strong&gt;, parte il “Lavatrice finito”, che fa scattare a sua volta l’annuncio.&lt;/p&gt;
+
+&lt;p&gt;Ovviamente quel &lt;em&gt;sensor.lavatrice_power&lt;/em&gt; altro non è che il “sensore” relativo al Sonoff POW Origin che ho rinominato in questo modo.&lt;/p&gt;
+
+&lt;p&gt;Per gestire dispositivi Sonoff in Home Assistant, basta installare l’integrazione &lt;strong&gt;Sonoff LAN&lt;/strong&gt; da HACS, la quale riconoscera in maniera pressochè istantanea qualsiasi dispositivo di casa Sonoff presente nella vostra rete. Per usare Alexa come media player e riprodurre gli annunci, potete seguire &lt;a href=&quot;https://red-blue.it/guide/domotica/alexa/2024/08/20/annunci-da-alexa-tramite-home-assistant.html&quot; target=&quot;_blank&quot;&gt;questo post&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Semplice e geniale!&lt;/p&gt;
+
+&lt;p&gt;Stay tuned..&lt;/p&gt;
+
+&lt;p&gt;Credits: &lt;a href=&quot;https://www.vincenzocaputo.com/guide/la-lavatrice-ha-finito-con-home-assistant-te-lo-facciamo-notificare-174&quot; target=&quot;_blank&quot;&gt;Vincenzo Caputo&lt;/a&gt;&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="domotica" /><category term="sonoff" /><summary type="html">Qualche tempo fa mia moglie mi ha chiesto un modo per sapere quando la lavatrice termina il lavaggio. Viviamo in una casa a più piani, e spesso non siamo nei pressi della lavatrice quando termina il lavaggio, ed ecco che dimenticarsi del tutto del bucato da stendere era diventato una problema.</summary></entry><entry><title type="html">Schedulare la pubblicazione dei post su Github Pages con Jekyll</title><link href="https://red-blue.it/guide/blog/ruby/jekyll/2024/08/24/schedulare-la-pubblicazione-dei-post-su-github-pages-con-jekyll.html" rel="alternate" type="text/html" title="Schedulare la pubblicazione dei post su Github Pages con Jekyll" /><published>2024-08-24T00:00:00+00:00</published><updated>2024-08-24T00:00:00+00:00</updated><id>https://red-blue.it/guide/blog/ruby/jekyll/2024/08/24/schedulare-la-pubblicazione-dei-post-su-github-pages-con-jekyll</id><content type="html" xml:base="https://red-blue.it/guide/blog/ruby/jekyll/2024/08/24/schedulare-la-pubblicazione-dei-post-su-github-pages-con-jekyll.html">&lt;p&gt;Capita spesso di scrivere un post per poi pubblicarlo in un secondo momento. Con Jekyll basta semplicemente “datare” un post con una data &lt;strong&gt;futura&lt;/strong&gt; per fare in modo che non si veda immediatamente dopo il deploy. Il problema è che poi, alla data prevista, sarà necessario &lt;strong&gt;forzare il deploy&lt;/strong&gt;, ad esempio apportando una modifica anche minina ad un file, affinchè Github Pages ricompili l’intero sito e renda visibile il nuovo post.&lt;/p&gt;
+
+&lt;p&gt;Questo processo si può &lt;strong&gt;automatizzare&lt;/strong&gt;, usando una &lt;strong&gt;Action&lt;/strong&gt; che compila un branch periodicamente, a prescindere da quello che pubblichiamo, in modo da avere il sito sempre aggiornato. Vediamo come fare:&lt;/p&gt;
+
+&lt;p&gt;Per prima cosa, va inserito nel &lt;em&gt;_config.yml&lt;/em&gt; la seguente riga:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;ss&quot;&gt;future: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Che serve ad indicare a Jekyll di non pubblicare post con data futura.&lt;/p&gt;
+
+&lt;p&gt;Creiamo poi un &lt;em&gt;token di sicurezza&lt;/em&gt;: &lt;strong&gt;Icona del profilo -&amp;gt; Settings -&amp;gt; Developer Settings -&amp;gt; Personal Access tokens -&amp;gt; Fine grained tokens -&amp;gt; Generate new token&lt;/strong&gt;. Diamo un nome al nuovo token, gli diamo accesso a tutti oppure ad uno specifico repository, e sopratutto concediamo tutti i permessi (sono tanti lo so). Al termine copiamo il nuovo token.&lt;/p&gt;
+
+&lt;p&gt;A questo punto, aggiungiamo il token appena creato al repository del sito, quindi selezioniamo il relativo repository, poi andiamo in &lt;strong&gt;Settings -&amp;gt; Secrets and variables -&amp;gt; Actions -&amp;gt; New repository secret&lt;/strong&gt;. Diamo un nome ed incolliamo il token precedente, per poi salvare il tutto.&lt;/p&gt;
+
+&lt;p&gt;Adesso viene il bello, occorre creare un &lt;strong&gt;workflow&lt;/strong&gt; per Github, quindi creiamo il file jekyll.yml all’interno di &lt;em&gt;/.github/workflows&lt;/em&gt; (persorso che sarà quasi certamente da creare). In questo file indichiamo di usare la action &lt;a href=&quot;https://github.com/jeffreytse/jekyll-deploy-action&quot; target=&quot;_blank&quot;&gt;jeffreytse/jekyll-deploy-action&lt;/a&gt;. Leggendo la documentazione, io ho scritto quanto segue:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;ss&quot;&gt;name: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Build&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deploy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;
+
+&lt;span class=&quot;ss&quot;&gt;on:
+  schedule:
+    &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;cron: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;30 17 * * *&quot;&lt;/span&gt;
+  &lt;span class=&quot;ss&quot;&gt;workflow_dispatch:
+
+jobs:
+  build_and_deploy:
+    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;runs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;on: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ubuntu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;latest&lt;/span&gt;
+    &lt;span class=&quot;ss&quot;&gt;steps:
+      &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;uses: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;actions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;checkout&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@v4&lt;/span&gt;
+
+      &lt;span class=&quot;c1&quot;&gt;# Use GitHub Actions&apos; cache to cache dependencies on servers&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;uses: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;actions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cache&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@v4&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;with:
+          path: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vendor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bundle&lt;/span&gt;
+          &lt;span class=&quot;ss&quot;&gt;key: &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gems&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;restore&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;keys: &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+            &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gems&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;
+
+      &lt;span class=&quot;c1&quot;&gt;# Use GitHub Deploy Action to build and deploy to Github&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;uses: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;jeffreytse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;jekyll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;deploy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@v0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;6.0&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;with:
+          provider: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;github&apos;&lt;/span&gt;
+          &lt;span class=&quot;ss&quot;&gt;token: &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; 
+          &lt;span class=&quot;ss&quot;&gt;branch: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;gh-pages&apos;&lt;/span&gt;
+          &lt;span class=&quot;ss&quot;&gt;cname: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;url_custom_domain&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Vediamo di commentare un attimo il frammento di codice:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Nella sezione &lt;strong&gt;schedule&lt;/strong&gt;, indichiamo che la compilazione avverrà ogni giorno alle 17.30 (prima si indicano i minuti, poi le ore, potete verificare con &lt;a href=&quot;https://crontab.guru/&quot; target=&quot;_blank&quot;&gt;questo utile strumento online&lt;/a&gt; come usare quella sintassi).&lt;/li&gt;
+  &lt;li&gt;Nel &lt;strong&gt;token&lt;/strong&gt;, dobbiamo indicare il nome scelto in precedenza.&lt;/li&gt;
+  &lt;li&gt;Se abbiamo un &lt;strong&gt;custom domain&lt;/strong&gt; configurato, dobbiamo indicarlo in &lt;strong&gt;cname&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Possiamo testare il nostro workflow, dal repository scegliamo &lt;strong&gt;Actions&lt;/strong&gt;, nella colonna a sinistra scegliamo la action appena creata, e a destra clicchiamo su &lt;strong&gt;Run Workflow&lt;/strong&gt;, se tutto va bene dopo qualche minuto la compilazione del sito terminerà correttamente.&lt;/p&gt;
+
+&lt;p&gt;A questo punto, sarà stato creato un nuovo branch chiamato gh-pages (ma il nome potete sceglierlo a vostro piacimento), l’ultimo step è quello di indicare a Github di visualizzare il sito da questo nuono branch e non dal main (nel mio caso, usavo la compilazione diretta dal main infatti); per farlo, dal repository andiamo in &lt;strong&gt;Settings -&amp;gt; Pages&lt;/strong&gt; e selezioniamo, sotto &lt;strong&gt;Build and deployment&lt;/strong&gt;, l’opzione &lt;strong&gt;Deploy from a branch&lt;/strong&gt; (dovrebbe essere già selezionata) e come branch indichiamo gh-pages (o qualsiasi altro nome abbiate scelto).&lt;/p&gt;
+
+&lt;p&gt;A questo punto, scrivete un post con data futura e godetevi la pubblicazione &lt;strong&gt;schedulata&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="blog" /><category term="ruby" /><category term="jekyll" /><summary type="html">Capita spesso di scrivere un post per poi pubblicarlo in un secondo momento. Con Jekyll basta semplicemente “datare” un post con una data futura per fare in modo che non si veda immediatamente dopo il deploy. Il problema è che poi, alla data prevista, sarà necessario forzare il deploy, ad esempio apportando una modifica anche minina ad un file, affinchè Github Pages ricompili l’intero sito e renda visibile il nuovo post.</summary></entry><entry><title type="html">Annunci da Alexa tramite Home Assistant</title><link href="https://red-blue.it/guide/domotica/alexa/2024/08/20/annunci-da-alexa-tramite-home-assistant.html" rel="alternate" type="text/html" title="Annunci da Alexa tramite Home Assistant" /><published>2024-08-20T00:00:00+00:00</published><updated>2024-08-20T00:00:00+00:00</updated><id>https://red-blue.it/guide/domotica/alexa/2024/08/20/annunci-da-alexa-tramite-home-assistant</id><content type="html" xml:base="https://red-blue.it/guide/domotica/alexa/2024/08/20/annunci-da-alexa-tramite-home-assistant.html">&lt;p&gt;Sapete che è possibile usare un dispositivo Alexa come se fosse un riproduttore musicale tramite Home Assistant? Vediamo come fare..&lt;/p&gt;
+
+&lt;p&gt;Basta installare un custom component di Home Assistant chiamato Alexa Media Player.&lt;/p&gt;
+
+&lt;p&gt;Consiglio vivamente di installarlo tramite &lt;strong&gt;HACS&lt;/strong&gt;, il Community Store di Home Assistant, installabile da &lt;strong&gt;Impostazioni -&amp;gt; Dispositivi e servizi -&amp;gt; Aggiungi integrazione&lt;/strong&gt;. Quindi entrate in HACS e cercate “Alexa Media Player”, in alternativa clic sui &lt;strong&gt;tre puntini in alto a destra -&amp;gt; Archivi digitali personalizzati&lt;/strong&gt; ed inserite &lt;strong&gt;https://github.com/custom-components/alexa_media_player&lt;/strong&gt;, poi cercate nuovamente ed installate. Al termine Home Assistant va riavviato.&lt;/p&gt;
+
+&lt;p&gt;Poi collegatevi &lt;a href=&quot;https://www.amazon.it/ap/signin?openid.pape.preferred_auth_policies=SinglefactorWithPossessionChallenge&amp;amp;openid.pape.max_auth_age=900&amp;amp;openid.return_to=https%3A%2F%2Fwww.amazon.it%2Fa%2Fsettings%2Fapproval&amp;amp;openid.assoc_handle=itflex&amp;amp;openid.mode=checkid_setup&amp;amp;intercept=false&amp;amp;openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&quot; target=&quot;_blank&quot;&gt;qui&lt;/a&gt; ed accedete con le vostre credenziali Amazon (se usate Alexa, avete un account Amazon) e portate a termine la procedura per l’autenticazione a due passaggi, &lt;strong&gt;obbligatoria&lt;/strong&gt; per usare questa integrazione.&lt;/p&gt;
+
+&lt;p&gt;Occorre cliccare su &lt;strong&gt;Aggiungi nuovo telefono o un’app di autenticazione&lt;/strong&gt; e successivamente sul link &lt;strong&gt;Non riesci ad acquisire il codice a barre?&lt;/strong&gt;; solo a questo punto avremo una schermata con un codice alfanumerico che dovremo appuntare da qualche parte (PS. Non chiudere questa finestra altrimenti bisogna ricominciare daccapo).&lt;/p&gt;
+
+&lt;p&gt;Andiamo su Home Assistant, in &lt;strong&gt;Impostazioni -&amp;gt; Dispositivi&lt;/strong&gt; e servizi e selezioniamo Alexa Media Player, poi vanno inseriti i dati di configurazione, ovvero il nostro account Amazon, il dominio &lt;strong&gt;amazon.it&lt;/strong&gt; (MI RACCOMANDO!!), l’URL di Home Assistant (deve essere raggiungibile da Internet ovviamente), e il codice copiato in precedenza, che garantirà l’autenticazione corretta. Clicchiamo su “Invia” e avremo un’OTP da inserire nella pagina precedente (vi avevo detto di non chiuderla!).&lt;/p&gt;
+
+&lt;p&gt;Al termine della configurazione, saranno comparsi tutti i dispositivi alexa che avete in casa, e le relative entità, e saranno del tipo media_player.&lt;em&gt;nome_dispositivo&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/alexa_media_player.png&quot; alt=&quot;alexa_media_player_image&quot; style=&quot;display:block; width: 100%; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Poi, tali entità saranno richiamabili a piacimento tramite Home Assistant, ad esempio in un’automazione.&lt;/p&gt;
+
+&lt;p&gt;Per utilizzare gli annunci si può usare il &lt;strong&gt;servizio “notify.alexa_media”&lt;/strong&gt;, ad esempio in un’automazione va inserito il seguente codice:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;service: notify.alexa_media
+data:
+  message: Questo è il testo dell&lt;span class=&quot;s1&quot;&gt;&apos;annuncio che sarà riprodotto
+  target: media_player.nome_dispositvo_alexa
+  data:
+    type: announce&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Stay tuned..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="domotica" /><category term="alexa" /><summary type="html">Sapete che è possibile usare un dispositivo Alexa come se fosse un riproduttore musicale tramite Home Assistant? Vediamo come fare..</summary></entry><entry><title type="html">Trasferire foto da iPhone a PC e catalogarle automaticamente</title><link href="https://red-blue.it/guide/windows/programmazione/2024/08/11/trasferire-foto-da-iphone-a-pc-e-catalogarle-automaticamente.html" rel="alternate" type="text/html" title="Trasferire foto da iPhone a PC e catalogarle automaticamente" /><published>2024-08-11T00:00:00+00:00</published><updated>2024-08-11T00:00:00+00:00</updated><id>https://red-blue.it/guide/windows/programmazione/2024/08/11/trasferire-foto-da-iphone-a-pc-e-catalogarle-automaticamente</id><content type="html" xml:base="https://red-blue.it/guide/windows/programmazione/2024/08/11/trasferire-foto-da-iphone-a-pc-e-catalogarle-automaticamente.html">&lt;p&gt;Mia moglie possiede un iPhone, e ovviamente nella memoria di quel device ci sono diverse migliaia di foto, molte delle quali decisamente importanti dal punto di vista affettivo.&lt;/p&gt;
+
+&lt;p&gt;Fermo restando che esiste iCloud, se lo spazio sul device termina, come fare a &lt;strong&gt;trasferire tutte&lt;/strong&gt;, ma proprio tutte quelle foto su un normale PC con Windows (ebbene si, in casa non abbiamo un Mac)?&lt;/p&gt;
+
+&lt;p&gt;Il primo tentativo è stato ovviamente con i software consigliati da Apple, ma niente, non venivano scaricate tutte, perciò dopo un po’ di prove varie ho deciso di cercare una via alternativa. Ed ecco la mia soluzione per trasferire foto da iPhone a PC e catalogarle automaticamente.&lt;/p&gt;
+
+&lt;p&gt;In primo luogo, ho creato un’&lt;strong&gt;utenza locale&lt;/strong&gt; di Windows, al quale ho assegnato una password:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;n&quot;&gt;net&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;iphone_user&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;987654321&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;/add&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Poi, ho creato una cartella, l’ho &lt;strong&gt;condivisa&lt;/strong&gt; e ho dato all’utente creato sopra i permessi per il controllo completo (lettura e scrittura): dopo aver creato la cartella, clic destro sulla &lt;strong&gt;cartella -&amp;gt; Proprietà -&amp;gt; Condivisione -&amp;gt; Condividi&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Nella finestra che si apre selezionare l’utente appena creato ed aggiungerlo a quelli autorizzati, poi selezionare anche &lt;strong&gt;Lettura/Scrittura&lt;/strong&gt; (di default sarà indicato solo “Lettura”). Cliccare su &lt;strong&gt;Condividi&lt;/strong&gt; e poi nella schermata principale, su &lt;strong&gt;Condivisione avanzata&lt;/strong&gt; e poi su &lt;strong&gt;Autorizzazioni&lt;/strong&gt;, infine spuntare il &lt;strong&gt;Controllo completo&lt;/strong&gt; per il nostro utente.&lt;/p&gt;
+
+&lt;p&gt;Cliccare su Ok su tutte le finestre fino a chiudere quella principale relativa alla cartella. Abbiamo finito per quanto riguarda Windows.&lt;/p&gt;
+
+&lt;p&gt;A questo punto, sull’iPhone ho installato &lt;a href=&quot;https://apps.apple.com/it/app/owlfiles-file-manager/id510282524&quot; target=&quot;_blank&quot;&gt;Owlfiles&lt;/a&gt; (uno dei tanti file manager disponibili gratuitamente sull’App Store di Apple) e da lì ho configurato la connessione ad un server, ovviamente il mio PC, basta indicare l’indirizzo IP del computer e successivamente come nome utente e password indicare quelli del solito utente che abbiamo creato in precedenza. Owlfiles permette di selezionare tutte le foto presenti sul device in un solo tocco, e importarli sul server, con un banalissimo copia e incolla.&lt;/p&gt;
+
+&lt;p&gt;Fatto, dopo il tempo necessario a trasferire qualche migliaio di files, tutte le foto erano sul PC!&lt;/p&gt;
+
+&lt;p&gt;Ma non è tutto, perchè dopo il trasferimento, c’era la titanica impresa di &lt;strong&gt;catalogarle&lt;/strong&gt; tutte per data (chi ha dei bimbi piccoli forse può capirmi)! In pratica, le foto andavano catalogate in cartelle col nome nel formato &lt;em&gt;MM_YYYY&lt;/em&gt;, in base alla data di ultima modifica: ho pensato di ricorrere ad un piccolissimo script in PowerShell:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$p&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;path_completo_cartella_condivisa_creata_in_precedenza&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get-childitem&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Path&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$p&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+     &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Move-Item&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Destination&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;New-Item&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-ItemType&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Directory&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Path&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Join-Path&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$p&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;$_&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;LastWriteTime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ToString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;yyyy_MM&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-Force&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;In pratica, per ogni file presente nella cartella condivisa, questo viene spostato nella cartella relativa al mese corretto in base alla data di ultima modifica del file, e se questa non esiste, viene &lt;strong&gt;creata&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Alla prossima..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="windows" /><category term="programmazione" /><summary type="html">Mia moglie possiede un iPhone, e ovviamente nella memoria di quel device ci sono diverse migliaia di foto, molte delle quali decisamente importanti dal punto di vista affettivo.</summary></entry><entry><title type="html">Notifica automatica se un dispositivo va offline</title><link href="https://red-blue.it/guide/domotica/raspberrypi/2024/07/27/notifica-automatica-dispositivo-offline.html" rel="alternate" type="text/html" title="Notifica automatica se un dispositivo va offline" /><published>2024-07-27T00:00:00+00:00</published><updated>2024-07-27T00:00:00+00:00</updated><id>https://red-blue.it/guide/domotica/raspberrypi/2024/07/27/notifica-automatica-dispositivo-offline</id><content type="html" xml:base="https://red-blue.it/guide/domotica/raspberrypi/2024/07/27/notifica-automatica-dispositivo-offline.html">&lt;p&gt;Come fare a sapere se un dispositivo va &lt;strong&gt;offline&lt;/strong&gt;? Può essere un server domestico, ad esempio per la domotica, oppure può essere usato come “alert” del fatto che manca la corrente in casa, in generale può essere utile ricevere una notifica se un dispositivo va offline.&lt;/p&gt;
+
+&lt;p&gt;Sto per partire per le vacanze, e recentemente mi sta succedendo che, a causa di una situazione un po’ “instabile” nella mia zona, il salvavita in casa scatta più del dovuto. Chiaramente, in caso questo succeda mentre siamo via, può diventare un problema, quindi mi serve qualcosa che mi avvisi, in modo che io possa a mia volta avvisare qualcuno di andare a controllare.&lt;/p&gt;
+
+&lt;p&gt;Ho pensato quindi di ricevere una notifica se il mio piccolo server domotico (un Raspberry Pi sul quale gira Home Assistant) va offline e ci resta per almeno 15 minuti.&lt;/p&gt;
+
+&lt;p&gt;Per realizzare questo piccolissimo progetto, si può usare un servizio esterno, come ad esempio &lt;a href=&quot;https://healthchecks.io/&quot; target=&quot;_blank&quot;&gt;healthchecks.io&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Usarlo è semplicissimo, basta registrarsi e si avrà accesso al piano gratuito (hobbyist), più che sufficiente per i miei scopi:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/healthchecks_pricing.png&quot; alt=&quot;healthcheck.io pricing&quot; style=&quot;display:block; width: 100%; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A questo punto, basta creare un &lt;strong&gt;check&lt;/strong&gt; e configurarlo a seconda delle nostre necessità, il &lt;strong&gt;period&lt;/strong&gt; rappresenta ogni quanto tempo il servizio si aspetta un ping, il &lt;strong&gt;grace&lt;/strong&gt; è il limite temporale oltre il quale avremo la notifica del &lt;strong&gt;DOWN&lt;/strong&gt;. Una volta configurato avremo un link, il servizio usa quel link come check appunto. Quindi basterà che il nostro dispositivo esegua periodicamente una richiesta a quel link, e se tale richiesta fallisce, dopo il periodo di grace avremo la notifica.&lt;/p&gt;
+
+&lt;p&gt;La notifica di default è via mail, io ho attivato anche l’integrazione con Telegram, ma di integrazioni ce ne sono davvero un’infinita, con praticamente qualsiasi applicazione.&lt;/p&gt;
+
+&lt;p&gt;A questo punto, come dicevo sopra, il mio dispositivo è un Raspberry con installato Home Assistant, quindi basta configurare un &lt;strong&gt;restful_service&lt;/strong&gt; che fa il ping sul link del mio check.&lt;/p&gt;
+
+&lt;p&gt;Un restful_service va aggiunto direttamente sul &lt;strong&gt;configurations.yaml&lt;/strong&gt;, in questo modo:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;rest_command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;raspberry_pi_online&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;link_healthchecks&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GET&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Poi basta creare un’&lt;strong&gt;automazione&lt;/strong&gt; che chiama quel servizio ad esempio ogni 5 minuti, e il gioco è fatto!&lt;/p&gt;
+
+&lt;p&gt;Una piccola nota a margine, mi rendo conto che questo “sistema” non è certo una soluzione al problema di casa mia (in teoria, potrebbe andare offline il Raspberry senza che la corrente sia andata via tra l’altro), ho già chiamato l’elettricista per quando rientro (adesso davvero non c’è tempo), così come un salvavita con riarmo automatico potrebbe essere più utile, visto che riattiverebbe tutto automaticamente, ma anche per questo ci vuole l’elettricista e, ripeto, non c’è il tempo adesso.&lt;/p&gt;
+
+&lt;p&gt;Alla prossima..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="domotica" /><category term="raspberrypi" /><summary type="html">Come fare a sapere se un dispositivo va offline? Può essere un server domestico, ad esempio per la domotica, oppure può essere usato come “alert” del fatto che manca la corrente in casa, in generale può essere utile ricevere una notifica se un dispositivo va offline.</summary></entry><entry><title type="html">Jekyll, generatore di siti statici</title><link href="https://red-blue.it/guide/blog/2023/08/23/jekyll-generatore-di-siti-statici.html" rel="alternate" type="text/html" title="Jekyll, generatore di siti statici" /><published>2023-08-23T00:00:00+00:00</published><updated>2023-08-23T00:00:00+00:00</updated><id>https://red-blue.it/guide/blog/2023/08/23/jekyll-generatore-di-siti-statici</id><content type="html" xml:base="https://red-blue.it/guide/blog/2023/08/23/jekyll-generatore-di-siti-statici.html">&lt;p&gt;Piccolo post introduttivo su &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt;, il generatore di siti web statici.&lt;/p&gt;
+
+&lt;p&gt;Per tantissimi anni ho usato per questo blog un CMS (Content Management System), con il quale gestivo un cosidetto sito web &lt;strong&gt;dinamico&lt;/strong&gt;, ovvero esisteva un database in cui tutti i dati del sito erano memorizzati, ed era poi il CMS stesso che provvedeva a recuperare tali dati all’occorrenza e a creare &lt;em&gt;“on demand”&lt;/em&gt; le pagine web da visualizzare.&lt;/p&gt;
+
+&lt;p&gt;All’opposto di un sistema del genere ci sono i siti web &lt;strong&gt;statici&lt;/strong&gt;, nei quali invece le pagine web sono direttamente presenti sul server, senza dover ricorrere ad un database. In, pratica, si ha a che fare con semplici file HTML.&lt;/p&gt;
+
+&lt;p&gt;Jekyll è un software che aiuta a generare siti web statici, usando templates per costruire le pagine web per le quali scriviamo i contenuti. Jekyll non usa databases, né è in grado di &lt;em&gt;“hostare”&lt;/em&gt; il sito creato, il quale va uploadato su un servizio online per la pubblicazione (ad esempio &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;Ovviamente il ricorso ad un software come Jekyll va valutato attentamente, esistono tipologie di siti che hanno necessariamente bisogno di database e CMS, ma nel caso di siti come il mio, i vantaggi possono essere diversi:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;manutenzione pari quasi a zero (non ci sono aggiornamenti da applicare se non in rare occasioni);&lt;/li&gt;
+  &lt;li&gt;semplicità di backup (basta un semplice copia e incolla);&lt;/li&gt;
+  &lt;li&gt;la possibilità di usare un sistema di versionamento del codice, ad esempio &lt;strong&gt;Git&lt;/strong&gt;;&lt;/li&gt;
+  &lt;li&gt;spesso il sito risultante è estremamente veloce (a patto di non generare pagine particolarmente pesanti).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Aggiungo che, tempo permettendo, ci si può divertire a personalizzare l’aspetto del sito a piacimento in maniera piuttosto rapida, non essendo necessaria praticamente alcuna conoscenza avanzata di programmazione.&lt;/p&gt;
+
+&lt;p&gt;Nei prossimi post, vedremo l’installazione, la gestione offline/online e la creazione di post con Jekyll.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="blog" /><summary type="html">Piccolo post introduttivo su Jekyll, il generatore di siti web statici.</summary></entry><entry><title type="html">Convertire un disco MBR in GPT senza perdere dati</title><link href="https://red-blue.it/tipsntricks/linux/2021/10/22/convertire-un-disco-mbr-in-gpt-senza-perdere-dati.html" rel="alternate" type="text/html" title="Convertire un disco MBR in GPT senza perdere dati" /><published>2021-10-22T00:00:00+00:00</published><updated>2021-10-22T00:00:00+00:00</updated><id>https://red-blue.it/tipsntricks/linux/2021/10/22/convertire-un-disco-mbr-in-gpt-senza-perdere-dati</id><content type="html" xml:base="https://red-blue.it/tipsntricks/linux/2021/10/22/convertire-un-disco-mbr-in-gpt-senza-perdere-dati.html">&lt;p&gt;Convertire un disco MBR in  GTP &lt;strong&gt;senza perdere dati in Linux&lt;/strong&gt; &amp;egrave; semplice, basta utilizzare un semplicissimo comando: &lt;strong&gt;gdisk&lt;/strong&gt;.&lt;/p&gt;
+
+
+&lt;p&gt;Lo scenario: abbiamo un disco che presenta un classico record di boot (&lt;strong&gt;MBR&lt;/strong&gt;), quindi una tabella delle partizioni di tipo &lt;strong&gt;BIOS&lt;/strong&gt;, e abbiamo bisogno di convertirlo nel nuovo standard &lt;strong&gt;GPT&lt;/strong&gt;, che utilizza &lt;strong&gt;UEFI&lt;/strong&gt;.&lt;/p&gt;
+
+
+&lt;p&gt;Questo consente di creare pi&amp;ugrave; di quattro partizioni su un singolo disco e superare il limite dei 2 TB di dimensioni.&lt;/p&gt;
+
+
+&lt;p&gt;L&apos;operazione di conversione andrebbe fatta prima di installare un qualsiasi OS, ma in caso il sistema operativo sia gi&amp;agrave; installato, &amp;egrave; possibile usare gdisk per convertire un disco MBR in GPT senza perdere dati.&lt;/p&gt;
+
+
+&lt;p&gt;Semplicemente (supponendo che il disco da convertire sia /dev/sda), dare:&lt;/p&gt;
+
+&lt;pre class=&quot;wp-block-syntaxhighlighter-code&quot;&gt;sudo gdisk /dev/sda&lt;/pre&gt;
+
+&lt;p&gt;A questo punto, avremo una schermata in cui sar&amp;agrave; ben visibile la dicitura &lt;strong&gt;MBR: MBR only&lt;/strong&gt; e &lt;strong&gt;GPT: not present&lt;/strong&gt;.&lt;/p&gt;
+
+
+&lt;p&gt;Premiamo w e confermiamo l&apos;operazione, il tutto sar&amp;agrave; velocissimo.&lt;/p&gt;
+
+
+&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;text-decoration: underline;&quot;&gt;ATTENZIONE: personalmente non ho avuto problemi particolari, ma l&apos;operazione non &amp;egrave; comunque esente da rischi. Un backup preventivo &amp;egrave; sempre una buona idea in questi casi.&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;p&gt;Proseguiamo:&lt;/p&gt;
+
+&lt;pre class=&quot;wp-block-syntaxhighlighter-code&quot;&gt;sudo partprobe /dev/sda
+sudo grub-install /dev/sda&lt;/pre&gt;
+
+&lt;p&gt;Al &lt;strong&gt;reboot&lt;/strong&gt; avremo il disco convertito in GTP (baster&amp;agrave; verificarlo dalla schermata di gdisk, che riporter&amp;agrave; &lt;strong&gt;GPT: present&lt;/strong&gt;).&lt;/p&gt;
+
+
+&lt;p&gt;A questo punto, abbiamo due strade, o abbiamo gi&amp;agrave; una partizione &lt;strong&gt;/boot/efi&lt;/strong&gt; (necessaria all&apos;avvio di OS basati su UEFI, alcune distribuzioni Linux prevedono questa possibilit&amp;agrave;), oppure dovremo crearne una, ad esempio con &lt;strong&gt;gparted&lt;/strong&gt;. In tal caso ricordate, dimensione minima 100 MB, tipo FAT32, flag boot da settare.&lt;/p&gt;
+
+
+&lt;p&gt;Alla prossima..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="tipsntricks" /><category term="linux" /><summary type="html">Convertire un disco MBR in GTP senza perdere dati in Linux &amp;egrave; semplice, basta utilizzare un semplicissimo comando: gdisk.</summary></entry><entry><title type="html">Reinstallare GRUB su partizione Efi</title><link href="https://red-blue.it/tipsntricks/linux/2021/10/17/reinstallare-grub-su-partizione-efi.html" rel="alternate" type="text/html" title="Reinstallare GRUB su partizione Efi" /><published>2021-10-17T14:50:03+00:00</published><updated>2021-10-17T14:50:03+00:00</updated><id>https://red-blue.it/tipsntricks/linux/2021/10/17/reinstallare-grub-su-partizione-efi</id><content type="html" xml:base="https://red-blue.it/tipsntricks/linux/2021/10/17/reinstallare-grub-su-partizione-efi.html">&lt;p&gt;&lt;!-- wp:paragraph --&gt;&lt;/p&gt;
+&lt;p&gt;Mi &amp;egrave; capitato di trovarmi nella condizione di dover reinstallare GRUB su partizione Efi, in quanto di fatto il sistema &lt;strong&gt;non era pi&amp;ugrave; in grado di avviarsi&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;!-- /wp:paragraph --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- wp:paragraph --&gt;&lt;/p&gt;
+&lt;p&gt;Ho dovuto faticare pi&amp;ugrave; del previsto, in quanto di fatto l&apos;uso di Efi rende leggermente diverse le consuete operazioni di &lt;strong&gt;ripristino&lt;/strong&gt;, ma alla fine sono riuscito a reinstallare Grub su partizione Efi. Esistono dei tool che promettono di riparare in maniera quasi del tutto automatica queste situazioni, ma ho preferito procedere via codice.&lt;/p&gt;
+&lt;p&gt;&lt;!-- /wp:paragraph --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- wp:paragraph --&gt;&lt;/p&gt;
+&lt;p&gt;Premetto che io uso &lt;a href=&quot;https://linuxmint.com/download_lmde.php&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;LMDE 4&lt;/a&gt; (&lt;strong&gt;Linux Mint Debian Edition&lt;/strong&gt;), ma i passi fondamentalmente sono gli stessi per qualsiasi distribuzione.&lt;/p&gt;
+&lt;p&gt;&lt;!-- /wp:paragraph --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- wp:paragraph --&gt;&lt;/p&gt;
+&lt;p&gt;Per prima cosa, procuriamoci una live di LMDE e la portiamo su USB (ad esempio) con un software tipo &lt;a href=&quot;https://www.balena.io/etcher/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;Balena Etcher&lt;/a&gt;. Una volta avviato il sistema in versione live, apriamo un terminale e digitiamo:&lt;/p&gt;
+&lt;p&gt;&lt;!-- /wp:paragraph --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- wp:syntaxhighlighter/code --&gt;&lt;/p&gt;
+&lt;pre class=&quot;wp-block-syntaxhighlighter-code&quot;&gt;sudo mount /dev/sda2 /mnt
+sudo mount /dev/sda1 /mnt/boot/efi
+for i in /dev /dev/pts /proc /sys /run; do sudo mount -B $i /mnt$i; done
+sudo chroot /mnt
+grub-install /dev/sda
+update-grub  &lt;/pre&gt;
+&lt;p&gt;&lt;!-- /wp:syntaxhighlighter/code --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- wp:paragraph --&gt;&lt;/p&gt;
+&lt;p&gt;In questo esempio sda &amp;egrave; il disco sul quale va reinstallato il GRUB, che nel mio caso contiene varie partizioni, compresa una dedicata per il boot, sda2 &amp;egrave; la partizione dov&apos;&amp;egrave; installato LMDE (in generale il sistema operativo da avviare), e sda1 &amp;egrave; la partizione di boot Efi.&lt;/p&gt;
+&lt;p&gt;&lt;!-- /wp:paragraph --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- wp:paragraph --&gt;&lt;/p&gt;
+&lt;p&gt;A questo punto, dovremmo aver gi&amp;agrave; terminato (al termine dovremmo vedere la lista delle immagini di avvio rilevate), ma in realt&amp;agrave; al sottoscritto si &amp;egrave; presentato questo ulteriore errore:&lt;/p&gt;
+&lt;p&gt;&lt;!-- /wp:paragraph --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- wp:syntaxhighlighter/code --&gt;&lt;/p&gt;
+&lt;pre class=&quot;wp-block-syntaxhighlighter-code&quot;&gt;/usr/sbin/grub-probe: error: failed to get canonical path of `/boot/grub/fonts/UbuntuMono16.pf2&apos;.&lt;/pre&gt;
+&lt;p&gt;&lt;!-- /wp:syntaxhighlighter/code --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- wp:paragraph --&gt;&lt;/p&gt;
+&lt;p&gt;Dopo un&apos;ulteriore ricerca in rete, mi sono reso conto che la soluzione &amp;egrave; pi&amp;ugrave; semplice di quanto possa sembrare. Si tratta semplicemente di editare il file &lt;strong&gt;/etc/default/grub.d/60_mint-theme.cfg&lt;/strong&gt;, andando a sostituire il carattere indicato nell&apos;errore (UbuntuMono16.pf2), con un semplicissimo &lt;strong&gt;unicode.pf2&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;!-- /wp:paragraph --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- wp:paragraph --&gt;&lt;/p&gt;
+&lt;p&gt;Rilanciato &lt;strong&gt;grub-update&lt;/strong&gt;, tutto va a buon fine e riesce a reinstallare GRUB su partizione Efi.&lt;/p&gt;
+&lt;p&gt;&lt;!-- /wp:paragraph --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- wp:paragraph --&gt;&lt;/p&gt;
+&lt;p&gt;Riavviare il PC e il boot dovrebbe adesso riuscire.&lt;/p&gt;
+&lt;p&gt;&lt;!-- /wp:paragraph --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- wp:paragraph --&gt;&lt;/p&gt;
+&lt;p&gt;Alla prossima..&lt;/p&gt;
+&lt;p&gt;&lt;!-- /wp:paragraph --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- wp:tadv/classic-paragraph /--&gt;&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="tipsntricks" /><category term="linux" /><summary type="html">Mi &amp;egrave; capitato di trovarmi nella condizione di dover reinstallare GRUB su partizione Efi, in quanto di fatto il sistema non era pi&amp;ugrave; in grado di avviarsi. Ho dovuto faticare pi&amp;ugrave; del previsto, in quanto di fatto l&apos;uso di Efi rende leggermente diverse le consuete operazioni di ripristino, ma alla fine sono riuscito a reinstallare Grub su partizione Efi. Esistono dei tool che promettono di riparare in maniera quasi del tutto automatica queste situazioni, ma ho preferito procedere via codice. Premetto che io uso LMDE 4 (Linux Mint Debian Edition), ma i passi fondamentalmente sono gli stessi per qualsiasi distribuzione. Per prima cosa, procuriamoci una live di LMDE e la portiamo su USB (ad esempio) con un software tipo Balena Etcher. Una volta avviato il sistema in versione live, apriamo un terminale e digitiamo: sudo mount /dev/sda2 /mnt sudo mount /dev/sda1 /mnt/boot/efi for i in /dev /dev/pts /proc /sys /run; do sudo mount -B $i /mnt$i; done sudo chroot /mnt grub-install /dev/sda update-grub In questo esempio sda &amp;egrave; il disco sul quale va reinstallato il GRUB, che nel mio caso contiene varie partizioni, compresa una dedicata per il boot, sda2 &amp;egrave; la partizione dov&apos;&amp;egrave; installato LMDE (in generale il sistema operativo da avviare), e sda1 &amp;egrave; la partizione di boot Efi. A questo punto, dovremmo aver gi&amp;agrave; terminato (al termine dovremmo vedere la lista delle immagini di avvio rilevate), ma in realt&amp;agrave; al sottoscritto si &amp;egrave; presentato questo ulteriore errore: /usr/sbin/grub-probe: error: failed to get canonical path of `/boot/grub/fonts/UbuntuMono16.pf2&apos;. Dopo un&apos;ulteriore ricerca in rete, mi sono reso conto che la soluzione &amp;egrave; pi&amp;ugrave; semplice di quanto possa sembrare. Si tratta semplicemente di editare il file /etc/default/grub.d/60_mint-theme.cfg, andando a sostituire il carattere indicato nell&apos;errore (UbuntuMono16.pf2), con un semplicissimo unicode.pf2. Rilanciato grub-update, tutto va a buon fine e riesce a reinstallare GRUB su partizione Efi. Riavviare il PC e il boot dovrebbe adesso riuscire. Alla prossima..</summary></entry></feed>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Raspberry Pi come ad-blocker con Pi-Hole - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Tra le sue molteplici possibilit&amp;agrave;, Raspberry Pi ha anche quella di funzionare da ad-blocker. Ogni moderno sito web contiene pubblicit&amp;agrave;, in form...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/guide/linux/in%20evidenza/raspberry%20pi/2019/05/25/raspberry-pi-come-ad-blocker-con-pi-hole.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Raspberry Pi come ad-blocker con Pi-Hole</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on May 25, 2019 &middot; <span class="reading-time" title="Estimated read time">
+  
+   4 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p><!-- wp:paragraph --></p>
+<p>Tra le sue molteplici possibilit&agrave;, <strong>Raspberry Pi</strong> ha anche quella di funzionare da <strong>ad-blocke</strong>r. </p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ogni moderno sito web contiene pubblicit&agrave;, in forma pi&ugrave; o meno invasiva. Esistono tantissime estensioni per i browser pi&ugrave; popolari che consentono di bloccare pubblicit&agrave; e sistemi di tracking in generale, ma ormai sono stati sviluppati script capaci di rilevare tali estensioni e bloccare la visibilit&agrave; dei contenuti finch&eacute; l'utente non disabilita l'ad-blocker.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"id":3873,"align":"center"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter"><img src="/assets/images/Pi_3_Model_B.png" alt="" class="wp-image-3873"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p><strong>Pi-Hole</strong> (<a rel="noreferrer noopener" aria-label="sito ufficiale (apre in una nuova scheda)" href="https://pi-hole.net/" target="_blank">sito ufficiale</a>) &egrave; un software che opera a livello <strong>DNS</strong>, il che significa che agisce prima che qualsiasi contenuto venga caricato, e soprattutto, basta un'unica installazione per bloccare tutta la pubblicit&agrave; sulla rete di casa.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:more {"customText":"Continua a leggere..."} --><br />
+<!--more Continua a leggere...--><br />
+<!-- /wp:more --></p>
+<p><!-- wp:paragraph --></p>
+<p>Questo meccanismo &egrave; molto pi&ugrave; difficile da rilevare, in quanto viene visto praticamente come un <strong>normale problema di rete</strong> che impedisce la visualizzazione di un certo contenuto.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Pi-Hole si basa su una serie di <strong>blacklist</strong> (aggiornate abbastanza di frequente), quindi una volta installato e configurato praticamente non necessit&agrave; pi&ugrave; di alcuna attenzione.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Vediamo come procedere: per prima cosa, occorre avere un Raspberry Pi (almeno la <strong>versione 2</strong>) con installato l'OS, va benissimo Raspbian (<a rel="noreferrer noopener" aria-label="qui (apre in una nuova scheda)" href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank">qui</a> tutte le informazioni e le iso da scaricare), e poi collegarlo via cavo al router di casa. Poi per <strong>installare</strong> Pi-Hole basta il comando seguente:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:preformatted {"className":"wp-block-code"} --></p>
+<pre class="wp-block-preformatted wp-block-code">sudo curl -sSL https://install.pi-hole.net | bash</pre>
+<p><!-- /wp:preformatted --></p>
+<p><!-- wp:paragraph --></p>
+<p>L'installazione &egrave; piuttosto semplice, fondamentalmente basta accettare quasi tutto ci&ograve; che ci viene proposto di default. L'unica vera impostazione da fare riguarda il <strong>provider DNS</strong>.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"id":3986,"align":"center"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter"><img src="/assets/images/es_pihole01.jpg" alt="" class="wp-image-3986"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Bisogna andare in fondo all'elenco e scegliere <strong>Custom</strong>, per poi inserire l'IP del router di casa (nel mio caso 192.168.1.1), seguito ad esempio dal DNS di Google (8.8.8.8), separati da una virgola. Ricordiamo che l'idea &egrave; quella di far funzionare Pi-Hole come DNS per la rete locale.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>A questo punto proseguite l'installazione e personalmente consiglio di installare anche <strong>l'interfaccia web</strong>, tramite la quale sar&agrave; molto semplice gestire il tutto (oltre al fatto che &egrave; molto interessante controllare i grafici sul traffico di rete che vengono proposti).</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Terminata l'installazione, vi sar&agrave; indicato l'indirizzo IP al quale potrete raggiungere l'interfaccia web, che apparir&agrave; molto simile alla seguente (la password per accedere vi verr&agrave; comunicata in fase di installazione):</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"id":3987,"align":"center"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter"><img src="/assets/images/pi-hole-dashboard-1024x473.png" alt="" class="wp-image-3987"/></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ovviamente per una installazione nuova di zecca non avrete grosse statistiche da visualizzare, ma prima di concludere &egrave; molto importante il menu Settings, attraverso il quale potremo decidere di usare Pi-Hole come <strong>DHCP</strong> server per la nostra rete (tenendo ben presente che in una rete pu&ograve; esserci un solo server DHCP, quindi nel caso occorre entrare nelle impostazioni del router e disabilitare questa funzionalit&agrave;), in modo che tutti i dispositivi che si connettono alla rete sfruttino in realt&agrave; Pi-Hole e godano quindi dell'ad-blocking.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Se invece decidete di continuare ad usare il router come DHCP, allora ricordate di impostare l'IP del Raspberry Pi con installato Pi-Hole come DNS locale.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Alla prossima..</p>
+<p><!-- /wp:paragraph --></p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/guide/linux/in%20evidenza/raspberry%20pi/2019/02/26/raspberry-pi-come-vpn-server-con-pivpn.html" data-toggle="tooltip" data-placement="top" title="Raspberry Pi come VPN server con PiVPN">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/guide/linux/2020/04/05/creare-un-certificato-ssl-in-locale.html" data-toggle="tooltip" data-placement="top" title="Creare un certificato SSL in locale">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

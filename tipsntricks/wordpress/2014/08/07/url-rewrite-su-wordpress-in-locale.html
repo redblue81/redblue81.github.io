@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Url rewrite su Wordpress in locale - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Su un sito Wordpress in locale, possiamo scegliere di abilitare i cosiddetti permalink personalizzati (Impostazioni -&gt; Permalink), ovvero presentare le url d...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/tipsntricks/wordpress/2014/08/07/url-rewrite-su-wordpress-in-locale.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Url rewrite su Wordpress in locale</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on August 07, 2014 &middot; <span class="reading-time" title="Estimated read time">
+  
+   1 min  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Su un sito Wordpress in locale, possiamo scegliere di abilitare i cosiddetti permalink personalizzati (<strong>Impostazioni -> Permalink</strong>), ovvero presentare le url delle nostre pagine web in maniera pi&ugrave; elegante, esattamente come avviene in un sito online.</p>
+<p>Normalmente per&ograve; Apache non ha abilitato di default il modulo di rewrite, per cui potremmo ottenere un errore <strong>404</strong> (Not found). Poco male, per ovviare basta abilitare l'url rewrite su Wordpress in locale, andando nel file di configurazione (<code>/etc/apache2/apache2.conf</code> in <strong>Debian</strong>) e cercando le seguenti sezioni:</p>
+<pre class="brush: bash; gutter: true"><Directory />
+
+ Options Indexes FollowSymLinks
+
+ AllowOverride None
+
+</Directory>
+
+
+
+<Directory /var/www/>
+
+ Options Indexes FollowSymLinks
+
+ AllowOverride None
+
+ Require all granted
+
+</Directory></pre>
+<p>E modificarle come segue:</p>
+<pre class="brush: bash; gutter: true"><Directory />
+
+ Options Indexes FollowSymLinks
+
+ AllowOverride None
+
+</Directory></pre>
+<pre class="brush: bash; gutter: true"><Directory /var/www/>
+
+ Options Indexes FollowSymLinks
+
+ AllowOverride All
+
+ Require all granted
+
+</Directory></pre>
+<p>A questo punto potrebbe essere necessario attivare il modulo di rewrite delle URL di Apache, come root diamo:</p>
+<pre class="brush: bash; gutter: false">a2enmod rewrite</pre>
+<p>Infine, riavviamo Apache, dando sempre come <strong>root</strong>:</p>
+<pre class="brush: bash; gutter: false">service apache2 restart</pre>
+<p>Ed ecco fatto, adesso abbiamo l'url rewrite su Wordpress in locale e quindi ora il nostro Wordpress sar&agrave; perfettamente in grado di trattare correttamente qualsiasi tipo di permalink ci venga in mente!</p>
+<p>Alla prossima..</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/blog/guide/wordpress/2014/06/22/trasferire-sito-wordpress-da-locale-a-remoto.html" data-toggle="tooltip" data-placement="top" title="Trasferire un sito Wordpress da locale a remoto">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/tipsntricks/linux/internet/2014/09/16/supporto-hardware-in-linux-progetto-h-node.html" data-toggle="tooltip" data-placement="top" title="Supporto hardware in Linux: il progetto H-Node">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2025</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>
