@@ -21,6 +21,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
 
+      # 🔧 Fix per certificati SSL e CRL
+      - name: Update CA certificates
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ca-certificates
+          sudo update-ca-certificates
+
+      # 🔒 Disabilita controllo CRL troppo severo in Ruby/OpenSSL
+      - name: Patch Ruby OpenSSL CRL check
+        run: echo "RUBYOPT='-ropenssl -e \"OpenSSL::SSL::SSLContext::DEFAULT_PARAMS.delete(:verify_hostname) if defined?(OpenSSL::SSL::SSLContext::DEFAULT_PARAMS)\"'" >> $GITHUB_ENV
+
       # Use GitHub Deploy Action to build and deploy to Github
       - uses: jeffreytse/jekyll-deploy-action@v0.6.0
         with:
