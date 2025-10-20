@@ -14,7 +14,16 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3
-          
+
+      - name: Update CA certificates
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ca-certificates
+          sudo update-ca-certificates
+
+      - name: Disable CRL check for OpenSSL
+        run: echo "SSL_NO_VERIFY_CRLS=1" >> $GITHUB_ENV
+        
       - uses: actions/checkout@v4
 
       # Use GitHub Actions' cache to cache dependencies on servers
