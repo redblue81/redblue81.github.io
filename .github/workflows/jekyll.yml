@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1'  # invece di 3.2
+          ruby-version: '3.3'  # invece di 3.2
           bundler-cache: true
 
       - uses: actions/checkout@v4
@@ -32,6 +32,6 @@ jobs:
           provider: 'github'
           token: ${{ secrets.BLOG_ACTIONS_TOKEN }} 
           branch: 'gh-pages'
-          ruby_ver: '3.1.0'
+          ruby_ver: '3.3.0'
           cname: 'red-blue.it'
           pre_build_commands: git config --global http.postBuffer 157286400
