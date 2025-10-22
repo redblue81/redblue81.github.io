@@ -1,43 +1,38 @@
-name: Build and deploy Jekyll site to GitHub Pages
+name: Deploy Jekyll to gh-pages
 
 on:
-  schedule:
-    - cron: "30 10 * * *"
+  push:
+    branches: ["main"]
   workflow_dispatch:
 
+permissions:
+  contents: write   # serve per poter fare push su gh-pages
+  pages: write
+  id-token: write
+
 jobs:
-  build_and_deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      # Use GitHub Actions' cache to cache dependencies on servers
-      - uses: actions/cache@v4
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          path: |
-            .asdf/**
-            vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
+          ruby-version: '3.2'
+          bundler-cache: true
 
-      # 🔧 Fix per certificati SSL e CRL
-      - name: Update CA certificates
-        run: |
-          sudo apt-get update -y
-          sudo apt-get install -y ca-certificates
-          sudo update-ca-certificates
+      - name: Install dependencies
+        run: bundle install
 
-      # 🔒 Disabilita controllo CRL troppo severo in Ruby/OpenSSL
-      - name: Patch Ruby OpenSSL CRL check
-        run: echo "RUBYOPT='-ropenssl -e \"OpenSSL::SSL::SSLContext::DEFAULT_PARAMS.delete(:verify_hostname) if defined?(OpenSSL::SSL::SSLContext::DEFAULT_PARAMS)\"'" >> $GITHUB_ENV
+      - name: Build site with Jekyll
+        run: bundle exec jekyll build
 
-      # Use GitHub Deploy Action to build and deploy to Github
-      - uses: jeffreytse/jekyll-deploy-action@v0.6.0
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          provider: 'github'
-          token: ${{ secrets.BLOG_ACTIONS_TOKEN }} 
-          branch: 'gh-pages'
-          ruby_ver: '3.3.0'
-          cname: 'red-blue.it'
-          pre_build_commands: git config --global http.postBuffer 157286400
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./_site
+          commit_message: "Deploy site via GitHub Actions"
