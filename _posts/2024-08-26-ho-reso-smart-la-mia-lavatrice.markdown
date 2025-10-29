@@ -15,7 +15,7 @@ Escludendo la possibilità di acquistare una modernissima lavatrice nuova, ho ce
 
 L'accoppiata **Sonoff POW Origin + Home Assistant** ha risolto tutto.
 
-Il [Sonoff POW Origin](https://sonoff.tech/product/diy-smart-switches/pow-origin/){:target="_blank"} è una classico switch domotico, un dispositivo capace cioè di funzionare come un interruttore, ma pilotabile da smartphone (mediante app), integrabile con gli assistenti vocali, ma soprattutto capace di misurare i **consumi** del carico elettrico a cui è collegato.
+Il [Sonoff POW Origin](https://amzn.to/49q2ORk){:target="_blank"} è una classico switch domotico, un dispositivo capace cioè di funzionare come un interruttore, ma pilotabile da smartphone (mediante app), integrabile con gli assistenti vocali, ma soprattutto capace di misurare i **consumi** del carico elettrico a cui è collegato.
 
 Ed ecco l'idea.. Se posso monitorare i consumi della mia lavatrice, posso capire quando è **attiva** (cioè quando il lavaggio è in corso), e di conseguenza anche quando il lavaggio **termina** (se prima ha un certo consumo e poi va a zero, vuol dire che ha terminato).
 
