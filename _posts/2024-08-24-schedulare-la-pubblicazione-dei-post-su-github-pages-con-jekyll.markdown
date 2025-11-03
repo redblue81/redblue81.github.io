@@ -8,6 +8,7 @@ categories:
 - blog
 - ruby
 - jekyll
+- github
 ---
 
 Capita spesso di scrivere un post per poi pubblicarlo in un secondo momento. Con Jekyll basta semplicemente "datare" un post con una data **futura** per fare in modo che non si veda immediatamente dopo il deploy. Il problema è che poi, alla data prevista, sarà necessario **forzare il deploy**, ad esempio apportando una modifica anche minina ad un file, affinchè Github Pages ricompili l'intero sito e renda visibile il nuovo post.
