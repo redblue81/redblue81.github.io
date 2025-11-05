@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Domotizzare le luci di casa con Sonoff Mini R4 Extreme e Dual R3
+title: Aggiornamento workflow pubblicazione automatica su Github Pages
 #background: '/assets/images/smart-home-3096219_1920-768x512.jpg'
 author: RedBlue
 categories: 
