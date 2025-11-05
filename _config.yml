@@ -5,6 +5,8 @@ author:             RedBlue
 baseurl:            ""
 url:                "https://red-blue.it"
 
+locale: it_IT
+
 future: false
 
 paginate: 5
