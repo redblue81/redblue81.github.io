@@ -4,6 +4,26 @@
 
 <head>
 
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[Linux] Il comando Wget | RedBlue’s Blog</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="[Linux] Il comando Wget" />
+<meta name="author" content="RedBlue" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Cos&#39;&egrave; Wget?? Si tratta di un vero e proprio download manager, ovvero un software capace di effettuare il download di un file tramite HTTP, HTTPS ed FTP, ovvero i protocolli di rete con i quali ci confrontiamo ormai ogni giorno. Lo troviamo in praticamente tutte le distribuzioni Linux, e a volte &egrave; tutto ci&ograve; che abbiamo a disposizione per il download. Il suo uso di base &egrave; semplicissimo, funziona da riga di comando, quindi &egrave; necessario aprire un terminale, e fondamentalmente occorre dare wget seguito dal nome (completo) del file che intendiamo scaricare. Sempre nel terminale, vedremo tutta una serie di informazioni sul download (IP da cui si sta scaricando, quantit&agrave; di dati gi&agrave; scaricati, velocit&agrave;, tempistiche, etc). Ci sono alcune opzioni interessanti, ad esempio in caso di download interrotto (pi&ugrave; o meno involontariamente), &egrave; possibile riprendere dal punto di interruzione tramite l&#39;opzione -c, oppure avviare il download in background tramite l&#39;opzione -b, o ancora imporre una limitazione della velocit&agrave; di download mediante l&#39;opzione --limit-rate=, seguito da un numero che rappresenta appunto il limite di velocit&agrave; che intendiamo impostare. Volendo fare un esempio, diciamo di voler scaricare la ISO di Debian testing tramite wget, scriveremo da terminale: wget http://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-CD-1.iso In caso ad esempio di interruzione del download, per riprenderlo baster&agrave; dare: wget -c http://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-CD-1.iso Per quanto riguarda il protocollo FTP, wget funziona allo stesso modo, al massimo occorrer&agrave; aggiungere username e password se il server le richiede: wget ftp://urldacuiscaricare" />
+<meta property="og:description" content="Cos&#39;&egrave; Wget?? Si tratta di un vero e proprio download manager, ovvero un software capace di effettuare il download di un file tramite HTTP, HTTPS ed FTP, ovvero i protocolli di rete con i quali ci confrontiamo ormai ogni giorno. Lo troviamo in praticamente tutte le distribuzioni Linux, e a volte &egrave; tutto ci&ograve; che abbiamo a disposizione per il download. Il suo uso di base &egrave; semplicissimo, funziona da riga di comando, quindi &egrave; necessario aprire un terminale, e fondamentalmente occorre dare wget seguito dal nome (completo) del file che intendiamo scaricare. Sempre nel terminale, vedremo tutta una serie di informazioni sul download (IP da cui si sta scaricando, quantit&agrave; di dati gi&agrave; scaricati, velocit&agrave;, tempistiche, etc). Ci sono alcune opzioni interessanti, ad esempio in caso di download interrotto (pi&ugrave; o meno involontariamente), &egrave; possibile riprendere dal punto di interruzione tramite l&#39;opzione -c, oppure avviare il download in background tramite l&#39;opzione -b, o ancora imporre una limitazione della velocit&agrave; di download mediante l&#39;opzione --limit-rate=, seguito da un numero che rappresenta appunto il limite di velocit&agrave; che intendiamo impostare. Volendo fare un esempio, diciamo di voler scaricare la ISO di Debian testing tramite wget, scriveremo da terminale: wget http://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-CD-1.iso In caso ad esempio di interruzione del download, per riprenderlo baster&agrave; dare: wget -c http://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-CD-1.iso Per quanto riguarda il protocollo FTP, wget funziona allo stesso modo, al massimo occorrer&agrave; aggiungere username e password se il server le richiede: wget ftp://urldacuiscaricare" />
+<link rel="canonical" href="https://red-blue.it/tipsntricks/linux/2014/02/12/linux-il-comando-wget.html" />
+<meta property="og:url" content="https://red-blue.it/tipsntricks/linux/2014/02/12/linux-il-comando-wget.html" />
+<meta property="og:site_name" content="RedBlue’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-02-12T16:11:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[Linux] Il comando Wget" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"RedBlue"},"dateModified":"2014-02-12T16:11:00+00:00","datePublished":"2014-02-12T16:11:00+00:00","description":"Cos&#39;&egrave; Wget?? Si tratta di un vero e proprio download manager, ovvero un software capace di effettuare il download di un file tramite HTTP, HTTPS ed FTP, ovvero i protocolli di rete con i quali ci confrontiamo ormai ogni giorno. Lo troviamo in praticamente tutte le distribuzioni Linux, e a volte &egrave; tutto ci&ograve; che abbiamo a disposizione per il download. Il suo uso di base &egrave; semplicissimo, funziona da riga di comando, quindi &egrave; necessario aprire un terminale, e fondamentalmente occorre dare wget seguito dal nome (completo) del file che intendiamo scaricare. Sempre nel terminale, vedremo tutta una serie di informazioni sul download (IP da cui si sta scaricando, quantit&agrave; di dati gi&agrave; scaricati, velocit&agrave;, tempistiche, etc). Ci sono alcune opzioni interessanti, ad esempio in caso di download interrotto (pi&ugrave; o meno involontariamente), &egrave; possibile riprendere dal punto di interruzione tramite l&#39;opzione -c, oppure avviare il download in background tramite l&#39;opzione -b, o ancora imporre una limitazione della velocit&agrave; di download mediante l&#39;opzione --limit-rate=, seguito da un numero che rappresenta appunto il limite di velocit&agrave; che intendiamo impostare. Volendo fare un esempio, diciamo di voler scaricare la ISO di Debian testing tramite wget, scriveremo da terminale: wget http://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-CD-1.iso In caso ad esempio di interruzione del download, per riprenderlo baster&agrave; dare: wget -c http://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-CD-1.iso Per quanto riguarda il protocollo FTP, wget funziona allo stesso modo, al massimo occorrer&agrave; aggiungere username e password se il server le richiede: wget ftp://urldacuiscaricare","headline":"[Linux] Il comando Wget","mainEntityOfPage":{"@type":"WebPage","@id":"https://red-blue.it/tipsntricks/linux/2014/02/12/linux-il-comando-wget.html"},"url":"https://red-blue.it/tipsntricks/linux/2014/02/12/linux-il-comando-wget.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -23,8 +43,7 @@
   <link rel="canonical" href="https://red-blue.it/tipsntricks/linux/2014/02/12/linux-il-comando-wget.html">
   <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
 
-</head>
-
+</head> 
 
 <body>
 

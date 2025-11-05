@@ -4,6 +4,26 @@
 
 <head>
 
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Usare drivers x86 su Raspberry Pi | RedBlue’s Blog</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Usare drivers x86 su Raspberry Pi" />
+<meta name="author" content="RedBlue" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Problema: sul&nbsp;Raspberry Pi ho installato&nbsp;un driver specifico per architettura x86 non funzionante su ARM. Dopo una ricerca in rete, ho scoperto che &egrave; possibile usare pacchetti x86 su Raspberry Pi emulando l&#39;ambiente x86, con un&nbsp;procedura nemmeno eccessivamente complessa! Sul Raspberry &egrave; installata Raspbian Jessie, e occorre sfruttare il supporto multiarch. Quindi, diamo il seguente comando: sudo dpkg --add-architecture i386 Poi, &egrave; necessario modificare i files /etc/apt/sources.list e tutti i files presenti in /etc/apt/sources.list.d/&nbsp;(nel mio caso uno solo) aggiungendo [arch=armhf]. Ad esempio,&nbsp;/etc/apt/sources.list andr&agrave; modificato in modo da essere simile al seguente: deb [arch=armhf] http://archive.raspbian.org/raspbian jessie main contrib non-free A questo punto, occorre inserire i repositories di Debian versione i386. Potremmo aggiungerli direttamente nel file precedente, oppure ad esempio creare un file ad hoc in /etc/apt/sources.list.d/, chiamandolo ad esempio repo386.list, e scrivendoci all&#39;interno: deb [arch=i386] http://ftp.debian.org/debian/ jessie main contrib non-free" />
+<meta property="og:description" content="Problema: sul&nbsp;Raspberry Pi ho installato&nbsp;un driver specifico per architettura x86 non funzionante su ARM. Dopo una ricerca in rete, ho scoperto che &egrave; possibile usare pacchetti x86 su Raspberry Pi emulando l&#39;ambiente x86, con un&nbsp;procedura nemmeno eccessivamente complessa! Sul Raspberry &egrave; installata Raspbian Jessie, e occorre sfruttare il supporto multiarch. Quindi, diamo il seguente comando: sudo dpkg --add-architecture i386 Poi, &egrave; necessario modificare i files /etc/apt/sources.list e tutti i files presenti in /etc/apt/sources.list.d/&nbsp;(nel mio caso uno solo) aggiungendo [arch=armhf]. Ad esempio,&nbsp;/etc/apt/sources.list andr&agrave; modificato in modo da essere simile al seguente: deb [arch=armhf] http://archive.raspbian.org/raspbian jessie main contrib non-free A questo punto, occorre inserire i repositories di Debian versione i386. Potremmo aggiungerli direttamente nel file precedente, oppure ad esempio creare un file ad hoc in /etc/apt/sources.list.d/, chiamandolo ad esempio repo386.list, e scrivendoci all&#39;interno: deb [arch=i386] http://ftp.debian.org/debian/ jessie main contrib non-free" />
+<link rel="canonical" href="https://red-blue.it/guide/linux/in%20evidenza/raspberry%20pi/2016/12/10/drivers-x86-raspberry-pi.html" />
+<meta property="og:url" content="https://red-blue.it/guide/linux/in%20evidenza/raspberry%20pi/2016/12/10/drivers-x86-raspberry-pi.html" />
+<meta property="og:site_name" content="RedBlue’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-12-10T10:29:43+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Usare drivers x86 su Raspberry Pi" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"RedBlue"},"dateModified":"2016-12-10T10:29:43+00:00","datePublished":"2016-12-10T10:29:43+00:00","description":"Problema: sul&nbsp;Raspberry Pi ho installato&nbsp;un driver specifico per architettura x86 non funzionante su ARM. Dopo una ricerca in rete, ho scoperto che &egrave; possibile usare pacchetti x86 su Raspberry Pi emulando l&#39;ambiente x86, con un&nbsp;procedura nemmeno eccessivamente complessa! Sul Raspberry &egrave; installata Raspbian Jessie, e occorre sfruttare il supporto multiarch. Quindi, diamo il seguente comando: sudo dpkg --add-architecture i386 Poi, &egrave; necessario modificare i files /etc/apt/sources.list e tutti i files presenti in /etc/apt/sources.list.d/&nbsp;(nel mio caso uno solo) aggiungendo [arch=armhf]. Ad esempio,&nbsp;/etc/apt/sources.list andr&agrave; modificato in modo da essere simile al seguente: deb [arch=armhf] http://archive.raspbian.org/raspbian jessie main contrib non-free A questo punto, occorre inserire i repositories di Debian versione i386. Potremmo aggiungerli direttamente nel file precedente, oppure ad esempio creare un file ad hoc in /etc/apt/sources.list.d/, chiamandolo ad esempio repo386.list, e scrivendoci all&#39;interno: deb [arch=i386] http://ftp.debian.org/debian/ jessie main contrib non-free","headline":"Usare drivers x86 su Raspberry Pi","mainEntityOfPage":{"@type":"WebPage","@id":"https://red-blue.it/guide/linux/in%20evidenza/raspberry%20pi/2016/12/10/drivers-x86-raspberry-pi.html"},"url":"https://red-blue.it/guide/linux/in%20evidenza/raspberry%20pi/2016/12/10/drivers-x86-raspberry-pi.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -23,8 +43,7 @@
   <link rel="canonical" href="https://red-blue.it/guide/linux/in%20evidenza/raspberry%20pi/2016/12/10/drivers-x86-raspberry-pi.html">
   <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
 
-</head>
-
+</head> 
 
 <body>
 

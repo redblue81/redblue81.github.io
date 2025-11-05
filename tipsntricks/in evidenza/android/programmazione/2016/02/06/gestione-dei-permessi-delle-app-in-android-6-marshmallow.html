@@ -4,6 +4,26 @@
 
 <head>
 
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Gestione dei permessi delle app in Android 6 Marshmallow | RedBlue’s Blog</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Gestione dei permessi delle app in Android 6 Marshmallow" />
+<meta name="author" content="RedBlue" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In Android 6 una delle innovazioni pi&ugrave; rilevanti (anche a livello di sviluppo) &egrave; la gestione dei permessi delle app. Avete presente? Parliamo di quella lista di autorizzazioni (accesso ai contatti, alla fotocamera, alla rete, allo storage, etc) che quasi ogni app presentava in fase di installazione, e che bisognava accettare per proseguire l&#39;installazione stessa (a dire il vero, tale lista nella maggior parte dei casi veniva completamente ignorata). Adesso la musica &egrave; cambiata, non c&#39;&egrave; pi&ugrave; il listone di permessi in fase di installazione, ma l&#39;app dovr&agrave; presentare all&#39;utente la richiesta di accedere ad una determinata funzionalit&agrave; solo quando questa si render&agrave; necessaria (ovvero a runtime). L&#39;utente pu&ograve; decidere se concedere l&#39;autorizzazione (in tal caso non ci sar&agrave; pi&ugrave; alcuna richiesta per quella caratteristica) oppure no. Inoltre, nelle impostazioni dell&#39;app, c&#39;&egrave; la lista dei permessi concessi, con la possibilit&agrave; di revocarli. Dal punto di vista dello sviluppatore, questo comporta un&#39;aggiunta di codice, necessaria ad implementare questa nuova gestione. Ovviamente, i permessi necessari vanno sempre dichiarati nell&#39;AndroidManifest.xml, ad esempio, considerando i servizi di localizzazione, dovremo aggiungere la riga: A questo punto, nell&#39;activity che stiamo realizzando, sar&agrave; necessario gestire la richiesta, potremmo ad esempio usare del codice simile a questo: if (Build.VERSION.SDK_INT &gt;= 23 &amp;&amp;" />
+<meta property="og:description" content="In Android 6 una delle innovazioni pi&ugrave; rilevanti (anche a livello di sviluppo) &egrave; la gestione dei permessi delle app. Avete presente? Parliamo di quella lista di autorizzazioni (accesso ai contatti, alla fotocamera, alla rete, allo storage, etc) che quasi ogni app presentava in fase di installazione, e che bisognava accettare per proseguire l&#39;installazione stessa (a dire il vero, tale lista nella maggior parte dei casi veniva completamente ignorata). Adesso la musica &egrave; cambiata, non c&#39;&egrave; pi&ugrave; il listone di permessi in fase di installazione, ma l&#39;app dovr&agrave; presentare all&#39;utente la richiesta di accedere ad una determinata funzionalit&agrave; solo quando questa si render&agrave; necessaria (ovvero a runtime). L&#39;utente pu&ograve; decidere se concedere l&#39;autorizzazione (in tal caso non ci sar&agrave; pi&ugrave; alcuna richiesta per quella caratteristica) oppure no. Inoltre, nelle impostazioni dell&#39;app, c&#39;&egrave; la lista dei permessi concessi, con la possibilit&agrave; di revocarli. Dal punto di vista dello sviluppatore, questo comporta un&#39;aggiunta di codice, necessaria ad implementare questa nuova gestione. Ovviamente, i permessi necessari vanno sempre dichiarati nell&#39;AndroidManifest.xml, ad esempio, considerando i servizi di localizzazione, dovremo aggiungere la riga: A questo punto, nell&#39;activity che stiamo realizzando, sar&agrave; necessario gestire la richiesta, potremmo ad esempio usare del codice simile a questo: if (Build.VERSION.SDK_INT &gt;= 23 &amp;&amp;" />
+<link rel="canonical" href="https://red-blue.it/tipsntricks/in%20evidenza/android/programmazione/2016/02/06/gestione-dei-permessi-delle-app-in-android-6-marshmallow.html" />
+<meta property="og:url" content="https://red-blue.it/tipsntricks/in%20evidenza/android/programmazione/2016/02/06/gestione-dei-permessi-delle-app-in-android-6-marshmallow.html" />
+<meta property="og:site_name" content="RedBlue’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-02-06T11:56:23+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Gestione dei permessi delle app in Android 6 Marshmallow" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"RedBlue"},"dateModified":"2016-02-06T11:56:23+00:00","datePublished":"2016-02-06T11:56:23+00:00","description":"In Android 6 una delle innovazioni pi&ugrave; rilevanti (anche a livello di sviluppo) &egrave; la gestione dei permessi delle app. Avete presente? Parliamo di quella lista di autorizzazioni (accesso ai contatti, alla fotocamera, alla rete, allo storage, etc) che quasi ogni app presentava in fase di installazione, e che bisognava accettare per proseguire l&#39;installazione stessa (a dire il vero, tale lista nella maggior parte dei casi veniva completamente ignorata). Adesso la musica &egrave; cambiata, non c&#39;&egrave; pi&ugrave; il listone di permessi in fase di installazione, ma l&#39;app dovr&agrave; presentare all&#39;utente la richiesta di accedere ad una determinata funzionalit&agrave; solo quando questa si render&agrave; necessaria (ovvero a runtime). L&#39;utente pu&ograve; decidere se concedere l&#39;autorizzazione (in tal caso non ci sar&agrave; pi&ugrave; alcuna richiesta per quella caratteristica) oppure no. Inoltre, nelle impostazioni dell&#39;app, c&#39;&egrave; la lista dei permessi concessi, con la possibilit&agrave; di revocarli. Dal punto di vista dello sviluppatore, questo comporta un&#39;aggiunta di codice, necessaria ad implementare questa nuova gestione. Ovviamente, i permessi necessari vanno sempre dichiarati nell&#39;AndroidManifest.xml, ad esempio, considerando i servizi di localizzazione, dovremo aggiungere la riga: A questo punto, nell&#39;activity che stiamo realizzando, sar&agrave; necessario gestire la richiesta, potremmo ad esempio usare del codice simile a questo: if (Build.VERSION.SDK_INT &gt;= 23 &amp;&amp;","headline":"Gestione dei permessi delle app in Android 6 Marshmallow","mainEntityOfPage":{"@type":"WebPage","@id":"https://red-blue.it/tipsntricks/in%20evidenza/android/programmazione/2016/02/06/gestione-dei-permessi-delle-app-in-android-6-marshmallow.html"},"url":"https://red-blue.it/tipsntricks/in%20evidenza/android/programmazione/2016/02/06/gestione-dei-permessi-delle-app-in-android-6-marshmallow.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -23,8 +43,7 @@
   <link rel="canonical" href="https://red-blue.it/tipsntricks/in%20evidenza/android/programmazione/2016/02/06/gestione-dei-permessi-delle-app-in-android-6-marshmallow.html">
   <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
 
-</head>
-
+</head> 
 
 <body>
 

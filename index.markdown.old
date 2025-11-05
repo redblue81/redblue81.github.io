@@ -4,6 +4,25 @@
 
 <head>
 
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>RedBlue’s Blog | Another technology addicted’s personal page</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="RedBlue’s Blog" />
+<meta name="author" content="RedBlue" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Another technology addicted’s personal page" />
+<meta property="og:description" content="Another technology addicted’s personal page" />
+<link rel="canonical" href="https://red-blue.it/index.markdown.old" />
+<meta property="og:url" content="https://red-blue.it/index.markdown.old" />
+<meta property="og:site_name" content="RedBlue’s Blog" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="RedBlue’s Blog" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"RedBlue"},"description":"Another technology addicted’s personal page","headline":"RedBlue’s Blog","url":"https://red-blue.it/index.markdown.old"}</script>
+<!-- End Jekyll SEO tag -->
+
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -22,8 +41,7 @@
   <link rel="canonical" href="https://red-blue.it/index.markdown.old">
   <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
 
-</head>
-
+</head> 
 
 <body>
 

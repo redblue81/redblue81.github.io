@@ -4,6 +4,26 @@
 
 <head>
 
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Screencast con FFMPEG completo di audio | RedBlue’s Blog</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Screencast con FFMPEG completo di audio" />
+<meta name="author" content="RedBlue" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Qualche tempo fa avevo spiegato come fare uno screencast semplicemente usando FFMPEG (qui). In quella guida per&ograve; mancava del tutto ogni riferimento all&#39;audio. Bene, questo &egrave; lo scopo di questa nuova guida, ovvero realizzare uno screencast completo di audio con FFMPEG. Da dire che non &egrave; molto pi&ugrave; complicato, basta semplicemente aggiungere al comando visto nella precedente guida, cio&egrave; questo: ffmpeg -r 15 -s 1280x800 -f x11grab -i :0.0 -vcodec libx264 -vpre lossless_fast -crf 30 -threads 2 /destinazione.mp4 La parte relativa alla cattura dell&#39;audio: ffmpeg -f alsa -ac 2 -i pulse -r 15 -s 128x800 -f x11grab -i :0.0 -acodec libmp3lame -ab 96k -ar 48000 -ac 2 -vcodec libx264 -vpre lossless_fast -crf 30 -threads 2 /destinazione.mp4 Questo comando va bene nel caso si usi, come il sottoscritto, PulseAudio, altrimenti il comando precedente va modificato, sostituendo -f alsa -ac 2 -i pulse con -f alsa -ac 2 -i hw:0,0 FFMPEG &egrave; davvero completo come programma, lo sto scoprendo a poco a poco e non escludo in futuro di riparlarne ancora.. ;) Alla prossima.." />
+<meta property="og:description" content="Qualche tempo fa avevo spiegato come fare uno screencast semplicemente usando FFMPEG (qui). In quella guida per&ograve; mancava del tutto ogni riferimento all&#39;audio. Bene, questo &egrave; lo scopo di questa nuova guida, ovvero realizzare uno screencast completo di audio con FFMPEG. Da dire che non &egrave; molto pi&ugrave; complicato, basta semplicemente aggiungere al comando visto nella precedente guida, cio&egrave; questo: ffmpeg -r 15 -s 1280x800 -f x11grab -i :0.0 -vcodec libx264 -vpre lossless_fast -crf 30 -threads 2 /destinazione.mp4 La parte relativa alla cattura dell&#39;audio: ffmpeg -f alsa -ac 2 -i pulse -r 15 -s 128x800 -f x11grab -i :0.0 -acodec libmp3lame -ab 96k -ar 48000 -ac 2 -vcodec libx264 -vpre lossless_fast -crf 30 -threads 2 /destinazione.mp4 Questo comando va bene nel caso si usi, come il sottoscritto, PulseAudio, altrimenti il comando precedente va modificato, sostituendo -f alsa -ac 2 -i pulse con -f alsa -ac 2 -i hw:0,0 FFMPEG &egrave; davvero completo come programma, lo sto scoprendo a poco a poco e non escludo in futuro di riparlarne ancora.. ;) Alla prossima.." />
+<link rel="canonical" href="https://red-blue.it/tipsntricks/linux/software/screencast/2012/06/17/screencast-con-ffmpeg-completo-di-audio.html" />
+<meta property="og:url" content="https://red-blue.it/tipsntricks/linux/software/screencast/2012/06/17/screencast-con-ffmpeg-completo-di-audio.html" />
+<meta property="og:site_name" content="RedBlue’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2012-06-17T18:30:46+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Screencast con FFMPEG completo di audio" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"RedBlue"},"dateModified":"2012-06-17T18:30:46+00:00","datePublished":"2012-06-17T18:30:46+00:00","description":"Qualche tempo fa avevo spiegato come fare uno screencast semplicemente usando FFMPEG (qui). In quella guida per&ograve; mancava del tutto ogni riferimento all&#39;audio. Bene, questo &egrave; lo scopo di questa nuova guida, ovvero realizzare uno screencast completo di audio con FFMPEG. Da dire che non &egrave; molto pi&ugrave; complicato, basta semplicemente aggiungere al comando visto nella precedente guida, cio&egrave; questo: ffmpeg -r 15 -s 1280x800 -f x11grab -i :0.0 -vcodec libx264 -vpre lossless_fast -crf 30 -threads 2 /destinazione.mp4 La parte relativa alla cattura dell&#39;audio: ffmpeg -f alsa -ac 2 -i pulse -r 15 -s 128x800 -f x11grab -i :0.0 -acodec libmp3lame -ab 96k -ar 48000 -ac 2 -vcodec libx264 -vpre lossless_fast -crf 30 -threads 2 /destinazione.mp4 Questo comando va bene nel caso si usi, come il sottoscritto, PulseAudio, altrimenti il comando precedente va modificato, sostituendo -f alsa -ac 2 -i pulse con -f alsa -ac 2 -i hw:0,0 FFMPEG &egrave; davvero completo come programma, lo sto scoprendo a poco a poco e non escludo in futuro di riparlarne ancora.. ;) Alla prossima..","headline":"Screencast con FFMPEG completo di audio","mainEntityOfPage":{"@type":"WebPage","@id":"https://red-blue.it/tipsntricks/linux/software/screencast/2012/06/17/screencast-con-ffmpeg-completo-di-audio.html"},"url":"https://red-blue.it/tipsntricks/linux/software/screencast/2012/06/17/screencast-con-ffmpeg-completo-di-audio.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -23,8 +43,7 @@
   <link rel="canonical" href="https://red-blue.it/tipsntricks/linux/software/screencast/2012/06/17/screencast-con-ffmpeg-completo-di-audio.html">
   <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
 
-</head>
-
+</head> 
 
 <body>
 
