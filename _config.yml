@@ -14,6 +14,7 @@ plugins:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-seo-tag
 #  - jekyll-archives
 #  - jekyll-auto-image
 #theme:              jekyll-theme-clean-blog
