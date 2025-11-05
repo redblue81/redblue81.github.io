@@ -1,4 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="https://red-blue.it/feed.xml" rel="self" type="application/atom+xml" /><link href="https://red-blue.it/" rel="alternate" type="text/html" /><updated>2025-11-04T12:58:13+00:00</updated><id>https://red-blue.it/feed.xml</id><title type="html">RedBlue’s Blog</title><subtitle>Another technology addicted&apos;s personal page</subtitle><author><name>RedBlue</name></author><entry><title type="html">Domotizzare le luci di casa con Sonoff Mini R4 Extreme e Dual R3</title><link href="https://red-blue.it/recensioni/domotica/sonoff/2025/11/03/domotizzare-le-luci-di-casa-con-sonoff-mini-r4-extreme-e-dual-r3.html" rel="alternate" type="text/html" title="Domotizzare le luci di casa con Sonoff Mini R4 Extreme e Dual R3" /><published>2025-11-03T00:00:00+00:00</published><updated>2025-11-03T00:00:00+00:00</updated><id>https://red-blue.it/recensioni/domotica/sonoff/2025/11/03/domotizzare-le-luci-di-casa-con-sonoff-mini-r4-extreme-e-dual-r3</id><content type="html" xml:base="https://red-blue.it/recensioni/domotica/sonoff/2025/11/03/domotizzare-le-luci-di-casa-con-sonoff-mini-r4-extreme-e-dual-r3.html">&lt;p&gt;Nell’ambito del mio progetto di domotica casalinga, non potevano mancare le luci. Per questa parte, ho deciso di ricorrere a due dispositivi in particolare: il &lt;a href=&quot;https://amzn.to/4qC5Urw&quot; target=&quot;_blank&quot;&gt;Sonoff Mini R4 Extreme&lt;/a&gt; e il &lt;a href=&quot;https://amzn.to/4oSxcsf&quot; target=&quot;_blank&quot;&gt;Sonoff Dual R3&lt;/a&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="https://red-blue.it/feed.xml" rel="self" type="application/atom+xml" /><link href="https://red-blue.it/" rel="alternate" type="text/html" /><updated>2025-11-05T12:55:38+00:00</updated><id>https://red-blue.it/feed.xml</id><title type="html">RedBlue’s Blog</title><subtitle>Another technology addicted&apos;s personal page</subtitle><author><name>RedBlue</name></author><entry><title type="html">Domotizzare le luci di casa con Sonoff Mini R4 Extreme e Dual R3</title><link href="https://red-blue.it/guide/ruby/jekyll/blog/github/2025/11/05/aggiornamento-workflow-pubblicazione-automatica-su-github-pages.html" rel="alternate" type="text/html" title="Domotizzare le luci di casa con Sonoff Mini R4 Extreme e Dual R3" /><published>2025-11-05T00:00:00+00:00</published><updated>2025-11-05T00:00:00+00:00</updated><id>https://red-blue.it/guide/ruby/jekyll/blog/github/2025/11/05/aggiornamento-workflow-pubblicazione-automatica-su-github-pages</id><content type="html" xml:base="https://red-blue.it/guide/ruby/jekyll/blog/github/2025/11/05/aggiornamento-workflow-pubblicazione-automatica-su-github-pages.html">&lt;p&gt;Riprendo l’argomento relativo alla &lt;a href=&quot;https://red-blue.it/guide/blog/ruby/jekyll/2024/08/24/schedulare-la-pubblicazione-dei-post-su-github-pages-con-jekyll.html&quot; target=&quot;_blank&quot;&gt;pubblicazione automatica su Github Pages&lt;/a&gt;, visto in precedenza, in quanto recentemente il processo era andato in crash e non riuscivo in alcun modo a ripristinarlo.&lt;/p&gt;
+
+&lt;p&gt;Cercando in rete, pare che il problema fosse la &lt;strong&gt;action&lt;/strong&gt; che usavo, che presenta delle incompatibilità con la gestione dei certificati SSL delle versioni più recenti delle librerie relative appunto ad SSL.&lt;/p&gt;
+
+&lt;p&gt;Fortunatamente, &lt;strong&gt;Github&lt;/strong&gt; fornisce una propria action (che ne mio caso è anche più veloce a deployare il sito), quindi è bastato riscrivere il file relativo al workflow:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;ss&quot;&gt;name: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Deploy&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Jekyll&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gh&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pages&lt;/span&gt;
+
+&lt;span class=&quot;ss&quot;&gt;on:
+  schedule:
+    &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;cron: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;0 12 * * *&apos;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# ogni giorno a mezzogiorno UTC&lt;/span&gt;
+  &lt;span class=&quot;ss&quot;&gt;push:
+    branches: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;main&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;ss&quot;&gt;workflow_dispatch:
+
+permissions:
+  contents: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# serve per poter fare push su gh-pages&lt;/span&gt;
+  &lt;span class=&quot;ss&quot;&gt;pages: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;token: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;
+
+&lt;span class=&quot;ss&quot;&gt;jobs:
+  build:
+    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;runs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;on: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ubuntu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;latest&lt;/span&gt;
+    &lt;span class=&quot;ss&quot;&gt;steps:
+      &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;name: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Checkout&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;repository&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;uses: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;actions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;checkout&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@v4&lt;/span&gt;
+
+      &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;name: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Setup&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Ruby&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;uses: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ruby&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ruby&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@v1&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;with:
+          &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ruby&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;version: &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;3.2&apos;&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;bundler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;cache: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+
+      &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;name: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Install&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;run: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bundle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;install&lt;/span&gt;
+
+      &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;name: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Build&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;site&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Jekyll&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;run: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bundle&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jekyll&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;build&lt;/span&gt;
+
+      &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;name: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Add&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;CNAME&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;run: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;nomedominio.ext&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_site&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;CNAME&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# necessario se avete un custom domain!!&lt;/span&gt;
+
+      &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;name: &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Deploy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gh&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pages&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;branch&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;uses: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;peaceiris&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;actions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gh&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pages&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@v4&lt;/span&gt;
+        &lt;span class=&quot;ss&quot;&gt;with:
+          github_token: &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;
+          &lt;span class=&quot;ss&quot;&gt;publish_branch: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gh&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pages&lt;/span&gt;
+          &lt;span class=&quot;ss&quot;&gt;publish_dir: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_site&lt;/span&gt;
+          &lt;span class=&quot;ss&quot;&gt;commit_message: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Deploy site via GitHub Actions&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Facile no? Lo script è estremamente simile al precedente, ed inoltre ho aggiunto qualche commento qua e là..&lt;/p&gt;
+
+&lt;p&gt;Stay tuned..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="ruby" /><category term="jekyll" /><category term="blog" /><category term="github" /><summary type="html">Riprendo l’argomento relativo alla pubblicazione automatica su Github Pages, visto in precedenza, in quanto recentemente il processo era andato in crash e non riuscivo in alcun modo a ripristinarlo.</summary></entry><entry><title type="html">Domotizzare le luci di casa con Sonoff Mini R4 Extreme e Dual R3</title><link href="https://red-blue.it/recensioni/domotica/sonoff/2025/11/03/domotizzare-le-luci-di-casa-con-sonoff-mini-r4-extreme-e-dual-r3.html" rel="alternate" type="text/html" title="Domotizzare le luci di casa con Sonoff Mini R4 Extreme e Dual R3" /><published>2025-11-03T00:00:00+00:00</published><updated>2025-11-03T00:00:00+00:00</updated><id>https://red-blue.it/recensioni/domotica/sonoff/2025/11/03/domotizzare-le-luci-di-casa-con-sonoff-mini-r4-extreme-e-dual-r3</id><content type="html" xml:base="https://red-blue.it/recensioni/domotica/sonoff/2025/11/03/domotizzare-le-luci-di-casa-con-sonoff-mini-r4-extreme-e-dual-r3.html">&lt;p&gt;Nell’ambito del mio progetto di domotica casalinga, non potevano mancare le luci. Per questa parte, ho deciso di ricorrere a due dispositivi in particolare: il &lt;a href=&quot;https://amzn.to/4qC5Urw&quot; target=&quot;_blank&quot;&gt;Sonoff Mini R4 Extreme&lt;/a&gt; e il &lt;a href=&quot;https://amzn.to/4oSxcsf&quot; target=&quot;_blank&quot;&gt;Sonoff Dual R3&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Nel primo caso, il &lt;a href=&quot;https://amzn.to/4qC5Urw&quot; target=&quot;_blank&quot;&gt;Sonoff Mini R4 Extreme&lt;/a&gt; è uno switch a due vie capace di pilotare tanto un &lt;strong&gt;interruttore&lt;/strong&gt;, ossia il classico caso in cui abbiamo da accendere e spegnere una lampadina da un unico punto, quanto un &lt;strong&gt;deviatore&lt;/strong&gt;, ovvero un dispositivo usato in tutti quei casi in cui abbiamo la possibilità di accendere una lampada da più punti.&lt;/p&gt;
 
@@ -347,40 +399,4 @@ data:
 
 &lt;p&gt;Nei prossimi post, vedremo l’installazione, la gestione offline/online e la creazione di post con Jekyll.&lt;/p&gt;
 
-&lt;p&gt;Stay tuned..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="blog" /><summary type="html">Piccolo post introduttivo su Jekyll, il generatore di siti web statici.</summary></entry><entry><title type="html">Convertire un disco MBR in GPT senza perdere dati</title><link href="https://red-blue.it/tipsntricks/linux/2021/10/22/convertire-un-disco-mbr-in-gpt-senza-perdere-dati.html" rel="alternate" type="text/html" title="Convertire un disco MBR in GPT senza perdere dati" /><published>2021-10-22T00:00:00+00:00</published><updated>2021-10-22T00:00:00+00:00</updated><id>https://red-blue.it/tipsntricks/linux/2021/10/22/convertire-un-disco-mbr-in-gpt-senza-perdere-dati</id><content type="html" xml:base="https://red-blue.it/tipsntricks/linux/2021/10/22/convertire-un-disco-mbr-in-gpt-senza-perdere-dati.html">&lt;p&gt;Convertire un disco MBR in  GTP &lt;strong&gt;senza perdere dati in Linux&lt;/strong&gt; &amp;egrave; semplice, basta utilizzare un semplicissimo comando: &lt;strong&gt;gdisk&lt;/strong&gt;.&lt;/p&gt;
-
-
-&lt;p&gt;Lo scenario: abbiamo un disco che presenta un classico record di boot (&lt;strong&gt;MBR&lt;/strong&gt;), quindi una tabella delle partizioni di tipo &lt;strong&gt;BIOS&lt;/strong&gt;, e abbiamo bisogno di convertirlo nel nuovo standard &lt;strong&gt;GPT&lt;/strong&gt;, che utilizza &lt;strong&gt;UEFI&lt;/strong&gt;.&lt;/p&gt;
-
-
-&lt;p&gt;Questo consente di creare pi&amp;ugrave; di quattro partizioni su un singolo disco e superare il limite dei 2 TB di dimensioni.&lt;/p&gt;
-
-
-&lt;p&gt;L&apos;operazione di conversione andrebbe fatta prima di installare un qualsiasi OS, ma in caso il sistema operativo sia gi&amp;agrave; installato, &amp;egrave; possibile usare gdisk per convertire un disco MBR in GPT senza perdere dati.&lt;/p&gt;
-
-
-&lt;p&gt;Semplicemente (supponendo che il disco da convertire sia /dev/sda), dare:&lt;/p&gt;
-
-&lt;pre class=&quot;wp-block-syntaxhighlighter-code&quot;&gt;sudo gdisk /dev/sda&lt;/pre&gt;
-
-&lt;p&gt;A questo punto, avremo una schermata in cui sar&amp;agrave; ben visibile la dicitura &lt;strong&gt;MBR: MBR only&lt;/strong&gt; e &lt;strong&gt;GPT: not present&lt;/strong&gt;.&lt;/p&gt;
-
-
-&lt;p&gt;Premiamo w e confermiamo l&apos;operazione, il tutto sar&amp;agrave; velocissimo.&lt;/p&gt;
-
-
-&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;text-decoration: underline;&quot;&gt;ATTENZIONE: personalmente non ho avuto problemi particolari, ma l&apos;operazione non &amp;egrave; comunque esente da rischi. Un backup preventivo &amp;egrave; sempre una buona idea in questi casi.&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
-
-
-&lt;p&gt;Proseguiamo:&lt;/p&gt;
-
-&lt;pre class=&quot;wp-block-syntaxhighlighter-code&quot;&gt;sudo partprobe /dev/sda
-sudo grub-install /dev/sda&lt;/pre&gt;
-
-&lt;p&gt;Al &lt;strong&gt;reboot&lt;/strong&gt; avremo il disco convertito in GTP (baster&amp;agrave; verificarlo dalla schermata di gdisk, che riporter&amp;agrave; &lt;strong&gt;GPT: present&lt;/strong&gt;).&lt;/p&gt;
-
-
-&lt;p&gt;A questo punto, abbiamo due strade, o abbiamo gi&amp;agrave; una partizione &lt;strong&gt;/boot/efi&lt;/strong&gt; (necessaria all&apos;avvio di OS basati su UEFI, alcune distribuzioni Linux prevedono questa possibilit&amp;agrave;), oppure dovremo crearne una, ad esempio con &lt;strong&gt;gparted&lt;/strong&gt;. In tal caso ricordate, dimensione minima 100 MB, tipo FAT32, flag boot da settare.&lt;/p&gt;
-
-
-&lt;p&gt;Alla prossima..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="tipsntricks" /><category term="linux" /><summary type="html">Convertire un disco MBR in GTP senza perdere dati in Linux &amp;egrave; semplice, basta utilizzare un semplicissimo comando: gdisk.</summary></entry></feed>
+&lt;p&gt;Stay tuned..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="blog" /><summary type="html">Piccolo post introduttivo su Jekyll, il generatore di siti web statici.</summary></entry></feed>
