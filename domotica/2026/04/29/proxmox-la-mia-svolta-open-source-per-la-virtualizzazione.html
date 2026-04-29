@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Proxmox: La mia svolta Open Source per la virtualizzazione | RedBlue’s Blog</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Proxmox: La mia svolta Open Source per la virtualizzazione" />
+<meta name="author" content="RedBlue" />
+<meta property="og:locale" content="it_IT" />
+<meta name="description" content="Quante volte mi sono trovato a corto di risorse sul mio serverino casalingo? Troppe! Avevo bisogno di far girare più servizi, testare nuove configurazioni, ma senza rischiare di mandare all’aria tutto il sistema. La virtualizzazione è stata la risposta, e Proxmox, beh, Proxmox è stata la svolta. Non avevo alcuna intenzione di acquistare soluzioni commerciali, quindi cercavo un’alternativa solida e, soprattutto, open source. E devo dire, non mi sono pentito della scelta." />
+<meta property="og:description" content="Quante volte mi sono trovato a corto di risorse sul mio serverino casalingo? Troppe! Avevo bisogno di far girare più servizi, testare nuove configurazioni, ma senza rischiare di mandare all’aria tutto il sistema. La virtualizzazione è stata la risposta, e Proxmox, beh, Proxmox è stata la svolta. Non avevo alcuna intenzione di acquistare soluzioni commerciali, quindi cercavo un’alternativa solida e, soprattutto, open source. E devo dire, non mi sono pentito della scelta." />
+<link rel="canonical" href="https://red-blue.it/domotica/2026/04/29/proxmox-la-mia-svolta-open-source-per-la-virtualizzazione.html" />
+<meta property="og:url" content="https://red-blue.it/domotica/2026/04/29/proxmox-la-mia-svolta-open-source-per-la-virtualizzazione.html" />
+<meta property="og:site_name" content="RedBlue’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-04-29T05:49:47+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Proxmox: La mia svolta Open Source per la virtualizzazione" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"RedBlue"},"dateModified":"2026-04-29T05:49:47+00:00","datePublished":"2026-04-29T05:49:47+00:00","description":"Quante volte mi sono trovato a corto di risorse sul mio serverino casalingo? Troppe! Avevo bisogno di far girare più servizi, testare nuove configurazioni, ma senza rischiare di mandare all’aria tutto il sistema. La virtualizzazione è stata la risposta, e Proxmox, beh, Proxmox è stata la svolta. Non avevo alcuna intenzione di acquistare soluzioni commerciali, quindi cercavo un’alternativa solida e, soprattutto, open source. E devo dire, non mi sono pentito della scelta.","headline":"Proxmox: La mia svolta Open Source per la virtualizzazione","mainEntityOfPage":{"@type":"WebPage","@id":"https://red-blue.it/domotica/2026/04/29/proxmox-la-mia-svolta-open-source-per-la-virtualizzazione.html"},"url":"https://red-blue.it/domotica/2026/04/29/proxmox-la-mia-svolta-open-source-per-la-virtualizzazione.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Proxmox: La mia svolta Open Source per la virtualizzazione - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Quante volte mi sono trovato a corto di risorse sul mio serverino casalingo? Troppe! Avevo bisogno di far girare più servizi, testare nuove configurazioni, m...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/domotica/2026/04/29/proxmox-la-mia-svolta-open-source-per-la-virtualizzazione.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head> 
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Proxmox: La mia svolta Open Source per la virtualizzazione</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on April 29, 2026 &middot; <span class="reading-time" title="Estimated read time">
+  
+   5 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Quante volte mi sono trovato a corto di risorse sul mio serverino casalingo? Troppe! Avevo bisogno di far girare più servizi, testare nuove configurazioni, ma senza rischiare di mandare all’aria tutto il sistema. La virtualizzazione è stata la risposta, e Proxmox, beh, Proxmox è stata la svolta. Non avevo alcuna intenzione di acquistare soluzioni commerciali, quindi cercavo un’alternativa solida e, soprattutto, open source. E devo dire, non mi sono pentito della scelta.</p>
+
+<h2 id="proxmox-un-mondo-di-virtualizzazione-open-source">Proxmox: Un Mondo di Virtualizzazione Open Source</h2>
+
+<p>Proxmox Virtual Environment (VE) è una piattaforma di virtualizzazione open source basata su Debian. In parole povere, ti permette di creare e gestire macchine virtuali (VM) e container LXC su un singolo server fisico. Immagina di avere più computer, ognuno con il suo sistema operativo e le sue applicazioni, che girano tutti su un’unica macchina! Fantastico, no?</p>
+
+<p>L’interfaccia web è intuitiva, anche per uno come me che non si definirebbe un guru dei server. Certo, all’inizio ho avuto qualche difficoltà, ma la community è super disponibile e la documentazione è ben fatta. E poi, diciamocelo, smanettare è parte del divertimento!</p>
+
+<h2 id="installazione-di-proxmox-la-mia-avventura-con-qualche-intoppo">Installazione di Proxmox: La Mia Avventura (con qualche intoppo)</h2>
+
+<p>L’installazione di Proxmox è abbastanza semplice, ma ci sono alcuni passaggi cruciali che, se sbagliati, possono farti perdere un sacco di tempo. Ci sono passato anch’io, fidati!</p>
+
+<p>Ecco i passaggi che ho seguito:</p>
+
+<ol>
+  <li><strong>Download dell’immagine ISO:</strong> basta andare sul sito ufficiale di Proxmox e scaricare l’immagine ISO.</li>
+  <li><strong>Creazione della chiavetta USB avviabile:</strong> ho usato Rufus (un programmino gratuito) per creare una chiavetta USB avviabile con l’immagine ISO scaricata.</li>
+  <li><strong>Configurazione del BIOS:</strong> prima di avviare l’installazione, sono entrato nel BIOS del mio server e ho attivato la virtualizzazione (VT-x/AMD-V). Senza questo, Proxmox non può funzionare correttamente.</li>
+  <li><strong>Installazione vera e propria:</strong> ho avviato il server dalla chiavetta USB e ho seguito le istruzioni a schermo. Semplice no?</li>
+</ol>
+
+<p>Dopo aver impostato la password di root e l’indirizzo email (utile per le notifiche), sono passato alla configurazione della rete. Ho impostato un indirizzo IP statico per il mio server Proxmox, in modo da poterlo raggiungere sempre allo stesso indirizzo. Ho anche modificato il nome host in <code class="language-plaintext highlighter-rouge">pve-server01.miodominio.interno</code>.</p>
+
+<p>L’installazione è andata a buon fine e, dopo il riavvio, ho potuto accedere all’interfaccia web di Proxmox tramite browser all’indirizzo <code class="language-plaintext highlighter-rouge">https://indirizzo_ip:8006</code>.</p>
+
+<h2 id="repository-di-proxmox-aggiornamenti-senza-troppi-compromessi">Repository di Proxmox: Aggiornamenti Senza (Troppi) Compromessi</h2>
+
+<p>Una volta entrato nell’interfaccia web, la prima cosa che ho notato è stato un avviso riguardante la sottoscrizione Enterprise. Proxmox offre una versione gratuita e una a pagamento. La versione gratuita ha tutte le funzionalità di base, ma non ha accesso ai repository di aggiornamenti Enterprise, che contengono gli aggiornamenti più recenti e stabili.</p>
+
+<p>Questo significa che, senza una sottoscrizione, potresti non essere in grado di scaricare gli ultimi aggiornamenti di sicurezza.</p>
+
+<p>Per fortuna, esiste una soluzione alternativa: utilizzare il repository “no-subscription”. Questo repository contiene gli aggiornamenti di sicurezza e alcuni aggiornamenti minori. Non è l’ideale, ma è meglio di niente.</p>
+
+<p>Per abilitare il repository “no-subscription”, devi modificare il file <code class="language-plaintext highlighter-rouge">/etc/apt/sources.list.d/proxmox.list</code> e commentare (aggiungendo un <code class="language-plaintext highlighter-rouge">#</code> all’inizio della riga) i repository Enterprise e decommentare quelli no-subscription.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#deb https://enterprise.proxmox.com/debian/pve bookworm enterprise
+deb http://download.proxmox.com/debian/pve bookworm pve-no-subscription
+
+#deb https://enterprise.proxmox.com/debian/ceph-quincy bookworm enterprise
+deb http://download.proxmox.com/debian/ceph-quincy bookworm no-subscription
+</code></pre></div></div>
+
+<p>Dopo aver modificato il file, devi aggiornare la lista dei pacchetti con il comando <code class="language-plaintext highlighter-rouge">apt update</code> e poi aggiornare il sistema con <code class="language-plaintext highlighter-rouge">apt upgrade</code>.</p>
+
+<h2 id="proxmox-vs-vmware-la-scelta-giusta-per-me">Proxmox vs VMware: La Scelta Giusta per Me</h2>
+
+<p>Proxmox offre le stesse funzionalità di base di VMware, come la creazione e la gestione di macchine virtuali e container, la migrazione live, lo storage condiviso e il clustering. E, cosa ancora più importante, è open source! Questo significa che posso personalizzarlo, modificarlo e utilizzarlo come voglio, senza dovermi preoccupare di licenze o costi nascosti.</p>
+
+<h2 id="prossimi-passi-virtualizzazione-di-home-assistant-e-container-con-docker">Prossimi Passi: Virtualizzazione di Home Assistant e Container con Docker</h2>
+
+<p>Il mio prossimo obiettivo è quello di creare una macchina virtuale con Home Assistant e un paio di container con Docker per NextCloud e qualche progettino personale, e uno per Nginx Proxy Manager. Stay tuned per i prossimi articoli!</p>
+
+<p>Alla prossima!</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/guide/ruby/jekyll/blog/github/2025/11/05/aggiornamento-workflow-pubblicazione-automatica-su-github-pages.html" data-toggle="tooltip" data-placement="top" title="Aggiornamento workflow pubblicazione automatica su Github Pages">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2026</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

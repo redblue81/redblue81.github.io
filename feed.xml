@@ -1,4 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="https://red-blue.it/feed.xml" rel="self" type="application/atom+xml" /><link href="https://red-blue.it/" rel="alternate" type="text/html" /><updated>2026-04-28T10:08:47+00:00</updated><id>https://red-blue.it/feed.xml</id><title type="html">RedBlue’s Blog</title><subtitle>Another technology addicted&apos;s personal page</subtitle><author><name>RedBlue</name></author><entry><title type="html">Aggiornamento workflow pubblicazione automatica su Github Pages</title><link href="https://red-blue.it/guide/ruby/jekyll/blog/github/2025/11/05/aggiornamento-workflow-pubblicazione-automatica-su-github-pages.html" rel="alternate" type="text/html" title="Aggiornamento workflow pubblicazione automatica su Github Pages" /><published>2025-11-05T00:00:00+00:00</published><updated>2025-11-05T00:00:00+00:00</updated><id>https://red-blue.it/guide/ruby/jekyll/blog/github/2025/11/05/aggiornamento-workflow-pubblicazione-automatica-su-github-pages</id><content type="html" xml:base="https://red-blue.it/guide/ruby/jekyll/blog/github/2025/11/05/aggiornamento-workflow-pubblicazione-automatica-su-github-pages.html">&lt;p&gt;Riprendo l’argomento relativo alla &lt;a href=&quot;https://red-blue.it/guide/blog/ruby/jekyll/2024/08/24/schedulare-la-pubblicazione-dei-post-su-github-pages-con-jekyll.html&quot; target=&quot;_blank&quot;&gt;pubblicazione automatica su Github Pages&lt;/a&gt;, visto in precedenza, in quanto recentemente il processo era andato in crash e non riuscivo in alcun modo a ripristinarlo.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="https://red-blue.it/feed.xml" rel="self" type="application/atom+xml" /><link href="https://red-blue.it/" rel="alternate" type="text/html" /><updated>2026-04-29T14:21:15+00:00</updated><id>https://red-blue.it/feed.xml</id><title type="html">RedBlue’s Blog</title><subtitle>Another technology addicted&apos;s personal page</subtitle><author><name>RedBlue</name></author><entry><title type="html">Proxmox: La mia svolta Open Source per la virtualizzazione</title><link href="https://red-blue.it/domotica/2026/04/29/proxmox-la-mia-svolta-open-source-per-la-virtualizzazione.html" rel="alternate" type="text/html" title="Proxmox: La mia svolta Open Source per la virtualizzazione" /><published>2026-04-29T05:49:47+00:00</published><updated>2026-04-29T05:49:47+00:00</updated><id>https://red-blue.it/domotica/2026/04/29/proxmox-la-mia-svolta-open-source-per-la-virtualizzazione</id><content type="html" xml:base="https://red-blue.it/domotica/2026/04/29/proxmox-la-mia-svolta-open-source-per-la-virtualizzazione.html">&lt;p&gt;Quante volte mi sono trovato a corto di risorse sul mio serverino casalingo? Troppe! Avevo bisogno di far girare più servizi, testare nuove configurazioni, ma senza rischiare di mandare all’aria tutto il sistema. La virtualizzazione è stata la risposta, e Proxmox, beh, Proxmox è stata la svolta. Non avevo alcuna intenzione di acquistare soluzioni commerciali, quindi cercavo un’alternativa solida e, soprattutto, open source. E devo dire, non mi sono pentito della scelta.&lt;/p&gt;
+
+&lt;h2 id=&quot;proxmox-un-mondo-di-virtualizzazione-open-source&quot;&gt;Proxmox: Un Mondo di Virtualizzazione Open Source&lt;/h2&gt;
+
+&lt;p&gt;Proxmox Virtual Environment (VE) è una piattaforma di virtualizzazione open source basata su Debian. In parole povere, ti permette di creare e gestire macchine virtuali (VM) e container LXC su un singolo server fisico. Immagina di avere più computer, ognuno con il suo sistema operativo e le sue applicazioni, che girano tutti su un’unica macchina! Fantastico, no?&lt;/p&gt;
+
+&lt;p&gt;L’interfaccia web è intuitiva, anche per uno come me che non si definirebbe un guru dei server. Certo, all’inizio ho avuto qualche difficoltà, ma la community è super disponibile e la documentazione è ben fatta. E poi, diciamocelo, smanettare è parte del divertimento!&lt;/p&gt;
+
+&lt;h2 id=&quot;installazione-di-proxmox-la-mia-avventura-con-qualche-intoppo&quot;&gt;Installazione di Proxmox: La Mia Avventura (con qualche intoppo)&lt;/h2&gt;
+
+&lt;p&gt;L’installazione di Proxmox è abbastanza semplice, ma ci sono alcuni passaggi cruciali che, se sbagliati, possono farti perdere un sacco di tempo. Ci sono passato anch’io, fidati!&lt;/p&gt;
+
+&lt;p&gt;Ecco i passaggi che ho seguito:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Download dell’immagine ISO:&lt;/strong&gt; basta andare sul sito ufficiale di Proxmox e scaricare l’immagine ISO.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Creazione della chiavetta USB avviabile:&lt;/strong&gt; ho usato Rufus (un programmino gratuito) per creare una chiavetta USB avviabile con l’immagine ISO scaricata.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Configurazione del BIOS:&lt;/strong&gt; prima di avviare l’installazione, sono entrato nel BIOS del mio server e ho attivato la virtualizzazione (VT-x/AMD-V). Senza questo, Proxmox non può funzionare correttamente.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Installazione vera e propria:&lt;/strong&gt; ho avviato il server dalla chiavetta USB e ho seguito le istruzioni a schermo. Semplice no?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Dopo aver impostato la password di root e l’indirizzo email (utile per le notifiche), sono passato alla configurazione della rete. Ho impostato un indirizzo IP statico per il mio server Proxmox, in modo da poterlo raggiungere sempre allo stesso indirizzo. Ho anche modificato il nome host in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pve-server01.miodominio.interno&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;L’installazione è andata a buon fine e, dopo il riavvio, ho potuto accedere all’interfaccia web di Proxmox tramite browser all’indirizzo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://indirizzo_ip:8006&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;repository-di-proxmox-aggiornamenti-senza-troppi-compromessi&quot;&gt;Repository di Proxmox: Aggiornamenti Senza (Troppi) Compromessi&lt;/h2&gt;
+
+&lt;p&gt;Una volta entrato nell’interfaccia web, la prima cosa che ho notato è stato un avviso riguardante la sottoscrizione Enterprise. Proxmox offre una versione gratuita e una a pagamento. La versione gratuita ha tutte le funzionalità di base, ma non ha accesso ai repository di aggiornamenti Enterprise, che contengono gli aggiornamenti più recenti e stabili.&lt;/p&gt;
+
+&lt;p&gt;Questo significa che, senza una sottoscrizione, potresti non essere in grado di scaricare gli ultimi aggiornamenti di sicurezza.&lt;/p&gt;
+
+&lt;p&gt;Per fortuna, esiste una soluzione alternativa: utilizzare il repository “no-subscription”. Questo repository contiene gli aggiornamenti di sicurezza e alcuni aggiornamenti minori. Non è l’ideale, ma è meglio di niente.&lt;/p&gt;
+
+&lt;p&gt;Per abilitare il repository “no-subscription”, devi modificare il file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/apt/sources.list.d/proxmox.list&lt;/code&gt; e commentare (aggiungendo un &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#&lt;/code&gt; all’inizio della riga) i repository Enterprise e decommentare quelli no-subscription.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#deb https://enterprise.proxmox.com/debian/pve bookworm enterprise
+deb http://download.proxmox.com/debian/pve bookworm pve-no-subscription
+
+#deb https://enterprise.proxmox.com/debian/ceph-quincy bookworm enterprise
+deb http://download.proxmox.com/debian/ceph-quincy bookworm no-subscription
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Dopo aver modificato il file, devi aggiornare la lista dei pacchetti con il comando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apt update&lt;/code&gt; e poi aggiornare il sistema con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apt upgrade&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;proxmox-vs-vmware-la-scelta-giusta-per-me&quot;&gt;Proxmox vs VMware: La Scelta Giusta per Me&lt;/h2&gt;
+
+&lt;p&gt;Proxmox offre le stesse funzionalità di base di VMware, come la creazione e la gestione di macchine virtuali e container, la migrazione live, lo storage condiviso e il clustering. E, cosa ancora più importante, è open source! Questo significa che posso personalizzarlo, modificarlo e utilizzarlo come voglio, senza dovermi preoccupare di licenze o costi nascosti.&lt;/p&gt;
+
+&lt;h2 id=&quot;prossimi-passi-virtualizzazione-di-home-assistant-e-container-con-docker&quot;&gt;Prossimi Passi: Virtualizzazione di Home Assistant e Container con Docker&lt;/h2&gt;
+
+&lt;p&gt;Il mio prossimo obiettivo è quello di creare una macchina virtuale con Home Assistant e un paio di container con Docker per NextCloud e qualche progettino personale, e uno per Nginx Proxy Manager. Stay tuned per i prossimi articoli!&lt;/p&gt;
+
+&lt;p&gt;Alla prossima!&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="Domotica" /><category term="Proxmox" /><category term="Virtualizzazione" /><category term="Open Source" /><category term="Server" /><summary type="html">Quante volte mi sono trovato a corto di risorse sul mio serverino casalingo? Troppe! Avevo bisogno di far girare più servizi, testare nuove configurazioni, ma senza rischiare di mandare all’aria tutto il sistema. La virtualizzazione è stata la risposta, e Proxmox, beh, Proxmox è stata la svolta. Non avevo alcuna intenzione di acquistare soluzioni commerciali, quindi cercavo un’alternativa solida e, soprattutto, open source. E devo dire, non mi sono pentito della scelta.</summary></entry><entry><title type="html">Aggiornamento workflow pubblicazione automatica su Github Pages</title><link href="https://red-blue.it/guide/ruby/jekyll/blog/github/2025/11/05/aggiornamento-workflow-pubblicazione-automatica-su-github-pages.html" rel="alternate" type="text/html" title="Aggiornamento workflow pubblicazione automatica su Github Pages" /><published>2025-11-05T00:00:00+00:00</published><updated>2025-11-05T00:00:00+00:00</updated><id>https://red-blue.it/guide/ruby/jekyll/blog/github/2025/11/05/aggiornamento-workflow-pubblicazione-automatica-su-github-pages</id><content type="html" xml:base="https://red-blue.it/guide/ruby/jekyll/blog/github/2025/11/05/aggiornamento-workflow-pubblicazione-automatica-su-github-pages.html">&lt;p&gt;Riprendo l’argomento relativo alla &lt;a href=&quot;https://red-blue.it/guide/blog/ruby/jekyll/2024/08/24/schedulare-la-pubblicazione-dei-post-su-github-pages-con-jekyll.html&quot; target=&quot;_blank&quot;&gt;pubblicazione automatica su Github Pages&lt;/a&gt;, visto in precedenza, in quanto recentemente il processo era andato in crash e non riuscivo in alcun modo a ripristinarlo.&lt;/p&gt;
 
 &lt;p&gt;Cercando in rete, pare che il problema fosse la &lt;strong&gt;action&lt;/strong&gt; che usavo, che presenta delle incompatibilità con la gestione dei certificati SSL delle versioni più recenti delle librerie relative appunto ad SSL.&lt;/p&gt;
 
@@ -378,25 +430,4 @@ data:
 
 &lt;p&gt;Una piccola nota a margine, mi rendo conto che questo “sistema” non è certo una soluzione al problema di casa mia (in teoria, potrebbe andare offline il Raspberry senza che la corrente sia andata via tra l’altro), ho già chiamato l’elettricista per quando rientro (adesso davvero non c’è tempo), così come un salvavita con riarmo automatico potrebbe essere più utile, visto che riattiverebbe tutto automaticamente, ma anche per questo ci vuole l’elettricista e, ripeto, non c’è il tempo adesso.&lt;/p&gt;
 
-&lt;p&gt;Alla prossima..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="domotica" /><category term="raspberrypi" /><summary type="html">Come fare a sapere se un dispositivo va offline? Può essere un server domestico, ad esempio per la domotica, oppure può essere usato come “alert” del fatto che manca la corrente in casa, in generale può essere utile ricevere una notifica se un dispositivo va offline.</summary></entry><entry><title type="html">Jekyll, generatore di siti statici</title><link href="https://red-blue.it/guide/blog/2023/08/23/jekyll-generatore-di-siti-statici.html" rel="alternate" type="text/html" title="Jekyll, generatore di siti statici" /><published>2023-08-23T00:00:00+00:00</published><updated>2023-08-23T00:00:00+00:00</updated><id>https://red-blue.it/guide/blog/2023/08/23/jekyll-generatore-di-siti-statici</id><content type="html" xml:base="https://red-blue.it/guide/blog/2023/08/23/jekyll-generatore-di-siti-statici.html">&lt;p&gt;Piccolo post introduttivo su &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt;, il generatore di siti web statici.&lt;/p&gt;
-
-&lt;p&gt;Per tantissimi anni ho usato per questo blog un CMS (Content Management System), con il quale gestivo un cosidetto sito web &lt;strong&gt;dinamico&lt;/strong&gt;, ovvero esisteva un database in cui tutti i dati del sito erano memorizzati, ed era poi il CMS stesso che provvedeva a recuperare tali dati all’occorrenza e a creare &lt;em&gt;“on demand”&lt;/em&gt; le pagine web da visualizzare.&lt;/p&gt;
-
-&lt;p&gt;All’opposto di un sistema del genere ci sono i siti web &lt;strong&gt;statici&lt;/strong&gt;, nei quali invece le pagine web sono direttamente presenti sul server, senza dover ricorrere ad un database. In, pratica, si ha a che fare con semplici file HTML.&lt;/p&gt;
-
-&lt;p&gt;Jekyll è un software che aiuta a generare siti web statici, usando templates per costruire le pagine web per le quali scriviamo i contenuti. Jekyll non usa databases, né è in grado di &lt;em&gt;“hostare”&lt;/em&gt; il sito creato, il quale va uploadato su un servizio online per la pubblicazione (ad esempio &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;).&lt;/p&gt;
-
-&lt;p&gt;Ovviamente il ricorso ad un software come Jekyll va valutato attentamente, esistono tipologie di siti che hanno necessariamente bisogno di database e CMS, ma nel caso di siti come il mio, i vantaggi possono essere diversi:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;manutenzione pari quasi a zero (non ci sono aggiornamenti da applicare se non in rare occasioni);&lt;/li&gt;
-  &lt;li&gt;semplicità di backup (basta un semplice copia e incolla);&lt;/li&gt;
-  &lt;li&gt;la possibilità di usare un sistema di versionamento del codice, ad esempio &lt;strong&gt;Git&lt;/strong&gt;;&lt;/li&gt;
-  &lt;li&gt;spesso il sito risultante è estremamente veloce (a patto di non generare pagine particolarmente pesanti).&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Aggiungo che, tempo permettendo, ci si può divertire a personalizzare l’aspetto del sito a piacimento in maniera piuttosto rapida, non essendo necessaria praticamente alcuna conoscenza avanzata di programmazione.&lt;/p&gt;
-
-&lt;p&gt;Nei prossimi post, vedremo l’installazione, la gestione offline/online e la creazione di post con Jekyll.&lt;/p&gt;
-
-&lt;p&gt;Stay tuned..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="blog" /><summary type="html">Piccolo post introduttivo su Jekyll, il generatore di siti web statici.</summary></entry></feed>
+&lt;p&gt;Alla prossima..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="domotica" /><category term="raspberrypi" /><summary type="html">Come fare a sapere se un dispositivo va offline? Può essere un server domestico, ad esempio per la domotica, oppure può essere usato come “alert” del fatto che manca la corrente in casa, in generale può essere utile ricevere una notifica se un dispositivo va offline.</summary></entry></feed>
