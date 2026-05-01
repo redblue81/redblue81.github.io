@@ -8,6 +8,8 @@ tags: [Proxmox, Virtualizzazione, Open Source, Server, Home Assistant, tutorial]
 
 Installare Home Assistant OS su Proxmox è davvero semplice. Questo breve tutorial è il seguito diretto del precedente post sull'[installazione di Proxmox](https://red-blue.it/domotica/2026/04/29/proxmox-la-mia-svolta-open-source-per-la-virtualizzazione.html){:target="_blank"}, vedremo come creare una VM con Home Assistant OS.
 
+### Download del necessario
+
 Per prima cosa, scarichiamo, direttamente all'interno della nostra Proxmox, l'immagine giusta da qui: [https://www.home-assistant.io/installation/alternative/](https://www.home-assistant.io/installation/alternative/){:target="_blank"}, scegliendo l'opzione **KVM/Proxmox**. In realtà, dal terminale di Proxmox, basta lanciare un:
 
 ```
@@ -21,6 +23,8 @@ unxz haos_ova-17.2.qcow2.xz
 ```
 
 Ovviamente, il nome del file è quello attualmente scaricabile (al momento della scrittura di questo tutorial), adattatelo al vostro caso.
+
+### Configurazione della VM per Home Assistant
 
 Colleghiamoci alla Proxmox (normalmente `https://indirizzo:8006`), click destro, `Create VM`, inseriamo **nome** e **id** (va bene quello proposto di default), poi nella scheda `OS` selezioniamo `Do not use any media`.
 
