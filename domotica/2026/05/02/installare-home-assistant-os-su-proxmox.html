@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Installare Home Assistant OS su Proxmox | RedBlue’s Blog</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Installare Home Assistant OS su Proxmox" />
+<meta name="author" content="RedBlue" />
+<meta property="og:locale" content="it_IT" />
+<meta name="description" content="Installare Home Assistant OS su Proxmox è davvero semplice. Questo breve tutorial è il seguito diretto del precedente post sull’installazione di Proxmox, vedremo come creare una VM con Home Assistant OS." />
+<meta property="og:description" content="Installare Home Assistant OS su Proxmox è davvero semplice. Questo breve tutorial è il seguito diretto del precedente post sull’installazione di Proxmox, vedremo come creare una VM con Home Assistant OS." />
+<link rel="canonical" href="https://red-blue.it/domotica/2026/05/02/installare-home-assistant-os-su-proxmox.html" />
+<meta property="og:url" content="https://red-blue.it/domotica/2026/05/02/installare-home-assistant-os-su-proxmox.html" />
+<meta property="og:site_name" content="RedBlue’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-05-02T07:19:27+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Installare Home Assistant OS su Proxmox" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"RedBlue"},"dateModified":"2026-05-02T07:19:27+00:00","datePublished":"2026-05-02T07:19:27+00:00","description":"Installare Home Assistant OS su Proxmox è davvero semplice. Questo breve tutorial è il seguito diretto del precedente post sull’installazione di Proxmox, vedremo come creare una VM con Home Assistant OS.","headline":"Installare Home Assistant OS su Proxmox","mainEntityOfPage":{"@type":"WebPage","@id":"https://red-blue.it/domotica/2026/05/02/installare-home-assistant-os-su-proxmox.html"},"url":"https://red-blue.it/domotica/2026/05/02/installare-home-assistant-os-su-proxmox.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Installare Home Assistant OS su Proxmox - RedBlue&#39;s Blog
+    
+  </title>
+
+  <meta name="description" content="Installare Home Assistant OS su Proxmox è davvero semplice. Questo breve tutorial è il seguito diretto del precedente post sull’installazione di Proxmox, ved...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://red-blue.it/domotica/2026/05/02/installare-home-assistant-os-su-proxmox.html">
+  <link rel="alternate" type="application/rss+xml" title="RedBlue&#39;s Blog" href="/feed.xml">
+
+</head> 
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">RedBlue&#39;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+		    <li class="nav-item">
+          <a class="nav-link" href="/domotica">Domotica</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contacts</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Installare Home Assistant OS su Proxmox</h1>
+            
+            <span class="meta">Posted by
+              <a href="#">RedBlue</a>
+              on May 02, 2026 &middot; <span class="reading-time" title="Estimated read time">
+  
+   3 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>Installare Home Assistant OS su Proxmox è davvero semplice. Questo breve tutorial è il seguito diretto del precedente post sull’<a href="https://red-blue.it/domotica/2026/04/29/proxmox-la-mia-svolta-open-source-per-la-virtualizzazione.html" target="_blank">installazione di Proxmox</a>, vedremo come creare una VM con Home Assistant OS.</p>
+
+<h3 id="download-del-necessario">Download del necessario</h3>
+
+<p>Per prima cosa, scarichiamo, direttamente all’interno della nostra Proxmox, l’immagine giusta da qui: <a href="https://www.home-assistant.io/installation/alternative/" target="_blank">https://www.home-assistant.io/installation/alternative/</a>, scegliendo l’opzione <strong>KVM/Proxmox</strong>. In realtà, dal terminale di Proxmox, basta lanciare un:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://github.com/home-assistant/operating-system/releases/download/17.2/haos_ova-17.2.qcow2.xz
+</code></pre></div></div>
+
+<p>E poi, dopo che il file è stato scaricato:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unxz haos_ova-17.2.qcow2.xz
+</code></pre></div></div>
+
+<p>Ovviamente, il nome del file è quello attualmente scaricabile (al momento della scrittura di questo tutorial), adattatelo al vostro caso.</p>
+
+<h3 id="configurazione-della-vm-per-home-assistant">Configurazione della VM per Home Assistant</h3>
+
+<p>Colleghiamoci alla Proxmox (normalmente <code class="language-plaintext highlighter-rouge">https://indirizzo:8006</code>), click destro, <code class="language-plaintext highlighter-rouge">Create VM</code>, inseriamo <strong>nome</strong> e <strong>id</strong> (va bene quello proposto di default), poi nella scheda <code class="language-plaintext highlighter-rouge">OS</code> selezioniamo <code class="language-plaintext highlighter-rouge">Do not use any media</code>.</p>
+
+<p>Nella scheda <code class="language-plaintext highlighter-rouge">System</code>, invece:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Machine: q35
+BIOS: OVMF
+EFI Storege: local-lvm
+Pre-Enroll Keys NO (togliere il check)
+</code></pre></div></div>
+
+<p>Eliminiamo il disco proposto nella scheda <code class="language-plaintext highlighter-rouge">Disks</code>, mentre nella scheda <code class="language-plaintext highlighter-rouge">CPU</code> scegliamo 2 cores, e nella scheda <code class="language-plaintext highlighter-rouge">Memory</code> indichiamo 4 GB di RAM (valore <strong>4096</strong>). Nella scheda <code class="language-plaintext highlighter-rouge">Network</code> lasciamo infine tutto com’è. Andiamo infine su <code class="language-plaintext highlighter-rouge">Confirm</code> e clicchiamo <strong>Finish</strong>, abbiamo la nostra VM!!</p>
+
+<p>Ora viene il bello, in realtà il file che abbiamo scaricato prima non è altro che il <strong>disco</strong> che abbiamo eliminato in fase di creazione della VM, già pronto all’uso!</p>
+
+<p>Quindi apriamo la <strong>shell</strong> della Proxmox (tasto dedicato in alto destra) e digitiamo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>qm importdisk &lt;ID VM&gt; &lt;NOME FILE&gt; &lt;EFI&gt;
+</code></pre></div></div>
+
+<p>Dove <strong>ID VM</strong> è l’id della VM appena creata, <strong>NOME FILE</strong> il nome del file scaricato, <strong>EFI</strong> è <code class="language-plaintext highlighter-rouge">local-lvm</code> nell’esempio fatto.</p>
+
+<p>Abbiamo quasi terminato tranquilli!</p>
+
+<p>Andiamo sulle impostazioni della VM (selezioniamo a sinistra), clicchiamo sulla scheda <code class="language-plaintext highlighter-rouge">Hardware</code>, andiamo su <strong>Unused Disk 0</strong> (il file importato con qm al passo precedente), clicchiamo <strong>Edit</strong> in alto, nella scheda che si apre selezioniamo <strong>Discard</strong> se abbiamo un disco fisico SSD, e clicchiamo <code class="language-plaintext highlighter-rouge">Add</code>, poi, nella scheda <code class="language-plaintext highlighter-rouge">Options</code> della VM, in <strong>Boot order</strong>, selezioniamo solo il disco appena aggiunto (di solito vanno deselezionati l’avvio da CD/DVD e da rete, e abilitato quello di Scsi0).</p>
+
+<p>Finito! <strong>Start</strong> in alto a destra, e nella console della VM apparirà l’indirizzo a cui connettersi ad Home Assistant!!</p>
+
+<p>Il prossimo passo sarà installare Docker su Proxmox!</p>
+
+<p>Stay tuned!</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/domotica/2026/04/29/proxmox-la-mia-svolta-open-source-per-la-virtualizzazione.html" data-toggle="tooltip" data-placement="top" title="Proxmox: La mia svolta Open Source per la virtualizzazione">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:redblue81@gmail.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/angeloredbluepascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/angelopascadopoli">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://instagram.com/redblue81">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; RedBlue 2026</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LVMQV0LE9M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LVMQV0LE9M');
+</script>
+
+</body>
+
+</html>

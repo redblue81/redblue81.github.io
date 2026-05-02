@@ -1,4 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="https://red-blue.it/feed.xml" rel="self" type="application/atom+xml" /><link href="https://red-blue.it/" rel="alternate" type="text/html" /><updated>2026-05-01T13:44:05+00:00</updated><id>https://red-blue.it/feed.xml</id><title type="html">RedBlue’s Blog</title><subtitle>Another technology addicted&apos;s personal page</subtitle><author><name>RedBlue</name></author><entry><title type="html">Proxmox: La mia svolta Open Source per la virtualizzazione</title><link href="https://red-blue.it/domotica/2026/04/29/proxmox-la-mia-svolta-open-source-per-la-virtualizzazione.html" rel="alternate" type="text/html" title="Proxmox: La mia svolta Open Source per la virtualizzazione" /><published>2026-04-29T05:49:47+00:00</published><updated>2026-04-29T05:49:47+00:00</updated><id>https://red-blue.it/domotica/2026/04/29/proxmox-la-mia-svolta-open-source-per-la-virtualizzazione</id><content type="html" xml:base="https://red-blue.it/domotica/2026/04/29/proxmox-la-mia-svolta-open-source-per-la-virtualizzazione.html">&lt;p&gt;Quante volte mi sono trovato a corto di risorse sul mio serverino casalingo? Troppe! Avevo bisogno di far girare più servizi, testare nuove configurazioni, ma senza rischiare di mandare all’aria tutto il sistema. La virtualizzazione è stata la risposta, e Proxmox, beh, Proxmox è stata la svolta. Non avevo alcuna intenzione di acquistare soluzioni commerciali, quindi cercavo un’alternativa solida e, soprattutto, open source. E devo dire, non mi sono pentito della scelta.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="https://red-blue.it/feed.xml" rel="self" type="application/atom+xml" /><link href="https://red-blue.it/" rel="alternate" type="text/html" /><updated>2026-05-02T13:37:38+00:00</updated><id>https://red-blue.it/feed.xml</id><title type="html">RedBlue’s Blog</title><subtitle>Another technology addicted&apos;s personal page</subtitle><author><name>RedBlue</name></author><entry><title type="html">Installare Home Assistant OS su Proxmox</title><link href="https://red-blue.it/domotica/2026/05/02/installare-home-assistant-os-su-proxmox.html" rel="alternate" type="text/html" title="Installare Home Assistant OS su Proxmox" /><published>2026-05-02T07:19:27+00:00</published><updated>2026-05-02T07:19:27+00:00</updated><id>https://red-blue.it/domotica/2026/05/02/installare-home-assistant-os-su-proxmox</id><content type="html" xml:base="https://red-blue.it/domotica/2026/05/02/installare-home-assistant-os-su-proxmox.html">&lt;p&gt;Installare Home Assistant OS su Proxmox è davvero semplice. Questo breve tutorial è il seguito diretto del precedente post sull’&lt;a href=&quot;https://red-blue.it/domotica/2026/04/29/proxmox-la-mia-svolta-open-source-per-la-virtualizzazione.html&quot; target=&quot;_blank&quot;&gt;installazione di Proxmox&lt;/a&gt;, vedremo come creare una VM con Home Assistant OS.&lt;/p&gt;
+
+&lt;h3 id=&quot;download-del-necessario&quot;&gt;Download del necessario&lt;/h3&gt;
+
+&lt;p&gt;Per prima cosa, scarichiamo, direttamente all’interno della nostra Proxmox, l’immagine giusta da qui: &lt;a href=&quot;https://www.home-assistant.io/installation/alternative/&quot; target=&quot;_blank&quot;&gt;https://www.home-assistant.io/installation/alternative/&lt;/a&gt;, scegliendo l’opzione &lt;strong&gt;KVM/Proxmox&lt;/strong&gt;. In realtà, dal terminale di Proxmox, basta lanciare un:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget https://github.com/home-assistant/operating-system/releases/download/17.2/haos_ova-17.2.qcow2.xz
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;E poi, dopo che il file è stato scaricato:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;unxz haos_ova-17.2.qcow2.xz
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ovviamente, il nome del file è quello attualmente scaricabile (al momento della scrittura di questo tutorial), adattatelo al vostro caso.&lt;/p&gt;
+
+&lt;h3 id=&quot;configurazione-della-vm-per-home-assistant&quot;&gt;Configurazione della VM per Home Assistant&lt;/h3&gt;
+
+&lt;p&gt;Colleghiamoci alla Proxmox (normalmente &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://indirizzo:8006&lt;/code&gt;), click destro, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Create VM&lt;/code&gt;, inseriamo &lt;strong&gt;nome&lt;/strong&gt; e &lt;strong&gt;id&lt;/strong&gt; (va bene quello proposto di default), poi nella scheda &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OS&lt;/code&gt; selezioniamo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Do not use any media&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Nella scheda &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;System&lt;/code&gt;, invece:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Machine: q35
+BIOS: OVMF
+EFI Storege: local-lvm
+Pre-Enroll Keys NO (togliere il check)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Eliminiamo il disco proposto nella scheda &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Disks&lt;/code&gt;, mentre nella scheda &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CPU&lt;/code&gt; scegliamo 2 cores, e nella scheda &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Memory&lt;/code&gt; indichiamo 4 GB di RAM (valore &lt;strong&gt;4096&lt;/strong&gt;). Nella scheda &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Network&lt;/code&gt; lasciamo infine tutto com’è. Andiamo infine su &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Confirm&lt;/code&gt; e clicchiamo &lt;strong&gt;Finish&lt;/strong&gt;, abbiamo la nostra VM!!&lt;/p&gt;
+
+&lt;p&gt;Ora viene il bello, in realtà il file che abbiamo scaricato prima non è altro che il &lt;strong&gt;disco&lt;/strong&gt; che abbiamo eliminato in fase di creazione della VM, già pronto all’uso!&lt;/p&gt;
+
+&lt;p&gt;Quindi apriamo la &lt;strong&gt;shell&lt;/strong&gt; della Proxmox (tasto dedicato in alto destra) e digitiamo:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;qm importdisk &amp;lt;ID VM&amp;gt; &amp;lt;NOME FILE&amp;gt; &amp;lt;EFI&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Dove &lt;strong&gt;ID VM&lt;/strong&gt; è l’id della VM appena creata, &lt;strong&gt;NOME FILE&lt;/strong&gt; il nome del file scaricato, &lt;strong&gt;EFI&lt;/strong&gt; è &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;local-lvm&lt;/code&gt; nell’esempio fatto.&lt;/p&gt;
+
+&lt;p&gt;Abbiamo quasi terminato tranquilli!&lt;/p&gt;
+
+&lt;p&gt;Andiamo sulle impostazioni della VM (selezioniamo a sinistra), clicchiamo sulla scheda &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Hardware&lt;/code&gt;, andiamo su &lt;strong&gt;Unused Disk 0&lt;/strong&gt; (il file importato con qm al passo precedente), clicchiamo &lt;strong&gt;Edit&lt;/strong&gt; in alto, nella scheda che si apre selezioniamo &lt;strong&gt;Discard&lt;/strong&gt; se abbiamo un disco fisico SSD, e clicchiamo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Add&lt;/code&gt;, poi, nella scheda &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Options&lt;/code&gt; della VM, in &lt;strong&gt;Boot order&lt;/strong&gt;, selezioniamo solo il disco appena aggiunto (di solito vanno deselezionati l’avvio da CD/DVD e da rete, e abilitato quello di Scsi0).&lt;/p&gt;
+
+&lt;p&gt;Finito! &lt;strong&gt;Start&lt;/strong&gt; in alto a destra, e nella console della VM apparirà l’indirizzo a cui connettersi ad Home Assistant!!&lt;/p&gt;
+
+&lt;p&gt;Il prossimo passo sarà installare Docker su Proxmox!&lt;/p&gt;
+
+&lt;p&gt;Stay tuned!&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="Domotica" /><category term="Proxmox" /><category term="Virtualizzazione" /><category term="Open Source" /><category term="Server" /><category term="Home Assistant" /><category term="tutorial" /><summary type="html">Installare Home Assistant OS su Proxmox è davvero semplice. Questo breve tutorial è il seguito diretto del precedente post sull’installazione di Proxmox, vedremo come creare una VM con Home Assistant OS.</summary></entry><entry><title type="html">Proxmox: La mia svolta Open Source per la virtualizzazione</title><link href="https://red-blue.it/domotica/2026/04/29/proxmox-la-mia-svolta-open-source-per-la-virtualizzazione.html" rel="alternate" type="text/html" title="Proxmox: La mia svolta Open Source per la virtualizzazione" /><published>2026-04-29T05:49:47+00:00</published><updated>2026-04-29T05:49:47+00:00</updated><id>https://red-blue.it/domotica/2026/04/29/proxmox-la-mia-svolta-open-source-per-la-virtualizzazione</id><content type="html" xml:base="https://red-blue.it/domotica/2026/04/29/proxmox-la-mia-svolta-open-source-per-la-virtualizzazione.html">&lt;p&gt;Quante volte mi sono trovato a corto di risorse sul mio serverino casalingo? Troppe! Avevo bisogno di far girare più servizi, testare nuove configurazioni, ma senza rischiare di mandare all’aria tutto il sistema. La virtualizzazione è stata la risposta, e Proxmox, beh, Proxmox è stata la svolta. Non avevo alcuna intenzione di acquistare soluzioni commerciali, quindi cercavo un’alternativa solida e, soprattutto, open source. E devo dire, non mi sono pentito della scelta.&lt;/p&gt;
 
 &lt;h2 id=&quot;proxmox-un-mondo-di-virtualizzazione-open-source&quot;&gt;Proxmox: Un Mondo di Virtualizzazione Open Source&lt;/h2&gt;
 
@@ -401,33 +448,4 @@ data:
 
 &lt;p&gt;In pratica, per ogni file presente nella cartella condivisa, questo viene spostato nella cartella relativa al mese corretto in base alla data di ultima modifica del file, e se questa non esiste, viene &lt;strong&gt;creata&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p&gt;Alla prossima..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="windows" /><category term="programmazione" /><summary type="html">Mia moglie possiede un iPhone, e ovviamente nella memoria di quel device ci sono diverse migliaia di foto, molte delle quali decisamente importanti dal punto di vista affettivo.</summary></entry><entry><title type="html">Notifica automatica se un dispositivo va offline</title><link href="https://red-blue.it/guide/domotica/raspberrypi/2024/07/27/notifica-automatica-dispositivo-offline.html" rel="alternate" type="text/html" title="Notifica automatica se un dispositivo va offline" /><published>2024-07-27T00:00:00+00:00</published><updated>2024-07-27T00:00:00+00:00</updated><id>https://red-blue.it/guide/domotica/raspberrypi/2024/07/27/notifica-automatica-dispositivo-offline</id><content type="html" xml:base="https://red-blue.it/guide/domotica/raspberrypi/2024/07/27/notifica-automatica-dispositivo-offline.html">&lt;p&gt;Come fare a sapere se un dispositivo va &lt;strong&gt;offline&lt;/strong&gt;? Può essere un server domestico, ad esempio per la domotica, oppure può essere usato come “alert” del fatto che manca la corrente in casa, in generale può essere utile ricevere una notifica se un dispositivo va offline.&lt;/p&gt;
-
-&lt;p&gt;Sto per partire per le vacanze, e recentemente mi sta succedendo che, a causa di una situazione un po’ “instabile” nella mia zona, il salvavita in casa scatta più del dovuto. Chiaramente, in caso questo succeda mentre siamo via, può diventare un problema, quindi mi serve qualcosa che mi avvisi, in modo che io possa a mia volta avvisare qualcuno di andare a controllare.&lt;/p&gt;
-
-&lt;p&gt;Ho pensato quindi di ricevere una notifica se il mio piccolo server domotico (un Raspberry Pi sul quale gira Home Assistant) va offline e ci resta per almeno 15 minuti.&lt;/p&gt;
-
-&lt;p&gt;Per realizzare questo piccolissimo progetto, si può usare un servizio esterno, come ad esempio &lt;a href=&quot;https://healthchecks.io/&quot; target=&quot;_blank&quot;&gt;healthchecks.io&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Usarlo è semplicissimo, basta registrarsi e si avrà accesso al piano gratuito (hobbyist), più che sufficiente per i miei scopi:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/healthchecks_pricing.png&quot; alt=&quot;healthcheck.io pricing&quot; style=&quot;display:block; width: 100%; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;A questo punto, basta creare un &lt;strong&gt;check&lt;/strong&gt; e configurarlo a seconda delle nostre necessità, il &lt;strong&gt;period&lt;/strong&gt; rappresenta ogni quanto tempo il servizio si aspetta un ping, il &lt;strong&gt;grace&lt;/strong&gt; è il limite temporale oltre il quale avremo la notifica del &lt;strong&gt;DOWN&lt;/strong&gt;. Una volta configurato avremo un link, il servizio usa quel link come check appunto. Quindi basterà che il nostro dispositivo esegua periodicamente una richiesta a quel link, e se tale richiesta fallisce, dopo il periodo di grace avremo la notifica.&lt;/p&gt;
-
-&lt;p&gt;La notifica di default è via mail, io ho attivato anche l’integrazione con Telegram, ma di integrazioni ce ne sono davvero un’infinita, con praticamente qualsiasi applicazione.&lt;/p&gt;
-
-&lt;p&gt;A questo punto, come dicevo sopra, il mio dispositivo è un Raspberry con installato Home Assistant, quindi basta configurare un &lt;strong&gt;restful_service&lt;/strong&gt; che fa il ping sul link del mio check.&lt;/p&gt;
-
-&lt;p&gt;Un restful_service va aggiunto direttamente sul &lt;strong&gt;configurations.yaml&lt;/strong&gt;, in questo modo:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;rest_command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;raspberry_pi_online&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;link_healthchecks&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GET&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Poi basta creare un’&lt;strong&gt;automazione&lt;/strong&gt; che chiama quel servizio ad esempio ogni 5 minuti, e il gioco è fatto!&lt;/p&gt;
-
-&lt;p&gt;Una piccola nota a margine, mi rendo conto che questo “sistema” non è certo una soluzione al problema di casa mia (in teoria, potrebbe andare offline il Raspberry senza che la corrente sia andata via tra l’altro), ho già chiamato l’elettricista per quando rientro (adesso davvero non c’è tempo), così come un salvavita con riarmo automatico potrebbe essere più utile, visto che riattiverebbe tutto automaticamente, ma anche per questo ci vuole l’elettricista e, ripeto, non c’è il tempo adesso.&lt;/p&gt;
-
-&lt;p&gt;Alla prossima..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="domotica" /><category term="raspberrypi" /><summary type="html">Come fare a sapere se un dispositivo va offline? Può essere un server domestico, ad esempio per la domotica, oppure può essere usato come “alert” del fatto che manca la corrente in casa, in generale può essere utile ricevere una notifica se un dispositivo va offline.</summary></entry></feed>
+&lt;p&gt;Alla prossima..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="windows" /><category term="programmazione" /><summary type="html">Mia moglie possiede un iPhone, e ovviamente nella memoria di quel device ci sono diverse migliaia di foto, molte delle quali decisamente importanti dal punto di vista affettivo.</summary></entry></feed>
