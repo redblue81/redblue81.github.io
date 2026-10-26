@@ -1,4 +1,112 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="https://red-blue.it/feed.xml" rel="self" type="application/atom+xml" /><link href="https://red-blue.it/" rel="alternate" type="text/html" /><updated>2026-10-25T15:56:45+00:00</updated><id>https://red-blue.it/feed.xml</id><title type="html">RedBlue’s Blog</title><subtitle>Another technology addicted&apos;s personal page</subtitle><author><name>RedBlue</name></author><entry><title type="html">Installazione di Docker e Nginx Proxy Manager su Proxmox</title><link href="https://red-blue.it/virtualizzazione/2026/05/08/installazione-di-docker-e-mginx-proxy-manager-su-proxmox.html" rel="alternate" type="text/html" title="Installazione di Docker e Nginx Proxy Manager su Proxmox" /><published>2026-05-08T08:55:19+00:00</published><updated>2026-05-08T08:55:19+00:00</updated><id>https://red-blue.it/virtualizzazione/2026/05/08/installazione-di-docker-e-mginx-proxy-manager-su-proxmox</id><content type="html" xml:base="https://red-blue.it/virtualizzazione/2026/05/08/installazione-di-docker-e-mginx-proxy-manager-su-proxmox.html">&lt;p&gt;Oggi parliamo di installazione di &lt;strong&gt;Docker&lt;/strong&gt; su Proxmox, ma non solo, vedremo anche come usare &lt;strong&gt;Portainer&lt;/strong&gt; e &lt;strong&gt;Nginx Proxy Manager&lt;/strong&gt;! Let’s go!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="https://red-blue.it/feed.xml" rel="self" type="application/atom+xml" /><link href="https://red-blue.it/" rel="alternate" type="text/html" /><updated>2026-10-26T09:29:24+00:00</updated><id>https://red-blue.it/feed.xml</id><title type="html">RedBlue’s Blog</title><subtitle>Another technology addicted&apos;s personal page</subtitle><author><name>RedBlue</name></author><entry><title type="html">Allarme php2shell: verificare e mettere in sicurezza i server Linux casalinghi</title><link href="https://red-blue.it/linux/2026/10/26/allarme-php2shell-verificare-e-mettere-in-sicurezza-i-server-linux-casalinghi.html" rel="alternate" type="text/html" title="Allarme php2shell: verificare e mettere in sicurezza i server Linux casalinghi" /><published>2026-10-26T08:22:32+00:00</published><updated>2026-10-26T08:22:32+00:00</updated><id>https://red-blue.it/linux/2026/10/26/allarme-php2shell-verificare-e-mettere-in-sicurezza-i-server-linux-casalinghi</id><content type="html" xml:base="https://red-blue.it/linux/2026/10/26/allarme-php2shell-verificare-e-mettere-in-sicurezza-i-server-linux-casalinghi.html">&lt;p&gt;Se gestite anche solo un piccolo mini-PC in salotto, una VPS o un container Linux su cui gira uno stack web classico (LAMP, LEMP o ambienti con PHP-FPM e Apache), ci sono momenti in cui bisogna fermare qualsiasi cosa si stia facendo e aprire un terminale SSH al volo. Questo è esattamente uno di quei momenti.&lt;/p&gt;
+
+&lt;p&gt;Nelle scorse ore è scattato un allarme di sicurezza globale per via di due vulnerabilità (&lt;a href=&quot;https://cert-agid.gov.it/news/due-vulnerabilita-critiche-in-php-consentono-lesecuzione-di-codice-da-remoto-rilasciati-aggiornamenti-di-sicurezza/&quot;&gt;link&lt;/a&gt;) critiche scoperte nel motore PHP, ribattezzate pubblicamente con il nome piuttosto eloquente di &lt;strong&gt;php2shell&lt;/strong&gt;. Parliamo di falle che permettono a chiunque si trovi su una rete raggiungibile di eseguire codice da remoto (RCE) senza alcuna autenticazione. Come se non bastasse, nello stesso giro di aggiornamenti Canonical e il mondo Linux hanno dovuto metter mano ai certificati radice per via di una compromissione delle chiavi dell’autorità eMudhra.&lt;/p&gt;
+
+&lt;p&gt;Devo ammettere che quando leggo un punteggio di gravità CVSS 4.0 pari a &lt;strong&gt;9.2 su 10&lt;/strong&gt;, un brivido lungo la schiena lo sento sempre. Vediamo con calma cosa sta succedendo sotto il cofano, perché il problema non riguarda i singoli applicativi ma l’interprete stesso, e soprattutto come verificare ed eseguire le patch sui nostri server Ubuntu senza rischiare di rompere mezzo homelab.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;cosè-php2shell-e-perché-fa-tanta-paura&quot;&gt;Cos’è php2shell e perché fa tanta paura&lt;/h3&gt;
+
+&lt;p&gt;Il nome collettivo &lt;em&gt;php2shell&lt;/em&gt; raggruppa due distinte vulnerabilità scoperte nel core di PHP: &lt;strong&gt;CVE-2026-109618&lt;/strong&gt; e &lt;strong&gt;CVE-2026-109619&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Spesso siamo abituati a leggere di falle nei plugin di WordPress, in componenti di terze parti o in temi poco curati. In questo caso, però, la faccenda è molto più seria: il bug risiede direttamente nella gestione della memoria interna e nella gestione degli errori di runtime del linguaggio.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;La prima vulnerabilità (&lt;strong&gt;CVE-2026-109618&lt;/strong&gt;) riguarda il modo in cui PHP gestisce le condizioni di esaurimento della memoria (Out Of Memory - OOM). Quando il processo tocca il limite di allocazione, l’interruzione imprevista può causare una corruzione della memoria sfruttabile per ottenere l’esecuzione di codice.&lt;/li&gt;
+  &lt;li&gt;La seconda (&lt;strong&gt;CVE-2026-109619&lt;/strong&gt;) è legata a uno stato globale orfano (“stale state”), ovvero a riferimenti interni che rimangono attivi anche dopo che la memoria associata è stata liberata, venendo poi riutilizzati pericolosamente nella richiesta successiva.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Cosa significa questo in soldoni per chi gestisce un server? Significa che un malintenzionato che riesce a raggiungere via rete una qualsiasi applicazione PHP (da WordPress a Drupal, da Joomla a un semplice script custom) può inviare richieste studiate per innescare queste condizioni di corruzione ed eseguire comandi arbitrari con i permessi dell’utente del web server (solitamente &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;www-data&lt;/code&gt;), senza possedere alcun account o credenziale di accesso.&lt;/p&gt;
+
+&lt;p&gt;Il rischio è particolarmente accentuato su installazioni che usano &lt;strong&gt;Apache con mod_php&lt;/strong&gt;, dove l’attacco può attivarsi persino prima che il codice della nostra applicazione venga completamente interpretato, ma colpisce in generale tutti i runtime principali: PHP-FPM, php-cgi, LiteSpeed e persino FrankenPHP.&lt;/p&gt;
+
+&lt;p&gt;Un dettaglio tecnico davvero affascinante emerso dai bollettini è che nella scoperta e nella validazione di queste falle hanno giocato un ruolo chiave modelli di intelligenza artificiale avanzata (come GPT-5.6 Sol e Gemini 4 Argon) guidati dai ricercatori di sicurezza di Calif, OpenAI e Wiz. Gli strumenti di analisi assistita hanno consentito di concatenare errori di memoria complessi e realizzare Proof of Concept funzionanti in una frazione del tempo che avrebbe richiesto un’analisi manuale. Una conferma del fatto che la sicurezza difensiva deve muoversi a una velocità sempre più serrata.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;e-il-problema-dei-certificati-emudhra&quot;&gt;E il problema dei certificati eMudhra?&lt;/h3&gt;
+
+&lt;p&gt;Nel medesimo bollettino di aggiornamento per Ubuntu è stata inclusa anche una correzione per il pacchetto &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ca-certificates&lt;/code&gt;. È successo che le chiavi di sicurezza dell’autorità di certificazione eMudhra hanno subito una compromissione, aprendo la strada al rischio teorico che malintenzionati possano forgiare certificati digitali contraffatti spacciandosi per server legittimi.&lt;/p&gt;
+
+&lt;p&gt;Mentre i browser web moderni (come Firefox, Chrome o Safari) gestiscono i propri elenchi di revoca interni, a livello di sistema operativo strumenti a riga di comando che usiamo quotidianamente come &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;curl&lt;/code&gt; e &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wget&lt;/code&gt; dipendono strettamente dal trust store fornito dal pacchetto &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ca-certificates&lt;/code&gt;. Aggiornandolo, Ubuntu rimuove i due certificati radice revocati, proteggendo gli script e i download da attacchi di impersonificazione.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;passo-1-come-verificare-se-il-nostro-server-è-a-rischio&quot;&gt;Passo 1: Come verificare se il nostro server è a rischio&lt;/h3&gt;
+
+&lt;p&gt;Passiamo alla parte pratica. La prima domanda da farsi è: &lt;em&gt;il mio server sta usando PHP, e se sì, quale versione?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Se utilizzate Ubuntu Desktop e non avete installato uno stack di sviluppo locale, probabilmente PHP non è presente (anche se &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ca-certificates&lt;/code&gt; è quasi certamente installato e va aggiornato). Se invece operate su Ubuntu Server o su un container, apriamo una sessione SSH.&lt;/p&gt;
+
+&lt;p&gt;Per interrogare APT e scoprire rapidamente quali pacchetti dell’interprete PHP risultano effettivamente installati sul sistema, Canonical suggerisce questo comando preciso basato sui pattern di ricerca di APT:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;apt list &lt;span class=&quot;s1&quot;&gt;&apos;?installed?name(^php[0-9.]+$)&apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Se il comando restituisce output (come ad esempio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;php8.2&lt;/code&gt; o &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;php8.3&lt;/code&gt;), significa che il server ha installato il runtime di PHP.&lt;/p&gt;
+
+&lt;p&gt;A livello ufficiale del progetto PHP upstream, le versioni corrette prive della vulnerabilità sono:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;PHP 8.5.12&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;PHP 8.4.27&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;PHP 8.3.36&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;PHP 8.2.35&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Tuttavia, c’è un punto fondamentale da tenere a mente per chi usa distribuzioni come Ubuntu o Debian: Canonical applica il principio del &lt;strong&gt;backporting&lt;/strong&gt;. Questo significa che la versione del pacchetto indicata dal sistema potrebbe non coincidere con la numerazione upstream, ma includere comunque le patch di sicurezza rilasciate per quella specifica release di Ubuntu (dalla recentissima 26.10 a ritroso fino alle LTS storiche, per cui le versioni 14.04, 16.04 e 18.04 ricevono le patch tramite i repository ESM di Ubuntu Pro).&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;passo-2-applicare-gli-aggiornamenti-di-sicurezza&quot;&gt;Passo 2: Applicare gli aggiornamenti di sicurezza&lt;/h3&gt;
+
+&lt;p&gt;La strada maestra consigliata su qualsiasi macchina è quella di sincronizzare i repository ed eseguire un aggiornamento globale di tutti i pacchetti pendenti:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt update &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt upgrade
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ci sono però situazioni, e ci sono passato anch’io parecchie volte nell’homelab, in cui lanciare un &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apt upgrade&lt;/code&gt; completo a metà giornata può mettere un po’ d’ansia per paura che si aggiornino librerie collaterali non testate.&lt;/p&gt;
+
+&lt;p&gt;Se volete mirare con precisione chirurgica &lt;strong&gt;esclusivamente&lt;/strong&gt; ai pacchetti PHP senza toccare il resto del sistema, potete sfruttare la direttiva &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--only-upgrade&lt;/code&gt; associata al pattern di APT:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt update &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--only-upgrade&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;?name(^php[0-9.]+$)&apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Subito dopo, assicuriamoci di aggiornare anche il pacchetto dei certificati per risolvere il fronte eMudhra:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--only-upgrade&lt;/span&gt; ca-certificates
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;passo-3-il-passaggio-cruciale-che-non-bisogna-dimenticare&quot;&gt;Passo 3: Il passaggio cruciale che non bisogna dimenticare&lt;/h3&gt;
+
+&lt;p&gt;C’è un tranello comune in cui cadono molti appassionati: pensare che una volta completato il comando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apt upgrade&lt;/code&gt; il server sia automaticamente al sicuro. Purtroppo non è così.&lt;/p&gt;
+
+&lt;p&gt;I processi PHP caricati in memoria (come il pool di PHP-FPM o i worker di Apache) continuano a eseguire il vecchio binario presente nella RAM finché il servizio non viene esplicitamente riavviato. Perfino se sul vostro server è attivo il servizio automatico &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;unattended-upgrades&lt;/code&gt;, la patch potrebbe essere stata scaricata e installata in background, ma i demoni web continueranno a essere vulnerabili finché non ricaricano i file aggiornati.&lt;/p&gt;
+
+&lt;p&gt;A seconda del vostro setup, dovete riavviare manualmente il server web o il demone PHP.&lt;/p&gt;
+
+&lt;p&gt;Se utilizzate Apache con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mod_php&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl restart apache2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Se utilizzate Nginx con PHP-FPM (sostituendo la versione con quella in uso, ad esempio 8.2 o 8.3):&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl restart php8.2-fpm
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;(oppure &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo systemctl restart php8.3-fpm&lt;/code&gt; a seconda del pacchetto presente).&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Se avete la possibilità di sopportare un minuto di indisponibilità dei servizi sul vostro server domestico, la scelta più pulita e sicura per togliersi ogni dubbio ed essere certi che nessun processo residuo rimanga in memoria è un riavvio completo:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;reboot
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;due-riflessioni-sullhomelab&quot;&gt;Due riflessioni sull’homelab&lt;/h3&gt;
+
+&lt;p&gt;La comparsa di vulnerabilità RCE non autenticate con score 9.2 come php2shell è un promemoria prezioso per tutti noi che amiamo ospitare servizi in casa. Cloudflare ha già segnalato i primi tentativi di scansione ed exploit automatici su vasta scala: i bot che scandagliano gli IP pubblici non aspettano che finiamo la nostra pausa caffè.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="Linux" /><category term="ubuntu" /><category term="php" /><category term="sicurezza" /><category term="homelab" /><category term="sysadmin" /><summary type="html">Se gestite anche solo un piccolo mini-PC in salotto, una VPS o un container Linux su cui gira uno stack web classico (LAMP, LEMP o ambienti con PHP-FPM e Apache), ci sono momenti in cui bisogna fermare qualsiasi cosa si stia facendo e aprire un terminale SSH al volo. Questo è esattamente uno di quei momenti.</summary></entry><entry><title type="html">Installazione di Docker e Nginx Proxy Manager su Proxmox</title><link href="https://red-blue.it/virtualizzazione/2026/05/08/installazione-di-docker-e-mginx-proxy-manager-su-proxmox.html" rel="alternate" type="text/html" title="Installazione di Docker e Nginx Proxy Manager su Proxmox" /><published>2026-05-08T08:55:19+00:00</published><updated>2026-05-08T08:55:19+00:00</updated><id>https://red-blue.it/virtualizzazione/2026/05/08/installazione-di-docker-e-mginx-proxy-manager-su-proxmox</id><content type="html" xml:base="https://red-blue.it/virtualizzazione/2026/05/08/installazione-di-docker-e-mginx-proxy-manager-su-proxmox.html">&lt;p&gt;Oggi parliamo di installazione di &lt;strong&gt;Docker&lt;/strong&gt; su Proxmox, ma non solo, vedremo anche come usare &lt;strong&gt;Portainer&lt;/strong&gt; e &lt;strong&gt;Nginx Proxy Manager&lt;/strong&gt;! Let’s go!&lt;/p&gt;
 
 &lt;p&gt;Nel &lt;a href=&quot;https://red-blue.it/domotica/2026/05/02/installare-home-assistant-os-su-proxmox.html&quot; target=&quot;_blank&quot;&gt;precedente post&lt;/a&gt; abbiamo visto la creazione di una VM per HA OS. La differenza tra una Virtual Machine e un Container è sostanziale: le VM emulano un intero sistema operativo, mentre i container condividono il kernel del sistema operativo host. Questo significa che i container sono molto più leggeri e efficienti in termini di risorse.&lt;/p&gt;
 
@@ -423,31 +531,4 @@ jobs:
 
 &lt;p&gt;A questo punto, scrivete un post con data futura e godetevi la pubblicazione &lt;strong&gt;schedulata&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p&gt;Stay tuned..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="blog" /><category term="ruby" /><category term="jekyll" /><category term="github" /><summary type="html">Capita spesso di scrivere un post per poi pubblicarlo in un secondo momento. Con Jekyll basta semplicemente “datare” un post con una data futura per fare in modo che non si veda immediatamente dopo il deploy. Il problema è che poi, alla data prevista, sarà necessario forzare il deploy, ad esempio apportando una modifica anche minina ad un file, affinchè Github Pages ricompili l’intero sito e renda visibile il nuovo post.</summary></entry><entry><title type="html">Annunci da Alexa tramite Home Assistant</title><link href="https://red-blue.it/guide/domotica/alexa/2024/08/20/annunci-da-alexa-tramite-home-assistant.html" rel="alternate" type="text/html" title="Annunci da Alexa tramite Home Assistant" /><published>2024-08-20T00:00:00+00:00</published><updated>2024-08-20T00:00:00+00:00</updated><id>https://red-blue.it/guide/domotica/alexa/2024/08/20/annunci-da-alexa-tramite-home-assistant</id><content type="html" xml:base="https://red-blue.it/guide/domotica/alexa/2024/08/20/annunci-da-alexa-tramite-home-assistant.html">&lt;p&gt;Sapete che è possibile usare un dispositivo Alexa come se fosse un riproduttore musicale tramite Home Assistant? Vediamo come fare..&lt;/p&gt;
-
-&lt;p&gt;Basta installare un custom component di Home Assistant chiamato Alexa Media Player.&lt;/p&gt;
-
-&lt;p&gt;Consiglio vivamente di installarlo tramite &lt;strong&gt;HACS&lt;/strong&gt;, il Community Store di Home Assistant, installabile da &lt;strong&gt;Impostazioni -&amp;gt; Dispositivi e servizi -&amp;gt; Aggiungi integrazione&lt;/strong&gt;. Quindi entrate in HACS e cercate “Alexa Media Player”, in alternativa clic sui &lt;strong&gt;tre puntini in alto a destra -&amp;gt; Archivi digitali personalizzati&lt;/strong&gt; ed inserite &lt;strong&gt;https://github.com/custom-components/alexa_media_player&lt;/strong&gt;, poi cercate nuovamente ed installate. Al termine Home Assistant va riavviato.&lt;/p&gt;
-
-&lt;p&gt;Poi collegatevi &lt;a href=&quot;https://www.amazon.it/ap/signin?openid.pape.preferred_auth_policies=SinglefactorWithPossessionChallenge&amp;amp;openid.pape.max_auth_age=900&amp;amp;openid.return_to=https%3A%2F%2Fwww.amazon.it%2Fa%2Fsettings%2Fapproval&amp;amp;openid.assoc_handle=itflex&amp;amp;openid.mode=checkid_setup&amp;amp;intercept=false&amp;amp;openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&quot; target=&quot;_blank&quot;&gt;qui&lt;/a&gt; ed accedete con le vostre credenziali Amazon (se usate Alexa, avete un account Amazon) e portate a termine la procedura per l’autenticazione a due passaggi, &lt;strong&gt;obbligatoria&lt;/strong&gt; per usare questa integrazione.&lt;/p&gt;
-
-&lt;p&gt;Occorre cliccare su &lt;strong&gt;Aggiungi nuovo telefono o un’app di autenticazione&lt;/strong&gt; e successivamente sul link &lt;strong&gt;Non riesci ad acquisire il codice a barre?&lt;/strong&gt;; solo a questo punto avremo una schermata con un codice alfanumerico che dovremo appuntare da qualche parte (PS. Non chiudere questa finestra altrimenti bisogna ricominciare daccapo).&lt;/p&gt;
-
-&lt;p&gt;Andiamo su Home Assistant, in &lt;strong&gt;Impostazioni -&amp;gt; Dispositivi&lt;/strong&gt; e servizi e selezioniamo Alexa Media Player, poi vanno inseriti i dati di configurazione, ovvero il nostro account Amazon, il dominio &lt;strong&gt;amazon.it&lt;/strong&gt; (MI RACCOMANDO!!), l’URL di Home Assistant (deve essere raggiungibile da Internet ovviamente), e il codice copiato in precedenza, che garantirà l’autenticazione corretta. Clicchiamo su “Invia” e avremo un’OTP da inserire nella pagina precedente (vi avevo detto di non chiuderla!).&lt;/p&gt;
-
-&lt;p&gt;Al termine della configurazione, saranno comparsi tutti i dispositivi alexa che avete in casa, e le relative entità, e saranno del tipo media_player.&lt;em&gt;nome_dispositivo&lt;/em&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/alexa_media_player.png&quot; alt=&quot;alexa_media_player_image&quot; style=&quot;display:block; width: 100%; margin-left:auto; margin-right:auto&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Poi, tali entità saranno richiamabili a piacimento tramite Home Assistant, ad esempio in un’automazione.&lt;/p&gt;
-
-&lt;p&gt;Per utilizzare gli annunci si può usare il &lt;strong&gt;servizio “notify.alexa_media”&lt;/strong&gt;, ad esempio in un’automazione va inserito il seguente codice:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;service: notify.alexa_media
-data:
-  message: Questo è il testo dell&lt;span class=&quot;s1&quot;&gt;&apos;annuncio che sarà riprodotto
-  target: media_player.nome_dispositvo_alexa
-  data:
-    type: announce&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Stay tuned..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="domotica" /><category term="alexa" /><summary type="html">Sapete che è possibile usare un dispositivo Alexa come se fosse un riproduttore musicale tramite Home Assistant? Vediamo come fare..</summary></entry></feed>
+&lt;p&gt;Stay tuned..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="blog" /><category term="ruby" /><category term="jekyll" /><category term="github" /><summary type="html">Capita spesso di scrivere un post per poi pubblicarlo in un secondo momento. Con Jekyll basta semplicemente “datare” un post con una data futura per fare in modo che non si veda immediatamente dopo il deploy. Il problema è che poi, alla data prevista, sarà necessario forzare il deploy, ad esempio apportando una modifica anche minina ad un file, affinchè Github Pages ricompili l’intero sito e renda visibile il nuovo post.</summary></entry></feed>
