@@ -617,7 +617,7 @@ comments:
 <p>Veniamo alla configurazione, per prima cosa ovviamente il plugin va <strong>attivato</strong>, poi va inserita la seguente linea di codice nel punto in cui vogliamo piazzare il nostro slideshow, quindi da <strong>Aspetto -> Editor</strong> andate nel file del vostro template pi&ugrave; appropriato ed inserite:</p>
 <blockquote><p><code><?php include (ABSPATH . '/wp-content/plugins/featured-content-gallery/gallery.php'); ?></code></p></blockquote>
 <p>A questo punto andiamo nel <strong>Setup</strong> del plugin (dal menu <strong>Impostazioni -> Featured Content Gallery</strong>), questo &egrave; ci&ograve; che vedremo:</p>
-<p style="text-align: center;"><a href="http://www.featuredcontentgallery.com/wp-content/uploads/2009/01/optionsss.jpg"><img class="aligncenter" src="http://www.featuredcontentgallery.com/wp-content/uploads/2009/01/optionsss.jpg" alt="" width="394" height="372" /></a></p>
+<p style="text-align: center;"><a href="http://www.featuredcontentgallery.com/wp-content/uploads/2009/01/optionsss.jpg"><img class="aligncenter" src="http://www.featuredcontentgallery.com/wp-content/uploads/2009/01/optionsss.jpg" alt="" width="394" height="372" loading="lazy" /></a></p>
 <p>Come vedete, le opzioni sono estremamente intuitive, si tratta semplicemente di dichiarare quale <strong>categoria</strong> deve essere collegata alla gallery (o quali <strong>post</strong>), le <strong>dimensioni</strong> della gallery stessa, il <strong>colore</strong> di bordo e sfondo, il <strong>numero di parole</strong> visualizzate nella descrizione e cos&igrave; via..</p>
 <p>Molto importante, la vostra gallery ancora <strong><span style="text-decoration: underline;">non funziona</span></strong>!! Per includere effettivamente gli articoli (attenzione, devono essere <strong>almeno due</strong> perch&egrave; tutto funzioni correttamente), dovete includere un <strong>campo personalizzato</strong> ai post. Come??</p>
 <p>Semplice, <strong>nell'editor</strong> che avete sempre usato per scrivere i vostri post, proprio sotto la finestra di inserimento, esiste una finestra "<strong>Campi personalizzati</strong>"; bene, in questa finestra cliccate su <strong>Aggiungere nuovo</strong> e poi come <strong>nome</strong> usate <code>articleimg</code> e come <strong>valore</strong> l'URL dell'immagine che dovr&agrave; apparire nella gallery, poi cliccate su <strong>Aggiungi campo personalizzato</strong>. Ovviamente questo va fatto per <strong><span style="text-decoration: underline;">ogni</span></strong> post da includere in gallery (nel mio caso, ogni articolo della categoria in evidenza, compreso questo)..</p>
@@ -669,8 +669,8 @@ comments:
        }
       ?>
       <a href="<?php the_permalink() ?>" title="Read More"></a>
-      <img src="<?php $key="articleimg"; echo get_post_meta($post->ID, $key, true); ?>" alt="<?php $key="alttext"; echo get_post_meta($post->ID, $key, true); ?>" />
-      <img src="<?php $key=$imgthumb; echo get_post_meta($post->ID, $key, true); ?>" alt="<?php $key="alttext"; echo get_post_meta($post->ID, $key, true); ?>" />
+      <img src="<?php $key="articleimg"; echo get_post_meta($post- loading="lazy">ID, $key, true); ?>" alt="<?php $key="alttext"; echo get_post_meta($post->ID, $key, true); ?>" />
+      <img src="<?php $key=$imgthumb; echo get_post_meta($post- loading="lazy">ID, $key, true); ?>" alt="<?php $key="alttext"; echo get_post_meta($post->ID, $key, true); ?>" />
       </div>
       <?php
      } ?>
@@ -695,8 +695,8 @@ comments:
    }
    ?>
    <a href="<?php the_permalink() ?>" title="Read More"></a>
-   <img src="<?php $key="articleimg"; echo get_post_meta($post->ID, $key, true); ?>" alt="<?php $key="alttext"; echo get_post_meta($post->ID, $key, true); ?>" />
-   <img src="<?php $key=$imgthumb; echo get_post_meta($post->ID, $key, true); ?>" alt="<?php $key="alttext"; echo get_post_meta($post->ID, $key, true); ?>" />
+   <img src="<?php $key="articleimg"; echo get_post_meta($post- loading="lazy">ID, $key, true); ?>" alt="<?php $key="alttext"; echo get_post_meta($post->ID, $key, true); ?>" />
+   <img src="<?php $key=$imgthumb; echo get_post_meta($post- loading="lazy">ID, $key, true); ?>" alt="<?php $key="alttext"; echo get_post_meta($post->ID, $key, true); ?>" />
    </div>
    <?php } ?>
    </div>

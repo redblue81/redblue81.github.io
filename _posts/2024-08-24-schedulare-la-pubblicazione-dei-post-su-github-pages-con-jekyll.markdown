@@ -29,7 +29,8 @@ A questo punto, aggiungiamo il token appena creato al repository del sito, quind
 
 Adesso viene il bello, occorre creare un **workflow** per Github, quindi creiamo il file jekyll.yml all'interno di */.github/workflows* (persorso che sarà quasi certamente da creare). In questo file indichiamo di usare la action [jeffreytse/jekyll-deploy-action](https://github.com/jeffreytse/jekyll-deploy-action){:target="_blank"}. Leggendo la documentazione, io ho scritto quanto segue:
 
-{% highlight ruby %}
+{% raw %}
+```yaml
 name: Build and deploy site
 
 on:
@@ -55,10 +56,11 @@ jobs:
       - uses: jeffreytse/jekyll-deploy-action@v0.6.0
         with:
           provider: 'github'
-          token: ${{ secrets.NOME_ACTION_CREATA }} 
+          token: ${{ secrets.NOME_ACTION_CREATA }}
           branch: 'gh-pages'
           cname: 'url_custom_domain'
-{% endhighlight %}
+```
+{% endraw %}
 
 Vediamo di commentare un attimo il frammento di codice:
 - Nella sezione **schedule**, indichiamo che la compilazione avverrà ogni giorno alle 17.30 (prima si indicano i minuti, poi le ore, potete verificare con [questo utile strumento online](https://crontab.guru/){:target="_blank"} come usare quella sintassi).

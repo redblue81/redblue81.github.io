@@ -44,5 +44,4 @@ gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 gem "safe_yaml"
 gem "sequel"
 gem "unidecode"
-gem "jekyll-theme-clean-blog"
 gem "html-proofer", "~> 5.2"

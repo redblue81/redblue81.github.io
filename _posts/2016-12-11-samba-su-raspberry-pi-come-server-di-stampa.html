@@ -25,7 +25,7 @@ comments: []
 ---
 <p>Questo articolo vuole essere un completamento del precedente&nbsp;<a href="http://localhost:4000/guide/semplice-server-stampa-raspberry-pi.html" target="_blank">Semplice server stampa Raspberry Pi</a>.</p>
 <p>Supponiamo che nella nostra rete ci sia un computer con installato <strong>Windows</strong>, come possiamo collegarci al <strong>Raspberry Pi</strong> e sfruttare la stampante ad esso collegata?</p>
-<p><a href="/assets/images/Pi_3_Model_B.png"><img class="aligncenter size-medium wp-image-3873" src="/assets/images/Pi_3_Model_B-300x157.png" alt="" width="300" height="157" /></a></p>
+<p><a href="/assets/images/Pi_3_Model_B.png"><img class="aligncenter size-medium wp-image-3873" src="/assets/images/Pi_3_Model_B-300x157.png" alt="" width="300" height="157" loading="lazy" /></a></p>
 <p>Semplice, occorre installare <strong>Samba</strong>:</p>
 <pre class="brush: bash; gutter: false">sudo apt-get install samba</pre>
 <p>Editiamo poi il file di configurazione <strong>/etc/samba/smb.conf</strong>. All'inizio del file assicuriamoci che il gruppo di lavoro sia quello usato dal nostro PC Windows (normalmente si usa <strong>WORKGROUP</strong>), poi&nbsp;assicuriamoci di avere la riga:</p>
