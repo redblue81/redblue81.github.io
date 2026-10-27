@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Guida Homelab: Docker, Portainer e Nginx Proxy Manager con DuckDNS e SSL"
-slug: "guida-homelab-docker-portainer-e-nginx-proxy-manager-con-duckdns-e-ssl"
+title: "Configurazione Nginx Proxy Manager con DuckDNS e SSL"
+slug: "configurazione-nginx-proxy-manager-con-duckdns-e-ssl"
 date: "2026-10-27 22:53:17 +0100"
 categories: ["Homelab"]
-tags: ["Docker", "Portainer", "Nginx Proxy Manager", "DuckDNS", "Reverse Proxy"]
+tags: ["Docker", "Nginx Proxy Manager", "DuckDNS", "Reverse Proxy"]
 ---
 
 In un precedente [post](https://red-blue.it/virtualizzazione/2026/05/08/installazione-di-docker-e-mginx-proxy-manager-su-proxmox.html) eravamo arrivati all'installazione di Nginx Proxy Manager sulla nostra Proxmox.
