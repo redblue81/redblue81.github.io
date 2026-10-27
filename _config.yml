@@ -12,8 +12,25 @@ baseurl:            ""
 url:                "https://red-blue.it"
 
 locale: it_IT
+lang: it
 
 future: false
+
+# Esclude dal sito pubblicato i file di lavoro e le dipendenze.
+# Jekyll sostituisce la lista di default quando "exclude" è presente,
+# quindi qui sono riportate anche le esclusioni standard.
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md
+  - index.test
+  - index.markdown.old
+  - about.markdown.old
 
 paginate: 5
 paginate_path: "posts/page:num/"

@@ -2,7 +2,7 @@
 layout: post
 title: "Installare Home Assistant OS su Proxmox"
 date: 2026-05-02 09:19:27 +0200
-categories: [Domotica]
+categories: [domotica]
 tags: [Proxmox, Virtualizzazione, Open Source, Server, Home Assistant, tutorial]
 ---
 

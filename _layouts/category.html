@@ -14,6 +14,20 @@ layout: page
 
 {% assign category = site.categories[page.category] %}
 
+{% comment %}
+  Fallback case-insensitive: le categorie in Jekyll sono case-sensitive,
+  quindi "Domotica" e "domotica" sarebbero due chiavi diverse.
+{% endcomment %}
+{% unless category %}
+    {% for cat in site.categories %}
+        {% assign cat_name = cat[0] | downcase %}
+        {% if cat_name == page.category %}
+            {% assign category = cat[1] %}
+            {% break %}
+        {% endif %}
+    {% endfor %}
+{% endunless %}
+
 {% unless category %}
     <p>No posts in this category at this time.</p>
 {% endunless %}

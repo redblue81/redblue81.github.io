@@ -2,7 +2,7 @@
 layout: post
 title: "Proxmox: La mia svolta Open Source per la virtualizzazione"
 date: 2026-04-29 07:49:47 +0200
-categories: [Domotica]
+categories: [domotica]
 tags: [Proxmox, Virtualizzazione, Open Source, Server]
 ---
 
