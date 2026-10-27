@@ -6,6 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.png">
+
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Udev-notify: aggiungere una notifica all’inserimento di una periferica USB in Ubuntu 11.04 | RedBlue’s Blog</title>
 <meta name="generator" content="Jekyll v3.9.3" />
@@ -98,7 +101,7 @@
       <div class="col-lg-8 col-md-10 mx-auto">
 
         <p>Oggi voglio proporvi una piccola <strong>utility</strong> che estende le funzionalit&agrave; di <strong>Notify-OSD</strong>, il servizio di notifiche di Ubuntu. Si tratta di <a href="http://udev-notify.learnfree.eu/" target="_blank">Udev-notify</a>, che visualizza una notifica ogni volta che si connette o si disconnette una periferica USB al pc (telefoni cellulari, chiavette, fotocamere e cos&igrave;), come mostrato qui sotto..</p>
-<p><a href="/assets/images/udev-notify.jpg"><img class="aligncenter size-full wp-image-2143" title="udev-notify" src="/assets/images/udev-notify.jpg" alt="" width="365" height="95" /></a></p>
+<p><a href="/assets/images/udev-notify.jpg"><img class="aligncenter size-full wp-image-2143" title="udev-notify" src="/assets/images/udev-notify.jpg" alt="" width="365" height="95" loading="lazy" /></a></p>
 <p>Semplicemente basta aggiungere il relativo <strong>repository</strong>, installare il pacchetto e terminare la sessione; al nuovo <strong>login</strong> potrete sperimentare le nuove notifiche..</p>
 <blockquote><p><code>echo "deb http://download.learnfree.eu/repository/skss / #SKSS" | sudo tee -a /etc/apt/sources.list<br />
 wget http://download.learnfree.eu/repository/skss/repo.pub.asc -q -O- | sudo apt-key add -<br />

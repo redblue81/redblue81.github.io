@@ -6,6 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.png">
+
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Cambiare il look di Debian | RedBlue’s Blog</title>
 <meta name="generator" content="Jekyll v3.9.3" />
@@ -116,7 +119,7 @@
 <p>E poi diamo un bel <code>apt-get update</code>.  Ora possiamo installare Compiz:</p>
 <blockquote><p><code>apt-get install compiz compiz-core compiz-gnome compiz-plugins emerald fusion-icon compiz-fusion-plugins-main compiz-fusion-plugins-extra compiz-fusion-plugins-unsupported compizconfig-settings-manager compizconfig-backend-gconf</code></p></blockquote>
 <p>Ovviamente se usate <strong>KDE</strong> invece di Gnome installerete <code>compiz-kde</code> e <code>compizconfig-backend-kconfig</code>.&nbsp; A questo punto lanciate <strong>Compiz Fusion Icon</strong> (presente nel menu <strong>Applicazioni -> Strumenti di sistema</strong>), e dal menu a tendina (click destro sull'icona apparsa in alto a destra) scegliete <strong>Compiz</strong> come <strong>Window Manager</strong> (se non si &egrave; gi&agrave; avviato) e <strong>Emerald</strong> come <strong>Window</strong> <strong>Decorator</strong>, poi per configurare tutti gli effetti speciali, baster&agrave; lanciare <strong>Gestore Configurazione CompizConfig</strong> presente in <strong>Sistema -> Preferenze</strong>. Ecco l'effetto pi&ugrave; conosciuto, il cubo 3D, sul mio desktop:</p>
-<p style="text-align: center;"><img height="280" width="448" alt="" src="/assets/images/cubo.gif" class="alignnone" /></p>
+<p style="text-align: center;"><img height="280" width="448" alt="" src="/assets/images/cubo.gif" class="alignnone" loading="lazy" /></p>
 <p>Per far partire il tutto in automatico all'avvio del sistema aggiungiamo /usr/bin/fusion-icon ai <strong>Programmi d'avvio</strong> in <strong>Sistema -> Preferenze -> Sessioni</strong>.</p>
 <h3><span style="color: rgb(255, 0, 0);">3) Cambiare sfondo, splashscreen, login manager ecc.</span></h3>
 <p>Anche questa &egrave; un'attivit&agrave; che in passato portava via un p&ograve; di tempo, oggi invece, grazie a Lenny, &egrave; possibile installare semplicemente il pacchetto <code>gnome-art</code>, una pratica interfaccia grazie alla quale &egrave; semplicissimo scegliere il proprio sfondo, il proprio splashscreen, il tema del login manager, ma anche il set di icone del sistema e l'aspetto delle finestre.</p>

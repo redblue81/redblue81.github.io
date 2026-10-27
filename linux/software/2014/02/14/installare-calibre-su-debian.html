@@ -6,6 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.png">
+
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Installare Calibre su Debian | RedBlue’s Blog</title>
 <meta name="generator" content="Jekyll v3.9.3" />
@@ -99,7 +102,7 @@
 
         <p><strong>Calibre</strong> &egrave; un celeberrimo software per la gestione di libri in formato elettronico. Oserei dire che &egrave; la soluzione principale per chi vuole gestire la propria biblioteca <strong>virtuale</strong>.</p>
 <p>E' disponibile per praticamente ogni sistema operativo, anche in versione Portable per Windows. Compatibile con <strong>qualsiasi</strong> formato di ebook attualmente sul mercato, &egrave; in grado anche di <strong>convertire</strong> files da un formato all'altro, e di <strong>trasferirli</strong> su praticamente ogni tipo di ebook reader in commercio, compreso il Kindle di Amazon e il Kobo. E' possibile anche andare a ricercare e <strong>scaricare</strong> le <strong>copertine</strong> e i <strong>metadati</strong> del singolo ebook.</p>
-<p><a href="/assets/images/calibre.jpg"><img class="aligncenter size-medium wp-image-3647" alt="calibre" src="/assets/images/calibre-300x161.jpg" width="300" height="161" /></a>Personalmente, sono orgoglioso possessore di un Kindle, e senza Calibre davvero sarei in difficolt&agrave; a gestire gli ebook della mia collezione. Bene, installare Calibre sulla nostra <strong>Debian</strong> box &egrave; estremamente semplice, in realt&agrave; basta seguire le istruzioni presenti sulla <a href="http://calibre-ebook.com/download_linux" target="_blank">pagina ufficiale</a> del progetto.</p>
+<p><a href="/assets/images/calibre.jpg"><img class="aligncenter size-medium wp-image-3647" alt="calibre" src="/assets/images/calibre-300x161.jpg" width="300" height="161" loading="lazy" /></a>Personalmente, sono orgoglioso possessore di un Kindle, e senza Calibre davvero sarei in difficolt&agrave; a gestire gli ebook della mia collezione. Bene, installare Calibre sulla nostra <strong>Debian</strong> box &egrave; estremamente semplice, in realt&agrave; basta seguire le istruzioni presenti sulla <a href="http://calibre-ebook.com/download_linux" target="_blank">pagina ufficiale</a> del progetto.</p>
 <p>In parole povere, per installare Calibre basta <strong>copiare</strong> ed <strong>incollare</strong> questo comando sul terminale e dare Invio:</p>
 <pre class="brush: bash; gutter: false">sudo python -c "import sys; py3 = sys.version_info[0] > 2; u = __import__(&#039;urllib.request&#039; if py3 else &#039;urllib&#039;, fromlist=1); exec(u.urlopen(&#039;http://status.calibre-ebook.com/linux_installer&#039;).read()); main()"</pre>
 <p>Ovviamente tale comando funzioner&agrave; perfettamente solo nel caso in cui siano gi&agrave; presenti nel sistema tutte le <strong>dipendenze</strong> necessarie, che potete trovare elencate al link sopra.</p>

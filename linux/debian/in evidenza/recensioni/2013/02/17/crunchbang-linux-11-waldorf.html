@@ -6,6 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.png">
+
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Crunchbang Linux 11 “Waldorf” | RedBlue’s Blog</title>
 <meta name="generator" content="Jekyll v3.9.3" />
@@ -104,13 +107,13 @@
 <p>Prima curiosit&agrave;, il simbolo di questa distro &egrave; <strong>#!</strong>, in gergo tecnico si tratta di un <a href="http://it.wikipedia.org/wiki/Shebang" target="_blank">hashbang</a>, ovvero un simbolo particolare usato negli script per indicarne l'interprete.</p>
 <p>Dal <a href="http://crunchbang.org" target="_blank">sito ufficiale</a>, scarichiamo la ISO dell'ultima versione, la <strong>11 "Waldorf"</strong> (nel mio caso a <strong>64 bit</strong>) e la portiamo su un pendrive USB da almeno <strong>1 GB</strong> (basta seguire la guida presente nel sito stesso) per poterla installare. Personalmente avrei preferito una ISO su CD, pi&ugrave; adatta anche a vecchi PC, ma fortunatamente il mio vecchio, ma sempre glorioso <a href="http://localhost:4000/io/lunga-vita-al-mio-asus-a6ja.html" target="_blank">Asus A6Ja</a>, permette anche il boot da USB, quindi procediamo.</p>
 <p>Possiamo ovviamente avviare la live, oppure installare direttamente. La procedura di installazione &egrave; quella <strong>classica</strong> di Debian, da seguire passo passo. Purtroppo per&ograve; incorriamo in un <strong>errore</strong> se selezioniamo la lingua italiana:</p>
-<p><a href="/assets/images/crunchbang_error.png"><img class="aligncenter size-medium wp-image-3489" src="/assets/images/crunchbang_error-300x225.png" alt="crunchbang_error" width="300" height="225" /></a>Personalmente, ho risolto installando il sistema in <strong>inglese</strong>, poi dopo l'installazione ho modificato la lingua di sistema con:</p>
+<p><a href="/assets/images/crunchbang_error.png"><img class="aligncenter size-medium wp-image-3489" src="/assets/images/crunchbang_error-300x225.png" alt="crunchbang_error" width="300" height="225" loading="lazy" /></a>Personalmente, ho risolto installando il sistema in <strong>inglese</strong>, poi dopo l'installazione ho modificato la lingua di sistema con:</p>
 <pre class="brush: bash; gutter: true">apt-get install locales
 
 dpkg-reconfigure locales</pre>&egrave;
 <p>Dati entrambi con i privilegi di <strong>root</strong>. Ma in rete si legge anche di altre soluzioni al problema, che quindi non &egrave; critico e sono certo che verr&agrave; risolto nelle prossime release.</p>
 <p>Dopo l'installazione, ecco la schermata iniziale di Crunchbang, scarna, o meglio <strong>essenziale</strong>, ma estremamente elegante:</p>
-<p><a href="/assets/images/Screenshot-080213-110215.png"><img class="aligncenter size-medium wp-image-3490" src="/assets/images/Screenshot-080213-110215-300x187.png" alt="Screenshot - 080213 - 11:02:15" width="300" height="187" /></a>Da notare lo <strong>script post-installazione</strong> che parte in automatico, e che consente in un colpo solo di installare:</p>
+<p><a href="/assets/images/Screenshot-080213-110215.png"><img class="aligncenter size-medium wp-image-3490" src="/assets/images/Screenshot-080213-110215-300x187.png" alt="Screenshot - 080213 - 11:02:15" width="300" height="187" loading="lazy" /></a>Da notare lo <strong>script post-installazione</strong> che parte in automatico, e che consente in un colpo solo di installare:</p>
 <ul>
 <li>aggiornamenti della distro</li>
 <li>stampanti</li>
@@ -120,7 +123,7 @@ dpkg-reconfigure locales</pre>&egrave;
 </ul>&egrave;&egrave;
 <p>Da notare anche la presenza di&egrave; di <strong>Conky</strong>, programmino molto conosciuto in ambiente Linux che consente di ricavare numerose informazioni sul sistema: da quello che ci dice, notiamo subito che il consumo di Ram &egrave; <strong>minimo</strong> (170 MB su 2 GB totali &egrave; pochissimo), ma smanettando un pochino sono riuscito a scendere<strong> sotto i 100 MB</strong>.</p>
 <p>Altra curiosit&agrave;: non c'&egrave; alcun menu!! Per richiamare applicazioni ed impostazioni di sistema in Crunchbang basta cliccare col <strong>tasto destro</strong> del mouse su un qualsiasi punto del desktop:</p>&egrave;&egrave;&egrave;
-<p><a href="/assets/images/crunchbang_menu.jpg"><img class="aligncen&egrave;-medium wp-image-3492" src="http://www.red-blue.i&egrave;tent/uploads/crunchbang_menu-300x226.jpg" alt="crunchbang_menu" width="300" height="226" /></a>La dotazione di programmi &egrave; davvero completa, e comunque non mancano link su link per installare direttamente ci&ograve; che non &egrave; presente. Inoltre, va detto che a livello di configurazione del sistema, specie del DE, &egrave; possibile agire direttamente tanto sui file di configurazione, quanto tramite comode interfacce grafiche.</p>
+<p><a href="/assets/images/crunchbang_menu.jpg"><img class="aligncen&egrave;-medium wp-image-3492" src="http://www.red-blue.i&egrave;tent/uploads/crunchbang_menu-300x226.jpg" alt="crunchbang_menu" width="300" height="226" loading="lazy" /></a>La dotazione di programmi &egrave; davvero completa, e comunque non mancano link su link per installare direttamente ci&ograve; che non &egrave; presente. Inoltre, va detto che a livello di configurazione del sistema, specie del DE, &egrave; possibile agire direttamente tanto sui file di configurazione, quanto tramite comode interfacce grafiche.</p>
 <p>Crunchbang non mi sembra proprio una distro per novellini di Linux (intendo per chi proprio &egrave; a digiumo di questo genere di OS), ma direi che &egrave; un <strong>ottimo punto di partenza</strong> per iniziare a smanettare, anche e soprattutto per imparare a smanettare!</p>
 <p>Per ora sono molto soddisfatto e, devo ammetterlo, impressionato, non pensavo di poter trovare una derivata di Debian tanto <strong>interessante</strong> (specie poi per me, fissato come sono con "Mamma" Debian). Vi terr&ograve; aggiornati..</p>
 <p>Stay tuned..</p>

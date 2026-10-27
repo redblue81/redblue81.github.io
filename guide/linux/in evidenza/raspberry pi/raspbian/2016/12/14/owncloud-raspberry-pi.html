@@ -6,6 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.png">
+
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>ownCloud su Raspberry Pi con Raspbian | RedBlue’s Blog</title>
 <meta name="generator" content="Jekyll v3.9.3" />
@@ -98,7 +101,7 @@
       <div class="col-lg-8 col-md-10 mx-auto">
 
         <p><strong>ownCloud</strong> &egrave; un servizio gratuito che permette di creare il proprio <strong>cloud</strong> personale, che ci permetter&agrave; di avere i nostri files pi&ugrave; importanti sempre a disposizione (baster&agrave; avere una connessione ad internet).</p>
-<p><a href="/assets/images/ownCloud2.jpg"><img class="aligncenter wp-image-3886 size-medium" src="/assets/images/ownCloud2-300x120.jpg" alt="" width="300" height="120" /></a></p>
+<p><a href="/assets/images/ownCloud2.jpg"><img class="aligncenter wp-image-3886 size-medium" src="/assets/images/ownCloud2-300x120.jpg" alt="" width="300" height="120" loading="lazy" /></a></p>
 <p>Perch&egrave; non metter su un servizio del genere sfruttando il <strong>Raspberry Pi</strong>?</p>
 <p><!--moreContinua a leggere...--></p>
 <p>Premetto che per utilizzare tale servizio anche al di fuori della rete di casa, sar&agrave; necessario usare anche un servizio di <strong>DNS dinamico</strong> (tipo No-ip, <a href="http://localhost:4000/internet/accedere-da-internet-al-proprio-server-di-casa-con-no-ip.html" target="_blank">ne ho gi&agrave; parlato in passato</a>, l'articolo &egrave; vecchiotto, ma il servizio &egrave; rimasto pressoch&egrave; identico).</p>
@@ -143,7 +146,7 @@ sudo a2enmod headers</pre>
 <p>E facciamo ripartire Apache:</p>
 <pre class="brush: bash; gutter: false">sudo systemctl reload apache2.service</pre>
 <p>Fatto, apriamo il browser e andiamo all'indirizzo <strong>localhost/owncloud</strong> e avremo questa schermata:</p>
-<p><a href="/assets/images/owncloud_install.png"><img class="aligncenter size-medium wp-image-3885" src="/assets/images/owncloud_install-300x157.png" alt="" width="300" height="157" /></a></p>
+<p><a href="/assets/images/owncloud_install.png"><img class="aligncenter size-medium wp-image-3885" src="/assets/images/owncloud_install-300x157.png" alt="" width="300" height="157" loading="lazy" /></a></p>
 <p>Baster&agrave; compilare tutti i campi (la password del database &egrave; quella impostata in fase di installazione, l'utente &egrave; root) e verranno creati utente e database.</p>
 <p>A questo punto, se tutto &egrave; andato bene, sarete gi&agrave; in grado di usare il servizio all'interno della vostra rete locale.</p>
 <p>Come dicevo sopra, se volete usarlo anche dall'esterno, baster&agrave; configurare un host che punta al vostro Raspberry su un servizio come <strong>No-ip</strong>.</p>

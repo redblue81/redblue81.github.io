@@ -6,6 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.png">
+
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Schedulare la pubblicazione dei post su Github Pages con Jekyll | RedBlue’s Blog</title>
 <meta name="generator" content="Jekyll v3.9.3" />
@@ -113,34 +116,35 @@
 
 <p>Adesso viene il bello, occorre creare un <strong>workflow</strong> per Github, quindi creiamo il file jekyll.yml all’interno di <em>/.github/workflows</em> (persorso che sarà quasi certamente da creare). In questo file indichiamo di usare la action <a href="https://github.com/jeffreytse/jekyll-deploy-action" target="_blank">jeffreytse/jekyll-deploy-action</a>. Leggendo la documentazione, io ho scritto quanto segue:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="ss">name: </span><span class="no">Build</span> <span class="n">and</span> <span class="n">deploy</span> <span class="n">site</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">Build and deploy site</span>
 
-<span class="ss">on:
-  schedule:
-    </span><span class="o">-</span> <span class="ss">cron: </span><span class="s2">"30 17 * * *"</span>
-  <span class="ss">workflow_dispatch:
+<span class="na">on</span><span class="pi">:</span>
+  <span class="na">schedule</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s2">"</span><span class="s">30</span><span class="nv"> </span><span class="s">17</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*"</span>
+  <span class="na">workflow_dispatch</span><span class="pi">:</span>
 
-jobs:
-  build_and_deploy:
-    </span><span class="n">runs</span><span class="o">-</span><span class="ss">on: </span><span class="n">ubuntu</span><span class="o">-</span><span class="n">latest</span>
-    <span class="ss">steps:
-      </span><span class="o">-</span> <span class="ss">uses: </span><span class="n">actions</span><span class="o">/</span><span class="n">checkout</span><span class="vi">@v4</span>
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">build_and_deploy</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v4</span>
 
       <span class="c1"># Use GitHub Actions' cache to cache dependencies on servers</span>
-      <span class="o">-</span> <span class="ss">uses: </span><span class="n">actions</span><span class="o">/</span><span class="n">cache</span><span class="vi">@v4</span>
-        <span class="ss">with:
-          path: </span><span class="n">vendor</span><span class="o">/</span><span class="n">bundle</span>
-          <span class="ss">key: </span><span class="err">$</span><span class="o">-</span><span class="n">gems</span><span class="o">-</span><span class="err">$</span>
-          <span class="n">restore</span><span class="o">-</span><span class="ss">keys: </span><span class="o">|</span>
-            <span class="err">$</span><span class="o">-</span><span class="n">gems</span><span class="o">-</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/cache@v4</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="s">vendor/bundle</span>
+          <span class="na">key</span><span class="pi">:</span> <span class="s">${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}</span>
+          <span class="na">restore-keys</span><span class="pi">:</span> <span class="pi">|</span>
+            <span class="s">${{ runner.os }}-gems-</span>
 
       <span class="c1"># Use GitHub Deploy Action to build and deploy to Github</span>
-      <span class="o">-</span> <span class="ss">uses: </span><span class="n">jeffreytse</span><span class="o">/</span><span class="n">jekyll</span><span class="o">-</span><span class="n">deploy</span><span class="o">-</span><span class="n">action</span><span class="vi">@v0</span><span class="o">.</span><span class="mf">6.0</span>
-        <span class="ss">with:
-          provider: </span><span class="s1">'github'</span>
-          <span class="ss">token: </span><span class="err">$</span> 
-          <span class="ss">branch: </span><span class="s1">'gh-pages'</span>
-          <span class="ss">cname: </span><span class="s1">'url_custom_domain'</span></code></pre></figure>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">jeffreytse/jekyll-deploy-action@v0.6.0</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">provider</span><span class="pi">:</span> <span class="s1">'</span><span class="s">github'</span>
+          <span class="na">token</span><span class="pi">:</span> <span class="s">${{ secrets.NOME_ACTION_CREATA }}</span>
+          <span class="na">branch</span><span class="pi">:</span> <span class="s1">'</span><span class="s">gh-pages'</span>
+          <span class="na">cname</span><span class="pi">:</span> <span class="s1">'</span><span class="s">url_custom_domain'</span>
+</code></pre></div></div>
 
 <p>Vediamo di commentare un attimo il frammento di codice:</p>
 <ul>

@@ -6,6 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.png">
+
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Sfruttare tutta la potenza di WordPress JSON API | RedBlue’s Blog</title>
 <meta name="generator" content="Jekyll v3.9.3" />
@@ -114,7 +117,7 @@
 <p>B&egrave;, tutti quegli ambiti in cui abbiamo necessit&agrave; di fornire i contenuti del nostro sito ad alt&egrave;cazioni senza dover necessariamente andare a consultare l'intera pagina web. Oggi moltissime applicazioni di uso comune si basano su questo concetto, le informazioni presenti sul web vengono reperite in formato JSON e successivamente elaborate oppure visualizzate nell'applicazione stessa.</p>
 <p><strong>Come procedere?</strong></p>
 <p>Dopo l'insta&egrave; del plugin WP JSON API, che trovate nel repository ufficiale, e la sua relativa attivazione, basta raggiungere le impostazioni del plugin stesso da <strong>Impostazioni ></strong> JSON API, ed attivare il/i <strong>controller</strong> di vostro interesse. Per controller si intende un modulo che abilita determinate funzionalit&agrave;, ad esempio post recenti, elenco delle categorie, singolo post e cos&igrave; via.</p>
-<p><a href="/assets/images/wp_json_api.png"><img class="aligncenter wp-image-3852 size-medium" title="WP JSON API" src="/assets/images/wp_json_api-300x90.png" alt="wp json api" width="300" height="90" /></a></p>
+<p><a href="/assets/images/wp_json_api.png"><img class="aligncenter wp-image-3852 size-medium" title="WP JSON API" src="/assets/images/wp_json_api-300x90.png" alt="wp json api" width="300" height="90" loading="lazy" /></a></p>
 <p>Nell'immagine vediamo i controller standard, in realt&agrave; il solo controller&nbsp;<strong>core</strong> &egrave; gi&agrave; sufficiente ad ottenere una gran mole di dati. Ad esempio, per ricevere la lista degli ultimi post in formato json sar&agrave; sufficiente andare all'indirizzo:</p>
 <pre class="brush: shell; gutter: false">http://nome-sito/json/get_recent_posts</pre>
 <p>Ovviamente, &egrave; possibile definire anche controller <strong>personalizzati</strong>.</p>

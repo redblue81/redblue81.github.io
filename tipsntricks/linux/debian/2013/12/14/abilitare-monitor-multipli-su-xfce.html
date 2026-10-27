@@ -6,6 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.png">
+
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Abilitare monitor multipli su Xfce | RedBlue’s Blog</title>
 <meta name="generator" content="Jekyll v3.9.3" />
@@ -101,11 +104,11 @@
 <p>Poich&egrave; sono convinto che non serva a nulla un semplice clone, ecco come abilitare monitor multipli su Xfce.</p>
 <p>Per prima cosa, ovviamente, <strong>colleghiamo</strong> il secondo monitor e, se non viene abilitato in automatico, dobbiamo abilitarlo manualmente, da<strong> Impostazioni -> Schermo</strong>, spuntando l'apposita opzione come in figura:</p>
 <p><!--moreContinua a leggere..--></p>
-<p><a href="/assets/images/Schermo_003.png"><img class="aligncenter size-medium wp-image-3596" alt="Schermo_003" src="/assets/images/Schermo_003-300x195.png" width="300" height="195" /></a>Ora serve il modulo <strong>XrandR</strong>, che dovrebbe essere gi&agrave; installato, e la sua interfaccia grafica <strong>ArandR</strong>, che installiamo al volo:</p>
+<p><a href="/assets/images/Schermo_003.png"><img class="aligncenter size-medium wp-image-3596" alt="Schermo_003" src="/assets/images/Schermo_003-300x195.png" width="300" height="195" loading="lazy" /></a>Ora serve il modulo <strong>XrandR</strong>, che dovrebbe essere gi&agrave; installato, e la sua interfaccia grafica <strong>ArandR</strong>, che installiamo al volo:</p>
 <pre class="brush: bash; gutter: false">sudo apt-get install arandr</pre>
 <p>Lo avviamo da <strong>Impostazioni -> ArandR</strong> e ci troveremo davanti questa schermata:</p>
-<p><a href="/assets/images/Screen-Layout-Editor_001.png"><img class="aligncenter size-medium wp-image-3597" alt="arandr_001" src="/assets/images/Screen-Layout-Editor_001-245x300.png" width="245" height="300" /></a>Come vedete, i due schermi sono evidentemente <strong>sovrapposti</strong>: basta semplicemente spostare il secondo schermo (col mouse), quello che nel mio caso si chiama <strong>VGA1</strong>, accanto al primo, e cliccare su <strong>Layout -> Applica</strong>.</p>
-<p><a href="/assets/images/Screen-Layout-Editor_002.png"><img class="aligncenter size-medium wp-image-3599" alt="arandr_002" src="/assets/images/Screen-Layout-Editor_002-245x300.png" width="245" height="300" /></a>La situazione che dovreste ottenere &egrave; quella in figura sopra. Ecco fatto, adesso potete usare monitor multipli in Xfce in maniera decisamente pi&ugrave; efficace. <strong>Attenzione</strong> per&ograve; che al riavvio o comunque ad un successivo accesso, la situazione torner&agrave; allo stato originario. Per rendere il tutto <strong>permanente</strong> dobbiamo salvare un piccolo script e aggiungerlo all'avvio di Xfce.</p>
+<p><a href="/assets/images/Screen-Layout-Editor_001.png"><img class="aligncenter size-medium wp-image-3597" alt="arandr_001" src="/assets/images/Screen-Layout-Editor_001-245x300.png" width="245" height="300" loading="lazy" /></a>Come vedete, i due schermi sono evidentemente <strong>sovrapposti</strong>: basta semplicemente spostare il secondo schermo (col mouse), quello che nel mio caso si chiama <strong>VGA1</strong>, accanto al primo, e cliccare su <strong>Layout -> Applica</strong>.</p>
+<p><a href="/assets/images/Screen-Layout-Editor_002.png"><img class="aligncenter size-medium wp-image-3599" alt="arandr_002" src="/assets/images/Screen-Layout-Editor_002-245x300.png" width="245" height="300" loading="lazy" /></a>La situazione che dovreste ottenere &egrave; quella in figura sopra. Ecco fatto, adesso potete usare monitor multipli in Xfce in maniera decisamente pi&ugrave; efficace. <strong>Attenzione</strong> per&ograve; che al riavvio o comunque ad un successivo accesso, la situazione torner&agrave; allo stato originario. Per rendere il tutto <strong>permanente</strong> dobbiamo salvare un piccolo script e aggiungerlo all'avvio di Xfce.</p>
 <p>Per prima cosa, salviamo lo script, cliccando su <strong>Layout -> Salva come</strong>, come vedrete, salver&agrave; all'interno della directory <code>.screenlayout</code> all'interno della vostra home, poi basta andare in <strong>Impostazioni -> Sessione e avvio</strong>, e aggiungere lo script appena creato ai programmi in avvio (scheda <strong>Avvio automatico</strong>, poi <strong>Aggiungi</strong>, diamo un nome e scegliamo il file creato in precedenza).</p>
 <p>Finito, godetevi i monitor multipli su Xfce!!</p>
 <p>Alla prossima..</p>

@@ -6,6 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/favicon.png">
+
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Completare l’installazione di Fedora 15 | RedBlue’s Blog</title>
 <meta name="generator" content="Jekyll v3.9.3" />
@@ -99,7 +102,7 @@
 
         <p>L'ultima release di <strong>Fedora</strong>, oltre ad avere Gnome 3 installato di default, &egrave; una distribuzione estremamente veloce e funzionale, ma purtroppo bisogna ammettere che la sua installazione <strong>non &egrave; del tutto completa</strong>, per cui dopo la fine del processo &egrave; necessario installare alcuni pacchetti piuttosto importanti, a partire da <strong>Flash</strong> e <strong>Java</strong>, per finire a <strong>LibreOffice</strong> (o qualsiasi altra suite per ufficio).</p>
 <p>Vediamo un po' come "completare" un'installazione standard di Fedora.</p>
-<p><a href="/assets/images/fedora-logo.png"><img class="aligncenter size-thumbnail wp-image-2200" title="fedora-logo" src="/assets/images/fedora-logo-150x150.png" alt="" width="150" height="150" /></a></p>
+<p><a href="/assets/images/fedora-logo.png"><img class="aligncenter size-thumbnail wp-image-2200" title="fedora-logo" src="/assets/images/fedora-logo-150x150.png" alt="" width="150" height="150" loading="lazy" /></a></p>
 <p>La prima cosa da fare, consigliata praticamente da ogni community specializzata, &egrave; abilitare il repository <strong>Rpm-Fusion</strong>, una sorta di mega archivio di software (libero e non) che non &egrave; incluso nell'installazione della distro. Da terminale date i seguenti comandi:</p>
 <blockquote><p><code>su -c 'yum localinstall --nogpgcheck http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-stable.noarch.rpm'<br />
 su -c 'yum update'</code></p></blockquote>
