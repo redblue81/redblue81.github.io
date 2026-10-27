@@ -16,6 +16,10 @@ lang: it
 
 future: false
 
+# Mantiene gli URL identici tra build locale e CI (GitHub Actions usa UTC).
+# Non impostare Europe/Rome: cambierebbe gli URL dei post vicini a mezzanotte.
+timezone: Etc/UTC
+
 # Esclude dal sito pubblicato i file di lavoro e le dipendenze.
 # Jekyll sostituisce la lista di default quando "exclude" è presente,
 # quindi qui sono riportate anche le esclusioni standard.
