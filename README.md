@@ -49,6 +49,14 @@ bundle exec htmlproofer ./_site \
 
 `_site/` e `.jekyll-cache/` sono generati e ignorati da git.
 
+## Privacy e analytics
+
+- Nessun Google Analytics.
+- **Cloudflare Web Analytics** è opzionale e cookieless: per attivarlo inserisci il token in `_config.yml` (`cloudflare_analytics_token`).
+- Font, jQuery, Bootstrap e Font Awesome sono serviti localmente.
+- I video YouTube sono in modalità **click-to-load**: nessuna richiesta a YouTube finché non clicchi.
+- Pagine legali: `/privacy.html`, `/cookies-policy/`, `/affiliate-disclosure.html`.
+
 ## Nuovo post
 
 Creare un file in `_posts/` con nome `YYYY-MM-DD-slug.md` (o `.markdown`) e front matter minimo:

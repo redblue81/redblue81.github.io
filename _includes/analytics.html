@@ -1,0 +1,11 @@
+{% comment %}
+  Analytics cookieless (Cloudflare Web Analytics).
+  Due possibilità:
+  - setup automatico: lascia il token vuoto; Cloudflare inietta il beacon.
+  - setup manuale: metti il token in _config.yml e imposta in Cloudflare
+    "Enable with JS Snippet installation".
+  Non usare entrambi contemporaneamente.
+{% endcomment %}
+{% if site.cloudflare_analytics_token and site.cloudflare_analytics_token != "" %}
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ site.cloudflare_analytics_token }}"}'></script>
+{% endif %}

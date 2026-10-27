@@ -9,7 +9,7 @@
         <ul class="list-inline text-center">
           {% if site.email %}
           <li class="list-inline-item">
-            <a href="mailto:{{ site.email | encode_email }}">
+            <a href="mailto:{{ site.email }}">
               <span class="fa-stack fa-lg">
                 <i class="fas fa-circle fa-stack-2x"></i>
                 <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
@@ -68,6 +68,12 @@
           </li>
           {% endif %}
         </ul>
+        <p class="small text-center mb-1">
+          <a href="{{ '/privacy.html' | relative_url }}">Privacy</a> &middot;
+          <a href="{{ '/cookies-policy/' | relative_url }}">Cookie</a> &middot;
+          <a href="{{ '/affiliate-disclosure.html' | relative_url }}">Disclosure affiliati</a>
+        </p>
+        <p class="small text-center text-muted">Questo blog contiene link affiliati: se acquisti tramite questi link potrei ricevere una commissione, senza costi aggiuntivi per te.</p>
         <p class="copyright text-muted">Copyright &copy; {{ site.author }} {{ 'now' | date: "%Y" }}</p>
       </div>
     </div>

@@ -7,6 +7,10 @@ description:        Another technology addicted's personal page
 # casuale: sostituisci il valore sotto con https://formsubmit.co/<string>
 # per non esporre l'indirizzo email nell'HTML.
 contact_form_action: "https://formsubmit.co/redblue81@gmail.com"
+
+# Analytics cookieless (Cloudflare Web Analytics). Lascia vuoto se non lo usi.
+# Il token si ottiene in Cloudflare -> Web Analytics.
+cloudflare_analytics_token: ""
 author:             RedBlue
 baseurl:            ""
 url:                "https://red-blue.it"
