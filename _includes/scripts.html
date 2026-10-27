@@ -1,0 +1,11 @@
+{% comment %}
+  Override locale di _includes/scripts.html del tema.
+  Il tema originale includeva il vecchio handler Formspree v1 per il form
+  contatti (endpoint //formspree.io/<email>, dismesso). Il form ora fa un
+  POST nativo, quindi qui restano solo gli script generali del tema.
+{% endcomment %}
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ '/assets/vendor/startbootstrap-clean-blog/js/scripts.js' | relative_url }}"></script>
+
+<script src="{{ '/assets/scripts.js' | relative_url }}"></script>

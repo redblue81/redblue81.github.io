@@ -1,6 +1,12 @@
 title:              RedBlue's Blog
 email:              redblue81@gmail.com
 description:        Another technology addicted's personal page
+
+# Form contatti (FormSubmit).
+# Alla prima submission riceverai una mail di conferma con un endpoint
+# casuale: sostituisci il valore sotto con https://formsubmit.co/<string>
+# per non esporre l'indirizzo email nell'HTML.
+contact_form_action: "https://formsubmit.co/redblue81@gmail.com"
 author:             RedBlue
 baseurl:            ""
 url:                "https://red-blue.it"
