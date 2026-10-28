@@ -49,6 +49,24 @@ bundle exec htmlproofer ./_site \
 
 `_site/` e `.jekyll-cache/` sono generati e ignorati da git.
 
+### Controllo identico alla CI (consigliato)
+
+Prima di ogni push:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/check-clean.ps1
+```
+
+Lo script estrae `git archive HEAD` in un container Linux (ext4), quindi vede esattamente i file che vedrà la CI: case-sensitive e senza file ignorati/non committati. Se fallisce, non pushare.
+
+Hook opzionale:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+Da quel momento il check parte automaticamente prima di ogni push (`git push --no-verify` per saltarlo).
+
 ## Privacy e analytics
 
 - Nessun Google Analytics.

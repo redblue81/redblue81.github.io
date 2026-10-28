@@ -2,4 +2,5 @@ _site
 .sass-cache
 .jekyll-cache
 .jekyll-metadata
+# Ignora solo il vendor di Bundler alla root, non assets/vendor
 /vendor/
