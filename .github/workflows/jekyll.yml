@@ -34,10 +34,15 @@ jobs:
         run: bundle exec jekyll build
 
       - name: Check search script syntax
-        run: node --check assets/search.js
+        run: |
+          node --check assets/search.js
+          node --check assets/legacy-redirect.js
 
       - name: Validate search index
         run: ruby -rjson -e 'JSON.parse(File.read("_site/search.json")); puts "search.json OK"'
+
+      - name: Validate post URLs
+        run: ruby scripts/check-urls.rb
 
       - name: Check internal links and images
         run: |

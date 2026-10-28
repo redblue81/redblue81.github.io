@@ -36,6 +36,7 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - README.md
+  - scripts
 
 paginate: 5
 paginate_path: "posts/page:num/"

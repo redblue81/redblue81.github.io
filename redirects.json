@@ -1,0 +1,22 @@
+---
+layout: null
+permalink: /redirects.json
+sitemap: false
+---
+{
+{% assign first = true %}
+{% for post in site.posts %}
+  {% if post.wordpress_id %}
+    {% unless first %},{% endunless %}
+    "{{ post.wordpress_id }}": {{ post.url | relative_url | jsonify }}
+    {% assign first = false %}
+  {% endif %}
+{% endfor %}
+{% for page in site.pages %}
+  {% if page.wordpress_id %}
+    {% unless first %},{% endunless %}
+    "{{ page.wordpress_id }}": {{ page.url | relative_url | jsonify }}
+    {% assign first = false %}
+  {% endif %}
+{% endfor %}
+}

@@ -8,6 +8,7 @@ fi
 
 bundle exec jekyll build
 ruby -rjson -e 'JSON.parse(File.read("_site/search.json")); puts "search.json OK"'
+ruby scripts/check-urls.rb
 bundle exec htmlproofer ./_site \
   --disable-external \
   --assume-extension \

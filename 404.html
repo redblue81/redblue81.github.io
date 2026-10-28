@@ -1,25 +1,28 @@
 ---
 permalink: /404.html
-layout: default
+layout: page
+title: Pagina non trovata
+sitemap: false
 ---
 
-<style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
+<p>La pagina che cerchi non esiste, è stata spostata o l’indirizzo non è più valido.</p>
 
-<div class="container">
-  <h1>404</h1>
+<form action="{{ '/search.html' | relative_url }}" method="get" class="form-inline mb-4">
+  <input
+    type="search"
+    name="q"
+    class="form-control mr-2 mb-2"
+    placeholder="Cerca nel blog..."
+    aria-label="Cerca nel blog"
+  >
+  <button type="submit" class="btn btn-primary mb-2">Cerca</button>
+</form>
 
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
-</div>
+<p>
+  Oppure consulta
+  <a href="{{ '/archive/' | relative_url }}">l’archivio per anno</a>,
+  <a href="{{ '/categories/' | relative_url }}">le categorie</a> o
+  <a href="{{ '/tags/' | relative_url }}">i tag</a>.
+</p>
+
+<p><a href="{{ '/' | relative_url }}">Torna alla home</a></p>

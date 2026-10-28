@@ -82,6 +82,14 @@ Da quel momento il check parte automaticamente prima di ogni push (`git push --n
 - `/search.html` — ricerca client-side con Lunr self-hosted; indice generato in `search.json`.
 - Nessun servizio esterno: Lunr è in `assets/vendor/lunr/`.
 
+## URL e redirect
+
+- Gli URL dei post esistenti sono **congelati**: non cambiare le categorie dei post già pubblicati.
+- `scripts/check-urls.rb` confronta `_site/urls.json` con `scripts/url-baseline.json` e blocca build/CI se un URL cambia.
+- Per un cambio intenzionale: aggiorna `scripts/url-baseline.json` e aggiungi un redirect.
+- I vecchi URL WordPress `?p=ID` vengono rediretti da `redirects.json` + `assets/legacy-redirect.js` (fallback lato browser).
+- I 158 vecchi link su `redblue.netsons.org` sono persi: il dominio non risponde più.
+
 ## Nuovo post
 
 Creare un file in `_posts/` con nome `YYYY-MM-DD-slug.md` (o `.markdown`) e front matter minimo:

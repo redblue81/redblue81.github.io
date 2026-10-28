@@ -17,6 +17,11 @@ if (Get-Command node -ErrorAction SilentlyContinue) {
         Write-Host "Syntax check di assets/search.js fallito." -ForegroundColor Red
         exit 1
     }
+    & node --check assets/legacy-redirect.js
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "Syntax check di assets/legacy-redirect.js fallito." -ForegroundColor Red
+        exit 1
+    }
 }
 
 $command = 'rm -rf /tmp/src; mkdir -p /tmp/src; git -C /src archive HEAD | tar -x -C /tmp/src; cd /tmp/src; bash scripts/check-clean.sh'
