@@ -106,6 +106,30 @@
     );
   }
 
+  function runSearch(query) {
+    if (!index) return;
+
+    if (query.length < 2) {
+      if (activeFilter) {
+        renderFiltered();
+      } else {
+        results.textContent = "";
+        setStatus("Scrivi almeno 2 caratteri.");
+      }
+      return;
+    }
+
+    var terms = query.split(/\s+/).map(function (term) {
+      return term + "*";
+    }).join(" ");
+
+    try {
+      renderMatches(index.search(terms));
+    } catch (error) {
+      renderPosts([]);
+    }
+  }
+
   fetch(indexUrl)
     .then(function (response) {
       if (!response.ok) throw new Error("HTTP " + response.status);
@@ -141,6 +165,7 @@
       var params = new URLSearchParams(window.location.search);
       var category = params.get("category");
       var tag = params.get("tag");
+      var query = (params.get("q") || "").trim();
 
       if (category) {
         activeFilter = { field: "categories", value: category };
@@ -150,7 +175,10 @@
 
       renderFilterNotice();
 
-      if (activeFilter) {
+      if (query) {
+        input.value = query;
+        runSearch(query);
+      } else if (activeFilter) {
         renderFiltered();
       } else {
         setStatus(docs.length + " post indicizzati.");
@@ -161,27 +189,6 @@
     });
 
   input.addEventListener("input", function () {
-    var query = input.value.trim();
-    if (!index) return;
-
-    if (query.length < 2) {
-      if (activeFilter) {
-        renderFiltered();
-      } else {
-        results.textContent = "";
-        setStatus("Scrivi almeno 2 caratteri.");
-      }
-      return;
-    }
-
-    var terms = query.split(/\s+/).map(function (term) {
-      return term + "*";
-    }).join(" ");
-
-    try {
-      renderMatches(index.search(terms));
-    } catch (error) {
-      renderPosts([]);
-    }
+    runSearch(input.value.trim());
   });
 })();
