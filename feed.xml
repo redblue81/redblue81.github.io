@@ -1,4 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="it"><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="https://red-blue.it/feed.xml" rel="self" type="application/atom+xml" /><link href="https://red-blue.it/" rel="alternate" type="text/html" hreflang="it" /><updated>2026-10-27T21:19:12+00:00</updated><id>https://red-blue.it/feed.xml</id><title type="html">RedBlue’s Blog</title><subtitle>Another technology addicted&apos;s personal page</subtitle><author><name>RedBlue</name></author><entry><title type="html">Allarme php2shell: verificare e mettere in sicurezza i server Linux casalinghi</title><link href="https://red-blue.it/linux/2026/10/26/allarme-php2shell-verificare-e-mettere-in-sicurezza-i-server-linux-casalinghi.html" rel="alternate" type="text/html" title="Allarme php2shell: verificare e mettere in sicurezza i server Linux casalinghi" /><published>2026-10-26T08:22:32+00:00</published><updated>2026-10-26T08:22:32+00:00</updated><id>https://red-blue.it/linux/2026/10/26/allarme-php2shell-verificare-e-mettere-in-sicurezza-i-server-linux-casalinghi</id><content type="html" xml:base="https://red-blue.it/linux/2026/10/26/allarme-php2shell-verificare-e-mettere-in-sicurezza-i-server-linux-casalinghi.html">&lt;p&gt;Se gestite anche solo un piccolo mini-PC in salotto, una VPS o un container Linux su cui gira uno stack web classico (LAMP, LEMP o ambienti con PHP-FPM e Apache), ci sono momenti in cui bisogna fermare qualsiasi cosa si stia facendo e aprire un terminale SSH al volo. Questo è esattamente uno di quei momenti.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="it"><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="https://red-blue.it/feed.xml" rel="self" type="application/atom+xml" /><link href="https://red-blue.it/" rel="alternate" type="text/html" hreflang="it" /><updated>2026-10-28T08:16:10+00:00</updated><id>https://red-blue.it/feed.xml</id><title type="html">RedBlue’s Blog</title><subtitle>Another technology addicted&apos;s personal page</subtitle><author><name>RedBlue</name></author><entry><title type="html">Configurazione Nginx Proxy Manager con DuckDNS e SSL</title><link href="https://red-blue.it/homelab/2026/10/27/configurazione-nginx-proxy-manager-con-duckdns-e-ssl.html" rel="alternate" type="text/html" title="Configurazione Nginx Proxy Manager con DuckDNS e SSL" /><published>2026-10-27T21:53:17+00:00</published><updated>2026-10-27T21:53:17+00:00</updated><id>https://red-blue.it/homelab/2026/10/27/configurazione-nginx-proxy-manager-con-duckdns-e-ssl</id><content type="html" xml:base="https://red-blue.it/homelab/2026/10/27/configurazione-nginx-proxy-manager-con-duckdns-e-ssl.html">&lt;p&gt;In un precedente &lt;a href=&quot;https://red-blue.it/virtualizzazione/2026/05/08/installazione-di-docker-e-mginx-proxy-manager-su-proxmox.html&quot;&gt;post&lt;/a&gt; eravamo arrivati all’installazione di Nginx Proxy Manager sulla nostra Proxmox.&lt;/p&gt;
+
+&lt;p&gt;In questo articolo voglio accompagnarvi passo dopo passo nella configurazione di &lt;strong&gt;Nginx Proxy Manager&lt;/strong&gt;, il tutto affiancato ai certificati SSL gratuiti di &lt;strong&gt;Let’s Encrypt&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Abbiamo i nostri container attivi, ma come li esponiamo all’esterno senza aprire una porta diversa sul router per ogni servizio? La risposta è semplice: usiamo un &lt;strong&gt;Reverse Proxy&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Un reverse proxy si posiziona tra i client esterni (il nostro smartphone o il portatile fuori casa) e i servizi interni del server. Invece di collegarsi direttamente ad esempio a Nextcloud o ad altre dashboard, tutte le richieste in ingresso colpiscono prima il reverse proxy. Sarà lui a verificare il nome a dominio richiesto, negoziare la cifratura HTTPS e inoltrare il traffico al container corretto nella rete locale.&lt;/p&gt;
+
+&lt;p&gt;Tra tutte le soluzioni disponibili, &lt;strong&gt;Nginx Proxy Manager (NPM)&lt;/strong&gt; è senza dubbio la più comoda e intuitiva grazie alla sua interfaccia web pulita.&lt;/p&gt;
+
+&lt;h3 id=&quot;superare-lostacolo-dellip-dinamico-con-duckdns&quot;&gt;Superare l’ostacolo dell’IP dinamico con DuckDNS&lt;/h3&gt;
+
+&lt;p&gt;La maggior parte delle connessioni internet residenziali non dispone di un indirizzo IP pubblico statico: il nostro provider internet (ISP) rinnova e modifica periodicamente l’indirizzo assegnato al modem/router. Se il nostro IP cambia mentre siamo fuori casa, perdiamo immediatamente l’accesso al server.&lt;/p&gt;
+
+&lt;p&gt;Per ovviare a questo problema ci affidiamo a un servizio di &lt;strong&gt;Dynamic DNS (DDNS)&lt;/strong&gt;. &lt;strong&gt;DuckDNS&lt;/strong&gt; è una soluzione gratuita, leggera e affidabile. Registrandoci sul &lt;a href=&quot;https://www.duckdns.org/&quot;&gt;sito di DuckDNS&lt;/a&gt;, possiamo creare un sottodominio gratuito (del tipo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;miodominio.duckdns.org&lt;/code&gt;) e collegarlo al nostro attuale indirizzo IP pubblico.&lt;/p&gt;
+
+&lt;p&gt;Possiamo mantenere aggiornato l’indirizzo IP configurando uno script automatico o installando un piccolo container dedicato su Docker: ogni volta che l’operatore telefonico cambierà il nostro IP pubblico, DuckDNS punterà in tempo reale alle nuove coordinate.&lt;/p&gt;
+
+&lt;h3 id=&quot;port-forwarding-e-certificati-ssl-con-lets-encrypt&quot;&gt;Port Forwarding e Certificati SSL con Let’s Encrypt&lt;/h3&gt;
+
+&lt;p&gt;Ora tutti i tasselli del puzzle iniziano a combaciare. Per permettere al traffico internet di raggiungere Nginx Proxy Manager, dobbiamo configurare il nostro router di casa eseguendo l’operazione di &lt;strong&gt;Port Forwarding&lt;/strong&gt; (inoltro delle porte):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Porta 80 (HTTP)&lt;/strong&gt;: va indirizzata verso la porta 80 dell’IP del nostro server.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Porta 443 (HTTPS)&lt;/strong&gt;: va indirizzata verso la porta 443 dell’IP del nostro server.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Tutto il traffico web cifrato e non cifrato convergerà unicamente sul nostro proxy. Non dovrete aprire altre porte verso i singoli servizi interni!&lt;/p&gt;
+
+&lt;h3 id=&quot;generazione-del-certificato-ssl-su-nginx-proxy-manager&quot;&gt;Generazione del certificato SSL su Nginx Proxy Manager&lt;/h3&gt;
+
+&lt;p&gt;Con le porte 80 e 443 aperte e il dominio DuckDNS che punta al nostro IP, possiamo finalmente blindare la connessione con un certificato SSL emesso gratuitamente da &lt;strong&gt;Let’s Encrypt&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Accedete all’interfaccia di Nginx Proxy Manager.&lt;/li&gt;
+  &lt;li&gt;Spostatevi su &lt;strong&gt;Hosts&lt;/strong&gt; &amp;gt; &lt;strong&gt;Proxy Hosts&lt;/strong&gt; e cliccate su &lt;strong&gt;Add Proxy Host&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;Inserite il vostro dominio DuckDNS (es. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;miodominio.duckdns.org&lt;/code&gt;).&lt;/li&gt;
+  &lt;li&gt;Selezionate il protocollo di destinazione (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http&lt;/code&gt; o &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https&lt;/code&gt;), inserite l’indirizzo IP locale del servizio che volete raggiungere (come il vostro server Nextcloud) e la rispettiva porta interna.&lt;/li&gt;
+  &lt;li&gt;Spostatevi nella scheda &lt;strong&gt;SSL&lt;/strong&gt;, selezionate &lt;strong&gt;Request a new SSL Certificate&lt;/strong&gt;, abilitate l’opzione &lt;strong&gt;Block Common Exploits&lt;/strong&gt; e &lt;strong&gt;Force SSL&lt;/strong&gt;, accettate i termini del servizio Let’s Encrypt e salvate.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Nginx Proxy Manager effettuerà la verifica con Let’s Encrypt e configurerà automaticamente la cifratura HTTPS. Da questo momento in poi, digitando il vostro dominio DuckDNS nel browser, vedrete comparire il rassicurante lucchetto verde: la connessione sarà sicura, cifrata da capo a fondo e raggiungibile da qualsiasi parte del mondo.&lt;/p&gt;
+
+&lt;h3 id=&quot;conclusioni&quot;&gt;Conclusioni&lt;/h3&gt;
+
+&lt;p&gt;Mettere in piedi questa architettura richiede un po’ di pazienza iniziale, ma una volta terminata la configurazione avrete un’infrastruttura modulare, scalabile e soprattutto sicura. Ogni volta che vorrete aggiungere un nuovo servizio al vostro homelab, vi basterà avviarlo in Docker, creare un record su DuckDNS e collegarlo in trenta secondi all’interno di Nginx Proxy Manager.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="Homelab" /><category term="Docker" /><category term="Nginx Proxy Manager" /><category term="DuckDNS" /><category term="Reverse Proxy" /><summary type="html">In un precedente post eravamo arrivati all’installazione di Nginx Proxy Manager sulla nostra Proxmox.</summary></entry><entry><title type="html">Allarme php2shell: verificare e mettere in sicurezza i server Linux casalinghi</title><link href="https://red-blue.it/linux/2026/10/26/allarme-php2shell-verificare-e-mettere-in-sicurezza-i-server-linux-casalinghi.html" rel="alternate" type="text/html" title="Allarme php2shell: verificare e mettere in sicurezza i server Linux casalinghi" /><published>2026-10-26T08:22:32+00:00</published><updated>2026-10-26T08:22:32+00:00</updated><id>https://red-blue.it/linux/2026/10/26/allarme-php2shell-verificare-e-mettere-in-sicurezza-i-server-linux-casalinghi</id><content type="html" xml:base="https://red-blue.it/linux/2026/10/26/allarme-php2shell-verificare-e-mettere-in-sicurezza-i-server-linux-casalinghi.html">&lt;p&gt;Se gestite anche solo un piccolo mini-PC in salotto, una VPS o un container Linux su cui gira uno stack web classico (LAMP, LEMP o ambienti con PHP-FPM e Apache), ci sono momenti in cui bisogna fermare qualsiasi cosa si stia facendo e aprire un terminale SSH al volo. Questo è esattamente uno di quei momenti.&lt;/p&gt;
 
 &lt;p&gt;Nelle scorse ore è scattato un allarme di sicurezza globale per via di due vulnerabilità (&lt;a href=&quot;https://cert-agid.gov.it/news/due-vulnerabilita-critiche-in-php-consentono-lesecuzione-di-codice-da-remoto-rilasciati-aggiornamenti-di-sicurezza/&quot;&gt;link&lt;/a&gt;) critiche scoperte nel motore PHP, ribattezzate pubblicamente con il nome piuttosto eloquente di &lt;strong&gt;php2shell&lt;/strong&gt;. Parliamo di falle che permettono a chiunque si trovi su una rete raggiungibile di eseguire codice da remoto (RCE) senza alcuna autenticazione. Come se non bastasse, nello stesso giro di aggiornamenti Canonical e il mondo Linux hanno dovuto metter mano ai certificati radice per via di una compromissione delle chiavi dell’autorità eMudhra.&lt;/p&gt;
 
@@ -473,63 +520,4 @@ input_boolean:
 
 &lt;p&gt;Stay tuned..&lt;/p&gt;
 
-&lt;p&gt;Credits: &lt;a href=&quot;https://www.vincenzocaputo.com/guide/la-lavatrice-ha-finito-con-home-assistant-te-lo-facciamo-notificare-174&quot; target=&quot;_blank&quot;&gt;Vincenzo Caputo&lt;/a&gt;&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="domotica" /><category term="sonoff" /><summary type="html">Qualche tempo fa mia moglie mi ha chiesto un modo per sapere quando la lavatrice termina il lavaggio. Viviamo in una casa a più piani, e spesso non siamo nei pressi della lavatrice quando termina il lavaggio, ed ecco che dimenticarsi del tutto del bucato da stendere era diventato una problema.</summary></entry><entry><title type="html">Schedulare la pubblicazione dei post su Github Pages con Jekyll</title><link href="https://red-blue.it/guide/blog/ruby/jekyll/github/2024/08/24/schedulare-la-pubblicazione-dei-post-su-github-pages-con-jekyll.html" rel="alternate" type="text/html" title="Schedulare la pubblicazione dei post su Github Pages con Jekyll" /><published>2024-08-24T00:00:00+00:00</published><updated>2024-08-24T00:00:00+00:00</updated><id>https://red-blue.it/guide/blog/ruby/jekyll/github/2024/08/24/schedulare-la-pubblicazione-dei-post-su-github-pages-con-jekyll</id><content type="html" xml:base="https://red-blue.it/guide/blog/ruby/jekyll/github/2024/08/24/schedulare-la-pubblicazione-dei-post-su-github-pages-con-jekyll.html">&lt;p&gt;Capita spesso di scrivere un post per poi pubblicarlo in un secondo momento. Con Jekyll basta semplicemente “datare” un post con una data &lt;strong&gt;futura&lt;/strong&gt; per fare in modo che non si veda immediatamente dopo il deploy. Il problema è che poi, alla data prevista, sarà necessario &lt;strong&gt;forzare il deploy&lt;/strong&gt;, ad esempio apportando una modifica anche minina ad un file, affinchè Github Pages ricompili l’intero sito e renda visibile il nuovo post.&lt;/p&gt;
-
-&lt;p&gt;Questo processo si può &lt;strong&gt;automatizzare&lt;/strong&gt;, usando una &lt;strong&gt;Action&lt;/strong&gt; che compila un branch periodicamente, a prescindere da quello che pubblichiamo, in modo da avere il sito sempre aggiornato. Vediamo come fare:&lt;/p&gt;
-
-&lt;p&gt;Per prima cosa, va inserito nel &lt;em&gt;_config.yml&lt;/em&gt; la seguente riga:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;ss&quot;&gt;future: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Che serve ad indicare a Jekyll di non pubblicare post con data futura.&lt;/p&gt;
-
-&lt;p&gt;Creiamo poi un &lt;em&gt;token di sicurezza&lt;/em&gt;: &lt;strong&gt;Icona del profilo -&amp;gt; Settings -&amp;gt; Developer Settings -&amp;gt; Personal Access tokens -&amp;gt; Fine grained tokens -&amp;gt; Generate new token&lt;/strong&gt;. Diamo un nome al nuovo token, gli diamo accesso a tutti oppure ad uno specifico repository, e sopratutto concediamo tutti i permessi (sono tanti lo so). Al termine copiamo il nuovo token.&lt;/p&gt;
-
-&lt;p&gt;A questo punto, aggiungiamo il token appena creato al repository del sito, quindi selezioniamo il relativo repository, poi andiamo in &lt;strong&gt;Settings -&amp;gt; Secrets and variables -&amp;gt; Actions -&amp;gt; New repository secret&lt;/strong&gt;. Diamo un nome ed incolliamo il token precedente, per poi salvare il tutto.&lt;/p&gt;
-
-&lt;p&gt;Adesso viene il bello, occorre creare un &lt;strong&gt;workflow&lt;/strong&gt; per Github, quindi creiamo il file jekyll.yml all’interno di &lt;em&gt;/.github/workflows&lt;/em&gt; (persorso che sarà quasi certamente da creare). In questo file indichiamo di usare la action &lt;a href=&quot;https://github.com/jeffreytse/jekyll-deploy-action&quot; target=&quot;_blank&quot;&gt;jeffreytse/jekyll-deploy-action&lt;/a&gt;. Leggendo la documentazione, io ho scritto quanto segue:&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Build and deploy site&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;schedule&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;cron&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;17&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;workflow_dispatch&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;jobs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;build_and_deploy&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ubuntu-latest&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/checkout@v4&lt;/span&gt;
-
-      &lt;span class=&quot;c1&quot;&gt;# Use GitHub Actions&apos; cache to cache dependencies on servers&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/cache@v4&lt;/span&gt;
-        &lt;span class=&quot;na&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-          &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;vendor/bundle&lt;/span&gt;
-          &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;${{ runner.os }}-gems-${{ hashFiles(&apos;**/Gemfile.lock&apos;) }}&lt;/span&gt;
-          &lt;span class=&quot;na&quot;&gt;restore-keys&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
-            &lt;span class=&quot;s&quot;&gt;${{ runner.os }}-gems-&lt;/span&gt;
-
-      &lt;span class=&quot;c1&quot;&gt;# Use GitHub Deploy Action to build and deploy to Github&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;jeffreytse/jekyll-deploy-action@v0.6.0&lt;/span&gt;
-        &lt;span class=&quot;na&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-          &lt;span class=&quot;na&quot;&gt;provider&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;github&apos;&lt;/span&gt;
-          &lt;span class=&quot;na&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;${{ secrets.NOME_ACTION_CREATA }}&lt;/span&gt;
-          &lt;span class=&quot;na&quot;&gt;branch&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;gh-pages&apos;&lt;/span&gt;
-          &lt;span class=&quot;na&quot;&gt;cname&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;url_custom_domain&apos;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Vediamo di commentare un attimo il frammento di codice:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Nella sezione &lt;strong&gt;schedule&lt;/strong&gt;, indichiamo che la compilazione avverrà ogni giorno alle 17.30 (prima si indicano i minuti, poi le ore, potete verificare con &lt;a href=&quot;https://crontab.guru/&quot; target=&quot;_blank&quot;&gt;questo utile strumento online&lt;/a&gt; come usare quella sintassi).&lt;/li&gt;
-  &lt;li&gt;Nel &lt;strong&gt;token&lt;/strong&gt;, dobbiamo indicare il nome scelto in precedenza.&lt;/li&gt;
-  &lt;li&gt;Se abbiamo un &lt;strong&gt;custom domain&lt;/strong&gt; configurato, dobbiamo indicarlo in &lt;strong&gt;cname&lt;/strong&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Possiamo testare il nostro workflow, dal repository scegliamo &lt;strong&gt;Actions&lt;/strong&gt;, nella colonna a sinistra scegliamo la action appena creata, e a destra clicchiamo su &lt;strong&gt;Run Workflow&lt;/strong&gt;, se tutto va bene dopo qualche minuto la compilazione del sito terminerà correttamente.&lt;/p&gt;
-
-&lt;p&gt;A questo punto, sarà stato creato un nuovo branch chiamato gh-pages (ma il nome potete sceglierlo a vostro piacimento), l’ultimo step è quello di indicare a Github di visualizzare il sito da questo nuono branch e non dal main (nel mio caso, usavo la compilazione diretta dal main infatti); per farlo, dal repository andiamo in &lt;strong&gt;Settings -&amp;gt; Pages&lt;/strong&gt; e selezioniamo, sotto &lt;strong&gt;Build and deployment&lt;/strong&gt;, l’opzione &lt;strong&gt;Deploy from a branch&lt;/strong&gt; (dovrebbe essere già selezionata) e come branch indichiamo gh-pages (o qualsiasi altro nome abbiate scelto).&lt;/p&gt;
-
-&lt;p&gt;A questo punto, scrivete un post con data futura e godetevi la pubblicazione &lt;strong&gt;schedulata&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Stay tuned..&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="blog" /><category term="ruby" /><category term="jekyll" /><category term="github" /><summary type="html">Capita spesso di scrivere un post per poi pubblicarlo in un secondo momento. Con Jekyll basta semplicemente “datare” un post con una data futura per fare in modo che non si veda immediatamente dopo il deploy. Il problema è che poi, alla data prevista, sarà necessario forzare il deploy, ad esempio apportando una modifica anche minina ad un file, affinchè Github Pages ricompili l’intero sito e renda visibile il nuovo post.</summary></entry></feed>
+&lt;p&gt;Credits: &lt;a href=&quot;https://www.vincenzocaputo.com/guide/la-lavatrice-ha-finito-con-home-assistant-te-lo-facciamo-notificare-174&quot; target=&quot;_blank&quot;&gt;Vincenzo Caputo&lt;/a&gt;&lt;/p&gt;</content><author><name>RedBlue</name></author><category term="guide" /><category term="domotica" /><category term="sonoff" /><summary type="html">Qualche tempo fa mia moglie mi ha chiesto un modo per sapere quando la lavatrice termina il lavaggio. Viviamo in una casa a più piani, e spesso non siamo nei pressi della lavatrice quando termina il lavaggio, ed ecco che dimenticarsi del tutto del bucato da stendere era diventato una problema.</summary></entry></feed>
