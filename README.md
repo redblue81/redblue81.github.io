@@ -112,3 +112,23 @@ Note:
 ## Deploy
 
 Ogni push su `main` esegue build, `html-proofer` e deploy su `gh-pages`. Le pull request eseguono build e controlli ma **non** il deploy. Il merge resta manuale.
+
+## Branch protection e Action
+
+- `main` dovrebbe essere protetto: PR obbligatoria, check `build` verde, force push bloccato.
+- Le Action sono pinnate a SHA; Dependabot apre PR settimanali per gli aggiornamenti.
+
+### Attivare la branch protection
+
+1. GitHub → repository → **Settings → Branches**.
+2. **Add branch protection rule** (oppure **Rules → Rulesets**).
+3. Branch name pattern: `main`.
+4. Attiva:
+   - **Require a pull request before merging** (approvazioni: 0 se sei l’unico);
+   - **Require status checks to pass before merging** → seleziona `build`;
+   - **Block force pushes**.
+5. Salva.
+
+Da quel momento il flusso è: branch → PR → check `build` verde → merge → deploy su `main`. Un push diretto su `main` viene rifiutato.
+
+Se il check `build` non compare nella lista, apri prima una PR di prova: il check viene registrato dopo la prima esecuzione.
