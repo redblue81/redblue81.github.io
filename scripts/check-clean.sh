@@ -14,5 +14,4 @@ bundle exec htmlproofer ./_site \
   --assume-extension \
   --ignore-empty-alt \
   --ignore-missing-alt \
-  --no-enforce-https \
-  --ignore-urls "/assets/images/xc3028-v27.fw,/assets/images/k10temp.tar.gz,/assets/images/em28xx-new.tar.gz"
+  --no-enforce-https
