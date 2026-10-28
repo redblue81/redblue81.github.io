@@ -1,0 +1,39 @@
+.video-embed {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 1.5rem auto;
+  background: #111;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.video-embed-play {
+  flex: 1;
+  min-height: 140px;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.video-embed-play:hover,
+.video-embed-play:focus {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.video-embed-note {
+  display: block;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+  color: #ddd;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.video-embed-note a {
+  color: #fff;
+  text-decoration: underline;
+}

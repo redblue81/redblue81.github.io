@@ -1,0 +1,4 @@
+# Font self-hosted
+
+Font Lora e Open Sans (SIL Open Font License 1.1), scaricati da Google Fonts
+e serviti localmente per evitare richieste a fonts.googleapis.com / fonts.gstatic.com.
