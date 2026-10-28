@@ -3,7 +3,7 @@ layout: post
 title: "Allarme php2shell: verificare e mettere in sicurezza i server Linux casalinghi"
 slug: "allarme-php2shell-verificare-e-mettere-in-sicurezza-i-server-linux-casalinghi"
 date: "2026-10-26 09:22:32 +0100"
-categories: ["Linux"]
+categories: ["linux"]
 tags: ["ubuntu", "php", "sicurezza", "homelab", "sysadmin"]
 ---
 

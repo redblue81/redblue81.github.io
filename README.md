@@ -75,6 +75,13 @@ Da quel momento il check parte automaticamente prima di ogni push (`git push --n
 - I video YouTube sono in modalità **click-to-load**: nessuna richiesta a YouTube finché non clicchi.
 - Pagine legali: `/privacy.html`, `/cookies-policy/`, `/affiliate-disclosure.html`.
 
+## Archivio e ricerca
+
+- `/archive/` — tutti i post per anno.
+- `/categories/` e `/tags/` — indici che filtrano la ricerca.
+- `/search.html` — ricerca client-side con Lunr self-hosted; indice generato in `search.json`.
+- Nessun servizio esterno: Lunr è in `assets/vendor/lunr/`.
+
 ## Nuovo post
 
 Creare un file in `_posts/` con nome `YYYY-MM-DD-slug.md` (o `.markdown`) e front matter minimo:

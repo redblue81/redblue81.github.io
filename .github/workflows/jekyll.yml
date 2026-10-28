@@ -33,6 +33,12 @@ jobs:
       - name: Build site with Jekyll
         run: bundle exec jekyll build
 
+      - name: Check search script syntax
+        run: node --check assets/search.js
+
+      - name: Validate search index
+        run: ruby -rjson -e 'JSON.parse(File.read("_site/search.json")); puts "search.json OK"'
+
       - name: Check internal links and images
         run: |
           bundle exec htmlproofer ./_site \

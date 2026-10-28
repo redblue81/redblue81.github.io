@@ -3,7 +3,7 @@ layout: post
 title: "Configurazione Nginx Proxy Manager con DuckDNS e SSL"
 slug: "configurazione-nginx-proxy-manager-con-duckdns-e-ssl"
 date: "2026-10-27 22:53:17 +0100"
-categories: ["Homelab"]
+categories: ["homelab"]
 tags: ["Docker", "Nginx Proxy Manager", "DuckDNS", "Reverse Proxy"]
 ---
 

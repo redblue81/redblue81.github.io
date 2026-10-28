@@ -2,7 +2,7 @@
 layout: post
 title: "Installazione di Docker e Nginx Proxy Manager su Proxmox"
 date: 2026-05-08 10:55:19 +0200
-categories: [Virtualizzazione]
+categories: [virtualizzazione]
 tags: [Proxmox, Docker, Portainer, Nginx Proxy Manager, LXC, Virtualizzazione Server, tutorial]
 ---
 

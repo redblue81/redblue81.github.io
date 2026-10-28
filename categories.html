@@ -1,0 +1,29 @@
+---
+layout: page
+title: Categorie
+permalink: /categories/
+---
+
+<p class="text-muted">
+  {{ site.categories | size }} categorie &middot;
+  <a href="{{ '/archive/' | relative_url }}">Archivio</a> &middot;
+  <a href="{{ '/tags/' | relative_url }}">Tag</a> &middot;
+  <a href="{{ '/search.html' | relative_url }}">Cerca</a>
+</p>
+
+<p>Seleziona una categoria per vedere i post nella pagina di ricerca.</p>
+
+{% assign categories = site.categories | sort %}
+<ul>
+{% for category in categories %}
+  {% assign query = category[0] | url_encode %}
+  <li>
+    <a href="{{ '/search.html?category=' | append: query | relative_url }}">{{ category[0] }}</a>
+    <span class="text-muted">({{ category[1] | size }})</span>
+  </li>
+{% endfor %}
+</ul>
+
+<noscript>
+  <p class="text-muted">Attiva JavaScript per filtrare i post, oppure usa l’<a href="{{ '/archive/' | relative_url }}">archivio per anno</a>.</p>
+</noscript>

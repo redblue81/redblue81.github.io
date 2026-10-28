@@ -7,6 +7,7 @@ if ! bundle check >/dev/null 2>&1; then
 fi
 
 bundle exec jekyll build
+ruby -rjson -e 'JSON.parse(File.read("_site/search.json")); puts "search.json OK"'
 bundle exec htmlproofer ./_site \
   --disable-external \
   --assume-extension \

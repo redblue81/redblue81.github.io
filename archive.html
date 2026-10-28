@@ -1,0 +1,28 @@
+---
+layout: page
+title: Archivio
+permalink: /archive/
+---
+
+<p>
+  Tutti i post, dal più recente al più vecchio. Puoi anche sfogliare
+  <a href="{{ '/categories/' | relative_url }}">le categorie</a>,
+  <a href="{{ '/tags/' | relative_url }}">i tag</a> o usare la
+  <a href="{{ '/search.html' | relative_url }}">ricerca</a>.
+</p>
+
+{% assign current_year = "" %}
+{% for post in site.posts %}
+  {% assign year = post.date | date: "%Y" %}
+  {% if year != current_year %}
+    {% unless forloop.first %}</ul>{% endunless %}
+    <h2 id="y{{ year }}">{{ year }}</h2>
+    <ul>
+    {% assign current_year = year %}
+  {% endif %}
+  <li>
+    <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d/%m" }}</time>
+    &mdash; <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+  </li>
+  {% if forloop.last %}</ul>{% endif %}
+{% endfor %}

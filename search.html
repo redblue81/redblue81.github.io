@@ -1,0 +1,26 @@
+---
+layout: page
+title: Cerca
+---
+
+<p>Cerca per titolo, categoria, tag o contenuto dei post.</p>
+
+<input
+  type="search"
+  id="search-input"
+  class="form-control"
+  placeholder="Scrivi almeno 2 caratteri..."
+  autocomplete="off"
+  autofocus
+>
+
+<p id="search-status" class="text-muted small mt-2"></p>
+<div id="search-filter" class="alert alert-info d-none"></div>
+<div id="search-results"></div>
+
+<script>
+  window.SEARCH_INDEX_URL = "{{ '/search.json' | relative_url }}";
+  window.SEARCH_PAGE_URL = "{{ '/search.html' | relative_url }}";
+</script>
+<script src="{{ '/assets/vendor/lunr/lunr.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/search.js' | relative_url }}"></script>
